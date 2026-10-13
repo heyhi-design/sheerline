@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "provenance": {
+    "generated_at": "2026-09-07",
+    "system_id": "worked-example-ds",
+    "code_manifest_source": "served through the instance (retrieve_design_context / retrieve_design_relationships), not read from disk. The served manifest carries 31 components.",
+    "coverage_counts": {
+      "both": 1,
+      "figma-only": 1,
+      "code-only": 30,
+      "divergent": 0
+    },
+    "classification_note": "Every level is a CANDIDATE (level_confirmed: false); a human confirms at the crosswalk-review gate. Button is an atom: an INSTANCE_SWAP of a leaf Icon does not promote an atom to a molecule. The served graph currently encodes zero containment (production contains: [] ; component_uses returns children_count 0), so in this worked example the Figma-side composition is the classification signal and the graph contains_component route is validated on a manifest that encodes containment. divergent is 0 here because the token-binding sub-check (comparing each Figma variant's bound tokens against the served token map) was not run in this read; it is flagged for the crosswalk review (the 2026-09-04 proof recorded a candidate secondary-text token disagreement).",
+    "note": "Representative subset: Button, Icon, and 6 of the 30 code-only rows. The full 32-row crosswalk is in the gitignored proof record."
+  },
+  "rows": [
+    {
+      "code_component": "Button",
+      "figma_key": "redacted-comp-button",
+      "figma_name": "Button",
+      "token_refs": [
+        "accent-primary",
+        "text-on-accent",
+        "accent-hover",
+        "text-primary",
+        "text-disabled",
+        "bg-hover",
+        "border-default",
+        "radius-md",
+        "space-2",
+        "space-4"
+      ],
+      "coverage": "both",
+      "level": "atom",
+      "level_confirmed": false
+    },
+    {
+      "code_component": null,
+      "figma_key": "redacted-comp-icon-chevronright",
+      "figma_name": "Icon/ChevronRight",
+      "token_refs": [],
+      "coverage": "figma-only",
+      "level": "atom",
+      "level_confirmed": false
+    },
+    {
+      "code_component": "Input",
+      "figma_key": null,
+      "figma_name": null,
+      "token_refs": [
+        "bg-surface",
+        "text-primary",
+        "text-tertiary",
+        "border-default",
+        "border-focus",
+        "radius-md",
+        "space-3"
+      ],
+      "coverage": "code-only",
+      "level": "atom",
+      "level_confirmed": false
+    },
+    {
+      "code_component": "Badge",
+      "figma_key": null,
+      "figma_name": null,
+      "token_refs": [
+        "bg-subtle",
+        "text-secondary",
+        "status-success-bg",
+        "status-success-text",
+        "accent-primary-muted",
+        "accent-primary",
+        "radius-full",
+        "space-1",
+        "space-2"
+      ],
+      "coverage": "code-only",
+      "level": "atom",
+      "level_confirmed": false
+    },
+    {
+      "code_component": "Card",
+      "figma_key": null,
+      "figma_name": null,
+      "token_refs": [
+        "bg-surface",
+        "border-subtle",
+        "radius-lg",
+        "space-4",
+        "space-6"
+      ],
+      "coverage": "code-only",
+      "level": "molecule",
+      "level_confirmed": false
+    },
+    {
+      "code_component": "Alert",
+      "figma_key": null,
+      "figma_name": null,
+      "token_refs": [
+        "status-info-bg",
+        "status-info-text",
+        "status-info-border",
+        "radius-md",
+        "space-3"
+      ],
+      "coverage": "code-only",
+      "level": "molecule",
+      "level_confirmed": false
+    },
+    {
+      "code_component": "Form",
+      "figma_key": null,
+      "figma_name": null,
+      "token_refs": [
+        "space-4",
+        "space-2",
+        "text-secondary",
+        "status-error-text"
+      ],
+      "coverage": "code-only",
+      "level": "molecule",
+      "level_confirmed": false
+    },
+    {
+      "code_component": "Modal",
+      "figma_key": null,
+      "figma_name": null,
+      "token_refs": [
+        "bg-elevated",
+        "bg-overlay",
+        "border-subtle",
+        "radius-lg",
+        "space-6"
+      ],
+      "coverage": "code-only",
+      "level": "organism",
+      "level_confirmed": false
+    }
+  ]
+}

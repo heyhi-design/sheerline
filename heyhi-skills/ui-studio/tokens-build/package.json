@@ -1,0 +1,14 @@
+{
+  "name": "heyhi-ui-studio-tokens-build",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "DTCG-native token -> CSS transform via Style Dictionary v5. W5 / audit G7 interop: proves a DTCG-native ui-studio brand config is a valid Style Dictionary input with no adapter.",
+  "scripts": {
+    "prep": "node prep.mjs",
+    "build": "node prep.mjs && style-dictionary build --config style-dictionary.config.mjs"
+  },
+  "devDependencies": {
+    "style-dictionary": "^5.5.3"
+  }
+}

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Wheelhouse: the Sheerline and keel seminar as a track ladder. Prototype.">
+  <title>Wheelhouse · Seminar</title>
+  <!-- S-11 Seminar · lane DISPATCH-07 (LIBRARY) · HeyHi Confidential -->
+  <link rel="stylesheet" href="shared/studio.css">
+  <style>
+    /* page-scoped (S-11). candidate for shared: .lede .anatomy .anatomy__grid
+       .anatomy__item .sep-note .track .track__head .track__level .track__outcome
+       .mod-grid .mod-card .teaches .teaches--keel .teaches--sheerline .mod-card__sep */
+    .lede { font-size: 1.02rem; color: var(--soft); max-width: 68ch; }
+
+    .anatomy { margin: var(--sp-5) 0; }
+    .anatomy__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: var(--sp-3); margin-top: var(--sp-3); }
+    .anatomy__item { display: flex; gap: var(--sp-3); align-items: baseline; }
+    .anatomy__num { font-family: var(--font-mono); font-size: .78rem; color: var(--teal); width: 1.2em; flex: none; }
+    .anatomy__name { font-weight: 600; }
+    .anatomy__gloss { color: var(--soft); font-size: .9rem; }
+
+    .sep-note { border-left: 3px solid var(--indigo); padding-left: var(--sp-4); margin: var(--sp-5) 0 var(--sp-6); }
+    .sep-note p { color: var(--soft); margin: 0; }
+    .sep-note .k { color: var(--indigo); font-family: var(--font-mono); font-size: .82em; }
+    .sep-note .s { color: var(--teal); font-family: var(--font-mono); font-size: .82em; }
+
+    .track { margin-bottom: var(--sp-6); }
+    .track__head { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--sp-3); margin-bottom: var(--sp-2); }
+    .track__title { font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; margin: 0; }
+    .track__level { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .04em;
+      text-transform: uppercase; color: var(--soft); background: var(--surface-inset);
+      border: 1px solid var(--border); border-radius: var(--r-pill); padding: 2px var(--sp-3); }
+    .track__count { font-family: var(--font-mono); font-size: .74rem; color: var(--faint); }
+    .track__outcome { color: var(--soft); max-width: 74ch; margin: 0 0 var(--sp-4); }
+
+    .mod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: var(--sp-3); }
+    .mod-card { display: flex; flex-direction: column; gap: var(--sp-2); }
+    .mod-card__title { font-family: var(--font-display); font-weight: 500; font-size: .95rem; }
+    .mod-card__row { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; }
+    .teaches { display: inline-flex; align-items: center; gap: 5px; padding: 1px var(--sp-2);
+      border-radius: var(--r-1); font-family: var(--font-mono); font-size: .7rem; }
+    .teaches--keel { background: var(--indigo-fill); border: 1px solid var(--indigo-border); color: var(--indigo); }
+    .teaches--sheerline { background: var(--teal-fill); border: 1px solid var(--teal-border); color: var(--ink); }
+    .mod-card__sep { font-family: var(--font-mono); font-size: .68rem; color: var(--faint); }
+    /* candidate for shared: module paths must wrap inside chips (shared .chip is
+       white-space:nowrap, which overflows the viewport on mobile) */
+    .chip:not(.filter-btn) { white-space: normal; overflow-wrap: anywhere; max-width: 100%; }
+  </style>
+</head>
+<body>
+<!-- ============================================================================
+     WHEELHOUSE - shared shell snippet   (FROZEN after DISPATCH-03 merges)
+     HeyHi Confidential
+     Pasted verbatim from shared/shell-snippet.html. See shared/README.md.
+     ============================================================================ -->
+<script src="data/snapshot.js"></script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="studio-shell">
+
+  <header class="topbar">
+    <a class="wordmark" href="index.html">WHEELHOUSE</a>
+    <a class="topbar__search" href="index.html#router">
+      <span aria-hidden="true">⌕</span>&nbsp;Route a task…
+    </a>
+    <span class="topbar__spacer"></span>
+    <a class="session-indicator" href="session.html">
+      <span class="dot" aria-hidden="true"></span>
+      Own practice
+      <span class="sr-only">(simulated exemplar session)</span>
+    </a>
+  </header>
+
+  <nav class="rail" aria-label="Primary">
+    <p class="rail__label">Wheelhouse</p>
+    <a class="rail__link" href="index.html">           <span class="rail__num">1</span> Home</a>
+    <a class="rail__link" href="areas.html">           <span class="rail__num">2</span> Areas</a>
+    <a class="rail__link" href="skills.html">          <span class="rail__num">3</span> Skills</a>
+    <a class="rail__link" href="session.html">         <span class="rail__num">4</span> Session</a>
+    <a class="rail__link" href="quality-validate.html"><span class="rail__num">5</span> Quality</a>
+    <a class="rail__link" href="artifacts.html">       <span class="rail__num">6</span> Artifacts</a>
+    <a class="rail__link" href="dispatch.html">        <span class="rail__num">7</span> Dispatch</a>
+    <a class="rail__link" href="seminar.html">         <span class="rail__num">8</span> Seminar</a>
+    <a class="rail__link" href="intake.html">          <span class="rail__num">9</span> Intake</a>
+  </nav>
+
+  <main id="main-content" class="studio-main">
+    <div class="wrap">
+    <!-- ===================== PAGE CONTENT START ===================== -->
+
+      <section class="section" aria-labelledby="sem-h">
+        <p class="eyebrow">Seminar</p>
+        <h1 id="sem-h">The reading room</h1>
+        <p class="lede">A self-paced ladder from novice to subject-matter expert on how keel and Sheerline actually work. Each track is a level; later tracks assume the earlier ones. Every module is one reading unit built from the same eight parts, and every card points at the module in the repo, not a copy of it.</p>
+        <p class="count-line mono faint" id="count-line" style="margin:var(--sp-2) 0 0"></p>
+      </section>
+
+      <!-- The 8-part module anatomy, rendered once as a legend -->
+      <section class="section" aria-labelledby="anatomy-h">
+        <div class="card anatomy">
+          <p class="eyebrow" id="anatomy-h">How a module is built</p>
+          <p class="muted" style="margin:0">Eight parts, every module. Read the Concept, do the Walkthrough with the files open, then the Lab.</p>
+          <div class="anatomy__grid" id="anatomy-grid"></div>
+        </div>
+      </section>
+
+      <!-- The separability line: which modules lift to keel's public docs -->
+      <section class="sep-note" aria-label="Separability">
+        <p>Separability rides on each module's <span class="s">teaches</span> tag. <span class="k">teaches: keel</span> modules teach the general harness and are written to lift cleanly into keel's own public documentation later, without a rewrite. <span class="s">teaches: sheerline</span> modules teach Sheerline, which is Confidential and gated, and stay internal until those gates open. A keel module may never depend on a Sheerline internal to make sense; the smoke test enforces it.</p>
+      </section>
+
+      <!-- The track ladder -->
+      <div id="tracks"></div>
+
+    <!-- ===================== PAGE CONTENT END ======================= -->
+    </div>
+  </main>
+
+  <footer class="studio-footer">
+    <span class="sim">Prototype</span> · simulated interactions over a real data snapshot
+    (<span class="mono" data-commit>…</span>) · HeyHi Confidential
+  </footer>
+
+</div>
+
+<script>
+/* fill footer commit + self-activate the rail item from the page filename */
+(function () {
+  var data = window.SHEERLINE_DATA || {};
+  var meta = data.meta || {};
+  var el = document.querySelector('[data-commit]');
+  if (el) { el.textContent = meta.source_commit || 'unknown'; }
+
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') { path = 'index.html'; }
+  var alias = {
+    'quality-grade.html': 'quality-validate.html',
+    'quality-learn.html': 'quality-validate.html',
+    'exit-gate.html': 'session.html'
+  };
+  var target = alias[path] || path;
+  var links = document.querySelectorAll('.rail__link');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].getAttribute('href') === target) {
+      links[i].setAttribute('aria-current', 'page');
+    } else {
+      links[i].removeAttribute('aria-current');
+    }
+  }
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------------------
+   S-11 Seminar: render the track ladder from the data global. Module titles and
+   teaches tags come from the snapshot (seminar.tracks). Track level and "what
+   you leave with" are not in the snapshot; they are the curriculum-map table in
+   sheerline/seminar/README.md, keyed here by track dir (the plan directs S-11 to
+   render them from the README). Module cards reference the repo path (L7).
+   --------------------------------------------------------------------------- */
+(function () {
+  "use strict";
+  var D = window.SHEERLINE_DATA || {};
+  var tracks = (D.seminar && D.seminar.tracks) || [];
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function el(id){ return document.getElementById(id); }
+
+  /* README curriculum-map, keyed by track dir (source: seminar/README.md) */
+  var LADDER = {
+    'track-0-orientation':  { level: 'novice entry', outcome: 'Why a harness exists at all, and the mental model that holds the whole system together.' },
+    'track-1-keel':         { level: 'foundational', outcome: 'You can read, stand up, and reason about the general harness end to end.' },
+    'track-2-sheerline':    { level: 'intermediate', outcome: 'You understand how keel becomes a design harness, and what the one net-new slot buys.' },
+    'track-3-quality-loop': { level: 'advanced',     outcome: 'You can trace retrieve &rarr; validate &rarr; grade &rarr; learn through the real subsystems.' },
+    'track-4-synthesis':    { level: 'expert',       outcome: 'You can run a full loop, extend the system, and defend where judgment stays human.' }
+  };
+
+  /* the 8-part module anatomy (source: seminar/README.md) */
+  var ANATOMY = [
+    ['You are here', 'where this module sits in the arc.'],
+    ['Learning objectives', 'what you will be able to do after it.'],
+    ['Concept', 'the teaching exposition.'],
+    ['Walkthrough', 'a guided read of the real tree and code.'],
+    ['Lab', 'do it yourself against the real repo.'],
+    ['Common misreads', 'the traps, named so you skip them.'],
+    ['Self-check', 'questions that confirm you own the idea.'],
+    ['Go deeper', 'the canonical files and the architecture figure.']
+  ];
+
+  /* anatomy legend */
+  (function(){
+    var host = el('anatomy-grid'); if (!host) return;
+    host.innerHTML = ANATOMY.map(function(p, i){
+      return '<div class="anatomy__item">'
+           +   '<span class="anatomy__num">'+(i+1)+'</span>'
+           +   '<span><span class="anatomy__name">'+esc(p[0])+'</span>: '
+           +     '<span class="anatomy__gloss">'+esc(p[1])+'</span></span>'
+           + '</div>';
+    }).join('');
+  })();
+
+  function teachesBadge(t){
+    var cls = (t === 'keel') ? 'teaches--keel' : 'teaches--sheerline';
+    return '<span class="teaches '+cls+'">teaches: '+esc(t)+'</span>';
+  }
+
+  function modCard(track, m){
+    var path = 'sheerline/seminar/' + track.dir + '/' + m.file;
+    var keel = (m.teaches === 'keel');
+    return '<article class="card mod-card">'
+         +   '<span class="mod-card__title">'+esc(m.title)+'</span>'
+         +   '<div class="mod-card__row">'+teachesBadge(m.teaches)+'</div>'
+         +   '<span class="chip chip--provenance mono" title="'+esc(path)+'">'+esc(path)+'</span>'
+         +   (keel ? '<span class="mod-card__sep">Separable: lifts to keel\'s public docs.</span>' : '')
+         + '</article>';
+  }
+
+  /* track ladder */
+  (function(){
+    var host = el('tracks'); if (!host) return;
+    host.innerHTML = tracks.map(function(t){
+      var meta = LADDER[t.dir] || { level: '', outcome: '' };
+      var mods = t.modules || [];
+      return '<section class="track">'
+           +   '<div class="track__head">'
+           +     '<h2 class="track__title">'+esc(t.title)+'</h2>'
+           +     (meta.level ? '<span class="track__level">'+esc(meta.level)+'</span>' : '')
+           +     '<span class="track__count">'+mods.length+' modules</span>'
+           +   '</div>'
+           +   '<p class="track__outcome">'+(meta.outcome || '')+'</p>'
+           +   '<div class="mod-grid">'+mods.map(function(m){ return modCard(t, m); }).join('')+'</div>'
+           + '</section>';
+    }).join('');
+  })();
+
+  /* count line (all derived from the data) */
+  (function(){
+    var c = el('count-line'); if (!c) return;
+    var mods = tracks.reduce(function(t, tr){ return t + ((tr.modules||[]).length); }, 0);
+    var keel = 0, sheer = 0;
+    tracks.forEach(function(tr){ (tr.modules||[]).forEach(function(m){ if (m.teaches==='keel') keel++; else sheer++; }); });
+    c.textContent = tracks.length + ' tracks · ' + mods + ' modules · '
+                  + keel + ' teach keel (separable), ' + sheer + ' teach Sheerline (gated)';
+  })();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Wheelhouse: the governed capability registry, honesty fields and all. Prototype.">
+  <title>Wheelhouse · Skills</title>
+  <!-- S-4 Skills · lane DISPATCH-07 (LIBRARY) · HeyHi Confidential -->
+  <link rel="stylesheet" href="shared/studio.css">
+  <style>
+    /* page-scoped (S-4). candidate for shared: .lede .tabs .tab .panel .searchbar
+       .showing .cap-group .cap-grid .cap-card .cap-card__label .chip--trigger
+       .chip--notfor .cap-card__cost .cap-detail .route-link .scope-note */
+    .lede { font-size: 1.02rem; color: var(--soft); max-width: 66ch; }
+
+    .tabs { display: flex; gap: var(--sp-2); flex-wrap: wrap; align-items: flex-end;
+            border-bottom: 1px solid var(--border); margin: var(--sp-5) 0 var(--sp-5); }
+    .tab { font-family: var(--font-display); font-weight: 500; font-size: .92rem;
+           padding: var(--sp-3) var(--sp-4); background: transparent; border: 0;
+           border-bottom: 2px solid transparent; color: var(--soft); cursor: pointer; margin-bottom: -1px; }
+    .tab:hover { color: var(--ink); }
+    .tab[aria-pressed="true"] { color: var(--ink); border-bottom-color: var(--teal); }
+    .tab .mono { font-size: .74rem; color: var(--faint); }
+    .panel[hidden] { display: none; }
+
+    .searchbar { display: flex; gap: var(--sp-2); align-items: center; margin-bottom: var(--sp-3); }
+    .searchbar input { flex: 1; max-width: 440px; font-family: var(--font-body); font-size: .95rem;
+      padding: var(--sp-2) var(--sp-4); color: var(--ink);
+      background: var(--field); border: 1px solid var(--border-strong); border-radius: var(--r-1); }
+    .searchbar input::placeholder { color: var(--faint); }
+    .showing { font-family: var(--font-mono); font-size: .74rem; color: var(--faint); margin: 0 0 var(--sp-5); }
+
+    .cap-group { margin-bottom: var(--sp-6); }
+    .cap-group__head { display: flex; align-items: baseline; gap: var(--sp-3); margin-bottom: var(--sp-3); }
+    .cap-group__title { font-family: var(--font-mono); font-size: .76rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--faint); }
+    .cap-group__title a { color: var(--faint); }
+    .cap-group__title a:hover { color: var(--teal); }
+
+    .cap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: var(--sp-4); }
+    .cap-card { display: flex; flex-direction: column; gap: var(--sp-3); scroll-margin-top: calc(var(--topbar-h) + var(--sp-4)); }
+    .cap-card__top { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-2); }
+    .cap-card__name { font-family: var(--font-display); font-weight: 600; font-size: 1rem; }
+    /* clamp the card summary so single-sentence-but-long descriptions stay compact;
+       the full text lives in the expander below (candidate for shared) */
+    .cap-card__desc { color: var(--soft); font-size: .9rem; margin: 0;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .cap-card__label { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--faint); display: block; margin-bottom: var(--sp-2); }
+    .chip-wrap { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+    /* triggers = solid chips (ink); not-for = equally present, visually distinct (dashed, inset) */
+    .chip--trigger { font-size: .72rem; }
+    .chip--notfor { font-size: .72rem; background: var(--surface-inset);
+      border-style: dashed; border-color: var(--border-strong); color: var(--soft); cursor: default; }
+    .chip--notfor .x { color: var(--faint); font-weight: 600; }
+    /* long paths / trigger phrases / capability names must wrap inside chips
+       (shared .chip is white-space:nowrap and would overflow the viewport on mobile) */
+    .chip:not(.filter-btn) { white-space: normal; overflow-wrap: anywhere; max-width: 100%; }
+    .cap-card__cost { font-family: var(--font-mono); font-size: .74rem; color: var(--soft); }
+
+    .cap-detail { border-top: 1px dashed var(--border); padding-top: var(--sp-3); }
+    .cap-detail > summary { cursor: pointer; font-family: var(--font-mono); font-size: .76rem; color: var(--teal); list-style: none; }
+    /* summary:focus-visible now in the base list (shared/studio.css, folded at D-08). */
+    .cap-detail > summary::-webkit-details-marker { display: none; }
+    .cap-detail > summary::before { content: "▸ "; }
+    .cap-detail[open] > summary::before { content: "▾ "; }
+    .cap-detail__body { margin-top: var(--sp-3); display: flex; flex-direction: column; gap: var(--sp-3); }
+    .route-link { align-self: flex-start; }
+    .scope-note { max-width: 70ch; }
+    .scope-note p { color: var(--soft); }
+  </style>
+</head>
+<body>
+<!-- ============================================================================
+     WHEELHOUSE - shared shell snippet   (FROZEN after DISPATCH-03 merges)
+     HeyHi Confidential
+     Pasted verbatim from shared/shell-snippet.html. See shared/README.md.
+     ============================================================================ -->
+<script src="data/snapshot.js"></script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="studio-shell">
+
+  <header class="topbar">
+    <a class="wordmark" href="index.html">WHEELHOUSE</a>
+    <a class="topbar__search" href="index.html#router">
+      <span aria-hidden="true">⌕</span>&nbsp;Route a task…
+    </a>
+    <span class="topbar__spacer"></span>
+    <a class="session-indicator" href="session.html">
+      <span class="dot" aria-hidden="true"></span>
+      Own practice
+      <span class="sr-only">(simulated exemplar session)</span>
+    </a>
+  </header>
+
+  <nav class="rail" aria-label="Primary">
+    <p class="rail__label">Wheelhouse</p>
+    <a class="rail__link" href="index.html">           <span class="rail__num">1</span> Home</a>
+    <a class="rail__link" href="areas.html">           <span class="rail__num">2</span> Areas</a>
+    <a class="rail__link" href="skills.html">          <span class="rail__num">3</span> Skills</a>
+    <a class="rail__link" href="session.html">         <span class="rail__num">4</span> Session</a>
+    <a class="rail__link" href="quality-validate.html"><span class="rail__num">5</span> Quality</a>
+    <a class="rail__link" href="artifacts.html">       <span class="rail__num">6</span> Artifacts</a>
+    <a class="rail__link" href="dispatch.html">        <span class="rail__num">7</span> Dispatch</a>
+    <a class="rail__link" href="seminar.html">         <span class="rail__num">8</span> Seminar</a>
+    <a class="rail__link" href="intake.html">          <span class="rail__num">9</span> Intake</a>
+  </nav>
+
+  <main id="main-content" class="studio-main">
+    <div class="wrap">
+    <!-- ===================== PAGE CONTENT START ===================== -->
+
+      <section class="section" aria-labelledby="skills-h">
+        <p class="eyebrow">Capability registry</p>
+        <h1 id="skills-h">The capability gallery</h1>
+        <p class="lede">Every governed capability as a card. What a capability will <em>not</em> do reads as plainly as what it will: the not-for lines sit beside the triggers, because knowing where a capability stops is how the router learns to say no.</p>
+
+        <div class="tabs" role="group" aria-label="Capability scope">
+          <button class="tab" type="button" id="tab-governed" aria-pressed="true" aria-controls="panel-governed">
+            Governed <span class="mono" id="tab-governed-n"></span>
+          </button>
+          <button class="tab" type="button" id="tab-deployed" aria-pressed="false" aria-controls="panel-deployed">
+            Deployed
+          </button>
+          <button class="tab" type="button" id="tab-candidates" aria-pressed="false" aria-controls="panel-candidates">
+            Candidates
+          </button>
+        </div>
+
+        <!-- GOVERNED: the Sheerline subset registry (the gallery) -->
+        <div class="panel" id="panel-governed" role="region" aria-labelledby="tab-governed">
+          <div class="searchbar">
+            <label class="sr-only" for="cap-search">Filter capabilities by name or tag</label>
+            <input id="cap-search" type="text" placeholder="Filter by name, tag, or trigger…">
+            <button class="btn btn--ghost" type="button" id="cap-search-clear">Clear</button>
+          </div>
+          <p class="showing" id="showing"></p>
+          <div id="cap-groups"></div>
+        </div>
+
+        <!-- DEPLOYED: the wider roster, linked not listed -->
+        <div class="panel scope-note" id="panel-deployed" role="region" aria-labelledby="tab-deployed" hidden>
+          <p id="deployed-copy"></p>
+          <div class="chip-wrap">
+            <span class="chip chip--provenance mono">heyhi-skills/</span>
+          </div>
+          <p class="faint" style="margin-top:var(--sp-3)">Scope is a governance state, not a folder. A capability is <em>governed</em> when the design-practice registry indexes it with triggers, not-for lines, and a load cost. The wider roster is real and deployed; it is simply not the design subset this workspace routes over.</p>
+        </div>
+
+        <!-- CANDIDATES: the pipeline pointer -->
+        <div class="panel scope-note" id="panel-candidates" role="region" aria-labelledby="tab-candidates" hidden>
+          <p>Capabilities in the pipeline are tracked as candidates until they ship. A candidate is a proposal, not a governed capability, so it carries no triggers and the router will not reach it. When one is built and indexed, it moves into Governed.</p>
+          <div class="chip-wrap">
+            <span class="chip chip--provenance mono">heyhi-skills/CANDIDATES.md</span>
+          </div>
+        </div>
+      </section>
+
+    <!-- ===================== PAGE CONTENT END ======================= -->
+    </div>
+  </main>
+
+  <footer class="studio-footer">
+    <span class="sim">Prototype</span> · simulated interactions over a real data snapshot
+    (<span class="mono" data-commit>…</span>) · HeyHi Confidential
+  </footer>
+
+</div>
+
+<script>
+/* fill footer commit + self-activate the rail item from the page filename */
+(function () {
+  var data = window.SHEERLINE_DATA || {};
+  var meta = data.meta || {};
+  var el = document.querySelector('[data-commit]');
+  if (el) { el.textContent = meta.source_commit || 'unknown'; }
+
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') { path = 'index.html'; }
+  var alias = {
+    'quality-grade.html': 'quality-validate.html',
+    'quality-learn.html': 'quality-validate.html',
+    'exit-gate.html': 'session.html'
+  };
+  var target = alias[path] || path;
+  var links = document.querySelectorAll('.rail__link');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].getAttribute('href') === target) {
+      links[i].setAttribute('aria-current', 'page');
+    } else {
+      links[i].removeAttribute('aria-current');
+    }
+  }
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------------------
+   S-4 Skills: render every capability from the data global, grouped by area.
+   The 13 references map to areas by their "Area N:" name; only 5 skills carry
+   an area tag today, so the rest render honestly under "not registered to a
+   single area" (a visible-state fact, L2, never an invented mapping).
+   --------------------------------------------------------------------------- */
+(function () {
+  "use strict";
+  var D = window.SHEERLINE_DATA || {};
+  var areas = D.areas || [];
+  var cap = D.capabilities || {};
+  var meta = cap.meta || {};
+  var entries = cap.entries || [];
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function el(id){ return document.getElementById(id); }
+  function n(x){ return Number(x||0).toLocaleString('en-US'); }
+  function firstSentence(s){
+    s = String(s||'');
+    var m = /^(.*?[.!?])(\s|$)/.exec(s);
+    return m ? m[1] : s;
+  }
+
+  /* area lookup by numeric id (name + key) */
+  var areaById = {};
+  areas.forEach(function(a){ areaById[Number(a.id)] = a; });
+
+  /* resolve each entry to an area id: references via "Area N:", skills via .area */
+  function areaIdOf(e){
+    if (e.type === 'reference') {
+      var m = /^Area\s+(\d+)/.exec(e.name || '');
+      return m ? Number(m[1]) : null;
+    }
+    return (e.area == null) ? null : Number(e.area);
+  }
+
+  /* build ordered groups: areas 1..13 (by id) then a null bucket */
+  var groups = [];
+  areas.slice().sort(function(a,b){ return a.id - b.id; }).forEach(function(a){
+    groups.push({ areaId: a.id, area: a, items: [] });
+  });
+  var ungrouped = { areaId: null, area: null, items: [] };
+  entries.forEach(function(e){
+    var aid = areaIdOf(e);
+    var g = null;
+    if (aid != null) { for (var i=0;i<groups.length;i++){ if (groups[i].areaId === aid){ g = groups[i]; break; } } }
+    (g || ungrouped).items.push(e);
+  });
+  var allGroups = groups.concat([ungrouped]);
+
+  function typeBadge(t){ return '<span class="badge badge--nature">'+esc(t)+'</span>'; }
+
+  function chipList(arr, cls, prefix){
+    return (arr||[]).map(function(v){
+      return '<span class="chip '+cls+'">'+(prefix||'')+esc(v)+'</span>';
+    }).join('');
+  }
+
+  function card(e){
+    var searchBlob = [e.name, (e.semantic_tags||[]).join(' '), (e.trigger_patterns||[]).join(' ')]
+                     .join(' ').toLowerCase();
+    var triggers = (e.trigger_patterns||[]);
+    var notfor = (e.not_for||[]);
+    var deps = (e.dependencies||[]);
+
+    var out = '<article class="card cap-card" id="cap-'+esc(e.id)+'" data-search="'+esc(searchBlob)+'">';
+    out += '<div class="cap-card__top">'
+         +   '<span class="cap-card__name">'+esc(e.name)+'</span>'
+         +   typeBadge(e.type)
+         + '</div>';
+    out += '<p class="cap-card__desc">'+esc(firstSentence(e.description))+'</p>';
+
+    if (triggers.length){
+      out += '<div><span class="cap-card__label">Triggers</span><div class="chip-wrap">'
+           +   chipList(triggers, 'chip--trigger') + '</div></div>';
+    }
+    if (notfor.length){
+      out += '<div><span class="cap-card__label">Not for</span><div class="chip-wrap">'
+           +   chipList(notfor, 'chip--notfor', '<span class="x" aria-hidden="true">✕</span>&nbsp;') + '</div></div>';
+    }
+
+    out += '<div class="cap-card__cost">Load cost: <strong>'+n(e.load_cost_tokens)+'</strong> tokens</div>';
+
+    /* detail (L7: dependencies as provenance chips; route back to Home) */
+    out += '<details class="cap-detail"><summary>Full description, provenance, and routing</summary>'
+         +   '<div class="cap-detail__body">'
+         +     '<p style="margin:0;color:var(--soft);font-size:.9rem">'+esc(e.description)+'</p>';
+    if ((e.semantic_tags||[]).length){
+      out += '<div><span class="cap-card__label">Semantic tags</span><div class="chip-wrap">'
+           +   chipList(e.semantic_tags, 'chip--trigger') + '</div></div>';
+    }
+    out += '<div><span class="cap-card__label">Provenance</span><div class="chip-wrap">'
+         +   '<span class="chip chip--provenance mono">'+esc(e.location)+'</span>'
+         +   deps.map(function(d){ return '<span class="chip chip--provenance mono">'+esc(d)+'</span>'; }).join('')
+         + '</div></div>';
+    out += '<a class="chip route-link" href="index.html#router">Route a task like this &rarr;</a>';
+    out += '</div></details>';
+
+    out += '</article>';
+    return out;
+  }
+
+  /* render all groups */
+  (function(){
+    var host = el('cap-groups'); if (!host) return;
+    var html = '';
+    allGroups.forEach(function(g){
+      if (!g.items.length) return;
+      var title, anchor;
+      if (g.area){
+        title = 'Area ' + g.area.id + ' · ' + esc(g.area.name);
+        anchor = '<a href="areas.html#area-'+esc(g.area.key)+'">'+title+'</a>';
+      } else {
+        title = 'Not registered to a single area';
+        anchor = esc(title) + ' <span class="faint">(the registry\'s area tags are partial)</span>';
+      }
+      html += '<section class="cap-group" data-group>'
+           +    '<div class="cap-group__head"><span class="cap-group__title">'+anchor
+           +      ' &middot; ' + g.items.length + '</span></div>'
+           +    '<div class="cap-grid">'
+           +      g.items.map(card).join('')
+           +    '</div>'
+           + '</section>';
+    });
+    host.innerHTML = html;
+  })();
+
+  /* scope tab counts + wiring */
+  (function(){
+    var gv = el('tab-governed-n');
+    if (gv) { gv.textContent = '· ' + n(meta.total_capabilities) + ''; }
+    var dc = el('deployed-copy');
+    if (dc) {
+      dc.innerHTML = 'This gallery is the Sheerline subset: <strong>'+n(meta.skills)+'</strong> skills and <strong>'
+                   + n(meta.references)+'</strong> area references the design practice governs, '
+                   + n(meta.total_capabilities)+' capabilities in all (registry '+esc(meta.version)+'). '
+                   + 'The full HeyHi skills roster is wider and lives in heyhi-skills/, linked here rather than listed.';
+    }
+  })();
+
+  function selectTab(which){
+    ['governed','deployed','candidates'].forEach(function(k){
+      var t = el('tab-'+k), p = el('panel-'+k);
+      var on = (k === which);
+      if (t) { t.setAttribute('aria-pressed', String(on)); }
+      if (p) { p.hidden = !on; }
+    });
+  }
+  ['governed','deployed','candidates'].forEach(function(k){
+    var t = el('tab-'+k); if (t) { t.addEventListener('click', function(){ selectTab(k); }); }
+  });
+
+  /* search filter over name + tags + triggers */
+  var search = el('cap-search');
+  function applySearch(){
+    var q = (search && search.value || '').trim().toLowerCase();
+    var shown = 0, total = 0;
+    document.querySelectorAll('.cap-card').forEach(function(c){
+      total++;
+      var ok = !q || (c.getAttribute('data-search') || '').indexOf(q) !== -1;
+      c.hidden = !ok;
+      if (ok) shown++;
+    });
+    document.querySelectorAll('[data-group]').forEach(function(g){
+      g.hidden = (g.querySelectorAll('.cap-card:not([hidden])').length === 0);
+    });
+    var s = el('showing');
+    if (s) { s.textContent = q ? ('Showing ' + shown + ' of ' + total + ' capabilities') : (total + ' governed capabilities'); }
+  }
+  if (search) { search.addEventListener('input', applySearch); }
+  var clear = el('cap-search-clear');
+  if (clear) { clear.addEventListener('click', function(){ if (search){ search.value=''; applySearch(); search.focus(); } }); }
+  applySearch();
+
+  /* if arriving on a #cap-<id> anchor, open its detail and scroll to it */
+  if (location.hash && location.hash.indexOf('#cap-') === 0) {
+    var t = document.getElementById(location.hash.slice(1));
+    if (t) {
+      var d = t.querySelector('details'); if (d) { d.open = true; }
+      t.scrollIntoView();
+    }
+  }
+})();
+</script>
+</body>
+</html>

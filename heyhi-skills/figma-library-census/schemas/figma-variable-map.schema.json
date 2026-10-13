@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://heyhi.design/sheerline/schemas/figma-variable-map/1.0.json",
+  "title": "figma-variable-map",
+  "description": "Read-only census of a Figma library's variable collections: name to key, resolved type, modes, code syntax, and the DTCG token each variable maps to. Lane A (figma-library-census) emits; Lanes B, F read (plan-sheerline-fdde-loop-2026-09-07 section 3.3). Version 1.0; additive thereafter. collections[] is the binding section 3.3 shape. modes and code_syntax are filled from the defining-file read (a consuming file's teamLibrary read returns only name, key, resolved_type per the Ground-truth corrections).",
+  "type": "object",
+  "required": ["schema_version", "collections"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "provenance": {
+      "type": "object",
+      "description": "Additive. Where and when the census ran; how modes and code_syntax were sourced.",
+      "additionalProperties": true,
+      "properties": {
+        "generated_at": { "type": "string" },
+        "system_id": { "type": "string" },
+        "figma_plan_tier": { "type": "string" },
+        "modes_source": { "type": "string" },
+        "note": { "type": "string" }
+      }
+    },
+    "collections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["key", "name", "library_key", "modes", "variables"],
+        "additionalProperties": false,
+        "properties": {
+          "key": { "type": "string" },
+          "name": { "type": "string" },
+          "library_key": {
+            "type": ["string", "null"],
+            "description": "The publishing library's key; null when the census ran against the defining file alone."
+          },
+          "modes": {
+            "type": "array",
+            "description": "Mode names, read from the defining file's collection (a remote teamLibrary read does not return modes).",
+            "items": { "type": "string" }
+          },
+          "variables": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "key", "resolved_type", "code_syntax", "dtcg_token"],
+              "additionalProperties": false,
+              "properties": {
+                "name": { "type": "string" },
+                "key": { "type": "string" },
+                "resolved_type": { "enum": ["COLOR", "FLOAT", "STRING", "BOOLEAN"] },
+                "code_syntax": {
+                  "type": "object",
+                  "description": "Per-platform code syntax, read in the defining file. Keys are a subset of WEB/ANDROID/iOS. Empty object when none is set.",
+                  "additionalProperties": { "type": "string" },
+                  "properties": {
+                    "WEB": { "type": "string" },
+                    "ANDROID": { "type": "string" },
+                    "iOS": { "type": "string" }
+                  }
+                },
+                "dtcg_token": {
+                  "type": ["string", "null"],
+                  "description": "The served DTCG token this variable maps to (matched by name or code syntax against the served token set); null when no match is found. The census flags, it does not adjudicate a mismatch."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

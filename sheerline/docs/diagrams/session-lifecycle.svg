@@ -1,0 +1,103 @@
+<svg width="100%" viewBox="0 0 680 742" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Sheerline: how a design task runs</title>
+<desc>Six stages, top to bottom, looping back. One: intake, scope the engagement, with the practice's own system the default substrate and no client name in a tracked file. Two: route, describe the task, the registry searches, and the confidence gate answers confident, ambiguous, or insufficient. Three: load only the in-scope area foundations, conditionally, by session type. Four: run the loop, retrieve the system, generate, validate the output, grade the result. Five: render and look, the design smoke test, view the rendered surface rather than the source and test one observation against intent. Six: the Exit Gate and capture the correction, which then loads at the next session's start, closing the loop.</desc>
+<!-- Sheerline · Figure 6 of 6: How a design task runs. See docs/architecture.md. -->
+
+<style>
+.d{font-family:'Sora',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+.b{font-family:'Lora',Georgia,'Times New Roman',serif;}
+.m{font-family:'DM Mono','SFMono-Regular',ui-monospace,'Cascadia Mono','Courier New',monospace;}
+.paper{fill:#FAFAF5;}
+.ink{fill:#1A1A1A;}.soft{fill:#6B6560;}.faint{fill:#8B857C;}
+.sheer-t{fill:#0B6E75;}.cfg-t{fill:#1F01B9;}
+.stage{fill:#F2F0EA;stroke:#D8D2C6;stroke-width:1;}
+.chip{fill:#FBFAF6;stroke:#C3BAE6;stroke-width:1;}
+.smoke{fill:#E4F1F1;stroke:#A9D6D8;stroke-width:1.5;}
+.arr{stroke:#C8BFB3;stroke-width:1.5;fill:none;}.arrhead{fill:#C8BFB3;}
+.loop{stroke:#0B6E75;stroke-width:1.5;fill:none;stroke-dasharray:3 3;}.loophead{fill:#0B6E75;}.loop-t{fill:#0B6E75;}
+@media (prefers-color-scheme:dark){
+.paper{fill:#1A1A1A;}.ink{fill:#F3F0E8;}.soft{fill:#A8A399;}.faint{fill:#7E7970;}
+.sheer-t{fill:#5FD3DB;}.cfg-t{fill:#BBB0F0;}
+.stage{fill:#242320;stroke:#3E3B34;}.chip{fill:#2E2C27;stroke:#3F3670;}
+.smoke{fill:#12302F;stroke:#2E5C5A;}
+.arr{stroke:#4A473F;}.arrhead{fill:#4A473F;}
+.loop{stroke:#5FD3DB;}.loophead{fill:#5FD3DB;}.loop-t{fill:#5FD3DB;}
+}
+</style>
+
+<rect class="paper" x="0" y="0" width="680" height="742"/>
+
+<text class="m faint" x="40" y="36" font-size="10.5" letter-spacing="1.6">SHEERLINE</text>
+<text class="d ink" x="40" y="62" font-size="21" font-weight="600">How a design task runs</text>
+<text class="b soft" x="40" y="84" font-size="12.5">Scope it, route it, load only what fits, run the loop, render and look, capture the correction.</text>
+
+<!-- 01 INTAKE -->
+<rect class="stage" x="40" y="100" width="600" height="78" rx="14"/>
+<text class="m faint" x="62" y="126" font-size="10">01</text>
+<text class="d ink" x="92" y="126" font-size="15" font-weight="600">Intake</text>
+<text class="b soft" x="92" y="146" font-size="11.5">Scope the engagement. The practice's own system is the default substrate.</text>
+<text class="m faint" x="92" y="166" font-size="9.5">the hermetic seal: no client name in a tracked file; client work is a draft until signed</text>
+<line class="arr" x1="340" y1="178" x2="340" y2="188"/><polygon class="arrhead" points="334,188 346,188 340,194"/>
+
+<!-- 02 ROUTE -->
+<rect class="stage" x="40" y="190" width="600" height="98" rx="14"/>
+<text class="m faint" x="62" y="216" font-size="10">02</text>
+<text class="d ink" x="92" y="216" font-size="15" font-weight="600">Route to one skill</text>
+<text class="b soft" x="92" y="236" font-size="11.5">Describe the task · the registry searches · the confidence gate answers.</text>
+<g font-size="8.5" text-anchor="middle">
+<rect class="chip" x="92" y="250" width="168" height="28" rx="7"/><text class="m cfg-t" x="176" y="264">confident</text><text class="m soft" x="176" y="275">load it, go</text>
+<rect class="chip" x="272" y="250" width="168" height="28" rx="7"/><text class="m cfg-t" x="356" y="264">ambiguous</text><text class="m soft" x="356" y="275">surface both, ask</text>
+<rect class="chip" x="452" y="250" width="168" height="28" rx="7"/><text class="m cfg-t" x="536" y="264">insufficient</text><text class="m soft" x="536" y="275">abstain, say so</text>
+</g>
+<line class="arr" x1="340" y1="288" x2="340" y2="298"/><polygon class="arrhead" points="334,298 346,298 340,304"/>
+
+<!-- 03 LOAD FOUNDATIONS -->
+<rect class="stage" x="40" y="300" width="600" height="78" rx="14"/>
+<text class="m faint" x="62" y="326" font-size="10">03</text>
+<text class="d ink" x="92" y="326" font-size="15" font-weight="600">Load only the in-scope foundations</text>
+<text class="b soft" x="92" y="346" font-size="11.5">Conditional loading. Only the active practice-area foundations enter the session.</text>
+<text class="m faint" x="92" y="366" font-size="9.5">Earn the Room: if it's relevant to fewer than half of sessions, it does not load by default</text>
+<line class="arr" x1="340" y1="378" x2="340" y2="388"/><polygon class="arrhead" points="334,388 346,388 340,394"/>
+
+<!-- 04 RUN THE LOOP -->
+<rect class="stage" x="40" y="390" width="600" height="84" rx="14"/>
+<text class="m faint" x="62" y="416" font-size="10">04</text>
+<text class="d ink" x="92" y="416" font-size="15" font-weight="600">Run the quality loop</text>
+<text class="b soft" x="92" y="436" font-size="11.5">Retrieve the system, generate, validate the output, grade the result.</text>
+<g class="m sheer-t" font-size="9" text-anchor="middle">
+<rect class="chip" x="92" y="446" width="86" height="20" rx="6"/><text x="135" y="459">retrieve</text>
+<rect class="chip" x="186" y="446" width="86" height="20" rx="6"/><text x="229" y="459">generate</text>
+<rect class="chip" x="280" y="446" width="86" height="20" rx="6"/><text x="323" y="459">validate</text>
+<rect class="chip" x="374" y="446" width="86" height="20" rx="6"/><text x="417" y="459">grade</text>
+</g>
+<text class="m faint" x="474" y="459" font-size="8.5">figure 4, in full</text>
+<line class="arr" x1="340" y1="474" x2="340" y2="484"/><polygon class="arrhead" points="334,484 346,484 340,490"/>
+
+<!-- 05 RENDER AND LOOK -->
+<rect class="smoke" x="40" y="486" width="600" height="78" rx="14"/>
+<text class="m faint" x="62" y="512" font-size="10">05</text>
+<text class="d sheer-t" x="92" y="512" font-size="15" font-weight="600">Render and look</text>
+<text class="b soft" x="92" y="532" font-size="11.5">The design smoke test: view the rendered surface, not the source. Test one observation against intent.</text>
+<text class="m faint" x="92" y="552" font-size="9.5">a control shipped with all its states · a coherent type ratio · the reference honored</text>
+<line class="arr" x1="340" y1="564" x2="340" y2="574"/><polygon class="arrhead" points="334,574 346,574 340,580"/>
+
+<!-- 06 EXIT GATE -->
+<rect class="stage" x="40" y="576" width="600" height="96" rx="14"/>
+<text class="m faint" x="62" y="602" font-size="10">06</text>
+<text class="d ink" x="92" y="602" font-size="15" font-weight="600">Exit Gate · capture the correction</text>
+<text class="b soft" x="92" y="622" font-size="11.5">Close through the gate. A mistake becomes an entry that loads before it can happen again.</text>
+<g class="m cfg-t" font-size="8.5" text-anchor="middle">
+<rect class="chip" x="92" y="632" width="94" height="20" rx="6"/><text x="139" y="646">Fixes Applied</text>
+<rect class="chip" x="196" y="632" width="78" height="20" rx="6"/><text x="235" y="646">Smoke Test</text>
+<rect class="chip" x="284" y="632" width="128" height="20" rx="6"/><text x="348" y="646">Next Session Prompt</text>
+<rect class="chip" x="422" y="632" width="196" height="20" rx="6"/><text x="520" y="646">Flavor B adds: Findings + Integrity</text>
+</g>
+
+<!-- return loop -->
+<path class="loop" d="M 640 624 H 662 V 134 H 648"/>
+<polygon class="loophead" points="648,128 648,140 640,134"/>
+<text class="m loop-t" x="654" y="400" font-size="9" text-anchor="middle" transform="rotate(-90 654 400)">the correction loads at the next session's start</text>
+
+<text class="b soft" x="40" y="704" font-size="12.5" font-style="italic">Retrieve the system, validate the output, render and look, capture the correction.</text>
+<text class="m faint" x="40" y="726" font-size="9.5">The runtime enforces none of this. Your configuration does. Grades inform; the human reads.</text>
+</svg>

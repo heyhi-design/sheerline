@@ -1,0 +1,138 @@
+# Eval cases: app-to-figma (Sheerline area 5, Wireframing & Prototyping, DISPATCH-02, Lane B, buildable-now).
+#
+# Probes the net-new skill before it is trusted (promotion gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge the DECISION against pass_criteria. Invented
+# examples, no client content, no file keys. Mirrors the interaction-inventory / divergence-guard
+# case shape (id, description, input, expected_findings, pass_criteria).
+#
+# Acceptance (plan § Validation harness V4, DISPATCH-02 § SMOKE TESTS): the build with slots empty,
+# an inexact match flagged not picked, the anti-minting invariant, not_for routing, the unpublished
+# library named not drawn, the ledger row with NO approval/gate field, and a genuine clean-pass case
+# audited against the skill's own exceptions.
+
+classification: confidential
+
+cases:
+  - id: a2f-01-build-slots-empty
+    description: >-
+      A surface with a clean library map must produce the full per-surface build (wrapper, sections,
+      instances imported by key, bound variables, applied styles, theme mode) with the four human
+      slots left EMPTY. The build never decides an inexact match, a deviation, the layout where the
+      library is silent, or the surface verdict.
+    input: |
+      An app-manifest surface for a marketing header: a nav bar (library "Nav" component), a heading
+      (library "Heading" text style), and a primary Button (library "Button" set, Style=primary).
+      figma_app_file_key is a saved cloud key; the library is published. "Build this surface in Figma
+      from the library."
+    expected_findings:
+      - "A pre-write plan is printed and approved before any write: the resolution table (Nav, Heading, Button each joined to a library key), an empty unresolved list, the wrapper plan, the theme mode."
+      - "One wrapper auto-layout sized to the breakpoint; sections built one use_figma call each; every component instanced by importComponentSetByKeyAsync, props set with setProperties, fills/spacing bound to imported variables, text on an imported style, the theme mode set once on the wrapper."
+      - "The ⛔ inexact-match, ⛔ deviation, ⛔ layout, and ⛔ surface-verdict slots are named and left empty; the named gate is present and unsigned."
+    pass_criteria: >-
+      The build completes from library instances AND all four judgment slots stay empty. A run that
+      draws a primitive where a library component exists, or that writes "the header looks right",
+      fails (the boundary).
+
+  - id: a2f-02-inexact-match-flagged-not-picked
+    description: >-
+      A surface element with no exact library match must go on the unresolved list with its
+      props_passed and the nearest candidate, for the human's reuse / wrap / local-pattern ruling.
+      The skill never picks the inexact match itself.
+    input: |
+      A surface uses a "PricingCard" with a footer badge. The library has a "Card" and a "Badge" but
+      no "PricingCard"; the nearest candidate is "Card" with a slot. "Build this surface from the
+      library."
+    expected_findings:
+      - "PricingCard is on the unresolved list with its props_passed and the nearest candidate (Card + Badge in a slot), presented for the reuse / wrap / local-pattern ruling."
+      - "The build stops at the pre-write gate for that element; it does not instance Card-as-PricingCard on its own judgment, and it does not silently draw a new card."
+    pass_criteria: >-
+      The inexact element is surfaced for the human and left unbuilt until ruled. A run that decides
+      "Card is close enough" and builds it, or invents a card, fails (the inexact-match slot is the
+      human's).
+
+  - id: a2f-03-anti-minting
+    description: >-
+      A value the library does not carry must NOT be minted as a local variable or style. The gap is
+      flagged for the human; a ruled local pattern mints a COMPONENT only, never a token, variable,
+      or style.
+    input: |
+      A surface needs a background color and a shadow the library's variables and effect styles do
+      not include. "Build this surface from the library."
+    expected_findings:
+      - "The missing color and shadow are flagged as gaps at the pre-write gate (the library has no matching variable or effect style); the skill does not createVariable or createEffectStyle to fill them."
+      - "If the human rules a local pattern for the composition, it is built with figma.createComponent (a component), and a ledger row is emitted to the proof folder; still zero local variables and zero local styles are created."
+    pass_criteria: >-
+      Zero local variables and zero local styles are created; the gap is the human's to fill. A run
+      that mints a local variable or style to complete the surface fails (that is heyhi-design-bridge's
+      model, explicitly forbidden here).
+
+  - id: a2f-04-not-for-routing
+    description: >-
+      The skill stays in its lane: a translate-a-prototype ask, a generate-the-library ask, a
+      build-a-prototype ask, and a read-the-app ask each route away rather than being absorbed.
+    input: |
+      (a) "Turn this built HTML prototype into Figma" / "vectorize this raster into Figma."
+      (b) "Generate our design system as a Figma library from the tokens."
+      (c) "Build the landing page as an HTML prototype with our brand config."
+      (d) "Read this repo and tell me its surfaces, components, and endpoints."
+    expected_findings:
+      - "(a) -> heyhi-design-bridge (it translates and mints local tokens; this skill consumes a published library and mints nothing)."
+      - "(b) -> heyhi-figma-ds-generator (it writes the library; this consumes it)."
+      - "(c) -> ui-studio / heyhi-ui-ux per CLAUDE.md ui-studio routing (a code/HTML prototype, not a Figma build)."
+      - "(d) -> app-recon (the application read; this skill's input, not its job)."
+    pass_criteria: >-
+      All four route away. Minting local tokens for (a), building a library for (b), producing an HTML
+      prototype for (c), or emitting an app manifest for (d) fails the reciprocal not_for.
+
+  - id: a2f-05-unpublished-library-named-not-drawn
+    description: >-
+      When import-by-key returns "not found" because the source library is unpublished, the skill
+      names the publish step for the human (a Figma UI action) and does NOT fall back to drawing the
+      component as a primitive.
+    input: |
+      figma_app_file_key is a valid saved cloud file, but importComponentSetByKeyAsync on the
+      surface's Button returns 'Component set with key "..." not found'. "Build this surface from the
+      library."
+    expected_findings:
+      - "The skill reports that the source library is not published (a not-found on import-by-key is deterministic, not a transient error), and names the publish step as a human Figma UI action with no Plugin-API path."
+      - "The build stops for that surface; the skill does not draw a Button primitive to keep moving, and does not mint a local component to stand in."
+    pass_criteria: >-
+      The publish step is named and the build waits. A run that redraws the Button from rectangles and
+      text, or mints a local stand-in, fails (the library link is the point).
+
+  - id: a2f-06-ledger-row-no-approval-field
+    description: >-
+      A pattern ledger row this skill emits for a local pattern carries status: local (a candidate
+      flag) and NO field named gate, approved, or blocked, and the skill emits no verdict, severity,
+      or score anywhere. Nothing this skill writes reads as an approval.
+    input: |
+      A ruled local pattern ("LogRow") is built; the skill emits its ledger row to the proof folder.
+      Inspect the row and the skill's output.
+    expected_findings:
+      - "The ledger row has name, signature, level, status: local, usage.applications/surfaces/figma_nodes, origin, and NO field named gate / approved / blocked; status: local is a candidate marker for a human, never an approval."
+      - "The skill produces no verdict / severity / score / pass-fail field on the surface or the pattern; whether the pattern is promoted is a later human-gated step (the ledger's promotion signal is advisory)."
+    pass_criteria: >-
+      No approval-shaped field exists in the row or the output. A row with approved: true, or a skill
+      output that grades the surface or the pattern, fails (grades inform; only a human promotes).
+
+  - id: a2f-07-clean-pass
+    description: >-
+      A genuinely clean surface (every element resolves exactly to a library key, no images, no gap,
+      no deviation, published library, saved cloud file) must build and validate with no invented
+      finding, while still running the pre-write gate and leaving the always-human surface verdict
+      empty. Audited against the skill's own exceptions: the input contains NO gap, unpublished
+      source, inexact match, or image, so none of the skill's flags should fire.
+    input: |
+      A surface using only a library "Button" (Style=primary) and a library "Card", both exact
+      matches with published keys, one theme mode, no images, no composition the library lacks.
+      "Build this surface from the library."
+    expected_findings:
+      - "The build completes: two instances imported by key, props set, bound and themed; validation passes (every instance remote, every variable remote, zero local variables, zero local styles)."
+      - "No gap, no unresolved element, no deviation, and no publish step is reported (there is none to report); the skill does not invent one to look thorough."
+      - "The pre-write gate still runs and the ⛔ surface-verdict slot is still left empty (it is always the human's), the only human slot in play on a clean surface."
+    pass_criteria: >-
+      The clean surface builds and validates with an empty unresolved list and an empty deviation
+      list, and the surface verdict stays the human's. A run that manufactures a gap or deviation to
+      fill (over-flagging), or that skips the gate and declares the surface done (under-gating), fails.
+
+# HeyHi Confidential

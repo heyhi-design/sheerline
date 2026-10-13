@@ -1,0 +1,18 @@
+# ui-studio-onboard — .gitignore
+#
+# Auth tokens and local config
+.env
+
+# Temporary git clones, npm pack output, and any other extraction artifacts.
+# Cleaned by atexit in setup.py, but may persist on interrupted runs.
+# Never commit — may contain proprietary source code or auth-controlled content.
+.cache/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+
+# OS noise
+.DS_Store
+Thumbs.db

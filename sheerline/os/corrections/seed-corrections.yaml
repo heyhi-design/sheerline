@@ -1,0 +1,108 @@
+# Sheerline corrections: seed template (the convention slot)
+#
+# Generic-factual design correction patterns, brand-free and framework-level, as the
+# convention's starter set. Modeled on releases/open-source/keel/os/corrections/seed-corrections.yaml.
+#
+# This is a TEMPLATE, not the live registry. The authoritative runtime + the populated
+# per-design-system registry live in the internal heyhi-mcp (Phase 2 / DISPATCH-02). Build
+# no runtime here. Fire counts are zero: these have not fired in this instance.
+#
+# Per-entry schema (schema-compatible with agent-corrections):
+#   id · category · severity (factual | behavioral) · status (active | superseded | retired)
+#   · trigger_context · correction · times_fired · last_fired · origin_date
+# The design taxonomy lives in `category`; `severity` stays exactly factual | behavioral.
+# Only `factual` corrections are injected/enforced; `behavioral` never auto-injects and is
+# never promotable to an enforced rule (LIFECYCLE.md).
+
+classification: confidential
+
+meta:
+  version: "0.1.1"
+  entry_count: 5
+  active: 5
+  superseded: 0
+  note: >
+    Convention seed template only. The live, populated registry and the enforcement runtime
+    are DISPATCH-02's heyhi-mcp build. Recompute meta if you merge or add entries.
+
+entries:
+
+  - id: hardcoded-hex-bypasses-token
+    category: token-fidelity
+    severity: factual
+    status: active
+    trigger_context: >-
+      Generated or hand-authored output emits a raw hex color where the design system defines
+      a color token for that role.
+    correction: >-
+      Replace the literal with the semantic token. A hardcoded hex bypasses the token layer
+      and drifts silently from the system. Deterministic and structural: the conformance lane
+      catches it.
+    times_fired: 0
+    last_fired: null
+    origin_date: null
+
+  - id: off-scale-spacing-value
+    category: spacing-scale
+    severity: factual
+    status: active
+    trigger_context: >-
+      Output uses a spacing value that is not on the design system's spacing scale (an
+      arbitrary padding/margin/gap).
+    correction: >-
+      Snap to the nearest scale token. Off-scale spacing breaks the rhythm the scale exists to
+      hold. Deterministic: the conformance lane detects a literal where a scale token belongs.
+    times_fired: 0
+    last_fired: null
+    origin_date: null
+
+  - id: token-missing-semantic-role
+    category: semantic-role
+    severity: factual
+    status: active
+    trigger_context: >-
+      A token is applied by raw value rather than by its semantic role (a background token
+      used where a surface token is defined, for example).
+    correction: >-
+      Use the token whose semantic role matches the use. Note the detection boundary: a valid
+      token in the wrong role is structure-preserving, so it is judged, not a bare
+      conformance-lane rule (DISPATCH-02, the I1.5 structural/semantic boundary).
+    times_fired: 0
+    last_fired: null
+    origin_date: null
+
+  - id: direction-deviation-flagged-not-scored
+    category: elevation
+    severity: behavioral
+    status: active
+    trigger_context: >-
+      A generated visual deviates from the reference direction in a way that may be an
+      intentional signature or may be incoherence.
+    correction: >-
+      Surface the deviation to the human as a reminder to decide (restraint vs. incoherence is
+      a taste read). Never auto-score it as a defect and never auto-enforce. Behavioral: it is
+      never injected into generation and never promotable to an enforced rule.
+    times_fired: 0
+    last_fired: null
+    origin_date: null
+
+  - id: theme-flip-fill-needs-on-color-token
+    category: accessibility
+    severity: factual
+    status: active
+    trigger_context: >-
+      Text sits on a solid fill whose token changes value between light and dark themes (a
+      brand or accent fill), the text color is a fixed value, and the pairing is checked for
+      contrast in only the theme currently in view.
+    correction: >-
+      Pair the fill with an on-color token that flips with the theme (an on-accent or on-fill
+      role), and verify WCAG contrast in BOTH themes, not only the one on screen. A fixed text
+      color that clears the bar in one theme can fail it in the other once the fill flips, and
+      a single-theme check reports clean. This is the theme-flip case of the runtime's
+      declared-safe contrast-pairing correction; fold the both-theme dimension into that
+      correction on promotion.
+    times_fired: 0
+    last_fired: null
+    origin_date: "2026-08-23"
+
+# HeyHi Confidential

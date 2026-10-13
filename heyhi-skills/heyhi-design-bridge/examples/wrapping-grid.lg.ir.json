@@ -1,0 +1,737 @@
+{
+  "$schema": "heyhi-scene-graph/v0.4",
+  "meta": {
+    "source": "prototypes/wrapping-grid.html",
+    "breakpoint": "lg",
+    "brand_config": "example",
+    "generated_by": "heyhi-design-bridge/extract_scene_graph@0.1.0"
+  },
+  "tokens_used": [],
+  "root": {
+    "type": "FRAME",
+    "name": "Section",
+    "layout": {
+      "mode": "VERTICAL",
+      "padding": {
+        "t": 96,
+        "r": 120,
+        "b": 96,
+        "l": 120
+      }
+    },
+    "size": {
+      "w": 1312,
+      "h": 1296,
+      "sizing": {
+        "h": "FILL",
+        "v": "HUG"
+      }
+    },
+    "children": [
+      {
+        "type": "FRAME",
+        "name": "Grid",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primaryAxisAlignItems": "MIN",
+          "counterAxisAlignItems": "MIN",
+          "itemSpacing": 24,
+          "layoutWrap": "WRAP",
+          "counterAxisSpacing": 40
+        },
+        "size": {
+          "w": 1072,
+          "h": null,
+          "sizing": {
+            "h": "FIXED",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 200,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Card Label",
+                "characters": "Data Pipeline",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 200,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Card Label",
+                "characters": "Access Management",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 200,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Card Label",
+                "characters": "Billing Settings",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 200,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Card Label",
+                "characters": "Webhook Delivery",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 200,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Card Label",
+                "characters": "Search & Filtering",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 200,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Card Label",
+                "characters": "Files & Documents",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 200,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Card Label",
+                "characters": "Alerts / Digests",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 200,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Card Label",
+                "characters": "Audit Logs",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 200,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Card Label",
+                "characters": "Workspace Export",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 200,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Card Label",
+                "characters": "Single Sign-On",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Chips",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primaryAxisAlignItems": "MIN",
+          "counterAxisAlignItems": "MIN",
+          "itemSpacing": 8,
+          "layoutWrap": "WRAP",
+          "counterAxisSpacing": 8
+        },
+        "size": {
+          "w": 1072,
+          "h": null,
+          "sizing": {
+            "h": "FIXED",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "FRAME",
+            "name": "Chip",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN"
+            },
+            "size": {
+              "w": 120,
+              "h": 36,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Chip Label",
+                "characters": "North County",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Chip",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN"
+            },
+            "size": {
+              "w": 120,
+              "h": 36,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Chip Label",
+                "characters": "West County",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Chip",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN"
+            },
+            "size": {
+              "w": 120,
+              "h": 36,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Chip Label",
+                "characters": "Greater Metro",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Chip",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN"
+            },
+            "size": {
+              "w": 120,
+              "h": 36,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Chip Label",
+                "characters": "River Valley",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Chip",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN"
+            },
+            "size": {
+              "w": 120,
+              "h": 36,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Chip Label",
+                "characters": "Hill County",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "resolved": "#000000"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://heyhi.design/schemas/ds-component-change/change-spec/1.0",
+  "title": "DS Component Change Spec",
+  "description": "The confirmed intent for a single change to an existing design-system component. classification_candidate is filled by the skill (Step 2) and confirmed by a human at the classification gate; it is never a final classification. version 1.0.",
+  "type": "object",
+  "version": "1.0",
+  "additionalProperties": false,
+  "required": ["component", "change_type", "target"],
+  "properties": {
+    "component": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The component name, e.g. Button."
+    },
+    "change_type": {
+      "type": "string",
+      "enum": [
+        "variable_value",
+        "prop_rename",
+        "prop_type_change",
+        "variant_add",
+        "variant_remove"
+      ],
+      "description": "The kind of change. Drives the default classification_candidate (SKILL.md Step 2)."
+    },
+    "target": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The prop, variant, or variable the change applies to (e.g. fullWidth, or a token name)."
+    },
+    "from": {
+      "type": ["string", "number", "boolean", "object", "null"],
+      "description": "The current value, name, or type. Required for prop_rename, prop_type_change, and variable_value; absent or null for a variant_add (no prior state)."
+    },
+    "to": {
+      "type": ["string", "number", "boolean", "object", "null"],
+      "description": "The intended value, name, or type. Required for prop_rename, prop_type_change, and variable_value; absent or null for a variant_remove (no successor state)."
+    },
+    "reason": {
+      "type": "string",
+      "description": "The human's stated reason for the change. A judgment slot, not a mechanical field; the rubric never derives it."
+    },
+    "classification_candidate": {
+      "type": ["string", "null"],
+      "enum": ["patch", "minor", "breaking", null],
+      "default": null,
+      "description": "Filled by the skill (Step 2) as a CANDIDATE, null on intake. Never a final classification; a human confirms it at the classification gate."
+    },
+    "figma_node_id": {
+      "type": "string",
+      "description": "The component-set or variable node id in the target Figma file, read via the served library maps."
+    },
+    "code_source": {
+      "type": "string",
+      "description": "The component source path in the frontend repo."
+    }
+  },
+  "allOf": [
+    {
+      "$comment": "A rename, a type change, or a value change carries both a from and a to.",
+      "if": { "properties": { "change_type": { "enum": ["prop_rename", "prop_type_change", "variable_value"] } } },
+      "then": { "required": ["from", "to"] }
+    },
+    {
+      "$comment": "A variant_add carries a to (the new variant); from may be absent or null.",
+      "if": { "properties": { "change_type": { "const": "variant_add" } } },
+      "then": { "required": ["to"] }
+    },
+    {
+      "$comment": "A variant_remove carries a from (the removed variant); to may be absent or null.",
+      "if": { "properties": { "change_type": { "const": "variant_remove" } } },
+      "then": { "required": ["from"] }
+    }
+  ]
+}

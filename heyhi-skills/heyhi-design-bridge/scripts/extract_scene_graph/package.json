@@ -1,0 +1,16 @@
+{
+  "name": "heyhi-design-bridge-extractor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "HeyHi Design Bridge Phase T1 — Playwright extractor: ui-studio HTML prototype -> scene-graph IR (one per breakpoint).",
+  "bin": { "extract-scene-graph": "extract.mjs" },
+  "scripts": {
+    "extract": "node extract.mjs",
+    "postinstall-hint": "after npm install, run: npx playwright install chromium"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "playwright": "^1.60.0"
+  }
+}

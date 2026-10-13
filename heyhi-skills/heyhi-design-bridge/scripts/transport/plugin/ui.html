@@ -1,0 +1,43 @@
+<!doctype html>
+<meta charset="utf-8" />
+<style>
+  body { font: 12px/1.5 -apple-system, system-ui, sans-serif; margin: 0; padding: 14px; color: #1a1a1a; }
+  h1 { font-size: 13px; margin: 0 0 4px; }
+  #meta { color: #555; margin-bottom: 10px; white-space: pre-wrap; }
+  button { font: inherit; padding: 8px 16px; border-radius: 8px; border: 0; background: #1a1a1a; color: #fff; cursor: pointer; }
+  button:disabled { opacity: .45; cursor: default; }
+  pre { background: #f5f5f4; padding: 10px; border-radius: 6px; max-height: 220px; overflow: auto; white-space: pre-wrap; margin-top: 12px; font-size: 11px; }
+  .ok { color: #137a3f; font-weight: 600; }
+  .err { color: #b00020; font-weight: 600; }
+</style>
+<h1>HeyHi Design Bridge Runner</h1>
+<div id="meta">Loading…</div>
+<button id="build">Build into this file</button>
+<pre id="log">Ready. This writes the Bridge build page into the file that is currently open.</pre>
+<script>
+  const log = document.getElementById('log');
+  const meta = document.getElementById('meta');
+  const btn = document.getElementById('build');
+  btn.onclick = () => {
+    btn.disabled = true;
+    log.textContent = 'Building…';
+    parent.postMessage({ pluginMessage: { type: 'run' } }, '*');
+  };
+  onmessage = (e) => {
+    const m = e.data.pluginMessage;
+    if (!m) return;
+    if (m.type === 'meta') { meta.textContent = m.text; }
+    else if (m.type === 'progress') { log.textContent = m.text; }
+    else if (m.type === 'summary') {
+      const s = m.summary;
+      const head = s.errors.length ? '<span class="err">Done with ' + s.errors.length + ' error(s).</span>'
+                                   : '<span class="ok">Done — clean.</span>';
+      log.innerHTML = head + '\n'
+        + 'created: ' + s.created + '   reused: ' + s.reused + '   rasters: ' + (s.rasters || 0) + '\n'
+        + 'flags: ' + s.flags.length + '   errors: ' + s.errors.length + '\n'
+        + 'page id(s): ' + (s.pages.join(', ') || '—')
+        + (s.errors.length ? '\n\nERRORS:\n' + s.errors.slice(0, 12).map((x) => JSON.stringify(x)).join('\n') : '');
+      btn.disabled = false;
+    }
+  };
+</script>

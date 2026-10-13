@@ -1,0 +1,1595 @@
+{
+  "$schema": "heyhi-scene-graph/v0.4",
+  "meta": {
+    "source": "prototypes/marketing-hero.html",
+    "breakpoint": "lg",
+    "brand_config": "northwind",
+    "generated_by": "heyhi-design-bridge/extract_scene_graph@0.3.0 (HAND-AUTHORED expected IR; encodes the POST-FIX shape (migrated to v0.3 node-level position/runs + first-class IMAGE fill, ADR-013) — doubles as the P1-P4 acceptance target)"
+  },
+  "tokens_used": [
+    {
+      "css_var": "--color-backgrounds-page",
+      "token_path": "tokens.color.backgrounds.page",
+      "figma_variable": "color/backgrounds/page",
+      "resolved": "#F6F4EE",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-backgrounds-surface",
+      "token_path": "tokens.color.backgrounds.surface",
+      "figma_variable": "color/backgrounds/surface",
+      "resolved": "#EDE9DF",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-backgrounds-inverse",
+      "token_path": "tokens.color.backgrounds.inverse",
+      "figma_variable": "color/backgrounds/inverse",
+      "resolved": "#16241C",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-text-primary",
+      "token_path": "tokens.color.text.primary",
+      "figma_variable": "color/text/primary",
+      "resolved": "#1C2A20",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-text-muted",
+      "token_path": "tokens.color.text.muted",
+      "figma_variable": "color/text/muted",
+      "resolved": "#5C6A5E",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-text-inverse",
+      "token_path": "tokens.color.text.inverse",
+      "figma_variable": "color/text/inverse",
+      "resolved": "#F3EFE4",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-text-inverse-secondary",
+      "token_path": "tokens.color.text.inverse_secondary",
+      "figma_variable": "color/text/inverse-secondary",
+      "resolved": "#C9D2C4",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-accent-leaf",
+      "token_path": "tokens.color.accent.leaf",
+      "figma_variable": "color/accent/leaf",
+      "resolved": "#3C7A4B",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-accent-clay",
+      "token_path": "tokens.color.accent.clay",
+      "figma_variable": "color/accent/clay",
+      "resolved": "#BC5B30",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-accent-sun",
+      "token_path": "tokens.color.accent.sun",
+      "figma_variable": "color/accent/sun",
+      "resolved": "#E7B894",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-structural-border",
+      "token_path": "tokens.color.structural.border",
+      "figma_variable": "color/structural/border",
+      "resolved": "#CBC4B4",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-structural-keyline",
+      "token_path": "tokens.color.structural.keyline",
+      "figma_variable": "color/structural/keyline",
+      "resolved": "#16241C",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--type-display",
+      "token_path": "tokens.typography.scale.display",
+      "resolved": "72px",
+      "source": "matched",
+      "match_confidence": 0.5
+    },
+    {
+      "css_var": "--type-h1",
+      "token_path": "tokens.typography.scale.h1",
+      "resolved": "48px",
+      "source": "matched",
+      "match_confidence": 0.5
+    },
+    {
+      "css_var": "--type-h3",
+      "token_path": "tokens.typography.scale.h3",
+      "resolved": "21.6px",
+      "source": "matched",
+      "match_confidence": 0.5
+    },
+    {
+      "css_var": "--type-body-lg",
+      "token_path": "tokens.typography.scale.body-lg",
+      "resolved": "19.2px",
+      "source": "matched",
+      "match_confidence": 0.5
+    },
+    {
+      "css_var": "--type-small",
+      "token_path": "tokens.typography.scale.small",
+      "resolved": "14.72px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--type-caption",
+      "token_path": "tokens.typography.scale.caption",
+      "resolved": "11.84px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--space-sm",
+      "token_path": "tokens.spacing.tiers.sm",
+      "resolved": "8px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--space-md",
+      "token_path": "tokens.spacing.tiers.md",
+      "resolved": "16px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--space-lg",
+      "token_path": "tokens.spacing.tiers.lg",
+      "resolved": "32px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--space-2xl",
+      "token_path": "tokens.spacing.tiers.2xl",
+      "resolved": "88px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--radius-sm",
+      "token_path": "tokens.radius.sm",
+      "resolved": "4px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--radius-md",
+      "token_path": "tokens.radius.md",
+      "resolved": "10px",
+      "source": "declared",
+      "match_confidence": 1
+    }
+  ],
+  "root": {
+    "type": "FRAME",
+    "name": "Page",
+    "layout": {
+      "mode": "VERTICAL"
+    },
+    "size": {
+      "w": 1440,
+      "h": 3210,
+      "sizing": {
+        "h": "FILL",
+        "v": "HUG"
+      }
+    },
+    "fills": [
+      {
+        "type": "SOLID",
+        "bind": "tokens.color.backgrounds.page",
+        "resolved": "#F6F4EE"
+      }
+    ],
+    "children": [
+      {
+        "type": "FRAME",
+        "name": "Header",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primaryAxisAlignItems": "SPACE_BETWEEN",
+          "counterAxisAlignItems": "CENTER",
+          "itemSpacing": 16,
+          "padding": {
+            "t": 16,
+            "r": 40,
+            "b": 16,
+            "l": 40
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": 59,
+          "sizing": {
+            "h": "HUG",
+            "v": "HUG"
+          }
+        },
+        "fills": [
+          {
+            "type": "SOLID",
+            "bind": "tokens.color.backgrounds.page",
+            "resolved": "#F6F4EE"
+          }
+        ],
+        "strokes": [
+          {
+            "weight": 1,
+            "color": {
+              "type": "SOLID",
+              "bind": "tokens.color.structural.border",
+              "resolved": "#CBC4B4"
+            }
+          }
+        ],
+        "children": [
+          {
+            "type": "VECTOR",
+            "name": "Header Brand",
+            "svgRef": "p5-marketing-golden/assets/logos/northwind-wordmark.svg",
+            "size": {
+              "w": 184,
+              "h": 26,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            }
+          },
+          {
+            "type": "FRAME",
+            "name": "Header Nav",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "counterAxisAlignItems": "CENTER",
+              "itemSpacing": 32
+            },
+            "size": {
+              "w": 300,
+              "h": 18,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Services",
+                "characters": "Services",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 500,
+                  "size": 14.72,
+                  "lineHeight": 1.55
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#5C6A5E"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Our Work",
+                "characters": "Our Work",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 500,
+                  "size": 14.72,
+                  "lineHeight": 1.55
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#5C6A5E"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "GROUP",
+        "name": "Hero",
+        "layout": {
+          "mode": "NONE"
+        },
+        "size": {
+          "w": 1440,
+          "h": 680,
+          "sizing": {
+            "h": "FILL",
+            "v": "HUG"
+          }
+        },
+        "fills": [
+          {
+            "type": "IMAGE",
+            "imageRef": "p5-marketing-golden/assets/photography/cleared-field.jpg",
+            "scaleMode": "FILL",
+            "imagePosition": {
+              "x": 0.5,
+              "y": 0.42
+            },
+            "resolved": "url(assets/photography/cleared-field.jpg)"
+          },
+          {
+            "type": "SOLID",
+            "bind": "tokens.color.backgrounds.inverse",
+            "resolved": "#16241C"
+          }
+        ],
+        "strokes": [
+          {
+            "weight": 2,
+            "align": "INSIDE",
+            "color": {
+              "type": "SOLID",
+              "bind": "tokens.color.structural.keyline",
+              "resolved": "#16241C"
+            }
+          }
+        ],
+        "children": [
+          {
+            "type": "FRAME",
+            "name": "Hero Scrim",
+            "layout": {
+              "mode": "NONE"
+            },
+            "size": {
+              "w": 1440,
+              "h": 680,
+              "sizing": {
+                "h": "FILL",
+                "v": "FILL"
+              }
+            },
+            "position": {
+              "x": 0,
+              "y": 0
+            },
+            "fills": [
+              {
+                "type": "GRADIENT_LINEAR",
+                "angle": 90,
+                "stops": [
+                  {
+                    "pos": 0,
+                    "color": "rgba(18,26,21,0.90)"
+                  },
+                  {
+                    "pos": 0.42,
+                    "color": "rgba(18,26,21,0.60)"
+                  },
+                  {
+                    "pos": 1,
+                    "color": "rgba(18,26,21,0.12)"
+                  }
+                ],
+                "resolved": "linear-gradient(90deg, rgba(18,26,21,0.90) 0%, rgba(18,26,21,0.60) 42%, rgba(18,26,21,0.12) 100%)"
+              },
+              {
+                "type": "GRADIENT_LINEAR",
+                "angle": 180,
+                "stops": [
+                  {
+                    "pos": 0,
+                    "color": "rgba(18,26,21,0.30)"
+                  },
+                  {
+                    "pos": 0.3,
+                    "color": "rgba(18,26,21,0.04)"
+                  },
+                  {
+                    "pos": 1,
+                    "color": "rgba(18,26,21,0.46)"
+                  }
+                ],
+                "resolved": "linear-gradient(180deg, rgba(18,26,21,0.30) 0%, rgba(18,26,21,0.04) 30%, rgba(18,26,21,0.46) 100%)"
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Hero Inner",
+            "layout": {
+              "mode": "VERTICAL",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 0,
+              "padding": {
+                "t": 88,
+                "r": 120,
+                "b": 88,
+                "l": 120
+              }
+            },
+            "size": {
+              "w": 1440,
+              "h": 480,
+              "sizing": {
+                "h": "FILL",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Hero Eyebrow",
+                "characters": "Field & garden care · Northern valley",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 600,
+                  "size": 11.84,
+                  "lineHeight": 1.55,
+                  "letterSpacing": 0.95,
+                  "token_ref": "tokens.typography.scale.caption"
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.accent.sun",
+                    "resolved": "#E7B894"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Hero Headline",
+                "characters": "Tend the ground.\nGrow the season.",
+                "type_style": {
+                  "family": "Fraunces",
+                  "weight": 900,
+                  "size": 72,
+                  "lineHeight": 1.02,
+                  "letterSpacing": 0.36,
+                  "token_ref": "tokens.typography.scale.display"
+                },
+                "size": {
+                  "w": 612,
+                  "h": 148,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.inverse",
+                    "resolved": "#F3EFE4"
+                  }
+                ],
+                "runs": [
+                  {
+                    "start": 17,
+                    "end": 33,
+                    "fill": {
+                      "bind": "tokens.color.accent.clay",
+                      "resolved": "#BC5B30"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Hero Sub",
+                "characters": "Beds, borders, and seasonal cleanup, handled by a local crew that shows up on time and leaves the place tidy. Representative copy for the golden.",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 19.2,
+                  "lineHeight": 1.55,
+                  "token_ref": "tokens.typography.scale.body-lg"
+                },
+                "size": {
+                  "w": 612,
+                  "h": 90,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.inverse",
+                    "resolved": "#F3EFE4"
+                  }
+                ],
+                "runs": [
+                  {
+                    "start": 110,
+                    "end": 145,
+                    "style": {
+                      "italic": true
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Hero Cta",
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "counterAxisAlignItems": "CENTER",
+                  "itemSpacing": 16
+                },
+                "size": {
+                  "w": 360,
+                  "h": 44,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "FRAME",
+                    "name": "Request A Visit",
+                    "layout": {
+                      "mode": "HORIZONTAL",
+                      "counterAxisAlignItems": "CENTER",
+                      "itemSpacing": 8,
+                      "padding": {
+                        "t": 8,
+                        "r": 32,
+                        "b": 8,
+                        "l": 32
+                      }
+                    },
+                    "size": {
+                      "w": 168,
+                      "h": 44,
+                      "sizing": {
+                        "h": "HUG",
+                        "v": "HUG"
+                      }
+                    },
+                    "fills": [
+                      {
+                        "type": "SOLID",
+                        "bind": "tokens.color.accent.clay",
+                        "resolved": "#BC5B30"
+                      }
+                    ],
+                    "cornerRadius": 4,
+                    "children": [
+                      {
+                        "type": "TEXT",
+                        "name": "Request A Visit Label",
+                        "characters": "Request a visit",
+                        "type_style": {
+                          "family": "Inter",
+                          "weight": 600,
+                          "size": 14.72,
+                          "lineHeight": 1.55
+                        },
+                        "fills": [
+                          {
+                            "bind": "tokens.color.text.inverse",
+                            "resolved": "#F3EFE4"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "FRAME",
+                    "name": "See Recent Work",
+                    "layout": {
+                      "mode": "HORIZONTAL",
+                      "counterAxisAlignItems": "CENTER",
+                      "itemSpacing": 8,
+                      "padding": {
+                        "t": 8,
+                        "r": 32,
+                        "b": 8,
+                        "l": 32
+                      }
+                    },
+                    "size": {
+                      "w": 176,
+                      "h": 44,
+                      "sizing": {
+                        "h": "HUG",
+                        "v": "HUG"
+                      }
+                    },
+                    "cornerRadius": 4,
+                    "strokes": [
+                      {
+                        "weight": 2,
+                        "color": {
+                          "type": "SOLID",
+                          "bind": "tokens.color.text.inverse",
+                          "resolved": "#F3EFE4"
+                        }
+                      }
+                    ],
+                    "children": [
+                      {
+                        "type": "TEXT",
+                        "name": "See Recent Work Label",
+                        "characters": "See recent work",
+                        "type_style": {
+                          "family": "Inter",
+                          "weight": 600,
+                          "size": 14.72,
+                          "lineHeight": 1.55
+                        },
+                        "fills": [
+                          {
+                            "bind": "tokens.color.text.inverse",
+                            "resolved": "#F3EFE4"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "Hero Cap",
+            "characters": "Representative photo · placeholder",
+            "type_style": {
+              "family": "Inter",
+              "weight": 600,
+              "size": 11.84,
+              "lineHeight": 1.55,
+              "letterSpacing": 0.59,
+              "token_ref": "tokens.typography.scale.caption"
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.text.inverse_secondary",
+                "resolved": "#C9D2C4"
+              }
+            ],
+            "opacity": 0.85,
+            "position": {
+              "x": 1208,
+              "y": 648
+            }
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Value Grid",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "counterAxisAlignItems": "MIN",
+          "itemSpacing": 28,
+          "padding": {
+            "t": 88,
+            "r": 120,
+            "b": 88,
+            "l": 120
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": 340,
+          "sizing": {
+            "h": "FILL",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "FRAME",
+            "name": "Value",
+            "layout": {
+              "mode": "VERTICAL",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 8,
+              "padding": {
+                "t": 32,
+                "r": 32,
+                "b": 32,
+                "l": 32
+              }
+            },
+            "size": {
+              "w": 276,
+              "h": 196,
+              "sizing": {
+                "h": "FILL",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "bind": "tokens.color.backgrounds.page",
+                "resolved": "#F6F4EE"
+              }
+            ],
+            "cornerRadius": 10,
+            "strokes": [
+              {
+                "weight": 1,
+                "color": {
+                  "type": "SOLID",
+                  "bind": "tokens.color.structural.border",
+                  "resolved": "#CBC4B4"
+                }
+              }
+            ],
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "Value Icon",
+                "svgRef": "p5-marketing-golden/assets/icons/leaf.svg",
+                "size": {
+                  "w": 40,
+                  "h": 40,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Locally rooted",
+                "characters": "Locally rooted",
+                "type_style": {
+                  "family": "Fraunces",
+                  "weight": 600,
+                  "size": 21.6,
+                  "lineHeight": 1.2,
+                  "token_ref": "tokens.typography.scale.h3"
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.primary",
+                    "resolved": "#1C2A20"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Value Body",
+                "characters": "Owner-run and based in the valley, so the same people plan the work and do it.",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 14.72,
+                  "lineHeight": 1.55,
+                  "token_ref": "tokens.typography.scale.small"
+                },
+                "size": {
+                  "w": 212,
+                  "h": 66,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#5C6A5E"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Value",
+            "layout": {
+              "mode": "VERTICAL",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 8,
+              "padding": {
+                "t": 32,
+                "r": 32,
+                "b": 32,
+                "l": 32
+              }
+            },
+            "size": {
+              "w": 276,
+              "h": 196,
+              "sizing": {
+                "h": "FILL",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "bind": "tokens.color.backgrounds.page",
+                "resolved": "#F6F4EE"
+              }
+            ],
+            "cornerRadius": 10,
+            "strokes": [
+              {
+                "weight": 1,
+                "color": {
+                  "type": "SOLID",
+                  "bind": "tokens.color.structural.border",
+                  "resolved": "#CBC4B4"
+                }
+              }
+            ],
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "Value Icon",
+                "svgRef": "p5-marketing-golden/assets/icons/clock.svg",
+                "size": {
+                  "w": 40,
+                  "h": 40,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "On schedule",
+                "characters": "On schedule",
+                "type_style": {
+                  "family": "Fraunces",
+                  "weight": 600,
+                  "size": 21.6,
+                  "lineHeight": 1.2,
+                  "token_ref": "tokens.typography.scale.h3"
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.primary",
+                    "resolved": "#1C2A20"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Value Body",
+                "characters": "We give a window and keep it. You hear from us before, during, and after.",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 14.72,
+                  "lineHeight": 1.55,
+                  "token_ref": "tokens.typography.scale.small"
+                },
+                "size": {
+                  "w": 212,
+                  "h": 66,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#5C6A5E"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Services",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "counterAxisAlignItems": "MIN",
+          "itemSpacing": 28,
+          "padding": {
+            "t": 88,
+            "r": 120,
+            "b": 88,
+            "l": 120
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": 360,
+          "sizing": {
+            "h": "FILL",
+            "v": "HUG"
+          }
+        },
+        "fills": [
+          {
+            "type": "SOLID",
+            "bind": "tokens.color.backgrounds.surface",
+            "resolved": "#EDE9DF"
+          }
+        ],
+        "children": [
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 8,
+              "padding": {
+                "t": 32,
+                "r": 32,
+                "b": 32,
+                "l": 32
+              }
+            },
+            "size": {
+              "w": 381,
+              "h": 244,
+              "sizing": {
+                "h": "FILL",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "bind": "tokens.color.backgrounds.surface",
+                "resolved": "#EDE9DF"
+              }
+            ],
+            "cornerRadius": 10,
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "Card Icon",
+                "svgRef": "p5-marketing-golden/assets/icons/leaf.svg",
+                "size": {
+                  "w": 44,
+                  "h": 44,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Card Kicker",
+                "characters": "Beds",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 600,
+                  "size": 11.84,
+                  "lineHeight": 1.55,
+                  "letterSpacing": 0.71,
+                  "token_ref": "tokens.typography.scale.caption"
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.accent.leaf",
+                    "resolved": "#3C7A4B"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Garden beds & borders",
+                "characters": "Garden beds & borders",
+                "type_style": {
+                  "family": "Fraunces",
+                  "weight": 600,
+                  "size": 21.6,
+                  "lineHeight": 1.2,
+                  "token_ref": "tokens.typography.scale.h3"
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.primary",
+                    "resolved": "#1C2A20"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Card Body",
+                "characters": "Planting, edging, and refreshes that hold their shape through the season.",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 14.72,
+                  "lineHeight": 1.55,
+                  "token_ref": "tokens.typography.scale.small"
+                },
+                "size": {
+                  "w": 317,
+                  "h": 44,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#5C6A5E"
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Card More",
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "counterAxisAlignItems": "CENTER",
+                  "itemSpacing": 4
+                },
+                "size": {
+                  "w": 110,
+                  "h": 20,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "TEXT",
+                    "name": "Card More Label",
+                    "characters": "See service",
+                    "type_style": {
+                      "family": "Inter",
+                      "weight": 600,
+                      "size": 14.72,
+                      "lineHeight": 1.55
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.accent.leaf",
+                        "resolved": "#3C7A4B"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "VECTOR",
+                    "name": "Card Arrow",
+                    "svgRef": "p5-marketing-golden/assets/icons/arrow-right.svg",
+                    "size": {
+                      "w": 16,
+                      "h": 16,
+                      "sizing": {
+                        "h": "FIXED",
+                        "v": "FIXED"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 8,
+              "padding": {
+                "t": 32,
+                "r": 32,
+                "b": 32,
+                "l": 32
+              }
+            },
+            "size": {
+              "w": 381,
+              "h": 244,
+              "sizing": {
+                "h": "FILL",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "bind": "tokens.color.backgrounds.surface",
+                "resolved": "#EDE9DF"
+              }
+            ],
+            "cornerRadius": 10,
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "Card Icon",
+                "svgRef": "p5-marketing-golden/assets/icons/shield.svg",
+                "size": {
+                  "w": 44,
+                  "h": 44,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Card Kicker",
+                "characters": "Cleanup",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 600,
+                  "size": 11.84,
+                  "lineHeight": 1.55,
+                  "letterSpacing": 0.71,
+                  "token_ref": "tokens.typography.scale.caption"
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.accent.leaf",
+                    "resolved": "#3C7A4B"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Seasonal cleanup",
+                "characters": "Seasonal cleanup",
+                "type_style": {
+                  "family": "Fraunces",
+                  "weight": 600,
+                  "size": 21.6,
+                  "lineHeight": 1.2,
+                  "token_ref": "tokens.typography.scale.h3"
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.primary",
+                    "resolved": "#1C2A20"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Card Body",
+                "characters": "Spring open-ups and fall cut-backs, hauled away and left tidy.",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 14.72,
+                  "lineHeight": 1.55,
+                  "token_ref": "tokens.typography.scale.small"
+                },
+                "size": {
+                  "w": 317,
+                  "h": 44,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#5C6A5E"
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Card More",
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "counterAxisAlignItems": "CENTER",
+                  "itemSpacing": 4
+                },
+                "size": {
+                  "w": 110,
+                  "h": 20,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "TEXT",
+                    "name": "Card More Label",
+                    "characters": "See service",
+                    "type_style": {
+                      "family": "Inter",
+                      "weight": 600,
+                      "size": 14.72,
+                      "lineHeight": 1.55
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.accent.leaf",
+                        "resolved": "#3C7A4B"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "VECTOR",
+                    "name": "Card Arrow",
+                    "svgRef": "p5-marketing-golden/assets/icons/arrow-right.svg",
+                    "size": {
+                      "w": 16,
+                      "h": 16,
+                      "sizing": {
+                        "h": "FIXED",
+                        "v": "FIXED"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Photo Strip",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "counterAxisAlignItems": "MIN",
+          "itemSpacing": 28,
+          "padding": {
+            "t": 88,
+            "r": 120,
+            "b": 88,
+            "l": 120
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": 320,
+          "sizing": {
+            "h": "FILL",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "FRAME",
+            "name": "Photo",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "CENTER",
+              "counterAxisAlignItems": "CENTER",
+              "padding": {
+                "t": 16,
+                "r": 16,
+                "b": 16,
+                "l": 16
+              }
+            },
+            "size": {
+              "w": 276,
+              "h": 207,
+              "sizing": {
+                "h": "FILL",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "bind": "tokens.color.backgrounds.inverse",
+                "resolved": "#16241C"
+              }
+            ],
+            "cornerRadius": 10,
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Before / After cleared border",
+                "characters": "Before / After\ncleared border",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 600,
+                  "size": 14.72,
+                  "lineHeight": 1.55
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.inverse_secondary",
+                    "resolved": "#C9D2C4"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Photo",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "CENTER",
+              "counterAxisAlignItems": "CENTER",
+              "padding": {
+                "t": 16,
+                "r": 16,
+                "b": 16,
+                "l": 16
+              }
+            },
+            "size": {
+              "w": 276,
+              "h": 207,
+              "sizing": {
+                "h": "FILL",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "bind": "tokens.color.backgrounds.inverse",
+                "resolved": "#16241C"
+              }
+            ],
+            "cornerRadius": 10,
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Equipment in action bed reshaping",
+                "characters": "Equipment in action\nbed reshaping",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 600,
+                  "size": 14.72,
+                  "lineHeight": 1.55
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.inverse_secondary",
+                    "resolved": "#C9D2C4"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Logo Row",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primaryAxisAlignItems": "SPACE_BETWEEN",
+          "counterAxisAlignItems": "CENTER",
+          "itemSpacing": 32,
+          "padding": {
+            "t": 88,
+            "r": 120,
+            "b": 88,
+            "l": 120
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": 206,
+          "sizing": {
+            "h": "FILL",
+            "v": "HUG"
+          }
+        },
+        "fills": [
+          {
+            "type": "SOLID",
+            "bind": "tokens.color.backgrounds.surface",
+            "resolved": "#EDE9DF"
+          }
+        ],
+        "children": [
+          {
+            "type": "VECTOR",
+            "name": "Partner Meadowline",
+            "svgRef": "p5-marketing-golden/assets/logos/partner-meadowline.svg",
+            "size": {
+              "w": 148,
+              "h": 30,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            },
+            "opacity": 0.8
+          },
+          {
+            "type": "VECTOR",
+            "name": "Partner Rivergate",
+            "svgRef": "p5-marketing-golden/assets/logos/partner-rivergate.svg",
+            "size": {
+              "w": 148,
+              "h": 30,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            },
+            "opacity": 0.8
+          },
+          {
+            "type": "VECTOR",
+            "name": "Partner Stonepath",
+            "svgRef": "p5-marketing-golden/assets/logos/partner-stonepath.svg",
+            "size": {
+              "w": 148,
+              "h": 30,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            },
+            "opacity": 0.8
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Cta Band",
+        "layout": {
+          "mode": "VERTICAL",
+          "primaryAxisAlignItems": "CENTER",
+          "counterAxisAlignItems": "CENTER",
+          "itemSpacing": 16,
+          "padding": {
+            "t": 88,
+            "r": 120,
+            "b": 88,
+            "l": 120
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": 320,
+          "sizing": {
+            "h": "FILL",
+            "v": "HUG"
+          }
+        },
+        "fills": [
+          {
+            "type": "SOLID",
+            "bind": "tokens.color.backgrounds.inverse",
+            "resolved": "#16241C"
+          }
+        ],
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "Tell us about your yard.",
+            "characters": "Tell us about your yard.",
+            "type_style": {
+              "family": "Fraunces",
+              "weight": 900,
+              "size": 48,
+              "lineHeight": 1.1,
+              "token_ref": "tokens.typography.scale.h1"
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.text.inverse",
+                "resolved": "#F3EFE4"
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "Cta Band Sub",
+            "characters": "A quick visit, an honest estimate, no pressure. We will get right back to you.",
+            "type_style": {
+              "family": "Inter",
+              "weight": 400,
+              "size": 16,
+              "lineHeight": 1.55
+            },
+            "size": {
+              "w": 460,
+              "h": 50,
+              "sizing": {
+                "h": "FILL",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.text.inverse_secondary",
+                "resolved": "#C9D2C4"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "feature": "raster-background",
+        "node": "Page > .hero",
+        "action": "background:url(...jpg) ..., var(--bg-inverse) — POST-FIX (Gap 5): the raster embeds as an IMAGE fill (figma.createImage); the solid layer is the inverse fallback. Pre-fix the url() was dropped and only the green fallback rendered.",
+        "needs_human": false
+      },
+      {
+        "feature": "gradient-fill-stacked",
+        "node": "Hero > .hero__scrim",
+        "action": "two stacked linear-gradients — POST-FIX (Gap 2): each layer is one GRADIENT_LINEAR fill with stops[]+angle and builds a real Figma GradientPaint. Pre-fix the whole stack collapsed to one garbage solid and the scrim rendered empty.",
+        "needs_human": false
+      },
+      {
+        "feature": "absolute-positioning",
+        "node": "Hero > .hero__scrim",
+        "action": "position:absolute; inset:0 — POST-FIX (Gap 3 / P3 / ADR-013): node-level position{x:0,y:0} + sizing FILL/FILL (fill-parent), so the scrim fills the hero. Pre-fix it collapsed to the origin at 0x0; v0.2's interim carried this inside the fill.",
+        "needs_human": false
+      },
+      {
+        "feature": "absolute-positioning",
+        "node": "Hero > .hero__cap",
+        "action": "position:absolute; bottom-right — POST-FIX (Gap 3 / P3 / ADR-013): node-level position{x:1208,y:648}. Pre-fix the caption collapsed to the origin; v0.2's interim carried this inside the fill.",
+        "needs_human": false
+      },
+      {
+        "feature": "text-wrap",
+        "node": "Hero > .hero__headline",
+        "action": "max-width:16ch wrap — POST-FIX (Gap 4a): sizing.h FILL + textAutoResize HEIGHT so the headline wraps inside its column. Pre-fix it was HUG/HUG and overflowed on one line.",
+        "needs_human": false
+      },
+      {
+        "feature": "hard-break",
+        "node": "Hero > .hero__headline",
+        "action": "<br> between the two sentences — POST-FIX (Gap 4b): a real \\n in characters. Pre-fix the words fused to \"ground.Grow\".",
+        "needs_human": false
+      },
+      {
+        "feature": "inline-run",
+        "node": "Hero > .hero__headline",
+        "action": "<span class=accent>Grow the season.</span> — POST-FIX (Gap 4c / P3 / ADR-013): a node-level runs[] entry carries the clay range (start/end + fill.bind). Pre-fix the accent word rendered in the base inverse color; v0.2's interim carried runs inside the fill.",
+        "needs_human": false
+      },
+      {
+        "feature": "inline-run",
+        "node": "Hero > .hero__sub",
+        "action": "<em>Representative copy for the golden.</em> — POST-FIX (Gap 4c / P3 / ADR-013): a node-level runs[] entry with style.italic. Pre-fix the emphasis was flattened; v0.2's interim carried runs inside the fill.",
+        "needs_human": false
+      },
+      {
+        "feature": "css-grid",
+        "node": "Page > .grid--4 / .grid--3 / .photo-strip",
+        "action": "display:grid approximated as HORIZONTAL auto-layout; review track sizing (one row shown per grid for the golden).",
+        "needs_human": true
+      }
+    ]
+  }
+}

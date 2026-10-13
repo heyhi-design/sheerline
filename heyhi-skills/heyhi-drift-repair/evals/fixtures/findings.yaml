@@ -1,0 +1,100 @@
+# Located findings for the drift-repair eval — the happy path over drifted.css.
+#
+# Each finding is the normalized located-finding shape (references/repair-taxonomy.md
+# § 5). `detection` is deliberately NOT here — it is a property of the matched
+# correction, resolved at run time. F1-F9 are the 9 deterministic call-site drifts;
+# F10 is judged (contrast), F11 hybrid (detached instance), F12 novel (no match).
+# Synthetic edge cases (ambiguous, token-definition, broken re-validation, tenant
+# isolation) are built in run.py alongside their synthetic library entries.
+#
+# classification: confidential
+
+findings:
+  - id: F1
+    surface: drifted.css
+    location: ".btn / color"
+    drift_kind: color
+    drift_class: call-site
+    matched_correction: hardcoded-hex-bypasses-token
+    recurring: true          # exercises the learn-candidate authoring (Step 6)
+
+  - id: F2
+    surface: drifted.css
+    location: ".card / padding"
+    drift_kind: dimension
+    drift_class: call-site
+    matched_correction: off-scale-spacing-value
+
+  - id: F3
+    surface: drifted.css
+    location: ".modal / z-index"
+    drift_kind: number
+    drift_class: call-site
+    matched_correction: raw-zindex-bypasses-elevation-token
+
+  - id: F4
+    surface: drifted.css
+    location: ".h1 / font-size"
+    drift_kind: dimension
+    drift_class: call-site
+    matched_correction: hardcoded-font-size-bypasses-type-token
+
+  - id: F5
+    surface: drifted.css
+    location: ".title / font-weight"
+    drift_kind: number
+    drift_class: call-site
+    matched_correction: hardcoded-font-weight-bypasses-type-token
+
+  - id: F6
+    surface: drifted.css
+    location: ".body / line-height"
+    drift_kind: number
+    drift_class: call-site
+    matched_correction: hardcoded-line-height-bypasses-type-token
+
+  - id: F7
+    surface: drifted.css
+    location: ".fade / transition-duration"
+    drift_kind: duration
+    drift_class: call-site
+    matched_correction: hardcoded-duration-bypasses-motion-token
+
+  - id: F8
+    surface: drifted.css
+    location: ".fade / transition-timing-function"
+    drift_kind: easing
+    drift_class: call-site
+    matched_correction: hardcoded-easing-bypasses-motion-token
+
+  - id: F9
+    surface: drifted.css
+    location: ".card / border-width"
+    drift_kind: dimension
+    drift_class: call-site
+    matched_correction: hardcoded-border-width-bypasses-token
+
+  # ── the never-auto set: judged + hybrid → propose-only, no write ─────────────
+  - id: F10
+    surface: artifact.json
+    location: "states.default (bg + text)"
+    drift_kind: contrast
+    drift_class: call-site
+    matched_correction: contrast-pairing-not-declared-safe
+
+  - id: F11
+    surface: artifact.json
+    location: "Button instance"
+    drift_kind: component-integrity
+    drift_class: call-site
+    matched_correction: detached-component-instance
+
+  # ── novel drift: no registered transform → propose with [inferred] ───────────
+  - id: F12
+    surface: drifted.css
+    location: ".promo / color"
+    drift_kind: color
+    drift_class: call-site
+    matched_correction: null
+    literal: "color: #BADA55"
+    suggestion: "color: var(--accent-primary)"

@@ -1,0 +1,91 @@
+<svg width="100%" viewBox="0 0 680 528" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Sheerline: where it sits in the ship lineage</title>
+<desc>A hull has two defining longitudinal lines. The sheer is the visible line above the waterline; the keel is the structural line below it. Sheerline is the design-practice operating system, the visible line; keel is the general firm-of-one harness, the structural line. Below the motif, three things kept separate: keel, the general harness, reused by adaptation; Sheerline, the whole design-practice OS, which reuses keel's mechanisms and adds a net-new foundations slot; and the Design-Systems quality loop, one module of Sheerline, not the whole thing. Conflating the module with the harness is the trap the OS exists to avoid.</desc>
+<!-- Sheerline · Figure 1 of 6: Where Sheerline sits. See docs/architecture.md. -->
+
+<style>
+.d{font-family:'Sora',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+.b{font-family:'Lora',Georgia,'Times New Roman',serif;}
+.m{font-family:'DM Mono','SFMono-Regular',ui-monospace,'Cascadia Mono','Courier New',monospace;}
+.paper{fill:#FAFAF5;}
+.ink{fill:#1A1A1A;}.soft{fill:#6B6560;}.faint{fill:#8B857C;}
+.cfg-t{fill:#1F01B9;}.sheer-t{fill:#0B6E75;}.oliv-t{fill:#575235;}.crim-t{fill:#B3261E;}
+.stage{fill:#F2F0EA;stroke:#D8D2C6;stroke-width:1;}
+.cfg-box{fill:#ECEAF6;stroke:#C3BAE6;stroke-width:1;}
+.cfg-chip{fill:#FBFAF6;stroke:#C3BAE6;stroke-width:1;}
+.sheer-box{fill:#E4F1F1;stroke:#A9D6D8;stroke-width:1;}
+.sheer-chip{fill:#FBFAF6;stroke:#A9D6D8;stroke-width:1;}
+.inner{fill:#FBFAF6;stroke:#A9D6D8;stroke-width:1;}
+.caution-box{fill:#FDECEA;stroke:#FF3B30;stroke-width:1.5;}
+.sheer-line{stroke:#0B6E75;stroke-width:2.5;fill:none;}
+.keel-line{stroke:#1F01B9;stroke-width:3;fill:none;}
+.water{stroke:#8B857C;stroke-width:1;stroke-dasharray:2 4;}
+.arr{stroke:#C8BFB3;stroke-width:1.5;fill:none;}.arrhead{fill:#C8BFB3;}
+@media (prefers-color-scheme:dark){
+.paper{fill:#1A1A1A;}.ink{fill:#F3F0E8;}.soft{fill:#A8A399;}.faint{fill:#7E7970;}
+.cfg-t{fill:#BBB0F0;}.sheer-t{fill:#5FD3DB;}.oliv-t{fill:#CBC49E;}.crim-t{fill:#FF6A60;}
+.stage{fill:#242320;stroke:#3E3B34;}
+.cfg-box{fill:#201A38;stroke:#3F3670;}.cfg-chip{fill:#2E2C27;stroke:#3F3670;}
+.sheer-box{fill:#12302F;stroke:#2E5C5A;}.sheer-chip{fill:#2E2C27;stroke:#2E5C5A;}.inner{fill:#22201C;stroke:#2E5C5A;}
+.caution-box{fill:#2A1614;stroke:#FF5247;}
+.sheer-line{stroke:#5FD3DB;}.keel-line{stroke:#BBB0F0;}.water{stroke:#7E7970;}
+.arr{stroke:#4A473F;}.arrhead{fill:#4A473F;}
+}
+</style>
+
+<rect class="paper" x="0" y="0" width="680" height="528"/>
+
+<!-- title -->
+<text class="m faint" x="40" y="36" font-size="10.5" letter-spacing="1.6">SHEERLINE</text>
+<text class="d ink" x="40" y="62" font-size="21" font-weight="600">Where Sheerline sits</text>
+<text class="b soft" x="40" y="84" font-size="12.5">keel is the structural line below the waterline. Sheerline is the visible line above it.</text>
+
+<!-- the two-lines motif -->
+<rect class="stage" x="40" y="96" width="600" height="150" rx="14"/>
+<text class="m sheer-t" x="62" y="124" font-size="10.5" letter-spacing="1">SHEER</text>
+<text class="b soft" x="112" y="124" font-size="11.5">the visible line — design output (Sheerline)</text>
+<path class="sheer-line" d="M 62 140 Q 340 128 618 140"/>
+<line class="water" x1="62" y1="176" x2="618" y2="176"/>
+<text class="m faint" x="340" y="171" font-size="8.5" text-anchor="middle">waterline</text>
+<line class="keel-line" x1="62" y1="212" x2="618" y2="212"/>
+<text class="m cfg-t" x="62" y="232" font-size="10.5" letter-spacing="1">KEEL</text>
+<text class="b soft" x="108" y="232" font-size="11.5">the structural line — the general harness (keel)</text>
+
+<!-- keel card -->
+<rect class="cfg-box" x="40" y="280" width="184" height="150" rx="14"/>
+<text class="d cfg-t" x="60" y="308" font-size="15" font-weight="600">keel</text>
+<rect class="cfg-chip" x="168" y="292" width="44" height="19" rx="9.5"/>
+<text class="m faint" x="190" y="305" font-size="8" text-anchor="middle">PUBLIC</text>
+<text class="b soft" x="60" y="326" font-size="10.5">the general firm-of-one harness</text>
+<g class="m cfg-t" font-size="9" text-anchor="middle">
+<rect class="cfg-chip" x="60" y="336" width="148" height="19" rx="6"/><text x="134" y="349">registry engine</text>
+<rect class="cfg-chip" x="60" y="360" width="70" height="19" rx="6"/><text x="95" y="373">corrections</text>
+<rect class="cfg-chip" x="138" y="360" width="70" height="19" rx="6"/><text x="173" y="373">dispatch</text>
+<rect class="cfg-chip" x="60" y="384" width="148" height="19" rx="6"/><text x="134" y="397">session lifecycle</text>
+<rect class="cfg-chip" x="60" y="408" width="148" height="19" rx="6"/><text x="134" y="421">memory contract</text>
+</g>
+
+<!-- reuse arrow -->
+<line class="arr" x1="228" y1="355" x2="296" y2="355"/><polygon class="arrhead" points="296,349 296,361 302,355"/>
+<text class="m faint" x="262" y="348" font-size="8" text-anchor="middle">reuses</text>
+
+<!-- sheerline card -->
+<rect class="sheer-box" x="308" y="280" width="332" height="150" rx="14"/>
+<text class="d sheer-t" x="328" y="308" font-size="15" font-weight="600">Sheerline</text>
+<rect class="sheer-chip" x="558" y="292" width="66" height="19" rx="9.5"/>
+<text class="m faint" x="591" y="305" font-size="8" text-anchor="middle">CONFIDENTIAL</text>
+<text class="b soft" x="328" y="326" font-size="10.5">the whole design-practice OS (this tree)</text>
+<rect class="inner" x="322" y="336" width="304" height="46" rx="8"/>
+<text class="m sheer-t" x="334" y="354" font-size="9.5">Design-Systems quality loop · one module</text>
+<text class="m soft" x="334" y="372" font-size="9">MCP · validator · evaluator · corrections</text>
+<rect class="sheer-chip" x="322" y="392" width="304" height="26" rx="6"/>
+<text class="m sheer-t" x="474" y="409" font-size="9" text-anchor="middle">+ the net-new foundations slot (what keel lacks)</text>
+
+<!-- naming caution -->
+<rect class="caution-box" x="40" y="446" width="600" height="42" rx="10"/>
+<text class="b ink" x="60" y="465" font-size="11.5">Keep three things separate: <tspan class="crim-t" font-family="'DM Mono',monospace" font-size="10.5">keel ≠ Sheerline ≠ the quality-loop module.</tspan></text>
+<text class="b soft" x="60" y="481" font-size="11">Conflating the module with the harness is the trap this OS exists to avoid.</text>
+
+<!-- caption -->
+<text class="m faint" x="40" y="512" font-size="9.5">A shared spine, not a fork. Sheerline reuses keel's mechanisms; the content and moat are its own.</text>
+</svg>

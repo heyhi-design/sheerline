@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://heyhi.design/schemas/intent-map-1.0.json",
+  "title": "Application Intent Map",
+  "description": "The layer above an application's surfaces: jobs, flows, the decisions the product already encodes, its vocabulary, and the constraints any new feature must honor. Version 1.0, additive thereafter. purpose is null by construction (a non-null value fails validation); every job/flow/encoded_decision/vocabulary/constraint row carries an evidence reference whose kind may be 'assumption', machine-enforcing evidence-linked-or-marked-assumption. additionalProperties:false keeps any ranking, score, or verdict field out. HeyHi Confidential.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "system_id", "purpose", "jobs", "flows", "encoded_decisions", "vocabulary", "constraints"],
+  "properties": {
+    "schema_version": { "type": "string", "const": "1.0" },
+    "system_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Generic system identifier; no client name (hermetic seal)."
+    },
+    "generated_at": { "type": "string", "description": "ISO date the map was produced." },
+    "source_manifest": {
+      "type": ["string", "null"],
+      "description": "A reference to the app-manifest.json this map was derived from."
+    },
+    "purpose": {
+      "const": null,
+      "description": "Null by construction. What the product is FOR is a product-strategy judgment (SKILL.md Step 3, the empty slot). A non-null value fails validation: the skill reads what the product does, it never states what it is for."
+    },
+    "jobs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "statement", "surface_ids", "evidence"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "statement": { "type": "string", "minLength": 1, "description": "The job story: When [situation], I want to [motivation], so I can [outcome]." },
+          "surface_ids": { "type": "array", "items": { "type": "string" }, "description": "The manifest surface ids that serve this job." },
+          "evidence": { "$ref": "#/$defs/evidence" }
+        }
+      }
+    },
+    "flows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "surface_ids", "evidence"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "surface_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string" },
+            "description": "The manifest surface ids this flow moves through, in order."
+          },
+          "trigger": { "type": ["string", "null"], "description": "What advances the flow." },
+          "evidence": { "$ref": "#/$defs/evidence" }
+        }
+      }
+    },
+    "encoded_decisions": {
+      "type": "array",
+      "description": "The decisions the product already makes in its behavior. Each is evidence-linked or marked assumption; there is no unlabeled guess.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "decision", "kind", "evidence"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "decision": { "type": "string", "minLength": 1 },
+          "kind": {
+            "type": "string",
+            "enum": ["gate", "default", "deliberate-absence"],
+            "description": "A gate it enforces, a default it sets, or a thing it deliberately does not do."
+          },
+          "evidence": { "$ref": "#/$defs/evidence" }
+        }
+      }
+    },
+    "vocabulary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["term", "meaning", "evidence"],
+        "properties": {
+          "term": { "type": "string", "minLength": 1 },
+          "meaning": { "type": "string", "minLength": 1, "description": "The meaning the app gives the term, not a dictionary meaning." },
+          "surface_id": { "type": ["string", "null"], "description": "Where the term appears." },
+          "evidence": { "$ref": "#/$defs/evidence" }
+        }
+      }
+    },
+    "constraints": {
+      "type": "array",
+      "description": "The rules any new feature must honor. Listed, never ranked: no rank, priority, score, or severity field is permitted (additionalProperties:false).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["constraint", "traces_to", "evidence"],
+        "properties": {
+          "constraint": { "type": "string", "minLength": 1 },
+          "traces_to": { "type": "string", "minLength": 1, "description": "The encoded decision or capability that sets this constraint." },
+          "evidence": { "$ref": "#/$defs/evidence" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "ref"],
+      "description": "Every row carries this, or it is not written. kind 'assumption' is the explicit label for an unsupported row; an unlabeled guess is not representable.",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["surface_id", "file_line", "json_pointer", "assumption"]
+        },
+        "ref": {
+          "type": "string",
+          "minLength": 1,
+          "description": "The surface id, the file:line, the JSON pointer, or (for kind assumption) a one-line note of what is assumed and why."
+        }
+      }
+    }
+  }
+}

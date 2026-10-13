@@ -1,0 +1,50 @@
+<!doctype html>
+<!--
+  controls.html — the WS4 (buttons & links) golden source. It forces the three failure
+  paths the marketing-hero golden masks (its link colour is a bare var):
+    1. a PRIMARY button (background: var(--accent)) -> a filled control box
+    2. a GHOST button (background: transparent; border: 1px solid var(--ink)) -> an OUTLINE,
+       not bare text
+    3. a "See service <img>" inline-text-beside-img span (card__more) -> the label survives
+    4. a "Read more" link with color: inherit (NOT a bare var) on a light card -> the colour
+       is kept literal + unbound, never snapped to a near-white background token
+  test_controls.mjs builds the golden IR from a synthetic capture of this shape; a live
+  Playwright extract of this file is the WS6 end-to-end proof of the browser-capture change.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Controls golden</title>
+<style>
+  :root {
+    --accent: #2B5F2A;        /* green */
+    --ink: #232826;           /* near-black text */
+    --surface: #F6F6F4;       /* near-white card */
+    --on-accent: #FFFFFF;
+  }
+  body { margin: 0; font-family: "Work Sans", system-ui, sans-serif; color: var(--ink); }
+  .controls { display: flex; flex-direction: column; row-gap: 32px; padding: 96px 120px; background: var(--surface); }
+
+  /* a shared button base; primary fills, secondary is a ghost outline */
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 28px; border-radius: 8px;
+         font-weight: 700; text-decoration: none; width: max-content; }
+  .btn--primary { background: var(--accent); color: var(--on-accent); border: 0; }
+  .btn--secondary { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+
+  /* the card "more" affordance: a label sitting beside an inline arrow image */
+  .card__more { display: inline-flex; align-items: center; column-gap: 6px; color: var(--accent); font-weight: 600; }
+  .card__more img { width: 13px; height: 13px; }
+
+  /* a link that inherits its colour (NOT a bare var) on a light card — the invisible hazard */
+  .hero__link { color: inherit; text-decoration: underline; }
+</style>
+</head>
+<body>
+  <section class="controls">
+    <a class="btn btn--primary" href="#estimate">Get a Free Estimate</a>
+    <a class="btn btn--secondary" href="#more">Learn more</a>
+    <span class="card__more">See service <img src="assets/arrow.png" alt="" /></span>
+    <a class="hero__link" href="#">Read more</a>
+  </section>
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!-- Wheelhouse · S-12 Engagement intake · lane DISPATCH-06 · HeyHi Confidential -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Wheelhouse: the engagement intake. The schema that parameterizes a run and is never loaded by default. Prototype.">
+  <title>Wheelhouse · Intake</title>
+  <link rel="stylesheet" href="shared/studio.css">
+  <style>
+    /* page-scoped (S-12 Engagement intake only)
+       candidate for shared: .hero-lede, .seal-card, .schema-sec, .field-row,
+       .val-blank, .val-set, .chips-wrap */
+    .hero-lede { font-size: 1.05rem; color: var(--soft); max-width: 64ch; }
+
+    /* hermetic-seal boundary card (L8: the ownership/moat + seal seam is crimson;
+       solid border, not the dashed "yours to fill" slot: this is a hard boundary) */
+    .seal-card { border: 1.5px solid var(--crimson-border); background: var(--crimson-fill);
+                 border-radius: var(--r-2); padding: var(--sp-5); }
+    .seal-card__tag { display: inline-flex; align-items: center; gap: 6px;
+                 font-family: var(--font-mono); font-size: .7rem; letter-spacing: .08em;
+                 text-transform: uppercase; color: var(--crimson); font-weight: 500;
+                 margin-bottom: var(--sp-2); }
+    .seal-card__quote { color: var(--ink); margin: 0 0 var(--sp-3); }
+    .seal-card__src { margin: 0; }
+
+    /* the schema, as a read-only annotated form: it never submits (it parameterizes a run) */
+    .schema-sec { margin-bottom: var(--sp-4); }
+    .schema-sec__key { font-family: var(--font-mono); font-size: .9rem; color: var(--ink);
+                 margin: 0 0 var(--sp-2); }
+    .schema-sec__count { font-family: var(--font-mono); font-size: .72rem; color: var(--faint); }
+    .field-row { display: grid; grid-template-columns: 220px 1fr; gap: var(--sp-3) var(--sp-4);
+                 padding: var(--sp-3) 0; border-top: 1px solid var(--border); align-items: start; }
+    .field-row:first-of-type { border-top: none; padding-top: 0; }
+    .field-row__key { font-family: var(--font-mono); font-size: .8rem; color: var(--ink); word-break: break-word; }
+    .val-blank { display: inline-block; min-width: 180px; padding: var(--sp-2) var(--sp-3);
+                 background: var(--surface-inset); border: 1px dashed var(--border-strong);
+                 border-radius: var(--r-1); font-family: var(--font-mono); font-size: .76rem; color: var(--faint); }
+    .val-set { display: inline-block; padding: var(--sp-2) var(--sp-3);
+                 background: var(--teal-fill); border: 1px solid var(--teal-border);
+                 border-radius: var(--r-1); font-family: var(--font-mono); font-size: .78rem; color: var(--ink); }
+    .field-row__help { margin: var(--sp-2) 0 0; font-size: .85rem; color: var(--soft); }
+    .chips-wrap { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; }
+
+    @media (max-width: 640px) {
+      .field-row { grid-template-columns: 1fr; gap: var(--sp-2); }
+    }
+  </style>
+</head>
+<body>
+<!-- ============================================================================
+     WHEELHOUSE - shared shell snippet   (FROZEN after DISPATCH-03 merges)
+     HeyHi Confidential
+     Pasted verbatim from shared/shell-snippet.html. See shared/README.md.
+     ============================================================================ -->
+<script src="data/snapshot.js"></script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="studio-shell">
+
+  <header class="topbar">
+    <a class="wordmark" href="index.html">WHEELHOUSE</a>
+    <a class="topbar__search" href="index.html#router">
+      <span aria-hidden="true">⌕</span>&nbsp;Route a task…
+    </a>
+    <span class="topbar__spacer"></span>
+    <a class="session-indicator" href="session.html">
+      <span class="dot" aria-hidden="true"></span>
+      Own practice
+      <span class="sr-only">(simulated exemplar session)</span>
+    </a>
+  </header>
+
+  <nav class="rail" aria-label="Primary">
+    <p class="rail__label">Wheelhouse</p>
+    <a class="rail__link" href="index.html">           <span class="rail__num">1</span> Home</a>
+    <a class="rail__link" href="areas.html">           <span class="rail__num">2</span> Areas</a>
+    <a class="rail__link" href="skills.html">          <span class="rail__num">3</span> Skills</a>
+    <a class="rail__link" href="session.html">         <span class="rail__num">4</span> Session</a>
+    <a class="rail__link" href="quality-validate.html"><span class="rail__num">5</span> Quality</a>
+    <a class="rail__link" href="artifacts.html">       <span class="rail__num">6</span> Artifacts</a>
+    <a class="rail__link" href="dispatch.html">        <span class="rail__num">7</span> Dispatch</a>
+    <a class="rail__link" href="seminar.html">         <span class="rail__num">8</span> Seminar</a>
+    <a class="rail__link" href="intake.html">          <span class="rail__num">9</span> Intake</a>
+  </nav>
+
+  <main id="main-content" class="studio-main">
+    <div class="wrap">
+      <!-- ===================== PAGE CONTENT START ===================== -->
+
+      <!-- HEADER: the Earn-the-Room rule, stated -->
+      <section class="section">
+        <p class="eyebrow">Parameterize</p>
+        <h1>Engagement intake</h1>
+        <p class="hero-lede">The intake is the schema that points a run at an engagement. It parameterizes the work; it is never loaded into context by default (Earn the Room). A run is handed a filled copy explicitly, kept in a gitignored folder. The tracked template stays blank, which is what you are reading here.</p>
+      </section>
+
+      <!-- HERMETIC-SEAL BOUNDARY CARD (crimson, L8 seal seam) -->
+      <section class="section" aria-labelledby="seal-h">
+        <h2 id="seal-h" class="sr-only">Hermetic seal</h2>
+        <div class="seal-card">
+          <div class="seal-card__tag"><span aria-hidden="true">&#9670;</span> Hermetic seal</div>
+          <p class="seal-card__quote">"Leave every identifying field blank in the tracked template. A real engagement is filled in a gitignored folder (main workspace only), never here, and never named in any tracked file. The practice's own system is the default substrate."</p>
+          <p class="seal-card__src"><span class="chip chip--provenance mono">sheerline/profile/engagement-intake.yaml</span></p>
+        </div>
+      </section>
+
+      <!-- THE SCHEMA (read-only annotated form) -->
+      <section class="section" aria-labelledby="schema-h">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">The schema</p>
+            <h2 id="schema-h">What an engagement provides</h2>
+            <p class="muted" id="intake-scale" style="margin:0"></p>
+          </div>
+        </div>
+        <div id="intake-form"></div>
+      </section>
+
+      <!-- ===================== PAGE CONTENT END ======================= -->
+    </div>
+  </main>
+
+  <footer class="studio-footer">
+    <span class="sim">Prototype</span> · simulated interactions over a real data snapshot
+    (<span class="mono" data-commit>…</span>) · HeyHi Confidential
+  </footer>
+
+</div>
+
+<script>
+/* fill footer commit + self-activate the rail item from the page filename */
+(function () {
+  var data = window.SHEERLINE_DATA || {};
+  var meta = data.meta || {};
+  var el = document.querySelector('[data-commit]');
+  if (el) { el.textContent = meta.source_commit || 'unknown'; }
+
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') { path = 'index.html'; }
+  var alias = {
+    'quality-grade.html': 'quality-validate.html',
+    'quality-learn.html': 'quality-validate.html',
+    'exit-gate.html': 'session.html'
+  };
+  var target = alias[path] || path;
+  var links = document.querySelectorAll('.rail__link');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].getAttribute('href') === target) {
+      links[i].setAttribute('aria-current', 'page');
+    } else {
+      links[i].removeAttribute('aria-current');
+    }
+  }
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------------------
+   S-12 Engagement intake: render the schema from the snapshot's .intake data.
+   Every value cell is blank (the tracked template is blank) with exactly two
+   carve-outs, both sim-labeled:
+     - engagement.substrate shows "self" as the simulated default
+     - practice_areas_in_scope shows the template's own example shape (areas
+       6/7/8 from the field comment), as illustrative chips linking to the
+       area pages. The template list itself is blank.
+   Field comments render as help text, verbatim from the snapshot.
+   --------------------------------------------------------------------------- */
+(function () {
+  "use strict";
+  var D = window.SHEERLINE_DATA || {};
+  var sections = (D.intake && D.intake.sections) || [];
+  var areas = D.areas || [];
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function el(id){ return document.getElementById(id); }
+  function areaById(id){ for (var i = 0; i < areas.length; i++){ if (areas[i].id === id) return areas[i]; } return null; }
+
+  /* pull the example ids out of the template's own comment: "[6, 7, 8]" */
+  function exampleIds(comment){
+    var m = String(comment == null ? "" : comment).match(/\[([0-9,\s]+)\]/);
+    var ids = m ? m[1].split(',').map(function(x){ return parseInt(x.trim(), 10); })
+                       .filter(function(x){ return !isNaN(x); }) : [];
+    return ids.length ? ids : [6, 7, 8];
+  }
+
+  function areaChips(comment){
+    var chips = exampleIds(comment).map(function(id){
+      var a = areaById(id);
+      if (!a) return '';
+      return '<a class="chip mono" href="areas.html#area-' + esc(a.key) + '">Area ' + id + ' · ' + esc(a.name) + '</a>';
+    }).join('');
+    return '<div class="chips-wrap">' + chips + ' <span class="badge badge--sim">sim · illustrative</span></div>';
+  }
+
+  function valueCell(sectionName, field){
+    if (sectionName === 'engagement' && field.key === 'substrate') {
+      return '<span class="val-set">self</span> <span class="badge badge--sim">sim · default</span>';
+    }
+    if (sectionName === 'practice_areas_in_scope') {
+      return areaChips(field.comment);
+    }
+    return '<span class="val-blank">empty in template</span>';
+  }
+
+  function section(sec){
+    var fields = sec.fields || [];
+    var n = fields.length;
+    var head = '<p class="schema-sec__key">' + esc(sec.name)
+             + ' <span class="schema-sec__count">' + n + ' field' + (n === 1 ? '' : 's') + '</span></p>';
+
+    /* bare top-level list (single field whose key == the section name): render the
+       value alone, no repeated key column */
+    if (n === 1 && fields[0].key === sec.name) {
+      var f = fields[0];
+      return '<div class="card schema-sec">' + head
+           +   '<div class="field-row" style="grid-template-columns:1fr">'
+           +     '<div>'
+           +       '<div class="field-row__val">' + valueCell(sec.name, f) + '</div>'
+           +       '<p class="field-row__help">' + esc(f.comment) + '</p>'
+           +     '</div>'
+           +   '</div>'
+           + '</div>';
+    }
+
+    var rows = fields.map(function(f){
+      return '<div class="field-row">'
+           +   '<div class="field-row__key">' + esc(f.key) + '</div>'
+           +   '<div>'
+           +     '<div class="field-row__val">' + valueCell(sec.name, f) + '</div>'
+           +     '<p class="field-row__help">' + esc(f.comment) + '</p>'
+           +   '</div>'
+           + '</div>';
+    }).join('');
+
+    return '<div class="card schema-sec">' + head + rows + '</div>';
+  }
+
+  (function(){
+    var host = el('intake-form'); if (!host) return;
+    host.innerHTML = sections.map(section).join('');
+
+    var scale = el('intake-scale');
+    if (scale) {
+      var total = sections.reduce(function(t,s){ return t + ((s.fields || []).length); }, 0);
+      scale.textContent = sections.length + ' sections, ' + total + ' fields, rendered from the snapshot';
+    }
+  })();
+})();
+</script>
+</body>
+</html>

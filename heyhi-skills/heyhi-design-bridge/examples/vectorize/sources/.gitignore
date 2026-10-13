@@ -1,0 +1,7 @@
+# Golden raster INPUTS are regenerated deterministically (seeded) by
+# ../../../scripts/vectorize/make_goldens.py — the generator is the source of truth,
+# so the heavy noise-bearing PNGs (~1.5MB each) are not tracked. Run:
+#   python3 scripts/vectorize/make_goldens.py
+# to recreate them, then calibrate.py / vectorize.py against them. The traced OUTPUTS
+# (../*.svg) and the calibration report ARE tracked.
+*.png

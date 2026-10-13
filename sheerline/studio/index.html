@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Wheelhouse: a workspace around the Sheerline design-practice harness. Prototype.">
+  <title>Wheelhouse · Home</title>
+  <link rel="stylesheet" href="shared/studio.css">
+  <style>
+    /* page-scoped (S-1 only). candidate for shared: .hero-lede, .keybar */
+    .hero-lede { font-size: 1.05rem; color: var(--soft); max-width: 62ch; }
+    .keybar { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center;
+              padding: var(--sp-3) var(--sp-4); background: var(--surface-inset);
+              border: 1px solid var(--border); border-radius: var(--r-2); }
+    .keybar .cov__label { text-transform: capitalize; }
+    .router__note { font-family: var(--font-mono); font-size: .74rem; color: var(--faint); }
+  </style>
+</head>
+<body>
+<!-- ============================================================================
+     WHEELHOUSE - shared shell snippet   (FROZEN after DISPATCH-03 merges)
+     HeyHi Confidential
+     Pasted verbatim from shared/shell-snippet.html. See shared/README.md.
+     ============================================================================ -->
+<script src="data/snapshot.js"></script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="studio-shell">
+
+  <header class="topbar">
+    <a class="wordmark" href="index.html">WHEELHOUSE</a>
+    <a class="topbar__search" href="index.html#router">
+      <span aria-hidden="true">⌕</span>&nbsp;Route a task…
+    </a>
+    <span class="topbar__spacer"></span>
+    <a class="session-indicator" href="session.html">
+      <span class="dot" aria-hidden="true"></span>
+      Own practice
+      <span class="sr-only">(simulated exemplar session)</span>
+    </a>
+  </header>
+
+  <nav class="rail" aria-label="Primary">
+    <p class="rail__label">Wheelhouse</p>
+    <a class="rail__link" href="index.html">           <span class="rail__num">1</span> Home</a>
+    <a class="rail__link" href="areas.html">           <span class="rail__num">2</span> Areas</a>
+    <a class="rail__link" href="skills.html">          <span class="rail__num">3</span> Skills</a>
+    <a class="rail__link" href="session.html">         <span class="rail__num">4</span> Session</a>
+    <a class="rail__link" href="quality-validate.html"><span class="rail__num">5</span> Quality</a>
+    <a class="rail__link" href="artifacts.html">       <span class="rail__num">6</span> Artifacts</a>
+    <a class="rail__link" href="dispatch.html">        <span class="rail__num">7</span> Dispatch</a>
+    <a class="rail__link" href="seminar.html">         <span class="rail__num">8</span> Seminar</a>
+    <a class="rail__link" href="intake.html">          <span class="rail__num">9</span> Intake</a>
+  </nav>
+
+  <main id="main-content" class="studio-main">
+    <div class="wrap">
+    <!-- ===================== PAGE CONTENT START ===================== -->
+
+      <!-- (a) ROUTER HERO -->
+      <section class="section" id="router" aria-labelledby="router-h">
+        <p class="eyebrow">The deck</p>
+        <h1 id="router-h">What are you working on?</h1>
+        <p class="hero-lede">Route a task to the practice. The registry answers honestly: it routes when it is confident, surfaces both when a call is close, and says it cannot when nothing fits. Saying no is the feature.</p>
+
+        <div class="router">
+          <label class="sr-only" for="router-input">Describe a design task</label>
+          <div class="router__bar">
+            <input class="router__input" id="router-input" type="text" placeholder="Describe a design task, then Route">
+            <button class="btn btn--primary" id="router-go" type="button">Route</button>
+          </div>
+
+          <div class="suggest-row" style="margin-bottom:var(--sp-3)">
+            <span class="suggest-row__label">Try the router</span>
+          </div>
+          <div id="examples"></div>
+
+          <div class="suggest-row" style="margin-top:var(--sp-4)">
+            <span class="suggest-row__label">Or jump to an area</span>
+            <span id="area-chips" class="suggest-row" style="gap:var(--sp-2)"></span>
+          </div>
+
+          <div class="result" id="router-result" hidden aria-live="polite"></div>
+          <p class="router__note" style="margin-top:var(--sp-4)">Routing is simulated over the registry's real confidence gate. The three examples carry the gate's actual verdicts.</p>
+        </div>
+      </section>
+
+      <!-- (b) PRACTICE MAP -->
+      <section class="section" aria-labelledby="map-h">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Practice map</p>
+            <h2 id="map-h">The thirteen areas, read honestly</h2>
+            <p class="muted" id="registry-scale" style="margin:0"></p>
+          </div>
+        </div>
+
+        <div class="keybar" role="img" aria-label="Coverage key: deep is solid teal, covered is teal outline, partial is half fill, gap is a neutral dashed track. The crimson dashed slot marks what stays a human's to fill.">
+          <span class="mono faint" style="letter-spacing:.06em">KEY</span>
+          <span class="cov cov--deep" aria-hidden="true"><span class="cov__bar"></span><span class="cov__label">deep</span></span>
+          <span class="cov cov--covered" aria-hidden="true"><span class="cov__bar"></span><span class="cov__label">covered</span></span>
+          <span class="cov cov--partial" aria-hidden="true"><span class="cov__bar"></span><span class="cov__label">partial</span></span>
+          <span class="cov cov--gap" aria-hidden="true"><span class="cov__bar"></span><span class="cov__label">gap</span></span>
+          <span class="human-slot__tag" aria-hidden="true" style="margin:0"><span style="width:18px;height:12px;display:inline-block;border:1.5px dashed var(--crimson-bright);border-radius:4px"></span>&nbsp;human's to fill</span>
+        </div>
+
+        <div id="practice-map" style="margin-top:var(--sp-4)"></div>
+      </section>
+
+      <!-- (c) TWO-COLUMN STRIP -->
+      <section class="section two-col" aria-label="Recent sessions and phase progress">
+        <div>
+          <p class="eyebrow">Recent sessions <span class="badge badge--sim">sim</span></p>
+          <div id="recent-sessions"></div>
+        </div>
+        <div>
+          <p class="eyebrow">Phase progress</p>
+          <div class="card"><div class="phase-track" id="phase-track"></div></div>
+        </div>
+      </section>
+
+      <!-- (d) CORRECTIONS PULSE -->
+      <section class="section" aria-labelledby="pulse-h">
+        <p class="eyebrow">Corrections</p>
+        <h2 id="pulse-h" class="sr-only">Corrections pulse</h2>
+        <a class="card" id="pulse" href="quality-learn.html" style="display:block;text-decoration:none;color:inherit"></a>
+      </section>
+
+    <!-- ===================== PAGE CONTENT END ======================= -->
+    </div>
+  </main>
+
+  <footer class="studio-footer">
+    <span class="sim">Prototype</span> · simulated interactions over a real data snapshot
+    (<span class="mono" data-commit>…</span>) · HeyHi Confidential
+  </footer>
+
+</div>
+
+<script>
+/* fill footer commit + self-activate the rail item from the page filename */
+(function () {
+  var data = window.SHEERLINE_DATA || {};
+  var meta = data.meta || {};
+  var el = document.querySelector('[data-commit]');
+  if (el) { el.textContent = meta.source_commit || 'unknown'; }
+
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') { path = 'index.html'; }
+  var alias = {
+    'quality-grade.html': 'quality-validate.html',
+    'quality-learn.html': 'quality-validate.html',
+    'exit-gate.html': 'session.html'
+  };
+  var target = alias[path] || path;
+  var links = document.querySelectorAll('.rail__link');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].getAttribute('href') === target) {
+      links[i].setAttribute('aria-current', 'page');
+    } else {
+      links[i].removeAttribute('aria-current');
+    }
+  }
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------------------
+   S-1 Home: render everything from the data global; bake the three router
+   states from the registry's real confidence-gate output (captured 2026-08-23):
+     routed    : "Review the design system"                         -> confident, gap 0.600
+     close-call: "Check whether this prototype is ready for review" -> ambiguous, gap 0.050
+     abstained : "Set up analytics dashboards for the growth team"  -> insufficient
+   --------------------------------------------------------------------------- */
+(function () {
+  "use strict";
+  var D = window.SHEERLINE_DATA || {};
+  var areas = D.areas || [], phases = D.phases || [], corrections = D.corrections || [];
+  var cap = (D.capabilities && D.capabilities.meta) || {};
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function el(id){ return document.getElementById(id); }
+  function n(x){ return Number(x).toLocaleString('en-US'); }
+
+  var NATURE_ORDER = [
+    { key:'craft',       label:'Craft: the design surface' },
+    { key:'operating',   label:'Operating: how the practice runs' },
+    { key:'conditional', label:'Conditional: opens only if the offering does' }
+  ];
+
+  /* ---- coverage component ---- */
+  function cov(coverage){
+    return '<span class="cov cov--'+esc(coverage)+'">'
+         +   '<span class="cov__bar" aria-hidden="true"></span>'
+         +   '<span class="cov__label">'+esc(coverage)+'</span>'
+         + '</span>';
+  }
+
+  /* ---- (b) area chips (router suggestions) ---- */
+  (function(){
+    var host = el('area-chips'); if(!host) return;
+    host.innerHTML = areas.map(function(a){
+      return '<a class="chip area-chip'+(a.coverage==='gap'?' area-chip--gap':'')+'" '
+           +   'href="areas.html#area-'+esc(a.key)+'" '
+           +   'title="'+esc(a.name)+': '+esc(a.coverage)+', phase '+esc(a.phase)+'">'
+           +   '<span class="cov cov--'+esc(a.coverage)+'"><span class="cov__bar" aria-hidden="true"></span></span>'
+           +   esc(a.name)
+           + '</a>';
+    }).join('');
+  })();
+
+  /* ---- (b) practice map, grouped by nature ---- */
+  (function(){
+    var host = el('practice-map'); if(!host) return;
+    var html = '';
+    NATURE_ORDER.forEach(function(grp){
+      var inGroup = areas.filter(function(a){ return a.nature === grp.key; });
+      if(!inGroup.length) return;
+      html += '<p class="group-label">'+esc(grp.label)+' · '+inGroup.length+'</p>';
+      html += '<div class="map-grid">';
+      html += inGroup.map(function(a){
+        return '<a class="area-card'+(a.coverage==='gap'?' area-card--gap':'')+'" href="areas.html#area-'+esc(a.key)+'">'
+             +   '<div class="area-card__top">'
+             +     '<span class="area-card__num">'+esc(String(a.id).padStart(2,'0'))+'</span>'
+             +     '<span class="badge badge--phase">'+esc(a.phase)+'</span>'
+             +   '</div>'
+             +   '<div class="area-card__name">'+esc(a.name)+'</div>'
+             +   '<div class="area-card__grounding">'+esc(a.grounding)+'</div>'
+             +   '<div class="area-card__foot">'+cov(a.coverage)
+             +     '<span class="badge badge--nature">'+esc(a.nature)+'</span>'
+             +   '</div>'
+             + '</a>';
+      }).join('');
+      html += '</div>';
+    });
+    host.innerHTML = html;
+  })();
+
+  /* registry scale under the map head (capabilities.meta) */
+  (function(){
+    var s = el('registry-scale'); if(!s) return;
+    s.textContent = (cap.total_capabilities||0) + ' governed capabilities: '
+                  + (cap.skills||0) + ' skills, ' + (cap.references||0) + ' references';
+  })();
+
+  /* ---- (c) recent sessions (simulated, labeled) ---- */
+  (function(){
+    var host = el('recent-sessions'); if(!host) return;
+    var sims = [
+      { title:'Focus-states audit, sample button set', area:'Design Systems', note:'routed · 4 verbs · gate open' },
+      { title:'Style-direction brief, own practice', area:'Visual Design', note:'routed · grade informs, human holds' },
+      { title:'Prototype readiness check', area:'Wireframing & Prototyping', note:'close call · the call was the human’s' }
+    ];
+    host.innerHTML = sims.map(function(s){
+      return '<a class="mini-card" href="session.html" style="display:block;text-decoration:none;color:inherit">'
+           +   '<div class="mini-card__title">'+esc(s.title)+'</div>'
+           +   '<div class="mini-card__meta">'+esc(s.area)+' · '+esc(s.note)+'</div>'
+           + '</a>';
+    }).join('');
+  })();
+
+  /* ---- (c) phase progress ---- */
+  (function(){
+    var host = el('phase-track'); if(!host) return;
+    function pf(status){ return status==='complete' ? 100 : (status==='active' ? 60 : 0); }
+    host.innerHTML = phases.map(function(p){
+      return '<div class="phase-row'+(p.status==='active'?' phase-row--active':'')+'">'
+           +   '<span class="phase-id">'+esc(p.id)+'</span>'
+           +   '<span class="phase-meter" style="--pf:'+pf(p.status)+'%" title="'+esc(p.name)+'"></span>'
+           +   '<span class="phase-status">'+esc(p.status)+'</span>'
+           + '</div>';
+    }).join('');
+  })();
+
+  /* ---- (d) corrections pulse ---- */
+  (function(){
+    var host = el('pulse'); if(!host) return;
+    var active = corrections.filter(function(c){ return c.status === 'active'; });
+    var factual = active.filter(function(c){ return c.severity === 'factual'; }).length;
+    var behavioral = active.filter(function(c){ return c.severity === 'behavioral'; }).length;
+    var fired = corrections.reduce(function(t,c){ return t + (Number(c.times_fired)||0); }, 0);
+    host.innerHTML =
+        '<div class="pulse">'
+      +   '<div><div class="pulse__big">'+active.length+'</div><div class="pulse__label">active seed corrections</div></div>'
+      +   '<div><div class="pulse__big">'+factual+'</div><div class="pulse__label">factual, injected at generation</div></div>'
+      +   '<div><div class="pulse__big">'+behavioral+'</div><div class="pulse__label">behavioral, remind a human</div></div>'
+      +   '<div><div class="pulse__big">'+fired+'</div><div class="pulse__label">fired to date (seed set, none yet)</div></div>'
+      +   '<div class="pulse__label" style="margin-left:auto">Learning is governed, not accumulated. See Quality &rarr; Learn.</div>'
+      + '</div>';
+  })();
+
+  /* ---- (a) router: baked real states ---- */
+  var STATES = {
+    routed: {
+      query:'Review the design system',
+      verdictClass:'confident', verdictText:'✓ confident · score gap 0.600 (bar 0.4)',
+      body:
+        '<p class="muted">Routed to one capability with margin. Law L1 saying yes, with a reason.</p>'
+      + '<div class="skill-card">'
+      +   '<div class="skill-card__name">Design Intelligence Audit <span class="badge badge--nature">skill</span></div>'
+      +   '<div class="muted" style="font-size:.88rem">Audit a design system for drift and system-level health: tokens, components, code-design fidelity.</div>'
+      +   '<div class="skill-card__meta">'
+      +     '<span class="chip chip--provenance mono">heyhi-skills/heyhi-design-intelligence-audit/SKILL.md</span>'
+      +     '<span class="mono muted">score 2.0 · 1,600 tok</span>'
+      +   '</div>'
+      + '</div>'
+      + '<div class="coloads"><span class="suggest-row__label">Co-loads</span>'
+      +   '<a class="chip mono" href="areas.html#area-design-systems">Area 7 · Design Systems · 700 tok</a>'
+      +   '<a class="chip mono" href="areas.html#area-business-acumen">Area 10 · Business Acumen · 500 tok</a>'
+      + '</div>'
+      + '<div class="loadcost">Summed load in the room: <strong>2,800 tokens</strong> (vs. 47,400 to load everything). The room holds exactly this, and shows the cost.</div>'
+    },
+    close: {
+      query:'Check whether this prototype is ready for review',
+      verdictClass:'ambiguous', verdictText:'~ ambiguous · score gap 0.050 (bar 0.4)',
+      body:
+        '<p class="muted">Two capabilities land within a hair of each other. The registry surfaces both and does not choose.</p>'
+      + '<div class="result__cards--two">'
+      +   '<div class="skill-card">'
+      +     '<div class="skill-card__name">Design System Review <span class="badge badge--nature">skill</span></div>'
+      +     '<div class="muted" style="font-size:.88rem">Design-system fidelity check, v0-to-v1 review, promote a config from candidate to canonical.</div>'
+      +     '<div class="skill-card__meta"><span class="chip chip--provenance mono">heyhi-skills/design-system-review/SKILL.md</span><span class="mono muted">score 1.30 · 1,300 tok</span></div>'
+      +   '</div>'
+      +   '<div class="skill-card">'
+      +     '<div class="skill-card__name">Prototype Audit <span class="badge badge--nature">skill</span></div>'
+      +     '<div class="muted" style="font-size:.88rem">Audit an HTML prototype for interaction completeness and readiness.</div>'
+      +     '<div class="skill-card__meta"><span class="chip chip--provenance mono">heyhi-skills/heyhi-prototype-audit/SKILL.md</span><span class="mono muted">score 1.25 · 1,400 tok</span></div>'
+      +   '</div>'
+      + '</div>'
+      + '<div class="human-slot" style="margin-top:var(--sp-4)">'
+      +   '<div class="human-slot__tag"><span aria-hidden="true">&#9670;</span> Yours to fill</div>'
+      +   'Two close matches. The call is yours: pick the capability that fits the task. The registry will not guess between them.'
+      + '</div>'
+    },
+    abstain: {
+      query:'Set up analytics dashboards for the growth team',
+      verdictClass:'insufficient', verdictText:'✗ insufficient · abstain',
+      body:
+        '<p class="muted">The registry cannot route this with confidence. Nothing clears the bar. This may be a capability gap rather than a routing failure.</p>'
+      + '<div class="card card--inset">'
+      +   '<div class="suggest-row__label" style="margin-bottom:var(--sp-2)">Nearest, and still below the confidence bar</div>'
+      +   '<div class="coloads">'
+      +     '<a class="chip mono" href="areas.html#area-designops-researchops">Area 12 · DesignOps / ResearchOps · score 0.20</a>'
+      +     '<span class="chip chip--provenance mono">Experiment Readout Linter · score 0.075</span>'
+      +   '</div>'
+      + '</div>'
+      + '<div class="loadcost">Analytics dashboards sit outside the practice’s governed capabilities. <a href="areas.html#area-designops-researchops">See the nearest area &rarr;</a></div>'
+    },
+    sim: {
+      query:null,
+      verdictClass:'sim', verdictText:'◐ simulated',
+      body:'<p class="muted">Routing is simulated in this prototype. Try one of the three example prompts to see a real result from the registry’s confidence gate.</p>'
+    }
+  };
+
+  function renderExamples(){
+    var host = el('examples'); if(!host) return;
+    var order = [
+      { k:'routed',  tag:'routes cleanly' },
+      { k:'close',   tag:'close call' },
+      { k:'abstain', tag:'abstains' }
+    ];
+    host.innerHTML = order.map(function(o){
+      return '<button class="example-btn" type="button" data-state="'+o.k+'">'
+           +   esc(STATES[o.k].query)
+           +   ' <span class="mono">&rarr; '+esc(o.tag)+'</span>'
+           + '</button>';
+    }).join('');
+  }
+
+  function showState(key){
+    var s = STATES[key]; if(!s) return;
+    var box = el('router-result');
+    box.innerHTML = '<div class="result__verdict verdict--'+s.verdictClass+'">'+s.verdictText+'</div>' + s.body;
+    box.hidden = false;
+    if (s.query != null) { el('router-input').value = s.query; }
+  }
+
+  renderExamples();
+  el('examples').addEventListener('click', function(e){
+    var b = e.target.closest('[data-state]'); if(!b) return;
+    showState(b.getAttribute('data-state'));
+    el('router-result').scrollIntoView({ behavior:'smooth', block:'nearest' });
+  });
+  function tryRoute(){
+    var v = el('router-input').value.trim();
+    var hit = null;
+    Object.keys(STATES).forEach(function(k){
+      if (STATES[k].query && STATES[k].query.toLowerCase() === v.toLowerCase()) hit = k;
+    });
+    showState(hit || 'sim');
+  }
+  el('router-go').addEventListener('click', tryRoute);
+  el('router-input').addEventListener('keydown', function(e){ if(e.key==='Enter') tryRoute(); });
+})();
+</script>
+</body>
+</html>

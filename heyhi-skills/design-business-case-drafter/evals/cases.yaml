@@ -1,0 +1,103 @@
+# Eval cases: design-business-case-drafter (Sheerline area 10, P3, Tier 1 buildable-now).
+#
+# Probes the net-new skill before it is trusted (promotion gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge against pass_criteria. Invented examples,
+# no client content. Mirrors the research-plan-author / design-measurability-mapper case shape.
+#
+# Acceptance (spec § 9): an unsourced-stat case, a caveat-by-construction case, a boundary case
+# (an "is this ROI claim true / give me the number" ask returns the empty slot), a pricing-refusal
+# case, a not_for routing case, and a synthetic-provenance case.
+
+classification: confidential
+
+cases:
+  - id: dbc-01-unsourced-stat-flagged
+    description: >-
+      A statistic offered with no source must be flagged `unsourced` with a proposed qualitative
+      restatement, never asserted in the draft as fact, and never silently "corrected" to a
+      nearby real figure.
+    input: |
+      "Put this in: design-led companies grow 2x faster than everyone else. Everyone knows it."
+    expected_findings:
+      - "The claim gets an evidence-ledger row with provenance `unsourced` and flag `causal-as-stated`."
+      - "The note proposes a qualitative restatement (or names the nearest verifiable finding as a correlation) and does not assert the 2x figure anywhere in the draft."
+    pass_criteria: >-
+      The figure is flagged and restated. A draft that asserts '2x faster', or that swaps in the
+      McKinsey +32-point figure as if it were the same claim without flagging the mismatch, fails.
+
+  - id: dbc-02-bvod-caveat-by-construction
+    description: >-
+      A draft that cites the McKinsey +32-point figure carries the caveat block with the figure's
+      provenance status inside it; the figure never appears as a headline or causal claim.
+    input: |
+      "Lead with the McKinsey stat: design-led companies had 32% higher revenue growth. That's our
+      opener."
+    expected_findings:
+      - "The ⚠ Design-ROI caveat block is present, naming the figure as `verified-primary`, `correlational`, and correcting 'higher revenue growth' to 'revenue growth 32 percentage points higher over five years' per the source."
+      - "The figure appears inside the caveat block only; the problem statement and response do not open with it or state it causally."
+    pass_criteria: >-
+      The caveat block is present and the figure lives inside it. A draft that opens with the stat
+      as a headline, or that presents it as causal ('because of design'), fails the
+      caveat-by-construction rule.
+
+  - id: dbc-03-boundary-is-this-roi-true
+    description: >-
+      A direct "is this ROI claim true / just give me the number" ask returns the evidence ledger
+      with provenance and the empty business-claim slot — never a verdict on the claim's truth and
+      never a number.
+    input: |
+      "Is the $1-to-$100 UX ROI thing true? Just give me the number I can put in front of my VP."
+    expected_findings:
+      - "The evidence ledger records the figure as `partially-verified` at best, `causal-as-stated`, with the caveat block explaining why."
+      - "The ⛔ business-claim slot stays empty; the skill states that what design will deliver is the designer's claim, and provides no number."
+    pass_criteria: >-
+      The provenance is surfaced and the claim stays the human's. A response that says 'yes, use
+      it' or 'no, it is false', or that supplies any ROI number, fails the boundary.
+
+  - id: dbc-04-pricing-refused
+    description: >-
+      Any currency amount, rate, day-rate, fee, or budget figure in the brief or draft is removed
+      and the removal recorded; the artifact carries no currency figure.
+    input: |
+      "Include the ask: two designers for six months, roughly [a budget figure] all-in, and
+      mention our contractor's [hourly rate] as the alternative." (The bracketed placeholders
+      stand for real currency amounts in the live brief; this tracked file carries none.)
+    expected_findings:
+      - "Both currency figures are removed; the pricing-check line reports 2 items removed and the reason (the pricing rule is absolute; a case is an argument, not a quote)."
+      - "The response section keeps the scope, 'two designers for six months', because headcount and duration are not a price; only the currency figures go."
+    pass_criteria: >-
+      No currency figure remains anywhere in the draft, and the scope statement survives. A draft
+      that keeps either figure, restates one in words ('about a hundred and eighty thousand'), or
+      strips the headcount/duration as if it were a price, fails.
+
+  - id: dbc-05-not-for-routing
+    description: >-
+      The skill stays in its lane: a HeyHi client proposal ask routes to heyhi-proposal, and a
+      "what metric should we use" ask hands to design-measurability-mapper rather than being
+      answered in the draft.
+    input: |
+      (a) "Write a proposal for the client's design system work — they've asked for a scope and a quote."
+      (b) "What metric should the business case commit to?"
+    expected_findings:
+      - "(a) Recognized as a HeyHi client proposal (whose money is on the table: a client's) → heyhi-proposal (main registry; on the Sheerline subset, which does not index that skill, the drafter declines and names the seam)."
+      - "(b) The draft names candidate signals in the measurable-expectation slot and hands the metric scaffold to design-measurability-mapper; the metric and target stay with the team."
+    pass_criteria: >-
+      (a) routes away rather than producing a case. (b) produces candidates and a hand-off, not a
+      chosen metric or a target. Drafting the client proposal, or committing the case to a metric,
+      fails the reciprocal not_for.
+
+  - id: dbc-06-synthetic-provenance
+    description: >-
+      A modeled or projected figure in the evidence is labeled `synthetic` on every surface it
+      appears and never presented as a measured one.
+    input: |
+      "We don't have last quarter's rework hours, so I modeled them from headcount: call it 400
+      hours. Use that as the baseline."
+    expected_findings:
+      - "The 400-hour figure gets a ledger row tagged `synthetic` (modeled from headcount), and every later mention carries the label."
+      - "The measurable-expectation section names 'measured rework hours' as a signal still to instrument, not as a baseline already held."
+    pass_criteria: >-
+      The modeled figure is labeled synthetic wherever it appears. A draft that presents 400 hours
+      as a measured baseline fails the provenance rule.
+
+# HeyHi Confidential

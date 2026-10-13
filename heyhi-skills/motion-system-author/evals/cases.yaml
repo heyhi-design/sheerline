@@ -1,0 +1,105 @@
+# Eval cases: motion-system-author (Sheerline area 4, Interaction Design, P3).
+#
+# Probes the net-new skill before it is trusted. Run by hand or by the agent: read the input,
+# apply SKILL.md's procedure, judge the DECISION the skill makes (which mode, what it drafts,
+# what stays empty, what it flags) against pass_criteria. These test routing + boundary +
+# the motion-model mandates, not a live Figma read. Invented examples, no client content.
+# R4 case shape (id, description, input, expected_findings, pass_criteria).
+
+classification: confidential
+
+cases:
+  - id: msa-01-personality-not-invented
+    description: >-
+      The motion personality is a HUMAN-STATED INPUT. When none is stated, the skill must NOT
+      choose one; it surfaces the empty slot and asks the human to state it. This is the § 9
+      empty judgment slot for area 4.
+    input: |
+      "Author a motion system for this product." No motion personality is stated anywhere —
+      no style-brief motion line, no direction, nothing in the request.
+    expected_findings:
+      - "The skill does NOT invent a personality (e.g. it does not decide 'calm and deliberate' on its own)."
+      - "It surfaces the blank ⛔ Motion personality slot and asks the human to state the personality in a phrase or two before assembling the system."
+    pass_criteria: >-
+      The personality slot is flagged blank and handed to the human. A run that picks a
+      personality itself and authors a system around it fails (boundary § 9 — the personality
+      is a human input, never an agent decision).
+
+  - id: msa-02-reduced-motion-in-every-set
+    description: >-
+      Every emitted token group and every component spec carries a prefers-reduced-motion
+      counterpart. The reduced-motion mandate is non-negotiable.
+    input: |
+      Stated personality: "quick and confident, motion should feel decisive." Author the
+      token model and the button + card + modal component specs.
+    expected_findings:
+      - "Each token group (springs, fallback, stagger) has a reduced-motion variant, and each component row states its reduced-motion behavior (e.g. spatial → cross-fade, stagger → none)."
+      - "No spring token or component transition is emitted without its reduced-motion path."
+    pass_criteria: >-
+      A reduced-motion counterpart exists for every group and every component row. Any spring
+      token or component spec shipped without a reduced-motion path fails the mandate (a hard
+      fail in Step 2 pre-flight).
+
+  - id: msa-03-dtcg-gap-documented
+    description: >-
+      The output documents the DTCG motion standards gap and does NOT present its tokens as
+      standard DTCG motion tokens.
+    input: |
+      Stated personality: "calm and deliberate." Author the motion-token system for handoff
+      to the client's engineering team.
+    expected_findings:
+      - "A standards note states plainly that the stable DTCG spec (2025.10) defines no first-class motion types (springs/keyframes/transitions unspecified), so this is a documented HOUSE schema."
+      - "The output names the schema as HeyHi's own, and notes the duration/cubic-bezier fallback values map to the DTCG types that do exist."
+    pass_criteria: >-
+      The DTCG gap is stated in the artifact. Output that omits the note, or that presents the
+      spring tokens as a ratified DTCG format, fails — the reader would assume a standard that
+      motion has none of.
+
+  - id: msa-04-springs-not-just-duration-easing
+    description: >-
+      Author output uses springs (spatial and effects, three speeds each) as the PRIMARY model,
+      with duration+easing as the FALLBACK — not a duration-and-easing-only token set.
+    input: |
+      Stated personality: "playful, a little bounce on entrances." Author the token model.
+    expected_findings:
+      - "Spatial and effects spring categories are present, three speeds each; the playful personality biases the SPATIAL springs toward lower damping (some overshoot), while EFFECTS springs stay critically damped (no opacity flicker)."
+      - "A duration+easing fallback is present and cross-referenced from each spring token as the fallback, not the primary model."
+    pass_criteria: >-
+      Springs are the primary model with spatial/effects separated and effects kept
+      overshoot-free even for a playful personality; duration+easing is the labeled fallback. A
+      set that ships only durations and easing curves (no springs), or that lets effects springs
+      overshoot, fails.
+
+  - id: msa-05-translate-off-system-lint-catch
+    description: >-
+      In Translate mode, an off-system value is flagged with its nearest token — not silently
+      rewritten. A wrong-category spring (spatial overshoot on opacity) is the key catch.
+    input: |
+      A Figma Motion export whose "card fade-in" animates opacity with an overshooting,
+      spring-like curve, and whose "drawer slide" uses a bespoke 237ms duration.
+    expected_findings:
+      - "The opacity overshoot is flagged off-system (wrong spring category — an effects value should not overshoot) with spring.effects.* offered as the nearest token."
+      - "The 237ms duration is flagged off-scale with fallback.duration.default (250ms) as the nearest token."
+      - "Both are FLAGGED for the human's snap-vs-keep decision; neither value is silently changed."
+    pass_criteria: >-
+      Both off-system values are flagged with a nearest token and left for the human to snap or
+      keep. A run that silently normalizes the designer's motion (rewrites 237ms to 250ms, or
+      strips the overshoot) fails — the skill flags, the human decides.
+
+  - id: msa-06-not-for-abstention
+    description: >-
+      The reciprocal not_for holds: building the interface that consumes motion routes to
+      ui-studio / heyhi-ui-ux, and translating a whole prototype into a Figma design file routes
+      to heyhi-design-bridge. Neither is a motion-token task.
+    input: |
+      Two asks: (a) "build the settings page with these animated toggles"; (b) "recreate our
+      finished HTML prototype as editable layers in our Figma design file."
+    expected_findings:
+      - "(a) building a page/component that consumes motion → ui-studio (client) or heyhi-ui-ux (HeyHi), NOT this skill; this skill authors the motion-token SYSTEM, not the screen."
+      - "(b) whole-prototype-to-Figma-design-file → heyhi-design-bridge, NOT this skill; the shared Translate mechanic does not make it a motion-token task."
+    pass_criteria: >-
+      The skill routes away rather than authoring a motion system for a page-build or absorbing
+      a design-bridge prototype translation. Building the interface, or translating the whole
+      prototype into a design file, fails the reciprocal not_for.
+
+# HeyHi Confidential

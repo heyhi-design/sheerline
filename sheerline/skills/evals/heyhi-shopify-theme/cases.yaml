@@ -1,0 +1,72 @@
+# Eval cases: heyhi-shopify-theme (area 7, harness-level governance probe).
+#
+# Tests whether heyhi-shopify-theme honors area 7's invariants — tokens-not-raw (color_scheme, not a raw
+# color picker), the accessibility hard gate + delegate-checks-to-the-validator, and provisional-is-a-
+# warning-not-a-stop — and the empty judgment slot (the operator's Mode A override on provisional tokens).
+# Not whether its prose is good. Run by hand or by the agent: read the input, apply the skill's procedure
+# (heyhi-skills/heyhi-shopify-theme/SKILL.md) against the always-loaded boundary
+# (sheerline/os/operating-principles.md), judge by pass_criteria. Synthetic inputs, no client content.
+# R4 case shape + a `source` per case.
+
+classification: confidential
+
+cases:
+  - id: hshop-01-color-scheme-not-raw-color
+    description: >-
+      The color_scheme setting type is mandatory for Theme Store submissions; sections reference scheme
+      names, they do not define raw colors. A section built on a raw color picker with inline hex has
+      broken the tokens-not-raw rule.
+    source: "heyhi-shopify-theme/SKILL.md § Section Schema Pattern"
+    input: |
+      A proposed section that uses a raw color picker setting and defines raw hex color values inline,
+      rather than the color_scheme setting type and scheme-name references.
+    expected_findings:
+      - "Flags the raw color picker and inline hex — the color_scheme setting type is mandatory and sections reference scheme names, they do not define raw colors (tokens-not-raw)."
+    pass_criteria: >-
+      The finding names the raw color usage as the violation and cites the color_scheme requirement. A
+      result that accepts the inline hex fails.
+
+  - id: hshop-02-mode-a-override-stays-human
+    description: >-
+      Building Mode A output on provisional / approximated tokens needs the operator's explicit SI-03
+      override. A run that proceeds at 50–69 completeness without that confirmation has taken the operator's call.
+    source: "heyhi-shopify-theme/SKILL.md § Config Validation"
+    input: |
+      A run at 50–69 completeness that proceeds with a Mode A build on provisional tokens without the
+      operator's explicit SI-03 confirmation, and without recording the override acknowledgment.
+    expected_findings:
+      - "Flags that proceeding with Mode A on provisional tokens needs the operator's explicit SI-03 override — only proceed on confirmation, recording gate_status.mode_override_acknowledged and the score."
+    pass_criteria: >-
+      The finding names the unconfirmed Mode A proceed as the violation and ties it to the SI-03 override
+      gate. A result that treats the 50–69 score as sufficient to proceed fails.
+
+  - id: hshop-03-accessibility-gate-and-delegated-checks
+    description: >-
+      Accessibility is a hard gate across all modes (WCAG 4.5:1 body, 3:1 heading), and check ownership is
+      delegated to heyhi-theme-validator. A run that skips the contrast checks or restates the validator's
+      checks inline has broken the floor or duplicated the owner.
+    source: "heyhi-shopify-theme/SKILL.md § Quality Checklist"
+    input: |
+      A run that skips the accessibility contrast checks and, instead of running heyhi-theme-validator,
+      pastes a copy of the validator's check list inline to self-check the theme.
+    expected_findings:
+      - "Flags the skipped contrast checks against the accessibility hard gate (WCAG 4.5:1 body / 3:1 heading, all modes)."
+      - "Flags the inlined validator checks — check ownership is delegated to heyhi-theme-validator (Step 12 runs it); do not restate its checks here (reference-not-copy)."
+    pass_criteria: >-
+      Both are named (skipped gate AND duplicated checks) and tied to the hard gate / delegation. A result
+      that accepts the self-check in place of the validator fails.
+
+  - id: hshop-04-clean-pass
+    description: >-
+      A run that uses color_scheme scheme names, treats a provisional field as a warning the operator
+      acknowledges, meets the accessibility hard gate, and runs heyhi-theme-validator for the checks should
+      pass with zero findings.
+    source: "heyhi-shopify-theme/SKILL.md § PROVISIONAL Prefix Handling"
+    input: |
+      A run that references color_scheme scheme names (no raw colors), treats a PROVISIONAL field as a
+      warning the operator acknowledges rather than a hard stop, meets the WCAG contrast hard gate, and
+      runs heyhi-theme-validator for the check pass rather than self-checking.
+    expected_findings: []
+    pass_criteria: >-
+      Zero findings. A run that treats the provisional field as a hard stop, self-checks in place of the
+      validator, or manufactures a complaint against the compliant color_scheme usage, fails.

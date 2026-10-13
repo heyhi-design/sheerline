@@ -1,0 +1,71 @@
+# Sheerline: engagement / design-system intake.
+#
+# The intake schema for a design engagement. This is a TEMPLATE that parameterizes a
+# Sheerline run; it is never loaded into agent context by default (Earn the Room). Adapted from
+# releases/open-source/keel/profile/company-profile.template.yaml, design-scoped.
+#
+# Hermetic seal: leave every identifying field blank in the tracked template. A real engagement
+# is filled in a gitignored folder (main workspace only), never here, and never named in any
+# tracked file. The practice's own system is the default substrate.
+#
+# Intake location (one rule): a filled intake lives in the instance's engagement folder,
+# <engagement folder>/engagement-intake.yaml, whether the engagement is a paid client, a side
+# engagement, or a self variant. The engagement folder is gitignored (main workspace only). A run is POINTED at that path at run time: the filled intake
+# is passed in explicitly, never auto-discovered by scanning the tree. The tracked template stays blank.
+
+classification: confidential
+
+engagement:
+  label: ""              # A non-identifying session label (e.g. "Engagement N"), never a client name.
+  substrate: ""          # "self" (the practice's own system) | "client" (external engagement); filled-intake location per the header rule
+  stage: ""              # discovery | audit | build | care
+  nda_contract_status: "" # pending | signed  (pre-signature deliverables are drafts, held for release)
+
+design_system:
+  source: ""             # figma | code | tokens-file | none-yet
+  token_spec: ""         # e.g. DTCG 2025.10, if a token set exists
+  serves_via_mcp: ""     # true | false  (is the system retrieved through the Design System MCP?)
+  component_inventory: [] # named components in scope, if known
+  known_drift: ""        # a one-line note on suspected drift, if any (the audit confirms it)
+  # --- Execution-resolution fields (folded in 2026-08-17 from the portable-design-system-skills spec).
+  #     Let a skill RUN unattended against the target, not just scope which foundations load. All blank in the template.
+  component_source: ""   # path/glob to the component catalog (Storybook glob, components dir, or a manifest json)
+  component_format: ""   # json-manifest | storybook | code | figma | none
+  figma_file_key: ""     # design-system Figma file key (auth is via the MCP; key only, never a token)
+  figma_app_file_key: "" # optional application/screens Figma file key, when separate from the DS file
+  description_target: "" # where token/field descriptions get written: DTCG $description | a DESIGN.md tokens: block | field_provenance
+
+# --- Stage-0 application-read fields (added 2026-09-07, fdde-loop convergence 1; consumed by
+#     app-recon and the intent skills. When present the manifest is grounded from these; else asked).
+api:
+  spec: ""      # path/URL to the OpenAPI spec, when the app has one
+  schema: ""    # path/glob to the schema definitions the spec points into
+  handlers: ""  # path/glob to the request handlers (auth + entitlement are read here, not from the spec)
+app:
+  routes: ""    # path/glob to the route definitions (the surface list is grounded from here)
+  run_url: ""   # optional running URL, for a live read alongside the code
+
+deliverable:
+  root: ""               # where finished artifacts land: <engagement folder>/deliverables (gitignored, main workspace)
+  classification: ""     # default footer for produced internal files (e.g. "HeyHi Confidential", or the client's own scheme)
+
+practice_areas_in_scope: []
+  # The area ids (os/foundations/registry.yaml) this engagement touches. Governs which
+  # foundations load conditionally. Example shape (not a rule): [6, 7, 8]
+
+constraints:
+  accessibility_target: "" # the WCAG level and the jurisdiction's named standard, if a claim is made
+  brand_voice_source: ""   # where the client's voice lives (never HeyHi's voice for client work)
+  voice_prohibited: []     # resolved banned-word list (the execution form of brand_voice_source), when a skill produces copy
+  dash_rule: ""            # em-dash policy for produced copy: max-2-per-document | zero | none
+  do_not_automate: []      # engagement-specific judgment calls that stay human, on top of the standing line
+
+remediation:
+  model: ""              # the owner's next-step model in their own words (e.g. "Jira epics", "service tiers", "internal backlog")
+  map: {}               # finding-pattern -> recommended next step, in the owner's vocabulary (keeps consulting framing out of the method)
+
+boundary:
+  retained_moat_touched: "" # true | false  (does this engagement touch the evaluator / populated corpus / calibration?)
+  hermetic_seal_confirmed: "" # true | false  (no client name in any tracked artifact)
+
+# HeyHi Confidential

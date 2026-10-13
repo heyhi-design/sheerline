@@ -1,0 +1,66 @@
+# Eval cases: Visual Design governance (area 6, Phase 1).
+#
+# Probes the governance discipline of the Visual Design foundation, not a net-new skill (P1
+# authors none). Run by hand or by the agent: read the input, apply the foundation's own rules
+# (os/foundations/visual-design/FOUNDATION.md), judge against pass_criteria. Invented examples,
+# no client content. The R4 case shape (id, description, input, expected_findings, pass_criteria).
+
+classification: confidential
+
+cases:
+  - id: visual-01-reference-not-copy
+    description: >-
+      The Visual foundation must reference the corpus in place, never byte-copy it. A foundation
+      file that pastes style-library prose instead of pointing at it should fail governance.
+    input: |
+      A proposed os/foundations/visual-design/FOUNDATION.md that pastes 200 lines of the style
+      library's descriptor entries directly into the manifest body.
+    expected_findings:
+      - "Flags the pasted corpus as a reference-not-copy violation (the byte-identical-copy trap)."
+      - "Recommends replacing the paste with a pointer to ai-services/design-intelligence/style-reference-library.md plus loading rules."
+    pass_criteria: >-
+      The finding names the duplication specifically and prescribes the pointer + loading-rules
+      fix, not a generic "trim this."
+
+  - id: visual-02-advisory-never-gate
+    description: >-
+      A visual grade must inform a human read, never auto-select a direction or auto-block. A
+      proposed behavior that scores a direction and rejects it automatically violates the boundary.
+    input: |
+      A proposal that has the agent score three visual directions and automatically discard the
+      two below a numeric threshold, advancing the top scorer with no human review.
+    expected_findings:
+      - "Flags auto-selection of a visual direction as a boundary violation (a capability filling its own judgment slot)."
+      - "Recommends the grade surface all three to the human as advisory, with the direction call left to the human."
+    pass_criteria: >-
+      The finding identifies the auto-select as the violation (not merely 'add a review step')
+      and ties it to advisory-never-gate.
+
+  - id: visual-03-fundamentals-pointer-not-rederived
+    description: >-
+      The foundation references the ratified fundamentals decisions; it must not author a second
+      conflict hierarchy or paste Increment-A UX-law content into sheerline/.
+    input: |
+      A proposed manifest edit that writes its own five-rule conflict hierarchy inline and lists
+      the ten binding UX laws with definitions, rather than pointing at Increment A.
+    expected_findings:
+      - "Flags the re-derived hierarchy as a second canonical center (the per-skill-duplication anti-pattern the ratification exists to end)."
+      - "Flags the inlined UX-law content as authoring the fundamentals layer inside sheerline/ (reference-not-copy applied to the reasoning layer)."
+      - "Recommends pointing at plans/plan-design-md-build-2026-08-06.md Increment A + design-fundamentals-decision-research-2026-08-12.md instead."
+    pass_criteria: >-
+      Both violations are named (second hierarchy AND inlined content), and the fix is the
+      pointer, not a reword.
+
+  - id: visual-04-clean-pass
+    description: >-
+      A manifest that references the corpus by path, keeps grades advisory, and points at the
+      ratified fundamentals decisions should pass governance with zero findings.
+    input: |
+      A manifest that lists the corpus references as a path table, states advisory-never-gate,
+      and points at Increment A + the decision-research doc for the fundamentals layer.
+    expected_findings: []
+    pass_criteria: >-
+      Zero findings. A result that invents a governance complaint against a compliant manifest
+      fails this case.
+
+# HeyHi Confidential

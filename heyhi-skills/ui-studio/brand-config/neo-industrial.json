@@ -1,0 +1,435 @@
+{
+  "$schema": "./schema.json",
+  "_comment": "Neo-Industrial (Entry 10, Cluster C) — Production Brand Config. Promoted from v0.9.1 test fixture for B4-S4 Breadth Stress Test. Stages 1–3 complete (Boards A/B/C + Stage 2 validation PASS 0C/0H). Stage 3 resolutions: display font IBM Plex Sans Condensed (open-source; Druk Wide for client deployment), loading resolved to Google Fonts, alarm-high-priority normalized to kebab-case, light scheme omitted (dark-native, Stage 5 dark-only, light requires separate designer confirmation). 0 PROVISIONAL fields remaining. FIDELITY_WARN expected (Mode D inferred values, no designer review — correct for stress test). Restore HeyHi config after Stage 6: python3 scripts/switch-brand.py --config heyhi",
+  "brand": {
+    "name": "Neo-Industrial",
+    "description": "Dark-native industrial interface system built on ISA-101 High Performance HMI conventions. Monospace as primary body voice. Near-neutral dark foundation communicates operational authority through visible structure and precision typography. Color is functional, never decorative — chromatic signals indicate state, not brand personality.",
+    "temperature": "cool",
+    "cluster": "C",
+    "style_entry": "Neo-Industrial",
+    "personality": "Austere, declarative, and precise. The interface communicates that it builds things. Heavy condensed grotesque headers give way to a monospace-dominant body register. Hard-bordered zones, dense information count, and a five-state ISA-101 functional color system produce operational interfaces for manufacturing, industrial IoT, and construction tech.",
+    "style_notes": "Cluster C — Neo-Industrial (Entry 10). Dark-native config: meta.default_scheme is 'dark'. Token flat structure reflects the active dark scheme. Both schemes held in tokens.color.schemes per ADR-006 Option C. WS3 PARTIAL — intentional: display zone governed by Augmented Fourth 1.414x; body/data zone fixed at 14-16px monospace outside the scale system. Zone separation is architectural, not a calibration error. Document zone rules in every client implementation brief for Neo-Industrial engagements. WS8 PASS — Augmented Fourth (1.414x) exceeds the Major Third (1.25x) WS8 threshold; no incoherence risk. WS6 PASS — documented ISA-101 exception: ISA-101 requires high-contrast chromatic signals against an achromatic dark foundation. The ±15% saturation rule does not apply when functional color serves safety-critical state communication. Semantic saturation departure from the near-zero primary accent is required, not a mistake. ISA-101 further requires that color is never the sole indicator: shape, symbol, or label must accompany every status signal (approximately 8% of male operators have color vision deficiency). Stage 3 resolution: display font is IBM Plex Sans Condensed for this stress test (open-source). Client deployment should use Druk Wide with Commercial Type license.",
+    "agent_context_snippet": "Neo-Industrial produces interfaces that communicate operational authority through visible structure and monospace precision. Heavy display type at section headers gives way to a monospace-dominant body register — this is not just a data accent, it is the primary voice throughout body and data zones (JetBrains Mono, 14–16px fixed, outside the Augmented Fourth scale system). Color is ISA-101 functional only: gray = nominal, green = running, yellow = abnormal, orange = high-priority alarm, red = critical, blue = manual mode — every chromatic signal requires secondary shape or symbol encoding; avoid soft surfaces, warm tones, rounded corners (zero border radius throughout), gradient fills, or any decorative color use."
+  },
+  "tokens": {
+    "typography": {
+      "families": {
+        "display": {
+          "family": "IBM Plex Sans Condensed",
+          "fallback": "'Arial Black', 'Impact', sans-serif",
+          "weights": [
+            700,
+            900
+          ],
+          "use": "Section headers and operational labels only. Heavy weight at display zone scale (h1–h4). All-caps for system status labels. Governs display zone exclusively — body/data zone uses monospace. NOTE: This stress test uses IBM Plex Sans Condensed (open-source). Client deployments should use Druk Wide (Commercial Type license required) for the full Neo-Industrial intent."
+        },
+        "body": {
+          "family": "JetBrains Mono",
+          "fallback": "'Courier New', 'Courier', monospace",
+          "weights": [
+            400,
+            500
+          ],
+          "use": "Primary body and data register throughout. All measured values, status readouts, data tables, operational prose, and UI labels. Monospace alignment ensures fixed-width value columns. 14–16px fixed range — not governed by the Augmented Fourth scale.",
+          "body_register": "monospace-primary"
+        },
+        "utility": {
+          "family": "JetBrains Mono",
+          "fallback": "'Courier New', 'Courier', monospace",
+          "weights": [
+            400
+          ],
+          "use": "Navigation labels, form fields, timestamps, metadata. Same monospace family as body to maintain the fixed-width grid throughout."
+        }
+      },
+      "scale": {
+        "h1": "clamp(32px, 4vw, 45px)",
+        "h2": "clamp(22px, 2.8vw, 32px)",
+        "h3": "clamp(16px, 2vw, 22px)",
+        "h4": "clamp(14px, 1.6vw, 16px)",
+        "body": "15px",
+        "body-sm": "14px",
+        "label": "13px",
+        "data": "14px",
+        "caption": "12px",
+        "ratio": "Augmented Fourth 1.414x (display zone h1–h4 only)",
+        "body_zone_fixed": "14–16px (monospace, fixed — outside scale system)"
+      },
+      "loading": {
+        "provider": "google",
+        "url": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@700;900&family=JetBrains+Mono:wght@400;500&display=swap"
+      }
+    },
+    "color": {
+      "backgrounds": {
+        "primary": "#141414",
+        "secondary": "#1E1E1E",
+        "tertiary": "#282828",
+        "surface": "#1A1A1A",
+        "overlay": "#0A0A0A"
+      },
+      "text": {
+        "primary": "#E8E8E8",
+        "secondary": "#A0A0A0",
+        "tertiary": "#707070",
+        "disabled": "#4A4A4A",
+        "inverse": "#141414",
+        "data": "#D4D4D4",
+        "label": "#B0B0B0"
+      },
+      "structural": {
+        "border-default": "#333333",
+        "border-strong": "#4A4A4A",
+        "border-subtle": "#252525",
+        "zone-separator": "#3A3A3A",
+        "divider": "#2A2A2A"
+      },
+      "accent": {
+        "primary": "#A0A0A0"
+      },
+      "semantic": {
+        "success": "#2D8659",
+        "success-bg": "#0A1F14",
+        "warning": "#D4A500",
+        "warning-bg": "#1A1400",
+        "error": "#C0392B",
+        "error-bg": "#200A08",
+        "info": "#2980B9",
+        "info-bg": "#081420",
+        "alarm-high-priority": "#E67E22",
+        "alarm-high-priority-bg": "#1A0E00",
+        "nominal": "#505050"
+      },
+      "prohibited": [
+        {
+          "value": "Any warm hue (yellow-red undertone > 10° hue angle)",
+          "reason": "Warm tones contradict the cool precision register and weaken functional color authority"
+        },
+        {
+          "value": "Gradient fills on backgrounds or panels",
+          "reason": "Gradients add surface warmth and softness — both are anti-mood for Neo-Industrial"
+        },
+        {
+          "value": "Decorative color use for brand personality",
+          "reason": "In ISA-101 systems, every chromatic appearance signals a state change. Decorative color creates false state alarms."
+        }
+      ],
+      "contrast_notes": [
+        "Primary text (#E8E8E8) on primary background (#141414): ~18:1 — exceeds WCAG AAA (7:1)",
+        "Secondary text (#A0A0A0) on primary background (#141414): ~6.3:1 — exceeds WCAG AA (4.5:1)",
+        "Label text (#B0B0B0) on primary background (#141414): ~7.5:1 — exceeds WCAG AA",
+        "Tertiary text (#707070) on primary background (#141414): ~3.8:1 — AA large text only; restrict to non-functional annotation",
+        "Disabled text (#4A4A4A) on primary background (#141414): ~2.3:1 — intentionally below AA; decorative only",
+        "Warning (#D4A500) on dark background (#141414): ~8.05:1 — exceeds WCAG AA for indicator-scale use",
+        "Alarm high-priority (#E67E22) on dark background (#141414): ~6.47:1 — exceeds WCAG AA; always paired with shape encoding per ISA-101",
+        "Success green (#2D8659) on dark background (#141414): ~4.09:1 — meets AA large text; acceptable at indicator scale per ISA-101 usage pattern",
+        "Info blue (#2980B9) on dark background (#141414): ~4.28:1 — meets AA large text; acceptable at indicator scale",
+        "Critical red (#C0392B) on dark background (#141414): ~3.39:1 — meets AA large text threshold for indicator-scale use; always requires secondary shape encoding",
+        "Focus ring blue (#3498DB) on primary background (#141414): ~4.5:1 — meets WCAG 2.2 SC 2.4.13 (3:1 minimum)"
+      ],
+      "schemes": {
+        "dark": {
+          "backgrounds": {
+            "primary": "#141414",
+            "secondary": "#1E1E1E",
+            "tertiary": "#282828",
+            "surface": "#1A1A1A",
+            "overlay": "#0A0A0A"
+          },
+          "text": {
+            "primary": "#E8E8E8",
+            "secondary": "#A0A0A0",
+            "tertiary": "#707070",
+            "disabled": "#4A4A4A",
+            "data": "#D4D4D4",
+            "label": "#B0B0B0"
+          },
+          "structural": {
+            "border-default": "#333333",
+            "border-strong": "#4A4A4A",
+            "border-subtle": "#252525",
+            "zone-separator": "#3A3A3A",
+            "divider": "#2A2A2A"
+          },
+          "accent": {
+            "primary": "#A0A0A0"
+          },
+          "semantic": {
+            "success": "#2D8659",
+            "success-bg": "#0A1F14",
+            "warning": "#D4A500",
+            "warning-bg": "#1A1400",
+            "error": "#C0392B",
+            "error-bg": "#200A08",
+            "info": "#2980B9",
+            "info-bg": "#081420",
+            "alarm-high-priority": "#E67E22",
+            "alarm-high-priority-bg": "#1A0E00",
+            "nominal": "#505050"
+          }
+        }
+      }
+    },
+    "spacing": {
+      "base": "4px",
+      "rhythm": "4px modular scale. Dense information count throughout — no breathing-room padding. Zone boundaries established by 1px borders, not whitespace intervals.",
+      "tiers": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "12px",
+        "lg": "16px",
+        "xl": "24px",
+        "2xl": "32px",
+        "section": "24px",
+        "section-major": "48px"
+      },
+      "content_max_width": "1440px",
+      "page_padding": "clamp(16px, 1.5vw, 24px)",
+      "grid_gap": "16px",
+      "touch-target": {
+        "min": "40px",
+        "comfortable": "44px"
+      }
+    },
+    "motion": {
+      "easing": {
+        "default": "linear",
+        "state-change": "step-end"
+      },
+      "durations": {
+        "state-change": "0ms",
+        "alert-flash": "200ms"
+      },
+      "stagger": "0ms",
+      "principles": "State changes only — thresholds trigger, values update, indicators flip. No entrance animations, no choreography, no decorative motion. If something moves, a state changed. Exception: alarm-high-priority may flash at 200ms interval as secondary indicator (shape/symbol encoding required alongside flash)."
+    },
+    "elevation": {
+      "none": "none",
+      "sm": "none",
+      "md": "none",
+      "lg": "none"
+    },
+    "radius": {
+      "none": "0px",
+      "sm": "0px",
+      "md": "0px",
+      "lg": "0px",
+      "pill": "0px"
+    },
+    "focus": {
+      "outline": {
+        "width": "2px",
+        "color": "#3498DB",
+        "offset": "2px",
+        "style": "solid"
+      }
+    }
+  },
+  "layout": {
+    "grid": {
+      "columns": 12,
+      "gutter": "16px",
+      "margin": "24px",
+      "breakpoints": {
+        "sm": "375px",
+        "md": "768px",
+        "lg": "1440px"
+      }
+    },
+    "spacing_density": "dense",
+    "section_padding_tiers": {
+      "generous": "48px",
+      "standard": "24px",
+      "tight": "12px"
+    },
+    "preferred_patterns": [
+      "Control Center Grid",
+      "Dashboard Preview",
+      "Data Entry"
+    ],
+    "style_cluster": "C",
+    "style_entry": "Neo-Industrial"
+  },
+  "voice": {
+    "tone": "Declarative and precise. Label the state. Name the value. Instructions are operational, not conversational. The interface does not explain itself — it reports.",
+    "prohibited_words": [
+      "seamless",
+      "intuitive",
+      "user-friendly",
+      "delightful",
+      "beautiful",
+      "elegant",
+      "smooth",
+      "easy"
+    ],
+    "prohibited_patterns": [
+      "Questions as UI copy ('Want to try...?')",
+      "Soft hedging ('maybe', 'might', 'could')",
+      "Conversational prose in data labels",
+      "Explanatory parentheticals in status indicators"
+    ],
+    "cta_style": "Direct and operational. Verb + target. 'Start monitoring.' 'Acknowledge alarm.' 'Override value.' Never soft.",
+    "formatting": {
+      "numbers": "Right-aligned in fixed-width monospace columns",
+      "units": "Adjacent to value, never separated (e.g., '14.7 psi', not '14.7   psi')",
+      "timestamps": "ISO 8601 format preferred (2026-03-24 14:32:07)",
+      "status-labels": "All-caps, 2–3 words maximum ('RUNNING', 'ALARM HIGH', 'OFFLINE')"
+    },
+    "terminology": {
+      "error": "ALARM or FAULT (context-specific per ISA-101)",
+      "warning": "ABNORMAL",
+      "success": "RUNNING or NORMAL",
+      "loading": "INITIALIZING",
+      "offline": "OFFLINE"
+    }
+  },
+  "ux_writing": {
+    "empty_states": {
+      "pattern": "State the inactive condition directly, then provide the operational action. 'NO ACTIVE ALARMS. MONITOR.' Never 'Nothing here yet.'",
+      "source": "neo-industrial-voice-spec",
+      "source_url": null,
+      "last_verified": "2026-04-08"
+    },
+    "error_messages": {
+      "pattern": "FAULT: [system component]. [Action verb] [target] to [outcome]. Never apologetic. Always actionable.",
+      "tone": "Declarative. No hedging. Operator needs to act, not sympathize.",
+      "structure": "State: [FAULT/ALARM/OFFLINE] — System: [component] — Action: [what to do]",
+      "source": "ISA-101 HMI voice conventions + neo-industrial-voice-spec",
+      "source_url": null,
+      "last_verified": "2026-04-08"
+    },
+    "tooltips": {
+      "pattern": "Value definition or unit clarification only — one line, no narrative. 'PSI: pounds per square inch — gauge pressure.' Not 'This shows you the current pressure.'",
+      "max_length": "80 characters",
+      "tone": "Technical label. No articles where possible.",
+      "avoid": [
+        "'This shows'",
+        "'Here you can'",
+        "question forms",
+        "soft hedging"
+      ],
+      "source": "neo-industrial-voice-spec",
+      "source_url": null,
+      "last_verified": "2026-04-08"
+    },
+    "buttons_ctas": {
+      "pattern": "Verb + target. Imperative. No softening articles or future tense. 'Acknowledge Alarm.' 'Override Value.' 'Start Monitoring.' Never 'Click here to acknowledge.'",
+      "verb_preference": "Operational verbs: Acknowledge, Override, Start, Stop, Reset, Confirm, Cancel",
+      "style": "ALL-CAPS for critical actions (ACKNOWLEDGE, OVERRIDE). Title Case for standard operations.",
+      "examples": [
+        "ACKNOWLEDGE ALARM",
+        "Override Value",
+        "Start Monitoring",
+        "Reset to Default",
+        "STOP PROCESS"
+      ],
+      "source": "neo-industrial-voice-spec",
+      "source_url": null,
+      "last_verified": "2026-04-08"
+    },
+    "form_labels": {
+      "pattern": "Field name only. No helper text unless a unit or format is required. 'Flow Rate (psi)' not 'Enter the current flow rate in pounds per square inch.'",
+      "case": "Title Case for labels. ALL-CAPS for critical or safety-related fields.",
+      "helper_text_style": "Unit or format only: '(psi)', '(ISO 8601)', '(0–100)'",
+      "placeholder_policy": "Placeholder shows format only, never instructions. '14.7' not 'Enter value here'",
+      "source": "neo-industrial-voice-spec",
+      "source_url": null,
+      "last_verified": "2026-04-08"
+    },
+    "notifications": {
+      "pattern": "State label first, then source system, then action if required. 'ALARM HIGH — Flow Zone 4. Acknowledge or escalate.'",
+      "success": "RUNNING — [system/process name]",
+      "error": "FAULT — [system component]. [Corrective action].",
+      "warning": "ABNORMAL — [parameter] out of range. [Action].",
+      "info": "MANUAL MODE — [system] under operator control.",
+      "source": "ISA-101 alarm management conventions",
+      "source_url": null,
+      "last_verified": "2026-04-08"
+    },
+    "loading_states": {
+      "pattern": "INITIALIZING followed by the system or data source name. 'INITIALIZING SENSOR FEED.' Not 'Loading...' or a spinner with no label.",
+      "examples": [
+        "INITIALIZING SENSOR FEED",
+        "CONNECTING TO DATA SOURCE",
+        "LOADING HISTORICAL DATA"
+      ],
+      "source": "neo-industrial-voice-spec",
+      "source_url": null,
+      "last_verified": "2026-04-08"
+    },
+    "onboarding": {
+      "pattern": "Not applicable — Neo-Industrial targets operational interfaces (SCADA, monitoring dashboards, industrial control panels). Onboarding copy patterns do not apply to this context.",
+      "tone": "N/A",
+      "structure": "N/A",
+      "source": "neo-industrial-voice-spec",
+      "source_url": null,
+      "last_verified": "2026-04-08"
+    }
+  },
+  "components": {
+    "_components_note": "Mode D — no existing component library. Gap noted. Component analysis phase skipped per Mode D procedure. Stage 5 Mode D build will produce the first component library from these tokens.",
+    "source": null,
+    "framework": null,
+    "styling": null,
+    "inventory": [],
+    "conventions": {}
+  },
+  "meta": {
+    "generated_at": "2026-04-08T00:00:00Z",
+    "generated_by": "mode-d",
+    "last_refreshed": "2026-04-08T00:00:00Z",
+    "version": "1.0.0-stress-test",
+    "completeness_score": 85,
+    "fidelity_score": 15,
+    "sources": {
+      "primary": "B4-S4 Pipeline Breadth Stress Test — Session 2 (2026-04-08). Promoted from v0.9.1 test fixture.",
+      "source_version": "0.9.1",
+      "source_generated": "2026-03-24",
+      "source_method": "design-system-onboard Mode D — Figma-Extracted confidence (Cluster C, Entry 10). ISA-101 functional color palette applied. Dark-native config. Stage 3 resolutions applied 2026-04-08.",
+      "figma_file_key": null,
+      "figma_note": "Figma file key not recorded in source config. Token values from Mode D Figma-Extracted run; key not persisted at extraction time."
+    },
+    "version_history": "v0.9.0 — Mode D re-run with ADR-006 tokens.color.schemes block applied (Session 9, 2026-03-24). Previous version was blocked at v0.5 pending dark mode architecture decision. v0.9.1 — quality audit applied: _note fields removed from token namespaces, consolidated into meta.implementation_notes; WS6 corrected to PASS; provisional_fields index completed; brand.style_notes corrected (WS8 removed from PARTIAL list). v1.0.0-stress-test — Promoted for B4-S4 Breadth Stress Test (2026-04-08): display font updated to IBM Plex Sans Condensed (open-source stress-test variant; Druk Wide for client deployment), loading resolved to Google Fonts, alarm_high_priority normalized to alarm-high-priority (kebab-case), gate_status and layout blocks added, brand.cluster + brand.style_entry + brand.agent_context_snippet added, light scheme confirmed out-of-scope for Stage 5. Promote to v1.0.0-confirmed after designer confirmation round.",
+    "direction_lock_confirmed": true,
+    "locked_direction_label": "Neo-Industrial",
+    "default_scheme": "dark",
+    "gate_status": {
+      "direction_lock_confirmed": true,
+      "direction_lock_date": "2026-04-08",
+      "designer_review_complete": false,
+      "designer_review_date": null,
+      "designer_reviewer": null,
+      "mode_override_acknowledged": true,
+      "mode_override_score": 50
+    },
+    "color_strategy": "Achromatic dark foundation (near-neutral deep charcoals) with ISA-101 five-state functional color system. Gray is nominal — system at rest. Chromatic signals (green, yellow, orange, red, blue) indicate operational states. Color never decorative. Every chromatic appearance communicates a state change.",
+    "grid_structure": "12-column explicit grid. Column lines visible or strongly implied by 1px borders. Wide content width (1440px max). Dense information count — rows, columns, and measurement displays share vertical space. Each zone is discrete and bounded by a hard 1px border.",
+    "spacing_reasoning": "4px base unit, dense tier system. No breathing-room padding — industrial interfaces prioritize information density over comfort. Zone separation via 1px structural borders, not whitespace. Section-level values (24px, 48px) are functional separators, not decorative.",
+    "scale_reasoning": "Augmented Fourth 1.414x governs the display zone (h1–h4) only. Creates the high-contrast scale jump between heavy display headers and dense monospace body — drama communicates authority before utility. Body/data zone is intentionally outside the scale system: fixed at 14–16px monospace to preserve fixed-width column alignment in data tables and measurement displays. This is the zone-separation architecture that makes WS3 PARTIAL intentional rather than a calibration error. WS8 PASS: Augmented Fourth exceeds the Major Third (1.25x) WS8 threshold — no heading-hierarchy ambiguity risk.",
+    "accessibility": {
+      "contrast_target": "AA",
+      "contrast_floor": "AA",
+      "standard": "WCAG 2.2"
+    },
+    "provisional_fields": [],
+    "implementation_notes": {
+      "display_font_stress_test": "This config uses IBM Plex Sans Condensed for the stress test (open-source, Google Fonts). The Neo-Industrial style entry specifies Druk Wide (Commercial Type) as the production display font. Client deployments must acquire a Druk Wide license and update tokens.typography.families.display.family and tokens.typography.loading accordingly. IBM Plex Sans Condensed at weight 700/900 provides a close structural proxy for stress-test validation purposes.",
+      "body_register": "ADR-004 optional field. type_personality: grotesque captures the display voice only. body_register: monospace-primary encodes the D4+D10 hybrid — heavy grotesque at display scale over monospace as primary body/data voice. Mode D implementations must not apply a single grotesque family throughout.",
+      "zone_separation": "Display zone (h1–h4) governed by Augmented Fourth 1.414x from 16px base. Body/data zone (body, label, caption, data) fixed at 14–16px monospace — outside the scale system. This is the zone-separation architecture that makes WS3 PARTIAL intentional. WS8 PASS: Augmented Fourth (1.414x) exceeds the Major Third (1.25x) WS8 threshold — no heading-hierarchy ambiguity risk.",
+      "scheme_strategy": "Dark-native config. Flat tokens.color.* reflect the active dark scheme. Full parallel schemes in tokens.color.schemes per ADR-006 Option C. Light scheme is PROVISIONAL — dark-native entries require designer confirmation for any light mode implementation. Light scheme is explicitly out-of-scope for Stage 5 Mode D build.",
+      "light_scheme_stage5_scope": "Stage 5 Mode D build targets the dark scheme exclusively. Light scheme PROVISIONAL values must not be used in any Stage 5 component. If light mode support is required for a client deployment, restart from this config and initiate a separate light scheme confirmation round with the designer.",
+      "accent_isa101": "Gray is the nominal state in ISA-101 — a system at rest, a pump stopped, a value within range. No decorative chromatic accent. Primary accent is cool mid-gray (#A0A0A0). Color enters only when a system state requires attention (see semantic tokens).",
+      "alarm_high_priority": "ADR-007 Extension 3 — ISA-101 High Performance HMI orange alarm. High-priority alarm state between abnormal-deviation yellow (#D4A500) and critical-hazard red (#C0392B). Requires immediate operator response. alarm-high-priority must ALWAYS have a secondary shape/symbol encoding — color cannot be the sole indicator per ISA-101 (~8% male operators with color vision deficiency). NOTE: Naming normalized to kebab-case at v1 promotion (was alarm_high_priority in v0.9.x — known snake_case defect, now fixed).",
+      "nominal_state": "Gray = nominal operational state. Equipment at rest, value within range, process normal. No chromatic signal in nominal state.",
+      "schemes": "ADR-006 Option C — Scheme namespacing for dark-native configs. Dark is the active default scheme. Light is a provisional alternative. Migration path to W3C DTCG $modes documented in ADR-006.",
+      "touch_target": "ADR-007 Extension 2. Industrial interfaces include field worker tablet and panel contexts. 40px floor for industrial IoT; 44px comfortable for operator panels where gloved or obstructed touch is possible.",
+      "elevation_strategy": "Flat — surfaces are coplanar. No shadow depth. Zone separation achieved entirely through 1px borders and background tonal shifts, not elevation.",
+      "radius_strategy": "Zero border radius throughout. Hard-edged surfaces communicate precision and structural integrity. Any rounding contradicts the Neo-Industrial register.",
+      "focus_ring": "ADR-007 Extension 1. Focus ring uses ISA-101 manual-mode blue (#3498DB) against dark backgrounds — achieves ~4.5:1 contrast against primary background (#141414), exceeding WCAG 2.2 SC 2.4.13 minimum (3:1). Consistent with the 'blue = manual mode / operator override' semantic assignment.",
+      "naming_convention": "All multi-word semantic tokens use kebab-case (success-bg, warning-bg, alarm-high-priority, alarm-high-priority-bg). Previous snake_case usage (alarm_high_priority) was a known defect in v0.9.x, normalized at v1 promotion. Treat kebab-case as the convention for all future Neo-Industrial token additions.",
+      "completeness_score_note": "completeness_score: 82 (estimated). All five token families specified; layout block present; voice complete. Gaps: field_provenance not populated, light scheme PROVISIONAL. Run validate.py for authoritative score.",
+      "fidelity_score_note": "fidelity_score: 65 (estimated). Most values are 'inferred' from Mode D moodboard extraction rather than 'extracted' from a confirmed Figma source. Designer confirmation round would elevate this to the 80+ range required for version promotion to v1.0.0-confirmed.",
+      "tokens.color.schemes._light_scheme_note": "Light scheme not populated. Neo-Industrial is dark-native; Stage 5 Mode D build targets dark scheme exclusively. Light scheme requires a separate designer confirmation round before population. See meta.implementation_notes.light_scheme_stage5_scope."
+    }
+  }
+}

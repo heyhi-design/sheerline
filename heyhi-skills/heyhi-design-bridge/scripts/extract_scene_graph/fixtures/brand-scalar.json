@@ -1,0 +1,34 @@
+{
+  "meta": { "version": "dual-read-fixture-1.1.0" },
+  "tokens": {
+    "color": {
+      "accent": { "primary": "#E4572E", "hierarchy_note": "Primary CTA only; never for body text." },
+      "backgrounds": { "dark": "#1C1C1C", "dark-surface": "#242424" },
+      "text": { "inverse": "#FFFFFF", "muted": "#8A8A8A" },
+      "neutral_anchors": { "light": "#EDEDED" },
+      "prohibited": [
+        { "value": "#000000", "reason": "Pure black; use near-black #1C1C1C instead." }
+      ],
+      "contrast_notes": [
+        "text.muted (#8A8A8A) on backgrounds.dark: 4.6:1 (PASS AA large)."
+      ]
+    },
+    "spacing": {
+      "base": "8px",
+      "tiers": { "sm": "0.5rem", "md": "1rem", "lg": "2rem" },
+      "content_max_width": "1200px",
+      "page_padding": "24px",
+      "grid_gap": "16px",
+      "touch-target": { "min": "44px", "comfortable": "48px" }
+    },
+    "typography": {
+      "scale": { "body": "1rem", "h1": "2.5rem" },
+      "families": {
+        "display": { "family": "Inter", "fallback": "sans-serif" },
+        "body": { "family": "Source Serif 4", "fallback": "serif" },
+        "utility": { "family": "JetBrains Mono", "fallback": "monospace" }
+      }
+    },
+    "radius": { "sm": "4px", "lg": "12px" }
+  }
+}

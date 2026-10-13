@@ -1,0 +1,244 @@
+{
+  "_what_this_is": "A machine-readable map of the Sheerline tree and how its documents depend on each other. Change one document, and this graph names which others may now be stale. Adapted from releases/open-source/keel/os/dependency-graph.template.json.",
+  "_path_convention": "Node keys and depends_on edges are sheerline-root-relative. External references (the corpus, the ratified fundamentals docs, keel) are named in each node's description, not as edges, since they are not nodes in this graph.",
+  "classification": "confidential",
+  "meta": {
+    "version": "0.2.2",
+    "last_updated": "2026-08-28",
+    "document_count": 44,
+    "note": "document_count equals the number of entries in 'nodes'."
+  },
+  "clusters": {
+    "os-config": "The os/ configuration layer",
+    "foundations": "The net-new os/foundations/ slot",
+    "corrections": "The corrections convention slot (runtime is heyhi-mcp, Phase 2)",
+    "skills": "The skills layer (registry engine reused from keel)",
+    "profile": "The engagement intake layer",
+    "docs": "The docs/ architecture walkthrough + diagram set",
+    "seminar": "The novice-to-SME seminar curriculum (spine + 5 tracks / 21 modules)",
+    "studio": "The Wheelhouse: the simulated prototype UI over the harness (D-08)",
+    "meta": "Top-level framing"
+  },
+  "nodes": {
+    "README.md": {
+      "description": "What Sheerline is, the three-way naming caution, the tree map",
+      "depends_on": ["os/agent-context.md"],
+      "cluster": "meta"
+    },
+    "os/agent-context.md": {
+      "description": "Thin always-context: the 13 areas, the through-line, the don't-automate line",
+      "depends_on": ["os/operating-principles.md", "os/foundations/registry.yaml"],
+      "cluster": "os-config"
+    },
+    "os/operating-principles.md": {
+      "description": "Four invariants + design constraints + zero-cost operating invariants; points at ratified A.1 (external: plans/plan-design-md-build-2026-08-06.md, ai-services/design-intelligence/research/design-fundamentals-decision-research-2026-08-12.md)",
+      "depends_on": [],
+      "cluster": "os-config"
+    },
+    "os/session-rules.md": {
+      "description": "Exit Gate + the design smoke test (render it and look)",
+      "depends_on": ["os/operating-principles.md"],
+      "cluster": "os-config"
+    },
+    "os/foundations/registry.yaml": {
+      "description": "The 13-area registry with nature/coverage/phase tags (external: plan-sheerline-v1-build § 4, sheerline-skill-buildout-research § 1c/7b/8)",
+      "depends_on": [],
+      "cluster": "foundations"
+    },
+    "os/foundations/visual-design/FOUNDATION.md": {
+      "description": "Deep manifest, references the style corpus + fundamentals + Gestalt/Von Restorff siblings in place (external: ai-services/design-intelligence/**)",
+      "depends_on": ["os/foundations/registry.yaml", "os/operating-principles.md"],
+      "cluster": "foundations"
+    },
+    "os/foundations/design-systems/FOUNDATION.md": {
+      "description": "Deep manifest, references the DS-MCP/Evaluator through the MCP boundary + agent-summary + fundamentals (external: ai-services/design-intelligence/agent-summary.md)",
+      "depends_on": ["os/foundations/registry.yaml", "os/operating-principles.md", "os/corrections/README.md"],
+      "cluster": "foundations"
+    },
+    "os/foundations/prototyping/FOUNDATION.md": {
+      "description": "Governance manifest: register hi-fi skills, adopt the Exit Gate, wire the ui-studio routing override",
+      "depends_on": ["os/foundations/registry.yaml", "os/session-rules.md"],
+      "cluster": "foundations"
+    },
+    "os/foundations/user-research/FOUNDATION.md": {
+      "description": "Governance foundation (area 1, User Research); filled P3 2026-09-01, coverage covered 2026-09-04",
+      "depends_on": ["os/foundations/registry.yaml"],
+      "cluster": "foundations"
+    },
+    "os/foundations/information-architecture/FOUNDATION.md": {
+      "description": "Governance foundation (area 2, Information Architecture); filled P3 2026-09-01, coverage covered 2026-09-07 (taxonomy-labeling-auditor deployed at D-3 open)",
+      "depends_on": ["os/foundations/registry.yaml"],
+      "cluster": "foundations"
+    },
+    "os/foundations/accessibility/FOUNDATION.md": {
+      "description": "Governance foundation (area 8, Accessibility); elevated G-2/G-3 2026-08-28, coverage partial (terminal by construction)",
+      "depends_on": ["os/foundations/registry.yaml", "os/operating-principles.md"],
+      "cluster": "foundations"
+    },
+    "os/foundations/business-acumen/FOUNDATION.md": {
+      "description": "Governance foundation (area 10, Business Acumen); filled P3 2026-09-05, coverage covered 2026-09-05",
+      "depends_on": ["os/foundations/registry.yaml"],
+      "cluster": "foundations"
+    },
+    "os/foundations/service-design/FOUNDATION.md": {
+      "description": "Governance foundation (area 13, Service Design); filled D-3 open 2026-09-07 (client-engagement pull), coverage covered 2026-09-07, the one conditional area",
+      "depends_on": ["os/foundations/registry.yaml"],
+      "cluster": "foundations"
+    },
+    "os/corrections/README.md": {
+      "description": "The corrections convention slot; points at the heyhi-mcp runtime (Phase 2 / DISPATCH-02)",
+      "depends_on": [],
+      "cluster": "corrections"
+    },
+    "os/corrections/LIFECYCLE.md": {
+      "description": "Statuses, promotion thresholds, close-out, the factual/behavioral boundary",
+      "depends_on": ["os/corrections/README.md"],
+      "cluster": "corrections"
+    },
+    "os/corrections/seed-corrections.yaml": {
+      "description": "Generic-factual seed template (convention only, not the live registry)",
+      "depends_on": ["os/corrections/LIFECYCLE.md"],
+      "cluster": "corrections"
+    },
+    "os/dispatch/README.md": {
+      "description": "Dispatch anatomy, design-scoped (six sections + ENV CHECK)",
+      "depends_on": ["os/session-rules.md", "os/operating-principles.md"],
+      "cluster": "os-config"
+    },
+    "os/decision-log.md": {
+      "description": "Append-only decision record, seeded with the Phase-1 founding entry",
+      "depends_on": [],
+      "cluster": "os-config"
+    },
+    "os/project-state.yaml": {
+      "description": "Machine-readable ground truth: phases, capabilities, early warning signals",
+      "depends_on": ["os/foundations/registry.yaml"],
+      "cluster": "os-config"
+    },
+    "skills/registry/skill-registry.py": {
+      "description": "The reused keel registry engine (R2): keyword + tag search with a confidence gate (honest abstention)",
+      "depends_on": [],
+      "cluster": "skills"
+    },
+    "skills/registry/skill-registry.yaml": {
+      "description": "Design-scoped registry: the 13 areas + the deployed design skills, with not_for disambiguation",
+      "depends_on": ["skills/registry/skill-registry.py", "os/foundations/registry.yaml"],
+      "cluster": "skills"
+    },
+    "skills/templates/README.md": {
+      "description": "Pointers to HeyHi's existing design skills in heyhi-skills/ (reference, do not copy)",
+      "depends_on": ["skills/registry/skill-registry.yaml"],
+      "cluster": "skills"
+    },
+    "skills/evals/README.md": {
+      "description": "The per-skill eval-case scaffold (R4 pattern)",
+      "depends_on": ["skills/templates/README.md"],
+      "cluster": "skills"
+    },
+    "profile/engagement-intake.yaml": {
+      "description": "The engagement / design-system intake template (parameterizes, never loaded)",
+      "depends_on": [],
+      "cluster": "profile"
+    },
+    "profile/intake-conversation.md": {
+      "description": "The guided engagement intake self-interview (transcribes into engagement-intake.yaml)",
+      "depends_on": ["profile/engagement-intake.yaml"],
+      "cluster": "profile"
+    },
+    "skills/README.md": {
+      "description": "Skills overview + routing; zero net-new skills in Phase 1",
+      "depends_on": ["skills/registry/skill-registry.yaml"],
+      "cluster": "skills"
+    },
+    "skills/registry/README.md": {
+      "description": "Registry authoring, the confidence gate, and the not_for disambiguation guidance",
+      "depends_on": ["skills/registry/skill-registry.py"],
+      "cluster": "skills"
+    },
+    "skills/evals/visual-design-governance/cases.yaml": {
+      "description": "Worked eval-case scaffold: probes Visual Design governance (reference-not-copy, advisory-never-gate, fundamentals-fold)",
+      "depends_on": ["skills/evals/README.md"],
+      "cluster": "skills"
+    },
+    "docs/architecture.md": {
+      "description": "The figure-anchored architecture walkthrough: six theme-aware diagrams tying the tree into one system view (mirrors keel docs/architecture.md)",
+      "depends_on": ["docs/diagrams/lineage.svg", "docs/diagrams/three-layer-model.svg", "docs/diagrams/registry.svg", "docs/diagrams/quality-loop.svg", "docs/diagrams/boundary-moat.svg", "docs/diagrams/session-lifecycle.svg"],
+      "cluster": "docs"
+    },
+    "docs/diagrams/lineage.svg": {
+      "description": "Figure 1: where Sheerline sits - the ship lineage + the three-way naming caution",
+      "depends_on": ["README.md"],
+      "cluster": "docs"
+    },
+    "docs/diagrams/three-layer-model.svg": {
+      "description": "Figure 2: the three layers instantiated for design + the net-new foundations slot",
+      "depends_on": ["os/agent-context.md"],
+      "cluster": "docs"
+    },
+    "docs/diagrams/registry.svg": {
+      "description": "Figure 3: the 13-area practice registry with coverage heat",
+      "depends_on": ["os/foundations/registry.yaml"],
+      "cluster": "docs"
+    },
+    "docs/diagrams/quality-loop.svg": {
+      "description": "Figure 4: the retrieve/validate/grade/learn loop mapped to the real subsystems",
+      "depends_on": ["os/foundations/design-systems/FOUNDATION.md"],
+      "cluster": "docs"
+    },
+    "docs/diagrams/boundary-moat.svg": {
+      "description": "Figure 5: Invariant 4 + the scaffold-ships/moat-stays split + the two-axis order",
+      "depends_on": ["os/operating-principles.md"],
+      "cluster": "docs"
+    },
+    "docs/diagrams/session-lifecycle.svg": {
+      "description": "Figure 6: how a design task runs - intake to route to foundations to loop to render-and-look to Exit Gate",
+      "depends_on": ["os/session-rules.md"],
+      "cluster": "docs"
+    },
+    "seminar/README.md": {
+      "description": "The novice-to-SME curriculum spine: track ladder, module map, separability line. 5 tracks / 21 modules live under track-*/, each built from _module-template.md",
+      "depends_on": ["seminar/_module-template.md", "docs/architecture.md"],
+      "cluster": "seminar"
+    },
+    "seminar/_module-template.md": {
+      "description": "The eight-part module shape every seminar module is built from",
+      "depends_on": [],
+      "cluster": "seminar"
+    },
+    "seminar/smoke_test.py": {
+      "description": "Structural validator over all 21 modules: structure, paths, links, prereq DAG, voice, separability",
+      "depends_on": ["seminar/_module-template.md"],
+      "cluster": "seminar"
+    },
+    "studio/README.md": {
+      "description": "Sheerline Studio (Wheelhouse): the Replit-inspired simulated workspace UI over the harness - how to view/refresh + the simulation-honesty contract; the 12 screens + shared shell live under studio/ (external: plans/plan-sheerline-studio-ui-2026-08-21.md, D-08)",
+      "depends_on": ["studio/data/snapshot.js"],
+      "cluster": "studio"
+    },
+    "studio/index.html": {
+      "description": "The Home screen / simulated router over the other 11 Studio screens (areas, skills, session, intake, dispatch, exit-gate, seminar, artifacts, quality-{validate,grade,learn}) - 12 screens total, each built on the shared shell",
+      "depends_on": ["studio/shared/studio.css", "studio/data/snapshot.js"],
+      "cluster": "studio"
+    },
+    "studio/shared/studio.css": {
+      "description": "The shared Wheelhouse shell: full token set (palette/type/spacing) + shared components; frozen after DISPATCH-03 (studio/shared/ also carries shell-snippet.html + the usage-contract README.md)",
+      "depends_on": [],
+      "cluster": "studio"
+    },
+    "studio/data/snapshot.js": {
+      "description": "window.SHEERLINE_DATA - the single real-data truth layer every screen renders from (11 keys); generated read-only by export-snapshot.py, never hand-edited; byte-deterministic at a fixed commit. Also derives from globbed seminar/track-*/module-*.md, skills/evals/*/cases.yaml, and os/dispatch/batches/dispatch-prompts-*.md (external to this graph)",
+      "depends_on": ["studio/scripts/export-snapshot.py", "os/foundations/registry.yaml", "os/project-state.yaml", "skills/registry/skill-registry.yaml", "os/corrections/seed-corrections.yaml", "seminar/README.md", "profile/engagement-intake.yaml", "os/decision-log.md"],
+      "cluster": "studio"
+    },
+    "studio/scripts/export-snapshot.py": {
+      "description": "The snapshot exporter: reads the live sheerline/ tree READ-ONLY and emits studio/data/snapshot.js; asserts counts match the registries and fails loudly before writing (studio/scripts/ also carries link-check.py). Output contract: plan-sheerline-studio-ui § 6.2",
+      "depends_on": [],
+      "cluster": "studio"
+    },
+    "studio/lofi/README.md": {
+      "description": "The Wheelhouse lo-fi wireframes (grayscale, all 12 screens + 3 router states) built in Figma for the G-A review",
+      "depends_on": [],
+      "cluster": "studio"
+    }
+  }
+}

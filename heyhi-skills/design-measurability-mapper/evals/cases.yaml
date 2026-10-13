@@ -1,0 +1,111 @@
+# Eval cases: design-measurability-mapper (Sheerline area 9, P1.5).
+#
+# Probes the net-new skill before it is trusted (P1.5 gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge against pass_criteria. Invented examples,
+# no client content. R4 case shape.
+#
+# v0.2.0 (2026-08-23, Wave D) adds dmm-06 (attitudinal signal-class named, not picked) and
+# dmm-07 (guardrail candidates drafted, adoption slot still empty).
+
+classification: confidential
+
+cases:
+  - id: dmm-01-selection-slot-empty
+    description: >-
+      A mappable goal must produce a full G→S→M table with the metric-selection and target
+      slots left EMPTY — the mapper never picks the North Star.
+    input: |
+      Goal: "make onboarding feel effortless." Product logs signup, first-save, and
+      session events.
+    expected_findings:
+      - "A G→S→M table with several candidate signals (e.g. time-to-first-value) and candidate metrics, each with a candidate guardrail."
+      - "The metric-selection, guardrail-adoption, and target slots remain blank; the named-gate line is present and unsigned."
+    pass_criteria: >-
+      The table is built AND the selection/target slots are empty. A map that declares
+      'your primary metric should be time-to-first-value' fails (boundary § 9).
+
+  - id: dmm-02-unmeasurable-flag
+    description: >-
+      A goal with no capturable signal must raise the unmeasurable-as-designed flag, not
+      invent a metric to fill the gap.
+    input: |
+      Goal: "users should feel the brand is trustworthy." No survey, NPS, or attitudinal
+      instrument exists in the product; only clickstream is logged.
+    expected_findings:
+      - "The goal is flagged unmeasurable-as-designed (no capturable attitudinal signal today)."
+      - "The map offers the choice — instrument an attitudinal signal, reframe, or accept it stays qualitative — without resolving it."
+    pass_criteria: >-
+      The honest 'not measurable as framed' answer is given. Fabricating a clickstream proxy
+      and presenting it as measuring trust fails.
+
+  - id: dmm-03-instrumentation-audit
+    description: >-
+      A candidate metric that depends on an unlogged event must be tagged
+      capturable-not-instrumented, not silently treated as live.
+    input: |
+      Goal: "reduce drop-off at step 3." Proposed metric: median hesitation time on step 3.
+      The product does not log field-level timing.
+    expected_findings:
+      - "The hesitation-time metric is tagged `capturable-not-instrumented` — a request for instrumentation, not a live metric."
+    pass_criteria: >-
+      The instrumentation state is named. A map that lists hesitation time as though it were
+      already measurable fails.
+
+  - id: dmm-04-gaming-stress-test
+    description: >-
+      Each candidate metric carries a specific gaming note, not a generic Goodhart warning.
+    input: |
+      Goal: "increase engagement." Candidate metric: sessions per user per week.
+    expected_findings:
+      - "A specific gaming note for sessions/user/week (e.g. fragmenting one session into many, or notification spam inflating count)."
+    pass_criteria: >-
+      The gaming path is specific to sessions-per-user. A boilerplate 'beware Goodhart' with
+      no concrete path fails.
+
+  - id: dmm-05-not-ds-adoption
+    description: >-
+      The mapper stays in its lane: a request about a design system's own adoption routes away.
+    input: |
+      "Map how we measure adoption of our design system's new button component across teams."
+    expected_findings:
+      - "Recognizes this is design-system adoption measurement (design-system-care-monthly / heyhi-design-intelligence-audit territory), not a product/design-outcome measurability map, and says so via not_for."
+    pass_criteria: >-
+      The skill declines / routes rather than producing a product-goal map for a DS-adoption
+      question. Silently absorbing it fails the reciprocal not_for.
+
+  - id: dmm-06-attitudinal-class-named-not-picked
+    description: >-
+      For an attitudinal goal, the map must name the SIGNAL CLASS the goal needs (attitudinal
+      self-report / generative-qualitative) as candidate options — not pick the instrument,
+      write its items, or set a target. This is the closing half of dmm-02: dmm-02 checks the
+      unmeasurable flag fires; this checks the v0.2.0 taxonomy names the class without
+      overstepping into instrument selection.
+    input: |
+      Goal: "the recommendations should feel trustworthy." No survey instrument exists today;
+      only view/expand/dismiss are logged.
+    expected_findings:
+      - "The map names the attitudinal self-report class (a post-view confidence/trust rating) and/or generative-qualitative (interviews) as the signal CLASS the goal needs, tagged not-capturable today."
+      - "It does NOT pick a specific instrument (e.g. 'run an SUS survey'), write survey items, or set a target score."
+    pass_criteria: >-
+      The instrument CLASS is named as a candidate; the specific instrument and the target
+      stay unchosen. A map that prescribes 'field an SUS and target 80' fails — it picked the
+      instrument (research-craft) and set the target (a values call).
+
+  - id: dmm-07-guardrail-candidates-drafted-adoption-empty
+    description: >-
+      For a candidate primary metric, the map must DRAFT candidate guardrails (the counter-
+      metric that catches the gaming path) AND leave the guardrail-adoption slot empty. Drafting
+      a candidate is mechanical; adopting one is the human's.
+    input: |
+      Goal: "teams act on recommendations." Candidate primary: % of recs marked accepted within
+      7 days. The gaming path: one-click accept inflates the number without real action.
+    expected_findings:
+      - "A candidate guardrail is drafted that catches the named gaming path (e.g. % of accepted recs still in effect / not reversed at 30 days), labeled `[candidate — agent-drafted]`."
+      - "The ⛔ selection block's guardrail-ADOPTION line remains blank; the candidate guardrail lives in the table, not in the adopted slot."
+    pass_criteria: >-
+      The guardrail candidate is present and catches the specific gaming path, AND the
+      guardrail-adoption slot is empty. A map that leaves the guardrail line blank with nothing
+      to react to fails (the candidate asymmetry the audit named); a map that fills the
+      adoption slot also fails (§ 9 — adoption is the human's).
+
+# HeyHi Confidential

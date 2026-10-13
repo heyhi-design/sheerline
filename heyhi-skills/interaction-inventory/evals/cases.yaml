@@ -1,0 +1,149 @@
+# Eval cases: interaction-inventory (Sheerline area 4, Interaction Design, P3, Tier 1 buildable-now).
+#
+# Probes the net-new skill before it is trusted (promotion gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge the DECISION against pass_criteria. Invented
+# examples, no client content. Mirrors the research-plan-author / design-measurability-mapper
+# case shape (id, description, input, expected_findings, pass_criteria).
+#
+# Acceptance (spec § 3.6 / § 8): one case per capability plus the boundary cases — inventory with
+# slots empty, a missing state flagged not ruled, the which-matter boundary, not_for routing,
+# provenance, the copy slot never written, and the sidecar validating with judgment/gate null.
+
+classification: confidential
+
+cases:
+  - id: ii-01-inventory-slots-empty
+    description: >-
+      A plannable screen must produce the full Interaction Inventory — census, applicability
+      matrix, candidate state machines, keyboard/gesture/hook columns, empty copy slots, the
+      sidecar — with the three ⛔ slots left EMPTY. The inventory never names which interactions
+      matter or judges the behavior.
+    input: |
+      A Figma frame for a settings screen: a tab strip, a toggle switch, a text input, a Save
+      button that posts to an API (only default / hover / focus drawn), and a list fetched on load
+      (drawn populated). "Inventory the interaction states for this screen."
+    expected_findings:
+      - "An element census with class + provenance per element; an applicability matrix marking every applicable-but-undrawn state MISSING (the Save button's active / disabled / loading / error / success; the list's empty / loading / error)."
+      - "Candidate state machines per element with flags (e.g. loading-no-error-exit on Save); keyboard column cited per APG pattern; hooks per state; copy slots named and empty."
+      - "The ⛔ which-interactions-matter, ⛔ deliberate-absence, and ⛔ verdict slots remain blank; the named-gate line is present and unsigned."
+    pass_criteria: >-
+      The inventory is built AND all three ⛔ slots are empty. A run that lists 'the interactions
+      that matter', or writes 'the Save button behavior is fine as drawn', fails (the boundary).
+
+  - id: ii-02-missing-state-flagged-not-ruled
+    description: >-
+      An async action drawn without loading or error states must be FLAGGED (MISSING +
+      loading-no-error-exit / error-no-recovery), never ruled 'not needed' by the skill and never
+      silently 'designed in' as if it were shown. The ruling is the human's.
+    input: |
+      "The Save button calls our API. The design only shows it in its default state — that's on
+      purpose, we like it minimal. Do the inventory."
+    expected_findings:
+      - "loading, error, and success are marked MISSING for the Save button (applies by class: an async action); the transitions draft the async paths as candidates with their flags."
+      - "The skill records 'on purpose, we like it minimal' in the open questions / near-misses as the team's stated intent, and leaves the ⛔ deliberate-absence ruling EMPTY for the human to sign — it does not convert the stated intent into an n/a."
+    pass_criteria: >-
+      The states stay MISSING with their flags and the absence ruling stays the human's. A run that
+      marks them n/a because the team said so, or that adds the states to the design as if present,
+      fails (the skill flags; the human rules).
+
+  - id: ii-03-boundary-which-matter
+    description: >-
+      A direct "just tell us which interactions we should design" ask must return the full
+      enumeration with the ⛔ which-interactions-matter slot EMPTY — never a picked shortlist
+      presented as the answer.
+    input: |
+      "Don't give me the whole matrix — just tell me which three interactions on this screen we
+      should actually spend design time on."
+    expected_findings:
+      - "The full inventory is produced (the skill does not truncate the enumeration to a shortlist)."
+      - "The ⛔ which-interactions-matter slot stays empty; the skill states that prioritising is the design lead's call behind the named gate, and may surface the flag count per element as a neutral fact, never as a ranking."
+    pass_criteria: >-
+      The enumeration is complete and the selection stays the human's. A response that answers
+      'focus on the Save flow, the empty list, and the tab focus ring' as the recommendation fails.
+
+  - id: ii-04-not-for-routing
+    description: >-
+      The skill stays in its lane: a built-prototype audit ask, an accessibility-annotation ask, a
+      motion ask, and a write-the-copy ask each route away via not_for rather than being absorbed.
+    input: |
+      (a) "Here's the built prototype — audit it, what interactions are missing, is it ready to show?"
+      (b) "Annotate this design for accessibility — headings, landmarks, alt text, name/role/value."
+      (c) "Author the motion for these transitions — springs, durations, reduced motion."
+      (d) "Write the error message for the Save button."
+    expected_findings:
+      - "(a) → heyhi-prototype-audit (temporal seam: it audits what got built; this specs before the build)."
+      - "(b) → heyhi-a11y-annotation (object seam: the accessibility contract; this consumes its APG map only)."
+      - "(c) → motion-system-author (layer seam: this names the transition, that gives it motion)."
+      - "(d) → the copy slot stays empty; microcopy-states-writer (area 3, deployed 2026-09-05) writes the string against a confirmed voice; this skill never does."
+    pass_criteria: >-
+      All four route away rather than being absorbed. Producing a readiness verdict for (a), an
+      accessibility contract for (b), a spring or duration for (c), or a string for (d) fails the
+      reciprocal not_for.
+
+  - id: ii-05-provenance
+    description: >-
+      Mixed sources must be labeled: states read from a Figma variant set are from-source, states
+      the skill adds to complete the structure are inferred, and elements only named by the human
+      are from-list. Nothing inferred is presented as shown.
+    input: |
+      A Figma component with a variant set covering default / hover / disabled, plus the human's
+      note "there's also a confirmation dialog we haven't drawn yet."
+    expected_findings:
+      - "default / hover / disabled carry status shown, source from-source; focus-visible / active carry status missing."
+      - "The confirmation dialog is censused as a composite (APG Dialog) with provenance from-list; its applicable states are all status missing with source inferred (nothing was read), never shown."
+    pass_criteria: >-
+      Every state and element carries the right provenance label. A run that marks the undrawn
+      dialog's states as shown, or omits the provenance column, fails.
+
+  - id: ii-06-copy-slot-never-written
+    description: >-
+      Even when the string is obvious, the skill names the taxonomy slot and leaves the string
+      null. The states seam: area 4 names the slot, area 3 writes the string.
+    input: |
+      "The email field is required. Inventory the states." (The obvious error copy is 'Email is
+      required.')
+    expected_findings:
+      - "The email input's error state carries copy_slot { taxonomy_slot: Error, string: null }; the markdown copy-slots table shows the slot with an empty string."
+      - "No candidate string appears anywhere in the artifact or the sidecar, not even labeled as a candidate."
+    pass_criteria: >-
+      The slot is named and the string is null. A run that writes 'Email is required.' — even as a
+      candidate — fails the seam (the string is area 3's, in the client's voice).
+
+  - id: ii-07-sidecar-validates
+    description: >-
+      Any complete run writes a sidecar that validates against inventory-schema.json with
+      judgment.which_matter / judgment.verdict null, judgment.absence_rulings empty, and gate.owner
+      / gate.date null. Non-copy-bearing states carry copy_slot null.
+    input: |
+      Any complete inventory run (use references/worked-example.sidecar.json as the reference
+      instance).
+    expected_findings:
+      - "jsonschema validation passes against inventory-schema.json."
+      - "judgment and gate blocks are null / empty; hover / focus-visible / active / disabled / selected rows carry copy_slot: null; loading / error / success / empty rows carry a slot with string: null."
+    pass_criteria: >-
+      The sidecar validates and the judgment/gate blocks are empty. A filled verdict or a non-null copy
+      string is rejected by the schema itself; a copy slot on a hover row, or a shown state with source
+      inferred, is a cross-field rule the schema cannot express — judge those against SKILL.md Step 4.
+
+  - id: ii-08-fidelity-vs-omission-split
+    description: >-
+      A static prototype (no async path, no :active rule anywhere) with one delete path that shows a
+      confirm dialog and a sibling delete path that does not. loading / error / pressed cells are
+      MISSING-by-fidelity (surface-level, counted once); the missing confirm dialog is a per-element
+      MISSING (by omission). Exercises the v0.1.3 split and the v1.1 schema field.
+    input: |
+      Inventory a static HTML prototype with no async path and no :active rule anywhere, where one
+      delete path shows a confirm dialog and a sibling delete path does not.
+    expected_findings:
+      - "loading / error / pressed (active) cells are marked MISSING-by-fidelity once at the surface level with a count and a reason, not as N per-element rows."
+      - "The confirm dialog absent on the sibling delete path is a per-element MISSING (by omission), kept in the matrix."
+      - "The ⛔ Deliberate-absence rulings gate carries only the omission row(s), not the fidelity cells."
+      - "The sidecar's optional surface-level missing_by_fidelity object is populated (state_classes, cell_count, reason) and the sidecar validates against inventory-schema.json at schema_version 1.1."
+    pass_criteria: >-
+      The surface-level MISSING-by-fidelity count is present and separate from the per-element MISSING
+      (by omission); the deliberate-absence gate lists only omissions; the sidecar validates at
+      schema_version 1.1. A run that lists the fidelity cells as per-element gate rows, that downgrades
+      a MISSING (by omission) to n/a or "not needed", or that leaves the missing_by_fidelity object
+      unpopulated, fails.
+
+# HeyHi Confidential

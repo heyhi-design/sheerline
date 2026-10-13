@@ -1,0 +1,109 @@
+<svg width="100%" viewBox="0 0 680 614" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Sheerline: the Design-Systems quality loop</title>
+<desc>Four verbs over three real subsystems, top to bottom, looping back. Retrieve: the Design System MCP serves two always-loaded resources and five tools; retrieve the system, never paste it. Validate: core/validator.py runs deterministic, zero-token checks on the emitted output, nine rules plus a rendered-CSS conformance lane. Grade: the evaluator emits a series, not a boolean, across I1 floor, I1.5 mutation, I2 series, and I3 judge panel. Learn: the corrections registry is one registry with four readers, where factual corrections inject and behavioral ones only remind. Learn folds back into the next retrieval. Grades inform a human decision; they never gate.</desc>
+<!-- Sheerline · Figure 4 of 6: The Design-Systems quality loop. See docs/architecture.md. -->
+
+<style>
+.d{font-family:'Sora',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+.b{font-family:'Lora',Georgia,'Times New Roman',serif;}
+.m{font-family:'DM Mono','SFMono-Regular',ui-monospace,'Cascadia Mono','Courier New',monospace;}
+.paper{fill:#FAFAF5;}
+.ink{fill:#1A1A1A;}.soft{fill:#6B6560;}.faint{fill:#8B857C;}
+.stage{fill:#F2F0EA;stroke:#D8D2C6;stroke-width:1;}
+.chip{fill:#FBFAF6;stroke:#D8D2C6;stroke-width:1;}
+.bar-ret{fill:#0B6E75;}.bar-val{fill:#1F01B9;}.bar-grd{fill:#575235;}.bar-lrn{fill:#B3261E;}
+.t-ret{fill:#0B6E75;}.t-val{fill:#1F01B9;}.t-grd{fill:#575235;}.t-lrn{fill:#B3261E;}
+.arr{stroke:#C8BFB3;stroke-width:1.5;fill:none;}.arrhead{fill:#C8BFB3;}
+.loop{stroke:#B3261E;stroke-width:1.5;fill:none;stroke-dasharray:3 3;}.loophead{fill:#B3261E;}.loop-t{fill:#B3261E;}
+.note-box{fill:#FDECEA;stroke:#FF3B30;stroke-width:1.5;}
+@media (prefers-color-scheme:dark){
+.paper{fill:#1A1A1A;}.ink{fill:#F3F0E8;}.soft{fill:#A8A399;}.faint{fill:#7E7970;}
+.stage{fill:#242320;stroke:#3E3B34;}.chip{fill:#2E2C27;stroke:#3E3B34;}
+.bar-ret{fill:#5FD3DB;}.bar-val{fill:#BBB0F0;}.bar-grd{fill:#CBC49E;}.bar-lrn{fill:#FF6A60;}
+.t-ret{fill:#5FD3DB;}.t-val{fill:#BBB0F0;}.t-grd{fill:#CBC49E;}.t-lrn{fill:#FF6A60;}
+.arr{stroke:#4A473F;}.arrhead{fill:#4A473F;}
+.loop{stroke:#FF6A60;}.loophead{fill:#FF6A60;}.loop-t{fill:#FF6A60;}
+.note-box{fill:#2A1614;stroke:#FF5247;}
+}
+</style>
+
+<rect class="paper" x="0" y="0" width="680" height="614"/>
+
+<text class="m faint" x="40" y="36" font-size="10.5" letter-spacing="1.6">SHEERLINE</text>
+<text class="d ink" x="40" y="62" font-size="21" font-weight="600">The Design-Systems quality loop</text>
+<text class="b soft" x="40" y="84" font-size="12.5">Four verbs over three real subsystems. Retrieve, validate, grade, learn.</text>
+
+<!-- RETRIEVE -->
+<rect class="stage" x="40" y="100" width="600" height="100" rx="14"/>
+<rect class="bar-ret" x="40" y="100" width="6" height="100" rx="3"/>
+<text class="m faint" x="62" y="128" font-size="10">01</text>
+<text class="d t-ret" x="92" y="128" font-size="15" font-weight="600">RETRIEVE</text>
+<text class="m soft" x="184" y="128" font-size="10.5">the Design System MCP · 2 resources + 4 retrieve tools</text>
+<text class="b soft" x="92" y="150" font-size="11.5">Retrieve the system through tools — never paste it into context.</text>
+<g class="m t-ret" font-size="8.5" text-anchor="middle">
+<rect class="chip" x="92" y="162" width="60" height="19" rx="6"/><text x="122" y="175">summary</text>
+<rect class="chip" x="158" y="162" width="86" height="19" rx="6"/><text x="201" y="175">fundamentals</text>
+<rect class="chip" x="250" y="162" width="58" height="19" rx="6"/><text x="279" y="175">context</text>
+<rect class="chip" x="314" y="162" width="90" height="19" rx="6"/><text x="359" y="175">relationships</text>
+<rect class="chip" x="410" y="162" width="66" height="19" rx="6"/><text x="443" y="175">examples</text>
+<rect class="chip" x="482" y="162" width="78" height="19" rx="6"/><text x="521" y="175">corrections</text>
+</g>
+<line class="arr" x1="340" y1="200" x2="340" y2="210"/><polygon class="arrhead" points="334,210 346,210 340,216"/>
+
+<!-- VALIDATE -->
+<rect class="stage" x="40" y="212" width="600" height="100" rx="14"/>
+<rect class="bar-val" x="40" y="212" width="6" height="100" rx="3"/>
+<text class="m faint" x="62" y="240" font-size="10">02</text>
+<text class="d t-val" x="92" y="240" font-size="15" font-weight="600">VALIDATE</text>
+<text class="m soft" x="184" y="240" font-size="10.5">core/validator.py · deterministic, zero-token</text>
+<text class="b soft" x="92" y="262" font-size="11.5">Check the emitted output against the system, not the self-reported manifest.</text>
+<g class="m t-val" font-size="8.5" text-anchor="middle">
+<rect class="chip" x="92" y="274" width="52" height="19" rx="6"/><text x="118" y="287">9 rules</text>
+<rect class="chip" x="150" y="274" width="118" height="19" rx="6"/><text x="209" y="287">token compliance</text>
+<rect class="chip" x="274" y="274" width="62" height="19" rx="6"/><text x="305" y="287">contrast</text>
+<rect class="chip" x="342" y="274" width="52" height="19" rx="6"/><text x="368" y="287">focus</text>
+<rect class="chip" x="400" y="274" width="86" height="19" rx="6"/><text x="443" y="287">touch-target</text>
+<rect class="chip" x="492" y="274" width="118" height="19" rx="6"/><text x="551" y="287">rendered-CSS lane</text>
+</g>
+<line class="arr" x1="340" y1="312" x2="340" y2="322"/><polygon class="arrhead" points="334,322 346,322 340,328"/>
+
+<!-- GRADE -->
+<rect class="stage" x="40" y="324" width="600" height="100" rx="14"/>
+<rect class="bar-grd" x="40" y="324" width="6" height="100" rx="3"/>
+<text class="m faint" x="62" y="352" font-size="10">03</text>
+<text class="d t-grd" x="92" y="352" font-size="15" font-weight="600">GRADE</text>
+<text class="m soft" x="168" y="352" font-size="10.5">the evaluator · a series, not a boolean</text>
+<text class="b soft" x="92" y="374" font-size="11.5">A linter tells you pass or fail. An evaluator tells you the trend over time.</text>
+<g class="m t-grd" font-size="8.5" text-anchor="middle">
+<rect class="chip" x="92" y="386" width="62" height="19" rx="6"/><text x="123" y="399">I1 floor</text>
+<rect class="chip" x="160" y="386" width="96" height="19" rx="6"/><text x="208" y="399">I1.5 mutation</text>
+<rect class="chip" x="262" y="386" width="76" height="19" rx="6"/><text x="300" y="399">I2 series</text>
+<rect class="chip" x="344" y="386" width="104" height="19" rx="6"/><text x="396" y="399">I3 judge panel</text>
+</g>
+<line class="arr" x1="340" y1="424" x2="340" y2="434"/><polygon class="arrhead" points="334,434 346,434 340,440"/>
+
+<!-- LEARN -->
+<rect class="stage" x="40" y="436" width="600" height="100" rx="14"/>
+<rect class="bar-lrn" x="40" y="436" width="6" height="100" rx="3"/>
+<text class="m faint" x="62" y="464" font-size="10">04</text>
+<text class="d t-lrn" x="92" y="464" font-size="15" font-weight="600">LEARN</text>
+<text class="m soft" x="164" y="464" font-size="10.5">the corrections registry · one registry, four readers</text>
+<text class="b soft" x="92" y="486" font-size="11.5">Factual corrections inject and enforce; behavioral ones only remind a human.</text>
+<g class="m t-lrn" font-size="8.5" text-anchor="middle">
+<rect class="chip" x="92" y="498" width="82" height="19" rx="6"/><text x="133" y="511">→ retrieve</text>
+<rect class="chip" x="180" y="498" width="82" height="19" rx="6"/><text x="221" y="511">→ validate</text>
+<rect class="chip" x="268" y="498" width="70" height="19" rx="6"/><text x="303" y="511">→ grade</text>
+<rect class="chip" x="344" y="498" width="90" height="19" rx="6"/><text x="389" y="511">→ eval-seed</text>
+</g>
+
+<!-- return loop -->
+<path class="loop" d="M 640 486 H 662 V 130 H 648"/>
+<polygon class="loophead" points="648,124 648,136 640,130"/>
+<text class="m loop-t" x="654" y="308" font-size="9" text-anchor="middle" transform="rotate(-90 654 308)">the correction folds into the next retrieval</text>
+
+<!-- grades-inform note -->
+<rect class="note-box" x="40" y="552" width="600" height="30" rx="10"/>
+<text class="b ink" x="60" y="571" font-size="11.5">Grades inform, never gate — a score routes a human decision, never an auto-approve or auto-block.</text>
+
+<text class="m faint" x="40" y="602" font-size="9.5">Shown as architecture. The populated corpus and the calibrated evaluator are the retained moat, never exposed.</text>
+</svg>

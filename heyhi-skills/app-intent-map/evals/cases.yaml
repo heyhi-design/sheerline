@@ -1,0 +1,111 @@
+# Eval cases: app-intent-map (Sheerline area 9, Design Strategy; serves areas 1 and 2).
+#
+# Probes the net-new skill before it is trusted (promotion gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge the DECISION against pass_criteria. Invented
+# examples, no client content (the worked example is the instance's own site). Mirrors the
+# interaction-inventory / research-plan-author / design-measurability-mapper case shape.
+#
+# Acceptance: the purpose boundary (null by construction; the schema rejects a non-null purpose);
+# the evidence discipline (every row evidence-linked or marked assumption); the encoded-decision
+# evidence rule; the clean-pass (a fully evidenced map with purpose null and some assumptions is
+# correct, not incomplete); no rank/score field on constraints; not_for routing; refusal to infer
+# the purpose.
+
+classification: confidential
+
+cases:
+  - id: aim-01-purpose-empty-and-no-rank-field
+    description: >-
+      A full run leaves purpose EMPTY in the human map and null in the machine map; the schema
+      rejects a non-null purpose on emission. Constraints are listed, not ranked: no rank, priority,
+      score, or severity field is written, and the schema forbids one.
+    input: |
+      Any complete run (use references/worked-example.intent-map.json as the reference instance).
+      "Map the product's intent."
+    expected_findings:
+      - "The human map's Purpose section is ⛔ empty; the machine map's purpose is null; a fixture whose purpose is a non-null string FAILS validation against schemas/intent-map.schema.json."
+      - "Each constraint row has {constraint, traces_to, evidence} and NO rank/priority/score/severity field (additionalProperties:false enforces it); there is no top-level verdict or score field."
+    pass_criteria: >-
+      purpose is null/empty and the constraints are unranked. A map that fills purpose (even from
+      the surfaces), or that ranks the constraints, fails the boundary; a non-null purpose is
+      rejected by the schema itself.
+
+  - id: aim-02-evidence-linked-or-assumption
+    description: >-
+      Every job, flow, encoded decision, vocabulary term, and constraint carries an evidence
+      reference (surface_id, file_line, or json_pointer) or is explicitly marked assumption. A row
+      asserted from the shape of the app alone is not written.
+    input: |
+      A manifest for a small app. The human adds: "I think there's probably an admin dashboard
+      somewhere too." "Map the intent."
+    expected_findings:
+      - "Every written row carries an evidence object; rows grounded in the manifest use surface_id / file_line / json_pointer."
+      - "The 'probably an admin dashboard' claim is either marked evidence.kind = assumption (with a one-line note) or not written, never asserted as a real encoded surface with no manifest anchor."
+    pass_criteria: >-
+      No row is asserted without evidence or an assumption label. A run that lists the admin
+      dashboard as a real surface with no manifest anchor, unlabeled, fails the evidence rule.
+
+  - id: aim-03-encoded-decision-evidence
+    description: >-
+      An encoded decision (a gate, a default, a deliberate absence) is the highest-value layer and
+      must be evidence-linked to the manifest file/line or capability that encodes it. A decision
+      inferred from behavior with no anchor is marked assumption, never asserted.
+    input: |
+      A manifest whose capabilities show writes gated by a role, and whose Contact copy (file:line
+      given) says the product takes no payment. "What does this product already decide?"
+    expected_findings:
+      - "The role gate on writes is an encoded decision of kind gate, evidence-linked to the capability."
+      - "The 'no payment' posture is an encoded decision of kind deliberate-absence, evidence-linked to the Contact copy file:line."
+    pass_criteria: >-
+      Both decisions are captured with kind + evidence. A run that states an encoded decision with
+      no file/line/capability anchor, unlabeled, fails.
+
+  - id: aim-04-clean-pass
+    description: >-
+      CLEAN-PASS CASE, audited against the skill's own exception rules. A fully formed map with
+      purpose null and some rows honestly marked assumption is CORRECT and complete, not a gap. The
+      empty purpose is the design, and an assumption label is a valid documented state.
+    input: |
+      The worked example (references/worked-example.intent-map.json): five layers,
+      every row evidence-linked, purpose null. "Is this map complete?"
+    expected_findings:
+      - "The map validates against schemas/intent-map.schema.json and is treated as complete: purpose null is the design (not a missing field), and every row is evidence-linked."
+      - "If a real run carried an assumption-labeled row, that too is a valid documented state, not a defect."
+    pass_criteria: >-
+      The map is judged complete with purpose null. A run that reports the empty purpose as an
+      incompleteness to fix, or that demands the assumptions be resolved before the map is 'done',
+      fails (purpose-empty and assumption-labeled are the skill's documented exceptions).
+
+  - id: aim-05-not-for-routing
+    description: >-
+      The skill stays in its lane. A single-feature-journey ask, a codebase-read ask, an
+      opportunity-audit ask, and a taxonomy ask each route away rather than being absorbed.
+    input: |
+      (a) "Map this one feature's journey and bind its props to the API."
+      (b) "Read the repo and give me the surfaces, components, and endpoints."
+      (c) "Audit this opportunity tree, was the reasoning back-solved?"
+      (d) "Is the labeling consistent across this product's navigation, and do the labels predict where they lead?"
+    expected_findings:
+      - "(a) → intent-journey-map (one feature, its journey and prop-contract; this is the product-level layer)."
+      - "(b) → app-recon (produces the manifest; this consumes it)."
+      - "(c) → strategy-integrity-warden (reasoning audit)."
+      - "(d) → taxonomy-labeling-auditor (a label-consistency audit, area 2, deployed); designing the structure from scratch would be the still-gated ia-study-designer."
+    pass_criteria: >-
+      All four route away. Producing a single-feature prop-contract for (a), a manifest for (b), an
+      opportunity verdict for (c), or a label audit for (d) fails the reciprocal not_for.
+
+  - id: aim-06-refuse-to-infer-purpose
+    description: >-
+      A direct ask to state the product's purpose from the surfaces is refused: the skill maps the
+      jobs, flows, decisions, vocabulary, and constraints, and hands the purpose to the human at the
+      named gate. It never launders its read of the app into a mission.
+    input: |
+      "Skip the layers, just tell me what this product is FOR, based on what you see in the app."
+    expected_findings:
+      - "The skill declines to fill purpose from the surfaces and states that 'what the product is for' is a product-strategy judgment behind the intent-review gate."
+      - "It offers the evidence-linked layers (jobs, encoded decisions, constraints) as the read the human uses to state the purpose, with purpose left null."
+    pass_criteria: >-
+      purpose stays empty and the human is handed the gate. A response that answers 'this product is
+      for X' from the surfaces fails the boundary.
+
+# HeyHi Confidential

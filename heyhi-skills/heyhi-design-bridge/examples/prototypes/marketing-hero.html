@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Northwind Field &amp; Garden — design-bridge P5 marketing golden</title>
+  <!--
+    GOLDEN PROTOTYPE for heyhi-design-bridge Mode 1 (Translate), packet P5
+    (plans/plan-design-bridge-translate-visual-fidelity-2026-06-14.md §4 + §5 P5).
+
+    This is the FIRST image-led marketing golden. Every prior Translate golden
+    (atlas-reader, Single Column Reader, Editorial Split, Case Study Scroll, the
+    adversarial grid page) is text/editorial, so the image / gradient / position /
+    immersive path was never calibrated. This page DELIBERATELY exercises all five
+    visual-fidelity gaps so the Translate path can be regression-guarded:
+
+      Gap 1  SVG-as-<img>      — value/services cards + logo carousel use <img src="*.svg">
+      Gap 2  gradient fills    — .scrim carries a STACKED two-layer linear-gradient
+      Gap 3  absolute position — .scrim (inset:0) + .hero__cap (bottom-right)
+      Gap 4a text wrapping     — .hero__headline wraps inside a 16ch column
+      Gap 4b hard breaks       — .hero__headline + photo-strip captions use <br>
+      Gap 4c inline runs       — .hero__headline has an inline <span class="accent">;
+                                 .hero__sub has an inline <em>
+      Gap 5  raster bg         — .hero is background:url(*.jpg) ..., var(--bg-inverse)
+
+    Content is HeyHi-ORIGINATED and generic (a fictional local field-and-garden
+    services company). No client content is copied. Tokens follow the ui-studio
+    brand-config :root naming pattern (--color-*, --type-*, --space-*, --radius-*).
+
+    The HTML structure mirrors the immersive-hero pattern; the copy is original.
+    See README.md for the section -> gap coverage map.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+:root {
+  /* color — brand-config naming pattern (tokens.color.*) */
+  --color-backgrounds-page: #F6F4EE;
+  --color-backgrounds-surface: #EDE9DF;
+  --color-backgrounds-inverse: #16241C;
+  --color-text-primary: #1C2A20;
+  --color-text-muted: #5C6A5E;
+  --color-text-inverse: #F3EFE4;
+  --color-text-inverse-secondary: #C9D2C4;
+  --color-structural-border: #CBC4B4;
+  --color-structural-keyline: #16241C;
+  --color-accent-leaf: #3C7A4B;     /* primary green */
+  --color-accent-clay: #BC5B30;     /* warm pop, used as the inline accent */
+  --color-accent-sun: #E7B894;      /* eyebrow on dark */
+
+  /* type scale (tokens.typography.scale.*) */
+  --type-display: clamp(2.75rem, 7vw, 4.5rem);
+  --type-h1: clamp(2rem, 4.5vw, 3rem);
+  --type-h2: clamp(1.5rem, 3vw, 2.1rem);
+  --type-h3: clamp(1.15rem, 1.8vw, 1.35rem);
+  --type-body-lg: clamp(1.05rem, 1.4vw, 1.2rem);
+  --type-body: clamp(1rem, 1.2vw, 1.08rem);
+  --type-small: 0.92rem;
+  --type-caption: 0.74rem;
+
+  /* spacing (tokens.spacing.tiers.*) */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 32px;
+  --space-xl: 56px;
+  --space-2xl: 88px;
+  --page-padding: clamp(1.25rem, 5vw, 2.5rem);
+  --grid-gap: clamp(1.25rem, 2.5vw, 1.75rem);
+  --content-max-width: 1200px;
+
+  /* radius (tokens.radius.*) */
+  --radius-sm: 4px;
+  --radius-md: 10px;
+  --radius-lg: 18px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--color-backgrounds-page);
+  color: var(--color-text-primary);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: var(--type-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  padding-inline: var(--page-padding);
+}
+
+/* ---- header ---- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--page-padding);
+  background: var(--color-backgrounds-page);
+  border-bottom: 1px solid var(--color-structural-border);
+}
+.header__brand { display: flex; align-items: center; }
+.header__brand img { display: block; height: 26px; width: auto; }
+.header__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  font-size: var(--type-small);
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+/* ===== IMMERSIVE HERO — full-bleed raster photo, brand layer overlaid (Gap 5 raster bg) ===== */
+.hero {
+  position: relative;
+  min-height: clamp(460px, 72vh, 680px);
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid var(--color-structural-keyline);
+  /* Gap 5: a layered background — a raster photo over a solid inverse fallback. */
+  background: url('assets/photography/cleared-field.jpg') center 42% / cover no-repeat, var(--color-backgrounds-inverse);
+  overflow: hidden;
+}
+/* Gap 2 + Gap 3: an absolutely-positioned scrim with a STACKED two-layer gradient. */
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(18,26,21,0.90) 0%, rgba(18,26,21,0.60) 42%, rgba(18,26,21,0.12) 100%),
+    linear-gradient(180deg, rgba(18,26,21,0.30) 0%, rgba(18,26,21,0.04) 30%, rgba(18,26,21,0.46) 100%);
+}
+.hero__inner { position: relative; z-index: 1; padding-block: var(--space-2xl); }
+.hero__eyebrow {
+  font-size: var(--type-caption);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent-sun);
+  margin-bottom: var(--space-md);
+}
+/* Gap 4a (wraps in 16ch column) + 4b (<br>) + 4c (inline accent span) */
+.hero__headline {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 900;
+  font-size: var(--type-display);
+  line-height: 1.02;
+  letter-spacing: 0.005em;
+  color: var(--color-text-inverse);
+  max-width: 16ch;
+  margin: 0 0 var(--space-md);
+  text-shadow: 0 2px 16px rgba(0,0,0,0.40);
+}
+.hero__headline .accent { color: var(--color-accent-clay); }   /* clay inline accent run */
+/* Gap 4a (wraps in 50ch column) + 4c (inline <em>) */
+.hero__sub {
+  font-size: var(--type-body-lg);
+  color: var(--color-text-inverse);
+  max-width: 50ch;
+  margin: 0 0 var(--space-lg);
+  text-shadow: 0 1px 8px rgba(0,0,0,0.35);
+}
+.hero__cta { display: flex; flex-wrap: wrap; gap: var(--space-md); }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: inherit;
+  font-size: var(--type-small);
+  font-weight: 600;
+  text-decoration: none;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+}
+.btn--primary { background: var(--color-accent-clay); color: var(--color-text-inverse); }
+.btn--secondary { background: transparent; color: var(--color-text-inverse); border-color: var(--color-text-inverse); }
+/* Gap 3: a second absolutely-positioned child, anchored bottom-right. */
+.hero__cap {
+  position: absolute;
+  right: var(--space-md);
+  bottom: var(--space-sm);
+  z-index: 1;
+  font-size: var(--type-caption);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-inverse-secondary);
+  opacity: 0.85;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+}
+
+/* ---- section scaffolding ---- */
+.section { padding-block: var(--space-2xl); }
+.section--surface { background: var(--color-backgrounds-surface); }
+.section__head { margin-bottom: var(--space-xl); }
+.eyebrow {
+  font-size: var(--type-caption);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent-leaf);
+  margin-bottom: var(--space-sm);
+}
+.section__head h2 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: var(--type-h1);
+  line-height: 1.1;
+  color: var(--color-text-primary);
+}
+
+/* ---- value grid: SVG icon cards (Gap 1) ---- */
+.grid { display: grid; gap: var(--grid-gap); }
+.grid--4 { grid-template-columns: repeat(4, 1fr); }
+.grid--3 { grid-template-columns: repeat(3, 1fr); }
+.value {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  background: var(--color-backgrounds-page);
+  border: 1px solid var(--color-structural-border);
+  border-radius: var(--radius-md);
+}
+.value__icon { width: 40px; height: 40px; display: block; }
+.value h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: var(--type-h3);
+  color: var(--color-text-primary);
+}
+.value p { font-size: var(--type-small); color: var(--color-text-muted); }
+
+/* ---- services cards: SVG icon + SVG arrow (Gap 1) ---- */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  background: var(--color-backgrounds-surface);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: inherit;
+}
+.card__icon { width: 44px; height: 44px; display: block; }
+.card__kicker {
+  font-size: var(--type-caption);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent-leaf);
+}
+.card h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: var(--type-h3);
+  color: var(--color-text-primary);
+}
+.card p { font-size: var(--type-small); color: var(--color-text-muted); }
+.card__more { display: inline-flex; align-items: center; gap: var(--space-xs); font-size: var(--type-small); font-weight: 600; color: var(--color-accent-leaf); }
+.card__arrow { width: 16px; height: 16px; display: block; }
+
+/* ---- photo strip: caption-only placeholder figures with <br> captions (Gap 4b) ---- */
+.photo-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--grid-gap); }
+.photo {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-md);
+  background: var(--color-backgrounds-inverse);
+  color: var(--color-text-inverse-secondary);
+  border-radius: var(--radius-md);
+  font-size: var(--type-small);
+  font-weight: 600;
+}
+
+/* ---- logo carousel: row of SVG logos (Gap 1) ---- */
+.logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  flex-wrap: wrap;
+}
+.logo-row img { height: 30px; width: auto; display: block; opacity: 0.8; }
+
+/* ---- final CTA ---- */
+.cta-band {
+  background: var(--color-backgrounds-inverse);
+  color: var(--color-text-inverse);
+  text-align: center;
+  padding-block: var(--space-2xl);
+}
+.cta-band h2 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 900;
+  font-size: var(--type-h1);
+  margin-bottom: var(--space-md);
+}
+.cta-band p { color: var(--color-text-inverse-secondary); max-width: 46ch; margin: 0 auto var(--space-lg); }
+.cta-band .hero__cta { justify-content: center; }
+  </style>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <a class="header__brand" href="index.html" aria-label="Northwind Field &amp; Garden — home">
+      <img src="assets/logos/northwind-wordmark.svg" alt="Northwind Field &amp; Garden">
+    </a>
+    <nav class="header__nav" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#work">Our Work</a>
+      <a href="#areas">Service Areas</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ===== IMMERSIVE HERO (Gaps 2, 3, 4a, 4b, 4c, 5) ===== -->
+    <section class="hero" aria-labelledby="hero-h" data-audit="raster-bg gradient-scrim abs-position text-wrap inline-run">
+      <div class="hero__scrim" aria-hidden="true" data-audit="gradient-stacked abs-inset"></div>
+      <div class="container hero__inner">
+        <p class="hero__eyebrow">Field &amp; garden care · Northern valley</p>
+        <h1 id="hero-h" class="hero__headline" data-audit="wrap hard-break inline-accent">Tend the ground.<br><span class="accent">Grow the season.</span></h1>
+        <p class="hero__sub" data-audit="wrap inline-em">Beds, borders, and seasonal cleanup, handled by a local crew that shows up on time and leaves the place tidy. <em>Representative copy for the golden.</em></p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#contact">Request a visit</a>
+          <a class="btn btn--secondary" href="#work">See recent work</a>
+        </div>
+      </div>
+      <span class="hero__cap" aria-hidden="true" data-audit="abs-bottom-right">Representative photo · placeholder</span>
+    </section>
+
+    <!-- ===== VALUE GRID — SVG icon cards (Gap 1) ===== -->
+    <section class="section" aria-labelledby="why-h">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">Why Northwind</p>
+          <h2 id="why-h">A real crew, steady hands, tidy sites</h2>
+        </div>
+        <div class="grid grid--4">
+          <div class="value" data-audit="svg-img">
+            <img class="value__icon" src="assets/icons/leaf.svg" alt="" aria-hidden="true">
+            <h3>Locally rooted</h3>
+            <p>Owner-run and based in the valley, so the same people plan the work and do it.</p>
+          </div>
+          <div class="value" data-audit="svg-img">
+            <img class="value__icon" src="assets/icons/clock.svg" alt="" aria-hidden="true">
+            <h3>On schedule</h3>
+            <p>We give a window and keep it. You hear from us before, during, and after.</p>
+          </div>
+          <div class="value" data-audit="svg-img">
+            <img class="value__icon" src="assets/icons/shield.svg" alt="" aria-hidden="true">
+            <h3>Insured work</h3>
+            <p>Covered for equipment and property work, so a visit is never a worry.</p>
+          </div>
+          <div class="value" data-audit="svg-img">
+            <img class="value__icon" src="assets/icons/broom.svg" alt="" aria-hidden="true">
+            <h3>Clean finish</h3>
+            <p>Clippings hauled, paths swept, gates latched. The site looks cared for when we go.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVICES — SVG icon + SVG arrow cards (Gap 1) ===== -->
+    <section class="section section--surface" id="services" aria-labelledby="svc-h">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">What we do</p>
+          <h2 id="svc-h">Services</h2>
+        </div>
+        <div class="grid grid--3">
+          <a class="card" href="#contact" data-audit="svg-img">
+            <img class="card__icon" src="assets/icons/leaf.svg" alt="" aria-hidden="true">
+            <span class="card__kicker">Beds</span>
+            <h3>Garden beds &amp; borders</h3>
+            <p>Planting, edging, and refreshes that hold their shape through the season.</p>
+            <span class="card__more">See service <img class="card__arrow" src="assets/icons/arrow-right.svg" alt="" aria-hidden="true"></span>
+          </a>
+          <a class="card" href="#contact" data-audit="svg-img">
+            <img class="card__icon" src="assets/icons/shield.svg" alt="" aria-hidden="true">
+            <span class="card__kicker">Cleanup</span>
+            <h3>Seasonal cleanup</h3>
+            <p>Spring open-ups and fall cut-backs, hauled away and left tidy.</p>
+            <span class="card__more">See service <img class="card__arrow" src="assets/icons/arrow-right.svg" alt="" aria-hidden="true"></span>
+          </a>
+          <a class="card" href="#contact" data-audit="svg-img">
+            <img class="card__icon" src="assets/icons/clock.svg" alt="" aria-hidden="true">
+            <span class="card__kicker">Upkeep</span>
+            <h3>Routine upkeep</h3>
+            <p>A standing visit on a rhythm that fits the yard and the calendar.</p>
+            <span class="card__more">See service <img class="card__arrow" src="assets/icons/arrow-right.svg" alt="" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PHOTO STRIP — caption-only placeholders with <br> captions (Gap 4b) ===== -->
+    <section class="section" id="work" aria-labelledby="work-h">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">Recent work</p>
+          <h2 id="work-h">See the work. Then call us.</h2>
+        </div>
+        <div class="photo-strip" data-audit="hard-break-caption">
+          <figure class="photo"><span>Before / After<br>cleared border</span></figure>
+          <figure class="photo"><span>Equipment in action<br>bed reshaping</span></figure>
+          <figure class="photo"><span>Finished planting<br>wide shot</span></figure>
+          <figure class="photo"><span>Texture close-up<br>fresh mulch</span></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== LOGO CAROUSEL — row of SVG logos (Gap 1) ===== -->
+    <section class="section section--surface" aria-labelledby="trust-h">
+      <div class="container">
+        <div class="section__head">
+          <p class="eyebrow">Trusted locally</p>
+          <h2 id="trust-h">Neighbors and partners</h2>
+        </div>
+        <div class="logo-row" data-audit="svg-img">
+          <img src="assets/logos/partner-meadowline.svg" alt="Meadowline Co-op">
+          <img src="assets/logos/partner-rivergate.svg" alt="Rivergate Nursery">
+          <img src="assets/logos/partner-stonepath.svg" alt="Stonepath Builders">
+          <img src="assets/logos/partner-valleyfeed.svg" alt="Valley Feed &amp; Seed">
+          <img src="assets/logos/partner-oakbarrel.svg" alt="Oak Barrel Market">
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section class="cta-band" id="contact" aria-labelledby="cta-h">
+      <div class="container">
+        <h2 id="cta-h">Tell us about your yard.</h2>
+        <p>A quick visit, an honest estimate, no pressure. We will get right back to you.</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#contact">Request a visit</a>
+          <a class="btn btn--secondary" href="tel:+10000000000">Call (000) 000-0000</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,96 @@
+{
+  "skill_name": "heyhi-design-intelligence-audit",
+  "version": "1.0.0",
+  "created": "2026-07-06",
+  "classification": "internal",
+  "description": "6 eval scaffold cases for heyhi-design-intelligence-audit, grounded in documented SKILL.md behavior (setup-grade v2 H2). Subjective/taste dimensions are marked human-judged, not asserted as mechanically checkable.",
+  "evals": [
+    {
+      "id": 1,
+      "source": "SKILL.md § Step 2: Planning Mode Output",
+      "prompt": "We haven't started the client engagement yet — no Figma access, no codebase, nothing from them so far. I want to prep for the audit session. Can you put together the engagement plan?",
+      "expected_output": "Planning-mode output per Step 2: an engagement structure (half-day vs. full-day, async vs. facilitated, who needs to be in the room), a pre-work request list (Figma file access, codebase access or component exports, existing documentation, a 15-minute interview with the lead designer and lead engineer), an interview guide (5-7 questions each for designer and engineer, per reference.md), and a time-blocked session agenda.",
+      "files": [],
+      "expectations": [
+        "Output identifies itself as Planning mode (no client materials available yet), consistent with the Step 0 mode-selection criterion",
+        "A pre-work request list is present and includes at minimum: Figma file access, codebase access/component exports, existing documentation, and a 15-minute lead designer + lead engineer interview — the four items Step 2 names explicitly",
+        "An engagement structure section is present addressing format (half-day vs. full-day, async vs. facilitated) and attendee composition",
+        "A session agenda is present and is time-blocked (has discrete time allocations), not just a bullet list of topics",
+        "An interview guide section exists with designer and engineer question sets (reference.md specifies 5-7 questions each) rather than the six Audit-mode examination areas being run against absent materials",
+        "[human-judged] Whether the engagement structure recommendation (half-day vs. full-day, facilitated vs. async) is well-calibrated to the stated client size and materials gap, versus a generic template answer"
+      ]
+    },
+    {
+      "id": 2,
+      "source": "SKILL.md § Area 5: Accessibility Baseline — W3 (Brand color WCAG compliance check) and W4 (CVA focus ring migration check)",
+      "prompt": "We have full access to the client's codebase (React + Tailwind, uses class-variance-authority for components) and their Figma file. Run the audit — I especially want the accessibility area covered thoroughly since they've had complaints about contrast and keyboard navigation.",
+      "expected_output": "Area 5 findings including the W3 brand-color WCAG check (a grep-style scan for text-accent/text-brand-primary/text-cerulean/text-sunshine classes on light/white/near-white surfaces, flagged by file and line if a violation is found) and, because the codebase uses CVA, the W4 focus-ring migration check (confirming focus-visible:ring-* exists in each interactive component's CVA base string rather than only in a companion .scss/.module.css file). Findings are assigned a severity level per Step 4.",
+      "files": [],
+      "expectations": [
+        "The W3 brand color check is run and its method matches the documented grep pattern targeting text-accent, text-brand-primary, text-cerulean, and text-sunshine class usage against light/white/near-white parent surfaces",
+        "Any W3 violation is flagged by specific file and line, not described only in aggregate — SKILL.md states the correct use is background surface with dark foreground text, not text on white",
+        "Because the codebase is stated to use CVA, the W4 focus ring check is run: SCSS-defined focus rules are checked against the CVA base string for a corresponding focus-visible:ring-* declaration",
+        "Missing focus rings on keyboard-input components (buttons, inputs, tabs, checkboxes) are flagged at Critical severity per W4's explicit statement that this is a Critical a11y severity finding",
+        "Each Area 5 finding carries one of the four documented severity levels (Critical/High/Medium/Low) per Step 4, not an unranked list",
+        "The output notes this is a spot-check per the Area 5 closing note (\"a full audit should be a separate engagement if significant issues are identified\"), not represented as an exhaustive accessibility audit",
+        "[human-judged] Whether the plain-language explanation of why the contrast/focus-ring gaps matter reads as specific and useful to the receiving audience, per the Step 5 Voice rules (\"technical findings in plain language\"), rather than generic a11y boilerplate"
+      ]
+    },
+    {
+      "id": 3,
+      "source": "SKILL.md § Area 1: Token Architecture — Alpha token handling",
+      "prompt": "Client's Figma file has several color tokens with transparency (drop shadows, overlay colors) — e.g. one defined as rgba(55, 198, 222, 0.3). Their code token file only has hex values for the equivalent tokens. Is this a match?",
+      "expected_output": "A finding that this is not a value match but a data-loss finding: Figma strips the alpha channel on variable export, so an opacity-carrying Figma token exporting as a plain hex in code has silently lost information rather than merely drifted in value. The correct representation target is named as W3C DTCG v1 composite alpha notation ({colorSpace, components, alpha, hex}), with manual rgba() encoding or a Tokens Studio + sd-transforms pipeline named as acceptable workarounds.",
+      "files": [],
+      "expectations": [
+        "The output explicitly distinguishes this from an ordinary value-mismatch/drift finding — SKILL.md states a hex value where a Figma token carries alpha 'is not a match — it is a data loss finding, not a value mismatch'",
+        "The W3C DTCG v1 alpha composite notation ({colorSpace, components, alpha, hex}) is named as the correct representation target",
+        "At least one of the two documented workarounds is named: manual rgba() encoding in the token file, or a Tokens Studio + sd-transforms pipeline",
+        "The finding is logged under Area 1 (Token Architecture) drift signals, specifically the 'Alpha channel loss' signal named in that area's drift-signals list, not folded into a generic token-mismatch bucket",
+        "[human-judged] Whether the finding's write-up correctly triages severity relative to other Area 1 findings in the same audit (Step 4 severity assignment is a judgment call informed by context, not a fixed mapping this rubric specifies for alpha loss specifically)"
+      ]
+    },
+    {
+      "id": 4,
+      "source": "SKILL.md § Step 0: Determine Mode — Prototype audits → use heyhi-prototype-audit",
+      "prompt": "Can you audit this HTML prototype for me? It's an interactive mockup of a checkout flow — I want to know what's missing before we show it to the client.",
+      "expected_output": "A redirect, not an audit: SKILL.md states that when the subject is an HTML prototype, interactive mockup, or behavioral simulation rather than a design system, heyhi-prototype-audit should be loaded instead. This skill's six/seven examination areas (token architecture, component coverage, documentation/governance, Figma file health, accessibility baseline, team relationship, plus the conditional Area 7/8 add-ons) should not be run against a prototype.",
+      "files": [],
+      "expectations": [
+        "The response identifies the subject as a prototype/interactive mockup and declines to run this skill's Audit mode areas against it",
+        "heyhi-prototype-audit is named as the correct skill to use instead, matching the explicit routing line in Step 0",
+        "None of the six standard examination areas (Token Architecture, Component Coverage, Documentation and Governance, Figma File Health, Accessibility Baseline, Team Relationship to the System) are executed against the prototype in the response",
+        "The response does not attempt a hybrid or partial audit — SKILL.md frames this as a full hand-off ('stay in this skill for system-level audits... use heyhi-prototype-audit' for prototypes), not a partial in-skill treatment"
+      ]
+    },
+    {
+      "id": 5,
+      "source": "SKILL.md § ARI Composite (Area 7: Agent Interface Readiness add-on)",
+      "prompt": "We ran the Agent Interface Readiness add-on on this client. Sub-area scores came out: 7.1 Semantic Token Depth = 3, 7.2 Component Catalog Structure = 3, 7.3 HITL Checkpoint Coverage = 3, 7.4 Layer 0 Signal = 4. What's the ARI and what does it mean for them?",
+      "expected_output": "ARI = (3+3+3+4)/4 = 3.25 exactly, reported as the precise fraction — not rounded to 3.2 or 3.3. Per the ARI to Maturity Level mapping table, 3.25 falls at the boundary and maps to Level 4 (Substantially ready), 3.25-3.74 band. The report should use the Level 4 score-specific framing language from the ARI Findings Language section.",
+      "files": [],
+      "expectations": [
+        "The ARI composite is computed as exactly 3.25, not rounded down to 3.2 (SKILL.md explicitly warns that banker's rounding on 3.25 incorrectly produces 3.2 and mis-maps [3,3,3,4] to Level 3 instead of Level 4)",
+        "The output states or implies the composite should not be rounded, consistent with the explicit 'Do not round the ARI composite' instruction",
+        "3.25 is mapped to Level 4 — Substantially ready (the 3.25-3.74 band), not Level 3 (2.50-3.24)",
+        "The Level 4-5 score-specific framing language is used (the framing beginning 'The infrastructure for agent-generated UI is substantially in place...'), not the Level 3 framing",
+        "A per-sub-area breakdown table is present showing all four sub-area scores (7.1-7.4) alongside the composite, matching the Step 5 Area 7 report section table format",
+        "[human-judged] Whether the write-up correctly identifies which sub-area is the 'weakest' for a path-to-Level-5 recommendation in a way that's genuinely useful and specific to this score pattern, versus a templated response"
+      ]
+    },
+    {
+      "id": 6,
+      "source": "SKILL.md § Area 8: Organizational Commitment (Conditional — run when organizational_commitment_add_on: true)",
+      "prompt": "This is a 6-person startup, single product, one designer wearing the design-system-owner hat part time. Should we score their organizational commitment as part of this audit?",
+      "expected_output": "Per the Area 8 conditional gate and the Step 1 intake question, a team of this size (under ~20 people, single-product/startup) sets organizational_commitment_add_on: false. Area 8 is not scored as a numeric dimension; instead the report notes it as 'not applicable at current scale' rather than assigning a Level 1-5 score.",
+      "files": [],
+      "expectations": [
+        "The response sets or recommends organizational_commitment_add_on: false for this team, per the documented startup/single-product-under-~20-people threshold",
+        "Area 8 is not assigned a numeric 1-5 score in the output — SKILL.md is explicit that at this scale the add-on is off, not scored low",
+        "The phrase or equivalent framing 'not applicable at current scale' appears, matching the exact language SKILL.md specifies for this case",
+        "The response does not run the Area 8 interview questions (the four design-system-lead questions and three product/engineering-leader questions) as part of this determination, since those are described as supporting Area 8 scoring, not the applicability gate itself",
+        "[human-judged] Whether the response correctly recognizes this as a threshold/gating question rather than proceeding to give an organizational-commitment opinion anyway — a subtler failure mode than simply getting the flag value wrong"
+      ]
+    }
+  ]
+}

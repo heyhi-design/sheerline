@@ -1,0 +1,87 @@
+<!-- ============================================================================
+     WHEELHOUSE - shared shell snippet   (FROZEN after DISPATCH-03 merges)
+     HeyHi Confidential
+
+     HOW TO USE (wave-3 lanes, paste verbatim, do not edit shared/):
+       1. In your page <head>: <link rel="stylesheet" href="shared/studio.css">
+          and the two <meta> lines shown in index.html's <head>.
+       2. Paste this ENTIRE block as the first thing inside <body>.
+       3. Put your screen's markup between the two PAGE CONTENT markers below.
+       4. Do NOT add a second <script src="data/snapshot.js">; this snippet
+          already loads the data global, first, in the right order.
+       5. Page-scoped styles go in a page <style> with a
+          /* candidate for shared */ comment. Only D-08 folds them back.
+
+     This snippet self-activates the correct rail item from the page filename
+     and fills the footer commit from the snapshot, no per-page edits needed.
+     ============================================================================ -->
+<script src="data/snapshot.js"></script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="studio-shell">
+
+  <header class="topbar">
+    <a class="wordmark" href="index.html">WHEELHOUSE</a>
+    <a class="topbar__search" href="index.html#router">
+      <span aria-hidden="true">⌕</span>&nbsp;Route a task…
+    </a>
+    <span class="topbar__spacer"></span>
+    <a class="session-indicator" href="session.html">
+      <span class="dot" aria-hidden="true"></span>
+      Own practice
+      <span class="sr-only">(simulated exemplar session)</span>
+    </a>
+  </header>
+
+  <nav class="rail" aria-label="Primary">
+    <p class="rail__label">Wheelhouse</p>
+    <a class="rail__link" href="index.html">           <span class="rail__num">1</span> Home</a>
+    <a class="rail__link" href="areas.html">           <span class="rail__num">2</span> Areas</a>
+    <a class="rail__link" href="skills.html">          <span class="rail__num">3</span> Skills</a>
+    <a class="rail__link" href="session.html">         <span class="rail__num">4</span> Session</a>
+    <a class="rail__link" href="quality-validate.html"><span class="rail__num">5</span> Quality</a>
+    <a class="rail__link" href="artifacts.html">       <span class="rail__num">6</span> Artifacts</a>
+    <a class="rail__link" href="dispatch.html">        <span class="rail__num">7</span> Dispatch</a>
+    <a class="rail__link" href="seminar.html">         <span class="rail__num">8</span> Seminar</a>
+    <a class="rail__link" href="intake.html">          <span class="rail__num">9</span> Intake</a>
+  </nav>
+
+  <main id="main-content" class="studio-main">
+    <div class="wrap">
+      <!-- ===================== PAGE CONTENT START ===================== -->
+      <!-- ===================== PAGE CONTENT END ======================= -->
+    </div>
+  </main>
+
+  <footer class="studio-footer">
+    <span class="sim">Prototype</span> · simulated interactions over a real data snapshot
+    (<span class="mono" data-commit>…</span>) · HeyHi Confidential
+  </footer>
+
+</div>
+
+<script>
+/* fill footer commit + self-activate the rail item from the page filename */
+(function () {
+  var data = window.SHEERLINE_DATA || {};
+  var meta = data.meta || {};
+  var el = document.querySelector('[data-commit]');
+  if (el) { el.textContent = meta.source_commit || 'unknown'; }
+
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') { path = 'index.html'; }
+  var alias = {
+    'quality-grade.html': 'quality-validate.html',
+    'quality-learn.html': 'quality-validate.html',
+    'exit-gate.html': 'session.html'
+  };
+  var target = alias[path] || path;
+  var links = document.querySelectorAll('.rail__link');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].getAttribute('href') === target) {
+      links[i].setAttribute('aria-current', 'page');
+    } else {
+      links[i].removeAttribute('aria-current');
+    }
+  }
+})();
+</script>

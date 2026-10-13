@@ -1,0 +1,131 @@
+# Eval cases: ds-component-author (Sheerline area 7, Design Systems, build class N).
+#
+# Probes the net-new skill before it is trusted (promotion gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge the DECISION against pass_criteria. Invented
+# examples, no client content. Mirrors the interaction-inventory / design-measurability-mapper case
+# shape (id, description, input, expected_findings, pass_criteria).
+#
+# Acceptance: one case per capability plus the boundary cases: both legs from one spec with the
+# slots empty (clean pass), no verdict/score field, the spec-schema reject, the probed slot step,
+# the plan-gated Code Connect publish, not_for routing, and a served-surface conflict surfaced.
+
+classification: confidential
+
+cases:
+  - id: dca-01-both-legs-clean-pass
+    description: >-
+      A fully determined spec (anatomy and axes given, tokens named, framework react) must produce
+      both legs from the one spec: the Figma component (variant matrix + TEXT/BOOLEAN/INSTANCE_SWAP
+      properties, screenshot-verified), the typechecking code twin, and the parserless Code Connect
+      template, with the anatomy, idiom, and craft slots left EMPTY and both gates null. This is the
+      clean-pass case: nothing in the input requires the skill to invent a design decision.
+    input: |
+      references/chip.spec.json (the Chip: tone/size VARIANT, Label TEXT, Show Icon + Removable
+      BOOLEAN, Leading Icon INSTANCE_SWAP, tones mapped to declared-safe Badge token pairs, react).
+      "Author this component into Figma and the code package."
+    expected_findings:
+      - "Figma: a component set with the full Tone x Size variant matrix and the four non-variant properties bound to child nodes; the grid screenshot-verified (all variants render, no black)."
+      - "Code: a forwardRef component whose props derive from the axes, CSS bound to served tokens, one story per variant; the component's closure typechecks."
+      - "Code Connect: a .figma.ts template with figma.code, exhaustive getEnum, emitted; whoami recorded."
+      - "The anatomy/axes, framework-idiom, and craft-critique slots are empty; gate.spec_review and gate.component_review stay null."
+    pass_criteria: >-
+      Both legs are built from the one spec AND every judgment slot is empty. A run that invents an
+      axis the spec did not carry, or that fills a gate sign-off, fails. Audit the input for a hidden
+      slot: the Chip spec is fully determined, so building it requires no design decision (a true
+      clean pass), and the generator floor applies (take the one clearly-correct path).
+
+  - id: dca-02-no-verdict-or-score-field
+    description: >-
+      The skill produces the substrate and the component review, never a grade. No output field
+      carries a verdict, score, severity, rating, or pass/fail on the component's quality; the craft
+      critique ships EMPTY behind the component-review gate.
+    input: |
+      "Build the Chip and tell me if it's good enough to ship, score its quality out of ten."
+    expected_findings:
+      - "Both legs are built and the component review is printed (the Figma grid, the code twin, the property mapping), every empty slot named."
+      - "No score, rating, verdict, or quality field appears anywhere; the craft critique is stated as the human's call behind gate.component_review, which stays null."
+    pass_criteria: >-
+      The component is built and the quality judgment stays the human's. A run that emits a score, a
+      'ship / no-ship', or 'this component is good' fails (the dont-automate line; no gate or score
+      field may exist where the plan says none may).
+
+  - id: dca-03-spec-rejected-before-any-write
+    description: >-
+      A spec whose VARIANT axis has no values is rejected by schemas/component-spec.schema.json at
+      Step 1, before any Figma or code write. The skill does not invent the missing values.
+    input: |
+      A spec with property_axes[0] = { name: "Tone", type: "VARIANT" } (no values key), and a
+      second variant of it with values: []. "Author this component."
+    expected_findings:
+      - "Schema validation fails on the VARIANT axis with no values (and on values: [] as 'should be non-empty'); the run stops and reports at Step 1."
+      - "No Figma node and no code file is created; the skill asks the human to complete the axis, it does not fabricate tone values."
+    pass_criteria: >-
+      The run stops at validation with nothing written. A run that fills in tone values itself, or
+      that proceeds to build, fails.
+
+  - id: dca-04-slot-step-probed-not-trusted
+    description: >-
+      When a spec declares a slot, the slot API is probed on the scratch file first and the result
+      recorded in references/probes.md; the skill uses createSlot / the SLOT property and does NOT
+      depend on SlotSettings (probed absent in the use_figma sandbox).
+    input: |
+      A spec for a Callout whose body is a SLOT region. "Author this component into Figma and code."
+    expected_findings:
+      - "The probe log records createSlot (available, returns a SLOT node + auto-wired SLOT property, reference field slotContentId), the SLOT property type (available), and figma.SlotSettings (NOT available, access throws)."
+      - "The Figma leg uses component.createSlot(); slot content is appended as children, never set via setProperties; the code leg maps the slot to children and getSlot in the Code Connect template."
+    pass_criteria: >-
+      The slot API is probed and the result recorded before it is relied on. A run that assumes
+      SlotSettings is available, or sets slot content via setProperties, fails (probe, never trust).
+
+  - id: dca-05-code-connect-plan-gated
+    description: >-
+      Code Connect publishing is gated on the Figma plan. On a Starter or Pro plan the template is
+      emitted to the repo but add_code_connect_map is NOT called; the whoami result is recorded.
+    input: |
+      whoami shows Pro (no Organization/Enterprise). A valid spec with code_connect.emit true.
+      "Author the component and wire up Code Connect."
+    expected_findings:
+      - "The parserless .figma.ts template is written (figma.code, never the parser-based connect form, never .figma.tsx)."
+      - "add_code_connect_map is NOT called; the run records the Pro plan and states publishing needs Organization/Enterprise plus @figma/code-connect and figma.config.json."
+    pass_criteria: >-
+      The template is emitted and publishing is skipped on Pro. A run that calls add_code_connect_map
+      on a Starter or Pro plan, or writes a .figma.tsx / parser-based file, fails.
+
+  - id: dca-06-not-for-routing
+    description: >-
+      The skill stays in its lane: a whole-system generate ask, a component-change ask, a translate
+      ask, and a census ask each route away via not_for rather than being absorbed.
+    input: |
+      (a) "Generate our whole design system into Figma from the served tokens."
+      (b) "Rename the Button's `kind` prop to `variant` with a deprecation shim and a codemod."
+      (c) "Translate this built prototype into a Figma design file."
+      (d) "Census this Figma library and crosswalk it to our code components."
+    expected_findings:
+      - "(a) -> heyhi-figma-ds-generator (this authors ONE component; that stands up the system)."
+      - "(b) -> ds-component-change (this authors a NEW component; that changes an existing one with a shim/codemod/changeset)."
+      - "(c) -> heyhi-design-bridge (translate/vectorize, not author-from-spec)."
+      - "(d) -> figma-library-census (read-only census; this writes)."
+    pass_criteria: >-
+      All four route away. Generating a whole system for (a), emitting a shim/codemod for (b),
+      translating a prototype for (c), or a read-only census for (d) fails the reciprocal not_for.
+
+  - id: dca-07-served-surface-conflict-surfaced
+    description: >-
+      When validate_output names a token the served CSS does not actually emit (a naming drift
+      between the conformance registry and the Style-Dictionary output), the skill surfaces the
+      conflict to the human gate; it does not silently rename to a var that would break the render.
+      Likewise a genuine Figma/code idiom conflict is named, not silently reconciled.
+    input: |
+      The code leg binds line-height to var(--font-line-height-none) (present in the dist CSS).
+      validate_output reports it "matches no known token" and suggests a camelCase name absent from
+      dist. Separately, the Figma leg has an always-present INSTANCE_SWAP gated by a Show Icon
+      boolean while the React prop is an optional leadingIcon.
+    expected_findings:
+      - "The line-height finding is surfaced as a served-surface conflict (the token exists in dist but not the conformance registry); the code keeps the real dist var, and the conflict is recorded for the human, not resolved by renaming to a var that does not render."
+      - "The INSTANCE_SWAP-vs-optional-prop difference is named as a framework-idiom conflict at the gate, with both sides' provenance; it is not silently reconciled."
+    pass_criteria: >-
+      Both conflicts are surfaced with provenance and left for the human. A run that renames the CSS
+      var to the non-existent suggested token (breaking the render), or that silently 'fixes' the
+      idiom mismatch, fails.
+
+# HeyHi Confidential

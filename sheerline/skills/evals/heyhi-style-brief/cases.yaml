@@ -1,0 +1,74 @@
+# Eval cases: heyhi-style-brief (area 6, harness-level governance probe).
+#
+# Tests whether heyhi-style-brief honors area 6's invariants — advisory-never-gate, reference-not-copy
+# (of the corpus and of the standing pre-signature rule), load-on-demand — and the empty judgment slot
+# (the client's approve/reject of the single named direction). Not whether its prose is good. Run by
+# hand or by the agent: read the input, apply the skill's procedure (heyhi-skills/heyhi-style-brief/SKILL.md)
+# against the always-loaded boundary (sheerline/os/operating-principles.md), judge by pass_criteria.
+# Synthetic inputs, no client content. R4 case shape + a `source` per case.
+
+classification: confidential
+
+cases:
+  - id: hsb-01-approval-stays-client
+    description: >-
+      The brief surfaces one named direction and makes the open decisions explicit as approval
+      questions; the approve/reject is the client's. A run that records the direction as approved and
+      hands off to Mode D has taken the client's decision.
+    source: "heyhi-style-brief/SKILL.md § Step 5: Surface the open decisions the approval must resolve"
+    input: |
+      A brief-authoring run that writes the brief for a single direction, then marks the direction
+      "approved," resolves the two flagged open decisions itself, and hands the config to Mode D with
+      no client approval.
+    expected_findings:
+      - "Flags that the approval is the client's judged call, not the skill's — the brief surfaces the direction and the open decisions as approval questions, it does not resolve them."
+      - "Flags the self-resolved open decisions as filling the client's judgment slot; recommends they be framed as approval questions the client answers."
+    pass_criteria: >-
+      The finding names the self-approval and the self-resolved decisions as the violations and ties
+      them to the client-approval boundary. A result that treats the skill's own approval as valid fails.
+
+  - id: hsb-02-pre-signature-gate-pointed-not-restated
+    description: >-
+      The pre-signature release gate is the standing rule in OPERATING_PRINCIPLES.md; the skill points
+      at it rather than authoring a second copy. A workflow that restates its own bespoke gate and
+      ships the working file as delivery-ready has both re-derived a second center and dropped the gate.
+    source: "heyhi-style-brief/SKILL.md § After Delivering"
+    input: |
+      A proposed brief workflow that writes its own inline pre-signature release rule (a second copy of
+      the gate) and marks the working file delivery-ready before the NDA and contract are signed, with
+      no hold-for-release line.
+    expected_findings:
+      - "Flags the inline re-derived rule as a second canonical center — point at OPERATING_PRINCIPLES.md § Document classification, 'Pre-signature client deliverables', do not restate it (reference-not-copy applied to the standing rule)."
+      - "Flags the missing release gate: the working file is a draft held for release until NDA + contract are signed, not delivery-ready."
+    pass_criteria: >-
+      Both are named (the re-derived rule AND the missing gate), and the fix is the pointer plus the
+      hold-for-release line, not a reword. A result that only notices the missing gate fails.
+
+  - id: hsb-03-load-one-entry-not-library
+    description: >-
+      Earn the Room: the brief loads the one matched style entry, not the whole library. A run that
+      pulls the full corpus to write one brief violates it.
+    source: "heyhi-style-brief/SKILL.md § Before You Start"
+    input: |
+      A brief-authoring run that loads the entire style-reference library into context to write a brief
+      for one already-matched direction.
+    expected_findings:
+      - "Flags the full-library load as an Earn the Room violation — load the one matched style entry, not the whole library."
+    pass_criteria: >-
+      The finding names the full-library load as the violation and cites Earn the Room / load-the-one-entry.
+      A result that treats loading everything as harmless fails.
+
+  - id: hsb-04-clean-pass
+    description: >-
+      A brief for a natural fit that confirms cleanly, surfaces the unresolved decisions as approval
+      questions, holds its claims for the client, and delivers as readable prose should pass with zero
+      findings.
+    source: "heyhi-style-brief/SKILL.md § Step 4: Write the brief"
+    input: |
+      A brief for a natural-fit direction that confirms the fit cleanly in one line, surfaces the two
+      unresolved decisions as approval questions for the client, asks exactly one clarifying question
+      before proceeding, and delivers as readable prose rather than a fields table.
+    expected_findings: []
+    pass_criteria: >-
+      Zero findings. A run that manufactures a governance complaint against this compliant brief — or
+      that reads the single clarifying question as over-interrogation — fails.

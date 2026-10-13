@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heyhi:microcopy-states-writer:sidecar:1.0",
+  "title": "Microcopy Set sidecar",
+  "description": "The machine-readable half of a Microcopy Set (Sheerline area 3). Shaped to write back into an interaction-inventory sidecar: each string is keyed by (element_id, state), which map to the inventory's elements[].id and states[].name; a consumer sets only copy_slot.string on matching rows and copies taxonomy_slot in the inventory's spelling. The judgment and gate blocks ship null by construction; a sidecar with a filled ships value fails pre-flight. HeyHi Confidential.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "voice", "states_source", "strings", "missing_states", "claims_held", "glossary", "judgment", "gate"],
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "voice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "confirmed"],
+      "properties": {
+        "ref": { "type": "string", "minLength": 1, "description": "The voice system consumed (a voice-system-author artifact, or the instance's own voice file on a self-application run)." },
+        "confirmed": { "type": "boolean", "description": "true only when the voice block's confirmed slots are filled; false = doubly-candidate mode." }
+      }
+    },
+    "states_source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "ref", "provenance"],
+      "properties": {
+        "kind": { "enum": ["inventory", "list"] },
+        "ref": { "type": "string", "minLength": 1 },
+        "provenance": { "enum": ["from-source", "from-list"], "description": "from-source when the list is an interaction-inventory sidecar; from-list when a human wrote it in the sidecar shape." }
+      }
+    },
+    "strings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["element_id", "state", "taxonomy_slot", "string", "provenance", "lineage", "constraints", "doctrine"],
+        "properties": {
+          "element_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$", "description": "Copied from the inventory's elements[].id." },
+          "state": { "enum": ["loading", "error", "success", "empty"], "description": "Copied from the inventory's states[].name; only the copy-bearing states appear here." },
+          "taxonomy_slot": { "enum": ["Empty", "Error", "Tooltip", "CTA", "Form label", "Notification", "Loading", "Onboarding", "Success", "Permission"], "description": "Copied from the inventory row's copy_slot.taxonomy_slot in the inventory's spelling; never altered by the writer." },
+          "string": { "type": ["string", "null"], "description": "The candidate string, or null when the row is flagged with no draftable string." },
+          "provenance": { "const": "candidate" },
+          "lineage": { "enum": ["new", "revised-from"] },
+          "revised_from": { "type": ["string", "null"], "description": "The source string a candidate replaces, when lineage is revised-from." },
+          "constraints": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["placement", "variables"],
+            "properties": {
+              "placement": { "enum": ["inline", "toast", "banner", "dialog", "panel"] },
+              "max_chars": { "type": ["integer", "null"], "minimum": 1 },
+              "variables": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": ["name"],
+                  "properties": {
+                    "name": { "type": "string", "pattern": "^[a-z][a-z0-9_]*$" },
+                    "plural_forms": { "type": ["array", "null"], "items": { "type": "string" } },
+                    "held": { "type": "boolean", "description": "true for {claim} and {condition} variables the writer could not fill." }
+                  }
+                }
+              }
+            }
+          },
+          "doctrine": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["flags"],
+            "properties": {
+              "next_step": { "enum": ["retry", "edit", "alternative", "wait", "contact", "UNSUPPLIED", null] },
+              "condition": { "enum": ["from-trigger", "from-source", "UNSUPPLIED", null] },
+              "expectation_set": { "type": ["boolean", "null"] },
+              "action_named": { "type": ["boolean", "null"] },
+              "flags": {
+                "type": "array",
+                "items": { "enum": ["next-step-unsupplied", "condition-unsupplied", "spinner-where-skeleton", "missing-string", "empathy-simulated"] }
+              }
+            }
+          }
+        },
+        "allOf": [
+          { "if": { "properties": { "lineage": { "const": "revised-from" } } }, "then": { "properties": { "revised_from": { "type": "string", "minLength": 1 } }, "required": ["revised_from"] } },
+          { "if": { "properties": { "string": { "type": "null" } } }, "then": { "properties": { "doctrine": { "properties": { "flags": { "minItems": 1 } } } } } }
+        ]
+      }
+    },
+    "missing_states": {
+      "type": "array",
+      "description": "The copy-side cross-check of the data-view floor: a copy-bearing state the supplied list omits. Lives outside strings[] because such a state is, by definition, not one of the list's (element_id, state) pairs; the writer adds no state and drafts nothing for it. Empty when the list is complete.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["element_id", "view_state", "reason"],
+        "properties": {
+          "element_id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+          "view_state": { "enum": ["empty", "loading", "error"] },
+          "reason": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "claims_held": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["element_id", "state", "assertion", "status"],
+        "properties": {
+          "element_id": { "type": "string" },
+          "state": { "type": "string" },
+          "assertion": { "type": "string", "minLength": 1 },
+          "status": { "const": "NEEDS_CLIENT_CONFIRMATION" }
+        }
+      }
+    },
+    "glossary": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["term", "where", "candidate_definition", "conflicts"],
+        "properties": {
+          "term": { "type": "string", "minLength": 1 },
+          "where": { "type": "array", "items": { "type": "string" } },
+          "candidate_definition": { "type": "string" },
+          "conflicts": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    "judgment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ships", "tone_calls", "term_rulings"],
+      "properties": {
+        "ships": { "type": "null" },
+        "tone_calls": { "type": "null" },
+        "term_rulings": { "type": "null" }
+      },
+      "description": "Ships empty by construction. The human fills these in the markdown set at the named gate; a sidecar written by the skill carries null here."
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owner", "date"],
+      "properties": { "owner": { "type": "null" }, "date": { "type": "null" } }
+    }
+  }
+}

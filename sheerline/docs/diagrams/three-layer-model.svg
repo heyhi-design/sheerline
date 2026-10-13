@@ -1,0 +1,105 @@
+<svg width="100%" viewBox="0 0 680 636" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Sheerline: the three layers, instantiated for design</title>
+<desc>The same three-layer model as keel, applied to design. Top: Deployment, the design skills, the engagement intake, and the eval scaffold, yours and extended most. Middle: Configuration, the os/ layer, yours once filled. Directly below it and still above the ownership line: Foundations, os/foundations/per-practice-area, the one net-new slot keel does not have, holding per-area governed design context loaded conditionally by session type. A crimson dashed line marks the boundary between owned and rented. Bottom: Runtime, the agent loop and tools, rented from your agent tool and swappable.</desc>
+<!-- Sheerline · Figure 2 of 6: The three layers, instantiated for design. See docs/architecture.md. -->
+
+<style>
+.d{font-family:'Sora',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+.b{font-family:'Lora',Georgia,'Times New Roman',serif;}
+.m{font-family:'DM Mono','SFMono-Regular',ui-monospace,'Cascadia Mono','Courier New',monospace;}
+.paper{fill:#FAFAF5;}
+.ink{fill:#1A1A1A;}.soft{fill:#6B6560;}.faint{fill:#8B857C;}
+.oliv-t{fill:#575235;}.cfg-t{fill:#1F01B9;}.sheer-t{fill:#0B6E75;}.rt-t{fill:#57534C;}
+.oliv-box{fill:#EDEBDD;stroke:#CBC5A6;stroke-width:1;}.oliv-chip{fill:#FBFAF6;stroke:#CBC5A6;stroke-width:1;}
+.cfg-box{fill:#ECEAF6;stroke:#C3BAE6;stroke-width:1;}.cfg-chip{fill:#FBFAF6;stroke:#C3BAE6;stroke-width:1;}
+.sheer-box{fill:#E4F1F1;stroke:#A9D6D8;stroke-width:1.5;}.sheer-chip{fill:#FBFAF6;stroke:#A9D6D8;stroke-width:1;}
+.rt-box{fill:#ECEAE3;stroke:#CFC8BC;stroke-width:1;}.rt-chip{fill:#FBFAF6;stroke:#CFC8BC;stroke-width:1;}
+.seam-line{stroke:#FF3B30;stroke-width:1.5;stroke-dasharray:2 4;}
+.seam-pill{fill:#FAFAF5;stroke:#FF3B30;stroke-width:1.5;}
+@media (prefers-color-scheme:dark){
+.paper{fill:#1A1A1A;}.ink{fill:#F3F0E8;}.soft{fill:#A8A399;}.faint{fill:#7E7970;}
+.oliv-t{fill:#CBC49E;}.cfg-t{fill:#BBB0F0;}.sheer-t{fill:#5FD3DB;}.rt-t{fill:#B8B2A6;}
+.oliv-box{fill:#26241A;stroke:#464230;}.oliv-chip{fill:#2E2C27;stroke:#464230;}
+.cfg-box{fill:#201A38;stroke:#3F3670;}.cfg-chip{fill:#2E2C27;stroke:#3F3670;}
+.sheer-box{fill:#12302F;stroke:#2E5C5A;}.sheer-chip{fill:#2E2C27;stroke:#2E5C5A;}
+.rt-box{fill:#242320;stroke:#3E3B34;}.rt-chip{fill:#2E2C27;stroke:#3E3B34;}
+.seam-line{stroke:#FF5247;}.seam-pill{fill:#1A1A1A;stroke:#FF5247;}
+}
+</style>
+
+<rect class="paper" x="0" y="0" width="680" height="636"/>
+
+<text class="m faint" x="40" y="36" font-size="10.5" letter-spacing="1.6">SHEERLINE</text>
+<text class="d ink" x="40" y="62" font-size="21" font-weight="600">The three layers, instantiated for design</text>
+<text class="b soft" x="40" y="84" font-size="12.5">The same model as keel — and the one slot keel doesn't have.</text>
+
+<!-- DEPLOYMENT -->
+<rect class="oliv-box" x="40" y="96" width="600" height="100" rx="14"/>
+<text class="d oliv-t" x="62" y="124" font-size="17" font-weight="600">Deployment</text>
+<text class="m faint" x="196" y="124" font-size="10.5">skills/ · profile/</text>
+<rect class="oliv-chip" x="498" y="108" width="126" height="21" rx="10.5"/>
+<text class="m oliv-t" x="561" y="122" text-anchor="middle" font-size="9">yours · extend most</text>
+<text class="b soft" x="62" y="150" font-size="12">The design skills, the engagement intake, and the eval scaffold.</text>
+<g class="m oliv-t" font-size="9" text-anchor="middle">
+<rect class="oliv-chip" x="62" y="162" width="156" height="21" rx="6"/><text x="140" y="176">design skills + registry</text>
+<rect class="oliv-chip" x="226" y="162" width="126" height="21" rx="6"/><text x="289" y="176">engagement intake</text>
+<rect class="oliv-chip" x="360" y="162" width="96" height="21" rx="6"/><text x="408" y="176">eval scaffold</text>
+</g>
+
+<!-- CONFIGURATION -->
+<rect class="cfg-box" x="40" y="204" width="600" height="116" rx="14"/>
+<text class="d cfg-t" x="62" y="232" font-size="17" font-weight="600">Configuration</text>
+<text class="m faint" x="210" y="232" font-size="10.5">os/</text>
+<rect class="cfg-chip" x="498" y="216" width="126" height="21" rx="10.5"/>
+<text class="m cfg-t" x="561" y="230" text-anchor="middle" font-size="9">yours · the config</text>
+<text class="b soft" x="62" y="258" font-size="12">Identity, binding principles, session discipline, corrections convention.</text>
+<g class="m cfg-t" font-size="9" text-anchor="middle">
+<rect class="cfg-chip" x="62" y="268" width="104" height="21" rx="6"/><text x="114" y="282">agent context</text>
+<rect class="cfg-chip" x="174" y="268" width="140" height="21" rx="6"/><text x="244" y="282">operating principles</text>
+<rect class="cfg-chip" x="322" y="268" width="100" height="21" rx="6"/><text x="372" y="282">session rules</text>
+<rect class="cfg-chip" x="62" y="294" width="130" height="21" rx="6"/><text x="127" y="308">corrections conv.</text>
+<rect class="cfg-chip" x="200" y="294" width="96" height="21" rx="6"/><text x="248" y="308">decision log</text>
+<rect class="cfg-chip" x="304" y="294" width="96" height="21" rx="6"/><text x="352" y="308">project state</text>
+</g>
+
+<!-- FOUNDATIONS (net-new) -->
+<rect class="sheer-box" x="40" y="332" width="600" height="96" rx="14"/>
+<text class="d sheer-t" x="62" y="360" font-size="17" font-weight="600">Foundations</text>
+<text class="m faint" x="196" y="360" font-size="10.5">os/foundations/&lt;area&gt;/</text>
+<rect class="sheer-chip" x="446" y="344" width="178" height="21" rx="10.5"/>
+<text class="m sheer-t" x="535" y="358" text-anchor="middle" font-size="9">NET-NEW · what keel lacks</text>
+<text class="b soft" x="62" y="386" font-size="12">Per-area governed design context, loaded conditionally by session type.</text>
+<g class="m sheer-t" font-size="9" text-anchor="middle">
+<rect class="sheer-chip" x="62" y="398" width="132" height="21" rx="6"/><text x="128" y="412">visual-design (deep)</text>
+<rect class="sheer-chip" x="202" y="398" width="140" height="21" rx="6"/><text x="272" y="412">design-systems (deep)</text>
+<rect class="sheer-chip" x="350" y="398" width="118" height="21" rx="6"/><text x="409" y="412">prototyping (gov)</text>
+<rect class="sheer-chip" x="476" y="398" width="120" height="21" rx="6"/><text x="536" y="412">+ 5 tracked stubs</text>
+</g>
+
+<!-- OWNED/RENTED SEAM -->
+<line class="seam-line" x1="40" y1="446" x2="640" y2="446"/>
+<text class="m soft" x="40" y="440" font-size="9.5">OWNED · yours once you fill it in</text>
+<text class="m soft" x="40" y="462" font-size="9.5">RENTED · from your agent tool</text>
+<rect class="seam-pill" x="474" y="435" width="166" height="22" rx="11"/>
+<text class="m ink" x="557" y="450" text-anchor="middle" font-size="9.5">the line that matters</text>
+
+<!-- RUNTIME -->
+<rect class="rt-box" x="40" y="468" width="600" height="100" rx="14"/>
+<text class="d rt-t" x="62" y="496" font-size="17" font-weight="600">Runtime</text>
+<text class="m faint" x="180" y="496" font-size="10.5">not shipped here</text>
+<rect class="rt-chip" x="558" y="480" width="66" height="21" rx="10.5"/>
+<text class="m rt-t" x="591" y="494" text-anchor="middle" font-size="9">rented</text>
+<rect class="rt-chip" x="444" y="480" width="104" height="21" rx="10.5"/>
+<text class="m rt-t" x="496" y="494" text-anchor="middle" font-size="9">⇄  swappable</text>
+<text class="b soft" x="62" y="522" font-size="12">Claude Code, Cowork, or a compatible agent runtime. You bring your own.</text>
+<g class="m rt-t" font-size="9" text-anchor="middle">
+<rect class="rt-chip" x="62" y="534" width="92" height="21" rx="6"/><text x="108" y="548">agent loop</text>
+<rect class="rt-chip" x="162" y="534" width="56" height="21" rx="6"/><text x="190" y="548">tools</text>
+<rect class="rt-chip" x="226" y="534" width="96" height="21" rx="6"/><text x="274" y="548">permissions</text>
+<rect class="rt-chip" x="330" y="534" width="80" height="21" rx="6"/><text x="370" y="548">sandbox</text>
+<rect class="rt-chip" x="418" y="534" width="88" height="21" rx="6"/><text x="462" y="548">transcript</text>
+</g>
+
+<text class="b soft" x="40" y="600" font-size="12.5" font-style="italic">Runtime rented, configuration owned, deployment extended — plus the net-new foundations slot.</text>
+<text class="m faint" x="40" y="622" font-size="9.5">Provider-agnostic by design. Realized portability is real adaptation work, not a config flip.</text>
+</svg>

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Wheelhouse: the thirteen-area design-practice registry, read honestly. Prototype.">
+  <title>Wheelhouse · Areas</title>
+  <!-- S-3 Areas · lane DISPATCH-07 (LIBRARY) · HeyHi Confidential -->
+  <link rel="stylesheet" href="shared/studio.css">
+  <style>
+    /* page-scoped (S-3). candidate for shared: .lede .count-line .filters .facet
+       .filter-btn .area-group .area-list .area-detail .area-detail__head
+       .prov-row .build-gate .registered .chip-row .badge--stub .no-match */
+    .lede { font-size: 1.02rem; color: var(--soft); max-width: 66ch; }
+    .count-line { font-family: var(--font-mono); font-size: .78rem; color: var(--faint); margin: var(--sp-2) 0 0; }
+
+    .filters { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: flex-start;
+               padding: var(--sp-3) var(--sp-4); background: var(--surface-inset);
+               border: 1px solid var(--border); border-radius: var(--r-2); margin: var(--sp-4) 0 var(--sp-6); }
+    .facet { display: inline-flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; }
+    .facet__label { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .06em;
+                    text-transform: uppercase; color: var(--faint); margin-right: 2px; }
+    .filter-btn { text-transform: capitalize; }
+    .filter-btn[aria-pressed="true"] { background: var(--teal-fill); border-color: var(--teal-border); color: var(--ink); }
+
+    .area-group { margin-bottom: var(--sp-6); }
+    .area-list { display: grid; grid-template-columns: 1fr; gap: var(--sp-4); }
+    .area-detail { scroll-margin-top: calc(var(--topbar-h) + var(--sp-4)); }
+    .area-detail__head { display: flex; align-items: baseline; gap: var(--sp-3); }
+    .area-detail__num { color: var(--faint); }
+    .area-detail__name { margin: 0; font-size: 1.1rem; }
+    .area-detail__meta { display: flex; flex-wrap: wrap; gap: var(--sp-3); align-items: center; margin: var(--sp-3) 0; }
+    .area-detail__grounding { color: var(--soft); margin: 0 0 var(--sp-4); }
+
+    .prov-row { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; margin-bottom: var(--sp-4); }
+    .prov-row__label, .registered__label, .build-gate__label {
+      font-family: var(--font-mono); font-size: .68rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--faint); }
+    .build-gate { padding: var(--sp-3) var(--sp-4); border-radius: var(--r-2); margin-bottom: var(--sp-4); }
+    .build-gate p:last-child { margin-bottom: 0; }
+    .registered__label { display: block; margin-bottom: var(--sp-2); }
+    .chip-row { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+    /* candidate for shared: long repo paths / capability names must wrap inside chips
+       (shared .chip is white-space:nowrap, which overflows the viewport on mobile).
+       Filter buttons stay single-line. */
+    .chip:not(.filter-btn) { white-space: normal; overflow-wrap: anywhere; max-width: 100%; }
+    .badge--stub { background: var(--surface-inset); border: 1px dashed var(--border-strong); color: var(--soft); }
+    .no-match { color: var(--faint); font-family: var(--font-mono); font-size: .82rem; padding: var(--sp-5) 0; }
+  </style>
+</head>
+<body>
+<!-- ============================================================================
+     WHEELHOUSE - shared shell snippet   (FROZEN after DISPATCH-03 merges)
+     HeyHi Confidential
+     Pasted verbatim from shared/shell-snippet.html. See shared/README.md.
+     ============================================================================ -->
+<script src="data/snapshot.js"></script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="studio-shell">
+
+  <header class="topbar">
+    <a class="wordmark" href="index.html">WHEELHOUSE</a>
+    <a class="topbar__search" href="index.html#router">
+      <span aria-hidden="true">⌕</span>&nbsp;Route a task…
+    </a>
+    <span class="topbar__spacer"></span>
+    <a class="session-indicator" href="session.html">
+      <span class="dot" aria-hidden="true"></span>
+      Own practice
+      <span class="sr-only">(simulated exemplar session)</span>
+    </a>
+  </header>
+
+  <nav class="rail" aria-label="Primary">
+    <p class="rail__label">Wheelhouse</p>
+    <a class="rail__link" href="index.html">           <span class="rail__num">1</span> Home</a>
+    <a class="rail__link" href="areas.html">           <span class="rail__num">2</span> Areas</a>
+    <a class="rail__link" href="skills.html">          <span class="rail__num">3</span> Skills</a>
+    <a class="rail__link" href="session.html">         <span class="rail__num">4</span> Session</a>
+    <a class="rail__link" href="quality-validate.html"><span class="rail__num">5</span> Quality</a>
+    <a class="rail__link" href="artifacts.html">       <span class="rail__num">6</span> Artifacts</a>
+    <a class="rail__link" href="dispatch.html">        <span class="rail__num">7</span> Dispatch</a>
+    <a class="rail__link" href="seminar.html">         <span class="rail__num">8</span> Seminar</a>
+    <a class="rail__link" href="intake.html">          <span class="rail__num">9</span> Intake</a>
+  </nav>
+
+  <main id="main-content" class="studio-main">
+    <div class="wrap">
+    <!-- ===================== PAGE CONTENT START ===================== -->
+
+      <section class="section" aria-labelledby="areas-h">
+        <p class="eyebrow">Practice registry</p>
+        <h1 id="areas-h">The practice, area by area</h1>
+        <p class="lede">Every area is a real page here, the gaps included. Coverage reads on a four-step ramp; a gap is a tracked commitment with a build gate, never a hidden or disabled state. The stub foundations carry a build gate in the human's color: closing them is a person's call, not the harness's.</p>
+        <p class="count-line" id="count-line"></p>
+
+        <div class="keybar" role="img" aria-label="Coverage key: deep is solid teal, covered is teal outline, partial is half fill, gap is a neutral dashed track."
+             style="display:flex;flex-wrap:wrap;gap:var(--sp-4);align-items:center;padding:var(--sp-3) var(--sp-4);background:var(--surface-inset);border:1px solid var(--border);border-radius:var(--r-2);margin-top:var(--sp-4)">
+          <span class="mono faint" style="letter-spacing:.06em">KEY</span>
+          <span class="cov cov--deep" aria-hidden="true"><span class="cov__bar"></span><span class="cov__label">deep</span></span>
+          <span class="cov cov--covered" aria-hidden="true"><span class="cov__bar"></span><span class="cov__label">covered</span></span>
+          <span class="cov cov--partial" aria-hidden="true"><span class="cov__bar"></span><span class="cov__label">partial</span></span>
+          <span class="cov cov--gap" aria-hidden="true"><span class="cov__bar"></span><span class="cov__label">gap</span></span>
+        </div>
+      </section>
+
+      <!-- Filters (facet values derived from the data at render time) -->
+      <div class="filters" role="group" aria-label="Filter areas">
+        <div class="facet" id="facet-nature"><span class="facet__label">Nature</span></div>
+        <div class="facet" id="facet-coverage"><span class="facet__label">Coverage</span></div>
+        <div class="facet" id="facet-phase"><span class="facet__label">Phase</span></div>
+      </div>
+
+      <p class="no-match" id="no-match" hidden>No areas match these filters. <button class="btn btn--ghost" type="button" id="reset-filters">Reset</button></p>
+
+      <!-- Three nature groups. Each area is a literal #area-<key> shell (the locked
+           13-area taxonomy); JS joins the data global to each shell by key and fills
+           the content. Ids are literal so cross-page anchors and the anchor check
+           resolve against the file, not only the rendered DOM. -->
+
+      <section class="area-group" data-nature="craft">
+        <p class="group-label" data-group-label>Craft: the design surface</p>
+        <div class="area-list">
+          <article class="card area-detail" id="area-user-research" data-key="user-research"></article>
+          <article class="card area-detail" id="area-information-architecture" data-key="information-architecture"></article>
+          <article class="card area-detail" id="area-content-design" data-key="content-design"></article>
+          <article class="card area-detail" id="area-interaction-design" data-key="interaction-design"></article>
+          <article class="card area-detail" id="area-wireframing-prototyping" data-key="wireframing-prototyping"></article>
+          <article class="card area-detail" id="area-visual-design" data-key="visual-design"></article>
+          <article class="card area-detail" id="area-design-systems" data-key="design-systems"></article>
+          <article class="card area-detail" id="area-accessibility" data-key="accessibility"></article>
+        </div>
+      </section>
+
+      <section class="area-group" data-nature="operating">
+        <p class="group-label" data-group-label>Operating: how the practice runs</p>
+        <div class="area-list">
+          <article class="card area-detail" id="area-design-strategy" data-key="design-strategy"></article>
+          <article class="card area-detail" id="area-business-acumen" data-key="business-acumen"></article>
+          <article class="card area-detail" id="area-collaboration-facilitation" data-key="collaboration-facilitation"></article>
+          <article class="card area-detail" id="area-designops-researchops" data-key="designops-researchops"></article>
+        </div>
+      </section>
+
+      <section class="area-group" data-nature="conditional">
+        <p class="group-label" data-group-label>Conditional: opens only if the offering does</p>
+        <div class="area-list">
+          <article class="card area-detail" id="area-service-design" data-key="service-design"></article>
+        </div>
+      </section>
+
+    <!-- ===================== PAGE CONTENT END ======================= -->
+    </div>
+  </main>
+
+  <footer class="studio-footer">
+    <span class="sim">Prototype</span> · simulated interactions over a real data snapshot
+    (<span class="mono" data-commit>…</span>) · HeyHi Confidential
+  </footer>
+
+</div>
+
+<script>
+/* fill footer commit + self-activate the rail item from the page filename */
+(function () {
+  var data = window.SHEERLINE_DATA || {};
+  var meta = data.meta || {};
+  var el = document.querySelector('[data-commit]');
+  if (el) { el.textContent = meta.source_commit || 'unknown'; }
+
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') { path = 'index.html'; }
+  var alias = {
+    'quality-grade.html': 'quality-validate.html',
+    'quality-learn.html': 'quality-validate.html',
+    'exit-gate.html': 'session.html'
+  };
+  var target = alias[path] || path;
+  var links = document.querySelectorAll('.rail__link');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].getAttribute('href') === target) {
+      links[i].setAttribute('aria-current', 'page');
+    } else {
+      links[i].removeAttribute('aria-current');
+    }
+  }
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------------------
+   S-3 Areas: render every area section from the data global (values never
+   hardcoded). The 13 #area-<key> shells are static (the locked taxonomy); this
+   joins each data area to its shell by key and fills it. Reference caps map to
+   an area by the "Area N:" prefix in their name (cap ids are not all area-<key>:
+   area 5's ref is area-prototyping, area 12's is area-designops).
+   --------------------------------------------------------------------------- */
+(function () {
+  "use strict";
+  var D = window.SHEERLINE_DATA || {};
+  var areas = D.areas || [];
+  var caps = (D.capabilities && D.capabilities.entries) || [];
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function el(id){ return document.getElementById(id); }
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  /* reference cap for an area id (parse "Area N:" from the cap name) */
+  var refByArea = {};
+  caps.forEach(function(c){
+    if (c.type === 'reference') {
+      var m = /^Area\s+(\d+)/.exec(c.name || '');
+      if (m) { refByArea[Number(m[1])] = c; }
+    }
+  });
+  function skillsForArea(id){
+    return caps.filter(function(c){ return c.type === 'skill' && Number(c.area) === Number(id); });
+  }
+
+  function cov(coverage){
+    return '<span class="cov cov--'+esc(coverage)+'">'
+         +   '<span class="cov__bar" aria-hidden="true"></span>'
+         +   '<span class="cov__label">'+esc(coverage)+'</span>'
+         + '</span>';
+  }
+  function capChip(c, tag){
+    return '<a class="chip mono" href="skills.html#cap-'+esc(c.id)+'">'
+         +   esc(c.name)
+         +   (tag ? ' <span class="faint">'+esc(tag)+'</span>' : '')
+         + '</a>';
+  }
+
+  function renderArea(a){
+    var stub = a.foundation === 'stub';
+    var ref = refByArea[a.id];
+    var skills = skillsForArea(a.id);
+
+    var out = '';
+    out += '<div class="area-detail__head">'
+         +   '<span class="area-detail__num mono">'+esc(pad(a.id))+'</span>'
+         +   '<h3 class="area-detail__name">'+esc(a.name)+'</h3>'
+         + '</div>';
+
+    out += '<div class="area-detail__meta">'
+         +   cov(a.coverage)
+         +   '<span class="badge badge--phase">phase '+esc(a.phase)+'</span>'
+         +   '<span class="badge badge--nature">'+esc(a.nature)+'</span>'
+         +   (stub ? '<span class="badge badge--stub">stub foundation</span>' : '')
+         + '</div>';
+
+    out += '<p class="area-detail__grounding">'+esc(a.grounding)+'</p>';
+
+    /* foundation provenance (L7: reference the source, do not copy it). Not every
+       area has a dedicated foundation file (deferred / governance-invariant areas
+       are governed at the keel layer); render an honest note rather than a blank chip. */
+    var foundProv = a.foundation_path
+      ? '<span class="chip chip--provenance mono">'+esc(a.foundation_path)+'</span>'
+      : '<span class="faint mono" style="font-size:.8rem">no dedicated foundation file</span>';
+    out += '<div class="prov-row">'
+         +   '<span class="prov-row__label">Foundation</span>'
+         +   foundProv
+         +   '<span class="mono faint">'+esc(a.foundation)+'</span>'
+         + '</div>';
+
+    /* build gate: stub foundations carry it in the human's color (L8: a
+       person's commitment, not a status). Coverage stays on the teal ramp. */
+    if (stub){
+      out += '<div class="human-slot">'
+           +   '<div class="human-slot__tag"><span aria-hidden="true">&#9670;</span> Tracked gap · build gate</div>'
+           +   '<p class="faint" style="margin:0 0 var(--sp-2)">The dedicated foundation here is a tracked stub. Closing it is a person\'s call, on the harness\'s own schedule.</p>'
+           +   '<p style="margin:0">'+esc(a.build_gate)+'</p>'
+           + '</div>';
+    } else {
+      out += '<div class="build-gate card--inset">'
+           +   '<p class="build-gate__label">Build gate</p>'
+           +   '<p style="margin:0">'+esc(a.build_gate)+'</p>'
+           + '</div>';
+    }
+
+    /* registered capabilities: the area's reference always, plus any skills
+       tagged to the area. Only areas 9/10/11 carry tagged skills today; the
+       rest show the reference (honest, per the S-3 spec). */
+    out += '<div class="registered">'
+         +   '<span class="registered__label">Registered to this area</span>'
+         +   '<div class="chip-row">';
+    var chips = '';
+    if (ref) { chips += capChip(ref, 'reference'); }
+    skills.forEach(function(c){ chips += capChip(c, 'skill'); });
+    if (!chips) { chips = '<span class="faint mono" style="font-size:.8rem">No governed capability registered yet.</span>'; }
+    out += chips + '</div></div>';
+
+    return out;
+  }
+
+  /* fill each shell by key; append a shell for any data area that lacks one */
+  var host = el('main-content');
+  areas.forEach(function(a){
+    var node = el('area-' + a.key);
+    if (!node) {
+      /* new area not in the static taxonomy: surface it rather than drop it */
+      node = document.createElement('article');
+      node.className = 'card area-detail';
+      node.id = 'area-' + a.key;
+      node.setAttribute('data-key', a.key);
+      var grp = document.querySelector('.area-group[data-nature="' + a.nature + '"] .area-list')
+             || document.querySelector('.area-list');
+      if (grp) { grp.appendChild(node); }
+    }
+    node.innerHTML = renderArea(a);
+    node.setAttribute('data-nature', a.nature);
+    node.setAttribute('data-coverage', a.coverage);
+    node.setAttribute('data-phase', a.phase);
+  });
+
+  /* count line + group-label counts (all derived) */
+  (function(){
+    var byNature = {};
+    areas.forEach(function(a){ byNature[a.nature] = (byNature[a.nature]||0) + 1; });
+    var gaps = areas.filter(function(a){ return a.coverage === 'gap'; }).length;
+    var stubs = areas.filter(function(a){ return a.foundation === 'stub'; }).length;
+    var c = el('count-line');
+    if (c) {
+      c.textContent = areas.length + ' areas across three natures · '
+                    + gaps + ' tracked as gap · ' + stubs + ' on a stub foundation';
+    }
+    document.querySelectorAll('.area-group').forEach(function(g){
+      var nat = g.getAttribute('data-nature');
+      var lbl = g.querySelector('[data-group-label]');
+      if (lbl && byNature[nat]) { lbl.textContent = lbl.textContent + ' · ' + byNature[nat]; }
+    });
+  })();
+
+  /* ---- filters (single-select per facet, values derived from the data) ---- */
+  var state = { nature: null, coverage: null, phase: null };
+  var COV_ORDER = ['deep','covered','partial','gap'];
+  var NAT_ORDER = ['craft','operating','conditional'];
+
+  function distinct(field, order){
+    var set = {};
+    areas.forEach(function(a){ set[a[field]] = true; });
+    var vals = Object.keys(set);
+    if (order){ vals.sort(function(x,y){ return order.indexOf(x) - order.indexOf(y); }); }
+    else { vals.sort(); }
+    return vals;
+  }
+
+  function buildFacet(hostId, field, values){
+    var h = el(hostId); if (!h) return;
+    values.forEach(function(v){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip filter-btn';
+      b.textContent = v;
+      b.setAttribute('aria-pressed', 'false');
+      b.addEventListener('click', function(){
+        state[field] = (state[field] === v) ? null : v;
+        syncFacet(h, field);
+        applyFilters();
+      });
+      h.appendChild(b);
+    });
+  }
+  function syncFacet(h, field){
+    h.querySelectorAll('.filter-btn').forEach(function(b){
+      b.setAttribute('aria-pressed', String(b.textContent === state[field]));
+    });
+  }
+
+  function applyFilters(){
+    var anyVisible = false;
+    document.querySelectorAll('.area-detail').forEach(function(node){
+      var ok = (!state.nature   || node.getAttribute('data-nature')   === state.nature)
+            && (!state.coverage || node.getAttribute('data-coverage') === state.coverage)
+            && (!state.phase    || node.getAttribute('data-phase')    === state.phase);
+      node.hidden = !ok;
+      if (ok) { anyVisible = true; }
+    });
+    document.querySelectorAll('.area-group').forEach(function(g){
+      var visible = g.querySelectorAll('.area-detail:not([hidden])').length;
+      g.hidden = (visible === 0);
+    });
+    var nm = el('no-match'); if (nm) { nm.hidden = anyVisible; }
+  }
+
+  buildFacet('facet-nature',   'nature',   distinct('nature', NAT_ORDER));
+  buildFacet('facet-coverage', 'coverage', distinct('coverage', COV_ORDER));
+  buildFacet('facet-phase',    'phase',    distinct('phase'));
+
+  var reset = el('reset-filters');
+  if (reset) {
+    reset.addEventListener('click', function(){
+      state = { nature: null, coverage: null, phase: null };
+      ['facet-nature','facet-coverage','facet-phase'].forEach(function(id){
+        var h = el(id); var f = id.replace('facet-','');
+        if (h) { syncFacet(h, f); }
+      });
+      applyFilters();
+    });
+  }
+
+  /* hash re-scroll: the shells exist at parse time, but re-scroll after fill so
+     the target lands below the sticky top bar */
+  if (location.hash) {
+    var t = document.getElementById(location.hash.slice(1));
+    if (t) { t.scrollIntoView(); }
+  }
+})();
+</script>
+</body>
+</html>

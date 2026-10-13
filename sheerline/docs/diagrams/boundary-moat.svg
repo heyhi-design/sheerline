@@ -1,0 +1,91 @@
+<svg width="100%" viewBox="0 0 680 524" role="img" xmlns="http://www.w3.org/2000/svg">
+<title>Sheerline: the boundary and the retained moat</title>
+<desc>Invariant 4: the Design System MCP, the evaluator, and the corrections registry are reached through the MCP as a boundary tool. A crimson wall divides two sets. Left, the scaffold that ships (on C-1 hold): the os/ configuration layer, the registry engine, the corrections schema and generic seeds, the MCP contract, and the DS-MCP scaffold. Right, the retained moat that stays in a separate unpublished tree: the boundary and evaluation layer, the graded evaluator, the conformance parser, the populated corrections corpus and its promotion judgment, the calibrated thresholds, and the DS-MCP populated instance. Below, two rules: the two-axis conflict order (author on the brand axis, grade on the severity axis) and what stays human (grades inform never gate; factual corrections enforce, behavioral ones only remind).</desc>
+<!-- Sheerline · Figure 5 of 6: The boundary and the retained moat. See docs/architecture.md. -->
+
+<style>
+.d{font-family:'Sora',system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;}
+.b{font-family:'Lora',Georgia,'Times New Roman',serif;}
+.m{font-family:'DM Mono','SFMono-Regular',ui-monospace,'Cascadia Mono','Courier New',monospace;}
+.paper{fill:#FAFAF5;}
+.ink{fill:#1A1A1A;}.soft{fill:#6B6560;}.faint{fill:#8B857C;}
+.cfg-t{fill:#1F01B9;}.crim-t{fill:#B3261E;}.sheer-t{fill:#0B6E75;}
+.cfg-box{fill:#ECEAF6;stroke:#C3BAE6;stroke-width:1;}.cfg-chip{fill:#FBFAF6;stroke:#C3BAE6;stroke-width:1;}
+.crim-box{fill:#FDECEA;stroke:#FF3B30;stroke-width:1.5;}.crim-chip{fill:#FBFAF6;stroke:#F0B7B1;stroke-width:1;}
+.stage{fill:#F2F0EA;stroke:#D8D2C6;stroke-width:1;}.chip{fill:#FBFAF6;stroke:#D8D2C6;stroke-width:1;}
+.wall{stroke:#FF3B30;stroke-width:1.5;stroke-dasharray:3 3;}
+.wall-pill{fill:#FAFAF5;stroke:#FF3B30;stroke-width:1.5;}
+@media (prefers-color-scheme:dark){
+.paper{fill:#1A1A1A;}.ink{fill:#F3F0E8;}.soft{fill:#A8A399;}.faint{fill:#7E7970;}
+.cfg-t{fill:#BBB0F0;}.crim-t{fill:#FF6A60;}.sheer-t{fill:#5FD3DB;}
+.cfg-box{fill:#201A38;stroke:#3F3670;}.cfg-chip{fill:#2E2C27;stroke:#3F3670;}
+.crim-box{fill:#2A1614;stroke:#FF5247;}.crim-chip{fill:#2E2C27;stroke:#7A3B36;}
+.stage{fill:#242320;stroke:#3E3B34;}.chip{fill:#2E2C27;stroke:#3E3B34;}
+.wall{stroke:#FF5247;}.wall-pill{fill:#1A1A1A;stroke:#FF5247;}
+}
+</style>
+
+<rect class="paper" x="0" y="0" width="680" height="524"/>
+
+<text class="m faint" x="40" y="36" font-size="10.5" letter-spacing="1.6">SHEERLINE</text>
+<text class="d ink" x="40" y="62" font-size="21" font-weight="600">The boundary and the retained moat</text>
+<text class="b soft" x="40" y="84" font-size="12.5">Invariant 4: reached through the MCP as a boundary tool. The scaffold ships; the instance stays.</text>
+
+<!-- LEFT: scaffold ships -->
+<rect class="cfg-box" x="40" y="98" width="284" height="214" rx="12"/>
+<text class="d cfg-t" x="58" y="124" font-size="13" font-weight="600">SCAFFOLD</text>
+<rect class="cfg-chip" x="196" y="110" width="112" height="19" rx="9.5"/>
+<text class="m cfg-t" x="252" y="123" font-size="8" text-anchor="middle">ships · C-1 hold</text>
+<g class="m cfg-t" font-size="9">
+<rect class="cfg-chip" x="58" y="140" width="250" height="21" rx="6"/><text x="70" y="154">os/ configuration layer</text>
+<rect class="cfg-chip" x="58" y="166" width="250" height="21" rx="6"/><text x="70" y="180">registry engine</text>
+<rect class="cfg-chip" x="58" y="192" width="250" height="21" rx="6"/><text x="70" y="206">corrections schema + generic seeds</text>
+<rect class="cfg-chip" x="58" y="218" width="250" height="21" rx="6"/><text x="70" y="232">MCP contract</text>
+<rect class="cfg-chip" x="58" y="244" width="250" height="21" rx="6"/><text x="70" y="258">DS-MCP scaffold</text>
+</g>
+<text class="b soft" x="58" y="288" font-size="10.5" font-style="italic">Potentially publishable.</text>
+<text class="b soft" x="58" y="304" font-size="10.5" font-style="italic">The scaffold half only.</text>
+
+<!-- the wall -->
+<line class="wall" x1="340" y1="98" x2="340" y2="312"/>
+<rect class="wall-pill" x="331" y="174" width="18" height="64" rx="9"/>
+<text class="m crim-t" x="340" y="206" font-size="8.5" text-anchor="middle" transform="rotate(-90 340 206)">boundary</text>
+
+<!-- RIGHT: retained moat -->
+<rect class="crim-box" x="356" y="98" width="284" height="214" rx="12"/>
+<text class="d crim-t" x="374" y="124" font-size="13" font-weight="600">RETAINED MOAT</text>
+<rect class="crim-chip" x="520" y="110" width="104" height="19" rx="9.5"/>
+<text class="m crim-t" x="572" y="123" font-size="8" text-anchor="middle">stays · unpublished</text>
+<g class="m crim-t" font-size="8.5">
+<rect class="crim-chip" x="374" y="138" width="250" height="19" rx="6"/><text x="386" y="151">boundary + evaluation layer</text>
+<rect class="crim-chip" x="374" y="161" width="250" height="19" rx="6"/><text x="386" y="174">the graded evaluator</text>
+<rect class="crim-chip" x="374" y="184" width="250" height="19" rx="6"/><text x="386" y="197">the conformance parser</text>
+<rect class="crim-chip" x="374" y="207" width="250" height="19" rx="6"/><text x="386" y="220">populated corrections corpus</text>
+<rect class="crim-chip" x="374" y="230" width="250" height="19" rx="6"/><text x="386" y="243">its promotion judgment</text>
+<rect class="crim-chip" x="374" y="253" width="250" height="19" rx="6"/><text x="386" y="266">calibrated thresholds</text>
+<rect class="crim-chip" x="374" y="276" width="250" height="19" rx="6"/><text x="386" y="289">DS-MCP populated instance</text>
+</g>
+
+<!-- bottom panel A: two-axis -->
+<rect class="stage" x="40" y="328" width="290" height="152" rx="12"/>
+<text class="d sheer-t" x="58" y="352" font-size="12.5" font-weight="600">The two-axis conflict order</text>
+<text class="b soft" x="58" y="370" font-size="10.5">Author on one axis, grade on the other.</text>
+<text class="m faint" x="58" y="392" font-size="9">VALUE-SOURCE · what supplies the value</text>
+<text class="b ink" x="58" y="408" font-size="10.5">a11y gate › brand (specified) › fundamentals</text>
+<text class="m faint" x="58" y="430" font-size="9">SEVERITY · which failure to grade first</text>
+<text class="b ink" x="58" y="446" font-size="10.5">a11y › interaction › visual › brand › code</text>
+<text class="b soft" x="58" y="468" font-size="10" font-style="italic">Brand ranks high to author, low to grade.</text>
+
+<!-- bottom panel B: stays human -->
+<rect class="stage" x="356" y="328" width="284" height="152" rx="12"/>
+<text class="d crim-t" x="374" y="352" font-size="12.5" font-weight="600">What the loop does not decide</text>
+<g class="b ink" font-size="10.5">
+<text x="374" y="376">Grades inform, never gate.</text>
+<text x="374" y="400"><tspan class="m sheer-t" font-size="9.5">factual</tspan>  → injected and enforced.</text>
+<text x="374" y="424"><tspan class="m crim-t" font-size="9.5">behavioral</tspan>  → surfaced, never promotable.</text>
+<text x="374" y="448">Direction, critique, taste → human.</text>
+</g>
+<text class="b soft" x="374" y="470" font-size="10" font-style="italic">A grade routes a decision. It never makes one.</text>
+
+<text class="m faint" x="40" y="504" font-size="9.5">Taught as architecture. The calibrated content behind the wall is never exposed.</text>
+</svg>

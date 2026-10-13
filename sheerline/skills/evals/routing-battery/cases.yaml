@@ -1,0 +1,419 @@
+# Sheerline routing battery — regression guard over the 2026-08-22 skills-audit § 3.2 query table.
+#
+# Run after ANY edit to either registry (data OR engine):
+#     python3 sheerline/skills/evals/routing-battery/run_battery.py
+#
+# "expect" is a capability id. registry: main = ai-services/agentic-infrastructure,
+# subset = sheerline/skills/registry (the design harness). A regression flips a PASS to FAIL.
+# A `status: known_gap` row is a documented residual, reported separately, never a hard fail.
+#
+# Provenance: authored wave R-6 of plans/plan-sheerline-skills-upgrade-2026-08-22.md, after
+# waves R-1…R-5 fixed the routing failures the audit measured. Baseline captured 2026-08-23.
+classification: confidential
+
+meta:
+  updated: "2026-09-05"
+  registries:
+    main: "ai-services/agentic-infrastructure/{skill-registry.py,skill-registry.yaml}"
+    subset: "sheerline/skills/registry/{skill-registry.py,skill-registry.yaml}"
+
+# ── Routing: every built skill wins its own registered triggers ──────────────
+routing:
+  # baselines the audit already had passing — guard against regression
+  - query: "audit this experiment readout"
+    registry: subset
+    expect: experiment-readout-linter
+  - query: "record this design decision as an ADR"
+    registry: subset
+    expect: design-rationale-decision-record
+  - query: "map this journey in figjam"
+    registry: subset
+    expect: heyhi-figjam-mapper
+
+  # R-1: design-measurability-mapper wins its triggers
+  - query: "is this design goal measurable"
+    registry: subset
+    expect: design-measurability-mapper
+  - query: "is this design goal measurable"
+    registry: main
+    expect: design-measurability-mapper
+  - query: "how would we measure this"
+    registry: main
+    expect: design-measurability-mapper
+  - query: "measurability check"
+    registry: subset
+    expect: design-measurability-mapper
+  - query: "measurability check"
+    registry: main
+    expect: design-measurability-mapper
+    status: known_gap
+    note: >
+      Main registry only: heyhi-session-validator wins the bare two-word probe on tag volume
+      for the generic word "check" (the documented uncapped semantic-tag loop, skill-registry.py
+      ~line 730). The design harness (subset) routes dmm #1, and every natural phrasing routes
+      dmm #1 on both registries. Forcing the probe would mean nerfing an incumbent the audit
+      never flagged, or an engine cap Q-1 held out of scope. Tracked, not forced.
+
+  # R-2: heyhi-figjam-mapper wins the build-a-blueprint query on both registries
+  - query: "build a service blueprint"
+    registry: subset
+    expect: heyhi-figjam-mapper
+  - query: "build a service blueprint"
+    registry: main
+    expect: heyhi-figjam-mapper
+
+  # R-2b: heyhi-service-blueprint (area 13, deployed 2026-09-07 D-3 open) wins the DISCIPLINE
+  # query on both registries — the renderer-vs-discipline seam. The mapper keeps "build/render";
+  # the blueprint skill wins "confirm the backstage". The embedded-phrase query is the former
+  # routing soft-spot (the area-service-design reference triggers were trimmed so the skill wins).
+  - query: "confirm the backstage"
+    registry: subset
+    expect: heyhi-service-blueprint
+  - query: "confirm the backstage"
+    registry: main
+    expect: heyhi-service-blueprint
+  - query: "confirm the backstage of this service blueprint"
+    registry: subset
+    expect: heyhi-service-blueprint
+  - query: "confirm the backstage of this service blueprint"
+    registry: main
+    expect: heyhi-service-blueprint
+
+  # R-2c: taxonomy-labeling-auditor (area 2 IA, deployed 2026-09-07 D-3 open) wins the taxonomy
+  # audit on both registries; the heyhi-aeo seam holds (optimize-for-citation stays with heyhi-aeo).
+  - query: "audit the taxonomy and label consistency"
+    registry: subset
+    expect: taxonomy-labeling-auditor
+  - query: "audit the taxonomy and label consistency"
+    registry: main
+    expect: taxonomy-labeling-auditor
+
+  # R-3: strategy-integrity-warden wins the opportunity-tree audit with a wide gap
+  - query: "audit this opportunity tree"
+    registry: subset
+    expect: strategy-integrity-warden
+  - query: "audit this opportunity tree"
+    registry: main
+    expect: strategy-integrity-warden
+
+  # R-4: the area-11 facilitation surface wins the critique query (don't-automate boundary)
+  - query: "run a design critique session"
+    registry: subset
+    expect: area-collaboration-facilitation
+
+  # incumbents must not regress
+  - query: "audit this design system"
+    registry: subset
+    expect: heyhi-design-intelligence-audit
+  - query: "audit this design system"
+    registry: main
+    expect: heyhi-design-intelligence-audit
+  - query: "write a proposal"
+    registry: main
+    expect: heyhi-proposal
+  # Sheerline Wave G-2/G-4 skills — added 2026-08-28 (the adversarial pass found the
+  # battery certified nothing about these four). Queries are clean-win triggers. Note the
+  # "write a voice and tone system for a client" phrasing is a documented known-gap on
+  # BOTH registries (crowded voice/client keyword space; a trigger fix over-matched
+  # "build a page for the client" and was reverted) — do NOT add it here as an expected win.
+  - query: "run a WCAG audit"
+    registry: subset
+    expect: heyhi-a11y-audit
+  - query: "annotate this design for accessibility"
+    registry: subset
+    expect: heyhi-a11y-annotation
+  - query: "build a voice and tone system"
+    registry: subset
+    expect: voice-system-author
+  - query: "author a motion token system"
+    registry: subset
+    expect: motion-system-author
+  # Sheerline 2026-09-04 promotion pass — the three promoted skills win their clean triggers on
+  # both registries, and the incumbents whose reciprocal not_for clauses were added do not regress.
+  - query: "generate the design system into figma"
+    registry: subset
+    expect: heyhi-figma-ds-generator
+  - query: "generate the design system into figma"
+    registry: main
+    expect: heyhi-figma-ds-generator
+  - query: "repair this drift"
+    registry: subset
+    expect: heyhi-drift-repair
+  - query: "repair this drift"
+    registry: main
+    expect: heyhi-drift-repair
+  - query: "write a research plan"
+    registry: subset
+    expect: research-plan-author
+  - query: "write a research plan"
+    registry: main
+    expect: research-plan-author
+  - query: "plan a usability study with 5 participants"
+    registry: subset
+    expect: research-plan-author
+  - query: "html to figma"
+    registry: subset
+    expect: heyhi-design-bridge
+  - query: "extract figma tokens"
+    registry: subset
+    expect: ui-studio-onboard
+  - query: "prep me for a discovery call"
+    registry: main
+    expect: heyhi-discovery-call
+
+  # ── Bucket B promotion pass (2026-09-05): area 4 interaction-inventory ─────────
+  - query: "inventory the interaction states for this screen"
+    registry: main
+    expect: interaction-inventory
+  - query: "inventory the interaction states for this screen"
+    registry: subset
+    expect: interaction-inventory
+  - query: "interaction inventory"
+    registry: main
+    expect: interaction-inventory
+  - query: "interaction inventory"
+    registry: subset
+    expect: interaction-inventory
+  - query: "map the states and transitions for these components"
+    registry: main
+    expect: interaction-inventory
+  - query: "map the states and transitions for these components"
+    registry: subset
+    expect: interaction-inventory
+  - query: "state machine for this component"
+    registry: main
+    expect: interaction-inventory
+  - query: "state machine for this component"
+    registry: subset
+    expect: interaction-inventory
+  - query: "enumerate the states before we build"
+    registry: main
+    expect: interaction-inventory
+  - query: "enumerate the states before we build"
+    registry: subset
+    expect: interaction-inventory
+  - query: "interaction inventory for this screen"
+    registry: main
+    expect: interaction-inventory
+  - query: "what interactions are missing"
+    registry: main
+    expect: heyhi-prototype-audit
+  - query: "what interactions are missing"
+    registry: subset
+    expect: heyhi-prototype-audit
+  - query: "micro-interactions"
+    registry: main
+    expect: heyhi-ui-ux
+  - query: "annotate this design for accessibility"
+    registry: main
+    expect: heyhi-a11y-annotation
+  - query: "annotate this design for accessibility"
+    registry: subset
+    expect: heyhi-a11y-annotation
+  - query: "author a motion system"
+    registry: main
+    expect: motion-system-author
+  - query: "author a motion system"
+    registry: subset
+    expect: motion-system-author
+  - query: "audit this copy for voice flattening"
+    registry: main
+    expect: voice-system-author
+  - query: "audit this copy for voice flattening"
+    registry: subset
+    expect: voice-system-author
+
+  # ── Bucket B promotion pass (2026-09-05): area 10 teardown-runner + business-case-drafter ─
+  - query: "tear down this competitor's onboarding flow"
+    registry: main
+    expect: competitive-teardown-runner
+  - query: "tear down this competitor's onboarding flow"
+    registry: subset
+    expect: competitive-teardown-runner
+  - query: "build a competitive pattern matrix"
+    registry: main
+    expect: competitive-teardown-runner
+  - query: "build a competitive pattern matrix"
+    registry: subset
+    expect: competitive-teardown-runner
+  - query: "compare their onboarding against three competitors"
+    registry: subset
+    expect: competitive-teardown-runner
+  - query: "draft a business case for the design system investment"
+    registry: main
+    expect: design-business-case-drafter
+  - query: "draft a business case for the design system investment"
+    registry: subset
+    expect: design-business-case-drafter
+  - query: "help me make the case for a design hire to my VP"
+    registry: main
+    expect: design-business-case-drafter
+  - query: "help me make the case for a design hire to my VP"
+    registry: subset
+    expect: design-business-case-drafter
+  - query: "research this contact"
+    registry: main
+    expect: heyhi-prospect-research
+  - query: "audit their design system against competitors"
+    registry: main
+    expect: heyhi-design-intelligence-audit
+  - query: "audit their design system against competitors"
+    registry: subset
+    expect: heyhi-design-intelligence-audit
+  - query: "what metric should the business case use"
+    registry: main
+    expect: design-measurability-mapper
+    status: known_gap
+    note: "PRE-EXISTING main-registry mis-route (heyhi-follow-up wins; the mapper carries no 'metric' trigger). Fix owned by a mapper trigger, not this pass; the drafter's Metric clause keeps the drafter out."
+
+  # ── Bucket B promotion pass (2026-09-05): area 11 crit-prep-and-capture ─────────
+  - query: "prep the design crit for Thursday"
+    registry: main
+    expect: crit-prep-and-capture
+  - query: "prep the design crit for Thursday"
+    registry: subset
+    expect: crit-prep-and-capture
+  - query: "capture the decisions from today's crit"
+    registry: main
+    expect: crit-prep-and-capture
+  - query: "capture the decisions from today's crit"
+    registry: subset
+    expect: crit-prep-and-capture
+  - query: "critique this design"
+    registry: subset
+    expect: area-collaboration-facilitation
+    status: known_gap
+    note: "PRE-EXISTING: heyhi-figma-ds-generator out-scored the area reference at baseline (2.0 vs 1.9); a Critique-led clause on the generator was added in this pass — if it still fails, the clerk must not win either way."
+  - query: "critique this logo"
+    registry: main
+    expect: heyhi-logo-system
+  - query: "critique this logo"
+    registry: subset
+    expect: heyhi-logo-system
+    status: known_gap
+    note: "PRE-EXISTING subset ambiguity (logo 2.1 vs area 1.8, under the 0.4 confidence gap); recorded, not caused by this pass."
+  - query: "prep the Human-in-the-Loop workshop"
+    registry: main
+    expect: heyhi-workshop
+  - query: "build the slides for the crit readout"
+    registry: main
+    expect: heyhi-deck
+    status: known_gap
+    note: "PRE-EXISTING deck/ui-studio collision (ui-studio wins); the row's job here is that crit-prep-and-capture does not enter the top 3."
+  - query: "audit this prototype for interaction completeness"
+    registry: main
+    expect: heyhi-prototype-audit
+  - query: "design review prep"
+    registry: subset
+    expect: heyhi-figma-ds-generator
+    status: known_gap
+    note: "Accepted non-target: crit-prep-and-capture must stay absent; the winner is whatever holds the pre-existing ambiguous top spot."
+
+  # ── Second Bucket B pass (2026-09-05): area 3 microcopy-states-writer ─────────
+  - query: "write the microcopy for every state on this screen"
+    registry: main
+    expect: microcopy-states-writer
+  - query: "write the microcopy for every state on this screen"
+    registry: subset
+    expect: microcopy-states-writer
+  - query: "microcopy for each state"
+    registry: main
+    expect: microcopy-states-writer
+  - query: "microcopy for each state"
+    registry: subset
+    expect: microcopy-states-writer
+  - query: "draft the strings for the loading and error states"
+    registry: main
+    expect: microcopy-states-writer
+  - query: "draft the strings for the loading and error states"
+    registry: subset
+    expect: microcopy-states-writer
+  - query: "derive this client's voice"
+    registry: main
+    expect: voice-system-author
+  - query: "derive this client's voice"
+    registry: subset
+    expect: voice-system-author
+  - query: "audit this copy for voice flattening"
+    registry: main
+    expect: voice-system-author
+  - query: "audit this copy for voice flattening"
+    registry: subset
+    expect: voice-system-author
+  - query: "write the about page"
+    registry: main
+    expect: heyhi-voice
+  - query: "what interactions are missing"
+    registry: main
+    expect: heyhi-prototype-audit
+  - query: "what interactions are missing"
+    registry: subset
+    expect: heyhi-prototype-audit
+  - query: "inventory the interaction states for this screen"
+    registry: main
+    expect: interaction-inventory
+  - query: "inventory the interaction states for this screen"
+    registry: subset
+    expect: interaction-inventory
+  - query: "write the error message for the save button"
+    registry: main
+    expect: microcopy-states-writer
+    note: "resolved at the writer's registration 2026-09-05 (the writer wins it outright); before that it was a misroute to heyhi-email-outreach on the word 'message' (area-3 spec D11). A plain expectation so a regression back to email-outreach FAILS rather than reporting as a gap."
+  - query: "loading state"
+    registry: main
+    expect: heyhi-ui-ux
+    status: known_gap
+    note: "the writer TAKES this query once registered (simulation 2026-09-05: main, writer 2.9 vs heyhi-ui-ux 1.0 at rank 6; subset, writer 2.1 over interaction-inventory 1.3) — its own 'loading state' trigger is heyhi-ui-ux's. A writer-side clause cannot lead with 'loading' without self-penalizing two of its triggers. ACCEPTED at promotion 2026-09-05: a bare 'loading state' ask reads closer to copy than to a build; heyhi-ui-ux keeps its first trigger ('build a page', the bullseye gate). Kept as known_gap so the battery reports the theft without failing."
+  - query: "loading state"
+    registry: subset
+    expect: heyhi-ui-ux
+    status: known_gap
+    note: "the writer TAKES this query once registered (simulation 2026-09-05: main, writer 2.9 vs heyhi-ui-ux 1.0 at rank 6; subset, writer 2.1 over interaction-inventory 1.3) — its own 'loading state' trigger is heyhi-ui-ux's. A writer-side clause cannot lead with 'loading' without self-penalizing two of its triggers. ACCEPTED at promotion 2026-09-05: a bare 'loading state' ask reads closer to copy than to a build; heyhi-ui-ux keeps its first trigger ('build a page', the bullseye gate). Kept as known_gap so the battery reports the theft without failing."
+
+  # ── Area 5 (Wireframing & Prototyping) — the lo-fi/flow deepen promoted 2026-09-07 (Bucket B convergence third run) ──
+  - query: "wireframe the flow before we go hifi"
+    registry: main
+    expect: flow-and-lofi-author
+  - query: "wireframe the flow before we go hifi"
+    registry: subset
+    expect: flow-and-lofi-author
+  - query: "are we converging too early on this design"
+    registry: main
+    expect: divergence-guard
+  - query: "are we converging too early on this design"
+    registry: subset
+    expect: divergence-guard
+  - query: "is this prototype too high fidelity for what we're testing"
+    registry: main
+    expect: divergence-guard
+  - query: "build the checkout page in Mode A"
+    registry: main
+    expect: ui-studio
+    note: "Redirect holds: the ui-studio priority-override table keeps a Mode-A build on ui-studio even with the two lo-fi rows above it (they key on wireframe / lofi / converging, not on 'build ... in Mode A'). Guards against the new area-5 skills over-capturing hi-fi builds."
+
+# ── Abstention: honest "insufficient" on out-of-scope queries ────────────────
+abstention:
+  - query: "critical path for the launch"
+    registry: subset
+    expect: insufficient
+  - query: "fix my sales funnel"
+    registry: subset
+    expect: insufficient
+  - query: "debug this python traceback"
+    registry: subset
+    expect: insufficient
+
+# ── Coverage warnings (R-5 coverage_guard.py): empty-room routes must be flagged ─
+coverage_warnings:
+  - query: "plan a usability study with 5 participants"
+    registry: subset
+    expect_warning: false
+    note: "Area 1 (User Research) is no longer an empty room: the foundation filled 2026-09-01 and research-plan-author deployed 2026-09-04 (coverage covered). Was expect_warning: true while the area was a stub; flipped 2026-09-04 (the case had been failing since the fill)."
+  - query: "service design foundation"
+    registry: subset
+    expect_warning: false
+    note: "Area 13 (Service Design) is no longer an empty room: the foundation filled and heyhi-service-blueprint deployed 2026-09-07 at the early D-3 open (coverage covered). Was expect_warning: true while the area was a D-3-gated stub; flipped 2026-09-07 (the same pattern the area-1 'plan a usability study' case followed at its fill)."
+  - query: "build a service blueprint"
+    registry: subset
+    expect_warning: false
+    note: "Now routes to heyhi-figjam-mapper (a real skill), not the area-13 stub. Must NOT warn."

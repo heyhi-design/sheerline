@@ -1,0 +1,201 @@
+---
+description: UI Studio brand rules for Example Brand. Enforces design system compliance in Cursor. Generated from active-brand.json v1.0.0.
+globs: ["**/*.html", "**/*.css", "**/*.js", "**/*.ts", "**/*.tsx", "**/*.jsx", "**/*.scss"]
+alwaysApply: false
+---
+
+# UI Studio — Example Brand
+
+**Config version:** 1.0.0 | **Cluster:** A | **Completeness:** 100/100 | **Fidelity:** 100/100 | **Generated:** 2026-10-13
+
+---
+
+## Design System Identity
+
+**Brand:** Example Brand
+**Temperature:** cool
+**Personality:** Precise and dependable. The interface communicates competence without ceremony.
+**Spacing density:** balanced
+
+---
+
+## Token Reference — CSS Custom Properties
+
+Paste this `:root` block into every new project. All values come from active-brand.json. Do not hardcode.
+
+```css
+:root {
+  /* Typography families */
+  /* --font-display: Display typeface for headings and large callouts. */
+  --font-display: "Inter", system-ui, sans-serif;
+  /* --font-body: Body typeface for all paragraph text, form fields, and descriptions. */
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-utility: "JetBrains Mono", Courier New, monospace;
+
+  /* Type scale */
+  --type-h1: clamp(2rem, 5vw, 3.5rem);
+  --type-h2: clamp(1.5rem, 3vw, 2.25rem);
+  --type-h3: clamp(1.25rem, 2.5vw, 1.75rem);
+  --type-body: clamp(1rem, 1.5vw, 1.125rem);
+  --type-small: 0.875rem;
+  --type-label: 0.75rem;
+
+  /* Colors */
+  /* --color-backgrounds-page: Primary page background. White baseline. */
+  --color-backgrounds-page: #FFFFFF;
+  /* --color-backgrounds-surface: Card and panel backgrounds. Slightly off-white. */
+  --color-backgrounds-surface: #F8FAFC;
+  /* --color-backgrounds-elevated: Elevated surfaces such as dropdowns, popovers, and modals. */
+  --color-backgrounds-elevated: #F1F5F9;
+  --color-backgrounds-dark: #0F172A;
+  /* --color-text-primary: Primary text color for headings and body copy. */
+  --color-text-primary: #0F172A;
+  /* --color-text-secondary: Secondary text for supporting copy and metadata. */
+  --color-text-secondary: #475569;
+  /* --color-text-muted: Muted text for placeholder copy, disabled states, and decorative labels. WCAG: fails 4.5:1 on backgrounds.page. Do not use for meaningful body text. Use text.secondary instead. */
+  --color-text-muted: #94A3B8;
+  --color-text-inverse: #F8FAFC;
+  --color-structural-border: #E2E8F0;
+  --color-structural-divider: #CBD5E1;
+  /* --color-accent-primary: Primary interactive accent. Used for CTAs, links, and focus indicators. */
+  --color-accent-primary: #2563EB;
+  --color-accent-primary-hover: #1D4ED8;
+  --color-accent-secondary: #7C3AED;
+  --color-semantic-success: #16A34A;
+  --color-semantic-warning: #CA8A04;
+  --color-semantic-error: #DC2626;
+  --color-semantic-info: #0284C7;
+
+  /* Spacing */
+  --spacing-base: 8px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 40px;
+  --spacing-2xl: 64px;
+  --spacing-3xl: 96px;
+  --content-max-width: 1200px;
+  --page-padding: clamp(1.5rem, 5vw, 4rem);
+  --grid-gap: clamp(1rem, 2vw, 1.5rem);
+  --spacing-touch-target: 44px; /* WCAG 2.5.5 minimum touch target size */
+
+  /* Motion */
+  --easing-default: cubic-bezier(0.4, 0, 0.2, 1);
+  --easing-in: cubic-bezier(0.4, 0, 1, 1);
+  --easing-out: cubic-bezier(0, 0, 0.2, 1);
+  --easing-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-micro: 100ms;
+  --duration-fast: 200ms;
+  --duration-standard: 300ms;
+  --duration-slow: 500ms;
+  --stagger: 50ms;
+
+  /* Focus */
+  --focus-outline: 2px solid #2563EB;
+  --focus-offset: 2px;
+}
+```
+
+---
+
+## WCAG AA — Non-Negotiable
+
+Every build must pass before delivery.
+
+- Body text: **4.5:1** contrast ratio minimum
+- Large text (18px+ regular, 14px+ bold): **3:1** minimum
+- UI components and decorative borders: **3:1** minimum
+- **Visible focus states** on all interactive elements (`outline: var(--focus-outline); outline-offset: var(--focus-offset)`)
+- `prefers-reduced-motion` respected in all animations
+- Semantic HTML throughout — no `<div>` soup
+
+### Known contrast constraints
+- text.muted (#94A3B8) on backgrounds.page (#FFFFFF) = 2.8:1 — fails AA. Use text.secondary for meaningful text.
+- accent.primary (#2563EB) on backgrounds.page (#FFFFFF) = 4.7:1 — passes AA for body text.
+
+### Prohibited colors
+- #FF0000 (Pure red reserved for destructive actions only)
+
+---
+
+## Layout Declaration
+
+**Every build begins with a Layout Declaration before any CSS is written.**
+
+Format for each section:
+```
+Section: [name]
+Pattern: [named pattern]
+Derivation: exact | modified: [description] | derived-from: [pattern]
+Rationale: [why this pattern + brand cluster]
+Spacing tier: [generous/standard/tight]
+```
+
+### Preferred patterns for this brand (Cluster A)
+- Hero-First
+- Alternating Narrative
+- Bento Marketing
+- Data Dashboard
+
+### Spacing derivation
+Spacing density is **balanced**. All section padding comes from the tiers below.
+
+### Section Padding Tiers (from spacing_density: balanced)
+- **generous:** clamp(6rem, 10vw, 9rem)
+- **standard:** clamp(4rem, 7vw, 6rem)
+- **tight:** clamp(2rem, 4vw, 3rem)
+
+---
+
+## Voice Rules
+
+**Tone:** Direct and competent. No filler. Assume the user knows their domain. Write for the person who has read the docs.
+
+**CTAs:** Action-verb + specific outcome. 'Connect your repository' not 'Get started'. 'View usage' not 'Learn more'.
+
+**Prohibited words:** "seamless", "powerful", "robust", "intuitive", "easy", "simple"
+
+**Prohibited patterns:** Never-ending feature lists
+Hyperbolic adjective stacking
+Passive voice for user actions
+
+---
+
+## Component Library
+
+**Source:** https://github.com/example/design-system
+**Framework:** React + TypeScript
+**Inventory:** 1 components indexed
+
+Before building any component:
+1. Check the component inventory — if it exists, use it or extend it
+2. If building new, match existing naming and prop conventions
+3. Never rebuild what already exists
+
+---
+
+## Motion Rules
+
+Functional and unobtrusive. Motion communicates state change, not personality. Prefer fast transitions (200-300ms). No decorative animations.
+
+All animations require `@media (prefers-reduced-motion: reduce)` variants.
+
+---
+
+## Build Checklist
+
+Before delivering any output:
+
+- [ ] Layout Declaration completed for every section before CSS was written
+- [ ] Post-build: CSS grid/spacing matches declared patterns
+- [ ] All colors come from `--color-*` custom properties (no raw hex in CSS)
+- [ ] WCAG AA verified for all text/background combinations
+- [ ] Focus states visible on all interactive elements
+- [ ] `prefers-reduced-motion` handled in all animations
+- [ ] Semantic HTML: `<nav>`, `<section>`, `<footer>`, sequential heading hierarchy
+- [ ] Font loading: CDN link + `display=swap` + system fallbacks
+
+---
+
+*Generated by `cursor-export.py` from `active-brand.json` v1.0.0. Do not edit directly — regenerate with `python3 scripts/cursor-export.py`.*

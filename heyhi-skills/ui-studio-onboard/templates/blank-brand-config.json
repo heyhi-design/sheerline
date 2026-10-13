@@ -1,0 +1,281 @@
+{
+  "_comment": "Blank starter config for manual onboarding. Fill in each section and run validate.py to check completeness. For guided onboarding, run ui-studio-onboard instead. Auth tokens NEVER go in this file — store env var names in repository.* blocks only.",
+  "brand": {
+    "name": "",
+    "description": "",
+    "temperature": "warm | cool | neutral",
+    "personality": "",
+    "cluster": "A | B | C | D | E",
+    "style_entry": "",
+    "style_notes": ""
+  },
+  "tokens": {
+    "typography": {
+      "families": {
+        "display": {
+          "family": "",
+          "fallback": "serif",
+          "weights": [],
+          "use": "Headlines and display text"
+        },
+        "body": {
+          "family": "",
+          "fallback": "system-ui, sans-serif",
+          "weights": [],
+          "use": "Body text and descriptions"
+        },
+        "utility": {
+          "family": "",
+          "fallback": "monospace",
+          "weights": [],
+          "use": "Labels, metadata, technical annotations"
+        }
+      },
+      "scale": {
+        "h1": "",
+        "h2": "",
+        "h3": "",
+        "body": "",
+        "small": "",
+        "label": ""
+      },
+      "loading": {
+        "provider": "google | adobe | self-hosted",
+        "url": ""
+      }
+    },
+    "color": {
+      "backgrounds": {
+        "page": "",
+        "surface": "",
+        "dark": ""
+      },
+      "text": {
+        "primary": "",
+        "secondary": "",
+        "muted": "",
+        "inverse": ""
+      },
+      "structural": {
+        "border": "",
+        "divider": ""
+      },
+      "accent": {
+        "primary": "",
+        "secondary": ""
+      },
+      "semantic": {
+        "success": "",
+        "warning": "",
+        "error": "",
+        "info": ""
+      },
+      "prohibited": [],
+      "contrast_notes": []
+    },
+    "spacing": {
+      "base": "8px",
+      "rhythm": "",
+      "tiers": {
+        "xs": "",
+        "sm": "",
+        "md": "",
+        "lg": "",
+        "xl": ""
+      },
+      "content_max_width": "",
+      "page_padding": "",
+      "grid_gap": "",
+      "touch-target": {
+        "min": "44px",
+        "comfortable": "48px"
+      }
+    },
+    "motion": {
+      "easing": {
+        "default": "",
+        "reveal": ""
+      },
+      "durations": {
+        "micro": "",
+        "standard": "",
+        "slow": ""
+      },
+      "stagger": "",
+      "principles": ""
+    },
+    "elevation": {},
+    "radius": {},
+    "focus": {
+      "outline": {
+        "width": "2px",
+        "color": "",
+        "offset": "2px",
+        "style": "solid"
+      }
+    }
+  },
+  "layout": {
+    "grid": {
+      "columns": 12,
+      "gutter": "",
+      "margin": "",
+      "breakpoints": {
+        "sm": "375px",
+        "md": "768px",
+        "lg": "1440px"
+      }
+    },
+    "spacing_density": "spacious | balanced | dense",
+    "section_padding_tiers": {
+      "generous": "",
+      "standard": "",
+      "tight": ""
+    },
+    "preferred_patterns": [],
+    "style_cluster": "A | B | C | D | E",
+    "style_entry": ""
+  },
+  "voice": {
+    "tone": "",
+    "prohibited_words": [],
+    "prohibited_patterns": [],
+    "cta_style": "",
+    "formatting": {},
+    "terminology": {}
+  },
+  "ux_writing": {
+    "empty_states": {
+      "pattern": "",
+      "source": "",
+      "source_url": "",
+      "last_verified": ""
+    },
+    "error_messages": {
+      "pattern": "",
+      "tone": "",
+      "structure": "",
+      "source": "",
+      "source_url": "",
+      "last_verified": ""
+    },
+    "tooltips": {
+      "max_length": "",
+      "tone": "",
+      "avoid": [],
+      "source": "",
+      "source_url": "",
+      "last_verified": ""
+    },
+    "buttons_ctas": {
+      "verb_preference": "",
+      "style": "",
+      "examples": [],
+      "source": "",
+      "source_url": "",
+      "last_verified": ""
+    },
+    "form_labels": {
+      "case": "",
+      "helper_text_style": "",
+      "placeholder_policy": "",
+      "source": "",
+      "source_url": "",
+      "last_verified": ""
+    },
+    "notifications": {
+      "success": "",
+      "error": "",
+      "warning": "",
+      "info": "",
+      "source": "",
+      "source_url": "",
+      "last_verified": ""
+    },
+    "loading_states": {
+      "pattern": "",
+      "examples": [],
+      "source": "",
+      "source_url": "",
+      "last_verified": ""
+    },
+    "onboarding": {
+      "tone": "",
+      "structure": "",
+      "source": "",
+      "source_url": "",
+      "last_verified": ""
+    },
+    "custom": {}
+  },
+  "components": {
+    "source": "",
+    "framework": "",
+    "styling": "",
+    "inventory": [],
+    "conventions": {
+      "naming": "",
+      "props": "",
+      "variants": "",
+      "composition": "",
+      "styling": "",
+      "testing": ""
+    },
+    "drift": {
+      "token_drift": [],
+      "pattern_drift": [],
+      "api_drift": []
+    }
+  },
+  "repository": {
+    "figma": {
+      "primary_file_key": "",
+      "token_library": {
+        "file_key": "",
+        "library_key": "",
+        "label": "",
+        "variable_collection_names": []
+      },
+      "component_libraries": []
+    },
+    "supernova_workspace": "",
+    "storybook": {
+      "url": "",
+      "auth_header_env_var": "STORYBOOK_AUTH_TOKEN"
+    },
+    "github": {
+      "owner": "",
+      "repo": "",
+      "branch": "main",
+      "token_files_path": "",
+      "components_path": "",
+      "pat_env_var": "GITHUB_TOKEN"
+    },
+    "npm": {
+      "package_name": "",
+      "version": "latest",
+      "registry_url": "",
+      "scope": "",
+      "auth_token_env_var": "NPM_TOKEN"
+    },
+    "git": {
+      "token_repo_url": "",
+      "component_repo_url": "",
+      "branch": "main",
+      "pat_env_var": "GIT_TOKEN"
+    }
+  },
+  "meta": {
+    "generated_at": "",
+    "generated_by": "manual",
+    "last_refreshed": "",
+    "version": "0.1.0",
+    "completeness_score": 0,
+    "provisional_fields": [],
+    "accessibility": {
+      "contrast_target": "AA",
+      "contrast_floor": "AA",
+      "standard": "WCAG 2.2"
+    }
+  }
+}

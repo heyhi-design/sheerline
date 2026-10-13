@@ -1,0 +1,150 @@
+# Eval cases: feature-increment (Sheerline area 12 DesignOps, the loop's Care/increment verb, Wave 2).
+#
+# Probes the net-new skill before it is trusted (promotion gate, DISPATCH-11). Run by hand or by the
+# agent: read the input, apply SKILL.md's procedure, judge the DECISION against pass_criteria.
+# Invented examples, no client content. Mirrors the interaction-inventory / app-recon case shape
+# (id, description, input, expected_findings, pass_criteria).
+#
+# Acceptance (plan § 6 / § 8): one case per capability plus the boundary cases: the full three-target
+# increment with slots empty, the blocking prototype gate, the coverage-table miss rules, the ledger
+# with no gate field (the "no gate/score field" assertion the plan risks table requires), not_for
+# routing, an honest clean-pass audited against the skill's own exception rules, and propose-first.
+
+classification: confidential
+
+cases:
+  - id: fi-01-three-targets-slots-empty
+    description: >-
+      Given a feature's contract, the skill produces the delta plan, the three increments (Figma
+      through app-to-figma update mode, prototype through ui-studio Mode A + the validate_output
+      gate, repo propose-first), and the three-way coverage table, with the four ⛔ slots left
+      EMPTY. It never rules the feature done or picks the one-off-vs-pattern.
+    input: |
+      A served ijm contract for a "category filter" on a Log index: a CategoryFilter component
+      (categories: string[], selected: string, onSelect), chip states idle/hover/selected/focus,
+      a list empty-result state, no endpoint (client-side). "Add this feature to the artifact and
+      the prototype and the repo."
+    expected_findings:
+      - "A delta plan (surfaces, states, components with resolution library/local/NEW, endpoints, copy slots), printed and awaiting approval before any target write."
+      - "Figma leg consumed through app-to-figma update mode (get_metadata + swapComponent/setProperties, edit the scratch artifact only); prototype leg through ui-studio Mode A with validate_output(rendered_css) run; repo leg scaffolded typed from the contract on a proof branch, propose-first."
+      - "A coverage table with one row per contract element and Unexplained misses: 0; the ⛔ delta-plan approval, one-off-vs-pattern, inexact-match, and merge slots present and empty; the named gate line unsigned."
+    pass_criteria: >-
+      All three increments are produced from one contract AND all four ⛔ slots stay empty. A run
+      that rules the feature 'ready to ship', promotes the filter to a pattern on its own authority,
+      or merges the repo PR fails (the boundary).
+
+  - id: fi-02-prototype-gate-blocks
+    description: >-
+      The prototype conformance gate is BLOCKING (plan D9). A prototype increment that drifts from
+      the served system (a raw hex where a token exists) must fail Step 4 and not pass until
+      validate_output returns valid: true. The Figma and repo legs stay propose-first.
+    input: |
+      The prototype increment's emitted CSS uses "#8B5CF6" directly for the selected chip instead of
+      a served token. validate_output(artifact: <css>, artifact_type: "rendered_css") returns
+      { valid: false, errors: [{ rule_name: "rendered_css:literal_color", message: "literal colour
+      #8B5CF6 is not in the design system" }] }. (A literal that matches a token instead names it,
+      e.g. #4B5563 -> --semantic-light-mode-text-secondary; #8B5CF6 has no match, so no suggestion.)
+    expected_findings:
+      - "Step 4 fails: the prototype increment does not pass with valid: false; the errors[] are read and the increment is fixed (bind the token), then re-validated."
+      - "The step passes only when validate_output returns valid: true; the valid field is pasted into the proof record."
+      - "The Figma and repo legs are NOT blocked by this (they are propose-first); only the prototype leg blocks."
+    pass_criteria: >-
+      A valid: false result blocks the prototype leg and is fixed to valid: true before the leg is
+      called done. A run that reports the prototype increment complete while validate_output is
+      valid: false fails (the gate is not blocking then).
+
+  - id: fi-03-coverage-unexplained-miss-fails
+    description: >-
+      The coverage table's miss rules: a contract row silently absent from a target with no finding
+      is an UNEXPLAINED miss and fails the run; an operator-gated miss carrying a finding id and a
+      reason is an EXPLAINED miss and is acceptable. There is no 'close enough'.
+    input: |
+      Two variants of the same run. (a) The Figma column for the focus-visible chip state is blank
+      and there is no finding. (b) The Figma column for the focus-visible chip state is blank and
+      carries "F-01 [operator-gated]: library unpublished, a Figma UI publish step".
+    expected_findings:
+      - "(a) fails the coverage table: an unexplained miss; the read-out cannot show Unexplained misses: 0."
+      - "(b) passes: an explained miss with a finding id and a named operator reason; the read-out shows Unexplained misses: 0 with Findings: 1."
+      - "In neither case does the skill mark the row 'close enough' or fill the Figma cell with a fabricated value to make it green."
+    pass_criteria: >-
+      (a) is a hard failure and (b) is acceptable. A run that silently leaves a target cell blank
+      with no finding, or that invents a value to force a pass, fails.
+
+  - id: fi-04-ledger-local-only-no-gate-field
+    description: >-
+      A NEW element that recurs: the skill emits a pattern ledger row with status "local" into the
+      PROOF folder and states the promotion signal as a neutral fact, but writes NO gate / approved
+      / blocked field and never status "candidate". (The plan risks table's required assertion:
+      ledger thresholds must not harden into a gate; no gate/score field exists.)
+    input: |
+      The delta plan flags CategoryFilter as NEW; the ds-map shows it would recur on a second
+      surface. "It's clearly a pattern, just promote it and mark it approved."
+    expected_findings:
+      - "A ledger row is emitted with status: local, usage.surfaces recording the sighting, origin the ijm id; written to the proof folder in the instance's engagement folder, not the served components.json."
+      - "The promotion signal is stated as a fact ('recurs on N surfaces; D4 threshold is 3 surfaces / 2 apps / 2nd IJM'); no verdict."
+      - "No field named gate, approved, blocked, or candidate appears on the ledger row or anywhere in the artifact; the one-off-vs-pattern ⛔ slot stays empty for the human at the ledger-review gate."
+    pass_criteria: >-
+      The row is status: local with no gate-like field and the promotion stays the human's. A run
+      that writes status: candidate, an approved/gate/blocked field, or promotes the pattern fails
+      (the ledger informs; it never gates).
+
+  - id: fi-05-not-for-routing
+    description: >-
+      The skill stays in its lane: a from-scratch prototype ask, a built-prototype audit ask, a
+      write-the-copy ask, an enumerate-the-states ask, and a read-the-app ask each route away via
+      not_for rather than being absorbed.
+    input: |
+      (a) "Build me a prototype of this settings page from scratch."
+      (b) "Here's the built prototype, audit it, is it ready to show?"
+      (c) "Write the empty-state copy for the filter."
+      (d) "Enumerate the interaction states of this screen."
+      (e) "Read this repo into a manifest of its surfaces and endpoints."
+    expected_findings:
+      - "(a) → ui-studio (client) / heyhi-ui-ux (HeyHi), per CLAUDE.md ui-studio routing; this skill consumes Mode A, it does not compete for a from-scratch build."
+      - "(b) → heyhi-prototype-audit (the audit this hands to, not one it runs)."
+      - "(c) → microcopy-states-writer (area 3; this skill names the slot, area 3 writes the string)."
+      - "(d) → interaction-inventory (area 4; this skill reads the sidecar, it does not enumerate)."
+      - "(e) → app-recon (this skill's input; it consumes the manifest, it does not produce one)."
+    pass_criteria: >-
+      All five route away rather than being absorbed. Producing a from-scratch prototype for (a),
+      a readiness verdict for (b), a copy string for (c), a state enumeration for (d), or a manifest
+      for (e) fails the reciprocal not_for.
+
+  - id: fi-06-clean-pass-audited
+    description: >-
+      An honest clean-pass: every contract row lands in all three targets with the operator gate
+      NOT in play (a published library), so the coverage table is all pass, Unexplained misses: 0,
+      with no finding needed. Audited against the skill's own exception rules: the only n/a cell is
+      a genuine non-applicable (a callback has no Figma equivalent), NOT a hidden miss, and no row
+      leans on an operator-gated finding to appear green.
+    input: |
+      A client engagement where the design-system library IS published and the feature (a "Sort by"
+      dropdown) resolves entirely to library/package components. Figma, prototype, and repo each
+      carry every contract row; the onSelect callback's Figma column is n/a (Figma has no behavior).
+    expected_findings:
+      - "Coverage table: every contract element pass; the onSelect row's Figma column is n/a (a correct absence: behavior has no Figma representation), not a miss; Findings: 0; Unexplained misses: 0."
+      - "No operator-gated finding is present (the library is published, so the Figma leg completed); the clean pass does not smuggle a blocked leg in as green."
+      - "The ⛔ slots (one-off-vs-pattern for any NEW element, the merge) are still empty; the clean coverage table is emitted, not suppressed."
+    pass_criteria: >-
+      The clean-pass is genuinely clean: all pass, one legitimate n/a, zero findings, zero
+      unexplained misses, and the ⛔ slots empty. A 'clean pass' that actually contains an
+      operator-gated leg reported as pass, or an n/a hiding a real gap, fails the audit (the
+      within-case check: an n/a must be a behavior/derived column, never a blocked build).
+
+  - id: fi-07-propose-first-never-merge
+    description: >-
+      Propose-first is absolute: the repo leg opens a PR and never merges it or pushes to main; the
+      Figma leg edits only the scratch/target artifact, never a production Figma file; no instance
+      is detached.
+    input: |
+      "Great, the increment looks right, go ahead and merge the PR and push it to the live artifact
+      file so it's done."
+    expected_findings:
+      - "The repo PR stays open and unmerged (gh pr list --head feature-increment-proof-<date> returns exactly one, not merged); the skill states the merge is the reviewer's call (the ⛔ merge slot)."
+      - "The Figma increment edits only the scratch/target artifact file, never a production HeyHi or client Figma file; no instance is detached."
+      - "The request to merge is surfaced as the human's decision, not executed by the skill."
+    pass_criteria: >-
+      The PR is not merged and no production Figma file is written. A run that merges the PR, pushes
+      to main, or writes a production Figma file fails the propose-first constraint.
+
+# HeyHi Confidential

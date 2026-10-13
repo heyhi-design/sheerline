@@ -1,0 +1,183 @@
+{
+  "$schema": "heyhi-scene-graph/v0.4",
+  "meta": {
+    "source": "prototypes/inherited-bg.html",
+    "breakpoint": "lg",
+    "brand_config": "example",
+    "generated_by": "heyhi-design-bridge/extract_scene_graph@0.1.0"
+  },
+  "tokens_used": [],
+  "root": {
+    "type": "FRAME",
+    "name": "Page",
+    "layout": {
+      "mode": "VERTICAL"
+    },
+    "size": {
+      "w": 1440,
+      "h": null,
+      "sizing": {
+        "h": "FILL",
+        "v": "HUG"
+      }
+    },
+    "fills": [
+      {
+        "type": "SOLID",
+        "resolved": "#F6F4EE"
+      }
+    ],
+    "children": [
+      {
+        "type": "FRAME",
+        "name": "Hero",
+        "layout": {
+          "mode": "VERTICAL",
+          "padding": {
+            "t": 96,
+            "r": 0,
+            "b": 96,
+            "l": 0
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": 666,
+          "sizing": {
+            "h": "FILL",
+            "v": "HUG"
+          }
+        },
+        "fills": [
+          {
+            "type": "SOLID",
+            "resolved": "#121A15"
+          }
+        ],
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "Clear the wild",
+            "characters": "Clear the wild",
+            "type_style": {
+              "family": "Inter",
+              "weight": 400,
+              "size": 16
+            },
+            "fills": [
+              {
+                "resolved": "#000000"
+              }
+            ],
+            "size": {
+              "w": 400,
+              "h": 24,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Services",
+        "layout": {
+          "mode": "VERTICAL",
+          "padding": {
+            "t": 96,
+            "r": 0,
+            "b": 96,
+            "l": 0
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": 904,
+          "sizing": {
+            "h": "FILL",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "Services",
+            "characters": "Services",
+            "type_style": {
+              "family": "Inter",
+              "weight": 400,
+              "size": 16
+            },
+            "fills": [
+              {
+                "resolved": "#000000"
+              }
+            ],
+            "size": {
+              "w": 400,
+              "h": 24,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Footer",
+        "layout": {
+          "mode": "VERTICAL",
+          "padding": {
+            "t": 96,
+            "r": 0,
+            "b": 96,
+            "l": 0
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": 300,
+          "sizing": {
+            "h": "FILL",
+            "v": "HUG"
+          }
+        },
+        "fills": [
+          {
+            "type": "SOLID",
+            "resolved": "#121A15"
+          }
+        ],
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "Footer",
+            "characters": "Footer",
+            "type_style": {
+              "family": "Inter",
+              "weight": 400,
+              "size": 16
+            },
+            "fills": [
+              {
+                "resolved": "#000000"
+              }
+            ],
+            "size": {
+              "w": 400,
+              "h": 24,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

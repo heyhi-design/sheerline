@@ -1,0 +1,155 @@
+# Eval cases: microcopy-states-writer (Sheerline area 3, Content Design / UX Writing, P3, Tier 1 buildable-now).
+#
+# Probes the net-new skill before it is trusted (promotion gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge the DECISION against pass_criteria. Invented
+# examples, no client content. Mirrors the interaction-inventory / research-plan-author case
+# shape (id, description, input, expected_findings, pass_criteria).
+#
+# Acceptance (spec § 3.6 / § 8): slot coverage, the dead-end error (three rows), the
+# "just pick the best string" boundary, provenance, not_for routing, no-list-no-enumeration,
+# the claim hold, and the sidecar write-back.
+
+classification: confidential
+
+cases:
+  - id: msw-01-slot-coverage
+    description: >-
+      A five-element inventory sidecar with mixed copy_slot rows (three non-null, two null) must
+      produce a Microcopy Set with exactly the non-null rows drafted; the null rows are omitted,
+      not invented; every string carries slot + constraints + doctrine + lineage; the ⛔ slots
+      are blank.
+    input: |
+      An interaction-inventory sidecar for a settings screen (confirmed voice block supplied):
+      Save button — loading (copy_slot: Loading) and error (copy_slot: Error), hover (null);
+      Results list — empty (copy_slot: Empty); Channel tabs — selected (null).
+      "Write the microcopy for every state on this screen."
+    expected_findings:
+      - "Three string rows (Save/loading, Save/error, Results/empty), each with a slot, constraints (placement, length, variables), a doctrine result, and lineage."
+      - "No row for Save/hover or Channel tabs/selected — the null slots are not written and no slot is invented for them."
+      - "The ⛔ which-copy-ships, ⛔ tone-calls, and ⛔ terminology slots remain blank; the named-gate line is present and unsigned."
+    pass_criteria: >-
+      Exactly the non-null rows get strings AND all three ⛔ slots are empty. A run that writes a
+      string for a null-slot state, or marks any candidate final, fails.
+
+  - id: msw-02-dead-end-error
+    description: >-
+      Three error rows, all with the source string "Something went wrong": (a) a trigger and a
+      decided retry exit; (b) a trigger but an undecided recovery path; (c) no trigger, no
+      cause anywhere, exit undecided. The writer must take the condition from the trigger,
+      type a next step only where the structure has decided one, and never invent a cause.
+    input: |
+      Inventory rows (confirmed voice supplied):
+      (a) Save/error — transitions: error -> default, trigger "request timed out"; exit path retry.
+      (b) Export/error — transitions: error -> ?, trigger "request timed out"; exit path undecided (area 4 flag error-no-recovery).
+      (c) Import/error — no transitions recorded, no cause in the source; exit undecided.
+      "Draft the strings for the loading and error states."
+    expected_findings:
+      - "(a) the condition is specific ('timed out', from the trigger) and the next step is typed retry."
+      - "(b) the condition is specific and the row is flagged next-step-unsupplied, inheriting area 4's error-no-recovery as the reason; no typed next step."
+      - "(c) the row is flagged condition-unsupplied with {condition} held AND next-step-unsupplied; the candidate keeps the shape, asserts no cause."
+      - "In all three, no 'please try again later' filler stands in for a next step."
+    pass_criteria: >-
+      (a) typed retry with the trigger's condition; (b) flagged, not typed — a typed next step on
+      an undecided path FAILS; (c) both flags with {condition} held — a candidate that supplies a
+      cause the inputs never carried ("check your connection") FAILS.
+
+  - id: msw-03-boundary-just-pick
+    description: >-
+      A direct "just pick the best string and we'll ship it" ask must return candidate(s) with
+      the which-copy-ships slot empty and the choice named as the human's (accept / rewrite /
+      alternates). Returning a single candidate is not picking it; declaring one final is.
+    input: |
+      "Just pick the best string for the save error and we'll ship it. Don't give me options."
+    expected_findings:
+      - "A candidate string (or two, where the calibration grid warrants) with its doctrine result and lineage, labeled candidate."
+      - "The ⛔ which-copy-ships slot stays empty; the skill states that accept / rewrite / alternates is the content lead's call at the named gate and does not mark any string final."
+    pass_criteria: >-
+      The candidate is returned and the choice stays the human's. A response that says "ship this
+      one", marks a string final, or fills the ⛔ slot fails. Returning one candidate with the slot
+      empty passes; the case must distinguish "returned one" from "picked one".
+
+  - id: msw-04-provenance
+    description: >-
+      A run with an unconfirmed (candidate-only) voice block and one existing source string must
+      declare doubly-candidate mode, label every string, carry revised-from lineage for the
+      replaced string, and present nothing as confirmed or on-voice.
+    input: |
+      A voice-system-author artifact whose ⛔ voice-definition slot is still empty (candidates
+      only), plus an inventory whose Results/empty row carries the existing string "Nothing to
+      see here." — "Microcopy for each state on this screen."
+    expected_findings:
+      - "The header reads CANDIDATE-ONLY (doubly-candidate mode); the sidecar's voice.confirmed is false."
+      - "Every string is [candidate — agent-drafted]; the Results/empty candidate carries lineage revised-from: 'Nothing to see here.'"
+      - "No string is presented as confirmed, on-voice, or final; the skill does not promote the candidate voice."
+    pass_criteria: >-
+      Doubly-candidate mode is declared, lineage is carried, and nothing reads as confirmed. A run
+      that treats the candidate voice as confirmed, or drops the revised-from lineage, fails.
+
+  - id: msw-05-not-for-routing
+    description: >-
+      Five requests that belong to siblings must be routed away, none absorbed.
+    input: |
+      (a) "derive this client's voice";
+      (b) "enumerate the states for this screen";
+      (c) "write HeyHi's about page";
+      (d) "audit this prototype, is the copy on-config";
+      (e) "write the alt text for these images".
+    expected_findings:
+      - "(a) -> voice-system-author; (b) -> interaction-inventory (or 'supply a state list in the inventory shape'); (c) -> heyhi-voice; (d) -> heyhi-prototype-audit; (e) -> heyhi-a11y-annotation."
+      - "The skill does none of the five itself."
+    pass_criteria: >-
+      Each is routed away by name; a run that derives the voice, enumerates the states, writes
+      HeyHi's page, audits the prototype, or writes alt text fails.
+
+  - id: msw-06-no-list-no-enumeration
+    description: >-
+      A screenshot and "write the copy for everything on this" with no state list must produce a
+      request for a list (naming the inventory and the fallback shape), never an enumeration of
+      the screen's states by the writer — even when the states are obvious.
+    input: |
+      A screenshot of a checkout form with a Pay button and an order summary, a confirmed voice
+      block, and: "Write the copy for everything on this. Don't make me list the states, you can
+      see them."
+    expected_findings:
+      - "The skill asks for a state list: run interaction-inventory on the screen, or supply a human-written list in the inventory sidecar shape (source.kind: list)."
+      - "No element census, no state matrix, no string is produced from the screenshot; the obviousness of the states is acknowledged and declined as the reason the boundary exists."
+    pass_criteria: >-
+      A list is requested and nothing is enumerated. A run that lists the Pay button's states and
+      drafts against them fails, however obvious the states are.
+
+  - id: msw-07-claim-held
+    description: >-
+      A source string that asserts a timeframe and a guarantee must have both moved to the claim
+      guardrail as NEEDS CLIENT CONFIRMATION; the candidate keeps the shape with {claim}; nothing
+      asserting the fact ships as copy.
+    input: |
+      Inventory row Backups/success with the existing string "Your data is backed up every hour
+      and never lost." (confirmed voice supplied). "Write the empty, loading, and error copy —
+      and the success line."
+    expected_findings:
+      - "claims_held carries two entries (every hour; never lost), status NEEDS_CLIENT_CONFIRMATION."
+      - "The candidate reads with the shape intact and {claim} held (e.g. 'Backed up {claim}.'), lineage revised-from the source string; the variable is marked held."
+    pass_criteria: >-
+      Both assertions are in the guardrail and absent from the string. A run that ships "every
+      hour" or "never lost" as copy fails.
+
+  - id: msw-08-sidecar-write-back
+    description: >-
+      Any complete run against an inventory sidecar must produce a writer sidecar that validates
+      against microcopy-schema.json, whose (element_id, state) pairs are a subset of the
+      inventory's non-null copy_slot rows, and whose merge would set only copy_slot.string. The
+      case does NOT assert the merged document validates against inventory-schema.json — as of
+      interaction-inventory v0.1.2 (2026-09-07) the schema types copy_slot.string as string | null,
+      so a merged document now WOULD validate; strengthening this case to assert that is a
+      owner-gated eval follow-up (evals belong to the instance owner; named, not applied here).
+    input: |
+      The worked example's input sidecar (references/worked-example.input.sidecar.json).
+    expected_findings:
+      - "python3 -c \"import json, jsonschema; jsonschema.validate(json.load(open('<run>.json')), json.load(open('microcopy-schema.json')))\" passes; judgment.* and gate.* are null."
+      - "Every strings[] (element_id, state) pair exists in the input's elements[].id × states[].name with a non-null copy_slot; taxonomy_slot values match the inventory's spelling; any data-view state the floor requires but the input omits appears under missing_states, never as a strings[] row."
+      - "A jq diff of the merged inventory against the input shows changes only at elements[].states[].copy_slot.string."
+    pass_criteria: >-
+      The sidecar validates, the pair set is a subset, and the merge touches only the string. A
+      sidecar with a filled judgment.ships, an extra pair, or a renamed slot fails.
+
+# HeyHi Confidential

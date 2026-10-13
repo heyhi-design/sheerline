@@ -1,0 +1,140 @@
+# Eval cases: intent-journey-map (Sheerline area 9, Design Strategy; serves areas 1 and 2).
+#
+# Probes the net-new skill before it is trusted (promotion gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge the DECISION against pass_criteria. Invented
+# examples, no client content (the OpenAPI snippets are synthetic). Mirrors the
+# interaction-inventory / research-plan-author / design-measurability-mapper case shape
+# (id, description, input, expected_findings, pass_criteria).
+#
+# Acceptance: the tier gate (copy = Tier 0, data-write = Tier 2 regardless of control count);
+# the bind-do-not-guess contract test (a non-resolving pointer is flagged, never kept); the
+# no-spec exception as a clean pass (audited against the skill's own rules); the boundary
+# (empty slots, and no gate/score/verdict field in the machine contract); not_for routing;
+# the adversarial over-claim pass; the pluggable domain band.
+
+classification: confidential
+
+cases:
+  - id: ijm-01-tier-gate
+    description: >-
+      The tier check runs first and follows the precedence rule. A single copy change on one
+      existing state is Tier 0 (skip the protocol). A change that writes data is Tier 2 regardless
+      of how few controls it touches. The tier is stated with a one-line reason.
+    input: |
+      (a) "Change the empty-state line on the settings page from 'Nothing here' to 'No items yet.'"
+      (b) "Add a one-field form that lets a user save a note to their profile. It is just one input
+          and a Save button, so it is small."
+    expected_findings:
+      - "(a) → Tier 0. A copy change on one existing state, no data write, no boundary crossing. The protocol is skipped; the copy routes to the states-writer. No map is produced."
+      - "(b) → Tier 2, not Tier 1, by the precedence rule: it writes data (saves a note), so control count does not demote it. The full spine plus the prop-contract runs."
+    pass_criteria: >-
+      (a) is Tier 0 and (b) is Tier 2 with the write named as the reason. A run that maps (a)
+      anyway, or that calls (b) Tier 1 because it is 'just one input', fails the tier gate.
+
+  - id: ijm-02-bind-flagged-absent
+    description: >-
+      Bind, do not guess. A data prop whose json_pointer does not resolve in the SUPPLIED OpenAPI
+      is set binding_status flagged-absent and surfaced as a finding. It is never silently kept and
+      never filled with an invented shape.
+    input: |
+      A supplied OpenAPI whose components.schemas.Note has properties { id, body }. The prototype
+      shows a note card binding a prop `pinnedAt` to `#/components/schemas/Note/properties/pinnedAt`.
+      "Build the prop-contract for the note card."
+    expected_findings:
+      - "The `pinnedAt` row sets binding_status flagged-absent (the pointer does not resolve, Note carries only id and body), and it is surfaced as a finding for the human."
+      - "`id` and `body` bind (binding_status bound, pointers resolve). No invented type or enum is written for `pinnedAt`; the row is not silently dropped either."
+    pass_criteria: >-
+      pinnedAt is flagged, not invented and not dropped; the resolving props bind. A run that writes
+      a guessed type for pinnedAt, or quietly omits the row, fails bind-do-not-guess.
+
+  - id: ijm-03-no-spec-clean-pass
+    description: >-
+      CLEAN-PASS CASE, audited against the skill's own exception rules. An application with NO
+      OpenAPI is a documented exception, not a failure. Every data prop binds to its real source
+      (a typed module by file and symbol, or a named external endpoint) with binding_status no-spec,
+      and the absence of an owned contract is recorded, never papered over.
+    input: |
+      A read-only site whose data is a typed TypeScript module (no backend, no OpenAPI). "Map the
+      browse-and-read flow and build the contract." (This is the worked-example shape.)
+    expected_findings:
+      - "Every data prop is binding_status no-spec, bound to the typed module by file and symbol; json_pointer is null on each."
+      - "The map states plainly that the application carries no OpenAPI, so no owned contract exists to bind against, recorded as the truthful state, not flagged as an error and not filled with a synthetic spec."
+    pass_criteria: >-
+      no-spec is treated as the correct, documented state and the contract still validates against
+      the schema. A run that reports the missing OpenAPI as a defect, invents a spec to bind to, or
+      refuses to produce a contract, fails (no-spec is an exception the method names, per SKILL.md
+      Step 4 and method.md).
+
+  - id: ijm-04-empty-slots-no-gate-field
+    description: >-
+      A full Tier 2 run leaves the judgment slots empty AND emits a machine contract that carries no
+      verdict, score, severity, or gate field. research_question is null by construction; open
+      decisions carry a named owner and no resolution.
+    input: |
+      Any complete Tier 2 run (use references/worked-example.ijm-contract.json as the reference
+      instance). "Produce the map and the contract."
+    expected_findings:
+      - "In the human map: the research-question, theme-and-severity, and open-decisions slots are ⛔ empty; the named gate is unsigned; every open decision names an owner."
+      - "In the machine contract: research_question is null; each open_decisions entry has {decision, owner} and NO resolution field; there is no field named verdict, score, severity_ruling, approved, blocked, or gate anywhere (additionalProperties:false enforces it, and a non-null research_question is rejected by the schema itself)."
+    pass_criteria: >-
+      The slots are empty and the schema rejects any verdict/score/gate field or a non-null
+      research_question. A contract that carries a resolution, a severity ruling, or a filled
+      research_question fails validation and the boundary.
+
+  - id: ijm-05-not-for-routing
+    description: >-
+      The skill stays in its lane. A study-planning ask, an opportunity-audit ask, a product-level
+      intent ask, a codebase-read ask, and a taxonomy ask each route away rather than being absorbed.
+    input: |
+      (a) "Plan a usability study for this feature, how many participants, what method?"
+      (b) "Audit this opportunity tree, is the reasoning sound, were the scores back-solved?"
+      (c) "Map what the whole product already decides, its jobs, its vocabulary, its constraints."
+      (d) "Read the repo and tell me the surfaces, components, and endpoints."
+      (e) "Is the labeling consistent on this section's navigation, and do the labels lead where they say?"
+    expected_findings:
+      - "(a) → research-plan-author (study design, not feature mapping)."
+      - "(b) → strategy-integrity-warden (reasoning audit, not a feature map)."
+      - "(c) → app-intent-map (the product-level layer above surfaces; this skill maps one feature)."
+      - "(d) → app-recon (produces the manifest; this skill consumes it)."
+      - "(e) → taxonomy-labeling-auditor (a label-consistency audit, area 2, deployed), not an intent-journey map; designing the structure from scratch would be the still-gated ia-study-designer."
+    pass_criteria: >-
+      All five route away. Producing a research plan for (a), an opportunity verdict for (b), a
+      whole-product intent map for (c), a manifest for (d), or a label audit for (e) fails the
+      reciprocal not_for.
+
+  - id: ijm-06-adversarial-overclaim
+    description: >-
+      The Tier 2 adversarial pass hunts over-claim (a field, endpoint, component, or capability
+      asserted as real that the sources do not support) and re-labels it, but never decides whether
+      the feature is worth building.
+    input: |
+      A draft map that names an endpoint `POST /notes/bulk` in band 3, which does not appear in the
+      supplied manifest or OpenAPI, and asserts a `NoteList` component the served design system does
+      not carry. "Run the adversarial pass."
+    expected_findings:
+      - "`POST /notes/bulk` is re-labeled unverified (not in the manifest or OpenAPI); `NoteList` is re-labeled unverified or NEW (not a served-library component). Neither is left as a bare real claim."
+      - "The pass produces a short note of what was checked and corrected; it does NOT render a verdict on whether the feature should be built (that is the human's)."
+    pass_criteria: >-
+      Both over-claims are corrected or re-labeled and no build verdict is rendered. A pass that
+      leaves the unsupported endpoint asserted as real, or that concludes 'this feature is/ isn't
+      worth building', fails.
+
+  - id: ijm-07-domain-band-pluggable
+    description: >-
+      Exactly one domain-state band is pluggable, supplied per engagement. It is NOT a human-judgment
+      empty slot (that would be research question / severity / open decisions): once the engagement
+      picks the band and its state model, the run FILLS it mechanically from the grounded model, like
+      the other bands. A map-centric feature picks and fills the map-state band; a plain flow skips it.
+    input: |
+      (a) "Map a feature where the user pans a map, toggles layers, and selects a feature."
+      (b) "Map a feature that is a plain settings toggle with no special domain state."
+    expected_findings:
+      - "(a) uses the map-state band and FILLS it (viewport / layers / selection deltas per step) from the application's actual map model, named in the map header; a filled domain band in the map is correct, not a boundary violation."
+      - "(b) skips the domain band and says so explicitly ('none, plain flow'); no domain lane is forced onto it."
+      - "The skill supplies the slot and the shape (from domain-band-template.md) and the run supplies the fill from the real model; the domain band is NEVER left blank in the ⛔ human-gate section, and it is never invented from a generic guess."
+    pass_criteria: >-
+      (a) picks, names, AND fills the band from the real model, and (b) skips it. A run that leaves
+      (a)'s domain band blank 'for the human' (confusing it with the judgment slots), forces a domain
+      band onto (b), or fills (a)'s band from a generic guess rather than the real model, fails.
+
+# HeyHi Confidential

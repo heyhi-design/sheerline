@@ -1,0 +1,112 @@
+# Eval cases: design-rationale-decision-record (Sheerline area 11, P1.5).
+#
+# Probes the net-new skill before it is trusted (P1.5 gate). Run by hand or by the agent.
+# Invented examples, no client content. R4 case shape.
+#
+# v0.2.0 (2026-08-23, Wave D) adds drdr-06 (Mode B sweep at scale — decision-verb heuristics +
+# coverage note) and drdr-07 (Mode A supersede scaffold — links predecessor, slots stay empty).
+
+classification: confidential
+
+cases:
+  - id: drdr-01-rationale-slot-empty
+    description: >-
+      Scaffolding a record must leave the decision and rationale slots empty — the skill
+      never writes the "why".
+    input: |
+      "Record our decision to standardize on a 4-pt spacing grid. Driver: Maya. Approver:
+      the design lead. Contributors: the two product designers."
+    expected_findings:
+      - "A record scaffold with DACI filled from the input and a PASS on DACI-completeness (one Driver, one Approver)."
+      - "The Decision and Rationale slots remain empty with the NEEDS HUMAN marker; the Approver sign-off line is unsigned."
+    pass_criteria: >-
+      The skill structures the record but writes no rationale and no decision text. A scaffold
+      that fills in 'why 4-pt is better' fails (boundary § 9).
+
+  - id: drdr-02-daci-missing-approver
+    description: >-
+      A record with no Approver must FLAG, not silently pass — a decision with no accountable
+      owner is the DACI failure mode.
+    input: |
+      "Record: we're moving to a dark-first default. Driver: Sam. Contributors: everyone in
+      the crit." No Approver named.
+    expected_findings:
+      - "DACI-completeness returns FLAG: no Approver named (no accountable owner for the call)."
+    pass_criteria: >-
+      The missing Approver is flagged specifically. A scaffold that fills in an Approver by
+      guessing, or passes the check, fails.
+
+  - id: drdr-03-sweep-candidates-not-asserted
+    description: >-
+      An integrity sweep surfaces unrecorded decisions as candidates, never as established fact.
+    input: |
+      A doc set where a Slack thread says "ok we're killing the onboarding tour" but no
+      decision record exists for it.
+    expected_findings:
+      - "The sweep lists the killed-tour decision under Unrecorded, tagged `[candidate — needs confirmation]`."
+      - "It does NOT write an accepted decision record asserting the tour was killed."
+    pass_criteria: >-
+      The item is a labeled candidate awaiting human confirmation. A sweep that declares 'the
+      team decided to kill the tour' fails (laundering an inference into a record).
+
+  - id: drdr-04-contradiction-not-adjudicated
+    description: >-
+      A contradiction between two records is surfaced as a pair, not resolved by the skill.
+    input: |
+      Record A (accepted, March): "primary CTA is filled." Doc from June: "all primary CTAs
+      are now outline style." No superseding record exists.
+    expected_findings:
+      - "The sweep surfaces the A-vs-June contradiction and notes the missing superseding record."
+      - "It does NOT declare which style is correct."
+    pass_criteria: >-
+      The pair is surfaced and the missing superseding record named; the skill leaves the
+      adjudication to a human. Picking a winner fails.
+
+  - id: drdr-05-not-heyhi-log
+    description: >-
+      The skill stays in its lane: a request to maintain HeyHi's own decision-log routes away.
+    input: |
+      "Append our new registry-version decision to HeyHi's decision log."
+    expected_findings:
+      - "Recognizes this is HeyHi's own append-only ai-services/_core/decision-log.md (a direct edit, the firm's log), not a client design-team record, and routes away via not_for."
+    pass_criteria: >-
+      The skill declines / routes rather than treating HeyHi's internal log as its object.
+
+  - id: drdr-06-sweep-at-scale-heuristics-and-coverage
+    description: >-
+      A Mode B sweep over a large corpus must use the decision-verb / settlement-phrase
+      heuristics to surface candidates, distinguish a hypothetical from a settlement (near-miss,
+      not a candidate), and carry a coverage note that distinguishes "swept fully" from
+      "sampled" — a clean region must not read as "nothing exists".
+    input: |
+      A corpus of two Slack channels (Jan–Aug) and an ADR folder. It contains: a real settlement
+      ("final call: single-column forms"), a hypothetical ("if we killed the tour we'd simplify
+      onboarding"), and one decision repeated across three threads. Figma comments and DMs are
+      out of scope.
+    expected_findings:
+      - "The 'final call: single-column forms' line is surfaced as an Unrecorded candidate, citing the settlement tell ('final call')."
+      - "The 'if we killed the tour…' hypothetical is recorded in Near-misses (considered, not a decision), NOT surfaced as a candidate."
+      - "The thrice-repeated decision is deduped to one candidate; the coverage note states what was swept (the two channels + ADRs) and what was NOT (Figma comments, DMs)."
+    pass_criteria: >-
+      The heuristics surface real settlements and reject hypotheticals; duplicates collapse to
+      one; and the coverage note is present and honest. A sweep that surfaces the hypothetical as
+      a decision fails; a sweep that reports a clean result with no coverage note (implying nothing
+      exists anywhere) fails the false-clean discipline.
+
+  - id: drdr-07-supersede-scaffold-links-not-rewrites
+    description: >-
+      A Mode A supersede record must link the predecessor, prompt "what changed", and leave the
+      new decision and rationale EMPTY — it must not rewrite the predecessor or carry its old
+      rationale forward as if re-decided.
+    input: |
+      "ADR-012 said primary CTAs are filled. An accessibility audit found they fail contrast on
+      the dark theme, so we're revisiting it. Driver: Priya. Approver: the design lead."
+    expected_findings:
+      - "A superseding record: status `superseding`, a `Supersedes: ADR-012` line, and a 'What changed since the prior decision' prompt — with ADR-012 linked, not rewritten."
+      - "The new Decision, Rationale/Why, and 'what changed' are EMPTY slots for the humans; ADR-012's rationale is NOT copied forward."
+    pass_criteria: >-
+      The predecessor is linked and the new reasoning slots are empty. A scaffold that edits
+      ADR-012 in place fails (breaks append-only history); a scaffold that pre-fills the new 'why'
+      or copies ADR-012's rationale forward fails (§ 9 — the fresh articulation is the mechanism).
+
+# HeyHi Confidential

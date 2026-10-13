@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0",
+  "system_id": "heyhi-website",
+  "generated_at": "2026-09-07",
+  "source_manifest": "hand-written app-manifest.json in the § 3.3 shape (the instance's own site; Lane C runs in parallel)",
+  "purpose": null,
+  "jobs": [
+    {
+      "id": "J1",
+      "statement": "When I hear about HeyHi, I want to read its writing, so I can judge the thinking.",
+      "surface_ids": ["log-index", "log-entry"],
+      "evidence": { "kind": "surface_id", "ref": "log-index" }
+    },
+    {
+      "id": "J2",
+      "statement": "When I land on the site, I want to see what HeyHi is, so I can decide if it is for me.",
+      "surface_ids": ["home"],
+      "evidence": { "kind": "surface_id", "ref": "home" }
+    },
+    {
+      "id": "J3",
+      "statement": "When something resonates, I want to follow new writing, so I do not have to check back.",
+      "surface_ids": ["home"],
+      "evidence": { "kind": "file_line", "ref": "src/components/Contact.tsx:70" }
+    },
+    {
+      "id": "J4",
+      "statement": "When I want to see the work rather than read about it, I want to explore the interactive lab.",
+      "surface_ids": ["lab"],
+      "evidence": { "kind": "surface_id", "ref": "lab" }
+    }
+  ],
+  "flows": [
+    {
+      "id": "F1",
+      "name": "Arrive and read",
+      "surface_ids": ["home", "log-index", "log-entry"],
+      "trigger": "a title on the index",
+      "evidence": { "kind": "surface_id", "ref": "log-index" }
+    },
+    {
+      "id": "F2",
+      "name": "Arrive and explore",
+      "surface_ids": ["home", "lab"],
+      "trigger": "the lab entry point",
+      "evidence": { "kind": "surface_id", "ref": "lab" }
+    },
+    {
+      "id": "F3",
+      "name": "Read then follow",
+      "surface_ids": ["log-entry", "home"],
+      "trigger": "the subscribe link in home's Contact section (leads to the external Substack)",
+      "evidence": { "kind": "file_line", "ref": "src/components/Contact.tsx:70" }
+    }
+  ],
+  "encoded_decisions": [
+    {
+      "id": "ED1",
+      "decision": "An entry is publicly visible only when its published flag is exactly true; file existence never equals visibility.",
+      "kind": "gate",
+      "evidence": { "kind": "file_line", "ref": "src/data/logs.ts:29" }
+    },
+    {
+      "id": "ED2",
+      "decision": "The publication gate is strict: any value other than the literal true (including the string 'True') keeps the entry hidden.",
+      "kind": "gate",
+      "evidence": { "kind": "file_line", "ref": "src/data/logs.ts:27" }
+    },
+    {
+      "id": "ED3",
+      "decision": "The site takes no lead capture: a direct email and a subscribe link, no form. It is a place to read, not a funnel.",
+      "kind": "deliberate-absence",
+      "evidence": { "kind": "file_line", "ref": "src/components/Contact.tsx:7" }
+    },
+    {
+      "id": "ED4",
+      "decision": "A published slug is stable; changing it requires a 301 redirect in vercel.json.",
+      "kind": "gate",
+      "evidence": { "kind": "file_line", "ref": "src/data/logs.ts:6" }
+    },
+    {
+      "id": "ED5",
+      "decision": "The frontmatter parser avoids eval and new Function so the production bundle is CSP-safe.",
+      "kind": "deliberate-absence",
+      "evidence": { "kind": "file_line", "ref": "src/data/logs.ts:38" }
+    }
+  ],
+  "vocabulary": [
+    {
+      "term": "Log",
+      "meaning": "The site's writing index and its entries.",
+      "surface_id": "log-index",
+      "evidence": { "kind": "surface_id", "ref": "log-index" }
+    },
+    {
+      "term": "Lab",
+      "meaning": "The interactive experiments surface, distinct from the Log.",
+      "surface_id": "lab",
+      "evidence": { "kind": "surface_id", "ref": "lab" }
+    },
+    {
+      "term": "entry",
+      "meaning": "A Log post, typed essay or observation.",
+      "surface_id": "log-entry",
+      "evidence": { "kind": "file_line", "ref": "src/data/logs.ts:14" }
+    },
+    {
+      "term": "defensibilityTier",
+      "meaning": "An internal T1 to T5 tag carried on an entry.",
+      "surface_id": "log-entry",
+      "evidence": { "kind": "file_line", "ref": "src/data/logs.ts:19" }
+    },
+    {
+      "term": "hermetic seal",
+      "meaning": "A named resource surface on the site.",
+      "surface_id": "hermetic-seal",
+      "evidence": { "kind": "surface_id", "ref": "hermetic-seal" }
+    }
+  ],
+  "constraints": [
+    {
+      "constraint": "Any surface that lists or renders an entry must obey the published === true visibility gate.",
+      "traces_to": "ED1 (the publication gate)",
+      "evidence": { "kind": "file_line", "ref": "src/data/logs.ts:29" }
+    },
+    {
+      "constraint": "A new feature must not add a lead-capture form to the site; the no-funnel posture is deliberate.",
+      "traces_to": "ED3 (the no-capture decision)",
+      "evidence": { "kind": "file_line", "ref": "src/components/Contact.tsx:7" }
+    },
+    {
+      "constraint": "A feature that changes a published slug must ship a 301 redirect in vercel.json.",
+      "traces_to": "ED4 (the slug-stability default)",
+      "evidence": { "kind": "file_line", "ref": "src/data/logs.ts:6" }
+    },
+    {
+      "constraint": "No feature may introduce eval or new Function into the production bundle.",
+      "traces_to": "ED5 (the CSP-safe decision)",
+      "evidence": { "kind": "file_line", "ref": "src/data/logs.ts:38" }
+    }
+  ]
+}

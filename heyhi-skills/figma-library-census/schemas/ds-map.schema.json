@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://heyhi.design/sheerline/schemas/ds-map/1.0.json",
+  "title": "ds-map",
+  "description": "The crosswalk: each design-system component joined across the served code manifest and the Figma library, with its coverage state, its token references, and a CANDIDATE atomic-design level. Lane A (figma-library-census) emits; Lanes B, F, I read (plan-sheerline-fdde-loop-2026-09-07 section 3.3). Version 1.0; additive thereafter. rows[] is the binding section 3.3 shape. Every level is a candidate: level_confirmed is false on emission and only a human sets it true at the crosswalk-review gate.",
+  "type": "object",
+  "required": ["schema_version", "rows"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "provenance": {
+      "type": "object",
+      "description": "Additive. Where and when the crosswalk ran, and the true coverage counts.",
+      "additionalProperties": true,
+      "properties": {
+        "generated_at": { "type": "string" },
+        "system_id": { "type": "string" },
+        "code_manifest_source": { "type": "string" },
+        "coverage_counts": {
+          "type": "object",
+          "additionalProperties": { "type": "integer" }
+        },
+        "classification_note": { "type": "string" },
+        "note": { "type": "string" }
+      }
+    },
+    "rows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code_component", "figma_key", "token_refs", "coverage", "level", "level_confirmed"],
+        "additionalProperties": false,
+        "properties": {
+          "code_component": {
+            "type": ["string", "null"],
+            "description": "The code-manifest component name; null for a figma-only row."
+          },
+          "figma_key": {
+            "type": ["string", "null"],
+            "description": "The Figma component/set key; null for a code-only row."
+          },
+          "figma_name": {
+            "type": ["string", "null"],
+            "description": "Additive. The Figma component name, for readability on figma-only rows; null when not applicable."
+          },
+          "token_refs": {
+            "type": "array",
+            "description": "Token names this component references, from the served manifest's token map.",
+            "items": { "type": "string" }
+          },
+          "coverage": {
+            "enum": ["both", "code-only", "figma-only", "divergent"],
+            "description": "both: present and consistent in code and Figma. code-only: in the manifest, no Figma component. figma-only: a Figma component with no manifest entry. divergent: present in both but a mechanically detected disagreement (a token binding or property axis differs) that a human adjudicates at the gate."
+          },
+          "level": {
+            "enum": ["token", "atom", "molecule", "organism", "template"],
+            "description": "CANDIDATE atomic-design level. Derived from Figma composition (nested library-component instances), refined by the served graph's contains_component where the manifest encodes containment, and by cross-surface recurrence. An INSTANCE_SWAP of a leaf/icon component does not promote an atom."
+          },
+          "level_confirmed": {
+            "type": "boolean",
+            "description": "Human sign-off at the crosswalk-review gate. Always false on emission."
+          }
+        }
+      }
+    }
+  }
+}

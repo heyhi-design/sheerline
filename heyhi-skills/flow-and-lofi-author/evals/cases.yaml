@@ -1,0 +1,127 @@
+# Eval cases: flow-and-lofi-author (Sheerline area 5, P3 deepen, buildable-now, self-application-first).
+#
+# Probes the net-new skill before it is trusted (promotion gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge against pass_criteria. Invented examples,
+# no client content. Mirrors the research-plan-author case shape (Findings, R4 pattern).
+#
+# Acceptance (spec § 9): fla-01 … fla-08 by id — N alternatives with real overlap, the
+# rearrangement refusal, the ceiling held, the which-is-better boundary, config-free operation,
+# provenance + gaps, the no-purpose stop, and routing.
+
+classification: confidential
+
+cases:
+  - id: fla-01-n-alternatives
+    description: >-
+      A stated purpose and a task, N = 3, must produce three alternatives that each carry
+      divergence-axis tags with no pair sharing every axis, both ⛔ slots empty, the gate unsigned.
+    input: |
+      "Purpose: is a three-step checkout right for a first-time buyer? Task: buy one item as a
+      guest. N = 3." No structure inputs beyond that.
+    expected_findings:
+      - "A Lo-fi Pack with a screen inventory (every row [inferred], since no structure input was given), a Mermaid flowchart, and alternatives A / B / C each carrying axis tags."
+      - "The overlap check names what each pair shares and confirms no pair shares every axis."
+      - "The ⛔ structure/flow verdict and ⛔ which-alternative slots are empty; the gate is unsigned."
+    pass_criteria: >-
+      Three structurally distinct alternatives with the overlap check written out, and no ranking
+      anywhere. A pack that recommends one, or ships three layouts of one structure as 'N = 3', fails.
+
+  - id: fla-02-overlap-rearrangement
+    description: >-
+      Inputs that tempt three layouts of one structure must trip the overlap check: the skill names
+      the pair(s) as a rearrangement and does not ship a fake N.
+    input: |
+      "Purpose: can a returning user find their order history? Task: reach order history from
+      the account area. N = 3. Keep it a single account page with tabs; just move the tab strip
+      around."
+    expected_findings:
+      - "The skill notices that 'move the tab strip around' yields alternatives sharing every axis (nav=tabbed, decomposition=one screen, hierarchy=same, entry=same, disclosure=same, input=same) and names them as a rearrangement, not alternatives."
+      - "It either regenerates on a different axis (e.g. one alternative with hub-and-spoke nav, one entering from a deep link) or asks the human whether N can be met given the constraint."
+    pass_criteria: >-
+      A rearrangement is named as such and a fake N is refused. A pack that ships three tab-strip
+      positions as three alternatives fails (the overlap check is the measurable half of the invariant's widen verb).
+
+  - id: fla-03-ceiling-held
+    description: >-
+      A request that smuggles visual language must have it stripped and listed; active-brand.json is
+      never opened.
+    input: |
+      "Purpose: is the onboarding decomposition right? Task: set up a workspace. Use our brand blue
+      (#2B5CFF) for the primary button and set the headings in Inter. The tokens are in
+      active-brand.json if you need them."
+    expected_findings:
+      - "The pack contains no hex, no font name, no token reference; the primary action is a labeled box."
+      - "`## Ceiling violations removed` lists the brand blue, Inter, and the active-brand.json reference as stripped."
+      - "active-brand.json was not opened; the pack says 'Config: none'."
+    pass_criteria: >-
+      Nothing over the ceiling survives and the removals are visible. A pack that colors the button,
+      names the typeface, or reads the config fails (the ceiling is the config).
+
+  - id: fla-04-boundary-which-is-better
+    description: >-
+      A direct 'which of these is better' ask returns the ⛔ which-alternative slot and the gate,
+      never a ranking or a recommendation.
+    input: |
+      "Here are alternatives A, B, and C from the pack. Which flow is better? Just pick one."
+    expected_findings:
+      - "The reply returns the ⛔ Which alternative advances slot and the named gate, and states that the skill ranks nothing."
+      - "It may restate each alternative's axis tags so the human can compare; it does not order, score, or prefer them."
+    pass_criteria: >-
+      No ranking, no recommendation, no 'A is stronger because'. Any preference expressed, even
+      hedged, fails (direction selection is on the what-stays-human list).
+
+  - id: fla-05-config-free
+    description: >-
+      With no active-brand.json anywhere, the skill proceeds; no no-config hard stop is triggered
+      or echoed.
+    input: |
+      "Purpose: are the steps of a password-reset flow complete? Task: reset a forgotten password.
+      N = 2." Run in a folder with no brand config and no engagement profile.
+    expected_findings:
+      - "The pack is produced with 'Config: none (brand-agnostic by design)'; the instance's own defaults apply to the label register."
+      - "No message about a missing config, no request to onboard a brand, no ui-studio hard stop."
+    pass_criteria: >-
+      The skill runs without a config as its normal mode. A response that asks for or waits on a
+      brand config fails.
+
+  - id: fla-06-provenance-and-gaps
+    description: >-
+      A partial IA with a missing step yields inferred screens and edges tagged [inferred] and the
+      missing step as an open question, never a silently filled node.
+    input: |
+      "Purpose: is the checkout complete? Task: buy an item. IA outline: Cart → Shipping →
+      Confirmation." (No payment step is mentioned.)
+    expected_findings:
+      - "The inventory carries Cart, Shipping, Confirmation as [from-input]; any screen the skill adds to connect them (e.g. a review step) is [inferred]."
+      - "The absent payment step appears under `## Open questions` ('Is there a payment step between Shipping and Confirmation, or is payment captured elsewhere?') and is NOT drawn as a node."
+    pass_criteria: >-
+      Gaps are questions, inferences are tagged. A pack that silently inserts a Payment screen and
+      draws it into the flow fails.
+
+  - id: fla-07-no-purpose
+    description: >-
+      A task with no stated test question makes the skill ask for the purpose and stop; it does not
+      draft on a guess.
+    input: |
+      "Wireframe the settings area." (No purpose, no question, no N.)
+    expected_findings:
+      - "The skill asks what this lo-fi must let the team learn or decide, and stops."
+      - "No inventory, flow, or alternatives are drafted on an assumed purpose."
+    pass_criteria: >-
+      The purpose is asked for and nothing is drafted. A pack produced 'assuming the goal is
+      findability' fails (a lo-fi without a question is the fixation path).
+
+  - id: fla-08-routing
+    description: >-
+      The skill stays in its lane: a lo-fi ask routes here; a Mode A hi-fi ask routes to ui-studio.
+    input: |
+      (a) "wireframe the checkout flow before we go hi-fi"
+      (b) "build the checkout page in Mode A"
+    expected_findings:
+      - "(a) is this skill's work: the structural artifacts before any visual language."
+      - "(b) routes to ui-studio (a hi-fi, config-bound build); this skill's Build-led not_for names it, and the skill does not absorb it."
+    pass_criteria: >-
+      (a) here, (b) away. A response that starts a Mode A build here, or that refuses (a) as a
+      hi-fi task, fails. (Registry-level scores are the promotion pass's to verify with the battery.)
+
+# HeyHi Confidential

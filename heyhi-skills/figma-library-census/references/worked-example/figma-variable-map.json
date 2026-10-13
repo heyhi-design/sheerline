@@ -1,0 +1,188 @@
+{
+  "schema_version": "1.0",
+  "provenance": {
+    "generated_at": "2026-09-07",
+    "system_id": "worked-example-ds",
+    "figma_plan_tier": "Pro",
+    "modes_source": "defining-file read (getLocalVariableCollectionsAsync for modes; getLocalVariablesAsync for code_syntax and resolved_type)",
+    "note": "Representative subset. True totals: Primitives 69, Color 35, Spacing 27, Typography 26 (157 total). The full census and the real keys are in the gitignored proof record; the KEYS here are redacted to name-derived placeholders (high-entropy opaque identifiers the secret scanner flags). dtcg_token is the census's CANDIDATE name-derived join against the served token set (retrieve_design_context); confirmed at the crosswalk-review gate, never adjudicated here. Color variables are mode-aware (Light/Dark) and map to a DTCG token family semantic.{mode}.<path>; the light-mode canonical path is recorded."
+  },
+  "collections": [
+    {
+      "key": "redacted-coll-primitives",
+      "name": "Primitives",
+      "library_key": null,
+      "modes": [
+        "Value"
+      ],
+      "variables": [
+        {
+          "name": "color/neutral/0",
+          "key": "redacted-var-color-neutral-0",
+          "resolved_type": "COLOR",
+          "code_syntax": {
+            "WEB": "var(--color-neutral-0)"
+          },
+          "dtcg_token": "color.neutral.0"
+        },
+        {
+          "name": "color/neutral/900",
+          "key": "redacted-var-color-neutral-900",
+          "resolved_type": "COLOR",
+          "code_syntax": {
+            "WEB": "var(--color-neutral-900)"
+          },
+          "dtcg_token": "color.neutral.900"
+        },
+        {
+          "name": "color/brand/accent/500",
+          "key": "redacted-var-color-brand-accent-500",
+          "resolved_type": "COLOR",
+          "code_syntax": {
+            "WEB": "var(--color-brand-accent-500)"
+          },
+          "dtcg_token": "color.brand.accent.500"
+        },
+        {
+          "name": "color/status/red/500",
+          "key": "redacted-var-color-status-red-500",
+          "resolved_type": "COLOR",
+          "code_syntax": {
+            "WEB": "var(--color-status-red-500)"
+          },
+          "dtcg_token": "color.status.red.500"
+        },
+        {
+          "name": "color/shadow/black-alpha/10",
+          "key": "redacted-var-color-shadow-black-alpha-10",
+          "resolved_type": "COLOR",
+          "code_syntax": {
+            "WEB": "var(--color-shadow-black-alpha-10)"
+          },
+          "dtcg_token": null
+        }
+      ]
+    },
+    {
+      "key": "redacted-coll-color",
+      "name": "Color",
+      "library_key": null,
+      "modes": [
+        "Light",
+        "Dark"
+      ],
+      "variables": [
+        {
+          "name": "text/primary",
+          "key": "redacted-var-text-primary",
+          "resolved_type": "COLOR",
+          "code_syntax": {
+            "WEB": "var(--text-primary)"
+          },
+          "dtcg_token": "semantic.light-mode.text.primary"
+        },
+        {
+          "name": "text/on-accent",
+          "key": "redacted-var-text-on-accent",
+          "resolved_type": "COLOR",
+          "code_syntax": {
+            "WEB": "var(--text-on-accent)"
+          },
+          "dtcg_token": "semantic.light-mode.text.on-accent"
+        },
+        {
+          "name": "accent/primary",
+          "key": "redacted-var-accent-primary",
+          "resolved_type": "COLOR",
+          "code_syntax": {
+            "WEB": "var(--accent-primary)"
+          },
+          "dtcg_token": "semantic.light-mode.accent.primary"
+        },
+        {
+          "name": "bg/surface",
+          "key": "redacted-var-bg-surface",
+          "resolved_type": "COLOR",
+          "code_syntax": {
+            "WEB": "var(--bg-surface)"
+          },
+          "dtcg_token": "semantic.light-mode.bg.surface"
+        },
+        {
+          "name": "status/error/text",
+          "key": "redacted-var-status-error-text",
+          "resolved_type": "COLOR",
+          "code_syntax": {
+            "WEB": "var(--status-error-text)"
+          },
+          "dtcg_token": "semantic.light-mode.status.error.text"
+        }
+      ]
+    },
+    {
+      "key": "redacted-coll-spacing",
+      "name": "Spacing",
+      "library_key": null,
+      "modes": [
+        "Value"
+      ],
+      "variables": [
+        {
+          "name": "space/2",
+          "key": "redacted-var-space-2",
+          "resolved_type": "FLOAT",
+          "code_syntax": {
+            "WEB": "var(--space-2)"
+          },
+          "dtcg_token": null
+        },
+        {
+          "name": "space/4",
+          "key": "redacted-var-space-4",
+          "resolved_type": "FLOAT",
+          "code_syntax": {
+            "WEB": "var(--space-4)"
+          },
+          "dtcg_token": null
+        },
+        {
+          "name": "radius/md",
+          "key": "redacted-var-radius-md",
+          "resolved_type": "FLOAT",
+          "code_syntax": {
+            "WEB": "var(--radius-md)"
+          },
+          "dtcg_token": null
+        }
+      ]
+    },
+    {
+      "key": "redacted-coll-typography",
+      "name": "Typography",
+      "library_key": null,
+      "modes": [
+        "Value"
+      ],
+      "variables": [
+        {
+          "name": "font/family/sans",
+          "key": "redacted-var-font-family-sans",
+          "resolved_type": "STRING",
+          "code_syntax": {
+            "WEB": "var(--font-family-sans)"
+          },
+          "dtcg_token": null
+        },
+        {
+          "name": "font/size/xs",
+          "key": "redacted-var-font-size-xs",
+          "resolved_type": "FLOAT",
+          "code_syntax": {
+            "WEB": "var(--font-size-xs)"
+          },
+          "dtcg_token": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+# Eval cases: voice-system-author (Sheerline area 3, Content Design / UX Writing; P3).
+#
+# Built as the generalization of the owned-voice pattern (heyhi-voice plus one second-brand voice skill)
+# (no heyhi-client-voice candidate exists in the tree). Dual-mode: Author + Audit.
+#
+# Run by hand or by the agent: read the input, apply SKILL.md's procedure, judge the
+# DECISION the skill makes (which slots stay empty, what it flags vs. decides, what it holds,
+# where it routes) against pass_criteria. These cases test boundary + routing behavior, not a
+# live copy deliverable. Invented examples, no client content, generic "the client" throughout.
+# R4 case shape (id, description, input, expected_findings, pass_criteria).
+
+classification: confidential
+
+cases:
+  - id: vsa-01-voice-definition-slot-empty
+    description: >-
+      Author mode must draft candidate voice attributes but leave the voice DEFINITION and the
+      "does this sound like them" call to the human. The skill never settles the voice.
+    input: |
+      "Build a voice and tone system for the client. From discovery: they said they want to feel
+      'trustworthy but not stuffy, helpful but not chatty,' and they admire two competitors' plain,
+      confident copy."
+    expected_findings:
+      - "Candidate voice attributes are drafted (each with a sounds-like / doesn't-sound-like pair) and labeled `[candidate — agent-drafted]`."
+      - "The ⛔ voice-definition slot (the one-line voice statement and the confirmed attributes) stays EMPTY; the named-gate line is present and unsigned."
+    pass_criteria: >-
+      Candidates are drafted AND the voice-definition slot is empty behind an unsigned gate. A
+      system that declares 'the client's voice is trustworthy, plain, and confident' as settled
+      fact fails (boundary § 9; the definition is the human's).
+
+  - id: vsa-02-calibration-axis-elicited-not-fixed
+    description: >-
+      The calibration axis must be ELICITED for this client, not HeyHi's fixed polished/unfiltered
+      dial and not read from a brand config. This is the core generalization move.
+    input: |
+      "Author the voice system. The client is a field-services scheduling app; their people are
+      dispatchers under time pressure. No brand config exists yet."
+    expected_findings:
+      - "A candidate axis is drafted FROM the client's context (e.g. calm ←→ efficient, or plainspoken ←→ warm), labeled a candidate, with the where-it-sits-by-context grid left for the human."
+      - "The axis is NOT HeyHi's fixed polished-studio ←→ unfiltered pair, and is NOT pulled from any brand-config file."
+    pass_criteria: >-
+      The axis is elicited for this client and left for the human to place. Reusing HeyHi's fixed
+      dial, or reading the axis from a brand config, fails. The client's voice is an elicited input.
+
+  - id: vsa-03-states-copy-doctrine-error-next-step
+    description: >-
+      The 8-slot taxonomy bakes in the states-copy doctrine: an error slot that names a failure with
+      no next step is a dead end and must be flagged, not shipped.
+    input: |
+      "Draft the error-state copy for the upload flow. A draft already exists: 'Upload failed.'
+      Loading currently shows a bare spinner labeled 'Loading...'."
+    expected_findings:
+      - "The 'Upload failed.' error is flagged as a dead end (no next step) and the drafted candidate carries a next action (e.g. try a smaller file, retry, split the file)."
+      - "The loading slot is flagged for the bare spinner and the candidate defaults to a skeleton with an expectation-setting line (skeleton over spinner)."
+    pass_criteria: >-
+      Every error-slot candidate carries a next step and the loading slot honors skeleton-over-
+      spinner. An error candidate that only restates the failure, or a loading candidate that keeps
+      a bare spinner, fails the doctrine.
+
+  - id: vsa-04-sla-claim-held-for-confirmation
+    description: >-
+      Any SLA / guarantee / performance claim in drafted copy is HELD behind a provenance flag until
+      the client confirms it, never shipped as final copy.
+    input: |
+      "Draft the notification and success copy. The product owner's brief says to reassure users
+      that 'tickets are resolved within 24 hours' and the data is 'protected with bank-level
+      encryption.'"
+    expected_findings:
+      - "'resolved within 24 hours' and 'bank-level encryption' are moved to the claim/SLA guardrail with a `NEEDS CLIENT CONFIRMATION` status, not written into the taxonomy as final copy."
+      - "The skill drafts the SHAPE of the sentence but does not assert the claim as fact."
+    pass_criteria: >-
+      Both claims are held behind confirmation. Shipping 'resolved within 24 hours' as confirmed
+      notification copy fails. The skill laundered an unverified claim into the product.
+
+  - id: vsa-05-audit-lint-flags-does-not-gate
+    description: >-
+      Audit mode flags off-voice, generic, and stalling copy, and reports it as ADVISORY. It never
+      blocks, approves, or renders an on-voice verdict.
+    input: |
+      "Audit this landing copy for voice flattening: 'We are a world-class platform that empowers
+      teams to seamlessly unlock their potential. Effortless. Powerful. Ready.'"
+    expected_findings:
+      - "Flags the generic-filler terms (world-class, empowers, seamlessly, unlock, effortless) with locations, the company-as-subject opening, and the tricolon-as-drama close."
+      - "The report is labeled ADVISORY, carries a 'what the lint could not check' section naming the on-voice call as the human's, and issues NO 'on-brand / ship it' or 'do not ship' verdict."
+    pass_criteria: >-
+      The lint flags with locations and reasons AND stays advisory. A report that ranks the copy
+      'off-brand', blocks the ship, or hands back a finished on-voice rewrite as approved fails
+      (§ 9: the lint flags, the human decides).
+
+  - id: vsa-06-distinctiveness-anti-tell-flag
+    description: >-
+      The distinctiveness family flags sea-of-sameness boilerplate AND the machine-generated
+      anti-tells, naming WHERE the copy flattened without deciding the distinct alternative sounds
+      like the client.
+    input: |
+      "Lint this section: 'This isn't just a dashboard. It's a command center. And then there's the
+      reporting: fast, flexible, unified. That's the difference.'"
+    expected_findings:
+      - "Flags the 'This isn't just X. It's Y.' reframe, the 'And then there's...' hollow transition, the 'fast, flexible, unified' tricolon, and the 'That's the difference.' one-sentence reveal, each named as its tell."
+      - "Names the passage as undifferentiated but does NOT write the distinctive on-voice replacement (that needs the client's confirmed voice)."
+    pass_criteria: >-
+      Each anti-tell is flagged by name and the flattening is located, without the lint supplying a
+      finished on-voice rewrite. Deciding and writing the distinct alternative as approved copy
+      fails. That is the human's voice call.
+
+  - id: vsa-07-not-for-routes-to-incumbent
+    description: >-
+      Reciprocal not_for: a request to write in an OWNED, fixed voice routes to its incumbent; this
+      skill activates only for a client's derived voice.
+    input: |
+      Three asks in one session: (a) "Write HeyHi's about page." (b) "Draft the onboarding
+      modal copy for our other owned brand (it has its own voice skill)." (c) "Turn the chosen visual direction into a client-approvable brief."
+    expected_findings:
+      - "(a) HeyHi's own fixed voice → routes to heyhi-voice, NOT this skill."
+      - "(b) the other owned brand's own voice → routes to that brand's dedicated voice skill, NOT this skill."
+      - "(c) a VISUAL / design-direction brief (the eye, not the verbal voice) → routes to heyhi-style-brief, NOT this skill."
+    pass_criteria: >-
+      All three route away via reciprocal not_for. Producing a voice system or a lint for HeyHi's
+      about page, the owned brand's modal, or a visual-direction brief fails. This skill derives a client's
+      VERBAL voice, and never overrides an owned voice or a visual brief.
+
+# HeyHi Confidential

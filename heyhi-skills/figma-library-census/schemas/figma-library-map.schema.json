@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://heyhi.design/sheerline/schemas/figma-library-map/1.0.json",
+  "title": "figma-library-map",
+  "description": "Read-only census of a Figma component/style library: the join table from a component or style NAME to its published KEY, plus each component's property axes. Lane A (figma-library-census) emits; Lanes B, F, G read (plan-sheerline-fdde-loop-2026-09-07 section 3.3). Version 1.0; additive thereafter. Fields library[]/components[]/styles[] are the binding section 3.3 shape; schema_version and provenance are additive provenance.",
+  "type": "object",
+  "required": ["schema_version", "library", "components", "styles"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "1.0" },
+    "provenance": {
+      "type": "object",
+      "description": "Additive. Where and when the census ran. Never carries a client name; the file_key of an engagement library lives only in the gitignored proof record.",
+      "additionalProperties": true,
+      "properties": {
+        "generated_at": { "type": "string" },
+        "system_id": { "type": "string" },
+        "figma_plan_tier": { "type": "string" },
+        "note": { "type": "string" }
+      }
+    },
+    "library": {
+      "type": "array",
+      "description": "The published libraries this census covers. library_key is read from a CONSUMING file's get_libraries; it is null when the census ran against the defining file alone (no consumer). file_key is the Figma file; it is redacted to a placeholder in any tracked file and recorded verbatim only in the gitignored proof record.",
+      "items": {
+        "type": "object",
+        "required": ["library_key", "file_key", "name", "added_to_file"],
+        "additionalProperties": false,
+        "properties": {
+          "library_key": { "type": ["string", "null"] },
+          "file_key": { "type": "string" },
+          "name": { "type": "string" },
+          "added_to_file": { "type": "boolean" }
+        }
+      }
+    },
+    "components": {
+      "type": "array",
+      "description": "Published COMPONENT and COMPONENT_SET rows. Variant child components are NOT rows; the set is the row. properties are read from the property-owning node (a COMPONENT_SET owns its definitions; a variant COMPONENT delegates to its parent set).",
+      "items": {
+        "type": "object",
+        "required": ["name", "key", "library_key", "type", "properties", "default_variant"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string" },
+          "key": { "type": "string" },
+          "library_key": { "type": ["string", "null"] },
+          "type": { "enum": ["COMPONENT", "COMPONENT_SET"] },
+          "properties": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["name", "type", "values"],
+              "additionalProperties": false,
+              "properties": {
+                "name": { "type": "string" },
+                "type": { "enum": ["TEXT", "BOOLEAN", "VARIANT", "INSTANCE_SWAP", "SLOT"] },
+                "values": {
+                  "type": "array",
+                  "description": "VARIANT: the variant options. BOOLEAN: [\"true\",\"false\"]. TEXT/INSTANCE_SWAP/SLOT: empty (open-valued).",
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          },
+          "default_variant": {
+            "type": ["string", "null"],
+            "description": "The default variant combination string (e.g. \"Style=primary, Size=sm, State=default\") for a COMPONENT_SET; null for a standalone COMPONENT."
+          }
+        }
+      }
+    },
+    "styles": {
+      "type": "array",
+      "description": "Published text and effect styles. Paint styles are out of scope for v1 (the system binds fills to color variables, not paint styles).",
+      "items": {
+        "type": "object",
+        "required": ["name", "key", "kind"],
+        "additionalProperties": false,
+        "properties": {
+          "name": { "type": "string" },
+          "key": { "type": "string" },
+          "kind": { "enum": ["text", "effect"] }
+        }
+      }
+    }
+  }
+}

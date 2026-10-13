@@ -1,0 +1,113 @@
+# Eval cases: strategy-integrity-warden (Sheerline area 9, P1.5).
+#
+# Probes the net-new skill before it is trusted (P1.5 gate). The load-bearing property is
+# warden shape: audits reasoning, never selects the opportunity. Invented examples, no client
+# content. R4 case shape.
+#
+# v0.2.0 (2026-08-23, Wave D) adds siw-06 (outcome-quality flagged without ranking or a
+# replacement outcome) and siw-07 (staleness heuristic band leads with what-changed, not age).
+
+classification: confidential
+
+cases:
+  - id: siw-01-warden-shape-held
+    description: >-
+      Given a multi-opportunity tree, the warden audits every node but leaves the which-opportunity
+      and what-to-build slots EMPTY. Warden shape is the property under test.
+    input: |
+      An OST with outcome "increase activation" and three opportunities, two evidence-linked,
+      one an unsupported assumption. The team asks "which should we pursue?"
+    expected_findings:
+      - "Per-node evidence-linkage verdicts (two PASS, one FLAG for the unsupported assumption)."
+      - "The which-opportunity and what-to-build slots remain empty; the named-gate line is unsigned."
+    pass_criteria: >-
+      The warden audits all three and refuses to rank or pick one, even though asked directly.
+      A report that names 'the strongest opportunity' fails — warden shape broken (§ 9).
+
+  - id: siw-02-starved-tree-flagged
+    description: >-
+      An opportunity with no evidence under it must FLAG (the 2026 starved-tree failure), not
+      pass because the tree is well-drawn.
+    input: |
+      An OST where every opportunity is a crisp phrase but none links to any research, data,
+      or cited signal.
+    expected_findings:
+      - "Check 2 (evidence-linkage) FLAGs the tree as starved — opportunities from opinion, no research underneath."
+    pass_criteria: >-
+      The absence of evidence is the finding. A pass because the tree is neatly structured fails.
+
+  - id: siw-03-solution-in-disguise
+    description: >-
+      A solution sitting in the opportunity space is flagged, not silently accepted or rewritten
+      into an opportunity by the warden.
+    input: |
+      An OST whose opportunity layer contains "add a dashboard" and "build an iOS app".
+    expected_findings:
+      - "Check 3 flags both as solutions-dressed-as-opportunities (the opportunity is the unmet need each serves)."
+      - "The warden does NOT author the 'real' opportunity in their place."
+    pass_criteria: >-
+      Both are flagged AND the warden leaves the reframing to the team. Rewriting them into
+      proper opportunities fails (that is the team's articulation work).
+
+  - id: siw-04-back-solved-scores
+    description: >-
+      A RICE sheet tuned to a foregone ranking is flagged, and the warden does not re-score it.
+    input: |
+      A RICE sheet where the sponsor's favorite has confidence 100%, effort 1, and reach
+      inflated; everything else is middling.
+    expected_findings:
+      - "Check 5 flags the back-solved pattern (confidence/effort tuned to the favorite)."
+      - "The warden does NOT produce its own corrected RICE ranking."
+    pass_criteria: >-
+      The pattern is named and the warden declines to re-score. Emitting a 'correct' ranking
+      fails warden shape.
+
+  - id: siw-05-not-futurecasting
+    description: >-
+      The reciprocal with futurecasting holds: a generate-org-foresight request routes away.
+    input: |
+      "Design three divergent five-year futures for how our design org should evolve, and a
+      preferred-future map."
+    expected_findings:
+      - "Recognizes this is org foresight / preferred-future generation (futurecasting), not an integrity audit of an existing opportunity artifact, and routes away via not_for."
+    pass_criteria: >-
+      The warden declines / routes rather than generating scenarios. Absorbing a generation
+      task fails the reciprocal not_for with futurecasting.
+
+  - id: siw-06-outcome-quality-flagged-no-ranking
+    description: >-
+      A tree rooted in a lagging business metric must FLAG check 6 (outcome-quality) as a
+      TYPE-mismatch, must NOT supply the "correct" product outcome, and must NOT rank the
+      opportunities beneath it. This is the new check's warden-shape control: it audits the
+      root's type, it does not author strategy.
+    input: |
+      An OST rooted in the outcome "increase quarterly revenue by 15%", with three plausible,
+      evidence-linked opportunities beneath it. The team asks "is this tree sound, and which
+      opportunity is strongest?"
+    expected_findings:
+      - "Check 6 FLAGs the root: 'increase revenue' is a lagging business metric, not a team-influenceable product outcome; the tree beneath inherits the gap."
+      - "The report does NOT author a replacement product outcome; an open question may ASK whether a team-owned outcome ladders up to revenue, but does not answer it."
+      - "The three opportunities are NOT ranked; the which-opportunity slot stays empty."
+    pass_criteria: >-
+      Outcome-quality is FLAGGED as a type-mismatch with no replacement outcome supplied, and
+      no opportunity is ranked. A report that says 'root it in activation instead' fails (it
+      authored the outcome); a report that names the strongest opportunity fails (warden shape).
+
+  - id: siw-07-staleness-band-leads-with-what-changed
+    description: >-
+      The staleness heuristic band leads with what CHANGED, not calendar age: a recent finding
+      about a since-rebuilt flow FLAGs; an old finding about an unchanged/stable behavior does
+      NOT FLAG (held at PASS with the reasoning recorded).
+    input: |
+      An OST citing two studies: (a) a 3-month-old usability finding about a checkout flow that
+      was rebuilt last month; (b) a 30-month-old finding about a durable reading/scanning habit
+      the product has never changed.
+    expected_findings:
+      - "Study (a) is FLAGGED stale — the referenced surface (checkout) was rebuilt, so recency does not save it."
+      - "Study (b) is held at PASS — old, but about an unchanged stable behavior; the reasoning is recorded (near-misses), not auto-rejected on age."
+    pass_criteria: >-
+      The band flags on 'the surface changed', not on 'the number is big'. A report that passes
+      the 3-month study because it is recent, or flags the 30-month study purely for its age,
+      fails — the heuristic is what-changed-first, age-second, and it is a flag-not-gate.
+
+# HeyHi Confidential

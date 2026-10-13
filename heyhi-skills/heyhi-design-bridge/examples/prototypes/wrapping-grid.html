@@ -1,0 +1,69 @@
+<!doctype html>
+<!--
+  wrapping-grid golden source (WS1/ADR-014). A multi-row CSS grid and a wrapping
+  flex chip row — the two shapes that the pre-fix extractor flattened to a single
+  overflowing row + a "flex-wrap" flag. Values are driven by var() tokens so token
+  recovery still exercises. Kept small (no SVG/raster) so it stays a fast golden.
+  A typical services grid has this shape: 3 columns, 10 cards, 4 rows.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>wrapping-grid golden</title>
+<style>
+  :root {
+    --color-bg-page: #F8F8F8;
+    --color-surface: #FFFFFF;
+    --color-ink: #1C1C1C;
+    --space-section: 96px;
+    --space-grid-row: 40px;
+    --space-grid-col: 24px;
+    --space-chip: 8px;
+    --radius-card: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: var(--color-bg-page); color: var(--color-ink); font-family: system-ui, sans-serif; }
+  .section { padding: var(--space-section) 120px; }
+  /* 3-column grid; 10 cards wrap to 4 rows at this width. */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: var(--space-grid-row);
+    column-gap: var(--space-grid-col);
+    width: 1072px;
+  }
+  .card {
+    background: var(--color-surface);
+    border-radius: var(--radius-card);
+    padding: 24px;
+    min-height: 200px;
+  }
+  /* a wrapping flex chip row */
+  .chips { display: flex; flex-wrap: wrap; gap: var(--space-chip); width: 1072px; margin-top: var(--space-section); }
+  .chip { background: var(--color-surface); border-radius: 999px; padding: 8px 16px; }
+</style>
+</head>
+<body>
+  <section class="section">
+    <div class="grid">
+      <div class="card">Data Pipeline</div>
+      <div class="card">Access Management</div>
+      <div class="card">Billing Settings</div>
+      <div class="card">Webhook Delivery</div>
+      <div class="card">Search &amp; Filtering</div>
+      <div class="card">Files &amp; Documents</div>
+      <div class="card">Alerts / Digests</div>
+      <div class="card">Audit Logs</div>
+      <div class="card">Workspace Export</div>
+      <div class="card">Single Sign-On</div>
+    </div>
+    <div class="chips">
+      <span class="chip">North County</span>
+      <span class="chip">West County</span>
+      <span class="chip">Greater Metro</span>
+      <span class="chip">River Valley</span>
+      <span class="chip">Hill County</span>
+    </div>
+  </section>
+</body>
+</html>

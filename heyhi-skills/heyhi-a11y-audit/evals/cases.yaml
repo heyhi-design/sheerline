@@ -1,0 +1,120 @@
+# Eval cases: heyhi-a11y-audit (Sheerline area 8, P2 — the accessibility anchor).
+#
+# Probes the net-new skill before it is trusted (promotion gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge the DECISION the skill makes (which tier a
+# result belongs to, which slots stay empty, what provenance a row carries, whether it routes
+# away) against pass_criteria. These cases test tier-separation + provenance + boundary behavior,
+# not a live scan or a live AT run. Invented examples, no client content. R4 case shape
+# (id, description, input, expected_findings, pass_criteria).
+
+classification: confidential
+
+cases:
+  - id: a11y-01-judged-criterion-ships-empty
+    description: >-
+      A criterion whose verdict needs human/AT judgment (focus-order logic, alt-text
+      meaningfulness) must ship as NOT YET EVALUATED — NEEDS HUMAN / AT CONFIRMATION, not be
+      auto-verdicted. A criterion only assistive technology can settle stays NEEDS AT until a
+      Mode B pass runs.
+    input: |
+      "Run a WCAG audit on this checkout page." Rendered output is available. The images all
+      have alt attributes; the tab order is present but not obviously logical; no assistive-
+      technology pass has been run this session.
+    expected_findings:
+      - "1.1.1 shows automated PASS (alt present) but conformance status NOT YET EVALUATED — meaningfulness is judged, not confirmed by the presence check."
+      - "2.4.3 Focus Order shows automated result `not-automatable` and status NOT YET EVALUATED — NEEDS AT (no Mode B pass ran), provenance blank."
+    pass_criteria: >-
+      Both judged criteria remain unevaluated. A report that writes 'Supports' for 1.1.1 because
+      alt attributes exist, or resolves focus order without an AT/human pass, fails (boundary § 9).
+
+  - id: a11y-02-provenance-on-every-row
+    description: >-
+      Every ACR row carries a provenance label (automated / human-reviewed / AT-confirmed, or
+      blank for a not-yet-touched judged row). A row with a verdict but no provenance is invalid.
+    input: |
+      "Produce the ACR." The deterministic floor ran (contrast + target-size + ARIA validity),
+      a human reviewed heading descriptiveness, and a Mode B keyboard pass confirmed focus is
+      visible and operable.
+    expected_findings:
+      - "Floor-derived rows (contrast, target size, ARIA validity) carry provenance `automated`."
+      - "The heading-descriptiveness row carries `human-reviewed`; the keyboard rows confirmed in Mode B carry `AT-confirmed`."
+      - "No row carries a VPAT verdict without a `human-reviewed` or `AT-confirmed` provenance label."
+    pass_criteria: >-
+      Every row has a provenance label and no verdict appears at provenance `automated`. A row
+      that reads 'Supports' with provenance `automated` (or with the column blank) fails.
+
+  - id: a11y-03-automated-pass-is-not-a-claim
+    description: >-
+      A clean automated scan is a defect-scan result, never a conformance claim. An automated
+      PASS keeps the row at NOT YET EVALUATED.
+    input: |
+      "The automated checks all came back clean — can we say this is AA conformant?" The floor
+      reports zero contrast, target-size, and ARIA-validity defects. No human review or AT pass
+      has happened.
+    expected_findings:
+      - "The report states the automated tier found no defects (PASS, provenance automated) but that this is NOT a conformance claim."
+      - "The overall conformance verdict block stays empty; the automated-coverage ceiling is stated honestly (~30–40% by criteria type / higher by instance count; large judged remainder)."
+    pass_criteria: >-
+      The skill declines to convert a clean scan into 'Supports AA'. Any answer that says 'yes,
+      the automated checks passed so it's AA conformant' fails — this is the case the skill exists for.
+
+  - id: a11y-04-conformance-signoff-is-the-named-gate
+    description: >-
+      The conformance verdict + overall claim ship empty behind a named human sign-off; no ACR is
+      issued until a human signs, and any row still at provenance `automated` must be resolved or
+      scoped out first.
+    input: |
+      "Finalize the ACR and issue it." Every automated row is clean; several judged rows are still
+      at provenance `automated` (never human-reviewed or AT-confirmed); no one has signed.
+    expected_findings:
+      - "The ⛔ conformance-verdict block and the named-gate sign-off line are present and blank."
+      - "The skill refuses to 'issue' the ACR — the sign-off is unsigned and rows still at `automated` block the aggregate claim."
+    pass_criteria: >-
+      The report is not issued as a conformance claim while the gate is unsigned and rows remain
+      unconfirmed. Filling the verdict block or declaring the ACR issued without the signature fails.
+
+  - id: a11y-05-not-for-design-system-audit
+    description: >-
+      Reciprocal not_for: a design-system-health request (token drift, component-code drift,
+      overall system maturity) routes to heyhi-design-intelligence-audit, not into a WCAG ACR.
+    input: |
+      "Audit our design system — check the token drift between Figma and code, how our components
+      are holding up, and the overall health of the system."
+    expected_findings:
+      - "Recognizes this is a design-system-health audit (heyhi-design-intelligence-audit territory — its Area 5 accessibility spot-check is the seam), not a WCAG conformance audit, and routes away via not_for."
+      - "If the ask were narrowed to 'is this surface AA conformant / produce an ACR', THEN this skill runs."
+    pass_criteria: >-
+      The skill declines / routes rather than producing a per-criterion WCAG ACR for a
+      system-health question. Absorbing a design-system-audit request fails the reciprocal not_for.
+
+  - id: a11y-06-contrast-consumed-not-reimplemented
+    description: >-
+      The automated tier is CONSUMED from the deterministic floor; the skill does not re-implement
+      contrast math and names the mechanical source it read. It does not hard-depend on the
+      unpromoted heyhi-prototype-verify.
+    input: |
+      "Check the contrast on these components." The DS-MCP conformance lane and the heyhi-mcp
+      validator's accessibility rules are reachable this session.
+    expected_findings:
+      - "The contrast result is read from the floor (conformance lane / validator accessibility rules) and the source read is named in the report; no hand-rolled contrast-ratio computation appears."
+      - "The report does not position itself as 'we run axe'; the floor result is framed as a defect scan feeding evidence toward 1.4.3 / 1.4.11, provenance automated."
+    pass_criteria: >-
+      Contrast comes from the floor and the source is named. Re-deriving contrast ratios by hand,
+      or hard-depending on heyhi-prototype-verify by name as the only source, fails.
+
+  - id: a11y-07-aa-legal-version-fork
+    description: >-
+      The skill audits TO WCAG 2.2 AA but maps the conformance CLAIM to the version the
+      jurisdiction names; an unstated jurisdiction becomes an open question, not an assumption.
+    input: |
+      "Is this AA conformant for our EU launch under the EAA?" The audit is run against 2.2 AA; the
+      team has not stated which WCAG version their obligation cites.
+    expected_findings:
+      - "The report audits to 2.2 AA (the stricter baseline) and states the claim maps to the version the jurisdiction names, never asserting a version the law does not require."
+      - "Because the cited version is not stated, the report raises it as an OPEN QUESTION for the audit owner rather than assuming 2.2 vs 2.1 AA."
+    pass_criteria: >-
+      The audit-to-2.2 / claim-to-the-named-version fork is honored and the missing jurisdiction
+      version is surfaced as a question. Silently asserting '2.2 AA conformant, EAA-ready' without
+      the jurisdiction question — or auditing only to the older version — fails.
+
+# HeyHi Confidential

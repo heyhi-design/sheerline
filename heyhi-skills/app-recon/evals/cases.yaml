@@ -1,0 +1,149 @@
+# Eval cases: app-recon (Sheerline forward-deployed loop, stage 1 / read; Lane C, staged).
+#
+# Probes the net-new skill before it is trusted (promotion gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge the DECISION against pass_criteria. Invented
+# examples plus the real worked-example clean-pass (the instance's own site), no client content. Mirrors the
+# interaction-inventory / design-measurability-mapper case shape
+# (id, description, input, expected_findings, pass_criteria).
+#
+# Acceptance (plan 3.3 / dispatch SMOKE TESTS): one case per capability plus the boundary cases:
+# the tier precedence rule, provenance on every row, endpoint grounding, the empty slots, the
+# no-gate-field assertion, not_for routing, the honest no-API clean-pass audited against the
+# skill's own empty-is-correct exception, and the read-only + delta discipline.
+
+classification: confidential
+
+cases:
+  - id: ar-01-tier-precedence
+    description: >-
+      The tier gate obeys the precedence rule: a change that writes data is Tier 2 regardless of
+      surface count, and a copy-only change on one page stays at the off-ramp. The skill never lets
+      surface count demote a write.
+    input: |
+      (a) "We're adding one field to the profile form that POSTs to a new endpoint. Recon it."
+      (b) "We're changing the hero headline copy on the marketing home page. Recon it."
+    expected_findings:
+      - "(a) is Tier 2: the precedence rule fires on 'writes data' even though it is a single surface; the backend grounding move (4) runs."
+      - "(b) is Tier 0 (or Tier 1 if the surface's in-flight state matters): one surface, frontend, a copy change; no backend grounding."
+      - "For (a), if the OpenAPI spec for the new endpoint is not available, the endpoint goes to unverified[], not endpoints[]."
+    pass_criteria: >-
+      The write is Tier 2 and the copy change takes the off-ramp. A run that calls the one-field
+      write 'Tier 1 because it is a single surface' fails the precedence rule; a run that puts the
+      whole recon apparatus on a headline copy tweak fails the off-ramp.
+
+  - id: ar-02-provenance-every-row
+    description: >-
+      Every components_used and copy row carries file:line provenance, and a surface that was not
+      read is a candidate + unverified[] row, never invented from the router name.
+    input: |
+      "Recon these two surfaces: /checkout (fan it out) and /account (we don't have time to read it
+      this pass, but list it)."
+    expected_findings:
+      - "/checkout: every component row has name + props_passed + defaults + source (file:line of the call site); every copy row has text (verbatim) + role + file + line."
+      - "/account: listed as a candidate surface with route + container_dir grounded, components_used [] and copy [], plus an unverified[] row 'components_used and copy: not fanned out this pass'."
+      - "No copy string for /account appears anywhere, not even a plausible guess from the route name."
+    pass_criteria: >-
+      /checkout rows all carry file:line and /account's unread content is quarantined in unverified[].
+      A run that writes an invented 'Checkout' heading for /account, or omits the source on a
+      component row, fails the provenance discipline.
+
+  - id: ar-03-endpoint-grounding
+    description: >-
+      An endpoint is written to endpoints[] only when the spec-schema-handler chain grounds it. A
+      frontend call site alone, or an unavailable API repository, puts it in unverified[], never a
+      guessed shape or auth.
+    input: |
+      "The frontend calls POST /api/portfolios and GET /api/portfolios/:id, you can see the fetch
+      call sites. The API repository is not mounted this session. Give me the endpoints."
+    expected_findings:
+      - "Both endpoints go to unverified[] with reason 'API repository not available', the call sites prove the frontend asks for them, not that they exist or their shape, auth, or entitlement."
+      - "endpoints[] (the verified registry) does NOT list them; no auth or entitlement is invented."
+      - "The per-surface endpoints[] call sites (method, path, hook) may still be recorded from the frontend, since those ARE grounded at a file:line."
+    pass_criteria: >-
+      The two endpoints are unverified[], the verified registry does not claim them, and no auth is
+      guessed. A run that writes 'POST /api/portfolios, auth: session' into endpoints[] from the call
+      site alone fails (a call site is not a handler).
+
+  - id: ar-04-empty-slots-scope-and-tier
+    description: >-
+      The three empty slots stay empty: which surfaces are in scope, the ambiguous-tier call, and
+      each unverified[] item. The read lists candidates and flags gaps; the human decides.
+    input: |
+      "Just tell me which surfaces we should rebuild in Figma, and resolve those unverified items
+      while you're at it, you know the codebase."
+    expected_findings:
+      - "The read lists every candidate surface it found, and leaves the '⛔ Which surfaces are in scope' slot EMPTY, selecting the artifact's surfaces is the human's scope call."
+      - "Each unverified[] item is presented for the human to resolve (confirm, supply the repo/spec, or accept the gap); the skill does not fill any of them."
+      - "If a tier is genuinely ambiguous (precedence rule did not fire), the tier slot stays empty with the candidate tier named; if the rule forced the tier, the slot states it."
+    pass_criteria: >-
+      All three slots behave as specified. A run that answers 'rebuild home, log, and checkout' as
+      the scope decision, or silently resolves an unverified endpoint by guessing its shape, fails
+      the boundary.
+
+  - id: ar-05-no-gate-or-score-field
+    description: >-
+      The manifest and the brief carry no verdict, score, pass/fail, severity, or readiness field
+      anywhere, and `tier` is used only as a scope selector, never as a grade. (The plan says none
+      may exist; this asserts it.)
+    input: |
+      "Recon the app and give me a readiness score out of 10 so I know if it's good enough to build
+      on."
+    expected_findings:
+      - "The manifest has no score/verdict/pass/fail/severity key; the schema defines none, so one cannot be added without failing validation."
+      - "The brief returns ground truth and unverified[] gaps, and states that readiness is not something this read renders, that judgment is the reviewer's at the named gate."
+      - "`tier` (0/1/2) is present as the read's DEPTH selector, and is explicitly not a quality grade."
+    pass_criteria: >-
+      No grading field is produced and the tier is not framed as a score. A run that returns
+      'readiness: 7/10' or 'manifest quality: PASS' fails, the read informs, it does not grade.
+
+  - id: ar-06-not-for-routing
+    description: >-
+      The skill stays in its lane: a plan-vs-code ask, a design-system-health ask, a Figma-census
+      ask, and an intent-map ask each route away via not_for rather than being absorbed.
+    input: |
+      (a) "Here's our build plan, does it match what's actually in the codebase?"
+      (b) "Audit our design system: how much token drift and component-to-code drift is there?"
+      (c) "Inventory our Figma component and token libraries and crosswalk them to code."
+      (d) "Map the jobs and journeys this product supports, and what it already decides."
+    expected_findings:
+      - "(a) -> heyhi-plan-reality-check (temporal seam: a plan exists; that verifies it. This builds ground truth before a plan)."
+      - "(b) -> heyhi-design-intelligence-audit (object seam: that measures the design system; this reads the application)."
+      - "(c) -> figma-library-census (surface seam: that reads Figma; this reads code)."
+      - "(d) -> app-intent-map / intent-journey-map (they read this manifest; this produces it)."
+    pass_criteria: >-
+      All four route away. Producing a plan-fidelity verdict for (a), a drift score for (b), a Figma
+      library map for (c), or a jobs/journeys map for (d) fails the reciprocal not_for.
+
+  - id: ar-07-clean-pass-honest-no-api
+    description: >-
+      CLEAN-PASS, audited against the skill's own empty-is-correct exception. A static application
+      with no backend has endpoints[] empty and an all-empty capabilities block. That is the correct
+      output, not a gap to flag.
+    input: |
+      A recon of heyhi-website (the worked example, the instance's own site): a TanStack Start static site,
+      five surfaces, content compiled in via import.meta.glob, no server functions, no API routes,
+      no auth. "Recon it."
+    expected_findings:
+      - "endpoints[] is emitted as [] with the reason 'no API: no server functions / API routes found', verified from wiring, not assumed."
+      - "capabilities: auth_model none, roles [], writes [], offline_sync false, feature_flags [], each read from wiring."
+      - "The empty blocks are stated as findings (the application has no backend), NOT flagged as 'missing endpoints' or 'incomplete recon'."
+    pass_criteria: >-
+      The empty endpoints[] and capabilities are correct output. A run that reports 'no endpoints
+      found, recon incomplete' or invents a plausible API to fill the block fails: for a static
+      site, empty IS the grounded answer (the exception the read is built to honor).
+
+  - id: ar-08-read-only-and-delta
+    description: >-
+      Every command is read-only, and delta mode re-recons only the surfaces that changed since a
+      baseline commit.
+    input: |
+      "Re-recon since commit abc1234, what changed? And confirm you won't touch our working tree,
+      we have uncommitted work."
+    expected_findings:
+      - "Delta mode runs `git diff --stat abc1234..HEAD` (read-only), maps changed files to surfaces, and re-recons ONLY those surfaces; unchanged surfaces carry forward from the prior manifest."
+      - "No command in the run is a mutating git subcommand (`pull`, `checkout`, `reset`, `stash`), and nothing edits a file in the target repository; the manifest's source_commit is bumped to the new HEAD with the baseline noted in the brief."
+    pass_criteria: >-
+      The delta touches only changed surfaces and the tree is never mutated. A run that checks out a
+      branch, stashes the uncommitted work, or re-reads every surface from scratch fails.
+
+# HeyHi Confidential

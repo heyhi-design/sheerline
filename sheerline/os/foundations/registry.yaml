@@ -1,0 +1,400 @@
+# Sheerline: the 13-area practice registry
+#
+# A flat, tagged capability registry (not a two-tier tree). Each area carries a coverage
+# state so gaps are tracked, not invisible. This is a propagation surface: structured
+# fields over prose. Locked taxonomy per design-practice-harness-architecture-2026-07-29.md
+# § 2 and plan-sheerline-v1-build-2026-07-30.md § 4; per-area skill map per
+# sheerline-skill-buildout-research-2026-08-09.md § 1c / § 7b / § 8.
+#
+# nature   : craft | operating | conditional
+# coverage : deep | covered | partial | gap        (design-practice coverage, not keel-layer)
+# elevated : true when a partial area is a governed-practice elevation target (area 8 only)
+# phase    : the phase that governs or fills this area (P1 | P1.5 | P2 | P3 | D-3)
+# foundation: deep-manifest | governance | stub | deferred | governance-invariant
+#             (deep-manifest / governance / stub folders exist in P1; deferred = later phase)
+# build_gate: what unblocks the net-new build for this area
+# maturity  : the finer practice-CAPABILITY instrument (Phase-B, DF-01 W1). A SIBLING of
+#             `coverage`, not a replacement. `coverage` answers "does >=1 skill + foundation
+#             EXIST" (a coarse existence tag); `maturity` answers "how GOOD/mature is the
+#             practice" on a Dreyfus-shaped 1-5 rung scale. They are orthogonal and never
+#             conflict: `coverage` stays the canonical existence tag, `maturity` never
+#             overrides it, and a maturity read never moves a coverage value. Ships all-null
+#             (ungraded) until graded. This is the INTERNAL "practice-capability level," never
+#             the client-facing design-system-maturity-model.md (shared 1-5 numeral, nothing
+#             else). Rungs + evidence classes + how `indirect` evidence is derived:
+#             os/foundations/maturity/{LEVELS.md, EVIDENCE-CLASSES.md}. Derived and graded by
+#             sheerline/skills/evals/measure_maturity.py; advisory only (zero deterministic
+#             gates). Field shape per area:
+#   maturity.level        : 1-5 | null (ungraded). 1 Scaffolded / 2 Situated / 3 Governed /
+#                           4 Calibrated / 5 Exemplary. null when no rung is authored (SFIA:
+#                           not every level is meaningful yet). Monotonic-by-agent: only a
+#                           human lowers a stored level (the "maturity can regress" property).
+#   maturity.target       : 1-5 | null. Owner-set aspiration. delta(target, level) = the
+#                           roadmap line for the area (CMMI achievement-vs-target framing).
+#   maturity.evidence     : direct[] / indirect[] / affirmation[] (SCAMPI-style classes; a
+#                           rating is never made on artifacts alone -- affirmation required
+#                           for the top rungs).
+#   maturity.last_graded  : ISO date | null.
+#   maturity.re_grade_due : bool, derived by measure_maturity.py from the cadence anchor;
+#                           never hand-set.
+
+classification: confidential
+
+meta:
+  version: "0.1.11"
+  areas: 13
+  craft: 8
+  operating: 4
+  conditional: 1
+  p1_deep_manifests: 2         # areas 6, 7
+  p1_governance_foundations: 1 # area 5 (Phase-1 authoring snapshot)
+  governance_foundations_added_g3: 3 # areas 8 (elevated from stub), 9, 11 (skills-upgrade G-2/G-3, 2026-08-28)
+  governance_foundations_added_p3: 5 # areas 1, 2 (P3 fill, 2026-09-01) + area 4 (Interaction Design, 2026-09-05, Bucket B area-4 lane) + area 10 (Business Acumen, 2026-09-05, Bucket B area-10 lane) + area 3 (Content Design, 2026-09-05, Bucket B area-3 lane). Each lane bumped this one integer in-lane because CI test_live_repo_reconciled requires Check 21 clean; the meta.note/version reconcile stays with the convergence pass.
+  governance_foundations_added_d3: 1 # area 13 (Service Design, D-3 fill, 2026-09-07, D-3-open build lane) — the one conditional area, filled when the D-3 offering opened on a client-engagement pull. Its own wave key (not p3): Check 21's governance-breakdown invariant sums ALL governance_foundations_added_* keys, so a new wave key is supported (the g5-extensibility test). Bumped in-lane per the Check 21 exception; meta.note/version reconcile stays with the convergence pass.
+  p1_stubs: 0                  # ZERO stubs remain — area 13 (Service Design) filled 2026-09-07 at D-3 open, the last stub in the 13-area map. Earlier: areas 1, 2 filled 2026-09-01; areas 3, 4, 10 filled 2026-09-05 (Bucket B lanes); area 8 elevated in G-2/G-3
+  note: >
+    Phase 1 authored zero net-new skills, governed the two deep areas + Prototyping, and
+    stood up five first-class tracked-state stubs. Skills-upgrade G-2/G-3 (2026-08-28)
+    elevated the area-8 (Accessibility) foundation from stub to a filled governance manifest,
+    and added governance manifests for the two operating areas whose P1.5 skills registered
+    into absent context (area 9 Design Strategy, area 11 Collaboration/Facilitation). The P3
+    foundation fill (2026-09-01) filled the two upstream-craft stubs in dependency order —
+    User Research (area 1) then Information Architecture (area 2), stub -> governance,
+    coverage gap -> partial — authoring craft canon and referencing the always-loaded
+    invariants in place, restating nothing. So SIX governance foundations now exist
+    (areas 5, 8, 9, 11, 1, 2) and only TWO stubs remain (areas 10, 13). The fill takes each
+    area out of `gap`; `partial -> covered` is earned later by real skill coverage (area 1's
+    research-plan-author was then still staged; all of area 2's skills are D-3-gated), so
+    both correctly sat at `partial`. 2026-09-04: research-plan-author promoted, so area 1 moved
+    partial -> covered (coverage now 2 deep, 2 covered, 8 partial, 1 gap); area 7 gained its write +
+    act verbs. 2026-09-05 (Bucket B, reconciled by the convergence pass): areas 4 (Interaction
+    Design, authored deferred -> governance as a new folder) and 10 (Business Acumen, stub ->
+    governance) filled, so EIGHT governance foundations now exist (areas 1, 2, 4, 5, 8, 9, 10,
+    11), area 3 is the one remaining deferred folder, and area 13 the one remaining stub. Four
+    skills are STAGED in skill-updates/ (interaction-inventory, competitive-teardown-runner,
+    design-business-case-drafter, crit-prep-and-capture), registry-inert; the coverage tally
+    did not move at the convergence pass because partial -> covered is earned at promotion. Later the
+    same day the instance owner cleared all four and the Bucket B promotion pass deployed them: areas 4 and 10
+    moved partial -> covered (coverage now 2 deep, 4 covered, 6 partial, 1 gap); area 11 stays
+    partial by construction. Later still (the second Bucket B pass, 2026-09-05): area 3 (Content
+    Design) filled deferred -> governance as a new folder and microcopy-states-writer promoted,
+    so NINE governance foundations now exist (areas 1, 2, 3, 4, 5, 8, 9, 10, 11), no deferred folder
+    remains, area 13 is the one stub, and area 3 moved partial -> covered (coverage now 2 deep,
+    5 covered, 5 partial, 1 gap). 2026-09-07 (D-3 run-up convergence, v0.1.6 -> 0.1.7): the
+    area-13 build_gate gained the heyhi-service-blueprint spec pointer (spec written, blocked
+    until D-3) — the stub is unchanged (coverage still gap, foundation still stub); no
+    foundation flipped and no governance integer moved this pass. 2026-09-07 (D-3 OPEN, v0.1.7 ->
+    0.1.8): the offering opened on a client-engagement pull. The area-13 (Service Design) foundation
+    filled stub -> governance and coverage gap -> partial (governance_foundations_added_d3: 1;
+    p1_stubs 1 -> 0, the last stub closed), then heyhi-service-blueprint deployed so area 13
+    partial -> covered; taxonomy-labeling-auditor (area 2 IA, the heyhi-aeo schema seam) deployed so
+    area 2 partial -> covered. So TEN governance foundations now exist (areas 1, 2, 3, 4, 5, 8, 9, 10,
+    11, 13), ZERO stubs and ZERO gaps remain, and coverage is 2 deep, 7 covered, 4 partial, 0 gap.
+    2026-09-07 (fdde-loop convergence 1, v0.1.8 -> 0.1.9): the forward-deployed loop registered five
+    Wave-1 skills (figma-library-census area 7, app-to-figma area 5, app-recon area 12, and the intent
+    pair intent-journey-map + app-intent-map area 9) with NO coverage-tag move: areas 7 (deep) and 5
+    (covered) unchanged; areas 9 and 12 stay partial with strengthened grounding (the intent skills are
+    the loop product-reading layer, not the deep product-strategy canon; app-recon is one read verb,
+    not DesignOps coverage); area 2 untouched (serves_areas hints only, D11). Coverage stays 2 deep,
+    7 covered, 4 partial, 0 gap.
+    2026-09-08 (fdde-loop convergence 2, v0.1.9 -> 0.1.10): the loop registered three Wave-2 skills
+    (feature-increment area 12, ds-component-author + ds-component-change area 7) with NO coverage-tag
+    move: area 7 stays deep (the promotion-execution author + change verbs deepen the most-built area),
+    area 12 stays partial (a read verb + an increment verb do not cover DesignOps/ResearchOps).
+    design-system-care-monthly bumped 1.4.0 -> 1.6.0 (an add-on to an existing skill, no count or
+    coverage change). Coverage stays 2 deep, 7 covered, 4 partial, 0 gap.
+    2026-09-13 (maturity instrument, DF-01 W1 Phase B, v0.1.10 -> 0.1.11): added an all-null
+    `maturity` block (level/target/evidence/last_graded/re_grade_due) to every area as a SIBLING of
+    `coverage`, a finer practice-capability instrument that never overrides the coarse coverage tag.
+    Ships EMPTY (no area graded); rungs + evidence classes in os/foundations/maturity/, derived by
+    sheerline/skills/evals/measure_maturity.py (advisory, zero deterministic-block gates). Every
+    coverage value is byte-unchanged; this pass adds no skill and moves no coverage tally.
+    2026-09-14/15 (W1 activation; meta note reconciled 2026-09-28): the instrument no
+    longer ships empty. 12 of 13 areas carry a provisional level 3 (Governed), ceiling L3 by the
+    proof-vs-fire wall; area 12 DesignOps stays level null (no dedicated foundation doc); the instance
+    owner set the targets (L4 near-term, area 11 held at L3). Coverage values unchanged.
+    Coverage gaps are visible states, not absences. Skill count is derived (skill-registry.py --stats
+    or the canonical skills table), never hardcoded here.
+
+# Governs the phased build order.
+dependency_spine: "User Research -> Information Architecture -> (Interaction || Content) -> Visual -> Design Systems"
+cross_cutting_threads:
+  - "Accessibility (area 8) runs cross-cutting through every relevant area."
+  - "Design Ethics / Responsible Design and Inclusive Design run as threads through operating-principles and every area (not areas themselves)."
+  - "Strategy, Business Acumen, and DesignOps are operating areas that sit above the craft."
+
+areas:
+
+  - id: 1
+    key: user-research
+    name: User Research
+    nature: craft
+    coverage: covered
+    phase: P3
+    foundation: governance
+    foundation_path: os/foundations/user-research/FOUNDATION.md
+    build_gate: "Foundation FILLED (P3); research-plan-author deployed, so coverage is covered. Remaining tiers (plans/plan-sheerline-p3-ur-ia-foundations-2026-08-29.md § 1.2): synthesis-pipeline + usability-evaluation = Tier 2, held on research-example-corpus THICKNESS (the thickness bar is unratified; research-example-intake/ open); instrument-smith = Tier 2b, held on engagement pull."
+    grounding: "Foundation filled; 1 deployed skill (research-plan-author, the plan/method/sample-size/consent skeleton with the question, method, and go decision as empty slots). Adjacent, referenced not owned: heyhi-discovery-call is sales; futurecasting reads org signals; heyhi-workshop is facilitation. insight-activation registers here (the learn verb), not a UR study skill."
+    maturity:
+      # provisional first-rung (owner-approved, per LEVELS.md's provisional rule). Ceiling L3 — no in-room affirmation yet (proof-vs-fire wall). Supersede on the first real area-1 fire.
+      level: 3   # Governed
+      target: 4   # owner-set: L4 near-term (earn one signed affirmation)
+      evidence:
+        direct: ["os/foundations/user-research/FOUNDATION.md (governance; the 'judged layer (what stays human)' section names the deliberate absences)"]
+        indirect: ["1 deployed skill (research-plan-author); the auto-derived area-1 corrections/evaluator candidate (measure_maturity.py)"]
+        affirmation: []   # none in the room -> caps at L3
+      last_graded: "2026-09-15"
+      re_grade_due: false
+
+  - id: 2
+    key: information-architecture
+    name: Information Architecture
+    nature: craft
+    coverage: covered
+    phase: P3
+    foundation: governance
+    foundation_path: os/foundations/information-architecture/FOUNDATION.md
+    build_gate: "Foundation FILLED (P3). taxonomy-labeling-auditor (the most durable IA value; the heyhi-aeo machine-readability schema seam) deployed on a client-engagement pull, so coverage is covered. The other three IA skills (ia-study-designer, findability-audit, intent-taxonomist) stay held / unbuilt until an engagement pull (findability-audit flagged highest-collision)."
+    grounding: "Foundation filled; 1 deployed skill (taxonomy-labeling-auditor). ui-studio touches layout with no IA discipline (the gap the foundation fills); heyhi-aeo owns the answer-engine layer the machine-readability seam hands off to; heyhi-figjam-mapper (area 11) serves IA sitemap diagrams, not a study skill."
+    maturity:
+      # provisional first-rung (owner-approved, per LEVELS.md's provisional rule). Ceiling L3 — no in-room affirmation yet (proof-vs-fire wall). Supersede on the first real area-2 fire.
+      level: 3   # Governed
+      target: 4   # owner-set: L4 near-term (earn one signed affirmation)
+      evidence:
+        direct: ["os/foundations/information-architecture/FOUNDATION.md (governance; the 'judged layer (what stays human)' section)"]
+        indirect: ["1 deployed skill (taxonomy-labeling-auditor); direct evidence carries the grade (0 auto-derived area-2 candidates, measure_maturity.py)"]
+        affirmation: []   # none in the room -> caps at L3
+      last_graded: "2026-09-15"
+      re_grade_due: false
+
+  - id: 3
+    key: content-design
+    name: Content Design / UX Writing
+    nature: craft
+    coverage: covered   # partial -> covered when microcopy-states-writer deployed (spec § 9 D2)
+    phase: P3
+    foundation: governance
+    foundation_path: os/foundations/content-design/FOUNDATION.md
+    build_gate: "Foundation FILLED (P3, authored deferred -> governance; spec plans/plan-sheerline-p3-content-design-2026-09-05.md). voice-system-author DEPLOYED (Wave G-4, the area-3 spine; pointed at this foundation). microcopy-states-writer DEPLOYED (the copy half of the states seam with the deployed interaction-inventory), so coverage is covered (spec § 9 D2). content-model-architect held (presupposes IA vocabulary; the remaining IA skills are held on an engagement pull)."
+    grounding: "Foundation filled; 3 governed skills — voice-system-author (client voice-and-tone systems, dual-mode Author+Audit), heyhi-voice (HeyHi's own instance, brand-locked), and microcopy-states-writer (per-state microcopy against a confirmed voice; which copy ships, the tone call, the terminology ruling stay human). heyhi-content-writer serves from the HeyHi/keel layer, not in the governed subset. The foundation points at voice-system-author's references as the canon of record and authors only the per-state layer around them (the state -> slot map, the next-step anatomy, string constraints, glossary + content-model primitives)."
+    maturity:
+      # provisional first-rung (owner-approved, per LEVELS.md's provisional rule). Ceiling L3 — no in-room affirmation yet (proof-vs-fire wall). Supersede on the first real area-3 fire.
+      level: 3   # Governed
+      target: 4   # owner-set: L4 near-term (earn one signed affirmation)
+      evidence:
+        direct: ["os/foundations/content-design/FOUNDATION.md (governance; the 'judged layer (what stays human)' section)"]
+        indirect: ["3 governed skills (voice-system-author, microcopy-states-writer, heyhi-voice); the auto-derived area-3 corrections/evaluator candidates (measure_maturity.py)"]
+        affirmation: []   # none in the room -> caps at L3
+      last_graded: "2026-09-15"
+      re_grade_due: false
+
+  - id: 4
+    key: interaction-design
+    name: Interaction Design
+    nature: craft
+    coverage: covered   # partial -> covered when interaction-inventory deployed (spec § 9 D2)
+    phase: P3
+    foundation: governance
+    foundation_path: os/foundations/interaction-design/FOUNDATION.md
+    build_gate: "Foundation FILLED (P3, authored deferred -> governance; spec plans/plan-sheerline-p3-interaction-design-2026-09-04.md). motion-system-author DEPLOYED (Wave G-4; pointed at this foundation). interaction-inventory DEPLOYED, so coverage is covered. The area-3 seam is built: microcopy-states-writer pairs 1:1 with the inventory sidecar."
+    grounding: "Foundation filled; 2 deployed skills — motion-system-author (client motion-token systems, dual-mode Author+Translate) and interaction-inventory (the structural microinteraction spec: every element's states / transitions / state machine / focus-keyboard-gesture against the A.3 contract, with which-interactions-matter, deliberate-absence rulings, and the interaction verdict as empty slots) on top of facet coverage under ui-ux / ui-studio / heyhi-prototype-audit. Substrate: the foundation points at the ratified control-state contract (Increment A A.3 — default / hover / focus-visible / active / disabled / loading / error + success / selected — which resolved a real three-source divergence, ux-guidelines.csv rows 28-34 vs. agent-summary.md:156 vs. :340; reasoning of record ai-services/design-intelligence/research/design-fundamentals-decision-research-2026-08-12.md) and authors only the inventory discipline around it."
+    maturity:
+      # provisional first-rung (owner-approved, per LEVELS.md's provisional rule). Ceiling L3 — no in-room affirmation yet (proof-vs-fire wall). Supersede on the first real area-4 fire.
+      level: 3   # Governed
+      target: 4   # owner-set: L4 near-term (earn one signed affirmation)
+      evidence:
+        direct: ["os/foundations/interaction-design/FOUNDATION.md (governance; the 'judged layer (what stays human)' section + the ratified control-state contract it points at)"]
+        indirect: ["2 deployed skills (motion-system-author, interaction-inventory); the auto-derived area-4 corrections/evaluator candidates (measure_maturity.py)"]
+        affirmation: []   # none in the room -> caps at L3
+      last_graded: "2026-09-15"
+      re_grade_due: false
+
+  - id: 5
+    key: wireframing-prototyping
+    name: Wireframing & Prototyping
+    nature: craft
+    coverage: covered
+    phase: P1
+    foundation: governance
+    foundation_path: os/foundations/prototyping/FOUNDATION.md
+    build_gate: "Governed (covered). The early-flow deepen (flow-and-lofi-author, divergence-guard) is deployed, cleared by the instance owner, with the ui-studio routing override for lo-fi asks. Coverage stays covered."
+    grounding: "7 skills: 4 at hi-fi (heyhi-ui-ux, ui-studio, heyhi-prototype-audit, heyhi-design-bridge), the early-flow deepen (flow-and-lofi-author generates lo-fi structure, divergence-guard reads for premature convergence), and app-to-figma (the forward-deployed loop build verb: an application built into a Figma app file from the client published library, the reverse of heyhi-figma-ds-generator). Area stays covered."
+    maturity:
+      # provisional first-rung (owner-approved, per LEVELS.md's provisional rule). Ceiling L3 — no in-room affirmation yet (proof-vs-fire wall). Supersede on the first real area-5 fire.
+      level: 3   # Governed
+      target: 4   # owner-set: L4 near-term (earn one signed affirmation)
+      evidence:
+        direct: ["os/foundations/prototyping/FOUNDATION.md (governance; the 'Governance actions (Phase 1)' + 'The boundary' sections)"]
+        indirect: ["7 skills (heyhi-ui-ux, ui-studio, heyhi-prototype-audit, heyhi-design-bridge, flow-and-lofi-author, divergence-guard, app-to-figma); direct evidence carries the grade (0 auto-derived area-5 candidates, measure_maturity.py)"]
+        affirmation: []   # none in the room -> caps at L3
+      last_graded: "2026-09-15"
+      re_grade_due: false
+
+  - id: 6
+    key: visual-design
+    name: Visual Design
+    nature: craft
+    coverage: deep
+    phase: P1
+    foundation: deep-manifest
+    foundation_path: os/foundations/visual-design/FOUNDATION.md
+    build_gate: "Governed now. Zero net-new skills; the Layer-0 pipeline + the style skills are the foundation."
+    grounding: "5 skills (heyhi-logo-system, heyhi-style-brief, heyhi-style-selection, heyhi-style-entry-author, design-system-onboard) + the Layer-0 corpus."
+    maturity:
+      # provisional first-rung (owner-approved; authored from the foundation + evaluator + seed, per LEVELS.md's provisional rule). Ceiling L3 — no in-room affirmation yet (proof-vs-fire wall). Supersede on the first real area-6 fire.
+      level: 3   # Governed — matches the registry build_gate ("Governed now")
+      target: 4   # owner-set: L4 near-term (earn one signed affirmation)
+      evidence:
+        direct: ["os/foundations/visual-design/FOUNDATION.md (deep-manifest); build_gate 'Governed now' — the Layer-0 pipeline + the style skills govern the visual craft and name deliberate absences"]
+        indirect: ["the 5 style skills + the Layer-0 corpus; the auto-derived corrections/evaluator candidates for area 6 (measure_maturity.py)"]
+        affirmation: []   # none confirmed in the room -> caps at L3
+      last_graded: "2026-09-14"
+      re_grade_due: false
+
+  - id: 7
+    key: design-systems
+    name: Design Systems
+    nature: craft
+    coverage: deep
+    phase: P1
+    foundation: deep-manifest
+    foundation_path: os/foundations/design-systems/FOUNDATION.md
+    build_gate: "Governed now. Phase-2 advances landed: the R1 corrections registry + the evaluator I2/I3 series; the first write verb (heyhi-figma-ds-generator, live-proved) and act verb (heyhi-drift-repair); the promotion-execution author verb (ds-component-author) and change verb (ds-component-change). Remaining: the Figma-canvas repair target (drift-repair v2, propose-only) and the generator's v2 scopes (Storybook/code catalogs, unattended replay)."
+    grounding: "16 skills + the DS-MCP + Evaluator: the 11 read/audit/validate/grade skills plus the write verb (heyhi-figma-ds-generator, live-proved on the instance's own system) and the act verb (heyhi-drift-repair), figma-library-census (the forward-deployed loop read/serve census + code crosswalk), and the promotion-execution author + change verbs (ds-component-author, ds-component-change). The most-built area; area stays deep."
+    maturity:
+      # provisional first-rung (owner-approved; authored from the foundation + evaluator + seed, per LEVELS.md's provisional rule). Ceiling L3 — no in-room affirmation yet (the figma-ds-generator run on the instance's own system is a proof, not a signed in-room gate). Supersede on the first real area-7 fire.
+      level: 3   # Governed — matches the registry build_gate ("Governed now")
+      target: 4   # owner-set: L4 near-term; L5 reserved as the differentiator aspiration once a fire lands
+      evidence:
+        direct: ["os/foundations/design-systems/FOUNDATION.md (deep-manifest; the retrieve->validate->grade->learn contract)", "the R1 corrections registry + the evaluator I2/I3: the pause-and-ask-by-rule + named-deliberate-absence discipline"]
+        indirect: ["build_gate 'Governed now'; 16 skills + the DS-MCP + Evaluator, incl. the write verb (heyhi-figma-ds-generator, live-proved on the instance's own system) and the act verb (heyhi-drift-repair)"]
+        affirmation: []   # none confirmed in the room -> caps at L3 (proof-vs-fire wall)
+      last_graded: "2026-09-14"
+      re_grade_due: false
+
+  - id: 8
+    key: accessibility
+    name: Accessibility
+    nature: craft
+    coverage: partial
+    elevated: true
+    phase: P2
+    foundation: governance
+    foundation_path: os/foundations/accessibility/FOUNDATION.md
+    build_gate: "Governed now (foundation filled + anchor built, G-2). heyhi-a11y-audit (the ACR/VPAT anchor) + heyhi-a11y-annotation (design-side handoff) are built + promoted. Stays partial not covered: the judged half (does it work for an AT user) is human/AT-gated by construction."
+    grounding: "2 dedicated skills (heyhi-a11y-audit, heyhi-a11y-annotation) on top of a deep + enforced mechanical floor (validator Rules 2/5, health-check C4, the conformance lane, eval dim 3). The judged half ships empty until human/AT confirmation."
+    maturity:
+      # provisional first-rung (owner-approved, per LEVELS.md's provisional rule). Ceiling L3 — no in-room affirmation yet (proof-vs-fire wall). Supersede on the first real area-8 fire.
+      level: 3   # Governed — the judged AT half ships empty by construction (a named deliberate absence, L3-consistent); coverage stays partial
+      target: 4   # owner-set: L4 near-term (earn one signed affirmation)
+      evidence:
+        direct: ["os/foundations/accessibility/FOUNDATION.md (governance; the 'judged layer (what the audit adds on top of the floor)' section)"]
+        indirect: ["2 dedicated skills (heyhi-a11y-audit, heyhi-a11y-annotation) on the enforced mechanical floor (validator Rules 2/5, the conformance lane); direct evidence carries the grade (0 auto-derived area-8 candidates, measure_maturity.py)"]
+        affirmation: []   # none in the room -> caps at L3
+      last_graded: "2026-09-15"
+      re_grade_due: false
+
+  - id: 9
+    key: design-strategy
+    name: Design Strategy & Product Thinking
+    nature: operating
+    coverage: partial
+    phase: P1.5
+    foundation: governance
+    foundation_path: os/foundations/design-strategy/FOUNDATION.md
+    build_gate: "Governed now (manifest authored, G-3). The two P1.5 skills are built + promoted: design-measurability-mapper (Goals->Signals->Metrics; metric selection ships empty); strategy-integrity-warden (warden-shaped, an X on futurecasting's Decision Register). The forward-deployed loop intent pair (intent-journey-map, app-intent-map) is deployed; area stays partial (product-reading, not the strategy-setting canon). Deep product-strategy canon is P3 on engagement pull."
+    grounding: "4 governed skills (design-measurability-mapper, strategy-integrity-warden, and the forward-deployed loop intent pair intent-journey-map + app-intent-map) + futurecasting (org foresight, adjacent). Area stays partial: the intent skills are the loop product-reading layer, not the deep product-strategy canon (P3 on engagement pull). Manifest references the canon in place; deep product/measurement corpus is thin."
+    maturity:
+      # provisional first-rung (owner-approved, per LEVELS.md's provisional rule). Ceiling L3 — no in-room affirmation yet (proof-vs-fire wall). Supersede on the first real area-9 fire.
+      level: 3   # Governed — the loop product-reading layer; coverage stays partial (deep product-strategy canon is P3 on pull)
+      target: 4   # owner-set: L4 near-term (earn one signed affirmation) — a strategic-priority area, not category-capped
+      evidence:
+        direct: ["os/foundations/design-strategy/FOUNDATION.md (governance; the 'What this area governs' + 'The human-judgment boundary (referenced, not restated)' sections)"]
+        indirect: ["4 governed skills (design-measurability-mapper, strategy-integrity-warden, intent-journey-map, app-intent-map) + futurecasting (adjacent); the auto-derived area-9 corrections/evaluator candidates (measure_maturity.py)"]
+        affirmation: []   # none in the room -> caps at L3
+      last_graded: "2026-09-15"
+      re_grade_due: false
+
+  - id: 10
+    key: business-acumen
+    name: Business Acumen
+    nature: operating
+    coverage: covered   # partial -> covered when both area-10 skills deployed (spec § 10 D4)
+    phase: P3
+    foundation: governance
+    foundation_path: os/foundations/business-acumen/FOUNDATION.md
+    build_gate: "Foundation FILLED (P3; spec plans/plan-sheerline-p3-business-acumen-2026-09-05.md). competitive-teardown-runner + design-business-case-drafter DEPLOYED (staged with proof runs on the instance's own practice), so coverage is covered (spec § 10 D4). Design-business only (the scope fence, operating-principles). guided-funnel-reader (free text-to-SQL) stays recommend-against."
+    grounding: "Foundation filled: the caveat-by-construction (McKinsey BVOD + the '$1->$100' figure as correlational / weak-provenance), designer-lens competitive analysis + the what-NOT-to-copy discipline, the reference-corpus licensing posture (Mobbin R1 branch (a), R3 null on civic/infra), data literacy as not-being-fooled (+ the text-to-SQL ceiling), severity honesty. 3 deployed skills (experiment-readout-linter, P1.5; competitive-teardown-runner + design-business-case-drafter). HeyHi's firm sales/marketing skills are the keel layer, out of scope here."
+    maturity:
+      # provisional first-rung (owner-approved, per LEVELS.md's provisional rule). Ceiling L3 — no in-room affirmation yet (proof-vs-fire wall). Supersede on the first real area-10 fire.
+      level: 3   # Governed
+      target: 4   # owner-set: L4 near-term (earn one signed affirmation)
+      evidence:
+        direct: ["os/foundations/business-acumen/FOUNDATION.md (governance; the 'judged layer (what stays human)' section + the scope fence by pointer)"]
+        indirect: ["3 deployed skills (experiment-readout-linter, competitive-teardown-runner, design-business-case-drafter); the auto-derived area-10 corrections/evaluator candidate (measure_maturity.py)"]
+        affirmation: []   # none in the room -> caps at L3
+      last_graded: "2026-09-15"
+      re_grade_due: false
+
+  - id: 11
+    key: collaboration-facilitation
+    name: Collaboration, Communication & Facilitation
+    nature: operating
+    coverage: partial   # the split resolves to the lower tag: covered for GENERAL facilitation, partial for client DESIGN work -> partial. Per the dispatch OUTPUT-SPEC grouping (partial areas without a P1 stub = 3,4,9,11,12) and skill-buildout research § 1c. Settled at gate G-A (upgrade-plan H-3).
+    phase: P1
+    foundation: governance
+    foundation_path: os/foundations/collaboration-facilitation/FOUNDATION.md
+    build_gate: "Governed (manifest authored, G-3). The manifest references the three always-loaded behavioral guardrails (critique/facilitation governance, the empathy boundary, the ideation-diversity guard) in operating-principles.md, never restating them. Class-N net-new complete: crit-prep-and-capture deployed; the decision-record keeper is the deployed design-rationale-decision-record. The class-X articulation extensions stay P3, gated on pull. Area stays partial by construction (the critique half is a terminal ceiling)."
+    grounding: "Covered for general facilitation via 2 governed skills (heyhi-workshop, heyhi-deck), plus the area-11 P1.5 skills (design-rationale-decision-record, heyhi-figjam-mapper) and crit-prep-and-capture (verdict-free by construction); partial for client design work. (heyhi-learning-series serves this area from the HeyHi/keel layer but is not in Sheerline's governed subset.) Design critique is don't-automate: a facilitation + behavioral-corrections surface, never a generation target."
+    maturity:
+      # provisional first-rung (owner-approved, per LEVELS.md's provisional rule). Ceiling L3 — no in-room affirmation yet (proof-vs-fire wall). Supersede on the first real area-11 fire.
+      level: 3   # Governed — the critique half is a terminal human-only ceiling (don't-automate); coverage stays partial by construction
+      target: 3   # owner-set: HELD at L3 — terminal human-only ceiling; L4 calibration is not the meaningful aim for a critique/facilitation surface
+      evidence:
+        direct: ["os/foundations/collaboration-facilitation/FOUNDATION.md (governance; references the three always-loaded behavioral guardrails in operating-principles.md, never restating them)"]
+        indirect: ["2 governed skills (heyhi-workshop, heyhi-deck) + the area-11 P1.5 skills (design-rationale-decision-record, heyhi-figjam-mapper) + crit-prep-and-capture (verdict-free by construction); direct evidence carries the grade (0 auto-derived area-11 candidates, measure_maturity.py)"]
+        affirmation: []   # none in the room -> caps at L3
+      last_graded: "2026-09-15"
+      re_grade_due: false
+
+  - id: 12
+    key: designops-researchops
+    name: DesignOps / ResearchOps
+    nature: operating
+    coverage: partial
+    phase: P1.5
+    foundation: governance-invariant
+    build_gate: "Governed now via the designops-as-governed-practice invariant (operating-principles). app-recon (the loop read verb) is the first dedicated area-12 skill; feature-increment (the loop's Care/increment verb) is the second; area stays partial. ResearchOps rides the deferred research-foundation verdict."
+    grounding: "2 dedicated skills (app-recon, the loop read verb; feature-increment, the loop's Care/increment verb) on top of Sheerline's own machinery as the worked DesignOps artifact. ResearchOps still rides the deferred research-foundation verdict; area stays partial (a read verb and an increment verb do not cover DesignOps/ResearchOps)."
+    maturity:
+      level: null
+      target: null
+      evidence:
+        direct: []
+        indirect: []
+        affirmation: []
+      last_graded: null
+      re_grade_due: false
+
+  - id: 13
+    key: service-design
+    name: Service Design
+    nature: conditional
+    coverage: covered
+    phase: D-3
+    foundation: governance
+    foundation_path: os/foundations/service-design/FOUNDATION.md
+    build_gate: "D-3 OPENED on a client-engagement pull. Foundation FILLED (stub -> governance): the backstage-confirmation discipline, the five swim-lanes, the three separators (line of visibility load-bearing), the journey-to-blueprint relationship, the evidence-vs-assumption rule. The one differentiated skill heyhi-service-blueprint BUILT + deployed (v0.1.0), first proved on a client engagement, so coverage partial -> covered. heyhi-journey-mapper is recommend-against (owned by TheyDo/Smaply)."
+    grounding: "1 deployed skill (heyhi-service-blueprint). Foundation filled; the last gap in the 13-area map closed at D-3 open; the discipline (not the canvas) is the wedge, composing with heyhi-figjam-mapper's render."
+    maturity:
+      # provisional first-rung (owner-approved, per LEVELS.md's provisional rule). Ceiling L3 — no in-room affirmation yet (proof-vs-fire wall). Supersede on the first real area-13 fire.
+      level: 3   # Governed
+      target: 4   # owner-set: L4 near-term (earn one signed affirmation)
+      evidence:
+        direct: ["os/foundations/service-design/FOUNDATION.md (governance; the backstage-confirmation discipline, the line-of-visibility separator, the evidence-vs-assumption rule)"]
+        indirect: ["1 deployed skill (heyhi-service-blueprint); the auto-derived area-13 corrections/evaluator candidates (measure_maturity.py)"]
+        affirmation: []   # none in the room -> caps at L3
+      last_graded: "2026-09-15"
+      re_grade_due: false
+
+# HeyHi Confidential

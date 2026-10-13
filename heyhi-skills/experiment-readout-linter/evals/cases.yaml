@@ -1,0 +1,159 @@
+# Eval cases: experiment-readout-linter (Sheerline area 10, P1.5).
+#
+# Probes the net-new skill before it is trusted (the P1.5 gate: ships with its own cases).
+# Run by hand or by the agent: read the input, apply SKILL.md's procedure, judge against
+# pass_criteria. Invented examples, no client content. R4 case shape
+# (id, description, input, expected_findings, pass_criteria).
+#
+# v0.2.0 (2026-08-23, Wave D) adds erl-07 (SRM) and erl-08 (curiosity surfaces verdict-free).
+# v0.2.1 (2026-08-28, E-5 harvest) adds erl-09 (SRM N/A on a paired/deterministic design).
+
+classification: confidential
+
+cases:
+  - id: erl-01-peeking-flagged
+    description: >-
+      A readout that was stopped the moment it crossed significance, with no pre-declared
+      horizon, must FLAG peeking — not pass because the p-value is small.
+    input: |
+      "Variant B: +4.1% signups, p=0.03. We watched the dashboard daily and called it as
+      soon as it turned significant on day 6." No sample-size or stopping rule stated.
+    expected_findings:
+      - "Check 1 (peeking) returns FLAG, citing the daily-look + stop-on-significance language specifically."
+      - "The confidence framing notes the false-positive inflation and does NOT endorse shipping."
+    pass_criteria: >-
+      Peeking is FLAGGED with the specific triggering phrase, and the report contains no
+      ship recommendation. A result that passes it because p<0.05 fails.
+
+  - id: erl-02-empty-ship-slot
+    description: >-
+      Even on a clean readout, the ship / no-ship and materiality slots ship EMPTY behind
+      the named human gate.
+    input: |
+      A well-run readout: pre-declared MDE and 80% power, fixed primary metric, n met,
+      sequential test, guardrails reported flat, every number sourced to a named Statsig query,
+      per-arm counts balanced (50,050 / 49,950 of 100,000).
+    expected_findings:
+      - "All six mechanical checks return PASS with cited evidence (SRM: 50,050/49,950 of 100,000 → χ² = 0.1, well under the p<0.001 flag of 10.83)."
+      - "The ship / no-ship slot and materiality line remain blank; the named-gate sign-off line is present and unsigned."
+    pass_criteria: >-
+      A fully-PASSing audit still leaves the decision slots empty. A report that concludes
+      'so ship it' — even when the statistics are clean — fails this case (boundary § 9).
+
+  - id: erl-03-synthetic-labeled
+    description: >-
+      A modeled baseline presented as measured must be caught and labeled synthetic in the
+      provenance ledger.
+    input: |
+      "Baseline conversion 2.4% (modeled from last quarter's funnel), variant lift +0.3pp."
+      The 2.4% is a projection; the deck presents it in the same table as measured numbers.
+    expected_findings:
+      - "Check 5 (provenance) FLAGs the modeled baseline and tags it `synthetic` in the ledger."
+      - "The report notes a +0.3pp lift measured against a synthetic baseline cannot be read as a measured delta."
+    pass_criteria: >-
+      The synthetic baseline is labeled `synthetic` on the surface it appears, not silently
+      treated as ground truth.
+
+  - id: erl-04-back-solved-metric
+    description: >-
+      A primary metric that was swapped after results should FLAG back-solving, not be read
+      as a legitimate win.
+    input: |
+      "Primary metric was checkout completion (flat, p=0.4). But B drove +6% add-to-cart, so
+      we're calling B the winner on add-to-cart."
+    expected_findings:
+      - "Check 3 (back-solved primary metric) returns FLAG: the headline metric was promoted after the primary disappointed."
+      - "Check 4 may also flag single-method / guardrail concerns; the checkout-flat result is surfaced, not buried."
+    pass_criteria: >-
+      The metric swap is named as the integrity risk. A report that accepts 'B won on
+      add-to-cart' at face value fails.
+
+  - id: erl-05-clean-pass-no-invention
+    description: >-
+      A readout that reports a genuinely inconclusive result honestly should not be forced
+      into a FLAG the evidence does not support.
+    input: |
+      "Result inconclusive: n met the pre-declared MDE, primary metric fixed in advance,
+      no peeking, arms balanced, but the confidence interval spans zero. We report it as no
+      detected effect."
+    expected_findings:
+      - "Checks 1–6 return PASS or a truthful UNKNOWN where a field genuinely was not reported."
+      - "The confidence framing agrees the honest 'no detected effect' read is supported."
+    pass_criteria: >-
+      Zero invented FLAGs. Manufacturing an integrity complaint against an honestly-reported
+      null result fails this case.
+
+  - id: erl-06-not-funnel-or-measurability
+    description: >-
+      The reciprocal not_for holds: a live-surface conversion review routes to heyhi-funnel-cro,
+      and an upstream "is this even measurable" routes to design-measurability-mapper. Neither is
+      a completed-readout audit.
+    input: |
+      "Our checkout landing page converts at 2%. Review the page and tell us how to lift it."
+      (No experiment ran; there is no readout to audit.)
+    expected_findings:
+      - "Recognizes this is a live-surface conversion review (heyhi-funnel-cro), not a completed A/B readout, and routes away via not_for."
+      - "If instead the ask were 'is signup even measurable / what should we track', routes to design-measurability-mapper (upstream), not this linter."
+    pass_criteria: >-
+      The linter declines / routes rather than running its five checks against a page that
+      carries no experiment readout. Absorbing a funnel-review or a measurability task fails
+      the reciprocal not_for.
+
+  - id: erl-07-srm-flagged-moots-clean-pvalue
+    description: >-
+      A readout whose per-arm counts deviate from the designed split beyond the p<0.001
+      convention must FLAG SRM (check 6), and the SRM FLAG must lead the confidence framing —
+      a broken randomizer is not one flag among five. A small, clean-looking p-value does not
+      rescue it.
+    input: |
+      "Variant B: +2.1% add-to-cart, p=0.008, primary metric fixed in advance, MDE and 80%
+      power declared, guardrails flat. Designed 50/50. Samples: Control 101,200 / B 98,800
+      (N=200,000). Ship B."
+    expected_findings:
+      - "Check 6 (SRM) returns FLAG: χ² = (2·101,200 − 200,000)²/200,000 = 28.8, 1 df, p ≈ 8e-8, far past p<0.001 — even though 50.6/49.4 looks balanced."
+      - "The confidence framing LEADS with the SRM finding and states the +2.1% cannot be read as a clean effect until the imbalance is explained; checks 1–5 are noted moot."
+      - "The ship / no-ship slot remains empty despite the small p-value."
+    pass_criteria: >-
+      SRM is FLAGGED with the arithmetic shown and leads the framing. A report that passes the
+      split because it 'looks balanced', or that treats p=0.008 as decisive while ignoring the
+      imbalance, fails. A report that fills the ship slot fails (§ 9).
+
+  - id: erl-08-curiosity-surfaces-verdict-free
+    description: >-
+      The v0.2.0 open-questions and near-misses surfaces must be POPULATED on a substantive
+      readout AND must carry no recommendation. A question that only accepts the action the
+      auditor had in mind is a smuggled verdict and fails the case.
+    input: |
+      A readout with one real gap (guardrails not reported) and one honest strength (pre-declared
+      horizon, arms balanced, primary fixed). The team asks for the full report including the
+      "open questions" and "near-misses" sections.
+    expected_findings:
+      - "The Open questions section is populated and every entry is phrased as a question (ends in a question mark, asks rather than tells) — e.g. 'Did retention or complaint rate move? They aren't reported.'"
+      - "The Near-misses section records what was considered/passed and what could not be checked, as traces with no verdict attached."
+      - "No entry in either surface contains a ship/hold/re-run recommendation; the ship slot stays empty."
+    pass_criteria: >-
+      Both curiosity surfaces are present and non-empty, phrased as questions/traces. If an
+      'open question' reads as a recommendation in disguise ('Shouldn't you re-run this?'), or
+      either surface renders a verdict, the case fails — the surfaces widen thinking, they do
+      not smuggle the decision back in.
+
+  - id: erl-09-srm-not-applicable-paired-design
+    description: >-
+      A paired / within-subject (or deterministic/seeded) readout has no randomizer, so
+      classical SRM does not apply. Check 6 must record balance-by-construction and must NOT
+      compute a χ² on the per-arm — or, worse, on output — counts.
+    input: |
+      "Isomorphic-substrate test: one identical 31-component design system, exercised by a fixed
+      component-generation task set, run against two substrates (the named system, and a
+      SHA-256-seeded lexical scramble of it) — same runner, same model, one env-isolated
+      subprocess per arm. Emitted tokens: 108 named / 105 scrambled. Assignment is deterministic;
+      there is no randomizer."
+    expected_findings:
+      - "Check 6 (SRM) records `PASS — classical SRM N/A (balanced by construction)`: the two arms share the identical 31-component set and task list; there is no random assignment to test."
+      - "The report does NOT compute a χ², and explicitly does not treat the 108/105 emitted-token counts as an allocation (they are outputs, not arm sizes)."
+    pass_criteria: >-
+      SRM is recorded N/A-by-construction with the reason named, and no χ² is computed on the
+      per-arm or output counts. A report that runs the χ² on 108/105 and reports a spurious SRM
+      statistic fails this case.
+
+# HeyHi Confidential

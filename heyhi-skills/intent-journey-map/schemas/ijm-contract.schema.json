@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://heyhi.design/schemas/ijm-contract-1.0.json",
+  "title": "Intent-Journey Map prop-contract",
+  "description": "The machine half of an Intent-Journey Map: the prop-contract (the machine companion to the system-and-data and UI-and-component bands, at Tier 2), one object per data prop, the 14 columns as fields. Version 1.0, additive thereafter. The boundary is machine-enforced: research_question is null by construction, open decisions carry an owner but no resolution, and additionalProperties:false keeps any verdict, score, or gate field out. HeyHi Confidential.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "feature", "tier", "rows", "research_question"],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "feature": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The feature this contract belongs to. Generic label; no client name (hermetic seal)."
+    },
+    "generated_at": {
+      "type": "string",
+      "description": "ISO date the contract was produced."
+    },
+    "tier": {
+      "type": "integer",
+      "enum": [1, 2],
+      "description": "The IJM tier. The prop-contract is emitted at Tier 2; a Tier-1 contract is a partial (bands 1/2/4/5 only)."
+    },
+    "architecture_target": {
+      "type": ["string", "null"],
+      "description": "As stated in the brief or the manifest. Null when unstated."
+    },
+    "domain_band": {
+      "type": ["string", "null"],
+      "description": "The pluggable domain-state band in use, or null for a plain flow."
+    },
+    "research_question": {
+      "const": null,
+      "description": "Null by construction. The research question behind the feature is a human judgment (SKILL.md Step 6, the empty slot). A non-null value fails validation."
+    },
+    "open_decisions": {
+      "type": "array",
+      "description": "Every decision the map surfaced and could not settle. Each carries a named owner and no resolution: the resolution is the human's, behind the named gate.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["decision", "owner"],
+        "properties": {
+          "decision": { "type": "string", "minLength": 1 },
+          "owner": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "rows": {
+      "type": "array",
+      "description": "One object per data prop.",
+      "items": { "$ref": "#/$defs/prop_row" }
+    }
+  },
+  "$defs": {
+    "prop_row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "step",
+        "screen_state",
+        "component",
+        "layer",
+        "prop",
+        "prop_role",
+        "type",
+        "source",
+        "json_pointer",
+        "binding_status",
+        "required",
+        "enum",
+        "default_or_token",
+        "empty_or_error_state",
+        "proof_ref"
+      ],
+      "properties": {
+        "step": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Column 1. The map step this prop serves."
+        },
+        "screen_state": {
+          "type": "string",
+          "enum": ["loading", "empty", "filled", "success", "error"],
+          "description": "Column 2. The Given/When/Then label from band 5."
+        },
+        "component": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Column 3. Served-library name plus atomic level, or 'NEW: name'."
+        },
+        "layer": {
+          "type": "string",
+          "enum": ["container", "presentational"],
+          "description": "Column 4."
+        },
+        "prop": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Column 5. The prop name."
+        },
+        "prop_role": {
+          "type": "string",
+          "enum": ["data", "presentation", "behavior"],
+          "description": "Column 6. data, presentation (a token value), or behavior (a callback)."
+        },
+        "type": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Column 7. The type, bound to an OpenAPI schema slice when the binding resolves."
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["hook", "endpoint"],
+          "description": "Column 8. The data hook and endpoint; both null for presentation or behavior props.",
+          "properties": {
+            "hook": { "type": ["string", "null"] },
+            "endpoint": { "type": ["string", "null"] }
+          }
+        },
+        "json_pointer": {
+          "type": ["string", "null"],
+          "description": "Column 9. JSON pointer into the application's OpenAPI. Null when there is no owned spec to bind against (binding_status: no-spec) or the prop is not a data prop."
+        },
+        "binding_status": {
+          "type": "string",
+          "enum": ["bound", "flagged-absent", "no-spec", "assumption"],
+          "description": "Column 9, the honesty field. bound = the pointer resolved. flagged-absent = the pointer did not resolve (a finding). no-spec = the application has no OpenAPI; bound to a typed module or external endpoint instead. assumption = a human-asserted field the sources do not support."
+        },
+        "required": {
+          "type": ["boolean", "null"],
+          "description": "Column 10. From the schema 'required' array; null when unbound."
+        },
+        "enum": {
+          "type": ["array", "null"],
+          "items": { "type": "string" },
+          "description": "Column 11. From the schema enum; asserts equality with the token or variant set when the prop drives one. Null when none."
+        },
+        "default_or_token": {
+          "type": ["string", "null"],
+          "description": "Column 12. The fallback literal, or the design-token role."
+        },
+        "empty_or_error_state": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Column 13. What renders on null, missing, or failed. From band 5."
+        },
+        "proof_ref": {
+          "type": ["string", "null"],
+          "description": "Column 14. The story id or test assertion that proves the binding; null until it exists."
+        }
+      },
+      "allOf": [
+        {
+          "$comment": "A bound row must carry a resolving pointer.",
+          "if": { "properties": { "binding_status": { "const": "bound" } } },
+          "then": { "properties": { "json_pointer": { "type": "string", "minLength": 1 } } }
+        }
+      ]
+    }
+  }
+}

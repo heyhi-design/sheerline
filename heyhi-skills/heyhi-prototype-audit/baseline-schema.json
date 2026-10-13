@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://heyhi.design/schemas/heyhi-prototype-audit/baseline-schema.json",
+  "title": "HeyHi Prototype Audit Baseline Sidecar",
+  "description": "Structured sidecar that accompanies the markdown narrative for one prototype audit cycle. Carries gap IDs, severities, classifications, and phase assignments in a flat schema for trivial month-over-month diffing. Source: plans/track-b-prototype-audit-buildable-2026-05-06.md §3.5.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "audit_date",
+    "prototype_path",
+    "prototype_purpose",
+    "scope_count",
+    "readiness_threshold",
+    "phases",
+    "gaps",
+    "layer_2_status",
+    "layer_3_metadata"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "description": "Schema version for forward compatibility. Adding fields is non-breaking; renaming or removing fields is breaking.",
+      "const": "1.0"
+    },
+    "audit_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date the audit was performed (YYYY-MM-DD)."
+    },
+    "prototype_path": {
+      "type": "string",
+      "description": "Absolute or workspace-relative path to the prototype source file at audit time."
+    },
+    "prototype_purpose": {
+      "type": "string",
+      "description": "What the prototype is trying to demonstrate. Drawn from Step 1 of the audit."
+    },
+    "scope_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Total interaction points enumerated in Step 2 planning pass — navigable states x directions x row types x action triggers."
+    },
+    "readiness_threshold": {
+      "type": "string",
+      "enum": ["stakeholder", "design-review", "handoff", "none"],
+      "description": "The audit's assessment of where the prototype currently sits. 'none' means none of the three thresholds are met; the prototype is below stakeholder-ready."
+    },
+    "phases": {
+      "type": "object",
+      "required": ["foundation", "critical", "high", "polish"],
+      "additionalProperties": false,
+      "description": "Gap IDs assigned to each build phase from Step 4. A gap appears in exactly one phase.",
+      "properties": {
+        "foundation": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Cross-cutting Critical items — shared architecture, delegated handlers, global state."
+        },
+        "critical": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Direction-specific or component-specific Critical items — core workflow demonstration."
+        },
+        "high": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "High severity items of any classification — feedback states, selection indicators, auto-checks."
+        },
+        "polish": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Medium severity items — animation, edge cases, empty states."
+        }
+      }
+    },
+    "gaps": {
+      "type": "array",
+      "description": "All gaps documented in Step 3 audit pass. Each gap appears exactly once and is also referenced by ID in exactly one phase array under 'phases'.",
+      "items": {
+        "type": "object",
+        "required": [
+          "gap_id",
+          "title",
+          "severity",
+          "classification",
+          "current_state",
+          "required_state",
+          "implementation_notes",
+          "phase"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "gap_id": {
+            "type": "string",
+            "description": "Stable identifier across audit cycles. Convention: [classification-prefix]-[number], e.g., 'CX-1' for cross-cutting #1, 'COMP-3' for component-specific #3.",
+            "pattern": "^[A-Z]+-[0-9]+$"
+          },
+          "title": {
+            "type": "string",
+            "description": "Short title naming the gap."
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["critical", "high", "medium"],
+            "description": "Severity tier. Critical = workflow cannot be demonstrated. High = mechanical step works but no feedback. Medium = visible only under scrutiny."
+          },
+          "classification": {
+            "type": "string",
+            "enum": ["cross-cutting", "direction-specific", "component-specific"],
+            "description": "Cross-cutting = same gap across components/directions. Direction-specific = affects one direction or flow. Component-specific = isolated to one component."
+          },
+          "current_state": {
+            "type": "string",
+            "description": "What exists in the prototype today, written specifically against the source."
+          },
+          "required_state": {
+            "type": "string",
+            "description": "What the prototype should do, written from the user/reviewer perspective."
+          },
+          "implementation_notes": {
+            "type": "string",
+            "description": "Concrete code or pseudocode. Must be verified in Step 5 pre-flight against actual selectors, identifiers, and DOM paths."
+          },
+          "phase": {
+            "type": "string",
+            "enum": ["foundation", "critical", "high", "polish"],
+            "description": "Build phase assignment. Cross-cutting Critical -> foundation; direction/component Critical -> critical; High (any) -> high; Medium -> polish."
+          },
+          "layer_2_source": {
+            "type": "string",
+            "enum": ["token-fidelity", "voice-rule", "prohibited-word", "layout-pattern", "dark-native", "component-vocabulary"],
+            "description": "Optional. Set when this gap was surfaced by a Layer 2 check rather than the Layer 1 audit pass. Omit for Layer 1 findings."
+          }
+        }
+      }
+    },
+    "layer_2_status": {
+      "type": "object",
+      "required": ["ran", "config_path", "config_capability_tier", "checks_run", "checks_skipped_with_reason"],
+      "additionalProperties": false,
+      "description": "Records whether Layer 2 ran and which checks were executed or skipped.",
+      "properties": {
+        "ran": {
+          "type": "boolean",
+          "description": "True when Layer 2 was activated and at least one check executed. False when Layer 2 was skipped entirely (no config, validation failure, completeness < 30)."
+        },
+        "config_path": {
+          "type": ["string", "null"],
+          "description": "Path to the brand config used by Layer 2. Null when Layer 2 did not run."
+        },
+        "config_capability_tier": {
+          "type": ["string", "null"],
+          "enum": ["FULL", "PARTIAL_A", "MODE_B", "HARD_STOP", null],
+          "description": "Capability tier returned by ui-studio validate.py --status. Null when validation did not run or returned no tier."
+        },
+        "checks_run": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["token-fidelity", "voice-rule", "prohibited-word", "layout-pattern", "dark-native", "component-vocabulary"]
+          },
+          "description": "Checks that executed. Empty array when ran=false."
+        },
+        "checks_skipped_with_reason": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["check", "reason"],
+            "additionalProperties": false,
+            "properties": {
+              "check": {
+                "type": "string",
+                "enum": ["token-fidelity", "voice-rule", "prohibited-word", "layout-pattern", "dark-native", "component-vocabulary"]
+              },
+              "reason": {
+                "type": "string",
+                "description": "Why this check was skipped — e.g., 'config below PARTIAL_A; layout pattern check requires fidelity >= 60'."
+              }
+            }
+          }
+        }
+      }
+    },
+    "layer_3_metadata": {
+      "type": "object",
+      "required": ["client", "cycle", "tier", "previous_baseline_path"],
+      "additionalProperties": false,
+      "description": "Care retainer cycle metadata. Populated when running as Layer 3; carries client and cycle context.",
+      "properties": {
+        "client": {
+          "type": ["string", "null"],
+          "description": "Client name (slug) for the engagement. Null for one-off audits not run under a Care retainer."
+        },
+        "cycle": {
+          "type": ["string", "null"],
+          "pattern": "^[0-9]{4}-[0-9]{2}$",
+          "description": "Cycle period in YYYY-MM format. Null for one-off audits."
+        },
+        "tier": {
+          "type": "string",
+          "enum": ["care+", "standalone"],
+          "description": "Engagement tier. care+ = recurring monthly delta cadence; standalone = one-off audit run outside the Care retainer."
+        },
+        "previous_baseline_path": {
+          "type": ["string", "null"],
+          "description": "Path to the previous month's sidecar JSON used for delta computation. Null when this is the first cycle (no prior baseline)."
+        }
+      }
+    }
+  }
+}

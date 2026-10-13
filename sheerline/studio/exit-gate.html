@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<!-- Wheelhouse · Exit Gate (S-6) · lane DISPATCH-04 · HeyHi Confidential · classification: confidential -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Wheelhouse: the Exit Gate. A session closes through the gate, not around it. Prototype.">
+  <title>Wheelhouse · Exit Gate</title>
+  <link rel="stylesheet" href="shared/studio.css">
+  <style>
+    /* ========================================================================
+       Page-scoped (S-6 Exit Gate). shared/ is frozen; these live here.
+       candidate for shared: .gate-lead, .rule-callout, .slot, .slot__head,
+       .slot__conv, .err-state, .consequence, .handoff, .demo-bar
+       ==================================================================== */
+
+    .studio-main .wrap { max-width: 860px; }
+
+    /* summary:focus-visible folded into the base list in shared/studio.css at D-08. */
+
+    .gate-head { margin-bottom: var(--sp-4); }
+    .gate-head h1 { margin-bottom: var(--sp-2); }
+    .gate-lead { font-size: 1.02rem; color: var(--soft); max-width: 62ch; }
+    .gate-back { font-family: var(--font-mono); font-size: .74rem; }
+
+    /* the convention callout (quoted from session-rules) */
+    .rule-callout { display: flex; gap: var(--sp-3); align-items: flex-start;
+      background: var(--surface-inset); border: 1px solid var(--border);
+      border-radius: var(--r-2); padding: var(--sp-4); margin: var(--sp-5) 0; }
+    .rule-callout__mark { font-family: var(--font-mono); color: var(--soft); flex: none; }
+    .rule-callout__text { font-size: .9rem; color: var(--ink); }
+    .rule-callout__src { font-family: var(--font-mono); font-size: .72rem; color: var(--faint); }
+
+    /* Flavor A / B header slots */
+    .flavor-label { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--faint); margin: var(--sp-6) 0 var(--sp-3); }
+    .slot { border: 1px solid var(--border); border-radius: var(--r-2);
+      background: var(--surface); box-shadow: var(--shadow-card);
+      padding: var(--sp-5); margin-bottom: var(--sp-4); }
+    .slot__head { font-family: var(--font-mono); font-size: .92rem; color: var(--ink);
+      font-weight: 500; }
+    .slot__conv { font-size: .84rem; color: var(--faint); font-style: italic;
+      margin: var(--sp-1) 0 var(--sp-3); }
+    .slot__body { font-size: .92rem; }
+    .slot__body ul { margin: 0; padding-left: var(--sp-4); }
+    .slot__body li { margin-bottom: var(--sp-2); }
+    .fix-file { font-family: var(--font-mono); font-size: .84em; color: var(--soft); }
+    .evidence { background: var(--field); border: 1px solid var(--border);
+      border-radius: var(--r-1); padding: var(--sp-3) var(--sp-4); }
+    .evidence__label { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .04em;
+      text-transform: uppercase; color: var(--faint); margin-bottom: var(--sp-1); }
+    .prompt-block { font-family: var(--font-mono); font-size: .8rem; line-height: 1.6;
+      background: var(--field); border: 1px solid var(--border); border-radius: var(--r-1);
+      padding: var(--sp-4); color: var(--ink); white-space: pre-wrap; }
+
+    /* the empty-header error state (NOT crimson: crimson is L8/human-only) */
+    .err-state { border: 1.5px dashed var(--border-strong); background: var(--surface-inset);
+      border-radius: var(--r-1); padding: var(--sp-3) var(--sp-4); }
+    .err-state__mark { font-family: var(--font-mono); color: var(--soft); }
+    .err-state__text { color: var(--ink); font-size: .88rem; }
+    .consequence { display: inline-flex; align-items: center; gap: 5px;
+      font-family: var(--font-mono); font-size: .7rem; padding: 1px var(--sp-2);
+      border-radius: var(--r-1); background: var(--surface);
+      border: 1px solid var(--border-strong); color: var(--ink); margin-left: var(--sp-2); }
+    .consequence[hidden] { display: none; }
+    .slot[data-empty="true"] { border-color: var(--border-strong); }
+
+    /* demo bar */
+    .demo-bar { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap;
+      background: var(--field); border: 1px dashed var(--border-strong); border-radius: var(--r-1);
+      padding: var(--sp-3) var(--sp-4); margin-bottom: var(--sp-4); }
+    .demo-bar__tag { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--faint); }
+    .demo-bar__text { font-size: .84rem; color: var(--soft); flex: 1; min-width: 220px; }
+
+    /* Flavor B collapse */
+    .flavor-b > summary { list-style: none; cursor: pointer; font-family: var(--font-display);
+      font-weight: 600; font-size: .96rem; color: var(--ink); padding: var(--sp-3) 0; }
+    .flavor-b > summary::-webkit-details-marker { display: none; }
+    .flavor-b > summary::before { content: "▸ "; color: var(--soft); }
+    .flavor-b[open] > summary::before { content: "▾ "; }
+    .flavor-b__note { font-size: .84rem; color: var(--soft); margin: 0 0 var(--sp-3); }
+
+    /* emit + handoff */
+    .emit-bar { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap;
+      margin: var(--sp-6) 0 var(--sp-3); }
+    .emit-msg { font-size: .84rem; color: var(--soft); }
+    .emit-msg--blocked { color: var(--ink); }
+    .handoff[hidden] { display: none; }
+    .handoff { border: 1px solid var(--teal-border); border-radius: var(--r-2);
+      background: var(--field); padding: var(--sp-5); margin-top: var(--sp-3); }
+    .handoff__title { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: var(--sp-3); }
+    .handoff h3 { font-family: var(--font-mono); font-size: .86rem; margin: var(--sp-4) 0 var(--sp-1); }
+    .handoff h3:first-of-type { margin-top: 0; }
+    .handoff p, .handoff li { font-size: .86rem; color: var(--soft); }
+    .handoff ul { margin: 0; padding-left: var(--sp-4); }
+    .handoff__open { border-left: 3px solid var(--crimson-bright); padding-left: var(--sp-3);
+      color: var(--crimson); font-family: var(--font-mono); font-size: .8rem; }
+  </style>
+</head>
+<body>
+<!-- ============================================================================
+     WHEELHOUSE - shared shell snippet   (FROZEN after DISPATCH-03 merges)
+     HeyHi Confidential
+     Pasted verbatim from shared/shell-snippet.html. See shared/README.md.
+     ============================================================================ -->
+<script src="data/snapshot.js"></script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="studio-shell">
+
+  <header class="topbar">
+    <a class="wordmark" href="index.html">WHEELHOUSE</a>
+    <a class="topbar__search" href="index.html#router">
+      <span aria-hidden="true">⌕</span>&nbsp;Route a task…
+    </a>
+    <span class="topbar__spacer"></span>
+    <a class="session-indicator" href="session.html">
+      <span class="dot" aria-hidden="true"></span>
+      Own practice
+      <span class="sr-only">(simulated exemplar session)</span>
+    </a>
+  </header>
+
+  <nav class="rail" aria-label="Primary">
+    <p class="rail__label">Wheelhouse</p>
+    <a class="rail__link" href="index.html">           <span class="rail__num">1</span> Home</a>
+    <a class="rail__link" href="areas.html">           <span class="rail__num">2</span> Areas</a>
+    <a class="rail__link" href="skills.html">          <span class="rail__num">3</span> Skills</a>
+    <a class="rail__link" href="session.html">         <span class="rail__num">4</span> Session</a>
+    <a class="rail__link" href="quality-validate.html"><span class="rail__num">5</span> Quality</a>
+    <a class="rail__link" href="artifacts.html">       <span class="rail__num">6</span> Artifacts</a>
+    <a class="rail__link" href="dispatch.html">        <span class="rail__num">7</span> Dispatch</a>
+    <a class="rail__link" href="seminar.html">         <span class="rail__num">8</span> Seminar</a>
+    <a class="rail__link" href="intake.html">          <span class="rail__num">9</span> Intake</a>
+  </nav>
+
+  <main id="main-content" class="studio-main">
+    <div class="wrap">
+      <!-- ===================== PAGE CONTENT START ===================== -->
+
+      <div class="gate-head">
+        <p class="eyebrow">Close-out <span class="badge badge--sim">simulated exemplar</span></p>
+        <h1>Exit Gate</h1>
+        <p class="gate-lead">The session closes through the gate, not around it. Publish becomes one act here: emit the handoff. Below is the close-out for the exemplar session, the focus-states audit on the practice's own system.</p>
+        <p class="gate-back"><a href="session.html">← Back to the session</a></p>
+      </div>
+
+      <div class="rule-callout">
+        <span class="rule-callout__mark" aria-hidden="true">§</span>
+        <div>
+          <p class="rule-callout__text" style="margin-bottom:var(--sp-2)">Every session that produces a document, artifact, plan, or decision record exits through this gate. The handoff cannot be emitted without it. Each item requires a concrete artifact under a named header, not a claim that the work was done. An empty header is a visible failure; advisory prose is not.</p>
+          <span class="rule-callout__src">os/session-rules.md · The Exit Gate</span>
+        </div>
+      </div>
+
+      <!-- FLAVOR A: three required headers -->
+      <p class="flavor-label">Flavor A · the three required headers</p>
+
+      <!-- ## Fixes Applied -->
+      <section class="slot" aria-labelledby="s-fixes">
+        <div class="slot__head" id="s-fixes">## Fixes Applied</div>
+        <p class="slot__conv">defect sweep, one line per fix, applied until clean.</p>
+        <div class="slot__body">
+          <ul>
+            <li>Focus ring restored on the ghost button; it had <span class="fix-file">outline: none</span> with no <span class="fix-file">:focus-visible</span> replacement. Now draws <span class="fix-file">--focus</span>.</li>
+            <li>Ghost hover state added; it was missing, so the control read as inert on hover.</li>
+            <li>One padding value snapped to <span class="fix-file">--sp-2</span>; it was off the spacing scale.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ## Smoke Test  (holds the human line, L4/L5) -->
+      <section class="slot" id="slot-smoke" data-empty="false" aria-labelledby="s-smoke">
+        <div class="slot__head" id="s-smoke">## Smoke Test <span class="consequence" id="smoke-flag" hidden>blocks emit</span></div>
+        <p class="slot__conv">verification ran. For a visual artifact: render it and view it, do not inspect source only. State what was run and the result.</p>
+        <div class="slot__body">
+
+          <div class="evidence" id="smoke-evidence">
+            <div class="evidence__label">what was run · the result</div>
+            Opened the button set in a browser and tabbed the whole set. The focus ring drew on every control, disabled included, and the ghost hover raised the border. Rendered surface checked, not the source manifest.
+          </div>
+
+          <div class="err-state" id="smoke-empty" hidden>
+            <span class="err-state__mark" aria-hidden="true">⚠</span>
+            <span class="err-state__text">This header has no evidence. An empty header is a visible failure, so the gate holds the handoff until it is filled.</span>
+          </div>
+
+          <p style="margin:var(--sp-4) 0 var(--sp-2)"><span class="mono faint" style="font-size:.72rem">THE HUMAN'S OBSERVATION</span></p>
+          <div class="human-slot">
+            <div class="human-slot__tag"><span aria-hidden="true">◆</span> Yours to fill</div>
+            The one named observation is the human's read of the rendered artifact. It stays open on purpose (law L4), and the handoff emits with it still open. The agent renders and reports; the human looks and calls it.
+          </div>
+          <p class="faint" style="font-size:.78rem;margin-top:var(--sp-2)">The evidence is the agent's, and it is required. The observation is the human's, and it is meant to stay open. An empty <em>header</em> is the failure the gate catches; an open judgment slot is not.</p>
+        </div>
+      </section>
+
+      <!-- ## Next Session Prompt -->
+      <section class="slot" aria-labelledby="s-next">
+        <div class="slot__head" id="s-next">## Next Session Prompt</div>
+        <p class="slot__conv">a copy-pasteable paragraph a fresh agent with no memory can resume from.</p>
+        <div class="slot__body">
+          <div class="prompt-block">Pick up the focus-states audit on the practice's own system (Area 7, Design Systems). The button set is generated and validated against the retrieved tokens; the deterministic floor is clean but for one spacing hit, now snapped. The grade series is attached and awaits a human read. Next: record the human observation, then decide whether the ghost outline restraint is a signature to keep or an incoherence to close (correction direction-deviation-flagged-not-scored, behavioral).</div>
+        </div>
+      </section>
+
+      <!-- FLAVOR B: collapsed, two more headers -->
+      <p class="flavor-label">Flavor B · when the session reads, writes, or advances a plan</p>
+      <details class="flavor-b slot" style="padding:var(--sp-4) var(--sp-5)">
+        <summary>Two more headers open up</summary>
+        <p class="flavor-b__note">The three above, plus these two. This exemplar is a Flavor A session; the extension is shown collapsed so the convention reads without pretending the session advanced a plan.</p>
+
+        <div class="slot__head" style="margin-top:var(--sp-3)">## Findings Integration</div>
+        <p class="slot__conv">every finding integrated into the active plan, not just noted.</p>
+        <div class="slot__body" style="margin-bottom:var(--sp-4)">
+          <ul><li>The spacing-scale hit and the ghost-hover gap would each land in the plan's work items, not sit in the handoff as loose notes.</li></ul>
+        </div>
+
+        <div class="slot__head">## Session Integrity</div>
+        <p class="slot__conv">a lightweight check that the integrated plan still holds against its original intent and that new entries propagated to the plan's index.</p>
+        <div class="slot__body">
+          <ul><li>Confirm the plan still reads coherently after the findings landed, and that its index row count matches.</li></ul>
+        </div>
+      </details>
+
+      <!-- DEMO: the visible-failure convention -->
+      <p class="flavor-label">Teach the convention</p>
+      <div class="demo-bar">
+        <span class="demo-bar__tag">demo</span>
+        <span class="demo-bar__text">Empty the Smoke Test evidence to see the gate hold. The handoff cannot emit around an empty header. The human's observation slot is separate, and stays open either way.</span>
+        <button class="btn" id="demo-toggle" type="button" aria-pressed="false">Empty the Smoke Test evidence</button>
+      </div>
+
+      <!-- EMIT -->
+      <div class="emit-bar">
+        <button class="btn btn--primary" id="emit-btn" type="button">Emit handoff</button>
+        <span class="emit-msg" id="emit-msg">Emit assembles the filled headers into a handoff. It emits with the human observation still open.</span>
+      </div>
+
+      <div class="handoff" id="handoff" hidden aria-live="polite">
+        <div class="handoff__title">Handoff · emitted</div>
+        <h3>## Fixes Applied</h3>
+        <ul>
+          <li>Focus ring restored on the ghost button (now uses --focus).</li>
+          <li>Ghost hover state added.</li>
+          <li>One padding value snapped to --sp-2.</li>
+        </ul>
+        <h3>## Smoke Test</h3>
+        <p>Opened the button set in a browser and tabbed the whole set. The focus ring drew on every control, disabled included.</p>
+        <p class="handoff__open">[ human observation · open ]  the human's read stays for the human</p>
+        <h3>## Next Session Prompt</h3>
+        <p>Pick up the focus-states audit on the practice's own system; record the human observation, then call the ghost-outline restraint.</p>
+      </div>
+
+      <!-- ===================== PAGE CONTENT END ======================= -->
+    </div>
+  </main>
+
+  <footer class="studio-footer">
+    <span class="sim">Prototype</span> · simulated interactions over a real data snapshot
+    (<span class="mono" data-commit>…</span>) · HeyHi Confidential
+  </footer>
+
+</div>
+
+<script>
+/* fill footer commit + self-activate the rail item from the page filename */
+(function () {
+  var data = window.SHEERLINE_DATA || {};
+  var meta = data.meta || {};
+  var el = document.querySelector('[data-commit]');
+  if (el) { el.textContent = meta.source_commit || 'unknown'; }
+
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') { path = 'index.html'; }
+  var alias = {
+    'quality-grade.html': 'quality-validate.html',
+    'quality-learn.html': 'quality-validate.html',
+    'exit-gate.html': 'session.html'
+  };
+  var target = alias[path] || path;
+  var links = document.querySelectorAll('.rail__link');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].getAttribute('href') === target) {
+      links[i].setAttribute('aria-current', 'page');
+    } else {
+      links[i].removeAttribute('aria-current');
+    }
+  }
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------------------
+   S-6 Exit Gate. Two interactions, both teaching the convention:
+     - demo toggle empties the Smoke Test EVIDENCE (a required header goes
+       empty) -> visible-failure error state + the handoff is held (emit
+       blocked). The human observation slot is separate and stays open.
+     - emit assembles the handoff; it emits with the human line still open.
+   No pass/fail verdict renders anywhere (law L3). Crimson stays on the human
+   slot only (law L8); the empty-header error uses a neutral-strong treatment.
+   --------------------------------------------------------------------------- */
+(function () {
+  "use strict";
+  function el(id){ return document.getElementById(id); }
+  var slot = el('slot-smoke'), evidence = el('smoke-evidence'), empty = el('smoke-empty'),
+      flag = el('smoke-flag'), toggle = el('demo-toggle'),
+      emitBtn = el('emit-btn'), emitMsg = el('emit-msg'), handoff = el('handoff');
+
+  var isEmpty = false;
+
+  function refresh(){
+    /* reflect the emptied state */
+    evidence.hidden = isEmpty;
+    empty.hidden = !isEmpty;
+    flag.hidden = !isEmpty;
+    slot.setAttribute('data-empty', isEmpty ? 'true' : 'false');
+    toggle.setAttribute('aria-pressed', isEmpty ? 'true' : 'false');
+    toggle.textContent = isEmpty ? 'Restore the Smoke Test evidence' : 'Empty the Smoke Test evidence';
+
+    /* an empty required header holds the handoff */
+    emitBtn.disabled = isEmpty;
+    if (isEmpty) {
+      emitMsg.textContent = 'Cannot emit. The Smoke Test header is empty, and an empty header is a visible failure.';
+      emitMsg.classList.add('emit-msg--blocked');
+      handoff.hidden = true;
+    } else {
+      emitMsg.textContent = 'Emit assembles the filled headers into a handoff. It emits with the human observation still open.';
+      emitMsg.classList.remove('emit-msg--blocked');
+    }
+  }
+
+  toggle.addEventListener('click', function(){ isEmpty = !isEmpty; refresh(); });
+  emitBtn.addEventListener('click', function(){
+    if (isEmpty) return;
+    handoff.hidden = false;
+    handoff.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  refresh();
+})();
+</script>
+</body>
+</html>

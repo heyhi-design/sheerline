@@ -1,0 +1,630 @@
+{
+  "_comment": "Generic example config for ui-studio. No HeyHi values. Demonstrates the full schema including optional layout, ux_writing, gate_status, field_provenance, and fidelity_score blocks. For a blank starter, run: python3 heyhi-skills/ui-studio-onboard/scripts/setup.py --mode manual --brand-name 'Your Brand'",
+  "brand": {
+    "name": "Example Brand",
+    "description": "A clean, structured SaaS brand with strong typographic hierarchy",
+    "temperature": "cool",
+    "personality": "Precise and dependable. The interface communicates competence without ceremony.",
+    "cluster": "A",
+    "style_entry": "Clean Infrastructure",
+    "style_notes": "Cluster A fit confirmed via Gate 0 style selection. No warning sign departures."
+  },
+  "tokens": {
+    "typography": {
+      "families": {
+        "display": {
+          "family": "Inter",
+          "fallback": "system-ui, sans-serif",
+          "weights": [
+            400,
+            500,
+            600,
+            700
+          ],
+          "use": "Headlines, large callouts, navigation"
+        },
+        "body": {
+          "family": "Inter",
+          "fallback": "system-ui, sans-serif",
+          "weights": [
+            400,
+            500
+          ],
+          "use": "Body text, descriptions, form fields"
+        },
+        "utility": {
+          "family": "JetBrains Mono",
+          "fallback": "Courier New, monospace",
+          "weights": [
+            400
+          ],
+          "use": "Code, labels, metadata, technical annotations"
+        }
+      },
+      "scale": {
+        "h1": {
+          "$value": "clamp(2rem, 5vw, 3.5rem)",
+          "$type": "dimension"
+        },
+        "h2": {
+          "$value": "clamp(1.5rem, 3vw, 2.25rem)",
+          "$type": "dimension"
+        },
+        "h3": {
+          "$value": "clamp(1.25rem, 2.5vw, 1.75rem)",
+          "$type": "dimension"
+        },
+        "body": {
+          "$value": "clamp(1rem, 1.5vw, 1.125rem)",
+          "$type": "dimension"
+        },
+        "small": {
+          "$value": "0.875rem",
+          "$type": "dimension"
+        },
+        "label": {
+          "$value": "0.75rem",
+          "$type": "dimension"
+        }
+      },
+      "loading": {
+        "provider": "google",
+        "url": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400&display=swap"
+      }
+    },
+    "color": {
+      "backgrounds": {
+        "page": {
+          "$value": "#FFFFFF",
+          "$type": "color",
+          "$description": "Primary page background. White baseline."
+        },
+        "surface": {
+          "$value": "#F8FAFC",
+          "$type": "color",
+          "$description": "Card and panel backgrounds. Slightly off-white."
+        },
+        "elevated": {
+          "$value": "#F1F5F9",
+          "$type": "color",
+          "$description": "Elevated surfaces such as dropdowns, popovers, and modals."
+        },
+        "dark": {
+          "$value": "#0F172A",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "primary": {
+          "$value": "#0F172A",
+          "$type": "color",
+          "$description": "Primary text color for headings and body copy."
+        },
+        "secondary": {
+          "$value": "#475569",
+          "$type": "color",
+          "$description": "Secondary text for supporting copy and metadata."
+        },
+        "muted": {
+          "$value": "#94A3B8",
+          "$type": "color",
+          "$description": "Muted text for placeholder copy, disabled states, and decorative labels."
+        },
+        "inverse": {
+          "$value": "#F8FAFC",
+          "$type": "color"
+        }
+      },
+      "structural": {
+        "border": {
+          "$value": "#E2E8F0",
+          "$type": "color"
+        },
+        "divider": {
+          "$value": "#CBD5E1",
+          "$type": "color"
+        }
+      },
+      "accent": {
+        "primary": {
+          "$value": "#2563EB",
+          "$type": "color",
+          "$description": "Primary interactive accent. Used for CTAs, links, and focus indicators."
+        },
+        "primary-hover": {
+          "$value": "#1D4ED8",
+          "$type": "color"
+        },
+        "secondary": {
+          "$value": "#7C3AED",
+          "$type": "color"
+        }
+      },
+      "semantic": {
+        "success": {
+          "$value": "#16A34A",
+          "$type": "color"
+        },
+        "warning": {
+          "$value": "#CA8A04",
+          "$type": "color"
+        },
+        "error": {
+          "$value": "#DC2626",
+          "$type": "color"
+        },
+        "info": {
+          "$value": "#0284C7",
+          "$type": "color"
+        }
+      },
+      "prohibited": [
+        {
+          "value": "#FF0000",
+          "reason": "Pure red reserved for destructive actions only"
+        }
+      ],
+      "contrast_notes": [
+        "text.muted (#94A3B8) on backgrounds.page (#FFFFFF) = 2.8:1 — fails AA. Use text.secondary for meaningful text.",
+        "accent.primary (#2563EB) on backgrounds.page (#FFFFFF) = 4.7:1 — passes AA for body text."
+      ]
+    },
+    "spacing": {
+      "base": "8px",
+      "rhythm": "4-point grid. All spacing values are multiples of 4px.",
+      "tiers": {
+        "xs": {
+          "$value": "4px",
+          "$type": "dimension"
+        },
+        "sm": {
+          "$value": "8px",
+          "$type": "dimension"
+        },
+        "md": {
+          "$value": "16px",
+          "$type": "dimension"
+        },
+        "lg": {
+          "$value": "24px",
+          "$type": "dimension"
+        },
+        "xl": {
+          "$value": "40px",
+          "$type": "dimension"
+        },
+        "2xl": {
+          "$value": "64px",
+          "$type": "dimension"
+        },
+        "3xl": {
+          "$value": "96px",
+          "$type": "dimension"
+        }
+      },
+      "content_max_width": "1200px",
+      "page_padding": "clamp(1.5rem, 5vw, 4rem)",
+      "grid_gap": "clamp(1rem, 2vw, 1.5rem)",
+      "touch-target": {
+        "min": "44px",
+        "comfortable": "48px"
+      }
+    },
+    "motion": {
+      "easing": {
+        "default": {
+          "$value": "cubic-bezier(0.4, 0, 0.2, 1)",
+          "$type": "cubicBezier"
+        },
+        "in": {
+          "$value": "cubic-bezier(0.4, 0, 1, 1)",
+          "$type": "cubicBezier"
+        },
+        "out": {
+          "$value": "cubic-bezier(0, 0, 0.2, 1)",
+          "$type": "cubicBezier"
+        },
+        "spring": {
+          "$value": "cubic-bezier(0.34, 1.56, 0.64, 1)",
+          "$type": "cubicBezier"
+        }
+      },
+      "durations": {
+        "micro": {
+          "$value": "100ms",
+          "$type": "duration"
+        },
+        "fast": {
+          "$value": "200ms",
+          "$type": "duration"
+        },
+        "standard": {
+          "$value": "300ms",
+          "$type": "duration"
+        },
+        "slow": {
+          "$value": "500ms",
+          "$type": "duration"
+        }
+      },
+      "stagger": "50ms",
+      "principles": "Functional and unobtrusive. Motion communicates state change, not personality. Prefer fast transitions (200-300ms). No decorative animations."
+    },
+    "elevation": {
+      "sm": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+      "md": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+      "lg": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)"
+    },
+    "radius": {
+      "sm": {
+        "$value": "4px",
+        "$type": "dimension"
+      },
+      "md": {
+        "$value": "6px",
+        "$type": "dimension"
+      },
+      "lg": {
+        "$value": "8px",
+        "$type": "dimension"
+      },
+      "xl": {
+        "$value": "12px",
+        "$type": "dimension"
+      },
+      "full": {
+        "$value": "9999px",
+        "$type": "dimension"
+      }
+    },
+    "focus": {
+      "outline": {
+        "width": "2px",
+        "color": "#2563EB",
+        "offset": "2px",
+        "style": "solid"
+      }
+    }
+  },
+  "layout": {
+    "grid": {
+      "columns": 12,
+      "gutter": "24px",
+      "margin": "clamp(1.5rem, 5vw, 4rem)",
+      "breakpoints": {
+        "sm": "375px",
+        "md": "768px",
+        "lg": "1440px"
+      }
+    },
+    "spacing_density": "balanced",
+    "section_padding_tiers": {
+      "generous": "clamp(6rem, 10vw, 9rem)",
+      "standard": "clamp(4rem, 7vw, 6rem)",
+      "tight": "clamp(2rem, 4vw, 3rem)"
+    },
+    "preferred_patterns": [
+      "Hero-First",
+      "Alternating Narrative",
+      "Bento Marketing",
+      "Data Dashboard"
+    ],
+    "style_cluster": "A",
+    "style_entry": "Clean Infrastructure"
+  },
+  "voice": {
+    "tone": "Direct and competent. No filler. Assume the user knows their domain. Write for the person who has read the docs.",
+    "prohibited_words": [
+      "seamless",
+      "powerful",
+      "robust",
+      "intuitive",
+      "easy",
+      "simple"
+    ],
+    "prohibited_patterns": [
+      "Never-ending feature lists",
+      "Hyperbolic adjective stacking",
+      "Passive voice for user actions"
+    ],
+    "cta_style": "Action-verb + specific outcome. 'Connect your repository' not 'Get started'. 'View usage' not 'Learn more'.",
+    "formatting": {
+      "heading_case": "sentence case",
+      "button_case": "sentence case",
+      "label_case": "ALL CAPS, letter-spaced"
+    },
+    "terminology": {
+      "workspace": "project",
+      "users": "team members"
+    }
+  },
+  "ux_writing": {
+    "empty_states": {
+      "pattern": "State what's missing + one concrete action. 'No deployments yet. Connect a repository to start deploying.' Never 'Nothing to see here.'",
+      "source": "UX writing guidelines v1.2",
+      "source_url": "",
+      "last_verified": "2026-01-15"
+    },
+    "error_messages": {
+      "pattern": "What happened + why + what to do next. Never blame the user.",
+      "tone": "Calm and practical. No apology, no alarm.",
+      "structure": "[What failed]. [Why, if known]. [Next step or contact link].",
+      "source": "UX writing guidelines v1.2",
+      "source_url": "",
+      "last_verified": "2026-01-15"
+    },
+    "tooltips": {
+      "pattern": "One short sentence — what the element does, not what it is. Skip 'This button...'",
+      "max_length": "80 characters",
+      "tone": "Terse and precise.",
+      "avoid": [
+        "obvious restatements of button labels",
+        "marketing language"
+      ],
+      "source": "UX writing guidelines v1.2",
+      "source_url": "",
+      "last_verified": "2026-01-15"
+    },
+    "buttons_ctas": {
+      "pattern": "Action-verb + specific outcome. Describe the result, not the navigation.",
+      "verb_preference": "Action verbs: Deploy, Connect, Archive, Invite, Remove. Not: Click to, Go to, View.",
+      "style": "Specific over generic. The CTA should describe the outcome, not the navigation.",
+      "examples": [
+        "Deploy to production",
+        "Connect GitHub",
+        "Invite team member"
+      ],
+      "source": "UX writing guidelines v1.2",
+      "source_url": "",
+      "last_verified": "2026-01-15"
+    },
+    "form_labels": {
+      "pattern": "Sentence case. Helper text is format guidance only — the label names the field.",
+      "case": "sentence case",
+      "helper_text_style": "Format guidance only. Not instructions for what the field is for — the label handles that.",
+      "placeholder_policy": "Use sparingly. Never as a substitute for a label. Format example preferred over instructional text.",
+      "source": "UX writing guidelines v1.2",
+      "source_url": "",
+      "last_verified": "2026-01-15"
+    },
+    "notifications": {
+      "pattern": "Success: past tense action confirmed. Error: what failed + next step. Warning: what might go wrong + what to do.",
+      "success": "Confirm the action completed. Past tense. 'Deployment created.' Not 'Success!'",
+      "error": "What failed + next step. 'Connection failed. Check your credentials and try again.'",
+      "warning": "What might go wrong + what to do before it does.",
+      "info": "Context only. Non-urgent. No action required unless explicitly stated.",
+      "source": "UX writing guidelines v1.2",
+      "source_url": "",
+      "last_verified": "2026-01-15"
+    },
+    "loading_states": {
+      "pattern": "Action in progress. 'Deploying...' not 'Loading...'. 'Scanning repository...' not 'Please wait.'",
+      "examples": [
+        "Deploying...",
+        "Connecting to GitHub...",
+        "Syncing team members..."
+      ],
+      "source": "UX writing guidelines v1.2",
+      "source_url": "",
+      "last_verified": "2026-01-15"
+    },
+    "onboarding": {
+      "pattern": "One task per step. Encouraging but efficient. No sales copy in setup flows.",
+      "tone": "Encouraging but efficient. Get the user to value fast. No sales copy in setup flows.",
+      "structure": "One task per step. Clear progress indicator. Skip steps that don't apply.",
+      "source": "UX writing guidelines v1.2",
+      "source_url": "",
+      "last_verified": "2026-01-15"
+    },
+    "custom": {}
+  },
+  "components": {
+    "source": "https://github.com/example/design-system",
+    "framework": "React + TypeScript",
+    "styling": "CSS Modules with CSS custom properties",
+    "inventory": [
+      {
+        "name": "Button",
+        "path": "src/components/Button/Button.tsx",
+        "category": "primitive",
+        "props": [],
+        "variants": [
+          "primary",
+          "secondary",
+          "ghost",
+          "destructive"
+        ],
+        "tokens_used": [
+          "color.accent.primary",
+          "color.accent.primary-hover",
+          "spacing.tiers.md"
+        ],
+        "dependencies": [],
+        "notes": "Level 1 auto-discovery. Run Level 2 analysis for full props inventory."
+      }
+    ],
+    "conventions": {
+      "naming": "PascalCase components, kebab-case CSS modules",
+      "props": "Explicit variant props over boolean flags. `variant='primary'` not `isPrimary`",
+      "variants": "Named strings from a defined set. No arbitrary values.",
+      "composition": "Compound pattern for complex components (Menu, Menu.Item, Menu.Separator)",
+      "styling": "CSS custom properties for tokens. No hardcoded values in component CSS.",
+      "testing": "Vitest + Testing Library. Accessibility assertions on every interactive component."
+    },
+    "drift": {
+      "token_drift": [
+        "Button: uses hardcoded #2563EB instead of var(--color-accent-primary) in focus state"
+      ],
+      "pattern_drift": [],
+      "api_drift": []
+    }
+  },
+  "repository": {
+    "figma": {
+      "primary_file_key": "",
+      "token_library": {
+        "file_key": "",
+        "library_key": "",
+        "label": "Design Tokens",
+        "variable_collection_names": [
+          "Primitives",
+          "Semantic"
+        ]
+      },
+      "component_libraries": []
+    },
+    "supernova_workspace": "",
+    "storybook": {
+      "url": "https://storybook.example.com",
+      "auth_header_env_var": ""
+    },
+    "github": {
+      "owner": "example-org",
+      "repo": "design-system",
+      "branch": "main",
+      "token_files_path": "packages/tokens/src",
+      "components_path": "packages/components/src",
+      "pat_env_var": "GITHUB_TOKEN"
+    },
+    "npm": {
+      "package_name": "@example/design-system",
+      "version": "latest",
+      "registry_url": "",
+      "scope": "@example",
+      "auth_token_env_var": "NPM_TOKEN"
+    },
+    "git": {
+      "token_repo_url": "",
+      "component_repo_url": "",
+      "branch": "main",
+      "pat_env_var": "GIT_TOKEN"
+    }
+  },
+  "meta": {
+    "generated_at": "2026-03-26T00:00:00Z",
+    "generated_by": "manual (example config)",
+    "last_refreshed": "2026-03-26T00:00:00Z",
+    "version": "1.0.0",
+    "completeness_score": 100,
+    "fidelity_score": 100,
+    "provisional_fields": [],
+    "gate_status": {
+      "direction_lock_confirmed": true,
+      "direction_lock_date": "2026-01-10",
+      "designer_review_complete": true,
+      "designer_review_date": "2026-01-15",
+      "designer_reviewer": "Sarah M. (Example Brand design team)",
+      "mode_override_acknowledged": false,
+      "mode_override_score": null
+    },
+    "field_provenance": {
+      "tokens.color.backgrounds.page": {
+        "source": "figma_variable",
+        "source_url": "",
+        "confidence": "extracted",
+        "extracted_at": "2026-01-10",
+        "last_verified_at": "2026-01-15",
+        "verified_by": "designer",
+        "notes": null,
+        "description": "Primary page background. White baseline.",
+        "usage_notes": null
+      },
+      "tokens.color.backgrounds.surface": {
+        "source": "figma_variable",
+        "source_url": "",
+        "confidence": "extracted",
+        "extracted_at": "2026-01-10",
+        "last_verified_at": "2026-01-15",
+        "verified_by": "designer",
+        "notes": null,
+        "description": "Card and panel backgrounds. Slightly off-white.",
+        "usage_notes": null
+      },
+      "tokens.color.backgrounds.elevated": {
+        "source": "figma_variable",
+        "source_url": "",
+        "confidence": "extracted",
+        "extracted_at": "2026-01-10",
+        "last_verified_at": "2026-01-15",
+        "verified_by": "designer",
+        "notes": null,
+        "description": "Elevated surfaces such as dropdowns, popovers, and modals.",
+        "usage_notes": null
+      },
+      "tokens.color.text.primary": {
+        "source": "figma_variable",
+        "source_url": "",
+        "confidence": "extracted",
+        "extracted_at": "2026-01-10",
+        "last_verified_at": "2026-01-15",
+        "verified_by": "designer",
+        "notes": null,
+        "description": "Primary text color for headings and body copy.",
+        "usage_notes": null
+      },
+      "tokens.color.text.secondary": {
+        "source": "figma_variable",
+        "source_url": "",
+        "confidence": "extracted",
+        "extracted_at": "2026-01-10",
+        "last_verified_at": "2026-01-15",
+        "verified_by": "designer",
+        "notes": null,
+        "description": "Secondary text for supporting copy and metadata.",
+        "usage_notes": null
+      },
+      "tokens.color.text.muted": {
+        "source": "figma_variable",
+        "source_url": "",
+        "confidence": "extracted",
+        "extracted_at": "2026-01-10",
+        "last_verified_at": "2026-01-15",
+        "verified_by": "designer",
+        "notes": "Fails WCAG AA on backgrounds.page (2.8:1). Decorative use only.",
+        "description": "Muted text for placeholder copy, disabled states, and decorative labels.",
+        "usage_notes": "WCAG: fails 4.5:1 on backgrounds.page. Do not use for meaningful body text. Use text.secondary instead."
+      },
+      "tokens.color.accent.primary": {
+        "source": "figma_variable",
+        "source_url": "",
+        "confidence": "extracted",
+        "extracted_at": "2026-01-10",
+        "last_verified_at": "2026-01-15",
+        "verified_by": "designer",
+        "notes": null,
+        "description": "Primary interactive accent. Used for CTAs, links, and focus indicators.",
+        "usage_notes": null
+      },
+      "tokens.typography.families.display.family": {
+        "source": "figma_variable",
+        "source_url": "",
+        "confidence": "extracted",
+        "extracted_at": "2026-01-10",
+        "last_verified_at": "2026-01-15",
+        "verified_by": "designer",
+        "notes": null,
+        "description": "Display typeface for headings and large callouts.",
+        "usage_notes": null
+      },
+      "tokens.typography.families.body.family": {
+        "source": "figma_variable",
+        "source_url": "",
+        "confidence": "extracted",
+        "extracted_at": "2026-01-10",
+        "last_verified_at": "2026-01-15",
+        "verified_by": "designer",
+        "notes": null,
+        "description": "Body typeface for all paragraph text, form fields, and descriptions.",
+        "usage_notes": null
+      }
+    },
+    "accessibility": {
+      "contrast_target": "AA",
+      "contrast_floor": "AA",
+      "standard": "WCAG 2.2"
+    },
+    "implementation_notes": {
+      "tokens.color.text.muted": "WCAG-failing at 2.8:1. Retained for decorative and placeholder use only. cursor-export.py emits a usage_notes warning comment so engineers see the constraint at the token level."
+    }
+  }
+}

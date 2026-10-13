@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "source": {
+    "kind": "figma",
+    "ref": "SYNTH-0002 node 8:120 (synthetic, Ledgerling Receipts settings)",
+    "contract": "design-system://fundamentals A.3"
+  },
+  "elements": [
+    {
+      "id": "save-button",
+      "name": "Save button",
+      "class": "action",
+      "provenance": "from-source",
+      "apg_pattern": "Button",
+      "focusable": true,
+      "keyboard": "native <button>",
+      "touch_triggers": ["tap"],
+      "states": [
+        { "name": "default", "status": "shown", "source": "from-source", "a11y_hook": null, "copy_slot": null },
+        { "name": "hover", "status": "shown", "source": "from-source", "a11y_hook": null, "copy_slot": null },
+        { "name": "focus-visible", "status": "shown", "source": "from-source", "a11y_hook": "visible non-color-only ring", "copy_slot": null },
+        { "name": "active", "status": "missing", "source": "inferred", "a11y_hook": null, "copy_slot": null },
+        { "name": "disabled", "status": "missing", "source": "inferred", "a11y_hook": "disabled / aria-disabled", "copy_slot": null },
+        { "name": "loading", "status": "missing", "source": "inferred", "a11y_hook": "aria-busy", "copy_slot": { "taxonomy_slot": "Loading", "string": null } },
+        { "name": "error", "status": "missing", "source": "inferred", "a11y_hook": "aria-invalid + aria-describedby", "copy_slot": { "taxonomy_slot": "Error", "string": null } },
+        { "name": "success", "status": "missing", "source": "inferred", "a11y_hook": "live region", "copy_slot": { "taxonomy_slot": "Success", "string": null } }
+      ],
+      "transitions": [
+        { "from": "default", "to": "loading", "trigger": "click Save (async PUT /settings)", "provenance": "candidate" },
+        { "from": "loading", "to": "success", "trigger": "2xx", "provenance": "candidate" },
+        { "from": "loading", "to": "error", "trigger": "request timed out or 5xx", "provenance": "candidate" },
+        { "from": "error", "to": "default", "trigger": "retry", "provenance": "candidate" }
+      ],
+      "flags": []
+    },
+    {
+      "id": "receipts-list",
+      "name": "Recent receipts list",
+      "class": "data-view",
+      "provenance": "from-source",
+      "apg_pattern": null,
+      "focusable": false,
+      "keyboard": null,
+      "touch_triggers": [],
+      "states": [
+        { "name": "empty", "status": "missing", "source": "inferred", "a11y_hook": null, "copy_slot": { "taxonomy_slot": "Empty", "string": null } },
+        { "name": "loading", "status": "missing", "source": "inferred", "a11y_hook": "aria-busy on the region", "copy_slot": { "taxonomy_slot": "Loading", "string": null } },
+        { "name": "error", "status": "missing", "source": "inferred", "a11y_hook": "live region", "copy_slot": { "taxonomy_slot": "Error", "string": null } },
+        { "name": "populated", "status": "shown", "source": "from-source", "a11y_hook": null, "copy_slot": null }
+      ],
+      "transitions": [
+        { "from": "loading", "to": "populated", "trigger": "GET /receipts 2xx with rows", "provenance": "candidate" },
+        { "from": "loading", "to": "empty", "trigger": "GET /receipts 2xx with no rows", "provenance": "candidate" },
+        { "from": "loading", "to": "error", "trigger": "GET /receipts failed", "provenance": "candidate" }
+      ],
+      "flags": ["error-no-recovery"]
+    },
+    {
+      "id": "camera-permission",
+      "name": "Camera permission prompt (scan a receipt)",
+      "class": "composite",
+      "provenance": "from-source",
+      "apg_pattern": "Dialog",
+      "focusable": true,
+      "keyboard": "per APG \"Dialog (Modal)\"",
+      "touch_triggers": ["tap"],
+      "states": [
+        { "name": "default", "status": "shown", "source": "from-source", "a11y_hook": "role=dialog, aria-modal, labelled", "copy_slot": null },
+        { "name": "success", "status": "missing", "source": "inferred", "a11y_hook": "live region", "copy_slot": { "taxonomy_slot": "Success", "string": null } }
+      ],
+      "transitions": [
+        { "from": "default", "to": "success", "trigger": "permission granted", "provenance": "candidate" },
+        { "from": "default", "to": "default", "trigger": "permission denied (closes)", "provenance": "candidate" }
+      ],
+      "flags": []
+    }
+  ],
+  "judgment": { "which_matter": null, "absence_rulings": [], "verdict": null },
+  "gate": { "owner": null, "date": null }
+}

@@ -1,0 +1,229 @@
+{%- comment -%}
+  CSS Custom Property Bridge — layout/theme.liquid
+  Generated from active-brand.json via heyhi-shopify-theme
+
+  Architecture:
+  ┌─────────────────────────────────────────────────────────────────┐
+  │  MERCHANT-CONFIGURABLE TOKENS (this file, {% style %} block)   │
+  │  Source: {{ settings.* }} — Shopify settings_schema.json        │
+  │  Updated by merchant via Theme Editor                           │
+  ├─────────────────────────────────────────────────────────────────┤
+  │  NON-CONFIGURABLE TOKENS (assets/base.css)                     │
+  │  Source: active-brand.json (hardcoded at theme build time)      │
+  │  Semantic colors, spacing scale, motion, focus                  │
+  │  NOT referenced via settings.* — these are static CSS values    │
+  └─────────────────────────────────────────────────────────────────┘
+
+  Only {{ settings.* }} references belong in this {% style %} block.
+  Do not attempt to reference active_brand_* or any invented Liquid
+  variable here — Shopify's Liquid runtime only has settings.* in scope.
+
+  When customizing this template for a specific theme:
+  1. Replace [THEME_NAME] with the actual theme name
+  2. Verify each {{ settings.[id] }} matches a setting defined in settings_schema.json
+  3. For dark-native configs (meta.default_scheme: "dark"):
+     - The color_scheme_group must define "scheme-dark" as the primary scheme
+     - The :root defaults here emit dark-scheme values
+     - settings_data.json must set color_scheme: "scheme-dark" in relevant sections
+
+  Session: T-1
+  HeyHi Confidential
+{%- endcomment -%}
+
+{%- comment -%} ========================================================
+  FONT LOADING
+  Shopify generates @font-face declarations from the font_picker settings.
+  These must appear before the {% style %} block that uses them.
+======================================================== {%- endcomment -%}
+
+{%- unless settings.type_header_font.system? -%}
+  <link rel="preload"
+        href="{{ settings.type_header_font | font_url }}"
+        as="font"
+        type="font/woff2"
+        crossorigin>
+{%- endunless -%}
+
+{%- unless settings.type_body_font.system? -%}
+  <link rel="preload"
+        href="{{ settings.type_body_font | font_url }}"
+        as="font"
+        type="font/woff2"
+        crossorigin>
+{%- endunless -%}
+
+{% style %}
+  {{ settings.type_header_font | font_face: font_display: 'swap' }}
+  {{ settings.type_body_font | font_face: font_display: 'swap' }}
+
+  :root {
+    /* ─────────────────────────────────────────────────────────────────
+       COLOR TOKENS — from settings (merchant-configurable)
+       Source: tokens.color.* → settings_schema.json color_scheme_group
+       The color_scheme_group resolves these via named schemes (scheme-1,
+       scheme-2, etc.) rather than raw hex values here. The scheme-level
+       CSS is emitted separately by Shopify's color scheme system.
+       These custom properties carry the ACTIVE scheme's computed values.
+    ───────────────────────────────────────────────────────────────── */
+    --color-background: {{ settings.color_schemes.scheme-1.background }};
+    --color-background-2: {{ settings.color_schemes.scheme-2.background }};
+    --color-foreground: {{ settings.color_schemes.scheme-1.text }};
+    --color-foreground-2: {{ settings.color_schemes.scheme-1.text_2 }};
+    --color-accent-1: {{ settings.color_schemes.scheme-1.button }};
+    --color-accent-1-text: {{ settings.color_schemes.scheme-1.button_label }};
+    --color-outline-button: {{ settings.color_schemes.scheme-1.secondary_button_label }};
+    --color-shadow: {{ settings.color_schemes.scheme-1.shadow }};
+
+    /* ─────────────────────────────────────────────────────────────────
+       TYPOGRAPHY TOKENS — from settings (merchant-configurable)
+       Source: tokens.typography.families.display → type_header_font
+               tokens.typography.families.body    → type_body_font
+       Note: font_face declarations above must precede these references.
+    ───────────────────────────────────────────────────────────────── */
+    --font-heading-family: {{ settings.type_header_font.family }}, {{ settings.type_header_font.fallback_families }};
+    --font-heading-weight: {{ settings.type_header_font.weight }};
+    --font-heading-style: {{ settings.type_header_font.style }};
+
+    --font-body-family: {{ settings.type_body_font.family }}, {{ settings.type_body_font.fallback_families }};
+    --font-body-weight: {{ settings.type_body_font.weight }};
+    --font-body-style: {{ settings.type_body_font.style }};
+
+    --font-size-base: calc({{ settings.body_scale | divided_by: 100.0 }} * 1rem);
+    --heading-scale: {{ settings.heading_scale | divided_by: 100.0 }};
+
+    /* ─────────────────────────────────────────────────────────────────
+       LAYOUT TOKENS — from settings (merchant-configurable)
+       Source: tokens.spacing.content_max_width → page_width (range, px)
+               tokens.spacing.grid_gap          → spacing_sections (range, px)
+    ───────────────────────────────────────────────────────────────── */
+    --page-width: {{ settings.page_width }}px;
+    --section-gap: {{ settings.spacing_sections }}px;
+
+    /* ─────────────────────────────────────────────────────────────────
+       RADIUS TOKENS — from settings (merchant-configurable)
+       Source: tokens.radius.sm → buttons_radius
+               tokens.radius.md → inputs_radius
+    ───────────────────────────────────────────────────────────────── */
+    --buttons-radius: {{ settings.buttons_radius }}px;
+    --buttons-radius-outset: {{ settings.buttons_radius_outset }}px;
+    --inputs-radius: {{ settings.inputs_radius }}px;
+
+    /* Button visual system */
+    --buttons-border-width: {{ settings.buttons_border_width }}px;
+    --buttons-border-opacity: {{ settings.buttons_border_opacity | divided_by: 100.0 }};
+    --buttons-shadow-opacity: {{ settings.buttons_shadow_opacity | divided_by: 100.0 }};
+    --buttons-shadow-horizontal-offset: {{ settings.buttons_shadow_horizontal_offset }}px;
+    --buttons-shadow-vertical-offset: {{ settings.buttons_shadow_vertical_offset }}px;
+    --buttons-shadow-blur: {{ settings.buttons_shadow_blur }}px;
+
+    /* Input visual system */
+    --inputs-border-width: {{ settings.inputs_border_width }}px;
+    --inputs-border-opacity: {{ settings.inputs_border_opacity | divided_by: 100.0 }};
+    --inputs-shadow-opacity: {{ settings.inputs_shadow_opacity | divided_by: 100.0 }};
+    --inputs-shadow-horizontal-offset: {{ settings.inputs_shadow_horizontal_offset }}px;
+    --inputs-shadow-vertical-offset: {{ settings.inputs_shadow_vertical_offset }}px;
+    --inputs-shadow-blur: {{ settings.inputs_shadow_blur }}px;
+
+    /* Card system */
+    --card-corner-radius: {{ settings.card_corner_radius }}px;
+
+    /* ─────────────────────────────────────────────────────────────────
+       BADGE COLORS — from settings (merchant-configurable)
+       Not part of the color_scheme_group — standalone color settings
+    ───────────────────────────────────────────────────────────────── */
+    --badge-sold-out-background: {{ settings.colors_badge_sold_out_background }};
+    --badge-sold-out-text: {{ settings.colors_badge_sold_out_text }};
+    --badge-on-sale-background: {{ settings.colors_badge_on_sale_background }};
+    --badge-on-sale-text: {{ settings.colors_badge_on_sale_text }};
+  }
+
+  /*
+    NON-CONFIGURABLE TOKENS ARE NOT HERE.
+    They are hardcoded in assets/base.css at theme build time.
+    This includes: semantic colors (--color-error, --color-success),
+    spacing scale (--spacing-xs through --spacing-3xl), motion tokens
+    (--duration-fast, --easing-standard), focus tokens, and all
+    typography scale values beyond the two font-picker settings.
+
+    See assets/base.css — generated from active-brand.json via heyhi-shopify-theme
+  */
+
+{% endstyle %}
+
+{%- comment -%} ========================================================
+  FAVICON
+  Loaded from settings.favicon (image_picker setting in settings_schema.json)
+======================================================== {%- endcomment -%}
+
+{%- if settings.favicon != blank -%}
+  <link rel="icon"
+        type="image/png"
+        href="{{ settings.favicon | image_url: width: 32 }}">
+{%- endif -%}
+
+{%- comment -%} ========================================================
+  SOCIAL META TAGS — F-07 (Social Sharing Images)
+  Required: page_image meta tag.
+  theme.liquid must always output these — they vary by page context.
+======================================================== {%- endcomment -%}
+
+<meta property="og:site_name" content="{{ shop.name }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:title" content="{{ page_title | escape }}">
+<meta property="og:type" content="website">
+
+{%- if page_description -%}
+  <meta property="og:description" content="{{ page_description | escape }}">
+  <meta name="description" content="{{ page_description | escape }}">
+{%- endif -%}
+
+{%- if page_image -%}
+  <meta property="og:image" content="{{ page_image | image_url: width: 1200 }}">
+  <meta property="og:image:secure_url" content="{{ page_image | image_url: width: 1200 }}">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:image" content="{{ page_image | image_url: width: 1200 }}">
+{%- elsif settings.share_image -%}
+  <meta property="og:image" content="{{ settings.share_image | image_url: width: 1200 }}">
+  <meta name="twitter:image" content="{{ settings.share_image | image_url: width: 1200 }}">
+{%- endif -%}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ page_title | escape }}">
+
+{%- comment -%} ========================================================
+  FOLLOW ON SHOP — F-19
+  login_button filter outputs the "Follow on Shop" button markup
+  when the merchant has the Shop app enabled.
+  Safe to include unconditionally — outputs nothing when not applicable.
+======================================================== {%- endcomment -%}
+
+{{ shop | login_button }}
+
+{%- comment -%}
+  CSS BRIDGE CUSTOMIZATION NOTES (remove before production):
+
+  1. Color scheme references above use scheme-1 and scheme-2 as examples.
+     The actual scheme IDs are defined in the color_scheme_group in
+     settings_schema.json. Use the IDs you defined there.
+
+  2. Dark-native configs (meta.default_scheme: "dark"):
+     - Define "scheme-dark" in the color_scheme_group
+     - Set settings_data.json default color_scheme: "scheme-dark" for
+       all sections that default to the primary scheme
+     - The :root values above will emit dark values as the browser default
+     - Light scheme uses scheme-light (or scheme-1 if light is primary)
+
+  3. The font loading prelink and font_face declarations above are the
+     standard Shopify pattern. Do not use external @import or CDN links
+     for fonts — font_face filter handles @font-face correctly for
+     Shopify's CDN.
+
+  4. For self-hosted fonts (OFL licensed):
+     - Add font files to assets/fonts/
+     - Replace the font_picker settings with hardcoded CSS @font-face
+       declarations in assets/base.css
+     - Remove the type_header_font / type_body_font font_picker settings
+       from settings_schema.json (or keep them as non-default overrides)
+
+  Remove this comment block before shipping the theme.
+{%- endcomment -%}

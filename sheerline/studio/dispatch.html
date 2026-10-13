@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!-- Wheelhouse · S-10 Dispatch board · lane DISPATCH-06 · HeyHi Confidential -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Wheelhouse: the dispatch board. Sheerline's dispatch convention, rendered from the batch files in os/dispatch/batches/. Prototype.">
+  <title>Wheelhouse · Dispatch</title>
+  <link rel="stylesheet" href="shared/studio.css">
+  <style>
+    /* page-scoped (S-10 Dispatch board only)
+       candidate for shared: .hero-lede, .note, .drawer, .anatomy,
+       .board, .board__cols, .lane, .pcard, .toast, .badge--rec, .badge--flag, .badge--self */
+    .hero-lede { font-size: 1.05rem; color: var(--soft); max-width: 64ch; }
+
+    /* batch-detail drawer (the six-section anatomy + wave/OWNS convention) */
+    .drawer { border: 1px solid var(--border); border-radius: var(--r-2);
+              background: var(--surface); margin-bottom: var(--sp-6); }
+    .drawer > summary { cursor: pointer; padding: var(--sp-3) var(--sp-4);
+              font-family: var(--font-display); font-weight: 600; list-style: none; }
+    .drawer > summary::-webkit-details-marker { display: none; }
+    .drawer > summary::before { content: "\25B8"; color: var(--faint); margin-right: var(--sp-2); }
+    .drawer[open] > summary::before { content: "\25BE"; }
+    /* .drawer > summary:focus-visible now covered by the base list (folded at D-08). */
+    .drawer__body { padding: 0 var(--sp-4) var(--sp-4); }
+    .anatomy { margin: 0 0 var(--sp-4); padding-left: var(--sp-5); }
+    .anatomy li { margin-bottom: var(--sp-2); }
+    .anatomy .mono { color: var(--ink); font-weight: 500; }
+
+    .note { background: var(--surface-inset); border: 1px solid var(--border);
+            border-left: 3px solid var(--border-strong); border-radius: var(--r-1);
+            padding: var(--sp-3) var(--sp-4); color: var(--soft); font-size: .9rem;
+            margin: 0 0 var(--sp-4); }
+    .note--drawer { margin-top: var(--sp-2); }
+
+    /* the board: swimlane per batch, cards cluster in the one column its status maps to */
+    .board__cols { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3);
+                   padding: 0 var(--sp-3) var(--sp-2); }
+    .board__col-h { font-family: var(--font-mono); font-size: .72rem; letter-spacing: .06em;
+                    text-transform: uppercase; color: var(--faint); }
+    .lane { border: 1px solid var(--border); border-radius: var(--r-2);
+            background: var(--surface-inset); margin-bottom: var(--sp-4); overflow: hidden; }
+    .lane__head { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3);
+                  padding: var(--sp-3) var(--sp-4); background: var(--surface);
+                  border-bottom: 1px solid var(--border); }
+    .lane__file { font-size: .82rem; color: var(--ink); font-weight: 500; }
+    .lane__count { font-size: .74rem; }
+    .lane__status { font-size: .72rem; color: var(--soft); max-width: 62ch; }
+    .lane__cells { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-3);
+                   padding: var(--sp-3); }
+    .cell { min-height: 56px; border-radius: var(--r-1); }
+    .cell--empty { border: 1px dashed var(--border); }
+    .cell--active { padding: var(--sp-1); }
+    .cards { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--sp-2); }
+    .pcard { background: var(--field); border: 1px solid var(--border); border-radius: var(--r-1);
+             padding: var(--sp-2) var(--sp-3); cursor: grab; }
+    .pcard:active { cursor: grabbing; }
+    .pcard__id { display: block; color: var(--faint); font-size: .7rem; }
+    .pcard__title { font-family: var(--font-display); font-size: .86rem; font-weight: 500; line-height: 1.3; }
+
+    /* non-interactive labels (badges, not chips: nothing here navigates) */
+    .badge--rec  { background: var(--teal-fill);    border: 1px solid var(--teal-border);    color: var(--ink); }
+    .badge--flag { background: var(--surface-inset); border: 1px dashed var(--border-strong); color: var(--soft); }
+    .badge--self { background: var(--indigo-fill);   border: 1px solid var(--indigo-border);  color: var(--indigo); }
+
+    .lane--archived .lane__head { opacity: .7; }
+    .lane__archived-note { padding: var(--sp-3) var(--sp-4); font-size: .85rem; }
+
+    .toast { position: fixed; left: 50%; bottom: var(--sp-6);
+             transform: translateX(-50%) translateY(8px);
+             background: var(--ink); color: var(--field);
+             font-family: var(--font-mono); font-size: .8rem;
+             padding: var(--sp-3) var(--sp-4); border-radius: var(--r-1);
+             box-shadow: var(--shadow-card); opacity: 0; pointer-events: none;
+             transition: opacity .18s, transform .18s; z-index: 50; max-width: 90vw; text-align: center; }
+    .toast--show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    @media (max-width: 860px) {
+      .board__cols { display: none; }
+      .lane__cells { grid-template-columns: 1fr; }
+      .cell--empty { display: none; }
+      .cell--active::before { content: attr(data-col); display: block;
+        font-family: var(--font-mono); font-size: .7rem; text-transform: uppercase;
+        letter-spacing: .06em; color: var(--faint); margin: var(--sp-1) var(--sp-1) var(--sp-2); }
+    }
+  </style>
+</head>
+<body>
+<!-- ============================================================================
+     WHEELHOUSE - shared shell snippet   (FROZEN after DISPATCH-03 merges)
+     HeyHi Confidential
+     Pasted verbatim from shared/shell-snippet.html. See shared/README.md.
+     ============================================================================ -->
+<script src="data/snapshot.js"></script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="studio-shell">
+
+  <header class="topbar">
+    <a class="wordmark" href="index.html">WHEELHOUSE</a>
+    <a class="topbar__search" href="index.html#router">
+      <span aria-hidden="true">⌕</span>&nbsp;Route a task…
+    </a>
+    <span class="topbar__spacer"></span>
+    <a class="session-indicator" href="session.html">
+      <span class="dot" aria-hidden="true"></span>
+      Own practice
+      <span class="sr-only">(simulated exemplar session)</span>
+    </a>
+  </header>
+
+  <nav class="rail" aria-label="Primary">
+    <p class="rail__label">Wheelhouse</p>
+    <a class="rail__link" href="index.html">           <span class="rail__num">1</span> Home</a>
+    <a class="rail__link" href="areas.html">           <span class="rail__num">2</span> Areas</a>
+    <a class="rail__link" href="skills.html">          <span class="rail__num">3</span> Skills</a>
+    <a class="rail__link" href="session.html">         <span class="rail__num">4</span> Session</a>
+    <a class="rail__link" href="quality-validate.html"><span class="rail__num">5</span> Quality</a>
+    <a class="rail__link" href="artifacts.html">       <span class="rail__num">6</span> Artifacts</a>
+    <a class="rail__link" href="dispatch.html">        <span class="rail__num">7</span> Dispatch</a>
+    <a class="rail__link" href="seminar.html">         <span class="rail__num">8</span> Seminar</a>
+    <a class="rail__link" href="intake.html">          <span class="rail__num">9</span> Intake</a>
+  </nav>
+
+  <main id="main-content" class="studio-main">
+    <div class="wrap">
+      <!-- ===================== PAGE CONTENT START ===================== -->
+
+      <!-- HEADER -->
+      <section class="section">
+        <p class="eyebrow">Operate</p>
+        <h1>Dispatch board</h1>
+        <p class="hero-lede">Replit runs parallel agents behind a paid toggle. Here, planning and parallelism are the harness's own disciplines: dated dispatch files, waves that run in order, and lanes that each own a disjoint set of files. The board renders the batch files in <span class="mono">os/dispatch/batches/</span>, read straight from the snapshot. It ships with two worked examples; an instance's own batches appear beside them.</p>
+      </section>
+
+      <!-- BATCH-DETAIL DRAWER: the six-section anatomy + wave/OWNS convention -->
+      <details class="drawer">
+        <summary>How a dispatch prompt is built</summary>
+        <div class="drawer__body">
+          <p class="muted">Each prompt is a self-contained work order. Six sections are required, in order:</p>
+          <ol class="anatomy">
+            <li><span class="mono">MISSION</span> · one directive: what the lane must produce.</li>
+            <li><span class="mono">CONTEXT LOAD</span> · the ordered files to read first, and what to take from each.</li>
+            <li><span class="mono">OUTPUT SPEC</span> · the exact files, paths, and formats to write.</li>
+            <li><span class="mono">CRITICAL CONSTRAINTS</span> · the non-negotiable rules: voice, hermetic seal, classification.</li>
+            <li><span class="mono">SMOKE TESTS</span> · binary checks the lane runs before it claims done.</li>
+            <li><span class="mono">QUALITY GATE</span> · what "done" means, written as a checklist.</li>
+          </ol>
+          <p class="muted"><strong>Waves and OWNS.</strong> A batch runs in numbered waves. Within a wave, lanes run at the same time because each lane OWNS a disjoint set of files and never writes another's. Shared foundations freeze once they are built, and a single convergence lane folds the parallel work together and carries the status flips.</p>
+          <p class="note note--drawer">Row statuses reflect each file's frontmatter at snapshot time and lag per-lane merges until the convergence pass regenerates the snapshot.</p>
+        </div>
+      </details>
+
+      <!-- THE BOARD -->
+      <section class="section" aria-labelledby="board-h">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">The board <span class="badge badge--sim">snapshot</span></p>
+            <h2 id="board-h">Batches, by state</h2>
+            <p class="muted" id="board-scale" style="margin:0"></p>
+          </div>
+        </div>
+        <p class="note">Cards rest in Pending or Merged: the snapshot tracks each batch file's frontmatter status, not per-lane progress, so the mid-flight columns stay open until a convergence pass regenerates the data.</p>
+        <div class="board" id="board" role="group" aria-label="Dispatch board (a snapshot)"></div>
+      </section>
+
+      <!-- ===================== PAGE CONTENT END ======================= -->
+    </div>
+  </main>
+
+  <footer class="studio-footer">
+    <span class="sim">Prototype</span> · simulated interactions over a real data snapshot
+    (<span class="mono" data-commit>…</span>) · HeyHi Confidential
+  </footer>
+
+</div>
+
+<script>
+/* fill footer commit + self-activate the rail item from the page filename */
+(function () {
+  var data = window.SHEERLINE_DATA || {};
+  var meta = data.meta || {};
+  var el = document.querySelector('[data-commit]');
+  if (el) { el.textContent = meta.source_commit || 'unknown'; }
+
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') { path = 'index.html'; }
+  var alias = {
+    'quality-grade.html': 'quality-validate.html',
+    'quality-learn.html': 'quality-validate.html',
+    'exit-gate.html': 'session.html'
+  };
+  var target = alias[path] || path;
+  var links = document.querySelectorAll('.rail__link');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].getAttribute('href') === target) {
+      links[i].setAttribute('aria-current', 'page');
+    } else {
+      links[i].removeAttribute('aria-current');
+    }
+  }
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------------------
+   S-10 Dispatch board: render swimlanes from the snapshot's .dispatch data.
+   Status -> column mapping is PREFIX matching on the raw frontmatter status
+   (live values are annotated, e.g. "executed (4 of 4) - ..."):
+     "executed" | "done"        -> Merged  (+ "see batch record")
+     "partial"  | "in-progress" -> Merged  (+ "partially executed · see batch record")
+     "pending"  | "ready*"      -> Pending
+     "archived"                 -> swimlane collapsed
+     anything else              -> Pending (+ "unmapped status" flag showing the raw string)
+   Status is per-batch (frontmatter); there are no per-prompt states, so a
+   batch's cards cluster in one column. Verbatim status is rendered from data,
+   never hardcoded here (that is why the annotated strings, em dashes included,
+   never appear in this source file).
+   --------------------------------------------------------------------------- */
+(function () {
+  "use strict";
+  var D = window.SHEERLINE_DATA || {};
+  var batches = (D.dispatch && D.dispatch.batches) || [];
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function el(id){ return document.getElementById(id); }
+
+  var COLUMNS = [
+    { key: 'pending', label: 'Pending' },
+    { key: 'running', label: 'Running' },
+    { key: 'pr-open', label: 'PR open' },
+    { key: 'merged',  label: 'Merged'  }
+  ];
+
+  /* prefix match on the raw status string. Covers the legacy dispatch vocab
+     (executed/partial/pending/ready/archived) AND the canonical values the
+     dispatch README names as preferred for new files: done == executed,
+     in-progress == partial (dispatch/README.md § Execution status). */
+  function mapBatch(status){
+    var s = String(status == null ? "" : status).trim().toLowerCase();
+    if (s.indexOf('executed') === 0 || s.indexOf('done') === 0) return { col: 'merged', rec: 'see batch record' };
+    if (s.indexOf('partial')  === 0 || s.indexOf('in-progress') === 0) return { col: 'merged', rec: 'partially executed · see batch record' };
+    if (s.indexOf('archived') === 0) return { archived: true };
+    if (s.indexOf('pending')  === 0 || s.indexOf('ready') === 0) return { col: 'pending' };
+    return { col: 'pending', unmapped: true };
+  }
+
+  function card(p){
+    return '<li class="pcard" draggable="true">'
+         +   '<span class="pcard__id mono">' + esc(p.id) + '</span>'
+         +   '<span class="pcard__title">' + esc(p.title) + '</span>'
+         + '</li>';
+  }
+
+  function lane(b){
+    var m = mapBatch(b.status);
+    var prompts = b.prompts || [];
+    var count = prompts.length;
+
+    var head = '<div class="lane__head">'
+      + '<span class="lane__file mono">' + esc(b.file) + '</span>'
+      + '<span class="lane__count mono muted">' + count + ' prompt' + (count === 1 ? '' : 's') + '</span>'
+      + '<span class="lane__status mono">status: ' + esc(b.status) + '</span>';
+    if (m.rec)      head += '<span class="badge badge--rec mono">' + esc(m.rec) + '</span>';
+    if (m.unmapped) head += '<span class="badge badge--flag mono">unmapped status: ' + esc(b.status) + '</span>';
+    if (b.example)  head += '<span class="badge badge--rec mono">worked example</span>';
+    head += '</div>';
+
+    if (m.archived) {
+      return '<section class="lane lane--archived" aria-label="Batch ' + esc(b.file) + ', archived, ' + count + ' prompts">'
+           +   head
+           +   '<p class="lane__archived-note muted">Archived: superseded or no longer runnable. Swimlane collapsed.</p>'
+           + '</section>';
+    }
+
+    var cardsHtml = prompts.map(card).join('');
+    var cells = COLUMNS.map(function(col){
+      if (col.key === m.col) {
+        return '<div class="cell cell--active" data-col="' + esc(col.label) + '" aria-label="' + esc(col.label) + ', ' + count + ' cards">'
+             +   '<ul class="cards">' + cardsHtml + '</ul>'
+             + '</div>';
+      }
+      return '<div class="cell cell--empty" aria-hidden="true"></div>';
+    }).join('');
+
+    return '<section class="lane" aria-label="Batch ' + esc(b.file) + ', ' + count + ' prompts, status ' + esc(b.status) + '">'
+         +   head
+         +   '<div class="lane__cells">' + cells + '</div>'
+         + '</section>';
+  }
+
+  /* render */
+  (function(){
+    var host = el('board'); if (!host) return;
+    var cols = '<div class="board__cols" aria-hidden="true">'
+             + COLUMNS.map(function(c){ return '<div class="board__col-h">' + esc(c.label) + '</div>'; }).join('')
+             + '</div>';
+    host.innerHTML = cols + batches.map(lane).join('');
+
+    var total = batches.reduce(function(t,b){ return t + ((b.prompts || []).length); }, 0);
+    var scale = el('board-scale');
+    if (scale) { scale.textContent = batches.length + ' batches, ' + total + ' prompts, rendered from the snapshot'; }
+  })();
+
+  /* the board is a snapshot: a drag attempt changes nothing and says so */
+  (function(){
+    var host = el('board'); if (!host) return;
+    var toast = document.createElement('div');
+    toast.className = 'toast'; toast.setAttribute('role', 'status'); toast.setAttribute('aria-live', 'polite');
+    document.body.appendChild(toast);
+    var timer = null;
+    function say(msg){
+      toast.textContent = msg; toast.classList.add('toast--show');
+      if (timer) { clearTimeout(timer); }
+      timer = setTimeout(function(){ toast.classList.remove('toast--show'); }, 2400);
+    }
+    host.addEventListener('dragstart', function(e){
+      var c = e.target.closest ? e.target.closest('.pcard') : null;
+      if (!c) return;
+      e.preventDefault();               /* cancels the drag: no state change */
+      say('The board is a snapshot. Regenerate the data to change it.');
+    });
+  })();
+})();
+</script>
+</body>
+</html>

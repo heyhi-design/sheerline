@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometry Defects Golden — design-bridge Translate</title>
+<!--
+  Golden fixture for the four Translate geometry defects (plan-design-bridge-geometry-defects-2026-08-24).
+  Self-contained: the tokens + rules are lifted verbatim from sheerline/studio/shared/studio.css
+  so the extracted bbox values match the real D-09 capture. No @import (renders offline).
+  Pins: D1 (8px bar / 7px dot / 0 spacer / 60 topbar) · D2 (.cov__bar::before fill) ·
+        D3 (.sr-only leakage) · D4 (.studio-shell grid: two full-width rows + a rail|main row).
+-->
+<style>
+  :root {
+    --field: #0e1a24; --surface: #12222e; --surface-inset: #0b141c;
+    --ink: #e8f0f4; --soft: #9fb2bd; --faint: #5f7480;
+    --teal: #3fd0c9; --teal-fill: rgba(63,208,201,.14); --teal-border: rgba(63,208,201,.35);
+    --border: #22323d; --border-strong: #33474f;
+    --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px;
+    --r-2: 10px; --r-pill: 999px; --rail-w: 220px; --topbar-h: 60px;
+    --font: 'Sora', system-ui, sans-serif; --font-mono: 'DM Mono', ui-monospace, monospace;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--field); color: var(--ink); font-family: var(--font); }
+  h2 { font-size: 1.3rem; font-weight: 600; margin: 0 0 var(--sp-3); }
+  p { margin: 0 0 var(--sp-3); }
+
+  /* D3 — screen-reader-only content: clipped to 1px, must NOT render as visible design. */
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+
+  /* D4 — shell grid: topbar + footer span 1/-1, rail|main share the middle row. */
+  .studio-shell { display: grid; grid-template-columns: var(--rail-w) 1fr; min-height: 100vh; }
+
+  /* D1 — .topbar has an explicit 60px height (renders 100 tall pre-fix). */
+  .topbar {
+    grid-column: 1 / -1; height: var(--topbar-h);
+    display: flex; align-items: center; gap: var(--sp-4);
+    padding: 0 var(--sp-5); background: var(--surface); border-bottom: 1px solid var(--border);
+  }
+  .topbar__brand { font-weight: 600; }
+  /* D1 — zero-height flex spacer (renders 100 tall pre-fix). */
+  .topbar__spacer { flex: 1; }
+  .session-indicator {
+    display: inline-flex; align-items: center; gap: var(--sp-2);
+    padding: var(--sp-1) var(--sp-3); background: var(--teal-fill);
+    border: 1px solid var(--teal-border); border-radius: var(--r-pill);
+    color: var(--ink); font-family: var(--font-mono); font-size: .74rem; text-decoration: none;
+  }
+  /* D1 — 7px status dot, aria-hidden decorative (still renders; renders 100 tall pre-fix). */
+  .session-indicator .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
+
+  .rail { grid-row: 2; grid-column: 1; padding: var(--sp-5) var(--sp-3); border-right: 1px solid var(--border); }
+  .studio-main { grid-row: 2; grid-column: 2; padding: var(--sp-5); }
+  .studio-footer { grid-column: 1 / -1; padding: var(--sp-3) var(--sp-5); border-top: 1px solid var(--border); color: var(--soft); }
+
+  /* D1 + D2 — coverage ramp: an 8px bar whose fill is a ::before (never becomes a layer). */
+  .cov { display: inline-flex; align-items: center; gap: var(--sp-2); margin-bottom: var(--sp-2); }
+  .cov__bar {
+    --fill: 100%;
+    position: relative; width: 52px; height: 8px; border-radius: var(--r-pill);
+    background: var(--surface-inset); border: 1px solid var(--border); overflow: hidden;
+  }
+  .cov__bar::before {
+    content: ""; position: absolute; inset: 0; width: var(--fill);
+    background: var(--teal); border-radius: var(--r-pill);
+  }
+  .cov__label { font-family: var(--font-mono); font-size: .72rem; color: var(--soft); }
+  /* Four distinguishable states: 100% solid / 66% outlined / 40% striped / 0% dashed. */
+  .cov--deep    .cov__bar { --fill: 100%; }
+  .cov--deep    .cov__bar::before { background: var(--teal); }
+  .cov--covered .cov__bar { --fill: 66%; }
+  .cov--covered .cov__bar::before { background: transparent; border: 1.5px solid var(--teal); }
+  .cov--partial .cov__bar { --fill: 40%; }
+  .cov--partial .cov__bar::before { background: repeating-linear-gradient(45deg, var(--teal) 0 3px, var(--teal-fill) 3px 6px); }
+  .cov--gap     .cov__bar { --fill: 0%; background: transparent; border: 1px dashed var(--border-strong); }
+</style>
+</head>
+<body>
+  <div class="studio-shell">
+    <header class="topbar">
+      <span class="topbar__brand">Sheerline</span>
+      <span class="topbar__spacer"></span>
+      <a class="session-indicator" href="#">
+        <span class="dot" aria-hidden="true"></span>
+        session live
+        <span class="sr-only">(simulated exemplar session)</span>
+      </a>
+    </header>
+
+    <nav class="rail" aria-label="Primary">
+      <p class="sr-only">Primary navigation</p>
+      <p>Overview</p>
+      <p>Areas</p>
+    </nav>
+
+    <main class="studio-main">
+      <h2 id="pulse-h" class="sr-only">Corrections pulse</h2>
+      <h2>Coverage</h2>
+      <span class="cov cov--deep"><span class="cov__bar"></span><span class="cov__label">deep</span></span>
+      <span class="cov cov--covered"><span class="cov__bar"></span><span class="cov__label">covered</span></span>
+      <span class="cov cov--partial"><span class="cov__bar"></span><span class="cov__label">partial</span></span>
+      <span class="cov cov--gap"><span class="cov__bar"></span><span class="cov__label">gap</span></span>
+    </main>
+
+    <footer class="studio-footer">Simulated exemplar footer</footer>
+  </div>
+</body>
+</html>

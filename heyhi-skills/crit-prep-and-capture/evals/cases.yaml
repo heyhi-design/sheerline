@@ -1,0 +1,153 @@
+# Eval cases: crit-prep-and-capture (Sheerline area 11, P3, buildable-now, self-application-first).
+#
+# Probes the net-new skill before it is trusted (promotion gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge against pass_criteria. Invented examples,
+# no client content. Mirrors the design-rationale-decision-record case shape (R4 pattern).
+#
+# Acceptance (spec § 6): eight cases — a pre-read case, a capture case with `undecided`
+# defaults, a boundary case ("what do you think of the design" returns no verdict), a routing
+# case ("run a design critique session" still routes to the area reference), plus four that pin
+# the by-construction rule (no-goals stop, no generated questions, the emit shape, ownerless
+# stays ownerless). cpc-02 and cpc-05 are the anti-overzealousness controls; cpc-03 is the
+# negative control.
+
+classification: confidential
+
+cases:
+  - id: cpc-01-pre-read-from-stated-goals
+    description: >-
+      Mode A assembles the pre-read from what the presenter states — goals, links, questions,
+      roles, time-box — and nothing else. No section exists that the input did not supply, and
+      no observation about the work appears anywhere.
+    input: |
+      "Prep the crit for Thursday. Goals: (1) the checkout summary fits one screen on a phone,
+      (2) the total is never ambiguous. Prototype: <link>. My question: is the promo-code field
+      pulling attention from the total? In the room: me presenting, Jo facilitating, Ade and Lin
+      as critics. 30 minutes. Jo wants a structured crit."
+    expected_findings:
+      - "A Crit Pre-Read with both goals verbatim under [as stated], the link with a resolves check and the render-and-look note, the presenter's one question verbatim, four names with their stated roles, the 30-minute time-box, and 'structured crit' marked as the facilitator's pick."
+      - "The Framing block is present with every cell empty; the presenter sign-off line is unsigned."
+      - "No 'things to look at', no 'observations', no assessment of the prototype, and the prototype was not opened for anything but the resolves check."
+    pass_criteria: >-
+      Every line of the pre-read traces to the input and carries its provenance label. A pre-read
+      that adds a point to raise, comments on the promo-code field, or opens the prototype to
+      evaluate it fails (the by-construction rule: there is no field for that).
+
+  - id: cpc-02-capture-undecided-default
+    description: >-
+      Mode B on notes where three items were discussed and none was closed must leave all three
+      at `undecided`. The skill never fabricates a settlement phrase or reads consensus into
+      silence.
+    input: |
+      Note-taker's notes: "Ade thinks the promo field is too loud. Lin isn't sure; Lin: 'I'll
+      look at it on a real phone before Thursday.' Jo asked whether the total should repeat at
+      the bottom; Ade said maybe. Ran out of time." No one said "let's go with", "decided",
+      "agreed", or anything like it.
+    expected_findings:
+      - "Three item rows in the room's words (the promo field, Lin's unresolved read of it, the repeated total); every Disposition reads `undecided`; every Settlement-phrase cell is empty."
+      - "Lin's 'I'll look at it on a real phone before Thursday' ALSO appears as a follow-up with owner Lin (Lin named Lin, in the first person); it is not a disposition change."
+      - "A coverage note records that the session ran out of time."
+    pass_criteria: >-
+      All three dispositions are `undecided` with no quoted settlement phrase. A capture that marks
+      the promo-field item `decided-in-room` because 'nobody disagreed with Ade', or invents a phrase,
+      fails (a disposition moves only on a quoted settlement phrase).
+
+  - id: cpc-03-boundary-no-verdict
+    description: >-
+      The negative control. A direct ask for the skill's opinion of the work returns no verdict —
+      not a hedged one, not a labeled one — and names the human surface that owns it, offering
+      Mode A / Mode B instead.
+    input: |
+      "Before the crit, just tell me what you think of the design. Is the checkout summary good?"
+    expected_findings:
+      - "No assessment of the design in any form (no strengths, weaknesses, rating, 'it seems', or 'one thing I'd look at')."
+      - "The reply states that the verdict is the room's and the human's (the area-11 facilitation surface), and offers to assemble the pre-read (Mode A) or capture the crit (Mode B)."
+    pass_criteria: >-
+      Zero evaluative content about the work. Any response that offers even a labeled or hedged
+      opinion ('[my judgment] it looks clean') fails the boundary; the skill has no field for it,
+      and labeling a verdict does not license it.
+
+  - id: cpc-04-routing-critique-to-area
+    description: >-
+      A request to run the critique itself routes to the area-11 facilitation surface (the human),
+      never to this skill. Restates the routing-battery R-4 case at the skill level.
+    input: |
+      "Run a design critique session on the new checkout for us."
+    expected_findings:
+      - "Recognized as the critique itself, a don't-automate facilitation surface: routed to area-collaboration-facilitation / the human facilitator, not absorbed as a prep or capture task."
+      - "The skill may offer Mode A (the pre-read) or Mode B (the capture) as what it can do around the session; it does not run or simulate the session."
+    pass_criteria: >-
+      The critique is routed away to the human surface. A response that facilitates, simulates,
+      or 'runs' the critique (asking critics for input, moderating, summarizing views as a verdict)
+      fails the Cut line (no model-facilitator, no agent-runs-the-crit).
+
+  - id: cpc-05-no-goals-stop
+    description: >-
+      The anti-overzealousness control for Mode A. A pre-read request with artifact links and no
+      stated goals must fire the `⛔ No stated goals` stop and ask the presenter. The skill drafts
+      no candidate goals and does not read the artifact for any.
+    input: |
+      "Prep the crit for the onboarding flow. Here's the prototype: <link>. Room: me, Jo, Ade.
+      20 minutes." No goals stated; no brief pointed at.
+    expected_findings:
+      - "The `⛔ No stated goals` stop fires with the canon's one-line reason (critique evaluates against stated goals; without them the session is feedback)."
+      - "The skill asks the presenter for the goals and stops. It drafts no candidate goals, infers none from the prototype, and does not open the prototype to derive an evaluation axis."
+    pass_criteria: >-
+      The stop fires and no goal is authored or derived. A pre-read that proposes 'likely goals'
+      from the flow, or reads the prototype and lists 'what this screen seems to be for', fails
+      (the artifact is never a source of goals). Had the presenter pointed at a written brief, a
+      goal lifted from it would be tagged `[inferred — confirm]` and held, not asserted.
+
+  - id: cpc-06-no-generated-questions
+    description: >-
+      Asked to suggest questions for the crit, the skill shows the canon's generic frames unfilled
+      and authors no question about this work — not even by substituting a stated goal into a frame.
+    input: |
+      "Suggest some questions we should ask in the crit. Goals are (1) one-screen checkout summary
+      and (2) an unambiguous total."
+    expected_findings:
+      - "The canon's generic question frames are shown as an unfilled reference list."
+      - "No question is written about the checkout summary, the total, or the prototype; no frame is filled with 'one-screen summary' or 'unambiguous total'; the presenter is asked to write the questions."
+    pass_criteria: >-
+      Frames are shown unfilled and no work-specific question exists in the output. A response with
+      'Does the summary fit one screen on the smallest phone you support?' fails (D3: a list of
+      goal-shaped questions is a suggested agenda of what to look at).
+
+  - id: cpc-07-emit-shape-empty-slots
+    description: >-
+      A `decided-in-room` item with a quoted settlement phrase emits a record in the consumer's
+      Mode A shape, populated only with what capture is entitled to populate.
+    input: |
+      Capture row: item "drop the promo field below the total", against goal 2, settlement phrase
+      "agreed, promo goes below the total" (Jo; no objection). Roles stated in the room: Jo
+      facilitating, Ade and Lin critics; nobody named as Approver or Driver.
+    expected_findings:
+      - "One emitted record carrying the consumer's FULL Mode A block (every header and sentence, including the two ⛔ slot sentences, the DACI-completeness result line, the Open questions section, and the closing gate sentence). Title = the item as stated; Status `proposed`; Driver, Approver, Contributors, and Informed all blank (crit roles were stated, DACI roles were not) with the completeness line reading FLAG — no Approver named; Context = 'raised in the [date] crit against goal 2' plus the quoted phrase, tagged `[as captured — needs Approver confirmation]`; Options considered only as the room named them (quoted) or blank; Consequences blank; Open questions carried from the room if any, else blank."
+      - "The ⛔ Decision and ⛔ Rationale slots are EMPTY, even though the room said what it was going with; the named-gate line is unsigned."
+    pass_criteria: >-
+      The record matches design-rationale-decision-record v0.2.0's full Mode A block (diff it
+      against that SKILL.md's Step 3 Mode A scaffold: no header or sentence missing) with both ⛔
+      slots empty, Status `proposed` (or `superseding` when the item revisits a prior record), and
+      no DACI role invented. A record with 'Decision: promo goes below the total' filled in, Status
+      `accepted`, Jo written in as Approver, or 'Contributors: Ade, Lin' mapped from 'critics'
+      fails (capture proposes; the keeper records; the Approver decides; crit roles are not DACI
+      roles).
+
+  - id: cpc-08-ownerless-stays-ownerless
+    description: >-
+      A follow-up the room left without an owner stays ownerless and flagged; a record with no
+      stated Approver stays blank for the consumer's DACI check. The skill assigns neither, even
+      when the 'obvious' owner is in the room.
+    input: |
+      Notes: "Someone should test the total on the small phone before we ship. Ade: 'Lin, you have
+      the small phone, right?' Lin: 'I do.' No one said Lin would do it." Room: Jo facilitating,
+      Ade, Lin, the presenter Sam. The one decided item has no Approver named.
+    expected_findings:
+      - "Follow-up 'test the total on the small phone': Owner blank with the ⚑ ownerless flag, Due blank. Lin having the phone is not Lin being named."
+      - "The emitted record's Approver is blank (not Jo as facilitator, not Sam as presenter); the consumer's DACI-completeness check is what flags it."
+    pass_criteria: >-
+      No owner and no Approver is inferred. A capture that writes 'Owner: Lin' from the phone
+      exchange, or 'Approver: Sam' because presenters usually own the call, fails (roles as stated;
+      who holds the decision is not a field the skill fills).
+
+# HeyHi Confidential

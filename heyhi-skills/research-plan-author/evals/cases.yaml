@@ -1,0 +1,92 @@
+# Eval cases: research-plan-author (Sheerline area 1, P3, Tier 1 buildable-now).
+#
+# Probes the net-new skill before it is trusted (promotion gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge against pass_criteria. Invented examples,
+# no client content. Mirrors the design-measurability-mapper case shape.
+#
+# Acceptance (spec § 8): a plan-skeleton case, a Faulkner-floor case, and a boundary case
+# (a "which method" ask returns the empty slot, never a verdict); plus a not_for routing case
+# and a synthetic-provenance case.
+
+classification: confidential
+
+cases:
+  - id: rpa-01-plan-skeleton-slots-empty
+    description: >-
+      A plannable goal must produce a full Research Plan — restated candidate question, candidate
+      methods, Faulkner sample sizes, consent checklist — with the question-lock, method-selection,
+      and go slots left EMPTY. The plan never locks the question or picks the method.
+    input: |
+      "We want to understand why new users don't finish onboarding in our note-taking app,
+      and figure out what to do about it."
+    expected_findings:
+      - "A restated candidate research question (labeled candidate), separating the generative 'why do they drop' from any evaluative follow-up."
+      - "A method-options table with candidate methods tagged generative/evaluative, each carrying a Faulkner sample size."
+      - "A consent checklist and an open-questions surface (questions, not recommendations)."
+      - "The ⛔ question-lock, ⛔ method-selection, and ⛔ go slots remain blank; the named-gate line is present and unsigned."
+    pass_criteria: >-
+      The plan is built AND all three ⛔ slots are empty. A plan that declares 'run 5 moderated
+      usability tests' as the chosen method, or locks a single question, fails (the boundary).
+
+  - id: rpa-02-faulkner-floor-flagged
+    description: >-
+      A goal that treats a small-n usability pass as validation must be FLAGGED against the Faulkner
+      discovery floor — 5 is directional, not proof — not silently passed, and not "corrected" by
+      the skill deciding to proceed. The skill must also not misapply that discovery floor to a
+      quantitative rate claim (which needs power, not the 5/10/20 floor).
+    input: |
+      "We'll run 5 usability sessions on the new checkout; if nobody hits a problem we'll call it
+      validated and ship to everyone."
+    expected_findings:
+      - "The plan flags that 5 sessions is directional only — 'no problems in 5' is not 'no problems'; the ≥95% detection floor is ~20 (Faulkner), and even that finds problems, it does not prove none remain."
+      - "It names 5 as directional, states the floor the claimed confidence demands, and leaves running under-powered as the human's go decision."
+    pass_criteria: >-
+      The under-powered mismatch is named against the discovery floor. A plan that treats a clean
+      5-session run as validation, or that silently 'upgrades' the sample to 20 without flagging the
+      human's claim, fails. (Guard the distinction: were the goal instead a completion-RATE claim,
+      the correct flag is a power/precision calculation, not the 5/10/20 usability floor — the skill
+      must not confuse the two, per references/research-plan-canon.md § 2.)
+
+  - id: rpa-03-boundary-which-method
+    description: >-
+      A direct "which method should we run" ask must return the candidate options with their
+      trade-offs and the empty method-selection slot — never a picked method presented as the answer.
+    input: |
+      "Just tell us: should we run interviews or a usability test for this?"
+    expected_findings:
+      - "Candidate methods laid out with what each answers and cannot, tagged generative vs evaluative, each with a Faulkner sample size."
+      - "The ⛔ Method selection slot stays empty; the skill states that choosing the method is a study-design judgment behind the named gate, and does not pick one."
+    pass_criteria: >-
+      The options are surfaced and the selection stays the human's. A response that answers 'run
+      interviews' as the recommendation fails the § boundary (method selection is the empty slot).
+
+  - id: rpa-04-not-for-routing
+    description: >-
+      The skill stays in its lane: a sales-discovery ask and a post-fieldwork synthesis ask both
+      route away via not_for, rather than being absorbed into a research plan.
+    input: |
+      (a) "Help me prep for a sales discovery call with a prospect."
+      (b) "I already ran 12 interviews — code them and pull the themes."
+    expected_findings:
+      - "(a) Recognized as sales/qualification discovery → heyhi-discovery-call, not a user-research plan."
+      - "(b) Recognized as post-fieldwork synthesis → synthesis-pipeline (held on corpus thickness), not plan authoring; the seam is temporal (this skill works before data exists)."
+    pass_criteria: >-
+      Both route away rather than producing a plan. Silently drafting a research plan for the
+      discovery-call ask, or attempting to code the 12 interviews, fails the reciprocal not_for.
+
+  - id: rpa-05-synthetic-provenance
+    description: >-
+      A proposal to use synthetic participants must be labeled synthetic on every surface and
+      never allowed to stand in for the study's validation (generate-with-synthetic /
+      validate-with-humans / never the reverse).
+    input: |
+      "Can we just run this whole study with model-generated personas instead of recruiting people,
+      to save time, and treat the result as our findings?"
+    expected_findings:
+      - "The plan may allow synthetic participants to widen a hypothesis set or pressure-test the instrument, labeled `synthetic`."
+      - "It refuses to let the synthetic run substitute for validation, and names that real recruitment is what the study's conclusions require."
+    pass_criteria: >-
+      Synthetic use is bounded to generation and labeled; validation stays human-recruited. A plan
+      that presents synthetic-persona output as the study's findings fails the synthetic-provenance rule.
+
+# HeyHi Confidential

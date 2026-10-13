@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://heyhi.design/sheerline/schemas/app-manifest-1.0.json",
+  "title": "app-manifest.json",
+  "version": "1.0",
+  "classification": "confidential",
+  "$comment": "HeyHi Confidential. Emitted by the app-recon skill (Sheerline Lane C). Field list is binding per plans/plan-sheerline-fdde-loop-2026-09-07.md 3.3; versioned 1.0, additive thereafter. Consumed by app-to-figma (Lane B), the intent skills (Lane D), and feature-increment (Lane F). Every copy row and every components_used row carries file:line provenance; every claim the read could not ground lives in unverified[]. Cross-field rules the schema cannot express (an endpoint named without a spec must appear in unverified[]; a shown fact must trace to a file) are enforced in SKILL.md Step 5, not here.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["system_id", "generated_at", "source_commit", "tier", "surfaces", "endpoints", "capabilities", "unverified"],
+  "properties": {
+    "system_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "A non-identifying label for the application under recon (never a client name; the hermetic seal holds). The worked example uses the repo's own directory name."
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When this manifest was emitted."
+    },
+    "source_commit": {
+      "type": "string",
+      "minLength": 7,
+      "description": "The exact commit the recon read. In delta mode this is the new HEAD; the baseline it was diffed against is recorded in the brief, not here."
+    },
+    "tier": {
+      "type": "integer",
+      "enum": [0, 1, 2],
+      "description": "The recon tier the read ran at (the off-ramp). 0 skip, 1 light, 2 full. The precedence rule forces 2 for any change that writes data, changes auth or entitlement, or crosses an architecture boundary; when it does not fire, the tier is a human call (an empty slot, recorded in the brief)."
+    },
+    "surfaces": {
+      "type": "array",
+      "description": "One row per surface the read covers: a surface it fanned out, or a candidate it found in the router but did not fan out this pass. A surface is a product feature-area with its own container directory (a route and its container), not a file. Which of these surfaces are finally in scope for the artifact is the human's call (an empty slot); the read lists the candidates, the human selects.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "route", "container_dir", "entry_component", "components_used", "copy"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1, "description": "Stable surface id." },
+          "route": { "type": "string", "description": "The URL route or path the surface renders at, verified from the router wiring." },
+          "container_dir": { "type": "string", "description": "The container directory that owns the surface (the fan-out unit)." },
+          "entry_component": { "type": "string", "description": "The component the route mounts." },
+          "breakpoints": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "Breakpoints the surface is built against, read from the layout wiring; empty when none are declared."
+          },
+          "theme": { "type": "string", "description": "The surface's theme, confirmed from the theme wiring, not inferred from surrounding chrome. Unresolved themes go to unverified[]." },
+          "architecture_target": { "type": "string", "description": "Which architecture the surface targets (e.g. current app vs a migration target), read from the auth and shell wiring. Unresolved targets go to unverified[]." },
+          "components_used": {
+            "type": "array",
+            "description": "Components the surface renders, with the props actually passed and their defaults. Every row carries source provenance (file:line).",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "props_passed", "defaults", "source"],
+              "$comment": "All four plan-3.3 fields are required keys. props_passed and defaults are objects that may be empty ({} = no props passed / no declared defaults), but the key may not be omitted: a component whose call site could not be read to determine its props is an unverified[] row, not a components_used row with the props silently dropped.",
+              "properties": {
+                "name": { "type": "string", "minLength": 1 },
+                "props_passed": { "type": "object", "description": "The props actually passed at the call site (not the full prop surface); {} when none are passed.", "additionalProperties": true },
+                "defaults": { "type": "object", "description": "Defaults declared by the component for props not passed; {} when none are declared.", "additionalProperties": true },
+                "source": { "type": "string", "minLength": 1, "description": "Provenance: the import path or package the component resolves to, with the file:line of the call site. Required on every row (the read never names a component without a source)." }
+              }
+            }
+          },
+          "copy": {
+            "type": "array",
+            "description": "Real copy strings the surface renders, each with file:line provenance. Never copy remembered or invented text.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["text", "role", "file", "line"],
+              "properties": {
+                "text": { "type": "string", "description": "The literal string as it appears in the source." },
+                "role": { "type": "string", "description": "The copy's role (heading, body, label, cta, and so on)." },
+                "file": { "type": "string", "minLength": 1, "description": "The file the string lives in. Required on every row." },
+                "line": { "type": "integer", "minimum": 1, "description": "The line the string lives on. Required on every row." }
+              }
+            }
+          },
+          "endpoints": {
+            "type": "array",
+            "description": "The endpoints this surface calls, as pointers (method, path, and the hook that calls them). The full verified endpoint registry with OpenAPI pointers is the top-level endpoints[]; these are the per-surface call sites.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["method", "path", "hook"],
+              "properties": {
+                "method": { "type": "string" },
+                "path": { "type": "string" },
+                "hook": { "type": "string", "description": "The hook or call site that issues the request." }
+              }
+            }
+          },
+          "in_flight": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "When a surface is mid-migration, the branch it changes on and where the end state lands, so a downstream spec targets the destination, not soon-dead code. Read-only branch scan; never a checkout.",
+            "properties": {
+              "branch": { "type": "string" },
+              "lands_in": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "endpoints": {
+      "type": "array",
+      "description": "The verified endpoint registry. Each endpoint carries JSON pointers into the OpenAPI spec, verified against the schema and the handlers (Tier 2 only). An endpoint that cannot be grounded against a spec is not listed here; it goes to unverified[]. Empty for an application with no API (an honest empty array, not an omission).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["method", "path", "request_pointer", "response_pointer", "auth", "entitlement"],
+        "$comment": "All six fields are required per plan 3.3 so a partially-read endpoint cannot pass as complete; request_pointer and response_pointer are nullable (null = the spec is silent), so a grounded endpoint with no request/response body still validates, while an endpoint row that OMITS a pointer fails (the read must state 'no pointer' explicitly, never leave it ambiguous).",
+        "properties": {
+          "method": { "type": "string", "minLength": 1 },
+          "path": { "type": "string", "minLength": 1 },
+          "request_pointer": { "type": ["string", "null"], "description": "JSON pointer into the OpenAPI spec for the request shape, or null when the spec has none. Required key; the value may be null but the key may not be omitted." },
+          "response_pointer": { "type": ["string", "null"], "description": "JSON pointer into the OpenAPI spec for the response shape, or null when the spec has none. Required key; the value may be null but the key may not be omitted." },
+          "auth": { "type": "string", "description": "The auth the endpoint requires, verified from the handler (\"none\" for an unauthenticated endpoint)." },
+          "entitlement": { "type": "string", "description": "The entitlement or role gate the endpoint enforces, verified from the handler (\"none\" when ungated)." }
+        }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["auth_model", "roles", "writes", "offline_sync", "feature_flags"],
+      "description": "What the application can do, verified from wiring. An honest empty case (no auth, no writes) is recorded as such, never omitted.",
+      "properties": {
+        "auth_model": { "type": "string", "description": "The auth model, or \"none\" for an unauthenticated surface." },
+        "roles": { "type": "array", "items": { "type": "string" }, "description": "Roles the application distinguishes; empty when none." },
+        "writes": { "type": "array", "items": { "type": "string" }, "description": "The write paths the application exposes; empty for a read-only or static application." },
+        "offline_sync": { "type": ["string", "boolean"], "description": "Whether the application has an offline or sync capability, and its shape; false or \"none\" when it does not." },
+        "feature_flags": { "type": "array", "items": { "type": "string" }, "description": "Feature flags that gate surfaces or capabilities; empty when none." }
+      }
+    },
+    "unverified": {
+      "type": "array",
+      "description": "Every claim the read could not ground, by surface. An unmounted repo, an endpoint with no spec, an unresolved theme or architecture target: each is a row here, never a guess elsewhere in the manifest. This array being present (empty with a one-line reason, or populated) is a completeness signal, not a failure. Resolving each item is the human's call (an empty slot).",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["surface", "claim", "reason"],
+        "properties": {
+          "surface": { "type": "string", "description": "The surface (or \"global\") the ungrounded claim belongs to." },
+          "claim": { "type": "string", "description": "What could not be grounded." },
+          "reason": { "type": "string", "description": "Why it could not be grounded (repo not mounted, no OpenAPI spec, wiring unresolved)." }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "version": "dual-read-fixture-1.1.0"
+  },
+  "tokens": {
+    "color": {
+      "accent": {
+        "primary": {
+          "$value": "#E4572E",
+          "$type": "color"
+        },
+        "hierarchy_note": "Primary CTA only; never for body text."
+      },
+      "backgrounds": {
+        "dark": {
+          "$value": "#1C1C1C",
+          "$type": "color"
+        },
+        "dark-surface": {
+          "$value": "#242424",
+          "$type": "color"
+        }
+      },
+      "text": {
+        "inverse": {
+          "$value": "#FFFFFF",
+          "$type": "color"
+        },
+        "muted": {
+          "$value": "#8A8A8A",
+          "$type": "color"
+        }
+      },
+      "neutral_anchors": {
+        "light": {
+          "$value": "#EDEDED",
+          "$type": "color"
+        }
+      },
+      "prohibited": [
+        {
+          "value": "#000000",
+          "reason": "Pure black; use near-black #1C1C1C instead."
+        }
+      ],
+      "contrast_notes": [
+        "text.muted (#8A8A8A) on backgrounds.dark: 4.6:1 (PASS AA large)."
+      ]
+    },
+    "spacing": {
+      "base": "8px",
+      "tiers": {
+        "sm": {
+          "$value": "0.5rem",
+          "$type": "dimension"
+        },
+        "md": {
+          "$value": "1rem",
+          "$type": "dimension"
+        },
+        "lg": {
+          "$value": "2rem",
+          "$type": "dimension"
+        }
+      },
+      "content_max_width": "1200px",
+      "page_padding": "24px",
+      "grid_gap": "16px",
+      "touch-target": {
+        "min": "44px",
+        "comfortable": "48px"
+      }
+    },
+    "typography": {
+      "scale": {
+        "body": {
+          "$value": "1rem",
+          "$type": "dimension"
+        },
+        "h1": {
+          "$value": "2.5rem",
+          "$type": "dimension"
+        }
+      },
+      "families": {
+        "display": {
+          "family": "Inter",
+          "fallback": "sans-serif"
+        },
+        "body": {
+          "family": "Source Serif 4",
+          "fallback": "serif"
+        },
+        "utility": {
+          "family": "JetBrains Mono",
+          "fallback": "monospace"
+        }
+      }
+    },
+    "radius": {
+      "sm": {
+        "$value": "4px",
+        "$type": "dimension"
+      },
+      "lg": {
+        "$value": "12px",
+        "$type": "dimension"
+      }
+    }
+  }
+}

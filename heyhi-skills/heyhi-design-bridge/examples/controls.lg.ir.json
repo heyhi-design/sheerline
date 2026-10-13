@@ -1,0 +1,262 @@
+{
+  "$schema": "heyhi-scene-graph/v0.4",
+  "meta": {
+    "source": "prototypes/controls.html",
+    "breakpoint": "lg",
+    "brand_config": "example",
+    "generated_by": "heyhi-design-bridge/extract_scene_graph@0.1.0"
+  },
+  "tokens_used": [
+    {
+      "token_path": "tokens.color.backgrounds.dark-surface",
+      "figma_variable": "color/backgrounds/dark-surface",
+      "resolved": "#2B5F2A",
+      "source": "matched",
+      "match_confidence": 0.9
+    },
+    {
+      "token_path": "tokens.color.text.inverse",
+      "figma_variable": "color/text/inverse",
+      "resolved": "#FFFFFF",
+      "source": "matched",
+      "match_confidence": 1
+    },
+    {
+      "token_path": "tokens.color.backgrounds.dark-surface",
+      "figma_variable": "color/backgrounds/dark-surface",
+      "resolved": "#232826",
+      "source": "matched",
+      "match_confidence": 0.9
+    },
+    {
+      "token_path": "tokens.color.text.body",
+      "figma_variable": "color/text/body",
+      "resolved": "#232826",
+      "source": "matched",
+      "match_confidence": 0.9
+    },
+    {
+      "token_path": "tokens.color.text.body",
+      "figma_variable": "color/text/body",
+      "resolved": "#2B5F2A",
+      "source": "matched",
+      "match_confidence": 0.9
+    }
+  ],
+  "root": {
+    "type": "FRAME",
+    "name": "Controls",
+    "layout": {
+      "mode": "VERTICAL",
+      "primaryAxisAlignItems": "MIN",
+      "counterAxisAlignItems": "MIN",
+      "itemSpacing": 32,
+      "padding": {
+        "t": 96,
+        "r": 120,
+        "b": 96,
+        "l": 120
+      }
+    },
+    "size": {
+      "w": 1312,
+      "h": 520,
+      "sizing": {
+        "h": "HUG",
+        "v": "HUG"
+      }
+    },
+    "children": [
+      {
+        "type": "FRAME",
+        "name": "Btn",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primaryAxisAlignItems": "MIN",
+          "counterAxisAlignItems": "MIN",
+          "padding": {
+            "t": 14,
+            "r": 28,
+            "b": 14,
+            "l": 28
+          }
+        },
+        "size": {
+          "w": 240,
+          "h": 52,
+          "sizing": {
+            "h": "HUG",
+            "v": "HUG"
+          }
+        },
+        "fills": [
+          {
+            "type": "SOLID",
+            "bind": "tokens.color.backgrounds.dark-surface",
+            "resolved": "#2B5F2A"
+          }
+        ],
+        "cornerRadius": 8,
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "Btn Label",
+            "characters": "Get a Free Estimate",
+            "type_style": {
+              "family": "Work Sans",
+              "weight": 400,
+              "size": 16,
+              "token_ref": "tokens.typography.scale.button"
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.text.inverse",
+                "resolved": "#FFFFFF"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Btn",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primaryAxisAlignItems": "MIN",
+          "counterAxisAlignItems": "MIN",
+          "padding": {
+            "t": 14,
+            "r": 28,
+            "b": 14,
+            "l": 28
+          }
+        },
+        "size": {
+          "w": 180,
+          "h": 52,
+          "sizing": {
+            "h": "HUG",
+            "v": "HUG"
+          }
+        },
+        "strokes": [
+          {
+            "weight": 1,
+            "color": {
+              "type": "SOLID",
+              "bind": "tokens.color.backgrounds.dark-surface",
+              "resolved": "#232826"
+            }
+          }
+        ],
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "Btn Label",
+            "characters": "Learn more",
+            "type_style": {
+              "family": "Work Sans",
+              "weight": 400,
+              "size": 16,
+              "token_ref": "tokens.typography.scale.button"
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.text.body",
+                "resolved": "#232826"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Card  More",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primaryAxisAlignItems": "MIN",
+          "counterAxisAlignItems": "MIN",
+          "itemSpacing": 6
+        },
+        "size": {
+          "w": 130,
+          "h": 20,
+          "sizing": {
+            "h": "HUG",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "See service",
+            "characters": "See service",
+            "type_style": {
+              "family": "Work Sans",
+              "weight": 400,
+              "size": 16
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.text.body",
+                "resolved": "#2B5F2A"
+              }
+            ],
+            "size": {
+              "w": 80,
+              "h": 20,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            }
+          },
+          {
+            "type": "IMAGE",
+            "name": "Image",
+            "imageRef": "assets/arrow.png",
+            "size": {
+              "w": 13,
+              "h": 13,
+              "sizing": {
+                "h": "FILL",
+                "v": "HUG"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "type": "TEXT",
+        "name": "Hero  Link",
+        "characters": "Read more",
+        "type_style": {
+          "family": "Work Sans",
+          "weight": 400,
+          "size": 16
+        },
+        "fills": [
+          {
+            "resolved": "#F6F6F4"
+          }
+        ],
+        "size": {
+          "w": 110,
+          "h": 22,
+          "sizing": {
+            "h": "HUG",
+            "v": "HUG"
+          }
+        }
+      }
+    ],
+    "flags": [
+      {
+        "feature": "link-color-unsnapped",
+        "node": "Controls > .hero__link",
+        "action": "text colour #F6F6F4 nearest a background token (tokens.color.backgrounds.surface); kept literal + unbound so the label stays visible",
+        "needs_human": true
+      }
+    ]
+  }
+}

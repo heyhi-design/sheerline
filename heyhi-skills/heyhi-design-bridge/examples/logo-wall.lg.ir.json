@@ -1,0 +1,1538 @@
+{
+  "$schema": "heyhi-scene-graph/v0.4",
+  "meta": {
+    "source": "prototypes/logo-wall.html",
+    "breakpoint": "lg",
+    "brand_config": "fieldmark",
+    "generated_by": "heyhi-design-bridge (HAND-AUTHORED logo-heavy golden \u2014 repeated SVGs + a ~26k mark used twice; the SVG-dedup + char-budget regression fixture. HeyHi-originated, no client content)."
+  },
+  "tokens_used": [
+    {
+      "css_var": "--color-backgrounds-page",
+      "token_path": "tokens.color.backgrounds.page",
+      "figma_variable": "color/backgrounds/page",
+      "resolved": "#F6F4EE",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-backgrounds-surface",
+      "token_path": "tokens.color.backgrounds.surface",
+      "figma_variable": "color/backgrounds/surface",
+      "resolved": "#FFFFFF",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-backgrounds-inverse",
+      "token_path": "tokens.color.backgrounds.inverse",
+      "figma_variable": "color/backgrounds/inverse",
+      "resolved": "#16241C",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-text-primary",
+      "token_path": "tokens.color.text.primary",
+      "figma_variable": "color/text/primary",
+      "resolved": "#1C2A20",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-text-muted",
+      "token_path": "tokens.color.text.muted",
+      "figma_variable": "color/text/muted",
+      "resolved": "#5C6A5E",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-text-inverse",
+      "token_path": "tokens.color.text.inverse",
+      "figma_variable": "color/text/inverse",
+      "resolved": "#F3EFE4",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-accent-leaf",
+      "token_path": "tokens.color.accent.leaf",
+      "figma_variable": "color/accent/leaf",
+      "resolved": "#3C7A4B",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-accent-clay",
+      "token_path": "tokens.color.accent.clay",
+      "figma_variable": "color/accent/clay",
+      "resolved": "#BC5B30",
+      "source": "declared",
+      "match_confidence": 1
+    }
+  ],
+  "root": {
+    "type": "FRAME",
+    "name": "Page",
+    "layout": {
+      "mode": "VERTICAL",
+      "itemSpacing": 0
+    },
+    "size": {
+      "w": 1440,
+      "h": null,
+      "sizing": {
+        "h": "HUG",
+        "v": "HUG"
+      }
+    },
+    "children": [
+      {
+        "type": "FRAME",
+        "name": "Header",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "itemSpacing": 24,
+          "primaryAxisAlignItems": "SPACE_BETWEEN",
+          "counterAxisAlignItems": "CENTER",
+          "padding": {
+            "t": 16,
+            "r": 40,
+            "b": 16,
+            "l": 40
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": null,
+          "sizing": {
+            "h": "HUG",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "FRAME",
+            "name": "Brand",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "itemSpacing": 12,
+              "counterAxisAlignItems": "CENTER"
+            },
+            "size": {
+              "w": null,
+              "h": null,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "Emblem",
+                "svgRef": "prototypes/assets/logos/fieldmark-emblem.svg",
+                "size": {
+                  "w": 64,
+                  "h": 64,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "VECTOR",
+                "name": "Wordmark",
+                "svgRef": "prototypes/assets/logos/northwind-wordmark.svg",
+                "size": {
+                  "w": 160,
+                  "h": 22,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Nav",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "itemSpacing": 28,
+              "counterAxisAlignItems": "CENTER"
+            },
+            "size": {
+              "w": null,
+              "h": null,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "nav-services",
+                "characters": "Services",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 500,
+                  "size": 15,
+                  "lineHeight": 1.4
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#5C6A5E"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "nav-work",
+                "characters": "Our Work",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 500,
+                  "size": 15,
+                  "lineHeight": 1.4
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#5C6A5E"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "nav-contact",
+                "characters": "Contact",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 500,
+                  "size": 15,
+                  "lineHeight": 1.4
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#5C6A5E"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "fills": [
+          {
+            "bind": "tokens.color.backgrounds.page",
+            "resolved": "#F6F4EE"
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Hero",
+        "layout": {
+          "mode": "VERTICAL",
+          "itemSpacing": 24,
+          "padding": {
+            "t": 72,
+            "r": 120,
+            "b": 72,
+            "l": 120
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": null,
+          "sizing": {
+            "h": "HUG",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "eyebrow",
+            "characters": "FIELD & GARDEN COLLECTIVE",
+            "type_style": {
+              "family": "Inter",
+              "weight": 600,
+              "size": 12,
+              "lineHeight": 1.4
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.accent.leaf",
+                "resolved": "#3C7A4B"
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "headline",
+            "characters": "Tend the ground. Grow the season.",
+            "type_style": {
+              "family": "Fraunces",
+              "weight": 800,
+              "size": 56,
+              "lineHeight": 1.05
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.text.primary",
+                "resolved": "#1C2A20"
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "sub",
+            "characters": "A cooperative of growers, makers, and land stewards in the northern valley.",
+            "type_style": {
+              "family": "Inter",
+              "weight": 400,
+              "size": 19,
+              "lineHeight": 1.5
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.text.muted",
+                "resolved": "#5C6A5E"
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Trust Strip",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "itemSpacing": 40,
+              "counterAxisAlignItems": "CENTER"
+            },
+            "size": {
+              "w": null,
+              "h": null,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "trust-1",
+                "svgRef": "prototypes/assets/logos/partner-meadowline.svg",
+                "size": {
+                  "w": 120,
+                  "h": 28,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "VECTOR",
+                "name": "trust-2",
+                "svgRef": "prototypes/assets/logos/partner-oakbarrel.svg",
+                "size": {
+                  "w": 120,
+                  "h": 28,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "VECTOR",
+                "name": "trust-3",
+                "svgRef": "prototypes/assets/logos/partner-rivergate.svg",
+                "size": {
+                  "w": 120,
+                  "h": 28,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "fills": [
+          {
+            "bind": "tokens.color.backgrounds.surface",
+            "resolved": "#FFFFFF"
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Capabilities",
+        "layout": {
+          "mode": "VERTICAL",
+          "itemSpacing": 24,
+          "padding": {
+            "t": 64,
+            "r": 120,
+            "b": 64,
+            "l": 120
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": null,
+          "sizing": {
+            "h": "HUG",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "caps-h",
+            "characters": "What the collective does",
+            "type_style": {
+              "family": "Fraunces",
+              "weight": 800,
+              "size": 36,
+              "lineHeight": 1.4
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.text.primary",
+                "resolved": "#1C2A20"
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card Grid",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "itemSpacing": 20
+            },
+            "size": {
+              "w": null,
+              "h": null,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "FRAME",
+                "name": "Card 1",
+                "layout": {
+                  "mode": "VERTICAL",
+                  "itemSpacing": 12,
+                  "padding": {
+                    "t": 24,
+                    "r": 24,
+                    "b": 24,
+                    "l": 24
+                  }
+                },
+                "size": {
+                  "w": 240,
+                  "h": null,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "VECTOR",
+                    "name": "card-icon-1",
+                    "svgRef": "prototypes/assets/icons/leaf.svg",
+                    "size": {
+                      "w": 40,
+                      "h": 40,
+                      "sizing": {
+                        "h": "FIXED",
+                        "v": "FIXED"
+                      }
+                    }
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "card-title-1",
+                    "characters": "Soil & cover",
+                    "type_style": {
+                      "family": "Fraunces",
+                      "weight": 700,
+                      "size": 21,
+                      "lineHeight": 1.4
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.primary",
+                        "resolved": "#1C2A20"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "card-body-1",
+                    "characters": "Cover-crop planning and soil regeneration across member acreage.",
+                    "type_style": {
+                      "family": "Inter",
+                      "weight": 400,
+                      "size": 15,
+                      "lineHeight": 1.5
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.muted",
+                        "resolved": "#5C6A5E"
+                      }
+                    ]
+                  }
+                ],
+                "fills": [
+                  {
+                    "bind": "tokens.color.backgrounds.surface",
+                    "resolved": "#FFFFFF"
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Card 2",
+                "layout": {
+                  "mode": "VERTICAL",
+                  "itemSpacing": 12,
+                  "padding": {
+                    "t": 24,
+                    "r": 24,
+                    "b": 24,
+                    "l": 24
+                  }
+                },
+                "size": {
+                  "w": 240,
+                  "h": null,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "VECTOR",
+                    "name": "card-icon-2",
+                    "svgRef": "prototypes/assets/icons/shield.svg",
+                    "size": {
+                      "w": 40,
+                      "h": 40,
+                      "sizing": {
+                        "h": "FIXED",
+                        "v": "FIXED"
+                      }
+                    }
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "card-title-2",
+                    "characters": "Stewardship",
+                    "type_style": {
+                      "family": "Fraunces",
+                      "weight": 700,
+                      "size": 21,
+                      "lineHeight": 1.4
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.primary",
+                        "resolved": "#1C2A20"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "card-body-2",
+                    "characters": "Conservation easements and habitat corridors held in common.",
+                    "type_style": {
+                      "family": "Inter",
+                      "weight": 400,
+                      "size": 15,
+                      "lineHeight": 1.5
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.muted",
+                        "resolved": "#5C6A5E"
+                      }
+                    ]
+                  }
+                ],
+                "fills": [
+                  {
+                    "bind": "tokens.color.backgrounds.surface",
+                    "resolved": "#FFFFFF"
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Card 3",
+                "layout": {
+                  "mode": "VERTICAL",
+                  "itemSpacing": 12,
+                  "padding": {
+                    "t": 24,
+                    "r": 24,
+                    "b": 24,
+                    "l": 24
+                  }
+                },
+                "size": {
+                  "w": 240,
+                  "h": null,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "VECTOR",
+                    "name": "card-icon-3",
+                    "svgRef": "prototypes/assets/icons/clock.svg",
+                    "size": {
+                      "w": 40,
+                      "h": 40,
+                      "sizing": {
+                        "h": "FIXED",
+                        "v": "FIXED"
+                      }
+                    }
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "card-title-3",
+                    "characters": "Seasonal labor",
+                    "type_style": {
+                      "family": "Fraunces",
+                      "weight": 700,
+                      "size": 21,
+                      "lineHeight": 1.4
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.primary",
+                        "resolved": "#1C2A20"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "card-body-3",
+                    "characters": "A shared crew that moves field to field through the season.",
+                    "type_style": {
+                      "family": "Inter",
+                      "weight": 400,
+                      "size": 15,
+                      "lineHeight": 1.5
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.muted",
+                        "resolved": "#5C6A5E"
+                      }
+                    ]
+                  }
+                ],
+                "fills": [
+                  {
+                    "bind": "tokens.color.backgrounds.surface",
+                    "resolved": "#FFFFFF"
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Card 4",
+                "layout": {
+                  "mode": "VERTICAL",
+                  "itemSpacing": 12,
+                  "padding": {
+                    "t": 24,
+                    "r": 24,
+                    "b": 24,
+                    "l": 24
+                  }
+                },
+                "size": {
+                  "w": 240,
+                  "h": null,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "VECTOR",
+                    "name": "card-icon-4",
+                    "svgRef": "prototypes/assets/icons/broom.svg",
+                    "size": {
+                      "w": 40,
+                      "h": 40,
+                      "sizing": {
+                        "h": "FIXED",
+                        "v": "FIXED"
+                      }
+                    }
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "card-title-4",
+                    "characters": "Cleanup",
+                    "type_style": {
+                      "family": "Fraunces",
+                      "weight": 700,
+                      "size": 21,
+                      "lineHeight": 1.4
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.primary",
+                        "resolved": "#1C2A20"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "card-body-4",
+                    "characters": "Post-harvest clearing and equipment maintenance days.",
+                    "type_style": {
+                      "family": "Inter",
+                      "weight": 400,
+                      "size": 15,
+                      "lineHeight": 1.5
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.muted",
+                        "resolved": "#5C6A5E"
+                      }
+                    ]
+                  }
+                ],
+                "fills": [
+                  {
+                    "bind": "tokens.color.backgrounds.surface",
+                    "resolved": "#FFFFFF"
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Card 5",
+                "layout": {
+                  "mode": "VERTICAL",
+                  "itemSpacing": 12,
+                  "padding": {
+                    "t": 24,
+                    "r": 24,
+                    "b": 24,
+                    "l": 24
+                  }
+                },
+                "size": {
+                  "w": 240,
+                  "h": null,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "VECTOR",
+                    "name": "card-icon-5",
+                    "svgRef": "prototypes/assets/icons/arrow-right.svg",
+                    "size": {
+                      "w": 40,
+                      "h": 40,
+                      "sizing": {
+                        "h": "FIXED",
+                        "v": "FIXED"
+                      }
+                    }
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "card-title-5",
+                    "characters": "Go to market",
+                    "type_style": {
+                      "family": "Fraunces",
+                      "weight": 700,
+                      "size": 21,
+                      "lineHeight": 1.4
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.primary",
+                        "resolved": "#1C2A20"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "card-body-5",
+                    "characters": "Aggregated CSA boxes and a shared farm stand.",
+                    "type_style": {
+                      "family": "Inter",
+                      "weight": 400,
+                      "size": 15,
+                      "lineHeight": 1.5
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.muted",
+                        "resolved": "#5C6A5E"
+                      }
+                    ]
+                  }
+                ],
+                "fills": [
+                  {
+                    "bind": "tokens.color.backgrounds.surface",
+                    "resolved": "#FFFFFF"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "fills": [
+          {
+            "bind": "tokens.color.backgrounds.page",
+            "resolved": "#F6F4EE"
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Trusted By",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "itemSpacing": 48,
+          "primaryAxisAlignItems": "SPACE_BETWEEN",
+          "counterAxisAlignItems": "CENTER",
+          "padding": {
+            "t": 40,
+            "r": 80,
+            "b": 40,
+            "l": 80
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": null,
+          "sizing": {
+            "h": "HUG",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "VECTOR",
+            "name": "Trusted By-0",
+            "svgRef": "prototypes/assets/logos/partner-meadowline.svg",
+            "size": {
+              "w": 124,
+              "h": 28,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            }
+          },
+          {
+            "type": "VECTOR",
+            "name": "Trusted By-1",
+            "svgRef": "prototypes/assets/logos/partner-oakbarrel.svg",
+            "size": {
+              "w": 124,
+              "h": 28,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            }
+          },
+          {
+            "type": "VECTOR",
+            "name": "Trusted By-2",
+            "svgRef": "prototypes/assets/logos/partner-rivergate.svg",
+            "size": {
+              "w": 124,
+              "h": 28,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            }
+          },
+          {
+            "type": "VECTOR",
+            "name": "Trusted By-3",
+            "svgRef": "prototypes/assets/logos/partner-stonepath.svg",
+            "size": {
+              "w": 124,
+              "h": 28,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            }
+          },
+          {
+            "type": "VECTOR",
+            "name": "Trusted By-4",
+            "svgRef": "prototypes/assets/logos/partner-valleyfeed.svg",
+            "size": {
+              "w": 124,
+              "h": 28,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            }
+          },
+          {
+            "type": "VECTOR",
+            "name": "Trusted By-5",
+            "svgRef": "prototypes/assets/logos/northwind-wordmark.svg",
+            "size": {
+              "w": 124,
+              "h": 28,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            }
+          }
+        ],
+        "fills": [
+          {
+            "bind": "tokens.color.backgrounds.surface",
+            "resolved": "#FFFFFF"
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Feature Strip",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "itemSpacing": 64,
+          "primaryAxisAlignItems": "CENTER",
+          "counterAxisAlignItems": "CENTER",
+          "padding": {
+            "t": 48,
+            "r": 120,
+            "b": 48,
+            "l": 120
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": null,
+          "sizing": {
+            "h": "HUG",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "FRAME",
+            "name": "feat-0",
+            "layout": {
+              "mode": "VERTICAL",
+              "itemSpacing": 8,
+              "counterAxisAlignItems": "CENTER"
+            },
+            "size": {
+              "w": null,
+              "h": null,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "feat-icon-0",
+                "svgRef": "prototypes/assets/icons/leaf.svg",
+                "size": {
+                  "w": 32,
+                  "h": 32,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "feat-lbl-0",
+                "characters": "Regenerative",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 500,
+                  "size": 14,
+                  "lineHeight": 1.4
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#5C6A5E"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "feat-1",
+            "layout": {
+              "mode": "VERTICAL",
+              "itemSpacing": 8,
+              "counterAxisAlignItems": "CENTER"
+            },
+            "size": {
+              "w": null,
+              "h": null,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "feat-icon-1",
+                "svgRef": "prototypes/assets/icons/shield.svg",
+                "size": {
+                  "w": 32,
+                  "h": 32,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "feat-lbl-1",
+                "characters": "Protected",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 500,
+                  "size": 14,
+                  "lineHeight": 1.4
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#5C6A5E"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "feat-2",
+            "layout": {
+              "mode": "VERTICAL",
+              "itemSpacing": 8,
+              "counterAxisAlignItems": "CENTER"
+            },
+            "size": {
+              "w": null,
+              "h": null,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "feat-icon-2",
+                "svgRef": "prototypes/assets/icons/clock.svg",
+                "size": {
+                  "w": 32,
+                  "h": 32,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "feat-lbl-2",
+                "characters": "Seasonal",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 500,
+                  "size": 14,
+                  "lineHeight": 1.4
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#5C6A5E"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "feat-3",
+            "layout": {
+              "mode": "VERTICAL",
+              "itemSpacing": 8,
+              "counterAxisAlignItems": "CENTER"
+            },
+            "size": {
+              "w": null,
+              "h": null,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "feat-icon-3",
+                "svgRef": "prototypes/assets/icons/broom.svg",
+                "size": {
+                  "w": 32,
+                  "h": 32,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "feat-lbl-3",
+                "characters": "Maintained",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 500,
+                  "size": 14,
+                  "lineHeight": 1.4
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#5C6A5E"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "feat-4",
+            "layout": {
+              "mode": "VERTICAL",
+              "itemSpacing": 8,
+              "counterAxisAlignItems": "CENTER"
+            },
+            "size": {
+              "w": null,
+              "h": null,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "feat-icon-4",
+                "svgRef": "prototypes/assets/icons/arrow-right.svg",
+                "size": {
+                  "w": 32,
+                  "h": 32,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "feat-lbl-4",
+                "characters": "Direct",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 500,
+                  "size": 14,
+                  "lineHeight": 1.4
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#5C6A5E"
+                  }
+                ]
+              }
+            ]
+          }
+        ],
+        "fills": [
+          {
+            "bind": "tokens.color.backgrounds.page",
+            "resolved": "#F6F4EE"
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Our Partners",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "itemSpacing": 48,
+          "primaryAxisAlignItems": "SPACE_BETWEEN",
+          "counterAxisAlignItems": "CENTER",
+          "padding": {
+            "t": 40,
+            "r": 80,
+            "b": 40,
+            "l": 80
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": null,
+          "sizing": {
+            "h": "HUG",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "VECTOR",
+            "name": "Our Partners-0",
+            "svgRef": "prototypes/assets/logos/partner-meadowline.svg",
+            "size": {
+              "w": 124,
+              "h": 28,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            }
+          },
+          {
+            "type": "VECTOR",
+            "name": "Our Partners-1",
+            "svgRef": "prototypes/assets/logos/partner-oakbarrel.svg",
+            "size": {
+              "w": 124,
+              "h": 28,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            }
+          },
+          {
+            "type": "VECTOR",
+            "name": "Our Partners-2",
+            "svgRef": "prototypes/assets/logos/partner-rivergate.svg",
+            "size": {
+              "w": 124,
+              "h": 28,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            }
+          },
+          {
+            "type": "VECTOR",
+            "name": "Our Partners-3",
+            "svgRef": "prototypes/assets/logos/partner-stonepath.svg",
+            "size": {
+              "w": 124,
+              "h": 28,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            }
+          },
+          {
+            "type": "VECTOR",
+            "name": "Our Partners-4",
+            "svgRef": "prototypes/assets/logos/partner-valleyfeed.svg",
+            "size": {
+              "w": 124,
+              "h": 28,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            }
+          },
+          {
+            "type": "VECTOR",
+            "name": "Our Partners-5",
+            "svgRef": "prototypes/assets/logos/northwind-wordmark.svg",
+            "size": {
+              "w": 124,
+              "h": 28,
+              "sizing": {
+                "h": "FIXED",
+                "v": "FIXED"
+              }
+            }
+          }
+        ],
+        "fills": [
+          {
+            "bind": "tokens.color.backgrounds.surface",
+            "resolved": "#FFFFFF"
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Footer",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "itemSpacing": 24,
+          "primaryAxisAlignItems": "SPACE_BETWEEN",
+          "padding": {
+            "t": 56,
+            "r": 120,
+            "b": 56,
+            "l": 120
+          }
+        },
+        "size": {
+          "w": 1440,
+          "h": null,
+          "sizing": {
+            "h": "HUG",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "FRAME",
+            "name": "Footer Brand",
+            "layout": {
+              "mode": "VERTICAL",
+              "itemSpacing": 12
+            },
+            "size": {
+              "w": null,
+              "h": null,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "Footer Emblem",
+                "svgRef": "prototypes/assets/logos/fieldmark-emblem.svg",
+                "size": {
+                  "w": 56,
+                  "h": 56,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "foot-tag",
+                "characters": "Rooted in the valley since 1974.",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 13,
+                  "lineHeight": 1.4
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.inverse",
+                    "resolved": "#F3EFE4"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Footer Links",
+            "layout": {
+              "mode": "VERTICAL",
+              "itemSpacing": 8
+            },
+            "size": {
+              "w": null,
+              "h": null,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "fl1",
+                "characters": "Services",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 14,
+                  "lineHeight": 1.4
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.inverse",
+                    "resolved": "#F3EFE4"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "fl2",
+                "characters": "Our Work",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 14,
+                  "lineHeight": 1.4
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.inverse",
+                    "resolved": "#F3EFE4"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "fl3",
+                "characters": "Contact",
+                "type_style": {
+                  "family": "Inter",
+                  "weight": 400,
+                  "size": 14,
+                  "lineHeight": 1.4
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.inverse",
+                    "resolved": "#F3EFE4"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Footer Partners",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "itemSpacing": 32,
+              "counterAxisAlignItems": "CENTER"
+            },
+            "size": {
+              "w": null,
+              "h": null,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "fp-1",
+                "svgRef": "prototypes/assets/logos/partner-stonepath.svg",
+                "size": {
+                  "w": 110,
+                  "h": 26,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "VECTOR",
+                "name": "fp-2",
+                "svgRef": "prototypes/assets/logos/partner-valleyfeed.svg",
+                "size": {
+                  "w": 110,
+                  "h": 26,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              },
+              {
+                "type": "VECTOR",
+                "name": "fp-word",
+                "svgRef": "prototypes/assets/logos/northwind-wordmark.svg",
+                "size": {
+                  "w": 150,
+                  "h": 20,
+                  "sizing": {
+                    "h": "FIXED",
+                    "v": "FIXED"
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "fills": [
+          {
+            "bind": "tokens.color.backgrounds.inverse",
+            "resolved": "#16241C"
+          }
+        ]
+      }
+    ],
+    "fills": [
+      {
+        "bind": "tokens.color.backgrounds.page",
+        "resolved": "#F6F4EE"
+      }
+    ]
+  }
+}

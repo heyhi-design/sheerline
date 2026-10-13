@@ -1,0 +1,5 @@
+# HeyHi Design Bridge — Vectorize (Python deps). System deps (potrace, librsvg) via
+# brew; SVGO via npx. See README.md.
+Pillow>=10
+numpy>=1.24
+vtracer>=0.6

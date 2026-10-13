@@ -1,0 +1,5 @@
+# dependencies + Playwright browser binaries are not tracked; install locally.
+node_modules/
+playwright-report/
+test-results/
+*.log

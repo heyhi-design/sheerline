@@ -1,0 +1,8 @@
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Broom">
+  <g fill="none" stroke="#3C7A4B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 4 11 12"/>
+    <path d="M5 20c-1-3 0-6 3-8l4 4c-2 3-5 4-8 4Z"/>
+    <path d="M8 16 6 21"/>
+    <path d="M11 18l-1 3"/>
+  </g>
+</svg>

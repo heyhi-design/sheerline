@@ -1,0 +1,92 @@
+{
+  "skill_name": "heyhi-prototype-audit",
+  "version": "1.0.0",
+  "created": "2026-07-06",
+  "classification": "internal",
+  "description": "6 eval scaffold cases for heyhi-prototype-audit, grounded in documented SKILL.md behavior (setup-grade v2 H2). Subjective/taste dimensions are marked human-judged, not asserted as mechanically checkable.",
+  "evals": [
+    {
+      "id": 1,
+      "source": "SKILL.md § Step 1: Load context",
+      "prompt": "Here's a prototype file, can you audit it for interaction completeness: prototypes/checkout-flow.html",
+      "expected_output": "The skill confirms the four Step 1 context items before auditing: the prototype file path/URL, the prototype's stated functional purpose, any prior version/baseline for comparison, and whether a brand config is present. Since the request supplies only a file path and omits the prototype's functional purpose, the skill should ask what the prototype is trying to demonstrate rather than proceeding straight to Step 2.",
+      "files": [],
+      "expectations": [
+        "The output does not proceed directly to a severity-tiered gap list without first surfacing or requesting the prototype's stated functional purpose",
+        "The output explicitly references or checks for a prior version/baseline for comparison as one of the four confirmed items",
+        "The output notes whether a brand config (active-brand.json) was found in the prototype directory or an ancestor directory, per the Layer 2 activation check",
+        "If the functional purpose is never supplied, the output does not fabricate one silently — the gap it names matches SKILL.md's own reasoning: 'An audit without a stated purpose ranks every gap equally'",
+        "[human-judged] whether the context-gathering exchange reads as a genuine clarifying step versus a perfunctory checkbox before the model does what it planned to do anyway"
+      ]
+    },
+    {
+      "id": 2,
+      "source": "SKILL.md § Step 3: Audit pass — three-pass severity framework",
+      "prompt": "Audit this prototype (purpose: demonstrate the multi-step onboarding flow to stakeholders) and give me the gap list: onboarding/wizard-prototype.html. No prior baseline, no brand config in this directory.",
+      "expected_output": "A gap list where every gap is documented in the exact five-field format (Severity / Type / Current / Required / Implementation) under a '### [Gap ID] — [Short title]' heading, using only the three defined severity tiers (Critical/High/Medium) and three classification types (Cross-cutting/Direction-specific/Component-specific), sequenced Cross-cutting before Direction-specific before Component-specific, and Critical before High before Medium within each.",
+      "files": [],
+      "expectations": [
+        "Every gap entry contains all five fields: Severity, Type, Current, Required, Implementation",
+        "Severity values used are limited to Critical, High, or Medium — no other tier label appears",
+        "Type/classification values used are limited to Cross-cutting, Direction-specific, or Component-specific",
+        "Gaps are ordered with Cross-cutting items appearing before Direction-specific, and Direction-specific before Component-specific, matching the documented sequence rule",
+        "Within any single severity tier, Critical-classified gaps are not listed after High or Medium gaps from a lower-priority classification tier",
+        "[human-judged] whether the 'Current' and 'Required' field language is genuinely specific to this prototype's actual markup/behavior versus generic boilerplate that could apply to any prototype"
+      ]
+    },
+    {
+      "id": 3,
+      "source": "SKILL.md § Step 5: Pre-flight verification",
+      "prompt": "The gap list and build plan for onboarding/wizard-prototype.html are done. Before we dispatch this to build, run pre-flight verification on the plan.",
+      "expected_output": "For every item in the build plan, the skill opens the cited prototype source file, confirms every CSS selector in the Implementation block matches actual elements, confirms every JS identifier (handler/function/state key) exists or is correctly flagged as newly created, and confirms every DOM traversal path resolves against the actual DOM. Any mismatch is documented as 'Plan contained X; correct form is Y; reason: Z.' The plan is not marked dispatch-ready until this is complete — per SKILL.md, 'A plan with an unverified code element is not yet a plan — it is a draft.'",
+      "files": [],
+      "expectations": [
+        "Every plan item's implementation block shows an explicit verification pass against the actual source file — not a claim of correctness without inspection evidence",
+        "Any selector, identifier, or DOM path that did not match the source is documented in the 'Plan contained X; correct form is Y; reason: Z' format",
+        "The output does not label the plan as ready for Step 6 dispatch if any cited selector, identifier, or DOM path remains unverified",
+        "The pre-flight section enumerates a Verified/Corrected status per item, matching the smoke-test requirement that 'Step 5 pre-flight section enumerates every selector, JS identifier, and DOM path with a Verified/Corrected status'"
+      ]
+    },
+    {
+      "id": 4,
+      "source": "SKILL.md § Layer 2 — Activation rule",
+      "prompt": "Audit this prototype against our brand config: --config brand-config/active-brand.json, prototype at landing/hero-variant.html.",
+      "expected_output": "Before running any Layer 2 check, the skill calls the validate.py --status command against the supplied config path and branches on the result: full six-check Layer 2 (token-fidelity, voice-rule, prohibited-word, layout-pattern, dark-native, visual-tell scan) only at PARTIAL_A/FULL (completeness >=70, fidelity >=60); a reduced subset at MODE_B or 30-49 completeness with layout-pattern and visual-tell scan deferred and a logged reason; and Layer 2 skipped entirely with a logged reason if validation fails (HARD_STOP). Layer 1 always completes regardless of the Layer 2 outcome.",
+      "files": [],
+      "expectations": [
+        "The output states or shows evidence of invoking the validate.py --status check against the supplied config path before any Layer 2 finding is produced",
+        "The output names which of the six Layer 2 checks ran and which were deferred/skipped, each with a stated reason, matching the smoke-test requirement ('Layer 2 status block names which checks ran and which were skipped with reason')",
+        "If any Layer 2 check is deferred, the deferral reason is a validation-tier limitation (e.g., completeness below 60) and not an invented config value substituting for a missing one",
+        "The Layer 1 audit output (gap list, build plan, pre-flight, dispatch template) is present and complete even if Layer 2 is fully skipped, confirming Layer 2 unavailability never blocks the base audit",
+        "Any Layer 2 finding is explicitly labeled as such in the report (e.g., 'Layer 2 finding — token-fidelity' or 'Layer 2 finding — visual-tell AT-n') rather than merged indistinguishably into Layer 1 findings",
+        "[human-judged] whether a flagged visual-tell finding (AT-1 through AT-10) correctly distinguishes a deliberate, config-documented brand choice from a generic generated-look tell — this carve-out judgment is design taste, not a mechanical rule"
+      ]
+    },
+    {
+      "id": 5,
+      "source": "SKILL.md § Layer 3 — Baseline preservation / Schema and validation",
+      "prompt": "This is the first prototype audit cycle for this Care client — run it as this month's Layer 3 pass and establish the baseline.",
+      "expected_output": "Since no prior baseline exists, the skill runs the full Layer 1 + Layer 2 audit and stores it as the baseline (not a delta), writing the paired markdown narrative at <engagement folder>/deliverables/care/prototype-audit-baseline-[YYYY-MM].md and the JSON sidecar at the matching .json path. The JSON sidecar is validated against baseline-schema.json before it is written; a sidecar that fails validation is not written. The monthly report notes explicitly that this is a first-cycle baseline snapshot, not a delta.",
+      "files": [],
+      "expectations": [
+        "The output does not attempt to compute gaps-closed / new-gaps-surfaced / severity-bucket-movement deltas, since SKILL.md states 'Do not attempt to compute a delta against a baseline that does not exist'",
+        "The output includes the specific first-cycle note language or its substantive equivalent: 'First prototype audit cycle. Baseline established from current prototype state. Subsequent cycles will report deltas against this baseline.'",
+        "Both a markdown narrative file path and a JSON sidecar file path are named, following the prototype-audit-baseline-[YYYY-MM] naming pattern under <engagement folder>/deliverables/care/",
+        "The output states or shows that the JSON sidecar was validated against baseline-schema.json before being written, and that an invalid sidecar would not be written",
+        "The Care report integration line follows the documented one-line summary format naming gaps closed, new gaps, and readiness threshold position — here reporting the baseline state rather than a movement count, since there is nothing to move against yet"
+      ]
+    },
+    {
+      "id": 6,
+      "source": "SKILL.md § Routing — disambiguation with sibling skills",
+      "prompt": "Can you check whether this client's design system has drifted between Figma and the codebase, and review the token setup?",
+      "expected_output": "Per the routing table, a question about system-level health, token drift, or Figma-to-code drift is explicitly out of scope for heyhi-prototype-audit and routes to heyhi-design-intelligence-audit instead. The skill should not run a Layer 1/2/3 interaction-completeness audit against this request.",
+      "files": [],
+      "expectations": [
+        "The output does not produce a Layer 1 gap list, severity matrix, or phased build plan in response to this request",
+        "The output identifies that this request is a system-level health / token-drift question and names heyhi-design-intelligence-audit as the correct skill, matching the routing table row 'Is the design system healthy? Where's the drift between Figma and code?'",
+        "The output does not silently reinterpret the request as an interaction-completeness question to force a fit with this skill's own framework"
+      ]
+    }
+  ]
+}

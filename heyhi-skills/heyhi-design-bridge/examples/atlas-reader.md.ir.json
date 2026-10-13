@@ -1,0 +1,1520 @@
+{
+  "$schema": "heyhi-scene-graph/v0.4",
+  "meta": {
+    "source": "prototypes/atlas-reader.html",
+    "breakpoint": "md",
+    "brand_config": "example",
+    "generated_by": "heyhi-design-bridge/extract_scene_graph@0.1.0"
+  },
+  "tokens_used": [
+    {
+      "css_var": "--color-backgrounds-page",
+      "token_path": "tokens.color.backgrounds.page",
+      "figma_variable": "color/backgrounds/page",
+      "resolved": "#F8F8F8",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--spacing-md",
+      "token_path": "tokens.spacing.tiers.md",
+      "resolved": "16px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--page-padding",
+      "token_path": "tokens.spacing.page_padding",
+      "resolved": "38.4px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--spacing-lg",
+      "token_path": "tokens.spacing.tiers.lg",
+      "resolved": "32px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "token_path": "tokens.color.text.muted",
+      "figma_variable": "color/text/muted",
+      "resolved": "#6B6B6B",
+      "source": "matched",
+      "match_confidence": 1
+    },
+    {
+      "token_path": "tokens.spacing.tiers.2xl",
+      "resolved": "103.68px",
+      "source": "matched",
+      "match_confidence": 0.644
+    },
+    {
+      "css_var": "--spacing-sm",
+      "token_path": "tokens.spacing.tiers.sm",
+      "resolved": "8px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--type-mono-label",
+      "token_path": "tokens.typography.scale.mono-label",
+      "resolved": "9.6px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-accent-primary",
+      "token_path": "tokens.color.accent.primary",
+      "figma_variable": "color/accent/primary",
+      "resolved": "#E4572E",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "token_path": "tokens.typography.scale.h1",
+      "resolved": "38.4px",
+      "source": "matched",
+      "match_confidence": 0.5
+    },
+    {
+      "css_var": "--color-text-primary",
+      "token_path": "tokens.color.text.primary",
+      "figma_variable": "color/text/primary",
+      "resolved": "#1C1C1C",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--type-h3",
+      "token_path": "tokens.typography.scale.h3",
+      "resolved": "19.2px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "token_path": "tokens.color.structural.border",
+      "figma_variable": "color/structural/border",
+      "resolved": "#C4C4C4",
+      "source": "matched",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--type-small",
+      "token_path": "tokens.typography.scale.small",
+      "resolved": "14.4px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-text-muted",
+      "token_path": "tokens.color.text.muted",
+      "figma_variable": "color/text/muted",
+      "resolved": "#6B6B6B",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--type-body",
+      "token_path": "tokens.typography.scale.body",
+      "resolved": "16px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--type-h2",
+      "token_path": "tokens.typography.scale.h2",
+      "resolved": "25.6px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-accent-secondary",
+      "token_path": "tokens.color.accent.secondary",
+      "figma_variable": "color/accent/secondary",
+      "resolved": "#2B59C3",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--grid-gap",
+      "token_path": "tokens.spacing.grid_gap",
+      "resolved": "24px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--spacing-xs",
+      "token_path": "tokens.spacing.tiers.xs",
+      "resolved": "4px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-backgrounds-surface",
+      "token_path": "tokens.color.backgrounds.surface",
+      "figma_variable": "color/backgrounds/surface",
+      "resolved": "#EEEEEE",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-backgrounds-dark",
+      "token_path": "tokens.color.backgrounds.dark",
+      "figma_variable": "color/backgrounds/dark",
+      "resolved": "#1C1C1C",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-text-inverse",
+      "token_path": "tokens.color.text.inverse",
+      "figma_variable": "color/text/inverse",
+      "resolved": "#F8F8F8",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--type-label",
+      "token_path": "tokens.typography.scale.label",
+      "resolved": "10.4px",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "css_var": "--color-accent-tertiary",
+      "token_path": "tokens.color.accent.tertiary",
+      "figma_variable": "color/accent/tertiary",
+      "resolved": "#5E6B4B",
+      "source": "declared",
+      "match_confidence": 1
+    },
+    {
+      "token_path": "tokens.color.text.primary",
+      "figma_variable": "color/text/primary",
+      "resolved": "#1C1C1C",
+      "source": "matched",
+      "match_confidence": 1
+    },
+    {
+      "token_path": "tokens.color.accent.primary",
+      "figma_variable": "color/accent/primary",
+      "resolved": "#E4572F",
+      "source": "matched",
+      "match_confidence": 0.998
+    },
+    {
+      "token_path": "tokens.color.text.inverse",
+      "figma_variable": "color/text/inverse",
+      "resolved": "#F8F8F8",
+      "source": "matched",
+      "match_confidence": 1
+    }
+  ],
+  "root": {
+    "type": "FRAME",
+    "name": "Page",
+    "layout": {
+      "mode": "VERTICAL"
+    },
+    "size": {
+      "w": 768,
+      "h": 1978.27,
+      "sizing": {
+        "h": "FILL",
+        "v": "HUG"
+      }
+    },
+    "fills": [
+      {
+        "type": "SOLID",
+        "bind": "tokens.color.backgrounds.page",
+        "resolved": "#F8F8F8"
+      }
+    ],
+    "children": [
+      {
+        "type": "FRAME",
+        "name": "Site Header",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primaryAxisAlignItems": "SPACE_BETWEEN",
+          "counterAxisAlignItems": "CENTER",
+          "itemSpacing": 16,
+          "padding": {
+            "t": 16,
+            "r": 38.4,
+            "b": 16,
+            "l": 38.4
+          }
+        },
+        "size": {
+          "w": 768,
+          "h": 57,
+          "sizing": {
+            "h": "HUG",
+            "v": "HUG"
+          }
+        },
+        "fills": [
+          {
+            "type": "SOLID",
+            "bind": "tokens.color.backgrounds.page",
+            "resolved": "#F8F8F8"
+          }
+        ],
+        "children": [
+          {
+            "type": "FRAME",
+            "name": "Wordmark",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "counterAxisAlignItems": "CENTER"
+            },
+            "size": {
+              "w": 92,
+              "h": 24,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "Vector",
+                "svgRef": "prototypes/assets/vec-0af757c9.svg"
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Nav Links",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "counterAxisAlignItems": "CENTER",
+              "itemSpacing": 32
+            },
+            "size": {
+              "w": 182.58,
+              "h": 16.64,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Work",
+                "characters": "Work",
+                "type_style": {
+                  "family": "DM Mono",
+                  "weight": 400,
+                  "size": 10.4,
+                  "lineHeight": 1.6
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#6B6B6B"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Approach",
+                "characters": "Approach",
+                "type_style": {
+                  "family": "DM Mono",
+                  "weight": 400,
+                  "size": 10.4,
+                  "lineHeight": 1.6
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#6B6B6B"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Contact",
+                "characters": "Contact",
+                "type_style": {
+                  "family": "DM Mono",
+                  "weight": 400,
+                  "size": 10.4,
+                  "lineHeight": 1.6
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#6B6B6B"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Reader",
+        "layout": {
+          "mode": "VERTICAL",
+          "counterAxisAlignItems": "MIN",
+          "itemSpacing": 32,
+          "padding": {
+            "t": 103.68,
+            "r": 38.4,
+            "b": 103.68,
+            "l": 38.4
+          }
+        },
+        "size": {
+          "w": 768,
+          "h": 1921.27,
+          "sizing": {
+            "h": "FILL",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "FRAME",
+            "name": "Article Head",
+            "layout": {
+              "mode": "VERTICAL",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 8
+            },
+            "size": {
+              "w": 691.22,
+              "h": 95.86,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Eyebrow",
+                "characters": "Field note",
+                "type_style": {
+                  "family": "DM Mono",
+                  "weight": 400,
+                  "size": 9.6,
+                  "lineHeight": 1.6,
+                  "letterSpacing": 0.77,
+                  "token_ref": "tokens.typography.scale.mono-label"
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.accent.primary",
+                    "resolved": "#E4572E"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Title",
+                "characters": "Build it in.",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 700,
+                  "size": 38.4,
+                  "lineHeight": 1.08,
+                  "letterSpacing": -0.77,
+                  "token_ref": "tokens.typography.scale.h1"
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.primary",
+                    "resolved": "#1C1C1C"
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Byline",
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "counterAxisAlignItems": "CENTER",
+                  "itemSpacing": 8
+                },
+                "size": {
+                  "w": 691.22,
+                  "h": 23.05,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "FRAME",
+                    "name": "Pulse Dot",
+                    "layout": {
+                      "mode": "VERTICAL"
+                    },
+                    "size": {
+                      "w": 16,
+                      "h": 16,
+                      "sizing": {
+                        "h": "FILL",
+                        "v": "HUG"
+                      }
+                    },
+                    "fills": [
+                      {
+                        "type": "SOLID",
+                        "bind": "tokens.color.accent.primary",
+                        "resolved": "#E4572E"
+                      }
+                    ],
+                    "cornerRadius": 8
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "Sam Rivera · 6 min read",
+                    "characters": "Sam Rivera · 6 min read",
+                    "type_style": {
+                      "family": "DM Mono",
+                      "weight": 400,
+                      "size": 14.4,
+                      "lineHeight": 1.6
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.muted",
+                        "resolved": "#6B6B6B"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "Lede",
+            "characters": "Most teams reach for intelligent systems the way they reach for a new hire: bolt it on the side, hope it learns the room. The ones that hold up build it into how the work already moves.",
+            "type_style": {
+              "family": "Lora",
+              "weight": 400,
+              "size": 19.2,
+              "lineHeight": 1.5,
+              "token_ref": "tokens.typography.scale.h3"
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.text.primary",
+                "resolved": "#1C1C1C"
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Figure",
+            "layout": {
+              "mode": "VERTICAL",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 8
+            },
+            "size": {
+              "w": 691.22,
+              "h": 377.66,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "IMAGE",
+                "name": "Image",
+                "imageRef": "prototypes/assets/atlas-figure.svg",
+                "size": {
+                  "w": 691.22,
+                  "h": 346.61,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                },
+                "cornerRadius": 6,
+                "strokes": [
+                  {
+                    "weight": 1,
+                    "color": {
+                      "type": "SOLID",
+                      "bind": "tokens.color.structural.border",
+                      "resolved": "#C4C4C4"
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Figcaption",
+                "characters": "Through the system, not around it.",
+                "type_style": {
+                  "family": "DM Mono",
+                  "weight": 400,
+                  "size": 14.4,
+                  "lineHeight": 1.6,
+                  "token_ref": "tokens.typography.scale.small"
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.muted",
+                    "resolved": "#6B6B6B"
+                  }
+                ],
+                "opacity": 0.85
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "Body",
+            "characters": "Infrastructure earns trust the same way a good colleague does: by being there at the right moment, with context, and by staying quiet otherwise. That is a design problem before it is an engineering one.",
+            "type_style": {
+              "family": "Lora",
+              "weight": 400,
+              "size": 16,
+              "lineHeight": 1.6,
+              "token_ref": "tokens.typography.scale.body"
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.text.primary",
+                "resolved": "#1C1C1C"
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "Pull Quote",
+            "characters": "Earn the room. Nothing gets access, context, or authority by default.",
+            "type_style": {
+              "family": "Sora",
+              "weight": 600,
+              "size": 25.6,
+              "lineHeight": 1.2,
+              "token_ref": "tokens.typography.scale.h2"
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.accent.secondary",
+                "resolved": "#2B59C3"
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Stat Row",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 24
+            },
+            "size": {
+              "w": 691.22,
+              "h": 99.98,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "FRAME",
+                "name": "Stat",
+                "layout": {
+                  "mode": "VERTICAL",
+                  "counterAxisAlignItems": "MIN",
+                  "itemSpacing": 4,
+                  "padding": {
+                    "t": 16,
+                    "r": 16,
+                    "b": 16,
+                    "l": 16
+                  }
+                },
+                "size": {
+                  "w": 214.41,
+                  "h": 99.98,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "bind": "tokens.color.backgrounds.surface",
+                    "resolved": "#EEEEEE"
+                  }
+                ],
+                "cornerRadius": 4,
+                "children": [
+                  {
+                    "type": "TEXT",
+                    "name": "Num",
+                    "characters": "90",
+                    "type_style": {
+                      "family": "Sora",
+                      "weight": 700,
+                      "size": 25.6,
+                      "lineHeight": 1.6,
+                      "token_ref": "tokens.typography.scale.h2"
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.accent.primary",
+                        "resolved": "#E4572E"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "Cap",
+                    "characters": "days to recurring",
+                    "type_style": {
+                      "family": "DM Mono",
+                      "weight": 400,
+                      "size": 14.4,
+                      "lineHeight": 1.6,
+                      "token_ref": "tokens.typography.scale.small"
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.muted",
+                        "resolved": "#6B6B6B"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Stat",
+                "layout": {
+                  "mode": "VERTICAL",
+                  "counterAxisAlignItems": "MIN",
+                  "itemSpacing": 4,
+                  "padding": {
+                    "t": 16,
+                    "r": 16,
+                    "b": 16,
+                    "l": 16
+                  }
+                },
+                "size": {
+                  "w": 214.41,
+                  "h": 99.98,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "bind": "tokens.color.backgrounds.surface",
+                    "resolved": "#EEEEEE"
+                  }
+                ],
+                "cornerRadius": 4,
+                "children": [
+                  {
+                    "type": "TEXT",
+                    "name": "Num",
+                    "characters": "3",
+                    "type_style": {
+                      "family": "Sora",
+                      "weight": 700,
+                      "size": 25.6,
+                      "lineHeight": 1.6,
+                      "token_ref": "tokens.typography.scale.h2"
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.accent.primary",
+                        "resolved": "#E4572E"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "Cap",
+                    "characters": "capability clusters",
+                    "type_style": {
+                      "family": "DM Mono",
+                      "weight": 400,
+                      "size": 14.4,
+                      "lineHeight": 1.6,
+                      "token_ref": "tokens.typography.scale.small"
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.muted",
+                        "resolved": "#6B6B6B"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Stat",
+                "layout": {
+                  "mode": "VERTICAL",
+                  "counterAxisAlignItems": "MIN",
+                  "itemSpacing": 4,
+                  "padding": {
+                    "t": 16,
+                    "r": 16,
+                    "b": 16,
+                    "l": 16
+                  }
+                },
+                "size": {
+                  "w": 214.41,
+                  "h": 99.98,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "bind": "tokens.color.backgrounds.surface",
+                    "resolved": "#EEEEEE"
+                  }
+                ],
+                "cornerRadius": 4,
+                "children": [
+                  {
+                    "type": "TEXT",
+                    "name": "Num",
+                    "characters": "41",
+                    "type_style": {
+                      "family": "Sora",
+                      "weight": 700,
+                      "size": 25.6,
+                      "lineHeight": 1.6,
+                      "token_ref": "tokens.typography.scale.h2"
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.accent.primary",
+                        "resolved": "#E4572E"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "Cap",
+                    "characters": "skills deployed",
+                    "type_style": {
+                      "family": "DM Mono",
+                      "weight": 400,
+                      "size": 14.4,
+                      "lineHeight": 1.6,
+                      "token_ref": "tokens.typography.scale.small"
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.muted",
+                        "resolved": "#6B6B6B"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Tag List",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 8
+            },
+            "size": {
+              "w": 691.22,
+              "h": 70.09,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "FRAME",
+                "name": "Tag",
+                "layout": {
+                  "mode": "VERTICAL",
+                  "padding": {
+                    "t": 4,
+                    "r": 8,
+                    "b": 4,
+                    "l": 8
+                  }
+                },
+                "size": {
+                  "w": 180.17,
+                  "h": 31.05,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "bind": "tokens.color.backgrounds.surface",
+                    "resolved": "#EEEEEE"
+                  }
+                ],
+                "cornerRadius": 2,
+                "children": [
+                  {
+                    "type": "TEXT",
+                    "name": "Tag Label",
+                    "characters": "design-intelligence",
+                    "type_style": {
+                      "family": "DM Mono",
+                      "weight": 400,
+                      "size": 14.4,
+                      "lineHeight": 1.6,
+                      "token_ref": "tokens.typography.scale.small"
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.muted",
+                        "resolved": "#6B6B6B"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Tag",
+                "layout": {
+                  "mode": "VERTICAL",
+                  "padding": {
+                    "t": 4,
+                    "r": 8,
+                    "b": 4,
+                    "l": 8
+                  }
+                },
+                "size": {
+                  "w": 206.09,
+                  "h": 31.05,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "bind": "tokens.color.backgrounds.surface",
+                    "resolved": "#EEEEEE"
+                  }
+                ],
+                "cornerRadius": 2,
+                "children": [
+                  {
+                    "type": "TEXT",
+                    "name": "Tag Label",
+                    "characters": "agentic-infrastructure",
+                    "type_style": {
+                      "family": "DM Mono",
+                      "weight": 400,
+                      "size": 14.4,
+                      "lineHeight": 1.6,
+                      "token_ref": "tokens.typography.scale.small"
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.muted",
+                        "resolved": "#6B6B6B"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Tag",
+                "layout": {
+                  "mode": "VERTICAL",
+                  "padding": {
+                    "t": 4,
+                    "r": 8,
+                    "b": 4,
+                    "l": 8
+                  }
+                },
+                "size": {
+                  "w": 171.53,
+                  "h": 31.05,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "bind": "tokens.color.backgrounds.surface",
+                    "resolved": "#EEEEEE"
+                  }
+                ],
+                "cornerRadius": 2,
+                "children": [
+                  {
+                    "type": "TEXT",
+                    "name": "Tag Label",
+                    "characters": "org-transformation",
+                    "type_style": {
+                      "family": "DM Mono",
+                      "weight": 400,
+                      "size": 14.4,
+                      "lineHeight": 1.6,
+                      "token_ref": "tokens.typography.scale.small"
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.muted",
+                        "resolved": "#6B6B6B"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Tag",
+                "layout": {
+                  "mode": "VERTICAL",
+                  "padding": {
+                    "t": 4,
+                    "r": 8,
+                    "b": 4,
+                    "l": 8
+                  }
+                },
+                "size": {
+                  "w": 128.33,
+                  "h": 31.05,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "bind": "tokens.color.backgrounds.surface",
+                    "resolved": "#EEEEEE"
+                  }
+                ],
+                "cornerRadius": 2,
+                "children": [
+                  {
+                    "type": "TEXT",
+                    "name": "Tag Label",
+                    "characters": "earn-the-room",
+                    "type_style": {
+                      "family": "DM Mono",
+                      "weight": 400,
+                      "size": 14.4,
+                      "lineHeight": 1.6,
+                      "token_ref": "tokens.typography.scale.small"
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.muted",
+                        "resolved": "#6B6B6B"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Code",
+            "layout": {
+              "mode": "VERTICAL",
+              "padding": {
+                "t": 16,
+                "r": 16,
+                "b": 16,
+                "l": 16
+              }
+            },
+            "size": {
+              "w": 691.22,
+              "h": 55.05,
+              "sizing": {
+                "h": "FILL",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "bind": "tokens.color.backgrounds.dark",
+                "resolved": "#1C1C1C"
+              }
+            ],
+            "cornerRadius": 4,
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Code Label",
+                "characters": "$ heyhi extract --breakpoint lg --emit ir # one intermediate representation per breakpoint, schema-checked",
+                "type_style": {
+                  "family": "DM Mono",
+                  "weight": 400,
+                  "size": 14.4,
+                  "lineHeight": 1.6,
+                  "token_ref": "tokens.typography.scale.small"
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.inverse",
+                    "resolved": "#F8F8F8"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Callout",
+            "layout": {
+              "mode": "VERTICAL",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 8,
+              "padding": {
+                "t": 32,
+                "r": 32,
+                "b": 32,
+                "l": 32
+              }
+            },
+            "size": {
+              "w": 691.22,
+              "h": 139.83,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "bind": "tokens.color.backgrounds.surface",
+                "resolved": "#EEEEEE"
+              }
+            ],
+            "cornerRadius": 6,
+            "effects": [
+              {
+                "type": "DROP_SHADOW",
+                "x": 0,
+                "y": 2,
+                "blur": 8,
+                "spread": 0,
+                "color": {
+                  "resolved": "rgba(28, 28, 28, 0.06)"
+                }
+              },
+              {
+                "type": "DROP_SHADOW",
+                "x": 0,
+                "y": 12,
+                "blur": 32,
+                "spread": -8,
+                "color": {
+                  "resolved": "rgba(28, 28, 28, 0.12)"
+                }
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Label",
+                "characters": "Principle",
+                "type_style": {
+                  "family": "DM Mono",
+                  "weight": 400,
+                  "size": 10.4,
+                  "lineHeight": 1.6,
+                  "letterSpacing": 0.62,
+                  "token_ref": "tokens.typography.scale.label"
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.accent.tertiary",
+                    "resolved": "#5E6B4B"
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Evaluation before deployment",
+                "characters": "Evaluation before deployment. A system proves itself on the bench before it touches the floor.",
+                "type_style": {
+                  "family": "Lora",
+                  "weight": 400,
+                  "size": 16,
+                  "lineHeight": 1.6
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.primary",
+                    "resolved": "#1C1C1C"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "GROUP",
+            "name": "Overlay Card",
+            "layout": {
+              "mode": "NONE",
+              "padding": {
+                "t": 32,
+                "r": 32,
+                "b": 32,
+                "l": 32
+              }
+            },
+            "size": {
+              "w": 691.22,
+              "h": 115.19,
+              "sizing": {
+                "h": "FILL",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "bind": "tokens.color.backgrounds.surface",
+                "resolved": "#EEEEEE"
+              }
+            ],
+            "cornerRadius": 4,
+            "children": [
+              {
+                "type": "FRAME",
+                "name": "Overlay Badge",
+                "layout": {
+                  "mode": "VERTICAL",
+                  "padding": {
+                    "t": 4,
+                    "r": 8,
+                    "b": 4,
+                    "l": 8
+                  }
+                },
+                "size": {
+                  "w": 41.92,
+                  "h": 31.05,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "bind": "tokens.color.accent.primary",
+                    "resolved": "#E4572E"
+                  }
+                ],
+                "cornerRadius": 2,
+                "children": [
+                  {
+                    "type": "TEXT",
+                    "name": "Overlay Badge Label",
+                    "characters": "New",
+                    "type_style": {
+                      "family": "DM Mono",
+                      "weight": 400,
+                      "size": 14.4,
+                      "lineHeight": 1.6,
+                      "token_ref": "tokens.typography.scale.small"
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.text.inverse",
+                        "resolved": "#F8F8F8"
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "type": "TEXT",
+                "name": "Body",
+                "characters": "A small overlay: the badge is positioned absolutely, so the box stops being an auto-layout frame.",
+                "type_style": {
+                  "family": "Lora",
+                  "weight": 400,
+                  "size": 16,
+                  "lineHeight": 1.6,
+                  "token_ref": "tokens.typography.scale.body"
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.primary",
+                    "resolved": "#1C1C1C"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "Phantom",
+            "characters": "This line is set in a display face that the workspace will not have.",
+            "type_style": {
+              "family": "Phantom Sans Display",
+              "weight": 400,
+              "size": 16,
+              "lineHeight": 1.6,
+              "token_ref": "tokens.typography.scale.body"
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.text.primary",
+                "resolved": "#1C1C1C"
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "Near Accent",
+            "characters": "A near-crimson note, set one tick off the accent token.",
+            "type_style": {
+              "family": "DM Mono",
+              "weight": 400,
+              "size": 14.4,
+              "lineHeight": 1.6,
+              "token_ref": "tokens.typography.scale.small"
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.accent.primary",
+                "resolved": "#E4572F"
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Cta",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "counterAxisAlignItems": "CENTER",
+              "itemSpacing": 8,
+              "padding": {
+                "t": 8,
+                "r": 32,
+                "b": 8,
+                "l": 32
+              }
+            },
+            "size": {
+              "w": 236.81,
+              "h": 39.05,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "bind": "tokens.color.accent.primary",
+                "resolved": "#E4572E"
+              }
+            ],
+            "cornerRadius": 4,
+            "effects": [
+              {
+                "type": "DROP_SHADOW",
+                "x": 0,
+                "y": 2,
+                "blur": 8,
+                "spread": 0,
+                "color": {
+                  "resolved": "rgba(28, 28, 28, 0.06)"
+                }
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Start a conversation",
+                "characters": "Start a conversation",
+                "type_style": {
+                  "family": "DM Mono",
+                  "weight": 400,
+                  "size": 14.4,
+                  "lineHeight": 1.6
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.text.inverse",
+                    "resolved": "#F8F8F8"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "FRAME",
+        "name": "Back To Top",
+        "layout": {
+          "mode": "VERTICAL",
+          "padding": {
+            "t": 8,
+            "r": 16,
+            "b": 8,
+            "l": 16
+          }
+        },
+        "size": {
+          "w": 57.92,
+          "h": 34,
+          "sizing": {
+            "h": "FILL",
+            "v": "HUG"
+          }
+        },
+        "fills": [
+          {
+            "type": "SOLID",
+            "bind": "tokens.color.backgrounds.dark",
+            "resolved": "#1C1C1C"
+          }
+        ],
+        "cornerRadius": 4,
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "Back To Top Label",
+            "characters": "Top",
+            "type_style": {
+              "family": "DM Mono",
+              "weight": 400,
+              "size": 14.4,
+              "token_ref": "tokens.typography.scale.small"
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.text.inverse",
+                "resolved": "#F8F8F8"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "feature": "position-sticky",
+        "node": "Page > .site-header",
+        "action": "flattened to static; sticky has no Figma equivalent",
+        "needs_human": true
+      },
+      {
+        "feature": "clamp-calc-derived",
+        "node": "Page > .reader",
+        "action": "calc(var(--spacing-2xl) + 1vw) — token link is best-effort",
+        "needs_human": true
+      },
+      {
+        "feature": "pseudo-element",
+        "node": "Article Head > .eyebrow",
+        "action": "::before content must be rendered as a real layer",
+        "needs_human": true
+      },
+      {
+        "feature": "clamp-calc-derived",
+        "node": "Article Head > .title",
+        "action": "font-size clamp(2.2rem, 5vw, 3.2rem) — token_ref tokens.typography.scale.h1 inferred from tag",
+        "needs_human": true
+      },
+      {
+        "feature": "animation",
+        "node": "Byline > .pulse-dot",
+        "action": "@keyframes pulse not represented (static frame)",
+        "needs_human": true
+      },
+      {
+        "feature": "transform",
+        "node": "Reader > .pull-quote",
+        "action": "transform matrix3d(1, 0, 0, 0, 0, 0.997564, 0.0697565, -0.000116261, 0, -0.0697565, 0.997564, -0.00166261, 0, 0, 0, 1) not represented; review manually",
+        "needs_human": true
+      },
+      {
+        "feature": "css-grid",
+        "node": "Reader > .stat-row",
+        "action": "approximated as auto-layout; review track sizing",
+        "needs_human": true
+      },
+      {
+        "feature": "flex-wrap",
+        "node": "Reader > .tag-list",
+        "action": "wrapping flex line; auto-layout does not wrap",
+        "needs_human": true
+      },
+      {
+        "feature": "overflow-scroll",
+        "node": "Reader > .code",
+        "action": "scroll container flattened; content may clip",
+        "needs_human": true
+      },
+      {
+        "feature": "absolute-positioning",
+        "node": "Reader > .overlay-card",
+        "action": "child is position:absolute — not expressible as auto-layout",
+        "needs_human": true
+      },
+      {
+        "feature": "missing-font",
+        "node": "Reader > .phantom",
+        "action": "\"Phantom Sans Display\" is not a brand family; the workspace will likely lack it",
+        "needs_human": true
+      },
+      {
+        "feature": "position-fixed",
+        "node": "Page > .back-to-top",
+        "action": "flattened to static; fixed has no Figma equivalent",
+        "needs_human": true
+      }
+    ]
+  }
+}

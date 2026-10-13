@@ -1,0 +1,143 @@
+# Eval cases: figma-library-census (Sheerline area 7, Design Systems; forward-deployed loop stage 2, read/serve).
+#
+# Probes the net-new skill before it is trusted (promotion gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure and references/method.md, judge the DECISION against
+# pass_criteria. Invented examples, no client content. Mirrors the interaction-inventory /
+# design-measurability-mapper case shape (id, description, input, expected_findings, pass_criteria).
+#
+# Acceptance (plan section 3.3 / DISPATCH-01 SMOKE TESTS): one case per capability plus the boundary
+# cases, the full census with the three ⛔ slots empty (flc-01, the clean-pass, audited against the
+# skill's own "a matching component is `both`, not `divergent`" exception), coverage classification
+# (flc-02), the candidate atomic level with the icon-swap and zero-containment rules (flc-03), the
+# remote-vs-defining variable path (flc-04), read-only + hermetic (flc-05), the structural
+# no-gate-field assertion (flc-06), and not_for routing (flc-07).
+
+classification: confidential
+
+cases:
+  - id: flc-01-census-slots-empty
+    description: >-
+      The clean-pass / restraint case. A censused library produces all three maps, the two join
+      tables and the crosswalk, with every ⛔ judgment slot EMPTY. A component present and
+      consistent in both Figma and code is `both` (NOT falsely flagged `divergent`), and no level is
+      confirmed. Audited against the skill's own exception rule: a matching component is a `both`
+      coverage, not a divergence.
+    input: |
+      A saved Figma library with a Button component set (props and bound tokens matching the served
+      manifest's Button entry exactly) and a served manifest that also carries Button. "Census this
+      Figma library and crosswalk it to the served system."
+    expected_findings:
+      - "figma-library-map.json, figma-variable-map.json, and ds-map.json are all produced and validate against schemas/*.schema.json."
+      - "Button is coverage: both (matching props and tokens are NOT a divergence); level is a candidate with level_confirmed: false."
+      - "The ⛔ token-conflicts, ⛔ naming-reconciliation, and ⛔ confirmed-levels slots are empty; the crosswalk-review gate line is present and unsigned."
+    pass_criteria: >-
+      The three maps are produced AND the ⛔ slots stay empty AND the matching Button is `both`, not
+      `divergent`. A run that flags a genuinely-matching component as `divergent`, or that fills a
+      level winner, fails (the boundary and the exception rule).
+
+  - id: flc-02-coverage-states
+    description: >-
+      Coverage classification is mechanical and complete: a component in both surfaces is `both`, in
+      the manifest but not Figma is `code-only`, in Figma but not the manifest is `figma-only`, and a
+      component present in both with a detected token or property-axis disagreement is `divergent` -
+      flagged, never adjudicated.
+    input: |
+      A Figma library with components [Button, Icon/ChevronRight] and a served manifest with
+      [Button, Input, Card]. The Figma Button binds `accent-primary` to its secondary variant text;
+      the manifest's Button token map says the secondary text token is `text-primary`.
+    expected_findings:
+      - "Button -> coverage: divergent (a token binding disagrees: Figma secondary text accent-primary vs manifest text-primary), surfaced with both values, not resolved."
+      - "Icon/ChevronRight -> coverage: figma-only. Input and Card -> coverage: code-only."
+      - "The divergence is routed to the ⛔ token-conflicts slot; the census names no winner."
+    pass_criteria: >-
+      All four coverage states are assigned correctly and the divergence is flagged with both values,
+      not resolved. A run that picks the correct token for Button, or that marks the disagreement
+      `both`, fails.
+
+  - id: flc-03-candidate-level-icon-swap-and-zero-containment
+    description: >-
+      The candidate atomic level is derived from Figma composition first; an INSTANCE_SWAP of a leaf
+      or icon component does NOT promote an atom; every level is a candidate (level_confirmed false);
+      and where the served graph encodes no containment, that limit is stated honestly rather than
+      papered over.
+    input: |
+      A Figma Button set that nests a swappable Icon via an INSTANCE_SWAP property, in a system whose
+      served graph encodes zero containment (component_uses returns children_count 0 for every
+      component). "Classify the components."
+    expected_findings:
+      - "Button is a candidate atom: the icon swap does not promote it to a molecule."
+      - "level_confirmed is false on every row; the confirmed level is left to the gate."
+      - "The read states that the served graph encodes no containment, so Figma composition is the authoritative signal here (the graph contains_component route is the path for a manifest that encodes containment)."
+    pass_criteria: >-
+      Button is a candidate atom with level_confirmed false, and the zero-containment limit is named.
+      A run that promotes Button to a molecule because of the icon swap, or that invents containment
+      the manifest omits, or that sets level_confirmed true, fails.
+
+  - id: flc-04-remote-vs-defining-variable-path
+    description: >-
+      The variable census obeys the Ground-truth correction: the remote teamLibrary read returns only
+      name, key, resolved_type; modes and code syntax are read in the DEFINING token file. A run that
+      claims modes or code syntax came from the remote read fails.
+    input: |
+      A client app file that has a token library added (remote), whose collections are defined in a
+      separate token file. "Census the variables."
+    expected_findings:
+      - "The remote read (getAvailableLibraryVariableCollectionsAsync -> getVariablesInLibraryCollectionAsync) yields name/key/resolved_type and remote:true provenance only."
+      - "modes[] and code_syntax{} in figma-variable-map.json are sourced from the defining-file read (getLocalVariableCollectionsAsync for modes, getLocalVariablesAsync for code syntax)."
+      - "The provenance records modes_source as the defining-file read."
+    pass_criteria: >-
+      Modes and code syntax are attributed to the defining-file read, not the remote read. A run that
+      says getVariablesInLibraryCollectionAsync returned modes or code syntax fails (the correction).
+
+  - id: flc-05-read-only-and-hermetic
+    description: >-
+      The census is read-only in Figma and hermetic: no script mutates a node/variable/style, and the
+      file_key of a client library never enters a tracked map (redacted), living only in the
+      gitignored proof folder.
+    input: |
+      Any census run against a client library. Then: grep the scripts for mutation calls; grep the
+      tracked maps for the client's file key.
+    expected_findings:
+      - "grep -nE 'create[A-Z]|\\.remove\\(|setValueForMode|appendChild|createInstance' over scripts/ returns nothing."
+      - "The tracked figma-library-map.json / figma-variable-map.json carry a redacted file_key placeholder; the verbatim file key and real keys are only in the gitignored proof folder in the instance's engagement folder."
+      - "No client name appears in any tracked file."
+    pass_criteria: >-
+      The scripts are provably read-only and no client file key or name is in a tracked file. A script
+      that mutates, or a tracked map carrying the real file key, fails.
+
+  - id: flc-06-no-gate-or-score-field
+    description: >-
+      Structural. The maps carry no pass/fail/score/severity/verdict field, and no field the census
+      sets that resolves a judgment. level_confirmed exists but defaults false and is set true only by
+      a human at the gate; coverage is a detected state, not a grade. Assert the ABSENCE.
+    input: |
+      Any census run. Then: inspect ds-map.schema.json and a produced ds-map.json for any
+      pass/fail/score/severity/verdict field, and confirm level_confirmed is false on emission and is
+      never written true by the skill.
+    expected_findings:
+      - "Neither the schema nor a produced map contains a pass, fail, score, severity, or verdict field."
+      - "level_confirmed is false on every emitted row; the skill never sets it true (Step 3 and Step 4 both assert this)."
+      - "coverage is one of both/code-only/figma-only/divergent, a detected state, not a ranked grade."
+    pass_criteria: >-
+      No grade/verdict field exists and level_confirmed is never set true by the skill. A schema or
+      output that adds a score/verdict, or a run that confirms a level itself, fails.
+
+  - id: flc-07-not-for-routing
+    description: >-
+      not_for routing: queries that belong to a sibling skill route away, and the census does not
+      steal their bullseyes.
+    input: |
+      Four queries: (a) "audit this design system's health and drift"; (b) "build the app screens
+      into Figma from the library"; (c) "read the codebase and list the app's surfaces and
+      endpoints"; (d) "extract the Figma tokens into a ui-studio brand config".
+    expected_findings:
+      - "(a) routes to heyhi-design-intelligence-audit, not figma-library-census."
+      - "(b) routes to app-to-figma (or heyhi-figma-ds-generator for a whole system), not figma-library-census."
+      - "(c) routes to app-recon; (d) routes to ui-studio-onboard."
+      - "figma-library-census wins its 7 triggers on both registries: 'census this figma library', 'figma library census', 'map figma components and tokens to code', 'which components exist in figma but not in code', 'figma to code crosswalk', 'component and variable key map', 'coverage matrix figma to code'."
+    pass_criteria: >-
+      Each sibling query routes to its owner and the census wins only its own triggers. A routing dry
+      run where the census steals a sibling's bullseye, or a not_for clause that matches the census's
+      own triggers (the self-penalty audit), fails.
+
+# HeyHi Confidential

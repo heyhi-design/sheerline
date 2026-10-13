@@ -1,0 +1,97 @@
+{
+  "skill_name": "heyhi-design-bridge",
+  "version": "1.0.0",
+  "created": "2026-07-06",
+  "classification": "internal",
+  "description": "6 eval scaffold cases for heyhi-design-bridge, grounded in documented SKILL.md behavior (setup-grade v2 H2). Subjective/taste dimensions are marked human-judged, not asserted as mechanically checkable.",
+  "evals": [
+    {
+      "id": 1,
+      "source": "SKILL.md § Mode 1 — Translate (HTML to Figma), steps 1-3 (Invoke + confirm inputs / Extract + validate / Approval surface (Earn the Room))",
+      "prompt": "Translate the atlas-reader prototype at sm/md/lg, example config, set-direct.",
+      "expected_output": "The skill confirms the prototype path, breakpoints (sm 375 / md 768 / lg 1440), and brand config in one line, then runs the headless Playwright extractor to produce one schema-valid IR per breakpoint (recovering tokens from declared stylesheet values, not getComputedStyle), validates each IR, and before any canvas write renders a read-only --summary approval surface (frame tree, per-breakpoint node counts, token provenance, type ramp, chunk plan, flags block) for the human reviewer to approve/edit/reject. Nothing is written to Figma at this stage.",
+      "files": [],
+      "expectations": [
+        "The confirmation line states all three inputs: prototype path, the sm/md/lg breakpoint set, and the brand config name, per step 1's one-line confirm format",
+        "One IR file is produced per breakpoint (three total for sm/md/lg) before any build step runs",
+        "Each produced IR passes schema/validate_ir.py (PASS for all three breakpoints), matching the step 2 command's stated must-PASS requirement",
+        "A --summary output is shown to the user before any use_figma call is issued, and it includes a frame tree, node counts, token provenance (declared vs. matched vs. low-confidence-flagged), and a flags block, matching the step 3 approval-surface contents",
+        "No canvas write (use_figma call) occurs prior to the human's approve/edit/reject response — the Earn the Room callout explicitly states the human opens Figma and initiates the write",
+        "[human-judged] Whether the rendered IR summary is genuinely scannable and gives the reviewer enough signal to make a real approve/edit/reject decision, versus being a dense dump they would rubber-stamp"
+      ]
+    },
+    {
+      "id": 2,
+      "source": "SKILL.md § Mode 1 — Translate, step 4 (Build the plan + run the chunks) — char-budget chunking and SVG dedup",
+      "prompt": "This prototype has our logo mark repeated across the nav, footer, and a dozen card headers. Build the Figma translate for the lg breakpoint — will it blow the payload cap?",
+      "expected_output": "build_figma.py chunks the reviewed IR by projected rendered character length (not node count) so every use_figma payload clears the 50,000-char cap, hard-erroring rather than emitting an over-cap chunk. Each unique SVG (the repeated logo mark) is imported once as a Figma component via createNodeFromSvg -> createComponentFromNode and reused by lightweight instance operations, so the repeated mark's bytes are carried once rather than re-inlined on every occurrence — collapsing what would otherwise be a large chunk count into a handful. run_build.py threads ids across chunks via the pruned __IDMAP__ and accumulates the landing report.",
+      "files": [],
+      "expectations": [
+        "The chunk plan is computed from projected rendered character length per chunk, not a raw node count, per the char-budget chunker description",
+        "No emitted chunk exceeds the 50,000-character use_figma payload cap; an over-cap chunk causes a hard error rather than being emitted anyway",
+        "The repeated logo SVG is imported as a single Figma component and reused via instance operations across its dozen+ occurrences, not re-inlined at full size each time (the SVG dedup mechanism)",
+        "run_build.py's chunk runner (init/prep/record/report) is used to thread node ids across chunks so later chunks can parent into ids returned by earlier ones",
+        "The final report (run_build.py report) states mockup vs. documentation node counts, color Variables created vs. reused, and any errors, per step 5's Report contents",
+        "[human-judged] Whether the resulting chunk count and per-chunk scope represents a sensible build order (e.g., lg/desktop first) given the flag density and image-heaviness, per the 'Scope from the summary before issuing chunks' guidance"
+      ]
+    },
+    {
+      "id": 3,
+      "source": "SKILL.md § Mode 2 — Vectorize, Calibration gate (Phase V.0): per instance",
+      "prompt": "Vectorize this Nano Banana mark into a craft SVG — it's a simple geometric glyph, flat color, no texture.",
+      "expected_output": "vectorize.py runs quantize -> trace (potrace, mono) -> SVGO -> craft report for the mark class, flat tier. The traced asset is checked against the instance's ratified mark-flat ceiling pre-polish, and the fidelity proxy reports ssim-target against the instance's ratified bar at both hero and icon scale; with no ratified instance calibration the report says the ceiling is unratified and asserts no numeric target. The one-line craft report is produced, and the human makes the final accept/reject call — the ceiling and ssim bar gate the mechanical trace step, not the final craft decision.",
+      "files": [],
+      "expectations": [
+        "The class/tier selected is mark · flat (not organic or illustration), matching a simple geometric glyph with no texture",
+        "The pre-polish anchor count is reported against the mark · flat ceiling from the instance's ratified calibration (scripts/vectorize/instance_calibration.py overlaid on presets.py CEILINGS); when no instance calibration is present the report shows ratified: false and asserts no numeric ceiling",
+        "The reported ssim-target fidelity metric is compared against the instance's ratified fidelity bar at both hero and icon scale, not a hard-coded number",
+        "A one-line craft report is emitted (per the vectorize.py --fidelity --json invocation) rather than the tool declaring the asset finished on its own",
+        "The mono trace path (potrace) is used for a mark, not vtracer (which is reserved for color illustration), per step 3's class-to-engine mapping",
+        "[human-judged] The final accept/reject call on whether the traced mark is craft-acceptable is explicitly the human's, not an automatic pass/fail from clearing the anchor ceiling and ssim bar alone"
+      ]
+    },
+    {
+      "id": 4,
+      "source": "SKILL.md § Mode 2 — Vectorize, step 5 (Human craft polish (the primary craft surface)) — Direction forks are human",
+      "prompt": "The traced version of this textured icon could go bold-solid or engraved-line — which one should I use across the whole icon set?",
+      "expected_output": "The skill does not pick a direction unilaterally. Per step 5, when the trace yields more than one valid look with no clear winner, both directions are rendered across the whole set, anchor counts are shown for each, and a direction pick is requested from the human before finalizing the batch. The craft report ends with an explicit 'your turn' rather than declaring the craft finished — this is stated as the primary craft surface and the don't-automate-this step of the pipeline.",
+      "files": [],
+      "expectations": [
+        "Both candidate directions (bold-solid and engraved-line) are rendered across the full requested set, not just the one sample icon, before any direction is finalized",
+        "Anchor counts are reported for each direction shown, per the 'show anchor counts' requirement",
+        "The skill's output asks the human to make the direction pick rather than selecting one direction on its own, per 'make the fork concrete and cheap to decide, do not decide it'",
+        "The craft report includes an explicit hand-off statement (an 'your turn') rather than a claim that the vectorization is complete",
+        "[human-judged] Whether either rendered direction is actually craft-acceptable (anchor repositioning, restored intentional corners, re-introduced dropped color) — this is explicitly the primary craft surface and not a mechanically gradable property"
+      ]
+    },
+    {
+      "id": 5,
+      "source": "SKILL.md § Step 0: Route to a Mode — Boundary check before loading",
+      "prompt": "Use design-bridge to create an infographic summarizing our Q3 audit findings for the client deck.",
+      "expected_output": "The skill does not build the infographic. Per the Boundary check, creating infographics, essay/Log visuals, or diagrams from source content is a build task (author SVG directly against the brand config, or heyhi-ui-ux), not a design-bridge task — design-bridge only lands finished SVGs into Figma (createNodeFromSvg) or vectorizes an existing raster. The skill reframes the request: build the infographic first (as its own artifact), then bridge it into Figma afterward if a Figma landing is actually needed.",
+      "files": [],
+      "expectations": [
+        "The skill declines to originate the infographic content itself and does not proceed into Mode 1 or Mode 2 as if the request were a normal Translate/Vectorize job",
+        "The response names the correct route for infographic/visual creation from source content (author SVG directly, or heyhi-ui-ux) rather than silently attempting it",
+        "The reframe language matches the documented pattern: 'build first, bridge after' — i.e., the skill treats this as a build task, not a Translate",
+        "No Figma write (use_figma) or vectorize.py invocation occurs against unauthored/non-existent source art, since there is no finished SVG or raster yet to land or trace",
+        "[human-judged] N/A for this case — the boundary-holding behavior itself is the mechanically checkable claim; no taste dimension is being evaluated here"
+      ]
+    },
+    {
+      "id": 6,
+      "source": "SKILL.md § Mode 2 — Vectorize, step 0 (Locate + segment the input) and Data handling",
+      "prompt": "I pasted a sheet with 6 icon variations from Nano Banana into the chat — vectorize the lamp, the kettle, and the bicycle for the client's brand system.",
+      "expected_output": "Since the source was pasted rather than given as a path, the skill first locates the file on disk (matching by pixel dimensions and mtime, confirming visually) before tracing. Because it's a multi-subject sheet, the skill segments before tracing: builds a dark-on-light ink mask, downsamples, dilates to bridge stipple gaps without merging neighbouring subjects, flood-fill labels the components, renders a numbered overlay, and maps numbers to the three named subjects (lamp, kettle, bicycle) requested. The hardest (most texture-heavy) of the three is probed first across candidate treatments before batch-processing the rest. Only the client's own Figma file receives the traced assets; no client-confidential source art is sent to a third-party generative service as part of this trace-and-land step, since the trace pipeline itself is local.",
+      "files": [],
+      "expectations": [
+        "The skill locates the pasted image on disk (or recovers it from the session transcript if not already saved) before attempting to trace it, rather than assuming a file path exists",
+        "The sheet is segmented into individually cropped subjects via connected-component labeling and a numbered overlay before any subject is traced, rather than tracing the full multi-subject sheet as one image",
+        "The numbered overlay is mapped to the three explicitly named subjects (lamp, kettle, bicycle) requested, not an arbitrary subset",
+        "The hardest/most texture-heavy of the three subjects is run through candidate treatments first, with real anchor counts and a rendered preview reviewed, before the same treatment is applied across the remaining subjects",
+        "The output states or implies that the traced client assets land only in the client's own Figma file, and that no client-confidential source material is forwarded to a third-party generative service as part of the trace-and-land path (the trace pipeline is local; only Mode 2 concept-image *generation*, not tracing, touches an external provider)",
+        "[human-judged] Whether the crop boundaries and dilation tuning correctly separated the three subjects without merging or fragmenting them — this depends on the specific sheet's layout and is a visual-judgment call, not a mechanical pass/fail"
+      ]
+    }
+  ]
+}

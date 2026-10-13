@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<!-- Wheelhouse · Quality: Validate (S-7) · lane DISPATCH-05 · HeyHi Confidential · classification: confidential -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Wheelhouse: the deterministic validator floor. A conformance report over the own-practice exemplar. Prototype.">
+  <title>Wheelhouse · Validate</title>
+  <link rel="stylesheet" href="shared/studio.css">
+  <style>
+    /* ========================================================================
+       Page-scoped (S-7 Quality / Validate). shared/ is frozen; these live here.
+       candidate for shared: .provchip, .floor-note, .axis/.axis__band,
+       .report/.band/.hitrow  (.qnav* was folded to studio.css at D-08)
+       ==================================================================== */
+
+    /* Quality sub-nav (.qnav*) folded to shared/studio.css at D-08 convergence. */
+
+    /* provenance chip: names a source, does not pretend to navigate a repo file
+       from file:// (L7 rendered honestly as a retrieval, not a live link) */
+    .provchip { display: inline-flex; align-items: center; gap: 5px;
+      padding: 1px var(--sp-2); border-radius: var(--r-1);
+      font-family: var(--font-mono); font-size: .7rem; color: var(--soft);
+      background: transparent; border: 1px dashed var(--border-strong); }
+
+    .page-head { margin-bottom: var(--sp-5); }
+    .page-head h1 { margin-bottom: var(--sp-2); }
+    .head-meta { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center;
+      margin-bottom: var(--sp-3); }
+
+    /* the deterministic-floor framing (distinguishes floor from judgment) */
+    .floor-note { background: var(--surface-inset); border: 1px solid var(--border);
+      border-left: 3px solid var(--teal); border-radius: var(--r-2);
+      padding: var(--sp-4); }
+    .floor-note strong { font-family: var(--font-display); }
+    .floor-note .zero { font-family: var(--font-mono); font-size: .74rem; color: var(--teal); }
+
+    /* severity-axis legend */
+    .axis { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-2); }
+    .axis__band { display: inline-flex; align-items: center; gap: var(--sp-2);
+      padding: var(--sp-1) var(--sp-3); border-radius: var(--r-pill);
+      background: var(--chip-bg); border: 1px solid var(--border);
+      font-family: var(--font-mono); font-size: .74rem; color: var(--ink); }
+    .axis__rank { color: var(--faint); }
+    .axis__arrow { color: var(--border-strong); font-family: var(--font-mono); }
+    .axis__verbatim { font-family: var(--font-mono); font-size: .74rem; color: var(--soft);
+      margin: var(--sp-3) 0 0; }
+
+    /* the report */
+    .report { display: flex; flex-direction: column; gap: var(--sp-5); margin-top: var(--sp-4); }
+    .band__head { display: flex; align-items: baseline; gap: var(--sp-3); margin-bottom: 2px; }
+    .band__rank { font-family: var(--font-mono); font-size: .72rem; color: var(--faint); }
+    .band__name { font-family: var(--font-display); font-weight: 600; font-size: 1.02rem; }
+    .band__tally { font-family: var(--font-mono); font-size: .72rem; color: var(--soft); margin-left: auto; }
+
+    .hitrow { display: grid; grid-template-columns: 108px minmax(0, 1fr) minmax(180px, auto);
+      gap: var(--sp-3) var(--sp-4); align-items: start;
+      padding: var(--sp-3) 0; border-top: 1px solid var(--border); }
+    .hitrow--hit { background: color-mix(in srgb, var(--surface-inset) 60%, transparent);
+      border-radius: var(--r-1); padding-left: var(--sp-3); padding-right: var(--sp-3);
+      margin: 0 calc(-1 * var(--sp-3)); }
+    .hitrow__status { font-family: var(--font-mono); font-size: .74rem; display: flex;
+      align-items: center; gap: 6px; }
+    .st-clear { color: var(--teal); }
+    .st-hit { color: var(--ink); }
+    .st-routed { color: var(--soft); }
+    .hitrow__glyph { font-size: .95rem; line-height: 1; }
+    .hitrow__id { font-family: var(--font-mono); font-size: .82rem; color: var(--ink); }
+    .hitrow__desc { color: var(--soft); font-size: .9rem; margin-top: 2px; }
+    .hitrow__right { display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+    .hitrow__value { font-family: var(--font-mono); font-size: .74rem; color: var(--soft); }
+    .val-hit { color: var(--ink); }
+    .abovefloor { display: inline-flex; align-items: center; gap: 5px;
+      font-family: var(--font-mono); font-size: .68rem; letter-spacing: .04em;
+      text-transform: uppercase; color: var(--soft);
+      border: 1px solid var(--border-strong); border-radius: var(--r-pill);
+      padding: 1px var(--sp-2); }
+
+    .loop-foot { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center;
+      justify-content: space-between; margin-top: var(--sp-6);
+      padding-top: var(--sp-4); border-top: 1px solid var(--border); }
+    .loop-foot a { font-family: var(--font-display); font-weight: 500; }
+
+    @media (max-width: 700px) {
+      .hitrow { grid-template-columns: 1fr; }
+      .hitrow__right { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<!-- ============================================================================
+     WHEELHOUSE - shared shell snippet   (FROZEN after DISPATCH-03 merges)
+     HeyHi Confidential
+     Pasted verbatim from shared/shell-snippet.html. See shared/README.md.
+     ============================================================================ -->
+<script src="data/snapshot.js"></script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="studio-shell">
+
+  <header class="topbar">
+    <a class="wordmark" href="index.html">WHEELHOUSE</a>
+    <a class="topbar__search" href="index.html#router">
+      <span aria-hidden="true">⌕</span>&nbsp;Route a task…
+    </a>
+    <span class="topbar__spacer"></span>
+    <a class="session-indicator" href="session.html">
+      <span class="dot" aria-hidden="true"></span>
+      Own practice
+      <span class="sr-only">(simulated exemplar session)</span>
+    </a>
+  </header>
+
+  <nav class="rail" aria-label="Primary">
+    <p class="rail__label">Wheelhouse</p>
+    <a class="rail__link" href="index.html">           <span class="rail__num">1</span> Home</a>
+    <a class="rail__link" href="areas.html">           <span class="rail__num">2</span> Areas</a>
+    <a class="rail__link" href="skills.html">          <span class="rail__num">3</span> Skills</a>
+    <a class="rail__link" href="session.html">         <span class="rail__num">4</span> Session</a>
+    <a class="rail__link" href="quality-validate.html"><span class="rail__num">5</span> Quality</a>
+    <a class="rail__link" href="artifacts.html">       <span class="rail__num">6</span> Artifacts</a>
+    <a class="rail__link" href="dispatch.html">        <span class="rail__num">7</span> Dispatch</a>
+    <a class="rail__link" href="seminar.html">         <span class="rail__num">8</span> Seminar</a>
+    <a class="rail__link" href="intake.html">          <span class="rail__num">9</span> Intake</a>
+  </nav>
+
+  <main id="main-content" class="studio-main">
+    <div class="wrap">
+      <!-- ===================== PAGE CONTENT START ===================== -->
+
+      <!-- Quality sub-nav + loop caption -->
+      <nav class="qnav" aria-label="Quality loop">
+        <span class="qnav__tabs">
+          <a class="qnav__tab" href="quality-validate.html" aria-current="page">Validate</a>
+          <a class="qnav__tab" href="quality-grade.html">Grade</a>
+          <a class="qnav__tab" href="quality-learn.html">Learn</a>
+        </span>
+        <p class="qnav__loop">The quality loop:
+          <a href="session.html">Retrieve</a><span class="sep">&rarr;</span><span class="cur">Validate</span><span class="sep">&rarr;</span><a href="quality-grade.html">Grade</a><span class="sep">&rarr;</span><a href="quality-learn.html">Learn</a>
+        </p>
+      </nav>
+
+      <header class="page-head">
+        <p class="eyebrow">Quality · the deterministic floor</p>
+        <h1>Validator report</h1>
+        <div class="head-meta">
+          <span class="badge badge--sim"><span aria-hidden="true">◐</span> simulated report</span>
+          <span class="chip chip--provenance mono">artifact: sample button set · focus-states audit</span>
+          <a class="chip mono" href="session.html">from the Session (Retrieve &rarr; Generate) &rarr;</a>
+        </div>
+        <div class="floor-note">
+          <p style="margin-bottom:var(--sp-2)"><strong>The floor reports structure, not taste.</strong>
+          A conformance lane runs deterministic, structural checks over the artifact at
+          <span class="zero">zero token cost</span>. It reports what is structurally true or false.
+          It renders no grade and approves nothing.</p>
+          <p style="margin:0" class="muted">Everything above the floor (does the focus order read for an
+          assistive-technology user, is this deviation intentional) routes to a human. The floor being
+          clear is not approval. Approval is the human's, on the <a href="quality-grade.html">Grade</a> screen.</p>
+        </div>
+      </header>
+
+      <!-- Severity-axis legend (L8: the grades note is the crimson element here) -->
+      <section class="section" aria-labelledby="axis-h">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Ordering</p>
+            <h2 id="axis-h" style="margin:0">The severity axis</h2>
+          </div>
+        </div>
+        <div class="card">
+          <div class="axis" role="img" aria-label="Severity axis, most severe first: Accessibility, Interaction, Visual, Brand, Code.">
+            <span class="axis__band"><span class="axis__rank">1</span> Accessibility</span>
+            <span class="axis__arrow" aria-hidden="true">&rarr;</span>
+            <span class="axis__band"><span class="axis__rank">2</span> Interaction</span>
+            <span class="axis__arrow" aria-hidden="true">&rarr;</span>
+            <span class="axis__band"><span class="axis__rank">3</span> Visual</span>
+            <span class="axis__arrow" aria-hidden="true">&rarr;</span>
+            <span class="axis__band"><span class="axis__rank">4</span> Brand</span>
+            <span class="axis__arrow" aria-hidden="true">&rarr;</span>
+            <span class="axis__band"><span class="axis__rank">5</span> Code</span>
+          </div>
+          <p class="axis__verbatim">Verbatim: <span class="mono">Accessibility → Interaction → Visual → Brand → Code</span>
+            &nbsp;<span class="provchip">os/operating-principles.md · the severity axis</span></p>
+          <p class="rule-line" style="margin:var(--sp-4) 0 0">This is the severity order for grading, not a pass scale. The floor reports structure; severity decides what a human grades first.</p>
+        </div>
+      </section>
+
+      <!-- The report, ordered by the severity axis -->
+      <section class="section" aria-labelledby="report-h">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Report · ordered by severity</p>
+            <h2 id="report-h" style="margin:0">6 rules checked · 1 hit · 1 routed above the floor</h2>
+          </div>
+          <span class="mono faint">conformance lane · structural only</span>
+        </div>
+
+        <div class="report">
+
+          <!-- 1 · ACCESSIBILITY -->
+          <div class="band" aria-labelledby="band-a11y">
+            <div class="band__head">
+              <span class="band__rank">1</span>
+              <span class="band__name" id="band-a11y">Accessibility</span>
+              <span class="band__tally">2 clear · 1 routed · hard gate</span>
+            </div>
+
+            <div class="hitrow">
+              <span class="hitrow__status st-clear"><span class="hitrow__glyph" aria-hidden="true">✓</span> clear</span>
+              <div>
+                <div class="hitrow__id">a11y.focus-visible-present</div>
+                <div class="hitrow__desc">A visible focus-visible ring is present on all four states of the button set.</div>
+              </div>
+              <div class="hitrow__right">
+                <span class="hitrow__value">outline: 2px solid var(--focus) · 4/4 states</span>
+              </div>
+            </div>
+
+            <div class="hitrow">
+              <span class="hitrow__status st-clear"><span class="hitrow__glyph" aria-hidden="true">✓</span> clear</span>
+              <div>
+                <div class="hitrow__id">theme-flip-fill-needs-on-color-token</div>
+                <div class="hitrow__desc">The solid-fill button pairs its text with an on-color token that flips with the theme; contrast verified in both light and dark, not only the theme on screen.</div>
+              </div>
+              <div class="hitrow__right">
+                <span class="hitrow__value">--on-teal · AA in both themes</span>
+                <span class="provchip">retrieve · role: on-accent</span>
+              </div>
+            </div>
+
+            <div class="hitrow">
+              <span class="hitrow__status st-routed"><span class="hitrow__glyph" aria-hidden="true">↗</span> routed</span>
+              <div>
+                <div class="hitrow__id">a11y.assistive-tech-usability</div>
+                <div class="hitrow__desc">Does the focus order read for a screen-reader user? Automated conformance is the floor; the judged half is above it.</div>
+              </div>
+              <div class="hitrow__right">
+                <span class="abovefloor"><span aria-hidden="true">↗</span> above the floor · a human reads this</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2 · INTERACTION -->
+          <div class="band" aria-labelledby="band-ix">
+            <div class="band__head">
+              <span class="band__rank">2</span>
+              <span class="band__name" id="band-ix">Interaction</span>
+              <span class="band__tally">1 clear</span>
+            </div>
+            <div class="hitrow">
+              <span class="hitrow__status st-clear"><span class="hitrow__glyph" aria-hidden="true">✓</span> clear</span>
+              <div>
+                <div class="hitrow__id">interaction.state-coverage</div>
+                <div class="hitrow__desc">Default, hover, focus-visible, and disabled are all present and visually distinct.</div>
+              </div>
+              <div class="hitrow__right">
+                <span class="hitrow__value">4/4 states present</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 · VISUAL -->
+          <div class="band" aria-labelledby="band-vis">
+            <div class="band__head">
+              <span class="band__rank">3</span>
+              <span class="band__name" id="band-vis">Visual</span>
+              <span class="band__tally">1 hit</span>
+            </div>
+            <div class="hitrow hitrow--hit">
+              <span class="hitrow__status st-hit"><span class="hitrow__glyph" aria-hidden="true">→</span> off-scale</span>
+              <div>
+                <div class="hitrow__id">off-scale-spacing-value</div>
+                <div class="hitrow__desc">The hover state uses a padding value that is not on the spacing scale. Off-scale spacing breaks the rhythm the scale exists to hold.</div>
+              </div>
+              <div class="hitrow__right">
+                <span class="hitrow__value val-hit">padding: 9px · nearest scale step 8px</span>
+                <span class="chip chip--provenance mono">retrieve · spacing scale &rarr; <a href="areas.html#area-design-systems">--sp-2</a></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4 · BRAND -->
+          <div class="band" aria-labelledby="band-brand">
+            <div class="band__head">
+              <span class="band__rank">4</span>
+              <span class="band__name" id="band-brand">Brand</span>
+              <span class="band__tally">1 clear</span>
+            </div>
+            <div class="hitrow">
+              <span class="hitrow__status st-clear"><span class="hitrow__glyph" aria-hidden="true">✓</span> clear</span>
+              <div>
+                <div class="hitrow__id">hardcoded-hex-bypasses-token</div>
+                <div class="hitrow__desc">Every color in the button set resolves to a semantic token. No raw hex bypasses the token layer.</div>
+              </div>
+              <div class="hitrow__right">
+                <span class="hitrow__value">0 raw hex · 6/6 colors tokenized</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5 · CODE -->
+          <div class="band" aria-labelledby="band-code">
+            <div class="band__head">
+              <span class="band__rank">5</span>
+              <span class="band__name" id="band-code">Code</span>
+              <span class="band__tally">1 clear</span>
+            </div>
+            <div class="hitrow">
+              <span class="hitrow__status st-clear"><span class="hitrow__glyph" aria-hidden="true">✓</span> clear</span>
+              <div>
+                <div class="hitrow__id">token-missing-semantic-role</div>
+                <div class="hitrow__desc">Each token is applied by its semantic role (a surface token where a surface belongs, not a background token by raw value).</div>
+              </div>
+              <div class="hitrow__right">
+                <span class="hitrow__value">roles match · structure-preserving</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <div class="loop-foot">
+        <span class="muted" style="font-size:.9rem">The floor is clear but for one off-scale value. The read of what it means is the human's.</span>
+        <a href="quality-grade.html">Next in the loop: Grade &rarr;</a>
+      </div>
+
+      <!-- ===================== PAGE CONTENT END ======================= -->
+    </div>
+  </main>
+
+  <footer class="studio-footer">
+    <span class="sim">Prototype</span> · simulated interactions over a real data snapshot
+    (<span class="mono" data-commit>…</span>) · HeyHi Confidential
+  </footer>
+
+</div>
+
+<script>
+/* fill footer commit + self-activate the rail item from the page filename */
+(function () {
+  var data = window.SHEERLINE_DATA || {};
+  var meta = data.meta || {};
+  var el = document.querySelector('[data-commit]');
+  if (el) { el.textContent = meta.source_commit || 'unknown'; }
+
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') { path = 'index.html'; }
+  var alias = {
+    'quality-grade.html': 'quality-validate.html',
+    'quality-learn.html': 'quality-validate.html',
+    'exit-gate.html': 'session.html'
+  };
+  var target = alias[path] || path;
+  var links = document.querySelectorAll('.rail__link');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].getAttribute('href') === target) {
+      links[i].setAttribute('aria-current', 'page');
+    } else {
+      links[i].removeAttribute('aria-current');
+    }
+  }
+})();
+</script>
+</body>
+</html>

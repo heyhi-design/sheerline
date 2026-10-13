@@ -1,0 +1,69 @@
+# Eval cases: heyhi-token-description-author (area 7, harness-level governance probe).
+#
+# Tests whether heyhi-token-description-author honors area 7's invariants — ambiguous intent flagged not
+# invented, HeyHi voice rules honored (points at the always-loaded rule, not a bespoke list), and
+# preserve-don't-rewrite — and the empty judgment slot (the meaning of an ambiguous token). Not whether
+# its prose is good. Run by hand or by the agent: read the input, apply the skill's procedure
+# (heyhi-skills/heyhi-token-description-author/SKILL.md) against the always-loaded boundary
+# (sheerline/os/operating-principles.md), judge by pass_criteria. Synthetic inputs, no client content.
+# R4 case shape + a `source` per case.
+
+classification: confidential
+
+cases:
+  - id: htda-01-ambiguous-intent-flagged-not-invented
+    description: >-
+      A token whose intent cannot be read from its name, value, or position is flagged with a question
+      for the human, never given an invented description. A run that fabricates intent has filled the
+      human's judgment slot.
+    source: "heyhi-token-description-author/SKILL.md § Step 4: Flag Ambiguous Tokens"
+    input: |
+      A run that reaches a token whose intent cannot be determined from its name, value, or position, and
+      writes a plausible-sounding description for it rather than flagging it with a question.
+    expected_findings:
+      - "Flags that ambiguous token intent is flagged with a question for the human before writing, never invented — the meaning of an ambiguous token is the human's call."
+    pass_criteria: >-
+      The finding names the invented description as the violation and ties it to the flag-don't-invent rule.
+      A result that treats the fabricated intent as an acceptable best guess fails.
+
+  - id: htda-02-voice-rules-honored
+    description: >-
+      Authored descriptions honor the HeyHi voice rules; the skill points at that always-loaded list
+      rather than shipping banned words. A description that uses a banned word has broken the rule.
+    source: "heyhi-token-description-author/SKILL.md § Smoke Test Checklist"
+    input: |
+      A run whose authored token descriptions read "a seamless, holistic accent that lets teams leverage
+      the brand" — carrying banned words from the HeyHi voice rules.
+    expected_findings:
+      - "Flags the banned words (seamless, holistic, leverage) against the HeyHi voice rules — the descriptions must honor the always-loaded voice-rule list, checked in the smoke test."
+    pass_criteria: >-
+      The finding names the specific banned words and cites the voice-rule check. A result that passes the
+      description with banned words in it fails.
+
+  - id: htda-03-preserve-strong-descriptions
+    description: >-
+      A token that already carries a strong semantic description is preserved, not rewritten. A run that
+      churns already-strong descriptions has manufactured work.
+    source: "heyhi-token-description-author/SKILL.md § Step 1: Audit"
+    input: |
+      A run on a file where more than 30% of tokens already carry strong Class-D semantic descriptions,
+      that rewrites the already-strong descriptions anyway rather than preserving them.
+    expected_findings:
+      - "Flags the needless rewrite — a token with a strong semantic description is preserved (no change); if more than 30% are already Class D, state the file is in better shape than the task implied rather than churning it."
+    pass_criteria: >-
+      The finding names the rewrite of strong descriptions as the violation. A result that treats
+      rewriting good descriptions as thoroughness fails.
+
+  - id: htda-04-clean-pass
+    description: >-
+      A run that describes only the under-described tokens, preserves the strong ones, flags the genuinely
+      ambiguous tokens with a question, and uses no banned words should pass with zero findings.
+    source: "heyhi-token-description-author/SKILL.md § Step 1: Audit"
+    input: |
+      A run that authors descriptions only for the under-described tokens, preserves tokens that already
+      have strong descriptions, flags the two genuinely ambiguous tokens with a question for the human,
+      and produces a completeness report with no banned words.
+    expected_findings: []
+    pass_criteria: >-
+      Zero findings. A run that manufactures a rewrite of the strong descriptions, or invents intent for
+      the ambiguous tokens instead of flagging them, fails.

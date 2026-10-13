@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "name": "Chip",
+  "level": "atom",
+  "anatomy": [
+    { "region": "container", "role": "the pill wrapper carrying tone + size", "optional": false },
+    { "region": "leadingIcon", "role": "optional leading icon", "optional": true },
+    { "region": "label", "role": "the chip text", "optional": false },
+    { "region": "remove", "role": "the remove control (a real button in code)", "optional": true }
+  ],
+  "property_axes": [
+    { "name": "Tone", "type": "VARIANT", "values": ["default", "success", "warning", "error", "info"], "default": "default", "maps_to_prop": "tone" },
+    { "name": "Size", "type": "VARIANT", "values": ["sm", "md"], "default": "md", "maps_to_prop": "size" },
+    { "name": "Label", "type": "TEXT", "default": "Label", "maps_to_prop": "label" },
+    { "name": "Show Icon", "type": "BOOLEAN", "default": true, "optional": true, "maps_to_prop": "leadingIcon" },
+    { "name": "Removable", "type": "BOOLEAN", "default": false, "optional": true, "maps_to_prop": "removable" },
+    { "name": "Leading Icon", "type": "INSTANCE_SWAP", "default": "Icon/ChevronRight", "optional": true, "maps_to_prop": "leadingIcon" }
+  ],
+  "states": [
+    { "name": "default", "applies_to": "container", "a11y_hook": null, "keyboard": null },
+    { "name": "disabled", "applies_to": "container", "a11y_hook": "aria-disabled on the container; the remove button is disabled", "keyboard": null },
+    { "name": "default", "applies_to": "remove", "a11y_hook": "aria-label='Remove {label}' on a native <button>", "keyboard": "native <button>" },
+    { "name": "hover", "applies_to": "remove", "a11y_hook": null, "keyboard": "native <button>" },
+    { "name": "focus-visible", "applies_to": "remove", "a11y_hook": "focus-visible ring bound to accent-primary", "keyboard": "native <button>" },
+    { "name": "active", "applies_to": "remove", "a11y_hook": null, "keyboard": "native <button>" },
+    { "name": "disabled", "applies_to": "remove", "a11y_hook": "disabled attribute on the <button>", "keyboard": "native <button>" }
+  ],
+  "slots": [],
+  "tokens": {
+    "radius": "radius-full",
+    "gap": "space-1",
+    "font_family": "font-family-sans",
+    "font_weight": "font-weight-medium",
+    "line_height": "font-line-height-none",
+    "focus_ring": "accent-primary",
+    "transition_duration": "motion-duration-150",
+    "size": {
+      "sm": "font-size-xs / padding space-1 space-2",
+      "md": "font-size-sm / padding space-1 space-3"
+    },
+    "tone": {
+      "default": "bg-subtle / text-secondary",
+      "success": "status-success-bg / status-success-text",
+      "warning": "status-warning-bg / status-warning-text",
+      "error": "status-error-bg / status-error-text",
+      "info": "status-info-bg / status-info-text"
+    }
+  },
+  "framework": "react",
+  "code_connect": { "emit": true, "publish": false },
+  "gate": {
+    "spec_review": { "owner": null, "date": null },
+    "component_review": { "owner": null, "date": null }
+  }
+}

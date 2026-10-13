@@ -1,0 +1,12 @@
+{
+  "name": "HeyHi Design Bridge Runner",
+  "id": "heyhi-design-bridge-runner",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"],
+  "networkAccess": {
+    "allowedDomains": ["none"],
+    "reasoning": "Self-contained: the build chunks and raster bytes are bundled into code.js by emit_plugin.py. No network access is needed."
+  }
+}

@@ -1,0 +1,104 @@
+# Eval cases: heyhi-figjam-mapper (Sheerline area 11, P1; Figma-live generation skill).
+#
+# Authored v0.2.0 (2026-08-23, Wave D) — the skill shipped with ZERO cases against Sheerline's
+# own one-case-per-capability eval policy (2026-08-22 audit § 2.3). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge the DECISION the skill makes (which Figma
+# mechanism, which slots stay empty, what gets tagged) against pass_criteria. These cases test
+# routing + boundary behavior, not a live Figma write. Invented examples, no client content.
+# R4 case shape (id, description, input, expected_findings, pass_criteria).
+
+classification: confidential
+
+cases:
+  - id: fjm-01-reserved-node-id-catch
+    description: >-
+      A flow whose natural node id collides with a Mermaid reserved word must be renamed to a
+      distinct camelCase id, not emitted bare (a hard parse error, live-caught 2026-08-17).
+    input: |
+      "Diagram this flow: Lead captured → Qualify → Call → Close." (The "Call" step's obvious id
+      is `call` — a Mermaid callback keyword.)
+    expected_findings:
+      - "The `Call` step is given a distinct camelCase id (e.g. `discoveryCall`), NOT the bare `call` which Mermaid parses as a callback directive and fails on ('got CALLBACKNAME')."
+      - "camelCase ids are used throughout to stay clear of the keyword set (call/click/class/style/end/subgraph/graph)."
+    pass_criteria: >-
+      No node id is a Mermaid reserved word. Emitting `call["Call"]` (or any reserved-word id)
+      fails — it is a hard parse error the recipe explicitly names.
+
+  - id: fjm-02-journey-judgment-slots-empty
+    description: >-
+      A journey map ships the interpretive rows (Feeling, Pain points, Opportunities) EMPTY and
+      labeled — the § 9 judgment slots. The skill never fills them.
+    input: |
+      "Turn this research into a journey map. Stages: Discover, Evaluate, Adopt. Here's what users
+      DO at each stage (from the synthesis). Pain points and opportunities — that's the workshop."
+    expected_findings:
+      - "The journey grid fills the Doing row (and Thinking, if the source gives it) from the source."
+      - "The Feeling, Pain points, and Opportunities rows are placed as labeled BLANK cells, visibly marked 'for the room'."
+    pass_criteria: >-
+      The interpretive rows are empty and labeled. A map that fills in pain points, emotions, or
+      opportunities — even plausibly — fails (boundary § 9); the skill lays out structure, the
+      room owns the design truth.
+
+  - id: fjm-03-inferred-tagging-and-gap-flag
+    description: >-
+      A node/edge the skill must infer to connect the structure is tagged `inferred`; a genuinely
+      missing step is FLAGGED as a gap, not fabricated to round out the picture.
+    input: |
+      "Diagram this onboarding flow: Sign up → [the synthesis skips a step] → First save." The
+      source does not say what happens between signup and first save.
+    expected_findings:
+      - "The skill does NOT invent a plausible middle step to connect signup to first-save."
+      - "The gap is flagged to the human (Step 3), and any edge the skill had to infer to lay out what IS known is tagged `inferred` on the artifact."
+    pass_criteria: >-
+      A missing step is a flagged gap, not a fabricated node. Inventing a middle step (even a
+      reasonable one) fails; inferring silently without an `inferred` tag fails the provenance half
+      of § 9.
+
+  - id: fjm-04-journey-vs-blueprint-mechanism-routing
+    description: >-
+      The single load-bearing technical fact: generate_diagram does NOT support journey/timeline/
+      C4, so journeys and service blueprints route to use_figma on FigJam, while flows/sequences/
+      states/ERDs route to generate_diagram.
+    input: |
+      Three asks in one session: (a) "diagram this auth handshake as a sequence"; (b) "map this
+      customer journey"; (c) "build a service blueprint for the booking flow".
+    expected_findings:
+      - "(a) sequence → generate_diagram (sequenceDiagram) — a native Mermaid type."
+      - "(b) journey map → use_figma + FigJam journey-grid recipe — NOT generate_diagram (Mermaid `journey` is unsupported)."
+      - "(c) service blueprint → use_figma + FigJam swimlane recipe — no Mermaid type exists."
+    pass_criteria: >-
+      Each artifact routes to the correct mechanism. Routing a journey map or blueprint through
+      generate_diagram fails — it is the exact unsupported-type error the skill exists to route
+      around.
+
+  - id: fjm-05-hermetic-seal-hold
+    description: >-
+      When the FigJam is shared or its file key lands in a tracked artifact, no client name appears
+      on the board — the engagement label is used instead (hermetic seal).
+    input: |
+      An engagement-intake profile with `boundary.hermetic_seal_confirmed: true` and a client name.
+      The ask: "build the IA sitemap in the shared FigJam and file the link in the tracked deliverable."
+    expected_findings:
+      - "Board labels, the returned link context, and any tracked reference use the engagement LABEL, not the client name."
+      - "Step 5 verification confirms no client name appears on the shared board before handoff."
+    pass_criteria: >-
+      No client-identifying name reaches the shared board or the tracked artifact. A board titled
+      with the client's name, or a client name in the tracked deliverable note, fails the seal.
+
+  - id: fjm-06-not-design-file-or-prototype-translation
+    description: >-
+      The reciprocal not_for holds: a diagram inside a Figma DESIGN file routes to figma-use
+      directly, and translating a built prototype/raster into a Figma design file routes to
+      heyhi-design-bridge. Neither is a FigJam mapping task.
+    input: |
+      "We have a finished HTML prototype — recreate it as editable layers in our Figma design file."
+      (There is no flow/journey/blueprint to map; this is prototype-to-design-file translation.)
+    expected_findings:
+      - "Recognizes this is prototype-to-Figma-design-file translation (heyhi-design-bridge), not a FigJam artifact-mapping task, and routes away via not_for."
+      - "If instead the ask were a diagram inside a figma.com/design/... file, routes to figma-use directly (this skill is FigJam / figma.com/board/...)."
+    pass_criteria: >-
+      The skill declines / routes rather than building a FigJam artifact for a design-file or
+      prototype-translation request. Absorbing a heyhi-design-bridge or figma-use task fails the
+      reciprocal not_for.
+
+# HeyHi Confidential

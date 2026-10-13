@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Wheelhouse: what the harness has produced across sessions, referenced in place. Prototype.">
+  <title>Wheelhouse · Artifacts</title>
+  <!-- S-2 Artifacts · lane DISPATCH-07 (LIBRARY) · HeyHi Confidential -->
+  <link rel="stylesheet" href="shared/studio.css">
+  <style>
+    /* page-scoped (S-2). candidate for shared: .lede .filters .facet .filter-btn
+       .art-group .art-grid .art-card .art-card__prov .copy-btn .art-card__producer
+       .empty-kind */
+    .lede { font-size: 1.02rem; color: var(--soft); max-width: 68ch; }
+
+    .filters { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center;
+               padding: var(--sp-3) var(--sp-4); background: var(--surface-inset);
+               border: 1px solid var(--border); border-radius: var(--r-2); margin: var(--sp-4) 0 var(--sp-6); }
+    .filters .facet__label { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--faint); margin-right: var(--sp-2); }
+    .filter-btn[aria-pressed="true"] { background: var(--teal-fill); border-color: var(--teal-border); color: var(--ink); }
+
+    .art-group { margin-bottom: var(--sp-6); }
+    .art-group__head { display: flex; align-items: baseline; gap: var(--sp-3); margin-bottom: var(--sp-3); }
+    .art-group__title { font-family: var(--font-mono); font-size: .76rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--faint); }
+    .art-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--sp-4); }
+    .art-card { display: flex; flex-direction: column; gap: var(--sp-3); }
+    .art-card__top { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-2); }
+    .art-card__name { font-family: var(--font-mono); font-size: .86rem; color: var(--ink); font-weight: 500; word-break: break-word; }
+    .art-card__prov { display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
+    .art-card__path { flex: 1; min-width: 0; }
+    .art-card__path .chip { max-width: 100%; overflow: hidden; text-overflow: ellipsis; display: inline-block; }
+    .copy-btn { font-family: var(--font-display); font-size: .72rem; padding: 3px var(--sp-2);
+      border: 1px solid var(--border); border-radius: var(--r-1); background: var(--surface); color: var(--soft); cursor: pointer; white-space: nowrap; }
+    .copy-btn:hover { border-color: var(--border-strong); color: var(--ink); }
+    .copy-btn.is-copied { border-color: var(--teal-border); color: var(--teal); }
+    .art-card__producer { font-family: var(--font-mono); font-size: .72rem; color: var(--faint); margin: 0; }
+    .empty-kind { color: var(--faint); font-family: var(--font-mono); font-size: .82rem; padding: var(--sp-4) 0; }
+  </style>
+</head>
+<body>
+<!-- ============================================================================
+     WHEELHOUSE - shared shell snippet   (FROZEN after DISPATCH-03 merges)
+     HeyHi Confidential
+     Pasted verbatim from shared/shell-snippet.html. See shared/README.md.
+     ============================================================================ -->
+<script src="data/snapshot.js"></script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="studio-shell">
+
+  <header class="topbar">
+    <a class="wordmark" href="index.html">WHEELHOUSE</a>
+    <a class="topbar__search" href="index.html#router">
+      <span aria-hidden="true">⌕</span>&nbsp;Route a task…
+    </a>
+    <span class="topbar__spacer"></span>
+    <a class="session-indicator" href="session.html">
+      <span class="dot" aria-hidden="true"></span>
+      Own practice
+      <span class="sr-only">(simulated exemplar session)</span>
+    </a>
+  </header>
+
+  <nav class="rail" aria-label="Primary">
+    <p class="rail__label">Wheelhouse</p>
+    <a class="rail__link" href="index.html">           <span class="rail__num">1</span> Home</a>
+    <a class="rail__link" href="areas.html">           <span class="rail__num">2</span> Areas</a>
+    <a class="rail__link" href="skills.html">          <span class="rail__num">3</span> Skills</a>
+    <a class="rail__link" href="session.html">         <span class="rail__num">4</span> Session</a>
+    <a class="rail__link" href="quality-validate.html"><span class="rail__num">5</span> Quality</a>
+    <a class="rail__link" href="artifacts.html">       <span class="rail__num">6</span> Artifacts</a>
+    <a class="rail__link" href="dispatch.html">        <span class="rail__num">7</span> Dispatch</a>
+    <a class="rail__link" href="seminar.html">         <span class="rail__num">8</span> Seminar</a>
+    <a class="rail__link" href="intake.html">          <span class="rail__num">9</span> Intake</a>
+  </nav>
+
+  <main id="main-content" class="studio-main">
+    <div class="wrap">
+    <!-- ===================== PAGE CONTENT START ===================== -->
+
+      <section class="section" aria-labelledby="art-h">
+        <p class="eyebrow">Library</p>
+        <h1 id="art-h">What the harness has made</h1>
+        <p class="lede">Every output the practice has produced across sessions, referenced where it lives, never copied in. An artifact is context for the next session: a diagram the workspace retrieves, a module a session cites, an eval set the evaluator reads. Each card points at the real path; open it in the repo to read it.</p>
+        <p class="count-line mono faint" id="count-line" style="margin:var(--sp-2) 0 0"></p>
+
+        <div class="filters" role="group" aria-label="Filter artifacts by kind" id="filters">
+          <span class="facet__label">Kind</span>
+        </div>
+
+        <div id="art-groups"></div>
+      </section>
+
+    <!-- ===================== PAGE CONTENT END ======================= -->
+    </div>
+  </main>
+
+  <footer class="studio-footer">
+    <span class="sim">Prototype</span> · simulated interactions over a real data snapshot
+    (<span class="mono" data-commit>…</span>) · HeyHi Confidential
+  </footer>
+
+</div>
+
+<script>
+/* fill footer commit + self-activate the rail item from the page filename */
+(function () {
+  var data = window.SHEERLINE_DATA || {};
+  var meta = data.meta || {};
+  var el = document.querySelector('[data-commit]');
+  if (el) { el.textContent = meta.source_commit || 'unknown'; }
+
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') { path = 'index.html'; }
+  var alias = {
+    'quality-grade.html': 'quality-validate.html',
+    'quality-learn.html': 'quality-validate.html',
+    'exit-gate.html': 'session.html'
+  };
+  var target = alias[path] || path;
+  var links = document.querySelectorAll('.rail__link');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].getAttribute('href') === target) {
+      links[i].setAttribute('aria-current', 'page');
+    } else {
+      links[i].removeAttribute('aria-current');
+    }
+  }
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------------------
+   S-2 Artifacts: render the artifacts array from the data global, grouped by
+   kind. Cards reference the repo path (L7: retrieve, do not paste); the copy
+   affordance hands the reader the path rather than a link to nowhere. Kind
+   labels and producers are kind-level descriptors; artifacts carry no area
+   field, so no area chip is invented.
+   --------------------------------------------------------------------------- */
+(function () {
+  "use strict";
+  var D = window.SHEERLINE_DATA || {};
+  var artifacts = D.artifacts || [];
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function el(id){ return document.getElementById(id); }
+
+  /* kind-level descriptors; unknown kinds fall back to a title-cased label */
+  var KIND = {
+    'diagram':          { label: 'Diagram',          producer: 'The Sheerline architecture figure set.' },
+    'seminar-module':   { label: 'Seminar module',   producer: 'The seminar build.' },
+    'eval-cases':       { label: 'Eval cases',       producer: 'The evaluator\'s case set.' },
+    'correction-seeds': { label: 'Correction seeds', producer: 'The corrections registry seed.' },
+    'template':         { label: 'Template',         producer: 'The engagement profile.' }
+  };
+  function kindLabel(k){ return (KIND[k] && KIND[k].label) || String(k||'').replace(/[-_]/g,' ').replace(/\b\w/g, function(c){ return c.toUpperCase(); }); }
+  function kindProducer(k){ return (KIND[k] && KIND[k].producer) || ('Produced under ' + k + '.'); }
+
+  /* distinct kinds, in first-seen order (deterministic to the snapshot) */
+  var kinds = [];
+  artifacts.forEach(function(a){ if (kinds.indexOf(a.kind) === -1) kinds.push(a.kind); });
+
+  /* copy-path affordance (a real action; degrades quietly under file://) */
+  function copyText(text, btn){
+    function done(){
+      var o = btn.getAttribute('data-label');
+      btn.textContent = 'Copied';
+      btn.classList.add('is-copied');
+      setTimeout(function(){ btn.textContent = o; btn.classList.remove('is-copied'); }, 1200);
+    }
+    function fallback(){
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.setAttribute('readonly','');
+        ta.style.position = 'absolute'; ta.style.left = '-9999px';
+        document.body.appendChild(ta); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta); done();
+      } catch (e) { /* clipboard unavailable; no-op */ }
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+  }
+
+  function card(a){
+    return '<article class="card art-card" data-kind="'+esc(a.kind)+'">'
+         +   '<div class="art-card__top">'
+         +     '<span class="art-card__name">'+esc(a.name)+'</span>'
+         +     '<span class="badge badge--nature">'+esc(kindLabel(a.kind))+'</span>'
+         +   '</div>'
+         +   '<div class="art-card__prov">'
+         +     '<span class="art-card__path"><span class="chip chip--provenance mono" title="'+esc(a.path)+'">'+esc(a.path)+'</span></span>'
+         +     '<button class="copy-btn" type="button" data-label="Copy path" data-path="'+esc(a.path)+'">Copy path</button>'
+         +   '</div>'
+         +   '<p class="art-card__producer">Produced by: '+esc(kindProducer(a.kind))+'</p>'
+         + '</article>';
+  }
+
+  /* render groups (one per kind); empty-kind path kept for data changes */
+  (function(){
+    var host = el('art-groups'); if (!host) return;
+    var html = '';
+    kinds.forEach(function(k){
+      var items = artifacts.filter(function(a){ return a.kind === k; });
+      html += '<section class="art-group" data-group data-kind="'+esc(k)+'">'
+           +    '<div class="art-group__head"><span class="art-group__title">'+esc(kindLabel(k))+' &middot; '+items.length+'</span></div>';
+      if (items.length){
+        html += '<div class="art-grid">'+items.map(card).join('')+'</div>';
+      } else {
+        html += '<p class="empty-kind">No '+esc(kindLabel(k).toLowerCase())+' produced yet. This kind fills as its build gate is met.</p>';
+      }
+      html += '</section>';
+    });
+    host.innerHTML = html;
+
+    host.addEventListener('click', function(e){
+      var b = e.target.closest('.copy-btn'); if (!b) return;
+      copyText(b.getAttribute('data-path'), b);
+    });
+  })();
+
+  /* count line + filter chips (kinds derived) */
+  (function(){
+    var c = el('count-line');
+    if (c) { c.textContent = artifacts.length + ' artifacts across ' + kinds.length + ' kinds'; }
+
+    var host = el('filters'); if (!host) return;
+    var active = null;
+    function mk(label, val){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'chip filter-btn'; b.textContent = label;
+      b.setAttribute('aria-pressed', String(val === active));
+      b.addEventListener('click', function(){
+        active = (active === val) ? null : val;
+        host.querySelectorAll('.filter-btn').forEach(function(x){
+          x.setAttribute('aria-pressed', String(x.getAttribute('data-val') === (active||'')));
+        });
+        document.querySelectorAll('[data-group]').forEach(function(g){
+          g.hidden = !!active && g.getAttribute('data-kind') !== active;
+        });
+      });
+      b.setAttribute('data-val', val || '');
+      return b;
+    }
+    var all = mk('All', null); all.setAttribute('aria-pressed','true'); host.appendChild(all);
+    kinds.forEach(function(k){ host.appendChild(mk(kindLabel(k), k)); });
+  })();
+})();
+</script>
+</body>
+</html>

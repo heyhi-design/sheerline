@@ -1,0 +1,58 @@
+{
+  "$schema": "heyhi-scene-graph/v0.4",
+  "meta": {
+    "source": "prototypes/atlas-hero.html",
+    "breakpoint": "lg",
+    "brand_config": "example",
+    "generated_by": "heyhi-design-bridge@0.1.0"
+  },
+  "tokens_used": [
+    { "css_var": "--color-backgrounds-page", "token_path": "tokens.color.backgrounds.page", "figma_variable": "color/backgrounds/page", "resolved": "#F8F8F8", "source": "declared", "match_confidence": 1.0 },
+    { "css_var": "--color-text-primary", "token_path": "tokens.color.text.primary", "figma_variable": "color/text/primary", "resolved": "#1C1C1C", "source": "declared", "match_confidence": 1.0 },
+    { "css_var": "--color-accent-primary", "token_path": "tokens.color.accent.primary", "figma_variable": "color/accent/primary", "resolved": "#E4572E", "source": "declared", "match_confidence": 1.0 }
+  ],
+  "root": {
+    "type": "FRAME",
+    "name": "Hero",
+    "layout": { "mode": "VERTICAL", "primaryAxisAlignItems": "CENTER", "counterAxisAlignItems": "CENTER", "itemSpacing": 24, "padding": { "t": 80, "r": 32, "b": 80, "l": 32 } },
+    "size": { "w": 1440, "h": 640, "sizing": { "h": "FILL", "v": "HUG" } },
+    "fills": [{ "type": "SOLID", "bind": "tokens.color.backgrounds.page", "resolved": "#F8F8F8" }],
+    "children": [
+      { "type": "VECTOR", "name": "wordmark", "svgRef": "assets/example-mark.svg" },
+      {
+        "type": "TEXT",
+        "name": "H1",
+        "characters": "Build it in.",
+        "type_style": { "family": "Sora", "weight": 700, "size": 51, "lineHeight": 1.1, "letterSpacing": -0.5, "token_ref": "tokens.typography.scale.h1" },
+        "fills": [{ "bind": "tokens.color.text.primary", "resolved": "#1C1C1C" }]
+      },
+      {
+        "type": "TEXT",
+        "name": "Subhead",
+        "characters": "Intelligent infrastructure, built into how your team already works.",
+        "type_style": { "family": "Lora", "weight": 400, "size": 20, "lineHeight": 1.5, "token_ref": "tokens.typography.scale.body" },
+        "fills": [{ "bind": "tokens.color.text.primary", "resolved": "#1C1C1C" }]
+      },
+      {
+        "type": "FRAME",
+        "name": "CTA",
+        "layout": { "mode": "HORIZONTAL", "primaryAxisAlignItems": "CENTER", "counterAxisAlignItems": "CENTER", "itemSpacing": 8, "padding": { "t": 12, "r": 20, "b": 12, "l": 20 } },
+        "size": { "w": null, "h": 48, "sizing": { "h": "HUG", "v": "FIXED" } },
+        "fills": [{ "type": "SOLID", "bind": "tokens.color.accent.primary", "resolved": "#E4572E" }],
+        "children": [
+          {
+            "type": "TEXT",
+            "name": "CTA Label",
+            "characters": "Start a conversation",
+            "type_style": { "family": "DM Mono", "weight": 400, "size": 14, "token_ref": "tokens.typography.scale.utility" },
+            "fills": [{ "bind": "tokens.color.backgrounds.page", "resolved": "#F8F8F8" }]
+          }
+        ]
+      }
+    ],
+    "flags": [
+      { "feature": "css-grid", "node": "Hero > .stat-row", "action": "approximated-as-autolayout", "needs_human": true },
+      { "feature": "position-sticky", "node": "nav.site-header", "action": "flattened-to-static", "needs_human": true }
+    ]
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "schema_version": "1.0",
+  "voice": {
+    "ref": "Voice System: Ledgerling (synthetic) — confirmed 2026-09-05 by the invented content lead",
+    "confirmed": true
+  },
+  "states_source": {
+    "kind": "inventory",
+    "ref": "worked-example.input.sidecar.json (SYNTH-0002 node 8:120)",
+    "provenance": "from-source"
+  },
+  "strings": [
+    {
+      "element_id": "save-button",
+      "state": "loading",
+      "taxonomy_slot": "Loading",
+      "string": "Saving your settings.",
+      "provenance": "candidate",
+      "lineage": "new",
+      "revised_from": null,
+      "constraints": {
+        "placement": "inline",
+        "max_chars": 40,
+        "variables": []
+      },
+      "doctrine": {
+        "next_step": null,
+        "condition": null,
+        "expectation_set": true,
+        "action_named": null,
+        "flags": []
+      }
+    },
+    {
+      "element_id": "save-button",
+      "state": "error",
+      "taxonomy_slot": "Error",
+      "string": "The save didn't go through ({condition}). Try again.",
+      "provenance": "candidate",
+      "lineage": "new",
+      "revised_from": null,
+      "constraints": {
+        "placement": "inline",
+        "max_chars": 80,
+        "variables": [
+          {
+            "name": "condition",
+            "plural_forms": null,
+            "held": true
+          }
+        ]
+      },
+      "doctrine": {
+        "next_step": "retry",
+        "condition": "from-trigger",
+        "expectation_set": null,
+        "action_named": null,
+        "flags": []
+      }
+    },
+    {
+      "element_id": "save-button",
+      "state": "success",
+      "taxonomy_slot": "Success",
+      "string": "Settings saved.",
+      "provenance": "candidate",
+      "lineage": "new",
+      "revised_from": null,
+      "constraints": {
+        "placement": "toast",
+        "max_chars": 40,
+        "variables": []
+      },
+      "doctrine": {
+        "next_step": null,
+        "condition": null,
+        "expectation_set": null,
+        "action_named": null,
+        "flags": []
+      }
+    },
+    {
+      "element_id": "receipts-list",
+      "state": "empty",
+      "taxonomy_slot": "Empty",
+      "string": "No receipts yet. Scan your first one to start the list.",
+      "provenance": "candidate",
+      "lineage": "new",
+      "revised_from": null,
+      "constraints": {
+        "placement": "panel",
+        "max_chars": 80,
+        "variables": []
+      },
+      "doctrine": {
+        "next_step": null,
+        "condition": null,
+        "expectation_set": null,
+        "action_named": true,
+        "flags": []
+      }
+    },
+    {
+      "element_id": "receipts-list",
+      "state": "loading",
+      "taxonomy_slot": "Loading",
+      "string": "Pulling your recent receipts.",
+      "provenance": "candidate",
+      "lineage": "new",
+      "revised_from": null,
+      "constraints": {
+        "placement": "panel",
+        "max_chars": 60,
+        "variables": []
+      },
+      "doctrine": {
+        "next_step": null,
+        "condition": null,
+        "expectation_set": true,
+        "action_named": null,
+        "flags": [
+          "spinner-where-skeleton"
+        ]
+      }
+    },
+    {
+      "element_id": "receipts-list",
+      "state": "error",
+      "taxonomy_slot": "Error",
+      "string": null,
+      "provenance": "candidate",
+      "lineage": "new",
+      "revised_from": null,
+      "constraints": {
+        "placement": "panel",
+        "max_chars": 80,
+        "variables": []
+      },
+      "doctrine": {
+        "next_step": "UNSUPPLIED",
+        "condition": "from-trigger",
+        "expectation_set": null,
+        "action_named": null,
+        "flags": [
+          "next-step-unsupplied"
+        ]
+      }
+    },
+    {
+      "element_id": "camera-permission",
+      "state": "success",
+      "taxonomy_slot": "Success",
+      "string": "Camera on. Point it at a receipt.",
+      "provenance": "candidate",
+      "lineage": "new",
+      "revised_from": null,
+      "constraints": {
+        "placement": "inline",
+        "max_chars": 60,
+        "variables": []
+      },
+      "doctrine": {
+        "next_step": null,
+        "condition": null,
+        "expectation_set": null,
+        "action_named": true,
+        "flags": []
+      }
+    }
+  ],
+  "missing_states": [],
+  "claims_held": [],
+  "glossary": [
+    {
+      "term": "receipt",
+      "where": [
+        "receipts-list",
+        "camera-permission"
+      ],
+      "candidate_definition": "One scanned or imported expense record.",
+      "conflicts": [
+        "the source's tab label says 'Expenses' for the same objects"
+      ]
+    }
+  ],
+  "judgment": {
+    "ships": null,
+    "tone_calls": null,
+    "term_rulings": null
+  },
+  "gate": {
+    "owner": null,
+    "date": null
+  }
+}

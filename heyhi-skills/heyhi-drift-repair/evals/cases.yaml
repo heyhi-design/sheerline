@@ -1,0 +1,197 @@
+# Eval cases: heyhi-drift-repair (Sheerline area 7 / 8, the "act" verb).
+#
+# The spec's §8 acceptance criteria, in the Sheerline agent-judged case shape (R4).
+# These are the SAME criteria the runnable harness (run.py) asserts mechanically —
+# run.py is the deterministic proof, these are the human-legible contract. The
+# load-bearing properties: the apply/propose split keys on `detection`; a judged
+# finding is NEVER auto-repaired and writes nothing; every applied repair is
+# re-validated and carries a reversible deviation record; a tenant repair leaks no
+# HeyHi token. Fixtures: evals/fixtures/ + the live seed library
+# (heyhi-mcp/heyhi_mcp/corrections/seed-corrections.yaml). That seed library is a
+# retained monorepo runtime, not part of the Sheerline scaffold export: run.py needs
+# the HeyHi monorepo (or a checkout carrying heyhi-mcp/ at the same path) to run.
+#
+# classification: confidential
+
+cases:
+  - id: dr-01-round-trip-discrimination
+    description: >-
+      A deterministic repair applied to a known_bad fixture makes the declaration
+      match `expected`; reverting the fix re-fires the originating finding.
+    input: |
+      A located finding: {surface: card.css, location: ".card / padding",
+      drift_class: call-site, matched_correction: off-scale-spacing-value}, against
+      `.card { padding: 16px; }`. Auto-apply is on.
+    expected_findings:
+      - "The declaration becomes `.card { padding: var(--space-4); }` — byte-equal to the seed's `expected`."
+      - "Reverting to `padding: 16px` re-fires the off-scale-spacing conformance finding (the known_bad/expected discrimination, schema.yaml:147-148)."
+      - "Aggregate: applying all 9 deterministic seeds to drifted.css reproduces clean.css exactly."
+    pass_criteria: >-
+      The repaired declaration equals `expected` and the revert re-fires the finding. A repair
+      that changes bytes but does not reach `expected`, or one whose revert leaves the finding
+      silent, fails.
+
+  - id: dr-02-false-repair-floor
+    description: >-
+      Run on a known-good conformance fixture produces zero repairs and zero
+      proposals — a loop that "fixes" clean input is worse than no loop.
+    input: |
+      clean.css (every value already a var() reference) with the findings a clean
+      audit would produce (none); and, as a control, the 9 deterministic findings
+      pointed at clean.css.
+    expected_findings:
+      - "Empty findings → zero applied, zero proposals, artifact byte-unchanged."
+      - "The 9 findings pointed at clean input locate nothing (the declarations are already tokens) → zero applied, zero proposals."
+    pass_criteria: >-
+      Zero repairs and zero proposals on clean input in both runs. Any fabricated repair or
+      proposal on a clean fixture fails.
+
+  - id: dr-03-boundary-assertion-judged-writes-nothing
+    description: >-
+      A detection:judged finding produces a proposal with the human-confirm flag
+      and writes nothing — even though it looks mechanical and is severity:factual.
+    input: |
+      The contrast finding (matched_correction: contrast-pairing-not-declared-safe,
+      severity: factual, detection: judged) in AUTO-APPLY mode.
+    expected_findings:
+      - "Zero applied; exactly one proposal, provenance `[candidate: needs confirmation]`, needs_human_confirm true."
+      - "No file changed (assert the artifact dict is byte-identical to input)."
+      - "The routing keyed on `detection` (judged), NOT `severity` (factual) — severity:factual bought no auto-apply."
+    pass_criteria: >-
+      Judged → proposed, no write, regardless of auto-apply being on or severity being factual.
+      Auto-applying a judged finding — even a 'cheap, obvious' one — fails (the never-auto
+      invariant is structural, not a confidence threshold).
+
+  - id: dr-04-idempotence
+    description: >-
+      A second auto-apply run over the same input applies zero NEW auto-repairs;
+      the first run's applied fixes are conformant, so they do not re-fire.
+    input: |
+      The 9 deterministic findings, run twice with auto-apply — the second run's
+      input artifacts are the first run's output.
+    expected_findings:
+      - "Run 1 applies 9; run 2 applies 0 (the literals are gone, so nothing re-matches)."
+      - "Judged/unmatched findings, if present, re-propose on the second run by design — assert zero new AUTO-APPLIES, not zero findings."
+    pass_criteria: >-
+      Second run applies zero new repairs and leaves the artifacts unchanged. A second run that
+      re-applies, or mutates an already-conformant declaration, fails.
+
+  - id: dr-05-token-source-propagation
+    description: >-
+      A token-definition (value) drift TARGETS the single DTCG source as a proposed
+      diff — v1 does not auto-write it — never a smear of N patched call-sites; a
+      call-site literal writes the site, not the source.
+    input: |
+      A finding with drift_class: token-definition (a brand color off-system at the
+      token source) alongside the 9 call-site findings, auto-apply on.
+    expected_findings:
+      - "The token-definition finding is PROPOSED with target `token-source`; zero applied; neither the source nor any call-site is written (v1 proposes target A)."
+      - "The 9 call-site repairs write the emitted code (target B), not the token source."
+    pass_criteria: >-
+      Token-definition → single-source proposed diff; call-site → the site. Targeting a value-fix
+      across N consumers, or a call-site fix into the token source, both fail — the write-target
+      routing is a correctness rule.
+
+  - id: dr-06-post-repair-revalidation
+    description: >-
+      Every applied repair is followed by a re-validation that passes; a repair
+      that fails re-validation is rolled back and downgraded to a proposal.
+    input: |
+      A deterministic correction whose `expected` still contains a raw literal
+      (a deliberately broken transform), auto-apply on; plus the 9 clean seeds.
+    expected_findings:
+      - "The broken transform is rolled back (the file is unchanged) and re-emitted as a proposal with reason 'rolled back'."
+      - "The 9 clean transforms each re-validate and land (revalidated: true)."
+    pass_criteria: >-
+      No unverified repair lands. A repair that leaves a literal, or lands without a passing
+      re-validation, fails.
+
+  - id: dr-07-instance-isolation
+    description: >-
+      A tenant run (its own token registry) leaks no HeyHi token name into any
+      repair or proposal — the design system is reached through the boundary,
+      never embedded.
+    input: |
+      A tenant fixture `.t { color: #000000; }` with a tenant registry whose
+      `expected` is `var(--tenant-ink)`, auto-apply on.
+    expected_findings:
+      - "The repair uses the tenant token (`var(--tenant-ink)`); no HeyHi seed token name (`--text-primary`, `--space-4`, …) appears anywhere in the output."
+    pass_criteria: >-
+      Tenant repairs carry only tenant tokens. Any HeyHi token name in a tenant repair or
+      proposal fails (the loop must read the instance's registry, never fall back to HeyHi's).
+
+  - id: dr-08-provenance-and-deviation-present
+    description: >-
+      Every applied repair carries provenance `automated` and a complete,
+      reversible deviation record (confirmed: false); every proposal carries
+      `[candidate: needs confirmation]` or `[inferred]`.
+    input: |
+      The full 12-finding run in auto-apply mode.
+    expected_findings:
+      - "Each applied repair: provenance automated, revalidated true, confirmed false, and a deviation record with finding/matched_correction/surface/before/after/timestamp all non-empty."
+      - "Each proposal: provenance in {[candidate: needs confirmation], [inferred]}; `automated` never co-occurs with `[inferred]`."
+    pass_criteria: >-
+      Provenance and a complete deviation record on every applied repair; a labeled provenance on
+      every proposal. A repair with confirmed:true (no human signature) or a missing deviation
+      field fails.
+
+  # ── implementation properties beyond the §8 list (adopted §10 defaults) ─────
+  - id: dr-09-proposal-first-default
+    description: >-
+      The adopted safe default (OQ-2): with auto-apply OFF — the default — even a
+      deterministic, unambiguous finding is PROPOSED (its ready transform attached)
+      and nothing is written. Auto-apply is an explicit per-engagement opt-in.
+    input: |
+      The 9 deterministic call-site findings over drifted.css, run with the DEFAULT
+      mode (auto_apply not set).
+    expected_findings:
+      - "Zero applied; nine proposals, each `[candidate: needs confirmation]` with a ready known_bad→expected transform attached."
+      - "The artifact is byte-unchanged — the default writes nothing."
+    pass_criteria: >-
+      Default mode proposes every deterministic finding and writes nothing. A default-mode run
+      that auto-applies (writes without the opt-in) fails — proposal-first is the safe default.
+
+  - id: dr-10-ambiguity-guard
+    description: >-
+      Precondition 1: a deterministic finding whose literal value resolves to MORE
+      THAN ONE canonical token downgrades to a proposal labeled `[inferred]` — which
+      token the site intended is a semantic-role call, never an auto-apply.
+    input: |
+      A deterministic correction carrying two candidate tokens for one literal
+      (an instance whose canonical set genuinely collides), auto-apply on.
+    expected_findings:
+      - "Zero applied; one proposal, provenance `[inferred]`, no write."
+      - "`[inferred]` and `automated` never co-occur — an inferred token choice is never auto-applied."
+    pass_criteria: >-
+      A >1-candidate deterministic finding is proposed with `[inferred]`, not auto-applied.
+      Auto-applying one of several candidate tokens fails (the site's intent is a human call).
+
+  - id: dr-11-warning-tier-never-auto-applies
+    description: >-
+      Spec §5.1: only an `error`-tier finding is auto-apply-eligible. A finding whose
+      `source_tier` is `warning` or `suggestion` is advisory and PROPOSES, never
+      auto-applies — even when it matches a deterministic correction.
+    input: |
+      A deterministic call-site finding tagged `source_tier: warning` (an advisory
+      the audit surfaced), matched to `off-scale-spacing-value`, auto-apply on.
+    expected_findings:
+      - "Zero applied; one proposal; the file is byte-unchanged."
+      - "The guarantee holds regardless of `detection` — enforced by the tier, not by warnings happening to map to judged corrections."
+    pass_criteria: >-
+      A warning/suggestion-tier finding is proposed, never written. Auto-applying a non-error-tier
+      finding fails (spec §5.1: warnings are advisory, never an auto-apply).
+
+  - id: dr-12-malformed-finding-degrades
+    description: >-
+      Robustness: a malformed located-finding (e.g. missing its `surface`) degrades
+      to a proposal rather than crashing the run — nothing is silently dropped.
+    input: |
+      A deterministic finding with no `surface` key, auto-apply on.
+    expected_findings:
+      - "No exception is raised; the finding becomes a proposal ('no surface located — cannot auto-apply')."
+      - "No file is written."
+    pass_criteria: >-
+      The run completes and the malformed finding is proposed. A KeyError / crash, or a silent
+      drop, fails.
+
+# HeyHi Confidential

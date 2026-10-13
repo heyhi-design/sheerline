@@ -1,0 +1,219 @@
+{
+  "skill": "ui-studio",
+  "version": "1.1.0",
+  "created": "2026-03-25",
+  "description": "17 core eval assertions for ui-studio. Tests all three modes, config handling, layout declaration, WCAG AA, output completeness, the mandatory exemplar match (US-16), and the rendered-read delivery gate (US-17).",
+  "evals": [
+    {
+      "id": "US-01",
+      "mode": "A",
+      "scenario": "Mode A build with a confirmed config (completeness_score ≥ 90)",
+      "assertion": "Output CSS contains only custom property references from the config (e.g., `var(--color-*)`, `var(--type-*)`, `var(--spacing-*)`). No raw hex values appear in CSS outside the `:root` block. No arbitrary values invented.",
+      "pass_criteria": "CSS audit: zero raw hex outside :root. Zero hardcoded px values not derived from spacing tokens.",
+      "tags": ["mode-a", "tokens", "no-arbitrary-values"]
+    },
+    {
+      "id": "US-02",
+      "mode": "A",
+      "scenario": "Mode A build with a confirmed config",
+      "assertion": "A developer handoff document is produced alongside the prototype. It includes: token-to-CSS-property mapping, component inventory notes, layout pattern names used, and copy provenance table.",
+      "pass_criteria": "Handoff document exists. Contains all four required sections.",
+      "tags": ["mode-a", "handoff", "output-completeness"]
+    },
+    {
+      "id": "US-03",
+      "mode": "A",
+      "scenario": "Mode A build with a confirmed config",
+      "assertion": "All explicitly documented token pairings in tokens.color.contrast_notes pass WCAG AA: 4.5:1 minimum for body text, 3:1 minimum for large text (18px+ regular, 14px+ bold). Tokens with confidence: failing in field_provenance (and legacy PROVISIONAL: prefix tokens) are excluded from CSS output and are not evaluated. The WCAG gate applies only to pairings the config has explicitly documented — not to all possible combinations in the prototype.",
+      "pass_criteria": "Contrast ratios verified for all pairings present in tokens.color.contrast_notes. Zero failing combinations among explicitly documented pairings. Tokens with confidence: failing or confidence: provisional excluded from CSS output and not evaluated. Absence of contrast_notes entries is not a failure — it means no pairings were documented, not that pairings failed.",
+      "tags": ["mode-a", "wcag-aa", "contrast"]
+    },
+    {
+      "id": "US-04",
+      "mode": "A",
+      "scenario": "Mode A build with a provisional config (version 0.x.y)",
+      "assertion": "Output is marked provisional. The provisional warning is surfaced at session start: 'Config is provisional (v[version]). Mode A output will be built on unconfirmed tokens.' Every PROVISIONAL: prefixed token is treated as a direction, not a hard constraint, and each approximation is flagged in the output.",
+      "pass_criteria": "Provisional warning appears. Approximations are flagged inline.",
+      "tags": ["mode-a", "provisional-config", "warning"]
+    },
+    {
+      "id": "US-05",
+      "mode": "all",
+      "scenario": "No active-brand.json exists when ui-studio is invoked",
+      "assertion": "Hard stop fires immediately. No build is attempted. Exact message: 'No brand config found. Run ui-studio-onboard to generate one, or activate an existing config with python3 scripts/switch-brand.py --config [name]. Build cannot proceed without a config.'",
+      "pass_criteria": "Hard stop message matches exactly. Zero CSS or HTML is generated.",
+      "tags": ["no-config", "hard-stop", "gate"]
+    },
+    {
+      "id": "US-06",
+      "mode": "B",
+      "scenario": "Mode B build with a confirmed config",
+      "assertion": "Output CSS contains only config tokens. No extended palette or invented colors are used. Palette extension is a Mode C capability only.",
+      "pass_criteria": "CSS audit: zero invented hex values outside the :root block. All values traced to config tokens.",
+      "tags": ["mode-b", "tokens", "no-extension"]
+    },
+    {
+      "id": "US-07",
+      "mode": "B",
+      "scenario": "Mode B build with a confirmed config",
+      "assertion": "The build includes at least one asymmetric or novel layout arrangement. The Layout Declaration documents the departure from the base pattern with derivation notation: 'modified: [description]'.",
+      "pass_criteria": "Layout Declaration present. At least one section uses 'modified:' derivation. CSS reflects the asymmetric or novel arrangement.",
+      "tags": ["mode-b", "layout", "creative"]
+    },
+    {
+      "id": "US-08",
+      "mode": "B",
+      "scenario": "Mode B build with a confirmed config",
+      "assertion": "WCAG AA passes for all contrast combinations. prefers-reduced-motion is respected in all animations. Focus states visible on all interactive elements.",
+      "pass_criteria": "No AA failures. @media (prefers-reduced-motion: reduce) blocks present. Focus styles implemented.",
+      "tags": ["mode-b", "wcag-aa", "accessibility"]
+    },
+    {
+      "id": "US-09",
+      "mode": "C",
+      "scenario": "Mode C build with any config",
+      "assertion": "A complete Layout Declaration is produced for every section before any CSS is written. Declaration format: Section, Pattern, Derivation (derived-from notation), Rationale, Spacing tier.",
+      "pass_criteria": "Layout Declaration covers every section. All fields populated. 'derived-from:' notation used for at least one section.",
+      "tags": ["mode-c", "layout-declaration", "pre-build"]
+    },
+    {
+      "id": "US-10",
+      "mode": "C",
+      "scenario": "Mode C build using an extended palette (invented colors)",
+      "assertion": "Each invented color has a documented contrast verification before it appears in CSS. Verification format: Extended color [name], Value [hex], Appears against [background hex], Contrast ratio [X.X:1], Threshold, Result: PASS/FAIL. Failing colors are adjusted before use.",
+      "pass_criteria": "Verification block precedes every invented color's first CSS use. Zero uninspected invented colors in delivered CSS.",
+      "tags": ["mode-c", "extended-palette", "contrast-verification"]
+    },
+    {
+      "id": "US-11",
+      "mode": "C",
+      "scenario": "Mode C build — interactive prototype path",
+      "assertion": "Interactive prototype is produced with custom components. WCAG AA passes for all text/background combinations including extended palette. prefers-reduced-motion is respected. Custom components use semantic HTML.",
+      "pass_criteria": "Prototype delivered. AA verified. Reduced motion handled. Semantic HTML confirmed.",
+      "tags": ["mode-c", "prototype", "wcag-aa"]
+    },
+    {
+      "id": "US-12",
+      "mode": "C",
+      "scenario": "Mode C build — composition blueprint path",
+      "assertion": "A composition blueprint (structured markdown) and a concept narrative (standalone .md with YAML frontmatter) are produced. Blueprint covers: visual intent, palette, typography, layout section breakdown, motion intent, custom components. Concept narrative is NOT formatted as a heyhi-deck input.",
+      "pass_criteria": "Both files exist. Blueprint has all required sections. Narrative has YAML frontmatter with status, client, mode, config_used fields.",
+      "tags": ["mode-c", "blueprint", "concept-narrative"]
+    },
+    {
+      "id": "US-13",
+      "mode": "all",
+      "scenario": "Any mode, any config",
+      "assertion": "The Layout Declaration maps every section of the build to a named pattern from layout-patterns.md before CSS is written. Hybrid patterns use the derived notation: '[Pattern-A] derived with [Pattern-B]'.",
+      "pass_criteria": "Zero sections without a named pattern in the Layout Declaration. All pattern names match catalog entries.",
+      "tags": ["all-modes", "layout-declaration", "pattern-names"]
+    },
+    {
+      "id": "US-14",
+      "mode": "all",
+      "scenario": "Post-build verification, any mode",
+      "assertion": "After CSS is written, the post-build verification step runs: each declared section's grid properties, spacing values, and structural HTML are checked against the named pattern's specification. Divergences are flagged.",
+      "pass_criteria": "Post-build verification output present. Any divergences named explicitly. Undivergent sections confirmed.",
+      "tags": ["all-modes", "post-build-verification", "quality-gate"]
+    },
+    {
+      "id": "US-15",
+      "mode": "all",
+      "scenario": "Any mode — any build with animations",
+      "assertion": "All animations in the prototype have a @media (prefers-reduced-motion: reduce) block that either removes the animation entirely or reduces it to an immediate state change. No animation is delivered without a reduced-motion variant.",
+      "pass_criteria": "Every CSS animation or transition has a corresponding @media (prefers-reduced-motion: reduce) rule. Zero unreduced animations.",
+      "tags": ["all-modes", "prefers-reduced-motion", "accessibility"]
+    },
+    {
+      "id": "US-16",
+      "mode": "all",
+      "scenario": "Any mode — a build that introduces one or more components, against a config that has a components block",
+      "assertion": "The Component check (workflow step 10) runs as a mandatory exemplar match: the build consults existing exemplars before finalizing a component — reading the config's components.inventory (or calling retrieve_design_examples(task_type=<component>) when a per-client design-system MCP is deployed) and matching on props, variants, and do/don't guidance. A component that duplicates an existing inventory entry is flagged as a defect. When the config has no components block, the build states the inventory check is unavailable rather than skipping it silently.",
+      "pass_criteria": "Evidence of the exemplar consultation is present in the build record (an inventory/exemplar lookup, not a rubber-stamp). Any component matching an existing inventory entry is reused, not rebuilt. Missing components block produces an explicit 'inventory check unavailable' statement, never silent omission.",
+      "tags": ["all-modes", "component-inventory", "exemplar-match", "reuse-before-rebuild"]
+    },
+    {
+      "id": "US-17",
+      "mode": "all",
+      "scenario": "Any mode — before delivery of a built prototype",
+      "assertion": "The Rendered-read validation gate (workflow step 12.5) runs before Deliver: validate_output is called on the emitted CSS/HTML via its rendered_css path against the active config's tokens (or the local conformance/css_check.py lane when no per-client MCP is deployed), reading the emitted stylesheet rather than the self-reported tokens_used manifest. Where the rendered-read is unavailable, the build says so and falls back to the local conformance run — it never reports a silent pass. A Mode A rendered-read failure blocks delivery.",
+      "pass_criteria": "A rendered-read (or explicit fallback conformance run) is executed before Deliver and its result recorded. No silent pass when the rendered-read is unavailable. Mode A delivery is blocked when the rendered-read flags a hardcoded value outside the config tokens.",
+      "tags": ["all-modes", "rendered-read", "validate-output", "delivery-gate", "fail-loud"]
+    }
+  ],
+  "onboard_evals": {
+    "skill": "ui-studio-onboard",
+    "evals": [
+      {
+        "id": "UO-01",
+        "scenario": "Phase 0 access verification fails (Figma account cannot access the file)",
+        "assertion": "Hard stop fires before any extraction begins. Message states the account email and instructs the user to share the file with that account. No config is written.",
+        "pass_criteria": "Stop message matches spec. Zero extraction calls made. Zero files written.",
+        "tags": ["phase-0", "hard-stop", "access"]
+      },
+      {
+        "id": "UO-02",
+        "scenario": "Single library design system (tokens and components in one file)",
+        "assertion": "Extraction completes successfully. No cross-reference step is attempted between separate library file_keys. The single file's variables are extracted for both tokens and component context.",
+        "pass_criteria": "Config written. No 'unresolved_variable_reference' entries in provisional_fields for variables that exist in the single library. completeness_score computable.",
+        "tags": ["phase-2", "single-library"]
+      },
+      {
+        "id": "UO-03",
+        "scenario": "Design system with separate token library and component library files",
+        "assertion": "get_variable_defs is called against the token library file_key, not the component library file_key. The classification step identifies the token_foundation library and routes extraction correctly.",
+        "pass_criteria": "Tool call log shows get_variable_defs(file_key=TOKEN_FILE_KEY). Component library file_key is different. No variable extraction from the wrong file.",
+        "tags": ["phase-2", "multi-library", "routing"]
+      },
+      {
+        "id": "UO-04",
+        "scenario": "Component variable reference that cannot be resolved to the token library",
+        "assertion": "The unresolvable reference is added to meta.provisional_fields with reason 'unresolved_variable_reference'. The component itself is NOT nulled — it appears in the inventory with a flag. The drift field components.drift.token_drift is updated.",
+        "pass_criteria": "provisional_fields entry exists with correct reason. Component exists in inventory. token_drift updated.",
+        "tags": ["phase-4", "unresolved-reference", "provisional-field"]
+      },
+      {
+        "id": "UO-05",
+        "scenario": "Onboarding completes with completeness_score ≥ 90 and fidelity_score ≥ 80",
+        "assertion": "Mode A unlock is confirmed in the output summary: 'Mode A fully unlocked.' Both completeness and fidelity scores are reported. The config version remains 0.x.y until `python3 scripts/validate.py --promote` is explicitly invoked. Version promotion to 1.0.0 requires all five gates to pass: completeness ≥ 90, fidelity ≥ 80, direction_lock_confirmed: true, designer_review_complete: true, and no provisional fields remaining. Running onboarding alone does NOT promote the version — `--promote` must be run as a separate explicit step after all gates are confirmed.",
+        "pass_criteria": "Output reports both completeness (≥ 90) and fidelity (≥ 80) scores. Mode A unlock status stated. Version string is 0.x.y. Running validate.py --promote with all gates passing advances version to 1.0.0 and writes meta.promoted_at. Running validate.py --promote with any gate failing reports the blocking gate and exits non-zero without writing to config.",
+        "tags": ["phase-9", "completeness", "fidelity", "mode-unlock", "version-promotion"]
+      },
+      {
+        "id": "UO-06",
+        "scenario": "Onboarding produces a config with completeness_score < 30",
+        "assertion": "Hard stop fires at Phase 9. Message: 'Completeness score is [N]/100 — below the minimum threshold. Re-run onboarding after filling the following sections: [list]'. Both completeness and fidelity scores are displayed in the output even when the hard stop fires. No ui-studio build is started. All modes blocked.",
+        "pass_criteria": "Hard stop message present with score and section list. Both completeness and fidelity scores shown in output. No build initiated. All modes (A, B, C) blocked.",
+        "tags": ["phase-9", "hard-stop", "low-score", "dual-score"]
+      },
+      {
+        "id": "UO-06b",
+        "scenario": "Onboarding produces a config with completeness_score in the 30–49 range (PARTIAL_STOP)",
+        "assertion": "Partial stop fires at Phase 9. Mode A is blocked. Modes B and C are permitted but must open with a capability-degradation notice. The output states: 'Mode A requires completeness ≥ 50. Your config is at [N]/100. Mode B and C are available — output will be generative and unbounded from the token set.' Both completeness and fidelity scores are displayed. A Mode B or C build may proceed if the user chooses it.",
+        "pass_criteria": "Mode A blocked. Modes B and C offered. Capability-degradation notice present. Both scores shown. Build does not start until user selects Mode B or C.",
+        "tags": ["phase-9", "partial-stop", "mode-b", "mode-c", "capability-degradation", "dual-score"]
+      },
+      {
+        "id": "UO-07",
+        "scenario": "Config written without ux_writing and layout blocks (backward-compatible config from design-system-onboard)",
+        "assertion": "ui-studio opens the config and proceeds with degraded capabilities. The capability unlock matrix is displayed: 'Layout block absent — Layout Declaration pattern enforcement disabled. UX writing block absent — per-slot copy patterns unavailable.' No error or crash.",
+        "pass_criteria": "Build proceeds in degraded mode. Unlock matrix displayed. Zero error state.",
+        "tags": ["backward-compat", "degraded-mode", "missing-blocks"]
+      },
+      {
+        "id": "UO-08",
+        "scenario": "switch-brand.py is invoked with a named config (e.g., --config neo-industrial)",
+        "assertion": "active-brand.json is overwritten with the named config's contents. .cursor/rules/ui-studio.mdc is regenerated immediately after. Both files reflect the new brand.",
+        "pass_criteria": "active-brand.json brand.name matches the named config. .mdc file timestamp updated. No manual file copying needed.",
+        "tags": ["switch-brand", "activation", "cursor-rules"]
+      },
+      {
+        "id": "UO-09",
+        "scenario": "`validate.py --promote` invoked when one or more gates are failing",
+        "assertion": "Promotion is rejected. The script reports each failing gate specifically: completeness < 90, fidelity < 80, direction_lock_confirmed false, designer_review_complete false, or provisional fields remaining. The config version remains 0.x.y — the file is not modified. Exit code is non-zero.",
+        "pass_criteria": "Output names each blocking gate. Config version unchanged. meta.promoted_at not written. Exit code non-zero. Zero file mutations on gate failure.",
+        "tags": ["promote", "gate-failure", "version-promotion", "hard-stop"]
+      }
+    ]
+  }
+}

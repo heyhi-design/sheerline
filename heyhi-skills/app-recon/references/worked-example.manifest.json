@@ -1,0 +1,102 @@
+{
+  "system_id": "heyhi-website",
+  "generated_at": "2026-09-07T00:00:00Z",
+  "source_commit": "216566a",
+  "tier": 2,
+  "surfaces": [
+    {
+      "id": "home",
+      "route": "/",
+      "container_dir": "src/routes",
+      "entry_component": "HomePage",
+      "breakpoints": ["md", "lg"],
+      "theme": "single (no runtime theme switch; no ThemeProvider or data-theme wiring found in src/)",
+      "architecture_target": "static SSR + prerender (TanStack Start); no auth or shell boundary",
+      "components_used": [
+        { "name": "Hero", "props_passed": {}, "defaults": {}, "source": "@/components/Hero, mounted at src/routes/index.lazy.tsx:15" },
+        { "name": "Problem", "props_passed": {}, "defaults": {}, "source": "@/components/Problem, mounted at src/routes/index.lazy.tsx:16" },
+        { "name": "Approach", "props_passed": {}, "defaults": {}, "source": "@/components/Approach, mounted at src/routes/index.lazy.tsx:17" },
+        { "name": "Founder", "props_passed": {}, "defaults": {}, "source": "@/components/Founder, mounted at src/routes/index.lazy.tsx:18" },
+        { "name": "Contact", "props_passed": {}, "defaults": {}, "source": "@/components/Contact, mounted at src/routes/index.lazy.tsx:19" }
+      ],
+      "copy": [
+        { "text": "designing how your team's work, works", "role": "heading", "file": "src/components/Hero.tsx", "line": 117 }
+      ],
+      "endpoints": [],
+      "in_flight": {}
+    },
+    {
+      "id": "log-index",
+      "route": "/log/",
+      "container_dir": "src/routes/log",
+      "entry_component": "createLazyFileRoute(\"/log/\")",
+      "breakpoints": ["md"],
+      "theme": "single (inherits the site's single theme)",
+      "architecture_target": "static SSR + prerender (TanStack Start); no auth or shell boundary",
+      "components_used": [
+        { "name": "Link", "props_passed": {}, "defaults": {}, "source": "@tanstack/react-router, imported at src/routes/log/index.lazy.tsx:1" },
+        { "name": "motion", "props_passed": {}, "defaults": {}, "source": "motion/react, imported at src/routes/log/index.lazy.tsx:2" }
+      ],
+      "copy": [
+        { "text": "The Log", "role": "heading", "file": "src/routes/log/index.lazy.tsx", "line": 20 },
+        { "text": "Observations on living systems, intelligent infrastructure, and the organizations that build them.", "role": "body", "file": "src/routes/log/index.lazy.tsx", "line": 23 }
+      ],
+      "endpoints": [],
+      "in_flight": {}
+    },
+    {
+      "id": "log-entry",
+      "route": "/log/$slug",
+      "container_dir": "src/routes/log",
+      "entry_component": "src/routes/log/$slug.lazy.tsx",
+      "breakpoints": [],
+      "theme": "",
+      "architecture_target": "static SSR + prerender (TanStack Start)",
+      "components_used": [],
+      "copy": [],
+      "endpoints": [],
+      "in_flight": {}
+    },
+    {
+      "id": "lab",
+      "route": "/lab",
+      "container_dir": "src/routes",
+      "entry_component": "src/routes/lab.lazy.tsx",
+      "breakpoints": [],
+      "theme": "",
+      "architecture_target": "static SSR + prerender (TanStack Start)",
+      "components_used": [],
+      "copy": [],
+      "endpoints": [],
+      "in_flight": {}
+    },
+    {
+      "id": "resources-hermetic-seal",
+      "route": "/resources/hermetic-seal",
+      "container_dir": "src/routes/resources",
+      "entry_component": "src/routes/resources/hermetic-seal.lazy.tsx",
+      "breakpoints": [],
+      "theme": "",
+      "architecture_target": "static SSR + prerender (TanStack Start)",
+      "components_used": [],
+      "copy": [],
+      "endpoints": [],
+      "in_flight": {}
+    }
+  ],
+  "endpoints": [],
+  "capabilities": {
+    "auth_model": "none",
+    "roles": [],
+    "writes": [],
+    "offline_sync": false,
+    "feature_flags": []
+  },
+  "unverified": [
+    { "surface": "log-entry", "claim": "components_used and copy", "reason": "not fanned out in this pass; listed as a candidate surface, selection pending the human's scope call" },
+    { "surface": "lab", "claim": "components_used and copy", "reason": "not fanned out in this pass; listed as a candidate surface, selection pending the human's scope call" },
+    { "surface": "resources-hermetic-seal", "claim": "components_used and copy", "reason": "not fanned out in this pass; listed as a candidate surface, selection pending the human's scope call" },
+    { "surface": "global", "claim": "feature_flags", "reason": "no flag wiring observed in the two surfaces read; not exhaustively searched across the tree" },
+    { "surface": "home", "claim": "the full breakpoint token set", "reason": "md and lg observed in Hero.tsx Tailwind classes; not confirmed as the site-wide breakpoint scale" }
+  ]
+}

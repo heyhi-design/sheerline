@@ -1,0 +1,195 @@
+{
+  "skill_name": "design-system-care-monthly",
+  "version": "1.2.0",
+  "created": "2026-07-06",
+  "classification": "internal",
+  "description": "13 eval scaffold cases for design-system-care-monthly, grounded in documented SKILL.md behavior (setup-grade v2 H2; case 7 added 2026-09-01 for Step 5h Agent Conformance Audit; cases 8-13 added 2026-09-07 for the forward-deployed-loop steps 1b/3b/5e/7, Lane I / DISPATCH-10, including a clean-pass case (application_loop disabled) and a no-flip / no-gate assertion). Subjective/taste dimensions are marked human-judged, not asserted as mechanically checkable.",
+  "evals": [
+    {
+      "id": 1,
+      "source": "SKILL.md § Step 1M: Mode D Provisional Config Check",
+      "prompt": "Run the monthly care cycle for a client whose brand config was generated via Mode D. Their active-brand.json has meta.generated_by set to \"mode-d\" and meta.provisional_fields still lists three unconfirmed fields.",
+      "expected_output": "The skill detects the provisional (not yet v1) Mode D config, does not run the standard drift check, and stops to ask the instance owner whether to trigger the designer review protocol before proceeding.",
+      "files": [],
+      "expectations": [
+        "The output identifies meta.generated_by as \"mode-d\" (not \"mode-d-v1\") and names this a provisional config",
+        "The output does NOT produce a standard token drift check or drift log for this cycle",
+        "The output surfaces the exact stop-and-ask question about triggering the designer review now, rather than proceeding silently",
+        "The output does not proceed past Step 1M until the config is promoted to v1",
+        "If provisional fields exist, the output references generating the designer handoff artifact from the ui-studio-onboard template rather than inventing its own format"
+      ]
+    },
+    {
+      "id": 2,
+      "source": "SKILL.md § Step 2: Token Drift Check (MCP path, preferred when a code-execution layer is present)",
+      "prompt": "Run Month 4 token drift check for a client with an active Figma MCP connection and a code-execution layer available. Diff this month's figma-manifest-2026-07.json against last month's figma-manifest-2026-06.json.",
+      "expected_output": "The skill runs scripts/compute_drift.py against the two manifest files rather than comparing both full manifests in context, and passes only the structured diff (changed/added/removed/total_current/total_baseline) to the model for interpretation and the report section.",
+      "files": [],
+      "expectations": [
+        "The output invokes scripts/compute_drift.py against the two named manifest files rather than pasting both full manifests into context",
+        "The reported diff structure includes changed, added, and removed arrays plus total_current and total_baseline counts",
+        "Changed entries are reported using the key/previous/current schema (slash-joined paths), not free-text description",
+        "The output does not load both full manifests into context, consistent with the documented 'the diff is the payload' constraint",
+        "The token health section notes 'Token drift verified via Figma variable extraction' per the Step 6 credibility-signal instruction"
+      ]
+    },
+    {
+      "id": 3,
+      "source": "SKILL.md § Step 3: Component Audit (Care+ tier — shadow components)",
+      "prompt": "Run the Month 2 Care+ component audit for a client. Component inventory shows 14 total components, 5 of which were built outside the design system library during last month's feature work.",
+      "expected_output": "The skill flags all 5 out-of-system components as shadow components, checks whether their combined share crosses the 30% escalation threshold, and surfaces the finding for the monthly report's component health section.",
+      "files": [],
+      "expectations": [
+        "The output lists the shadow components found and identifies where each was built",
+        "The output computes or states the shadow-component share of the total library (5/14 ≈ 36%)",
+        "The output flags this as exceeding the 30% shadow-component escalation threshold from the 'When to Escalate' section",
+        "The output recommends escalation (client discussion / possible Build engagement scoping) rather than treating it as routine component-audit output",
+        "[human-judged] Whether the specific promotion recommendation for each shadow component reflects sound design judgment about which candidates genuinely serve the team's needs versus which are one-offs"
+      ]
+    },
+    {
+      "id": 4,
+      "source": "SKILL.md § Step 5c: Maturity Dimension Tracking",
+      "prompt": "Score the six maturity dimensions for a Care+ client's Month 5 cycle. Last month Accessibility was a 3; this month spot-checks turn up enough regressions to drop it to a 1.",
+      "expected_output": "The skill scores all six dimensions against last month, reports the Accessibility drop from 3 to 1 as a 2-level decline in a single month, and cross-checks the advisory warning combinations before flagging this as an escalation trigger.",
+      "files": [],
+      "expectations": [
+        "The output reports scores for all six dimensions: Token Architecture, Component Coverage, Documentation & Governance, Figma-Code Sync, Accessibility, Team Relationship",
+        "The output shows Accessibility moving from 3 (last month) to 1 (this month) with a Direction column value",
+        "The output identifies this as a dimension dropping two or more levels in a single month and names it an escalation trigger",
+        "The output checks the advisory warning combinations (e.g., automation without accessibility) named in Step 5c against the current dimension set",
+        "[human-judged] Whether the escalation framing strikes the right tone for a client-facing conversation versus reading as alarmist or as buried caveat"
+      ]
+    },
+    {
+      "id": 5,
+      "source": "SKILL.md § Step 6: Generate the Monthly Report (Voice rules for the report)",
+      "prompt": "Generate the Month 3 care report for a client. Token drift found one non-semantic spacing token addition; component audit found the Button component's focus state updated in code but not Figma. No other changes.",
+      "expected_output": "A care-report-YYYY-MM.md written in HeyHi voice, following the reference.md template structure, that is specific about the two findings rather than vague, includes no scores or grades in the prose, and states an overall trajectory with supporting evidence.",
+      "files": [],
+      "expectations": [
+        "The report is saved as care-report-[YYYY-MM].md in <engagement folder>/deliverables/care/",
+        "The report states a Trajectory line (Improving / Stable / Declining) with at least one sentence of evidence",
+        "The Button focus-state finding is described specifically (which state, which side updated, which side didn't) rather than as a generic 'alignment issue' statement",
+        "The report contains no numeric scores or letter grades in the narrative sections, consistent with the 'No scores or grades' voice rule",
+        "The Recommendations section lists no more than three prioritized items for this month",
+        "[human-judged] Whether the report's tone and word choice actually reads as HeyHi voice (specific, honest, useful) rather than generic consulting-report prose"
+      ]
+    },
+    {
+      "id": 6,
+      "source": "SKILL.md § When to Escalate",
+      "prompt": "Complete a Month 6 Care cycle for a client where the Figma-to-code sync has now been broken for three consecutive months (flagged in Months 4 and 5 already) and nothing has changed this cycle.",
+      "expected_output": "The skill recognizes that Figma-code sync broken for two or more consecutive months is a named escalation condition, and the report explicitly calls this out as exceeding monthly care scope rather than repeating it as a routine recurring finding.",
+      "files": [],
+      "expectations": [
+        "The output states explicitly that Figma-code sync has been broken for 2+ consecutive months, matching the named escalation condition",
+        "The Escalations subsection of the report (not just the general findings) names this issue and recommends discussing it with the client",
+        "The output does not just re-list this as an ordinary Figma Sync status line without surfacing it as an escalation",
+        "The output frames the recommended next step as scoping a separate engagement (pipeline repair) rather than continuing to monitor it monthly"
+      ]
+    },
+    {
+      "id": 7,
+      "source": "SKILL.md § Step 5h: Agent Conformance Audit (Care+, when agent-authored output is in scope)",
+      "prompt": "Run the Month 3 Care+ cycle for a client whose care-config.yaml sets agent_conformance.enabled: true with a corpus of generated components. The engagement has NOT authored a drift threshold. Conformance fell from 12/12 samples last cycle to 9/12 this cycle, with three components newly hardcoding structural colors.",
+      "expected_output": "The skill runs the trend wrap over the corpus against the prior read, records an immutable dated conformance read, reports the declining trajectory and the regressed samples, and — because no threshold was authored — reports the trend without firing an automated drift alert, leaving the load-bearing call to the human Care judgment.",
+      "files": [],
+      "expectations": [
+        "The output runs python -m heyhi_mcp.conformance.trend against the corpus with --prev pointing at the prior cycle's conformance-read JSON, not a fresh baseline",
+        "The output records the read as an immutable dated file (conformance-read-[YYYY-MM].json) and does not overwrite the prior cycle's read",
+        "The output names the three regressed samples and reports structural-hardcode / literal_color as a top drifting class, not just an aggregate rate",
+        "Because no threshold was authored, the output does NOT emit an automated drift-alert verdict; alert_fired is null and the report states the trend is a Care judgment (grades never gates)",
+        "The rolled-up Care report line reports conformance as N of M samples conform with a trajectory, carrying the corpus provenance",
+        "[human-judged] Whether the written assessment of whether the drift is load-bearing for this system and audience reflects sound design judgment rather than a mechanical restatement of the numbers"
+      ]
+    },
+    {
+      "id": 8,
+      "source": "SKILL.md § Step 1b: Recon Delta (Care+, when the application loop is in scope)",
+      "prompt": "Run the Month 3 Care+ cycle for a client whose care-config.yaml sets application_loop.enabled: true with one frontend repo and application_loop.baseline_commit set to last cycle's HEAD. Three surfaces changed in the repo since that commit.",
+      "expected_output": "The skill runs the deployed app-recon in delta mode against the stored baseline commit, re-recons only the changed surfaces, reads the manifest through the instance, honors app-recon's brief-review gate before any downstream step, and carries the changed surfaces, the unverified list, and the new baseline commit forward. It does not re-read unchanged surfaces and does not mutate the repository.",
+      "files": [],
+      "expectations": [
+        "The output runs app-recon in delta mode with --since pointing at application_loop.baseline_commit, not a full read",
+        "The output re-recons only the changed surfaces and does not re-read unchanged surfaces",
+        "The manifest is read through retrieve_application_context (scope manifest), not loaded from a disk file as a spec",
+        "The output waits on the app-recon brief-review gate before Step 5e consumes the delta",
+        "The new HEAD commit is carried forward as the next cycle's baseline (for Step 7)",
+        "[human-judged] Whether which changed surfaces are in scope for this cycle's re-sync is left to the human rather than decided by the step"
+      ]
+    },
+    {
+      "id": 9,
+      "source": "SKILL.md § Step 3b: Pattern Ledger Review (Care+, when the application loop is in scope)",
+      "prompt": "Run the Month 4 Care+ cycle with application_loop enabled. retrieve_application_context scope patterns returns two rows: 'filter-bar' (usage.status local, promotion_signal true, three surfaces in one application) and 'hero-card' (usage.status local, promotion_signal false).",
+      "expected_output": "The skill files a pattern-intake candidate only for 'filter-bar' (local plus promotion_signal true), from the template with an empty decision block, and files none for 'hero-card'. It flips no ledger status and writes nothing to the served ledger.",
+      "files": [],
+      "expectations": [
+        "The output reads the ledger via retrieve_application_context scope patterns",
+        "The output writes pattern-intake/YYYY-MM-DD-filter-bar.md from _template.md for the local plus promotion_signal:true row",
+        "The output does NOT file a candidate for hero-card (promotion_signal false)",
+        "The filed candidate's Decision block is left empty",
+        "usage.status is not changed for either row, and nothing is written to components.json or the served ledger",
+        "The per-application report line describes the candidate as advisory (a candidate for the owner), not a promotion"
+      ]
+    },
+    {
+      "id": 10,
+      "source": "SKILL.md § Step 3b + plan § 8 (ledger thresholds must not harden into a gate)",
+      "prompt": "A pattern row has promotion_signal true and usage.status local. Run Step 3b and inspect the output and any writes for a gate/approval field, a score, or a change to the ledger.",
+      "expected_output": "The step files the pattern-intake candidate; the output carries no field named gate, approved, or blocked and no numeric score or grade; usage.status stays local; the only write is the pattern-intake candidate file.",
+      "files": [],
+      "expectations": [
+        "No output field is named gate, approved, or blocked",
+        "No numeric score or letter grade is attached to the pattern or the candidate",
+        "usage.status remains 'local' after the step (the step never flips it)",
+        "The only write is the pattern-intake/ candidate file; components.json and the served ledger are untouched",
+        "The report frames the promotion_signal as advisory (grades never gates), consistent with the served tool recording no decision of its own"
+      ]
+    },
+    {
+      "id": 11,
+      "source": "SKILL.md § Step 5e: Artifact Re-Sync (Care+, Tier 3, when the application loop is in scope)",
+      "prompt": "Run the Month 5 Care+ cycle with application_loop enabled. Two features landed this cycle (found by Step 1b). The feature-increment skill is NOT yet promoted (heyhi-skills/feature-increment/ does not exist).",
+      "expected_output": "Step 5e does not re-implement the increment inline. It records that artifact re-sync is pending the feature-increment promotion, names the two deltas that would re-sync, and skips the write. It does not merge or push any repo change.",
+      "files": [],
+      "expectations": [
+        "The output detects that feature-increment is not promoted and marks Step 5e inert (pending dependency) rather than re-implementing a build inline",
+        "The output names the deltas (features) that would re-sync, from Step 1b",
+        "The output does not merge any repo change or push to a main branch",
+        "The output states that, once feature-increment is promoted, the prototype validate_output gate is blocking (D9) and the repo increment is propose-first",
+        "[human-judged] Whether the pending-dependency note reads clearly to the client rather than as an unexplained gap"
+      ]
+    },
+    {
+      "id": 12,
+      "source": "SKILL.md § Step 7: Update the Baseline (forward-deployed loop additions)",
+      "prompt": "Store the baseline at the end of a Month 3 Care+ cycle with application_loop enabled, after Steps 1b, 3b, and 5e ran.",
+      "expected_output": "The baseline additionally captures the application manifest snapshot with the new baseline commit (written back to care-config.yaml application_loop.baseline_commit), the pattern-ledger read snapshot, and the ds-map coverage snapshot, without overwriting previous baselines.",
+      "files": [],
+      "expectations": [
+        "The baseline captures the application manifest snapshot referenced by its served path, not inlined",
+        "The new baseline commit is written back to care-config.yaml application_loop.baseline_commit for next cycle's Step 1b --since",
+        "The pattern-ledger read snapshot (name, usage.signature, usage.status, promotion_signal) is stored for Step 3b trend",
+        "The ds-map coverage snapshot (both / code-only / figma-only / divergent counts) is stored",
+        "Previous baselines are not overwritten; each month's baseline is a separate file"
+      ]
+    },
+    {
+      "id": 13,
+      "source": "SKILL.md § Step 0 gating + Steps 1b/3b/5e skip conditions (clean-pass, audited against the skill's own exception rule)",
+      "prompt": "Run the Month 2 Care+ cycle for a client whose care-config.yaml has NO application_loop block (a pure design-system Care+ engagement, no application in the loop).",
+      "expected_output": "Steps 1b, 3b, and 5e are all skipped because application_loop.enabled is absent; the standard Care flow runs unchanged; the report has no Per application section. This is the documented exception (skip-unless-enabled), not a missed step.",
+      "files": [],
+      "expectations": [
+        "Step 1b is skipped (no application_loop.enabled) and no app-recon delta is run",
+        "Step 3b is skipped and no pattern-intake candidate is filed",
+        "Step 5e is skipped and no artifact re-sync is attempted",
+        "The Per application report section is omitted entirely from the monthly report",
+        "The standard Care flow (token drift, component audit, documentation, report, baseline, and any in-scope 5a-5h) is otherwise unchanged",
+        "The skip is treated as the documented exception (application_loop absent), not flagged as a gap or a missed step"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,444 @@
+/* ============================================================================
+   Wheelhouse - shared studio stylesheet (tokens + components)
+   HeyHi Confidential
+
+   Frozen after DISPATCH-03 merges. Wave-3 lanes LINK this file; they do not
+   edit it. Screen-specific styles belong in a page-scoped <style> block with a
+   "candidate for shared" note. Only D-08 folds candidates back here.
+
+   PALETTE PROVENANCE - every hex below is lifted verbatim from the Sheerline
+   architecture diagrams' <style> blocks (the SVGs in sheerline/docs/diagrams/), so the
+   Studio "looks like the diagrams grew a workspace" (plan §5). Sources named
+   inline: [boundary-moat] = boundary-moat.svg, [three-layer] = three-layer-model.svg.
+   Nothing here is invented; no alternate palette.
+   ============================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Mono:wght@400;500&display=swap');
+
+/* ---- Tokens: light (bare :root) -------------------------------------------- */
+:root {
+  /* Field + surfaces  [boundary-moat] .paper/.stage/.chip ; [three-layer] boxes */
+  --field:          #FAFAF5;   /* .paper  - page field */
+  --surface:        #FFFFFF;   /* cards on the field */
+  --surface-inset:  #F2F0EA;   /* .stage  - inset panels, tracks */
+  --chip-bg:        #FBFAF6;   /* .chip   - chips */
+  --border:         #D8D2C6;   /* .stage/.chip stroke */
+  --border-strong:  #C4BCAC;   /* darker neutral border for dashed gap tracks */
+
+  /* Text  [boundary-moat] .ink/.soft/.faint (soft+faint darkened for AA) */
+  --ink:            #1A1A1A;   /* .ink   - primary text */
+  --soft:           #5C574F;   /* .soft  - secondary text (darkened from #6B6560 for AA 4.5:1) */
+  --faint:          #6E685F;   /* .faint - tertiary text (darkened from #8B857C for AA 4.5:1) */
+
+  /* Indigo = keel-inherited / structural chrome  [three-layer] .cfg-* */
+  --indigo:         #1F01B9;   /* .cfg-t */
+  --indigo-fill:    #ECEAF6;   /* .cfg-box fill */
+  --indigo-border:  #C3BAE6;   /* .cfg-box stroke */
+
+  /* Teal = Sheerline surfaces + coverage  [three-layer] .sheer-* */
+  --teal:           #0B6E75;   /* .sheer-t - AA-safe as link text on --field (5.7:1) */
+  --teal-fill:      #E4F1F1;   /* .sheer-box fill */
+  --teal-border:    #A9D6D8;   /* .sheer-box stroke */
+  --on-teal:        #FAFAF5;   /* text on a SOLID --teal fill (buttons); flips in dark */
+
+  /* Crimson = the human's color (L8 ONLY: gates, moat/seal seam, grades-inform) */
+  --crimson:        #B3261E;   /* .crim-t - crimson text */
+  --crimson-bright: #FF3B30;   /* .wall/.crim-box stroke - the human-gate dashed outline */
+  --crimson-fill:   #FDECEA;   /* .crim-box fill */
+  --crimson-border: #F0B7B1;   /* .crim-chip stroke */
+
+  /* Focus ring (structural - always visible, defined in base per ds-cva rule) */
+  --focus:          #1F01B9;
+
+  /* Type */
+  --font-display: 'Sora', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-body:    'Lora', Georgia, 'Times New Roman', serif;
+  --font-mono:    'DM Mono', 'SFMono-Regular', ui-monospace, 'Cascadia Mono', 'Courier New', monospace;
+
+  /* Space + radius */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px;
+  --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
+  --r-1: 6px; --r-2: 10px; --r-3: 14px; --r-pill: 999px;
+  --rail-w: 220px; --topbar-h: 60px; --content-max: 1120px;
+  --shadow-card: 0 1px 2px rgba(26,26,26,.04), 0 2px 8px rgba(26,26,26,.05);
+}
+
+/* ---- Tokens: dark  [diagram @media(prefers-color-scheme:dark) blocks] ------ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --field:          #1A1A1A;   /* .paper dark */
+    --surface:        #242320;   /* .stage dark - cards */
+    --surface-inset:  #201F1C;   /* darker inset */
+    --chip-bg:        #2E2C27;   /* .chip dark */
+    --border:         #3E3B34;   /* .chip/.stage stroke dark */
+    --border-strong:  #4A463D;
+
+    --ink:            #F3F0E8;   /* .ink dark */
+    --soft:           #B7B1A6;   /* .soft dark (lightened from #A8A399 for AA) */
+    --faint:          #9A948A;   /* .faint dark (lightened from #7E7970 for AA) */
+
+    --indigo:         #BBB0F0;   /* .cfg-t dark */
+    --indigo-fill:    #201A38;   /* .cfg-box dark */
+    --indigo-border:  #3F3670;
+
+    --teal:           #5FD3DB;   /* .sheer-t dark */
+    --teal-fill:      #12302F;   /* .sheer-box dark */
+    --teal-border:    #2E5C5A;
+    --on-teal:        #1A1A1A;   /* dark ink on the light dark-mode teal fill (AA 9.8:1) */
+
+    --crimson:        #FF6A60;   /* .crim-t dark */
+    --crimson-bright: #FF5247;   /* .wall dark */
+    --crimson-fill:   #2A1614;   /* .crim-box dark */
+    --crimson-border: #7A3B36;
+
+    --focus:          #BBB0F0;
+    --shadow-card: 0 1px 2px rgba(0,0,0,.30), 0 2px 10px rgba(0,0,0,.35);
+  }
+}
+
+/* ---- Base ------------------------------------------------------------------ */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--field);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, h3, h4, .display { font-family: var(--font-display); line-height: 1.2; color: var(--ink); }
+h1 { font-size: 2rem; font-weight: 600; letter-spacing: -.01em; margin: 0 0 var(--sp-3); }
+h2 { font-size: 1.3rem; font-weight: 600; margin: 0 0 var(--sp-3); }
+h3 { font-size: 1.05rem; font-weight: 600; margin: 0 0 var(--sp-2); }
+p { margin: 0 0 var(--sp-3); }
+a { color: var(--teal); text-underline-offset: 2px; }
+a:hover { text-decoration: underline; }
+.mono { font-family: var(--font-mono); font-size: .82em; }
+.muted { color: var(--soft); }
+.faint { color: var(--faint); }
+
+/* Focus ring - defined once, in the base, for EVERY interactive element
+   (correction ds-cva-focus-ring-in-base-string: never bolt it on per-variant).
+   summary/select/textarea folded into the base at D-08 convergence - wave-3
+   lanes each carried an identical per-page rule for these; the correction says
+   the base is where it belongs. */
+a:focus-visible, button:focus-visible, input:focus-visible,
+summary:focus-visible, select:focus-visible, textarea:focus-visible,
+[tabindex]:focus-visible, .rail__link:focus-visible, .chip:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: var(--r-1);
+}
+:focus:not(:focus-visible) { outline: none; }
+
+/* Skip link + screen-reader-only text (accessibility floor) */
+.skip-link {
+  position: absolute; left: var(--sp-3); top: -60px; z-index: 100;
+  background: var(--surface); color: var(--ink); padding: var(--sp-2) var(--sp-4);
+  border: 1px solid var(--border); border-radius: var(--r-1); transition: top .15s;
+}
+.skip-link:focus { top: var(--sp-3); }
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---- Shell: top bar, rail, main, footer ----------------------------------- */
+.studio-shell { display: grid; grid-template-columns: var(--rail-w) 1fr; min-height: 100vh; }
+
+.topbar {
+  grid-column: 1 / -1;
+  position: sticky; top: 0; z-index: 20;
+  height: var(--topbar-h);
+  display: flex; align-items: center; gap: var(--sp-4);
+  padding: 0 var(--sp-5);
+  background: color-mix(in srgb, var(--field) 88%, transparent);
+  backdrop-filter: saturate(1.1) blur(6px);
+  border-bottom: 1px solid var(--border);
+}
+.wordmark {
+  font-family: var(--font-display); font-weight: 700; letter-spacing: .12em;
+  font-size: .95rem; color: var(--ink); text-decoration: none; white-space: nowrap;
+}
+.wordmark:hover { text-decoration: none; }
+.topbar__search {
+  flex: 1; max-width: 420px;
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  background: var(--surface); color: var(--soft);
+  border: 1px solid var(--border); border-radius: var(--r-pill);
+  font-family: var(--font-body); font-size: .9rem; text-decoration: none;
+}
+.topbar__search:hover { border-color: var(--border-strong); text-decoration: none; }
+.topbar__spacer { flex: 1; }
+.session-indicator {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-3);
+  background: var(--teal-fill); border: 1px solid var(--teal-border);
+  border-radius: var(--r-pill); color: var(--ink);
+  font-family: var(--font-mono); font-size: .74rem; text-decoration: none;
+}
+.session-indicator:hover { text-decoration: none; }
+.session-indicator .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
+
+.rail {
+  grid-row: 2; grid-column: 1;
+  position: sticky; top: var(--topbar-h); align-self: start;
+  height: calc(100vh - var(--topbar-h));
+  padding: var(--sp-5) var(--sp-3);
+  border-right: 1px solid var(--border);
+  background: var(--field);
+  display: flex; flex-direction: column; gap: 2px;
+}
+.rail__label {
+  font-family: var(--font-mono); font-size: .68rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--faint);
+  padding: 0 var(--sp-3) var(--sp-2);
+}
+.rail__link {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3); border-radius: var(--r-1);
+  color: var(--soft); text-decoration: none; font-family: var(--font-display);
+  font-size: .92rem; font-weight: 500;
+}
+.rail__link:hover { background: var(--chip-bg); color: var(--ink); text-decoration: none; }
+.rail__link[aria-current="page"] {
+  background: var(--teal-fill); color: var(--ink);
+  box-shadow: inset 3px 0 0 var(--teal);
+}
+.rail__num { font-family: var(--font-mono); font-size: .72rem; color: var(--faint); width: 1.1em; }
+.rail__link[aria-current="page"] .rail__num { color: var(--teal); }
+
+.studio-main { grid-row: 2; grid-column: 2; padding: var(--sp-6) var(--sp-6) var(--sp-8); }
+.wrap { max-width: var(--content-max); margin: 0 auto; }
+
+.studio-footer {
+  grid-column: 1 / -1;
+  padding: var(--sp-4) var(--sp-6);
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono); font-size: .74rem; color: var(--faint);
+  text-align: center;
+}
+.studio-footer .sim { color: var(--soft); }
+
+/* ---- Cards + chips --------------------------------------------------------- */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-2); padding: var(--sp-5); box-shadow: var(--shadow-card);
+}
+.card--inset { background: var(--surface-inset); box-shadow: none; }
+.section { margin-bottom: var(--sp-7); }
+.section__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-4); margin-bottom: var(--sp-4); }
+.eyebrow {
+  font-family: var(--font-mono); font-size: .72rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--faint); margin: 0 0 var(--sp-2);
+}
+
+.chip {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  padding: var(--sp-1) var(--sp-3); border-radius: var(--r-pill);
+  background: var(--chip-bg); border: 1px solid var(--border);
+  color: var(--ink); font-family: var(--font-mono); font-size: .76rem;
+  text-decoration: none; cursor: pointer; white-space: nowrap;
+}
+.chip:hover { border-color: var(--border-strong); text-decoration: none; }
+.chip--provenance { color: var(--soft); background: transparent; }
+.badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 1px var(--sp-2); border-radius: var(--r-1);
+  font-family: var(--font-mono); font-size: .7rem; letter-spacing: .02em;
+}
+.badge--phase { background: var(--indigo-fill); border: 1px solid var(--indigo-border); color: var(--indigo); }
+.badge--nature { background: var(--chip-bg); border: 1px solid var(--border); color: var(--soft); }
+.badge--sim { background: var(--surface-inset); border: 1px dashed var(--border-strong); color: var(--faint); }
+
+/* ---- Coverage ramp (4 steps, teal → neutral; crimson NEVER used here) ------ */
+/* deep = solid teal · covered = teal outline · partial = half-fill · gap = neutral dashed */
+.cov { display: inline-flex; align-items: center; gap: var(--sp-2); }
+.cov__bar {
+  --fill: 100%;
+  position: relative; width: 52px; height: 8px; border-radius: var(--r-pill);
+  background: var(--surface-inset); border: 1px solid var(--border); overflow: hidden;
+}
+.cov__bar::before {
+  content: ""; position: absolute; inset: 0; width: var(--fill);
+  background: var(--teal); border-radius: var(--r-pill);
+}
+.cov__label { font-family: var(--font-mono); font-size: .72rem; color: var(--soft); }
+
+.cov--deep    .cov__bar { --fill: 100%; }
+.cov--deep    .cov__bar::before { background: var(--teal); }
+.cov--covered .cov__bar { --fill: 66%; }
+.cov--covered .cov__bar::before { background: transparent; border: 1.5px solid var(--teal); }
+.cov--partial .cov__bar { --fill: 40%; }
+.cov--partial .cov__bar::before {
+  background: repeating-linear-gradient(45deg, var(--teal) 0 3px, var(--teal-fill) 3px 6px);
+}
+.cov--gap     .cov__bar { --fill: 0%; background: transparent; border: 1px dashed var(--border-strong); }
+.cov--gap     .cov__label { color: var(--faint); }
+
+/* coverage key/legend */
+.cov-key { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center; }
+.cov-key__item { display: inline-flex; align-items: center; gap: var(--sp-2); }
+
+/* ---- Buttons --------------------------------------------------------------- */
+.btn {
+  font-family: var(--font-display); font-weight: 500; font-size: .9rem;
+  padding: var(--sp-2) var(--sp-4); border-radius: var(--r-1);
+  border: 1px solid var(--border); background: var(--surface); color: var(--ink);
+  cursor: pointer;
+}
+.btn:hover { border-color: var(--border-strong); }
+.btn--primary { background: var(--teal); border-color: var(--teal); color: var(--on-teal); }
+.btn--primary:hover { filter: brightness(1.06); }
+.btn--ghost { background: transparent; }
+.example-btn {
+  display: block; width: 100%; text-align: left;
+  font-family: var(--font-body); font-size: .92rem; color: var(--ink);
+  padding: var(--sp-3) var(--sp-4); margin-bottom: var(--sp-2);
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-1);
+  cursor: pointer;
+}
+.example-btn:hover { border-color: var(--teal-border); background: var(--teal-fill); }
+.example-btn .mono { color: var(--soft); }
+
+/* ---- The crimson human-gate slot (L4 / L8) - the human's color ------------- */
+.human-slot {
+  border: 1.5px dashed var(--crimson-bright);
+  background: var(--crimson-fill);
+  border-radius: var(--r-2); padding: var(--sp-4);
+  color: var(--ink);
+}
+.human-slot__tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono); font-size: .7rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--crimson); font-weight: 500;
+  margin-bottom: var(--sp-2);
+}
+.rule-line {
+  border-left: 3px solid var(--crimson-bright); padding-left: var(--sp-3);
+  color: var(--crimson); font-family: var(--font-display); font-weight: 500;
+}
+
+/* ---- Router hero + result states ------------------------------------------ */
+.router {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-3); padding: var(--sp-6); box-shadow: var(--shadow-card);
+}
+.router__bar { display: flex; gap: var(--sp-2); margin: var(--sp-4) 0; }
+.router__input {
+  flex: 1; font-family: var(--font-body); font-size: 1rem;
+  padding: var(--sp-3) var(--sp-4); color: var(--ink);
+  background: var(--field); border: 1px solid var(--border-strong); border-radius: var(--r-1);
+}
+.router__input::placeholder { color: var(--faint); }
+.suggest-row { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; }
+.suggest-row__label { font-family: var(--font-mono); font-size: .72rem; color: var(--faint); margin-right: var(--sp-1); }
+
+.result { margin-top: var(--sp-5); padding-top: var(--sp-5); border-top: 1px dashed var(--border); }
+.result[hidden] { display: none; }
+.result__verdict {
+  display: inline-flex; align-items: center; gap: var(--sp-2);
+  font-family: var(--font-mono); font-size: .78rem; padding: 3px var(--sp-3);
+  border-radius: var(--r-pill); margin-bottom: var(--sp-3);
+}
+.verdict--confident { background: var(--teal-fill); border: 1px solid var(--teal-border); color: var(--ink); }
+.verdict--ambiguous { background: var(--indigo-fill); border: 1px solid var(--indigo-border); color: var(--indigo); }
+.verdict--insufficient { background: var(--surface-inset); border: 1px dashed var(--border-strong); color: var(--soft); }
+.verdict--sim { background: var(--surface-inset); border: 1px dashed var(--border-strong); color: var(--faint); }
+
+.skill-card {
+  background: var(--field); border: 1px solid var(--border); border-radius: var(--r-2);
+  padding: var(--sp-4); }
+.skill-card__name { font-family: var(--font-display); font-weight: 600; margin-bottom: 2px; }
+.skill-card__meta { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-3); }
+.result__cards--two { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-3); }
+.coloads { margin-top: var(--sp-3); display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; }
+.loadcost {
+  font-family: var(--font-mono); font-size: .78rem; color: var(--soft);
+  margin-top: var(--sp-3); }
+
+/* ---- Practice map ---------------------------------------------------------- */
+.group-label {
+  font-family: var(--font-mono); font-size: .74rem; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--faint);
+  margin: var(--sp-5) 0 var(--sp-3); }
+.map-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--sp-3); }
+.area-card {
+  display: block; text-decoration: none; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-2);
+  padding: var(--sp-4); }
+.area-card:hover { border-color: var(--teal-border); text-decoration: none; box-shadow: var(--shadow-card); }
+.area-card--gap { border-style: dashed; border-color: var(--border-strong); }
+.area-card__top { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); }
+.area-card__num { font-family: var(--font-mono); font-size: .74rem; color: var(--faint); }
+.area-card__name { font-family: var(--font-display); font-weight: 600; font-size: .98rem; margin: var(--sp-2) 0; }
+.area-card__grounding { font-size: .84rem; color: var(--soft); line-height: 1.45;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.area-card__foot { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-2); margin-top: var(--sp-3); }
+
+/* Area chips (router suggestions) */
+.area-chip { border-radius: var(--r-pill); }
+.area-chip .cov__bar { width: 22px; height: 6px; }
+.area-chip--gap { border-style: dashed; border-color: var(--border-strong); }
+
+/* ---- Two-column strip: recent sessions + phase progress ------------------- */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-5); }
+.mini-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-2);
+  padding: var(--sp-4); margin-bottom: var(--sp-3); }
+.mini-card__title { font-family: var(--font-display); font-weight: 500; font-size: .92rem; }
+.mini-card__meta { font-family: var(--font-mono); font-size: .74rem; color: var(--soft); margin-top: var(--sp-1); }
+
+.phase-track { display: flex; flex-direction: column; gap: var(--sp-2); }
+.phase-row { display: grid; grid-template-columns: 46px 1fr auto; gap: var(--sp-3); align-items: center; }
+.phase-id { font-family: var(--font-mono); font-size: .8rem; color: var(--ink); }
+.phase-meter { height: 8px; border-radius: var(--r-pill); background: var(--surface-inset); border: 1px solid var(--border); position: relative; overflow: hidden; }
+.phase-meter::before { content: ""; position: absolute; inset: 0; width: var(--pf, 0%); background: var(--teal); }
+.phase-status { font-family: var(--font-mono); font-size: .72rem; color: var(--soft); }
+.phase-row--active .phase-meter::before { background: repeating-linear-gradient(45deg, var(--teal) 0 4px, var(--teal-fill) 4px 8px); }
+.phase-row--active .phase-status { color: var(--teal); }
+
+/* ---- Corrections pulse ----------------------------------------------------- */
+.pulse { display: flex; flex-wrap: wrap; gap: var(--sp-5); align-items: center; }
+.pulse__big { font-family: var(--font-display); font-size: 2.4rem; font-weight: 700; line-height: 1; color: var(--ink); }
+.pulse__label { font-family: var(--font-mono); font-size: .76rem; color: var(--soft); }
+
+/* ---- Quality sub-nav (Validate · Grade · Learn) + loop caption ------------- */
+/* Folded here at D-08 convergence: D-05 authored this block byte-for-byte in
+   quality-validate/grade/learn.html; it is the trio's shared sub-nav (plan §4.1
+   row 5). The three pages now link it from here. */
+.qnav { display: flex; align-items: center; flex-wrap: wrap;
+  gap: var(--sp-3) var(--sp-5); margin-bottom: var(--sp-3); }
+.qnav__tabs { display: inline-flex; gap: 2px; padding: 3px;
+  background: var(--surface-inset); border: 1px solid var(--border);
+  border-radius: var(--r-pill); }
+.qnav__tab { font-family: var(--font-display); font-weight: 500; font-size: .88rem;
+  color: var(--soft); padding: var(--sp-1) var(--sp-4); border-radius: var(--r-pill);
+  text-decoration: none; white-space: nowrap; }
+.qnav__tab:hover { color: var(--ink); text-decoration: none; }
+.qnav__tab[aria-current="page"] { background: var(--surface); color: var(--ink);
+  box-shadow: var(--shadow-card); }
+.qnav__loop { font-family: var(--font-mono); font-size: .74rem; color: var(--faint); margin: 0; }
+.qnav__loop a { color: var(--soft); }
+.qnav__loop .cur { color: var(--teal); }
+.qnav__loop .sep { color: var(--border-strong); margin: 0 3px; }
+
+/* ---- Responsive ------------------------------------------------------------ */
+@media (max-width: 860px) {
+  .studio-shell { grid-template-columns: 1fr; }
+  .rail {
+    position: static; height: auto; flex-direction: row; flex-wrap: wrap;
+    border-right: none; border-bottom: 1px solid var(--border);
+    padding: var(--sp-2) var(--sp-4); }
+  .rail__label { display: none; }
+  .studio-main { grid-column: 1; grid-row: auto; padding: var(--sp-5) var(--sp-4) var(--sp-7); }
+  .two-col, .result__cards--two { grid-template-columns: 1fr; }
+  .topbar__search { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}

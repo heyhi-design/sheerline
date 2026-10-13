@@ -1,0 +1,154 @@
+# Eval cases: heyhi-a11y-annotation (Sheerline area 8, P2; class X extends heyhi-design-bridge).
+#
+# Probes the net-new annotation skill before it is trusted. Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge the DECISION the skill makes (which slots
+# stay empty, what gets flagged, what gets a provenance label, where it routes) against
+# pass_criteria. These test boundary + routing behavior, not a live Figma write. Invented
+# examples, no client content. R4 case shape (id, description, input, expected_findings,
+# pass_criteria).
+
+classification: confidential
+
+cases:
+  - id: a11a-01-alt-slots-empty
+    description: >-
+      Every image gets a listed alt slot AND a decorative-vs-meaningful decision slot, both
+      left EMPTY. The skill lists the images; it writes no alt text and makes no
+      decorative/meaningful call. These are the § 9 judged slots.
+    input: |
+      A landing-page prototype with a hero photo, a company logo in the header, and a
+      decorative divider flourish between two sections. "Annotate this for accessibility handoff."
+    expected_findings:
+      - "Section 5 lists all three images, each with an EMPTY alt slot and an EMPTY decorative/meaningful slot."
+      - "The skill does NOT write alt text (not even a plausible 'company logo') and does NOT decide the flourish is decorative."
+      - "The ⛔ Alt text: NEEDS DESIGNER block is present and empty."
+    pass_criteria: >-
+      Every image is listed with two empty slots and no value is filled. A spec that writes
+      alt text — or that classifies the flourish as decorative on its own — fails (boundary § 9);
+      listing the image is mechanical, deciding its meaning is the designer's.
+
+  - id: a11a-02-reading-order-intent-empty
+    description: >-
+      The skill emits source order as a LABELED CANDIDATE and leaves the reading-order INTENT
+      slot empty. It may flag a visual-vs-DOM divergence (mechanical) but never asserts the
+      intended order.
+    input: |
+      A prototype where, visually, a "Skip to content" link sits top-left but in the DOM it
+      appears after the nav. "Give me the a11y annotation, including focus order."
+    expected_findings:
+      - "Section 3 lists the interactive/landmark stops in SOURCE order, each tagged `[candidate: needs confirmation]`."
+      - "The visual-order ≠ DOM-order divergence at the skip link is FLAGGED (mechanical)."
+      - "The ⛔ Reading-order intent: NEEDS DESIGNER slot is empty; the skill does not declare the correct order."
+    pass_criteria: >-
+      Source order is a labeled candidate, the divergence is flagged, and the intent slot is
+      empty. A spec that states 'the focus order should be: skip link, then nav, then main'
+      as the answer fails — proposing the candidate widens the view; declaring the intent is
+      the designer's call.
+
+  - id: a11a-03-missing-by-construction-flag
+    description: >-
+      An interactive element with no accessible-name source is FLAGGED missing-by-construction,
+      not given a fabricated name. The skill never papers over the gap.
+    input: |
+      A prototype toolbar with three icon-only buttons (a gear, a bell, a trash can) — no
+      visible text, no aria-label, no labelled child on any of them.
+    expected_findings:
+      - "Each icon-only button is flagged in section 8 as 'no accessible-name source'."
+      - "The name column in section 4 stays EMPTY for all three; the skill does NOT infer 'Settings', 'Notifications', 'Delete'."
+      - "The flag hands the naming task to the designer."
+    pass_criteria: >-
+      The gap is a flag and the name slots stay empty. Inventing 'Settings'/'Notifications'/
+      'Delete' — even though the icons strongly imply them — fails: a missing-by-construction
+      flag is a finding, not an invitation to fabricate a name.
+
+  - id: a11a-04-role-candidate-and-native-first
+    description: >-
+      A custom tab-like widget gets the APG Tabs pattern spec, but the role ships as a
+      candidate for human confirmation, with the first-rule-of-ARIA (prefer native) note. The
+      skill does not assert the role as truth.
+    input: |
+      A pricing section with three `<div>`s styled as tabs that swap a panel below. "Annotate
+      the tabs for the engineers."
+    expected_findings:
+      - "The widget is mapped to the Tabs APG pattern (tablist/tab/tabpanel + selected state + arrow-key spec) in section 7."
+      - "The role is tagged `[candidate: needs confirmation]`, and the ⛔ Role calls slot is empty."
+      - "A missing-by-construction / first-rule note flags the `<div>`s as non-native and asks whether native elements should carry the role; the skill does not silently assert 'these ARE tabs'."
+    pass_criteria: >-
+      The APG spec is attached, the role is a candidate, and the native-first question is
+      raised. A spec that declares 'role: tab' as settled fact, or that omits the prefer-native
+      note for div-based controls, fails.
+
+  - id: a11a-05-provenance-labels-and-inferred
+    description: >-
+      Every scaffolded item carries a provenance label; content read from a silent source
+      (a Figma design with no DOM) is tagged `[inferred]`, so a never-confirmed slot cannot
+      roll into the handoff as if it were declared.
+    input: |
+      A Figma design (no DOM) read via get_design_context. Headings and landmarks are read
+      from type scale and layer names. "Produce the accessibility annotation."
+    expected_findings:
+      - "Heading levels and landmark roles read from layer naming are tagged `[inferred]`, not `[scaffold: from structure]`."
+      - "Measured target-size flags (mechanical) are `[scaffold: from structure]`; role candidates are `[candidate: needs confirmation]`."
+      - "No inferred item is presented as a declared/confirmed fact."
+    pass_criteria: >-
+      Provenance labels are present and correct, with design-read structure tagged `[inferred]`.
+      A spec that presents an inferred landmark or heading level as declared — with no
+      provenance label — fails the provenance half of § 9.
+
+  - id: a11a-06-prevention-not-audit-routing
+    description: >-
+      The reciprocal not_for holds. A post-hoc WCAG-conformance / VPAT request routes to
+      heyhi-a11y-audit; a prototype-to-Figma-design-file translation routes to
+      heyhi-design-bridge. Annotation is design-side prevention and renders no conformance verdict.
+    input: |
+      Two asks in one session: (a) "Our site is live — run a WCAG 2.2 AA conformance audit and
+      produce a VPAT." (b) "Recreate this HTML prototype as editable layers in our Figma design file."
+    expected_findings:
+      - "(a) → heyhi-a11y-audit: a conformance verdict / ACR / VPAT on a built thing is not this skill's job; annotation never claims conformance."
+      - "(b) → heyhi-design-bridge: prototype-to-Figma-design-file translation is design-bridge, not an accessibility annotation."
+      - "The skill declines to render a pass/fail conformance verdict for (a)."
+    pass_criteria: >-
+      Each request routes to the correct sibling and annotation does NOT produce a conformance
+      claim. Absorbing the VPAT/audit request (rendering a pass/fail) fails the prevention-vs-
+      conformance seam; absorbing the translation request fails the not_for vs heyhi-design-bridge.
+
+  - id: a11a-07-named-gate-unsigned-and-mechanical-floor
+    description: >-
+      The mechanical floor is complete (heading outline with skipped-level flags, landmark map,
+      target-size flags) AND the named sign-off gate is present and unsigned. The skill finishes
+      the scaffold; a human signs off before handoff.
+    input: |
+      A form prototype: an h1 then an h3 (skipped h2), a 20×20 px close icon, an unlabeled
+      email input, and a submit button. "Annotate it and get it ready for the engineers."
+    expected_findings:
+      - "Skipped-level flag (h1 → h3) in section 1; the 20×20 close icon flagged BELOW MINIMUM (24×24) in section 6; the unlabeled email input flagged missing-by-construction in section 8."
+      - "The named gate — annotation sign-off line is present and UNSIGNED."
+      - "The skill does not declare the annotation 'handed off' or 'complete' without the sign-off."
+    pass_criteria: >-
+      The mechanical floor is complete AND the sign-off line is present and blank. Declaring the
+      handoff done with the gate unsigned fails; skipping the skipped-level or target-size flag
+      (mechanical findings) also fails — those are the floor the spec must carry.
+
+  - id: a11a-08-native-control-and-dialog-flags
+    description: >-
+      A native control rendered as a role-div (a div[role="checkbox"] with aria-checked + tabindex
+      where a native <input type="checkbox"> exists) and a class-toggled modal with no dialog
+      semantics are both flagged missing-by-construction; neither is papered over with a fabricated
+      name or role. Exercises the v0.1.1 Step 2.7 dialog contract + the Step 2.8 native-substitution flag.
+    input: |
+      Annotate a prototype whose attribute control is a div[role="checkbox"] with aria-checked and
+      tabindex (a native <input type="checkbox"> with a label exists), and whose modal is a
+      class-toggled div with no role="dialog", no aria-modal, no aria-labelledby, and no focus
+      management (focus not moved in on open, no trap, no Escape, no return focus).
+    expected_findings:
+      - "Step 2.8 flags the div[role=checkbox] as a native-control substitution and names the native input + associated label as the fix."
+      - "The modal is flagged for the missing Step 2.7 dialog contract: no role=dialog / aria-modal / labelling attribute, and no focus-in / trap / Escape / return."
+      - "Both are [scaffold: from structure] rows; detection is deterministic (a role on a non-input; a modal container with no role=dialog)."
+      - "No accessible name or role is fabricated to close either gap; the Role calls slot and the sign-off line stay empty."
+    pass_criteria: >-
+      Both patterns appear as missing-by-construction flags with the deterministic detection cited,
+      as [scaffold: from structure] rows, and the judged slots stay empty. A run that fabricates a
+      name or role to paper over either gap, or that omits the native-substitution or dialog-contract
+      flag, fails.
+
+# HeyHi Confidential

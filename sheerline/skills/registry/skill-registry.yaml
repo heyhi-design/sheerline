@@ -1,0 +1,1321 @@
+# Sheerline: design-scoped capability registry.
+#
+# Routed by the reused keel engine (skill-registry.py, R2). Registers the 13 practice areas
+# (as references pointing at their foundations) + the deployed design-practice skills. The
+# engine's confidence gate abstains ("insufficient") on out-of-scope queries: that honest
+# abstention is the point: Sheerline routes design work and declines everything else.
+#
+# Skills live in heyhi-skills/ (referenced, never copied). The canonical full deployed-skill
+# roster is HeyHi's own skill-registry.yaml; this registry indexes the design-practice subset
+# Sheerline governs. Per-entry schema matches keel's (id, name, type, description,
+# semantic_tags, trigger_patterns, dependencies, not_for, load_cost_tokens, location).
+
+classification: confidential
+
+meta:
+  version: "0.12.1"
+  last_updated: "2026-09-13"
+  total_capabilities: 63
+  skills: 50
+  references: 13
+  tools: 0
+  note: "load_cost_tokens are estimates (~char_count/4). Rerun skill-registry.py --stats after edits. Counts derived via --stats. v0.12.1 (2026-09-13, CLOSE-02 W3 registry-description sync): insight-activation description extended to name the dual (correction | insight) route it carries as of SKILL.md v0.2.0 (findings-to-corrections AND findings-to-insights); description-only, no per-entry version field, no skill-count change (54 skills / 67 total unchanged), triggers/tags/not_for untouched; routing battery (test_bullseye, test_memory_routing) + before/after probes re-run clean, mirror edit main registry v2.44.1. v0.12.0 (2026-09-08, Sheerline fdde-loop convergence pass 2, DISPATCH-11): +3 skills — feature-increment (area 12 DesignOps, the loop's Care/increment verb, the second area-12 skill after app-recon; area 12 stays partial), ds-component-author + ds-component-change (area 7 Design Systems, the promotion-execution author + change verbs; area 7 stays deep/covered, no coverage-tag move). design-system-care-monthly bumped 1.4.0 -> 1.6.0 in the main registry only (the loop Care steps stacked on the pending 1.5.0 Agent Conformance step; no sheerline per-entry version field, no skill-count change). skills 51 -> 54, total 64 -> 67; main registry v2.44.0. not_for verified on scratch copies, then the live routing battery + both CI routing gates (test_bullseye, test_memory_routing). v0.11.0 (2026-09-07, Sheerline fdde-loop convergence pass 1, DISPATCH-06): +5 skills — figma-library-census (area 7), app-to-figma (area 5), app-recon (area 12), intent-journey-map + app-intent-map (area 9); the forward-deployed loop's Wave-1 promotions. skills 46 -> 51, total 59 -> 64; main registry v2.43.0. No coverage-tag move (areas 9 and 12 stay partial with strengthened grounding; area 5 covered and area 7 deep unchanged). v0.10.0 (2026-09-07, Sheerline D-3 open promotion pass): +2 skills — heyhi-service-blueprint (area 13 Service Design, the backstage-confirmation discipline; D-3 offering opened early on a client-engagement pull; area 13 partial -> covered, the last gap in the 13-area map closed) + taxonomy-labeling-auditor (area 2 Information Architecture, the heyhi-aeo machine-readability schema seam; area 2 partial -> covered). skills 44 -> 46, total 57 -> 59; main registry v2.42.0. Reciprocal not_for on heyhi-figjam-mapper (render-vs-discipline seam); the area-service-design + area-information-architecture reference entries refreshed to covered, and area-service-design's triggers/tags trimmed to broad area queries so the skill wins discipline routing (the routing-battery soft-spot fix). The proposed heyhi-aeo reciprocal was NOT added — heyhi-aeo already loses the taxonomy query cleanly (verified on the battery; an inert clause is not added). v0.9.0 (2026-09-07, Bucket B convergence third run / area-5 promotion): +2 skills — flow-and-lofi-author + divergence-guard (area 5, the lo-fi/flow deepen + the advisory divergence read; area 5 stays covered). skills 42 -> 44, total 55 -> 57; main registry v2.41.0. Reciprocal not_for added to heyhi-figjam-mapper, heyhi-figma-ds-generator, interaction-inventory (block-format entries); ui-studio / heyhi-ui-ux / heyhi-prototype-audit / design-system-review / ui-studio-onboard already win their own triggers without a subset clause (inline not_for; verified on the bullseye probes and the routing battery). The ui-studio routing override lands in CLAUDE.md, not this registry. v0.8.0 (2026-09-05, the second Bucket B convergence + promotion pass): +1 skill — microcopy-states-writer (area 3, the copy half of the states seam with interaction-inventory; area 3 partial -> covered). skills 41 -> 42, total 54 -> 55; main registry v2.40.0. Reciprocal not_for on heyhi-voice, voice-system-author, interaction-inventory (its interim \"not yet built\" parenthetical replaced), heyhi-prototype-audit; the area-3 reference refreshed to the filled foundation and its bare `microcopy` trigger retired; the stale heyhi-voice clause re-pointed at voice-system-author. v0.7.0 (2026-09-05, Bucket B promotion pass): +4 skills — interaction-inventory (area 4; area 4 partial -> covered), competitive-teardown-runner + design-business-case-drafter (area 10; area 10 partial -> covered), crit-prep-and-capture (area 11; stays partial by construction). skills 37 -> 41, total 50 -> 54; main registry v2.39.0. The area-11 reference hands its crit-prep trigger to the skill and gains a Prep-led reciprocal clause; the area-4 reference drops its interaction-inventory trigger; reciprocal not_for on the incumbents mirror the main registry. v0.6.1 (2026-09-05, Bucket B convergence pass, reconciliation only): refreshed the area-4 (Interaction Design) + area-10 (Business Acumen) reference descriptions/locations from deferred/stub to governance-filled; no capability added or removed (four skills staged in skill-updates/, registry-inert until the owner-gated promotion), so counts unchanged. v0.6.0 (2026-09-04, Sheerline promotion pass): +3 skills — heyhi-figma-ds-generator (area 7, the DS-into-Figma write verb, promoted after its live self-engagement proof) + heyhi-drift-repair (area 7/8, the act verb) + research-plan-author (area 1, Tier 1 — the first dedicated User Research skill; area 1 partial -> covered). skills 34 -> 37, total 47 -> 50; main registry v2.38.0. Reciprocal not_for on heyhi-design-bridge, heyhi-design-intelligence-audit, ui-studio-onboard, heyhi-figjam-mapper, futurecasting. v0.5.1 (2026-09-01, Sheerline P3 UR/IA foundation fill): refreshed the area-1 (User Research) + area-2 (Information Architecture) reference descriptions from gap/stub to partial/governance-filled; no capability added or removed (both areas already had reference entries), so counts unchanged. v0.5.0 (2026-08-28, Sheerline skills-upgrade Wave G-2 + G-4 promoted): +4 skills — heyhi-a11y-audit + heyhi-a11y-annotation (area 8, the accessibility anchor + its design-side prevention extension) and voice-system-author (area 3) + motion-system-author (area 4, the two G/X generalizations built from the § 4.1/§ 4.2 spec since no source candidate existed). skills 30 -> 34, total 43 -> 47; main registry v2.37.0. v0.4.0 (2026-08-23, Sheerline skills-upgrade Wave G-1 promoted): +1 skill — insight-activation, the findings→corrections bridge (buildout research § 7c use case #11; closes the 2026-08-22 audit § 2.5). A connective skill on the R1 corrections runtime, registered under area 1 with a cross-area note (serves the corrections loop across areas 9/10/11). skills 29 -> 30, total 42 -> 43. (Separately, the five audit/generation skills went to v0.2.0 in Wave D, main registry v2.35.0; the subset entries were unchanged — no per-entry version field.) v0.3.0 (2026-08-17, DISPATCH-01 Figma-live lane): lifted heyhi-figjam-mapper (area 11) — the first HeyHi skill to *generate* design artifacts (flow/journey/blueprint/IA) live in FigJam, distinct from heyhi-design-bridge (area 5, translation). Promoted skill-updates/ -> heyhi-skills/ + registered here and in the main HeyHi registry (v2.34.0); skills 28 -> 29, total 41 -> 42. Registered under area 11 only; serves gated areas 2 (IA, P3) + 13 (Service Design, D-3 2026-10-09), not registered into them. v0.2.0 (2026-08-15, DISPATCH-F convergence): lifted the four P1.5 operating-area audit skills promoted by DISPATCH-D (#642) — experiment-readout-linter (area 10), design-measurability-mapper + strategy-integrity-warden (area 9), design-rationale-decision-record (area 11); skills 24 -> 28, total 37 -> 41."
+
+capabilities:
+
+  # ── The 13 practice areas (references → foundations) ──────────────────────
+
+  - id: area-user-research
+    name: "Area 1: User Research"
+    type: reference
+    description: >-
+      The User Research practice area (covered — foundation filled P3 2026-09-01; first dedicated
+      skill research-plan-author deployed 2026-09-04). Method selection, the Faulkner sample-size
+      standard, synthesis + anti-flattening, synthetic-provenance. synthesis-pipeline +
+      usability-evaluation stay held on research-example-corpus thickness; instrument-smith on
+      engagement pull.
+    semantic_tags: [user research, interviews, usability testing, synthesis, research plan, participant recruiting]
+    trigger_patterns: ["user research area", "research method", "usability study", "synthesis pipeline"]
+    dependencies: [os/foundations/user-research/FOUNDATION.md]
+    not_for: ["Sales discovery calls (use heyhi-discovery-call, the keel layer)"]
+    load_cost_tokens: 500
+    location: os/foundations/user-research/FOUNDATION.md
+
+  - id: area-information-architecture
+    name: "Area 2: Information Architecture"
+    type: reference
+    description: >-
+      The Information Architecture area (covered — foundation filled P3 2026-09-01;
+      taxonomy-labeling-auditor deployed 2026-09-07 at D-3 open). IA models, card sorting, tree
+      testing, taxonomy/labeling, findability. The taxonomy/label/scent audit routes to the skill;
+      the other three IA skills (ia-study-designer, findability-audit, intent-taxonomist) remain
+      D-3-gated.
+    semantic_tags: [information architecture, card sort, tree test, findability, navigation]
+    trigger_patterns: ["information architecture", "card sort", "tree test"]
+    dependencies: [os/foundations/information-architecture/FOUNDATION.md]
+    not_for: []
+    load_cost_tokens: 500
+    location: os/foundations/information-architecture/FOUNDATION.md
+
+  - id: taxonomy-labeling-auditor
+    name: "Taxonomy Labeling Auditor"
+    type: skill
+    area: 2
+    # audit taxonomy/labels/scent + draft the machine-readability schema (area 2, net-new, most durable IA value). Deployed 2026-09-07 (D-3 open), proved first on a client engagement; area 2 partial -> covered. The heyhi-aeo schema seam is the differentiator.
+    description: >-
+      Audit a product's taxonomy, labels, and information scent, and draft the machine-readability
+      schema layer — without choosing the labels. A label-consistency pass (controlled + user
+      vocabulary, flagging designer-coinage), an information-scent pass (node- and path-linked), a
+      polyhierarchy / metadata review, and a candidate structured-content schema. The label choices,
+      the granularity, and the restructure stakes ship empty behind a named gate. heyhi-aeo seam:
+      this makes the taxonomy machine-readable; heyhi-aeo optimizes it for citation.
+    semantic_tags: [taxonomy audit, labeling audit, information scent, label consistency, polyhierarchy, metadata, machine-readability schema, controlled vocabulary, user vocabulary, information architecture, structured content, findability of labels]
+    trigger_patterns: ["audit the taxonomy", "audit label consistency", "is the labeling consistent", "check information scent", "review the polyhierarchy", "draft the machine-readability schema for the taxonomy", "are these labels from user vocabulary", "taxonomy and labeling audit"]
+    dependencies:
+      - heyhi-skills/taxonomy-labeling-auditor/references/taxonomy-canon.md
+      - os/foundations/information-architecture/FOUNDATION.md
+    not_for:
+      - "Optimize content for answer-engine citation, AI Overviews, or getting cited by ChatGPT / Perplexity (use heyhi-aeo)"
+      - "Tokens, components, or design-system health and drift, not the content taxonomy (use heyhi-design-intelligence-audit)"
+      - "Choosing the labels, the granularity, or the restructure stakes — the human's, always; this skill's named gate"
+    load_cost_tokens: 4915
+    location: heyhi-skills/taxonomy-labeling-auditor/SKILL.md
+
+  - id: area-content-design
+    name: "Area 3: Content Design / UX Writing"
+    type: reference
+    description: >-
+      The Content Design / UX Writing area (covered; foundation FILLED 2026-09-05, os/foundations/content-design/).
+      Client voice-and-tone systems (voice-system-author, deployed), per-state microcopy against a confirmed
+      voice (microcopy-states-writer, deployed 2026-09-05), content models (content-model-architect, held on
+      IA vocabulary / D-3).
+    semantic_tags: [content design, ux writing, microcopy, voice and tone, states copy, content model]
+    trigger_patterns: ["ux writing", "client voice system", "content model", "content design area"]
+    dependencies: [os/foundations/content-design/FOUNDATION.md]
+    not_for: ["Writing in HeyHi's own brand voice (use heyhi-voice)"]
+    load_cost_tokens: 500
+    location: os/foundations/content-design/FOUNDATION.md
+
+  - id: area-interaction-design
+    name: "Area 4: Interaction Design"
+    type: reference
+    description: >-
+      The Interaction Design area (partial; foundation FILLED 2026-09-05, os/foundations/interaction-design/).
+      Motion-token systems (motion-system-author, deployed), the structural interaction inventory
+      (interaction-inventory, deployed 2026-09-05), the control-state contract (A.3 substrate).
+    semantic_tags: [interaction design, motion, transitions, state machine, microinteractions, control states]
+    trigger_patterns: ["interaction design", "motion system", "control states"]
+    dependencies: [os/foundations/interaction-design/FOUNDATION.md]
+    not_for: []
+    load_cost_tokens: 500
+    location: os/foundations/interaction-design/FOUNDATION.md
+
+  - id: area-prototyping
+    name: "Area 5: Wireframing & Prototyping"
+    type: reference
+    description: >-
+      The Wireframing & Prototyping area (covered at hi-fi, under governance). Register the
+      hi-fi skills, adopt the Exit Gate, wire the ui-studio routing override. Lo-fi/flow gap is P3.
+    semantic_tags: [prototyping, wireframe, lo-fi, hi-fi, flow, prototype readiness, interaction completeness]
+    trigger_patterns: ["prototyping area", "wireframe", "prototype governance", "lo-fi flow"]
+    dependencies: [os/foundations/prototyping/FOUNDATION.md]
+    not_for: []
+    load_cost_tokens: 500
+    location: os/foundations/prototyping/FOUNDATION.md
+
+  - id: area-visual-design
+    name: "Area 6: Visual Design"
+    type: reference
+    description: >-
+      The Visual Design area (deep, governed). The Layer-0 taste pipeline + the style skills.
+      References the style corpus and the fundamentals reasoning layer in place. A governance manifest.
+    semantic_tags: [visual design, taste, style direction, art direction, aesthetic, visual language, gestalt]
+    trigger_patterns: ["visual design area", "style direction", "art direction", "visual language"]
+    dependencies: [os/foundations/visual-design/FOUNDATION.md]
+    not_for: ["System-level token/component health (use area-design-systems)"]
+    load_cost_tokens: 650
+    location: os/foundations/visual-design/FOUNDATION.md
+
+  - id: area-design-systems
+    name: "Area 7: Design Systems"
+    type: reference
+    description: >-
+      The Design Systems area (deep, the built module). The DS-MCP + Evaluator + corrections
+      loop, reached through the MCP boundary, plus the 13-skill cluster (the write verb
+      heyhi-figma-ds-generator and the act verb heyhi-drift-repair joined 2026-09-04). A governance manifest.
+    semantic_tags: [design system, tokens, components, drift, audit, conformance, design system health]
+    trigger_patterns: ["design systems area", "token drift", "design system health", "component audit"]
+    dependencies: [os/foundations/design-systems/FOUNDATION.md]
+    not_for: ["Taste / visual direction selection (use area-visual-design)"]
+    load_cost_tokens: 700
+    location: os/foundations/design-systems/FOUNDATION.md
+
+  - id: area-accessibility
+    name: "Area 8: Accessibility"
+    type: reference
+    description: >-
+      The Accessibility area (partial, elevated to a governed practice). The mechanical floor is
+      enforced today; the tracked shortfall is the judged half. Build gate: the Phase-2 heyhi-a11y-audit anchor.
+    semantic_tags: [accessibility, a11y, WCAG, contrast, screen reader, assistive technology, ARIA, VPAT]
+    trigger_patterns: ["accessibility audit", "a11y audit", "WCAG conformance", "screen reader review"]
+    dependencies: [os/foundations/accessibility/FOUNDATION.md]
+    not_for: ["A full design-system drift audit (use area-design-systems / heyhi-design-intelligence-audit)"]
+    load_cost_tokens: 600
+    location: os/foundations/accessibility/FOUNDATION.md
+
+  - id: area-design-strategy
+    name: "Area 9: Design Strategy & Product Thinking"
+    type: reference
+    description: >-
+      The Design Strategy area (partial). Design measurability (Goals→Signals→Metrics),
+      opportunity/JTBD integrity. Foundation deferred to P1.5/P3.
+    semantic_tags: [design strategy, product thinking, measurability, metrics, opportunity solution tree, JTBD]
+    trigger_patterns: ["design strategy", "is this measurable", "opportunity tree", "product thinking"]
+    dependencies: [os/foundations/registry.yaml]
+    not_for: ["Org foresight / preferred-future work (use futurecasting)"]
+    load_cost_tokens: 450
+    location: os/foundations/registry.yaml
+
+  - id: area-business-acumen
+    name: "Area 10: Business Acumen (design)"
+    type: reference
+    description: >-
+      The design Business Acumen area (partial; foundation FILLED 2026-09-05; design-business only, the
+      scope fence). Experiment readout linting (experiment-readout-linter, deployed), competitive
+      teardowns and the design business case (competitive-teardown-runner, design-business-case-drafter,
+      deployed 2026-09-05).
+    semantic_tags: [design business, design ROI, stakeholder buy-in, competitive teardown, experiment readout, data literacy]
+    trigger_patterns: ["design ROI", "experiment readout", "competitive teardown", "design business case"]
+    dependencies: [os/foundations/business-acumen/FOUNDATION.md]
+    not_for: ["HeyHi firm sales, marketing, or proposals (the keel layer, out of scope here)"]
+    load_cost_tokens: 500
+    location: os/foundations/business-acumen/FOUNDATION.md
+
+  - id: area-collaboration-facilitation
+    name: "Area 11: Collaboration & Facilitation"
+    type: reference
+    description: >-
+      The Collaboration & Facilitation area (covered for general facilitation, partial for design). Critique is don't-automate: a
+      facilitation and behavioral-corrections surface, never a generation target. Governed via invariants.
+    semantic_tags: [facilitation, critique, design critique, workshop, decision record, collaboration, communication]
+    trigger_patterns: ["design critique", "design critique session", "run a design critique", "facilitation", "decision record"]
+    dependencies: [os/foundations/registry.yaml]
+    not_for: ["Running the workshop itself (use heyhi-workshop)", "Prep the crit or capture the crit decisions (use crit-prep-and-capture)"]
+    load_cost_tokens: 450
+    location: os/foundations/registry.yaml
+
+  - id: area-designops
+    name: "Area 12: DesignOps / ResearchOps"
+    type: reference
+    description: >-
+      The DesignOps / ResearchOps area (partial, self-referential). Sheerline's own machinery is
+      the worked DesignOps artifact. Governed via the designops-as-governed-practice invariant.
+    semantic_tags: [designops, researchops, rituals, team model, research repository, ops governance]
+    trigger_patterns: ["designops", "researchops", "design team rituals", "research repository"]
+    dependencies: [os/foundations/registry.yaml]
+    not_for: []
+    load_cost_tokens: 450
+    location: os/foundations/registry.yaml
+
+  - id: area-service-design
+    name: "Area 13: Service Design"
+    type: reference
+    description: >-
+      The Service Design area (covered — foundation filled + heyhi-service-blueprint deployed
+      2026-09-07 at D-3 open, on a client pull; the last gap in the 13-area map closed). The
+      backstage-confirmation discipline routes to the skill; this reference answers broad
+      area-level queries only (its triggers/tags were trimmed so the skill wins discipline routing).
+    semantic_tags: [service design, conditional area, service design practice]
+    trigger_patterns: ["service design area", "service design practice"]
+    dependencies: [os/foundations/service-design/FOUNDATION.md]
+    not_for: ["Journey mapping as a standalone deliverable (recommend-against; owned by dedicated tools)", "Confirm the backstage or evidence-link the support cells of a service blueprint (use heyhi-service-blueprint)", "Building, drawing, or rendering the blueprint artifact in FigJam (use heyhi-figjam-mapper)"]
+    load_cost_tokens: 450
+    location: os/foundations/service-design/FOUNDATION.md
+
+  - id: heyhi-service-blueprint
+    name: "Service Blueprint"
+    type: skill
+    area: 13
+    # the backstage-confirmation discipline (area 13, net-new). Deployed 2026-09-07 (D-3 open), proved first on a client engagement; area 13 partial -> covered.
+    description: >-
+      From a journey map the human brings, assemble a service-blueprint scaffold where every
+      backstage / support cell is evidence-linked or explicitly assumption-marked, with a named
+      ops-confirmation gate. The five swim-lanes and three separators (line of visibility load-
+      bearing), the frontstage drafted from the journey (inferred cells tagged), candidate backstage
+      steps flagged `assumption`, a provenance ledger refusing a "confirmed" pack with an unconfirmed
+      backstage cell. The backstage truth, the contested line-of-visibility placement, the root-
+      cause, and the service verdict ship empty behind the named gate.
+    semantic_tags: [service blueprint, service design, backstage confirmation, line of visibility, provenance ledger, evidence-linked, assumption-marked, swim lanes, journey to blueprint, service scaffold, ops confirmation gate, frontstage backstage]
+    trigger_patterns: ["confirm the backstage", "is this blueprint's backstage real", "evidence-link the support cells", "map the service backstage", "map the service", "which cells are assumptions", "service blueprint discipline", "provenance-check this blueprint"]
+    dependencies:
+      - heyhi-skills/heyhi-service-blueprint/references/blueprint-canon.md
+      - os/foundations/service-design/FOUNDATION.md
+    not_for:
+      - "Render a service blueprint or journey map live in FigJam (use heyhi-figjam-mapper)"
+      - "Draw or diagram the blueprint on a board from known inputs (use heyhi-figjam-mapper)"
+      - "Research plan or study to produce the journey the blueprint consumes (use research-plan-author)"
+      - "Futurecast the service, read its signals, or map its preferred future (use futurecasting)"
+      - "Workshop to run or facilitate a service-design session with the team (use heyhi-workshop)"
+      - "Confirming the backstage truth, ruling the operational root-cause, or the service verdict — the human's, always; this skill's named gate"
+    load_cost_tokens: 3655
+    location: heyhi-skills/heyhi-service-blueprint/SKILL.md
+
+  # ── Visual Design skills (area 6) ─────────────────────────────────────────
+
+  - id: heyhi-logo-system
+    name: "Logo System"
+    type: skill
+    description: >-
+      Asset-level logo work: concept directions, mark critique, production logo spec. Emits a
+      human spec + a machine logo-namespace JSON.
+    semantic_tags: [logo, wordmark, favicon, mark, logo concept, logo critique, logo spec]
+    trigger_patterns: ["logo concept", "critique this logo", "logo spec", "wordmark"]
+    dependencies: []
+    not_for: ["A whole visual-language direction brief (use heyhi-style-brief)"]
+    load_cost_tokens: 1400
+    location: heyhi-skills/heyhi-logo-system/SKILL.md
+
+  - id: heyhi-style-brief
+    name: "Style Brief"
+    type: skill
+    description: >-
+      Write a style / design-direction brief for client approval — the readable artifact between
+      style selection and Mode D onboarding.
+    semantic_tags: [style brief, design direction, visual language brief, direction approval]
+    trigger_patterns: ["style brief", "design direction brief", "write the visual direction"]
+    dependencies: []
+    not_for: ["Moodboard matching / Gate 0 classification (use heyhi-style-selection)", "A single logo (use heyhi-logo-system)"]
+    load_cost_tokens: 1350
+    location: heyhi-skills/heyhi-style-brief/SKILL.md
+
+  - id: heyhi-style-selection
+    name: "Style Selection"
+    type: skill
+    description: >-
+      Style selection and moodboard match; Gate 0 classification of a visual direction against
+      the style clusters.
+    semantic_tags: [style selection, moodboard match, gate 0, style classification]
+    trigger_patterns: ["style selection", "moodboard match", "classify this style"]
+    dependencies: []
+    not_for: ["Writing the readable direction brief (use heyhi-style-brief)"]
+    load_cost_tokens: 1250
+    location: heyhi-skills/heyhi-style-selection/SKILL.md
+
+  - id: heyhi-style-entry-author
+    name: "Style Entry Author"
+    type: skill
+    description: >-
+      Build or validate a style-library entry, or curate an infra reference-set entry.
+    semantic_tags: [style library entry, style entry, reference set entry, style validation]
+    trigger_patterns: ["build a style entry", "validate this style entry", "style library entry"]
+    dependencies: []
+    not_for: []
+    load_cost_tokens: 1200
+    location: heyhi-skills/heyhi-style-entry-author/SKILL.md
+
+  - id: design-system-onboard
+    name: "Design System Onboard (moodboard → config)"
+    type: skill
+    description: >-
+      Moodboard-driven Mode D onboarding: moodboard to brand config. Legacy for other onboarding
+      (use ui-studio-onboard).
+    semantic_tags: [moodboard onboarding, mode d, moodboard to config, brand config from moodboard]
+    trigger_patterns: ["moodboard to brand config", "mode d onboarding"]
+    dependencies: []
+    not_for: ["Figma-token onboarding (use ui-studio-onboard)"]
+    load_cost_tokens: 1200
+    location: heyhi-skills/design-system-onboard/SKILL.md
+
+  # ── Design Systems skills (area 7) ────────────────────────────────────────
+
+  - id: heyhi-design-intelligence-audit
+    name: "Design Intelligence Audit"
+    type: skill
+    description: >-
+      Audit a client's design system for drift and system-level health: tokens, components,
+      code-design fidelity. Planning / Audit / Report modes.
+    semantic_tags: [design system audit, drift, system health, token audit, component audit, design intelligence]
+    trigger_patterns: ["audit this design system", "design system health", "assess drift", "run a design audit"]
+    dependencies: []
+    not_for: ["Repair the findings back into the file (use heyhi-drift-repair)", "Generate a design system into Figma (use heyhi-figma-ds-generator)", "Interaction completeness of one prototype (use heyhi-prototype-audit)", "A full WCAG conformance audit (use area-accessibility)", "Critique facilitation — a live design critique session is a don't-automate area-11 facilitation surface, not an audit or generation target", "Compare patterns across competitors' products, or tear down a competitor (use competitive-teardown-runner)"]
+    load_cost_tokens: 1600
+    location: heyhi-skills/heyhi-design-intelligence-audit/SKILL.md
+
+  - id: design-system-review
+    name: "Design System Review"
+    type: skill
+    description: >-
+      Design-system fidelity check, v0-to-v1 review, promote a config from candidate to canonical.
+    semantic_tags: [design system review, fidelity check, config promotion, v0 to v1]
+    trigger_patterns: ["design system fidelity check", "promote this config", "v0 to v1 review"]
+    dependencies: []
+    not_for: ["A drift/health audit of a live system (use heyhi-design-intelligence-audit)"]
+    load_cost_tokens: 1300
+    location: heyhi-skills/design-system-review/SKILL.md
+
+  - id: design-system-care-monthly
+    name: "Design System Care (monthly)"
+    type: skill
+    description: >-
+      The monthly Design System Care pass: token-drift check and monthly report for a retainer.
+    semantic_tags: [design system care, monthly care, token drift check, monthly report, retainer]
+    trigger_patterns: ["monthly care", "token drift check", "monthly design system report"]
+    dependencies: []
+    not_for: []
+    load_cost_tokens: 1250
+    location: heyhi-skills/design-system-care-monthly/SKILL.md
+
+  - id: heyhi-token-description-author
+    name: "Token Description Author"
+    type: skill
+    description: >-
+      Write or enhance agent-readable token descriptions (the meaning layer over a token set).
+    semantic_tags: [token description, agent-readable tokens, token meaning layer]
+    trigger_patterns: ["write token descriptions", "agent-readable tokens", "enhance token descriptions"]
+    dependencies: []
+    not_for: []
+    load_cost_tokens: 1200
+    location: heyhi-skills/heyhi-token-description-author/SKILL.md
+
+  - id: heyhi-schema-extension-author
+    name: "Schema Extension Author"
+    type: skill
+    description: >-
+      Extend the token schema, add a token namespace, file the ADR for it.
+    semantic_tags: [schema extension, token namespace, add token type, schema ADR]
+    trigger_patterns: ["extend the schema", "add a token namespace", "file a schema ADR"]
+    dependencies: []
+    not_for: []
+    load_cost_tokens: 1200
+    location: heyhi-skills/heyhi-schema-extension-author/SKILL.md
+
+  - id: heyhi-pipeline-validator
+    name: "Pipeline Validator"
+    type: skill
+    description: >-
+      Pipeline validation: the 66-point test, a smoke test of a style through the pipeline.
+    semantic_tags: [pipeline validation, 66-point test, smoke test style, pipeline check]
+    trigger_patterns: ["validate the pipeline", "66-point test", "smoke test this style"]
+    dependencies: []
+    not_for: []
+    load_cost_tokens: 1200
+    location: heyhi-skills/heyhi-pipeline-validator/SKILL.md
+
+  - id: heyhi-theme-validator
+    name: "Theme Validator"
+    type: skill
+    description: >-
+      Theme Store validation and submission-readiness check for a generated theme.
+    semantic_tags: [theme validation, theme store, submission readiness]
+    trigger_patterns: ["validate this theme", "theme store readiness", "theme submission check"]
+    dependencies: []
+    not_for: []
+    load_cost_tokens: 1150
+    location: heyhi-skills/heyhi-theme-validator/SKILL.md
+
+  - id: heyhi-style-to-token-reviewer
+    name: "Style-to-Token Reviewer"
+    type: skill
+    description: >-
+      Token-set coherence review: validate a config's tokens against its style cluster.
+    semantic_tags: [token set coherence, config validation, style cluster check, semantic orphan]
+    trigger_patterns: ["token set coherence", "validate config against cluster", "style to token review"]
+    dependencies: []
+    not_for: []
+    load_cost_tokens: 1200
+    location: heyhi-skills/heyhi-style-to-token-reviewer/SKILL.md
+
+  - id: ui-studio-onboard
+    name: "ui-studio Onboard"
+    type: skill
+    description: >-
+      Set up ui-studio for a client: extract Figma tokens into a brand config (the opposite
+      direction from design-bridge).
+    semantic_tags: [ui-studio onboarding, figma token extraction, client config, brand config from figma]
+    trigger_patterns: ["set up ui-studio for", "extract figma tokens", "onboard this client"]
+    dependencies: []
+    not_for: ["Moodboard-driven onboarding (use design-system-onboard)", "Generate a design system INTO Figma from tokens, the opposite direction (use heyhi-figma-ds-generator)"]
+    load_cost_tokens: 1300
+    location: heyhi-skills/ui-studio-onboard/SKILL.md
+
+  - id: heyhi-shopify-theme
+    name: "Shopify Theme"
+    type: skill
+    description: >-
+      Generate or build a Shopify theme (Mode A/B/C) from the design-direction pipeline.
+    semantic_tags: [shopify theme, theme build, marketplace theme, shopify]
+    trigger_patterns: ["build a shopify theme", "generate a shopify theme", "shopify theme mode"]
+    dependencies: []
+    not_for: []
+    load_cost_tokens: 1300
+    location: heyhi-skills/heyhi-shopify-theme/SKILL.md
+
+  - id: heyhi-audit-campaign
+    name: "Audit Campaign"
+    type: skill
+    description: >-
+      Design and run a multi-session (3+) design audit campaign: instrument design, per-session
+      pass, synthesis + fix-spec close-out.
+    semantic_tags: [audit campaign, multi-session audit, diagnostic arc, campaign synthesis]
+    trigger_patterns: ["audit campaign", "multi-session audit", "run a diagnostic arc"]
+    dependencies: []
+    not_for: ["A single-session system audit (use heyhi-design-intelligence-audit)", "A single prototype audit (use heyhi-prototype-audit)"]
+    load_cost_tokens: 1500
+    location: heyhi-skills/heyhi-audit-campaign/SKILL.md
+
+  # ── Wireframing & Prototyping skills (area 5) ─────────────────────────────
+
+  - id: ui-studio
+    name: "ui-studio"
+    type: skill
+    description: >-
+      Config-driven UI build (Mode A/B/C) for client or speculative work, against a brand config.
+    semantic_tags: [client ui build, ui-studio, mode a b c, brand config build, config-driven ui]
+    trigger_patterns: ["client ui build", "ui-studio build", "build with brand config"]
+    dependencies: []
+    not_for: ["HeyHi production pages (use heyhi-ui-ux)"]
+    load_cost_tokens: 1500
+    location: heyhi-skills/ui-studio/SKILL.md
+
+  - id: heyhi-prototype-audit
+    name: "Prototype Audit"
+    type: skill
+    description: >-
+      Audit an HTML prototype for interaction completeness and readiness. Stack-agnostic; layers
+      brand-config checks when present.
+    semantic_tags: [prototype audit, interaction completeness, readiness check, interaction gaps]
+    trigger_patterns: ["audit this prototype", "is this ready for review", "what interactions are missing"]
+    dependencies: []
+    not_for: ["System-level token/component drift (use heyhi-design-intelligence-audit)", "Inventory or enumerate the states, transitions, or state machine of a design BEFORE it is built (use interaction-inventory — this audits a built prototype)", "Microcopy or strings for the states of a screen BEFORE it is built (use microcopy-states-writer; this audits what got built)"]
+    load_cost_tokens: 1400
+    location: heyhi-skills/heyhi-prototype-audit/SKILL.md
+
+  - id: heyhi-design-bridge
+    name: "Design Bridge"
+    type: skill
+    description: >-
+      Translate a ui-studio prototype into Figma docs/mockups, or vectorize a raster into a
+      craft SVG. Two modes over a shared scene-graph IR.
+    semantic_tags: [prototype to figma, html to figma, vectorize, raster to vector, figma documentation]
+    trigger_patterns: ["html to figma", "figma from the prototype", "vectorize this", "raster to vector"]
+    dependencies: []
+    not_for: ["Extracting Figma tokens into a config (use ui-studio-onboard, the opposite direction)", "Generate a design system into a Figma file from the served contract (use heyhi-figma-ds-generator)", "Repair audit findings back into the file (use heyhi-drift-repair)"]
+    load_cost_tokens: 1400
+    location: heyhi-skills/heyhi-design-bridge/SKILL.md
+
+  # ── Representative partial/covered operating + content skills ──────────────
+
+  - id: futurecasting
+    name: "Futurecasting"
+    type: skill
+    description: >-
+      Strategic foresight: preferred-future design, divergent scenarios, Working Canvas,
+      Decision Register, pre-mortem.
+    semantic_tags: [futurecasting, foresight, preferred future, working canvas, pre-mortem, scenarios]
+    trigger_patterns: ["futurecasting", "preferred future", "pre-mortem", "working canvas"]
+    dependencies: []
+    not_for: ["Product/design strategy measurability (that is area-design-strategy)", "Research plans or user-study planning (use research-plan-author)"]
+    load_cost_tokens: 1500
+    location: heyhi-skills/futurecasting/SKILL.md
+
+  # ── P1.5 operating-area audit skills (promoted 2026-08-15, DISPATCH-D #642; ──────
+  #    lifted into this subset registry by the DISPATCH-F convergence pass) ──────────
+  #    Pure validate/audit skills — the human decision ships empty behind a named gate.
+
+  - id: experiment-readout-linter
+    name: "Experiment Readout Linter"
+    type: skill
+    area: 10
+    description: >-
+      Audit an A/B or experiment readout for statistical integrity before the team acts on it:
+      peeking / optional-stopping, power / sample sufficiency, back-solved primary metric,
+      single-method over-reliance, and number provenance. The ship / no-ship and materiality
+      calls ship empty behind a named human gate.
+    semantic_tags: [experiment readout, A/B test, peeking, optional stopping, statistical power, sample size, back-solved metric, provenance, data literacy, not being fooled]
+    trigger_patterns: ["audit this experiment readout", "is this A/B result trustworthy", "did we peek", "was this powered", "lint this test result", "check this experiment before we ship"]
+    dependencies:
+      - heyhi-skills/experiment-readout-linter/references/experiment-integrity-checks.md
+      - os/foundations/business-acumen/FOUNDATION.md
+    not_for:
+      - "Reviewing a live funnel or landing page for conversion (use heyhi-funnel-cro)"
+      - "Deciding whether something is measurable at all or building the metric scaffold upstream (use design-measurability-mapper)"
+      - "Making the ship decision (the human's, always — this skill's named gate)"
+      - "Draft a design business case, or tear down a competitor (use design-business-case-drafter / competitive-teardown-runner)"
+    load_cost_tokens: 1600
+    location: heyhi-skills/experiment-readout-linter/SKILL.md
+
+  - id: design-measurability-mapper
+    name: "Design Measurability Mapper"
+    type: skill
+    area: 9
+    description: >-
+      Answer "is this design goal measurable at all?" and build the Goals→Signals→Metrics
+      scaffold: a G→S→M traceability table, an instrumentation audit, a gaming / Goodhart
+      stress-test, and an unmeasurable-as-designed flag. Metric selection and target-setting
+      ship empty behind a named human gate (a values decision, not a mechanical one).
+    semantic_tags: [design measurability, measurable, measurability, goal measurability, measurability assessment, measurable design goal, design goal, measurable goal, goals signals metrics, GSM, HEART, north star, instrumentation, goodhart, gaming, metric scaffold, product thinking]
+    trigger_patterns: ["is this design goal measurable", "is this goal measurable", "is this measurable", "how would we measure this", "can we measure this goal", "build a goals-signals-metrics map", "what should we track for this feature", "measurability check", "measurability"]
+    dependencies:
+      - heyhi-skills/design-measurability-mapper/references/measurability-canon.md
+      - os/foundations/registry.yaml
+    not_for:
+      - "Auditing a completed experiment / A-B readout (use experiment-readout-linter)"
+      - "Auditing an opportunity / JTBD / prioritization artifact's reasoning (use strategy-integrity-warden)"
+      - "A design system's own adoption / drift metrics (use design-system-care-monthly or heyhi-design-intelligence-audit)"
+      - "Choosing the metric or setting the target (the human's, always — this skill's named gate)"
+    load_cost_tokens: 1650
+    location: heyhi-skills/design-measurability-mapper/SKILL.md
+
+  - id: strategy-integrity-warden
+    name: "Strategy Integrity Warden"
+    type: skill
+    area: 9
+    description: >-
+      Audit an opportunity solution tree, JTBD map, or prioritization sheet for reasoning
+      integrity: canonical restatement, evidence-linkage-or-assumption-flag on every node,
+      solutions-dressed-as-opportunities detection, evidence staleness, and back-solved-score
+      detection. Warden-shaped — it audits the reasoning and never selects the opportunity;
+      which-opportunity and what-to-build ship empty behind a named human gate.
+    semantic_tags: [design strategy, opportunity solution tree, opportunity tree, opportunity backlog, OST, JTBD, prioritization, RICE, reasoning integrity, evidence linkage, back-solved scores, product thinking]
+    trigger_patterns: ["audit this opportunity tree", "review this opportunity tree", "opportunity tree", "is this JTBD sound", "check the reasoning on this prioritization", "did we back-solve these scores", "stress-test this strategy artifact", "opportunity integrity check"]
+    dependencies:
+      - heyhi-skills/strategy-integrity-warden/references/reasoning-integrity-checks.md
+      - os/foundations/registry.yaml
+    not_for:
+      - "Org foresight, preferred-future, scenario, or Decision-Register generation (use futurecasting)"
+      - "Building a Goals→Signals→Metrics measurability map (use design-measurability-mapper)"
+      - "Auditing a completed A/B / experiment readout (use experiment-readout-linter)"
+      - "Selecting or ranking the opportunity, or deciding what to build (the human's, always — this skill's named gate; warden shape forbids it)"
+    load_cost_tokens: 1800
+    location: heyhi-skills/strategy-integrity-warden/SKILL.md
+
+  - id: design-rationale-decision-record
+    name: "Design Rationale & Decision-Record Keeper"
+    type: skill
+    area: 11
+    description: >-
+      Scaffold a design decision record (ADR/DACI) with the rationale and decision left empty,
+      check DACI completeness (one Driver, one Approver, Contributors, Informed), and sweep a
+      body of docs/threads for decisions discussed-but-unrecorded or recorded-then-contradicted.
+      Rationale and decision ship empty behind a named Approver gate; swept items are candidates,
+      never asserted.
+    semantic_tags: [decision record, ADR, DACI, design rationale, decision log, integrity sweep, unrecorded decision, contradicted decision, accountable owner]
+    trigger_patterns: ["record this design decision", "write the ADR", "scaffold the rationale", "who's the approver", "did we ever decide", "find unrecorded decisions", "decision log for the design team"]
+    dependencies:
+      - heyhi-skills/design-rationale-decision-record/references/decision-record-canon.md
+      - os/foundations/registry.yaml
+    not_for:
+      - "Auditing an opportunity / JTBD / prioritization artifact's reasoning (use strategy-integrity-warden)"
+      - "Maintaining HeyHi's own append-only decision-log (edit ai-services/_core/decision-log.md directly — the firm's log)"
+      - "Sweeping HeyHi's own project for propagation/integrity gaps (use heyhi-session-integrity)"
+      - "Preparing or capturing a live design critique (use crit-prep-and-capture — it feeds this skill)"
+      - "Writing the rationale or making the decision (the human's, always — this skill's named gate)"
+    load_cost_tokens: 1750
+    location: heyhi-skills/design-rationale-decision-record/SKILL.md
+
+  # ── Figma-live generation skill (area 11; built 2026-08-17, lifted DISPATCH-01) ────────────
+  #    The first HeyHi skill to *generate* design artifacts (flow/journey/blueprint/IA) live in
+  #    FigJam — distinct from heyhi-design-bridge (area 5), which *translates* an existing
+  #    prototype/raster into a Figma design file. Primary area 11; serves gated areas 2 (IA, P3)
+  #    and 13 (Service Design, D-3 2026-10-09) — re-tag into those when their gates open.
+
+  - id: heyhi-figjam-mapper
+    name: "HeyHi FigJam Mapper"
+    type: skill
+    area: 11
+    # serves_areas: [2, 13] — non-standard hint kept as a comment (IA + Service Design, both gated today); re-tag when those gates open.
+    description: >-
+      Render structured design inputs into an editable FigJam artifact live in the client's Figma:
+      flow, journey map, service blueprint, IA sitemap, sequence, state, ERD, or architecture. Routes
+      each type to the right Figma mechanism (generate_diagram for Mermaid-supported types; use_figma
+      on FigJam for journey maps and service blueprints, which Mermaid does not support), reads the
+      engagement-intake profile for voice / deliverable / hermetic boundary, and leaves the design
+      judgment (pain points, opportunities, taxonomy correctness) as labeled empty slots behind a
+      named human gate, with inferred content tagged. The first HeyHi skill to generate design
+      artifacts (flows/journeys/blueprints/IA) live in FigJam — distinct from heyhi-design-bridge,
+      which translates existing prototypes into Figma design files.
+    semantic_tags: [figjam, journey map, service blueprint, service design, blueprint, backstage, information architecture, sitemap, flowchart, diagram, figma-live, use_figma, generate_diagram, facilitation artifact, mapping]
+    trigger_patterns: ["map this journey in figjam", "build a service blueprint", "service blueprint", "draw a service blueprint", "diagram this flow in figjam", "make an IA sitemap", "put this architecture in figjam", "turn the research into a journey map"]
+    dependencies:
+      - heyhi-skills/heyhi-figjam-mapper/references/artifact-recipes.md
+    not_for:
+      - "Generate a design system — variables, token styles, components — into a Figma design file (use heyhi-figma-ds-generator)"
+      - "Translating a built HTML prototype into a Figma design file, or vectorizing a raster (use heyhi-design-bridge)"
+      - "Building slides (use heyhi-deck)"
+      - "Running or prepping the workshop the artifact is used in (use heyhi-workshop)"
+      - "A diagram inside a Figma design file rather than FigJam (use figma-use directly)"
+      - "Deciding what the journey or IA actually is (the human's, always — this skill's named gate)"
+      - "Decide the flow / decide which screens exist (use flow-and-lofi-author; this renders a flow already decided)"
+      - "Confirm the backstage or evidence-link the support cells of a service blueprint (use heyhi-service-blueprint)"
+    load_cost_tokens: 1750
+    location: heyhi-skills/heyhi-figjam-mapper/SKILL.md
+
+  - id: insight-activation
+    name: "Insight Activation"
+    type: skill
+    area: 1
+    # connective — serves the corrections loop across areas (esp. 9/10/11); buildout research "1→7". Built on the R1 corrections runtime. Sheerline Wave G-1, promoted 2026-08-23.
+    description: >-
+      Turn a recurring finding (a Sheerline audit skill's report, an own-practice harvest, a
+      research synthesis) into a schema-shaped candidate routed to the human-only
+      corrections-intake. Dual-routed as of v0.2.0: a correction-shaped finding becomes a candidate
+      correction classified factual vs behavioral; an insight-shaped finding (an opinion-free
+      observation about a user, domain, or product) becomes an insight (nugget) candidate for the
+      insight registry. The learn verb — the findings-to-corrections and findings-to-insights
+      bridge. It proposes and steps back: never writes the live correction or insight registry,
+      auto-injects, or promotes.
+    semantic_tags: [insight activation, findings to corrections, corrections bridge, learn verb, candidate correction, corrections intake, factual vs behavioral, recurring pattern capture, institutional memory]
+    trigger_patterns: ["activate this insight", "turn this finding into a correction", "file this as a correction candidate", "this keeps happening capture it", "make this finding retrievable next time"]
+    dependencies:
+      - heyhi-skills/insight-activation/references/corrections-bridge-method.md
+    not_for:
+      - "Running the audit that produces the finding (the four Sheerline area audit skills)"
+      - "Editing the live human-curated corrections registry directly (a human edit — the firewall)"
+      - "By-hand session corrections-intake filing (corrections-intake/README.md)"
+    load_cost_tokens: 1700
+    location: heyhi-skills/insight-activation/SKILL.md
+
+  - id: heyhi-a11y-audit
+    name: "HeyHi Accessibility Audit"
+    type: skill
+    area: 8
+    # the area-8 anchor (P2). Consumes the deterministic floor; judged tier + overall claim ship empty behind a named gate; provenance labels stop an automated pass rolling into a claim. Sheerline Wave G-2, promoted 2026-08-28.
+    description: >-
+      Standalone WCAG 2.2 conformance audit -> an ACR/VPAT per-criterion report at a stated level.
+      Consumes the deterministic accessibility floor (DS-MCP conformance lane + heyhi-mcp validator
+      rules) for the automated tier; never re-implements contrast math. The judged tier ships EMPTY
+      (NEEDS HUMAN / AT CONFIRMATION); every row carries a provenance label; the conformance sign-off
+      is a named human gate; an automated pass is never a conformance claim. AT-testing protocol as a mode.
+    semantic_tags: [accessibility audit, a11y audit, WCAG, WCAG 2.2, WCAG conformance, conformance audit, ACR, VPAT, accessibility conformance report, screen reader, keyboard accessibility, assistive technology, target size, ARIA, reflow, AA conformance]
+    trigger_patterns: ["run a WCAG audit", "accessibility conformance report", "is this AA conformant", "produce an ACR", "produce a VPAT", "screen-reader audit", "a11y audit", "accessibility audit", "does this meet WCAG"]
+    dependencies:
+      - heyhi-skills/heyhi-a11y-audit/references/acr-vpat-template.md
+      - heyhi-skills/heyhi-a11y-audit/references/at-testing-checklist.md
+      - sheerline/os/foundations/accessibility/FOUNDATION.md
+    not_for:
+      - "Auto-fix or repair the conformance failures back into the file (use heyhi-drift-repair — the audit reads, never writes)"
+      - "A design system's health, token drift, or component-code drift (use heyhi-design-intelligence-audit; its Area 5 spot-check is the seam)"
+      - "Interaction completeness or 'is this prototype ready' (use heyhi-prototype-audit)"
+      - "Annotating a design/prototype with the a11y spec before build (use heyhi-a11y-annotation)"
+      - "Making the conformance claim itself (the human's signature at the named gate)"
+    load_cost_tokens: 6058
+    location: heyhi-skills/heyhi-a11y-audit/SKILL.md
+
+  - id: heyhi-a11y-annotation
+    name: "HeyHi Accessibility Annotation"
+    type: skill
+    area: 8
+    # design-side prevention, class X on heyhi-design-bridge; judged calls ship empty behind a designer sign-off. Sheerline Wave G-2, promoted 2026-08-28.
+    description: >-
+      Design-side accessibility prevention: annotate a design or prototype with the accessibility
+      spec for handoff (heading outline, landmark map, candidate focus/reading order, alt-text slots,
+      name/role/value, target size, ARIA APG patterns, missing-by-construction flags). The judged
+      calls (alt text, reading-order intent, role calls) ship EMPTY behind a named designer sign-off.
+      Consumes heyhi-design-bridge's structure read; re-implements no extraction.
+    semantic_tags: [accessibility annotation, a11y annotation, a11y handoff spec, accessibility redlines, annotate for accessibility, accessibility spec, headings and landmarks, name role value, alt text slots, focus order, reading order, ARIA APG, accessibility handoff, designed-in accessibility]
+    trigger_patterns: ["annotate this design for accessibility", "a11y handoff spec", "accessibility redlines", "mark up headings and landmarks for handoff", "accessibility annotation for the engineers", "accessibility spec for handoff"]
+    dependencies:
+      - heyhi-skills/heyhi-a11y-annotation/references/annotation-spec-template.md
+      - heyhi-skills/heyhi-a11y-annotation/references/apg-pattern-map.md
+      - sheerline/os/foundations/accessibility/FOUNDATION.md
+    not_for:
+      - "A post-hoc WCAG conformance verdict / ACR / VPAT on a built thing (use heyhi-a11y-audit)"
+      - "Translating a prototype into a Figma design file, or vectorizing a raster (use heyhi-design-bridge)"
+      - "A prototype interaction-completeness / readiness check (use heyhi-prototype-audit)"
+      - "Writing the alt text, setting the reading-order intent, or confirming the role (the human's, at the named gate)"
+      - "Inventory the states and transitions, or draft the state machine (use interaction-inventory — this emits the accessibility contract, that emits the behavior contract)"
+    load_cost_tokens: 4779
+    location: heyhi-skills/heyhi-a11y-annotation/SKILL.md
+
+  - id: voice-system-author
+    name: "Voice System Author"
+    type: skill
+    area: 3
+    # dual-mode Author + Audit; the voice definition + "sounds like them" ship to the human; the flattening lint is advisory. Generalizes the owned-voice pattern (heyhi-voice and a client's bespoke voice skill). Sheerline Wave G-4, promoted 2026-08-28.
+    description: >-
+      Derive a CLIENT's voice-and-tone system and audit copy against it. Author: a voice block with
+      an ELICITED calibration axis, an 8-slot UX-writing taxonomy drafted against the voice, the
+      states-copy doctrine baked in. Audit: the flattening lint (banned words, claim/SLA-leak held
+      until client-confirmed, read-aloud, distinctiveness), advisory never a gate. The client's voice
+      is an elicited INPUT; the voice DEFINITION and the "does this sound like them" call ship to the human.
+    semantic_tags: [voice and tone, voice system, client voice, ux writing, microcopy, content design, tone of voice, voice guidelines, states copy, error copy, empty states, voice flattening, sea of sameness, anti-tell, brand voice for a client]
+    trigger_patterns: ["build a voice and tone system", "derive this client's voice", "author a UX-writing voice system", "audit this copy for voice flattening", "write the voice and tone guidelines", "define the client's voice", "create a UX writing style guide"]
+    dependencies:
+      - heyhi-skills/voice-system-author/references/voice-system-template.md
+      - heyhi-skills/voice-system-author/references/flattening-lint-checklist.md
+      - os/foundations/content-design/FOUNDATION.md
+    not_for:
+      - "Writing in HeyHi's own fixed brand voice (use heyhi-voice)"
+      - "Writing in a second owned brand's own voice (use that brand's voice skill)"
+      - "A visual / design-direction brief (use heyhi-style-brief; it owns the eye, this owns the verbal voice)"
+      - "Deciding the voice definition, or judging whether copy sounds like the client (the human's, at the named gate)"
+      - "Inventory or enumerate the states a screen has (use interaction-inventory — that names the slot, this defines the voice the copy obeys)"
+      - "Microcopy for each state of a specific screen — the strings, not the voice or the slot patterns (use microcopy-states-writer; this derives the voice and lints)"
+    load_cost_tokens: 5055
+    location: heyhi-skills/voice-system-author/SKILL.md
+
+  - id: motion-system-author
+    name: "Motion System Author"
+    type: skill
+    area: 4
+    # dual-mode Author + Translate; motion personality is a human input, reduced-motion mandatory, DTCG gap documented; effectively net-new (no candidate existed). Sheerline Wave G-4, promoted 2026-08-28.
+    description: >-
+      Author a client motion-token system + component specs, or translate a Figma Motion / Rive
+      export into a token-mapped handoff. Author assembles springs (spatial + effects, three speeds)
+      with a duration+easing fallback, stagger, and a MANDATORY prefers-reduced-motion variant, from
+      a human-stated motion personality, documenting the DTCG motion standards gap. Translate ingests
+      an export, lints off-system values, emits the token-mapped spec. Motion personality, restraint,
+      and "does it feel right" stay human (empty slots behind a named gate).
+    semantic_tags: [motion system, motion tokens, spring tokens, motion design, animation tokens, reduced motion, prefers-reduced-motion, easing tokens, duration tokens, stagger, Figma Motion, Rive, motion handoff, motion spec, interaction design, DTCG motion]
+    trigger_patterns: ["author a motion system", "build motion tokens", "spring token system", "motion spec for handoff", "translate this Figma Motion export to motion tokens", "turn this Rive animation into tokens"]
+    dependencies:
+      - heyhi-skills/motion-system-author/references/motion-token-schema.md
+      - heyhi-skills/motion-system-author/references/translate-mapping.md
+      - os/foundations/interaction-design/FOUNDATION.md
+    not_for:
+      - "Extract tokens from Figma into a config — not a motion task (use ui-studio-onboard)"
+      - "Building an interface or prototype that consumes motion (use heyhi-ui-ux / ui-studio)"
+      - "Translating a whole prototype or raster into a Figma design file (use heyhi-design-bridge)"
+      - "Auditing a built prototype's interaction completeness (use heyhi-prototype-audit)"
+      - "Choosing the motion personality or approving that it feels right (the human's, at the named gate)"
+      - "Inventory the states and transitions themselves, or the state machine, before any motion is authored (use interaction-inventory — that names the transitions, this gives them motion)"
+    load_cost_tokens: 5344
+    location: heyhi-skills/motion-system-author/SKILL.md
+
+  - id: heyhi-figma-ds-generator
+    name: "HeyHi Figma DS Generator"
+    type: skill
+    area: 7
+    # area 7's first WRITE verb; orchestrates figma-generate-library + figma-use over use_figma. Promoted 2026-09-04 after the spec § 8.1 live self-engagement proof.
+    description: >-
+      Generate a design system live into a saved-cloud Figma design file from the served contract:
+      variable collections + modes (primitives → aliased, mode-aware semantics), token styles, and a
+      component/variant library with bound properties, scoped by engagement-intake. Value conflicts,
+      reuse-vs-rebuild, scope, an inferred taxonomy, and the craft critique stay human (empty slots
+      behind a named gate); anything inferred is flagged.
+    semantic_tags: [figma design system generator, generate design system into figma, figma variables, variable collections, figma library, figma component library, token styles, design system to figma, figma-live, use_figma, figma-generate-library, live-write]
+    trigger_patterns: ["generate the design system into figma", "build our design system as a figma library", "create the variable collections, token styles, and component library in figma from our tokens", "stand up the design system in a figma design file", "generate the ds variables and components in figma from the served contract"]
+    dependencies:
+      - heyhi-skills/heyhi-figma-ds-generator/references/generation-method.md
+      - os/foundations/design-systems/FOUNDATION.md
+      - profile/engagement-intake.yaml
+    not_for:
+      - "HTML prototype to Figma, or a raster to vector — translating a built thing (use heyhi-design-bridge)"
+      - "Onboard a client's Figma or design system into ui-studio, or extract tokens from Figma (use ui-studio-onboard)"
+      - "Translating a built HTML prototype, or vectorizing a raster, into a Figma design file (use heyhi-design-bridge)"
+      - "Generating a flow, journey, blueprint, or IA sitemap into a FigJam board (use heyhi-figjam-mapper)"
+      - "Auditing or drift-detecting an existing design system (use heyhi-design-intelligence-audit)"
+      - "Repairing audit findings back into the file (use heyhi-drift-repair)"
+      - "Extracting tokens FROM Figma into a config (use ui-studio-onboard)"
+      - "Resolving a value conflict, the reuse-vs-rebuild call, or grading the library (the human's, at the named gate)"
+      - "State machine, states, or transitions for a component — inventoried before any variant is generated (use interaction-inventory; this writes the variants that inventory names)"
+      - "Critique this design or render a verdict on the work — a don't-automate area-11 facilitation surface, not a generation target (the human; crit prep and capture are crit-prep-and-capture)"
+      - "Converging too early on this design / alternatives check (use divergence-guard)"
+    load_cost_tokens: 5084
+    location: heyhi-skills/heyhi-figma-ds-generator/SKILL.md
+
+  - id: heyhi-drift-repair
+    name: "HeyHi Drift Repair"
+    type: skill
+    area: 7
+    # the ACT verb (findings → applied or proposed repairs), cross-cutting area 8; keys apply/propose on detection, never severity. Promoted 2026-09-04.
+    description: >-
+      Turn located design-system drift and accessibility findings into APPLIED or PROPOSED repairs:
+      a pre-registered known_bad → expected structural transform auto-applies (re-validated, with a
+      reversible deviation record) when detection is deterministic; judged findings, and the judged
+      half of hybrid, are propose-only, always. Proposal-first by default; its learn step files
+      candidates to corrections-intake only, never the live registry.
+    semantic_tags: [drift repair, repair drift, fix token bypasses, apply audit findings, auto-fix conformance, findings to fixes, drift-repair loop, act verb, deterministic repair, propose-only repair, accessibility repair]
+    trigger_patterns: ["repair this drift", "fix the token bypasses", "apply the audit findings", "make the audit actionable", "auto-fix the conformance failures", "turn these findings into fixes", "drift-repair loop"]
+    dependencies:
+      - heyhi-skills/heyhi-drift-repair/references/repair-taxonomy.md
+      - os/foundations/design-systems/FOUNDATION.md
+    not_for:
+      - "Discovering the findings — it consumes located findings, never re-runs detection (use heyhi-design-intelligence-audit / heyhi-a11y-audit / heyhi-a11y-annotation)"
+      - "Grading a release series (the evaluator's moat, untouched)"
+      - "Generating a design system INTO Figma (use heyhi-figma-ds-generator)"
+      - "Translating a prototype or raster into a Figma design file (use heyhi-design-bridge)"
+      - "Editing the live human-curated corrections registry (the firewall)"
+    load_cost_tokens: 5297
+    location: heyhi-skills/heyhi-drift-repair/SKILL.md
+
+  - id: research-plan-author
+    name: "Research Plan Author"
+    type: skill
+    area: 1
+    # the first dedicated User Research skill (Tier 1, no corpus dependency, own-practice-first); moves area 1 partial -> covered. Promoted 2026-09-04.
+    description: >-
+      Draft a governed research plan from a stated learning goal: a candidate research question,
+      candidate methods (generative vs. evaluative), the Faulkner-corrected sample-size floor wired
+      into every option (5 directional / 10 reliable-mean / 20 for a ≥95% detection floor) with any
+      under-powered plan FLAGGED, and a consent + data-handling checklist. The final question, the
+      chosen method, and the go decision ship EMPTY behind a named human gate.
+    semantic_tags: [research plan, user research, plan a user study, usability study plan, research protocol, sample size, faulkner, participants, generative vs evaluative, study design, consent checklist]
+    trigger_patterns: ["write a research plan", "plan a user study", "plan a usability study", "how many participants do we need", "sample size for this study", "draft a research protocol", "consent checklist for research"]
+    dependencies:
+      - heyhi-skills/research-plan-author/references/research-plan-canon.md
+      - os/foundations/user-research/FOUNDATION.md
+    not_for:
+      - "Evaluate or score existing research findings for relevance (use heyhi-research-evaluator, the keel layer)"
+      - "Sales or qualification discovery (use heyhi-discovery-call, the keel layer)"
+      - "Reading organizational signals or foresight (use futurecasting)"
+      - "Analyzing fieldwork after collection — coding, theming, synthesis (synthesis-pipeline, held on corpus thickness)"
+      - "Drafting the screeners, guides, or task scripts (instrument-smith, held on engagement pull)"
+      - "Choosing the method, locking the question, or the go decision (the human's, at the named gate)"
+    load_cost_tokens: 3744
+    location: heyhi-skills/research-plan-author/SKILL.md
+  - id: interaction-inventory
+    name: "Interaction Inventory"
+    type: skill
+    area: 4
+    # the structural microinteraction spec (Tier 1, own-practice-first); moves area 4 partial -> covered. Promoted 2026-09-05 (Bucket B).
+    description: >-
+      Inventory the interaction states of a screen or component set before it is built (the structural
+      microinteraction spec): an element census with provenance, an applicability matrix against the
+      served control-state contract (default / hover / focus-visible / active / disabled / loading /
+      error, plus success and selected) with every applicable state the source does not show FLAGGED
+      as MISSING, a candidate state machine per element, the keyboard column from the ARIA APG map,
+      touch gesture triggers, the accessibility hook per state, an empty copy slot on every copy-
+      bearing state, and a machine-readable sidecar. Which interactions matter, whether a flagged
+      absence is deliberate, and the interaction verdict ship EMPTY behind a named human gate.
+    semantic_tags: [interaction inventory, interaction states, state machine, states and transitions, control states, microinteraction spec, applicability matrix, missing states, focus and keyboard, element census, interaction spec, state inventory, component state machine, component states]
+    trigger_patterns: ["inventory the interaction states", "interaction inventory for this screen", "map the states and transitions", "state machine for this component", "which states does this element need", "enumerate the states before we build", "focus and keyboard behavior for these controls", "interaction inventory"]
+    dependencies:
+      - heyhi-skills/interaction-inventory/references/state-applicability-canon.md
+      - os/foundations/interaction-design/FOUNDATION.md
+      - heyhi-skills/heyhi-a11y-annotation/references/apg-pattern-map.md
+    not_for:
+      - "Audit a built prototype for interaction completeness or readiness — \"what interactions are missing\", \"is this ready to show\" (use heyhi-prototype-audit; this specs the states before the build)"
+      - "Annotate a design for accessibility — headings, landmarks, alt text, name/role/value, the a11y handoff spec (use heyhi-a11y-annotation)"
+      - "Author a motion system, motion tokens, springs, or how a transition animates (use motion-system-author — this names the transition, that gives it motion)"
+      - "Write the copy or strings for a state — error messages, empty-state text, labels (use microcopy-states-writer)"
+      - "Build the interface or the micro-interactions themselves (use heyhi-ui-ux for HeyHi pages, ui-studio for client UI)"
+      - "Render or draw the state diagram in FigJam (use heyhi-figjam-mapper — this enumerates, that renders)"
+      - "Generate the component variants into a Figma library (use heyhi-figma-ds-generator)"
+      - "Deciding which interactions matter, ruling a flagged state deliberately absent, or judging the behavior (the human's, at the named gate)"
+      - "What interactions are missing, or is this ready to show — auditing a BUILT prototype (use heyhi-prototype-audit; this specs the states before the build)"
+      - "Micro-interactions or the interface itself — building them (use heyhi-ui-ux for HeyHi pages, ui-studio for client UI)"
+      - "Draft a screen inventory and flow map before hi-fi (use flow-and-lofi-author; this inventories states, that inventories screens)"
+    load_cost_tokens: 5309
+    location: heyhi-skills/interaction-inventory/SKILL.md
+  - id: competitive-teardown-runner
+    name: "Competitive Teardown Runner"
+    type: skill
+    area: 10
+    # designer-lens competitive teardown (Tier 1, own-practice proof run 2026-09-05). Promoted 2026-09-05 (Bucket B); with design-business-case-drafter moves area 10 partial -> covered.
+    description: >-
+      Structure a designer-lens competitive teardown and keep its living pattern matrix honest: a
+      candidate competitor set (always with a "do nothing" row), a dated evidence ledger of
+      practitioner-captured screens, a heuristic presence pass, a matrix that refuses undated
+      evidence, and a refresh digest. Severity / scores, the positioning stance, and the copy /
+      don't-copy call ship empty behind a named human gate. A reference-corpus hit is a URL-only
+      pointer, never an image.
+    semantic_tags: [competitive teardown, competitor teardown, competitor analysis, pattern matrix, feature matrix, heuristic teardown, what not to copy, refresh digest, evidence ledger, designer lens, competitive patterns, do nothing competitor]
+    trigger_patterns: ["tear down this competitor", "competitive teardown", "teardown of their onboarding", "build a competitive pattern matrix", "compare our flow against competitors", "compare their onboarding against competitors", "what are competitors doing here", "refresh the competitor matrix"]
+    dependencies:
+      - heyhi-skills/competitive-teardown-runner/references/teardown-canon.md
+      - os/foundations/business-acumen/FOUNDATION.md
+    not_for:
+      - "Research a prospect, qualify a contact, or find leads for HeyHi outreach (use heyhi-prospect-research)"
+      - "Audit a client's own design system for health, drift, or tokens (use heyhi-design-intelligence-audit)"
+      - "Deck or slides built from the teardown (use heyhi-deck)"
+      - "Audit a completed experiment or A/B readout (use experiment-readout-linter)"
+      - "Deciding which competitor to copy, or the positioning stance (the human's, always — this skill's named gate)"
+    load_cost_tokens: 4432
+    location: heyhi-skills/competitive-teardown-runner/SKILL.md
+  - id: design-business-case-drafter
+    name: "Design Business Case Drafter"
+    type: skill
+    area: 10
+    # the design business case, draft-for-judgment (Tier 1, own-practice proof run 2026-09-05). Promoted 2026-09-05 (Bucket B).
+    description: >-
+      Draft-for-judgment a stakeholder buy-in argument for a design investment inside the designer's
+      own organization: problem → evidence → response → measurable expectation, a four-state claims-
+      provenance check (verified-primary / partially-verified / unverifiable / unsourced), the design-
+      ROI caveat inserted by construction, candidate signals handed to design-measurability-mapper,
+      and a hard refusal of any currency figure. The business claim and the positioning stance ship
+      empty behind a named human gate.
+    semantic_tags: [business case, stakeholder buy-in, buy-in argument, design ROI, ROI caveat, claims provenance, correlational caveat, justify the investment, design hire case, case for design]
+    trigger_patterns: ["draft a business case", "make the case for design", "business case for the design system", "help me make the case to my VP", "stakeholder buy-in for a design investment", "justify the design investment", "the case for a design hire"]
+    dependencies:
+      - heyhi-skills/design-business-case-drafter/references/business-case-canon.md
+      - os/foundations/business-acumen/FOUNDATION.md
+    not_for:
+      - "Write a proposal, SOW, or scope for a HeyHi client (use heyhi-proposal)"
+      - "Deck or slides to sell the design case (use heyhi-deck)"
+      - "Audit a completed experiment or A/B readout (use experiment-readout-linter)"
+      - "Audit a client's own design system for health, drift, or tokens (use heyhi-design-intelligence-audit)"
+      - "Metric selection, or setting the target for the case (use design-measurability-mapper, then the human)"
+      - "Making the business claim or stating the ROI number (the human's, always — this skill's named gate)"
+      - "Critique this design or render a verdict on the work (a don't-automate area-11 facilitation surface, the human's; crit prep and capture are crit-prep-and-capture)"
+      - "Record this design decision or write the ADR (use design-rationale-decision-record)"
+      - "Onboard a client's design system into ui-studio, or extract its tokens (use ui-studio-onboard)"
+      - "Generate the design system into a Figma library (use heyhi-figma-ds-generator)"
+      - "Annotate a design for accessibility (use heyhi-a11y-annotation)"
+    load_cost_tokens: 4241
+    location: heyhi-skills/design-business-case-drafter/SKILL.md
+  - id: crit-prep-and-capture
+    name: "Crit Prep & Capture"
+    type: skill
+    area: 11
+    # crit prep + capture, verdict-free by construction (the one class-N net-new in area 11); area stays partial by construction. Promoted 2026-09-05 (Bucket B).
+    description: >-
+      Prepare a design crit and capture what the room decided, without judging the work. Mode A (Prep)
+      assembles the crit pre-read from what the presenter states: the goals the work is evaluated
+      against (stops when none are stated), artifact links verified to resolve with the render-and-
+      look note, the presenter's own questions, attendees and roles as stated, the time-box, and the
+      crit-format list as a reference the facilitator picks from. Mode B (Capture) records the items
+      the room raised in the room's words, a disposition per item that DEFAULTS TO undecided and moves
+      only on a quoted settlement phrase, follow-ups with the owner the room named, and emits each
+      decided item into design-rationale-decision-record's Mode A scaffold with Decision and Rationale
+      empty. No field for a verdict, a suggested point to raise, a read of the room, or an inferred
+      owner.
+    semantic_tags: [crit prep, crit pre-read, crit capture, design crit, pre-read, capture decisions, dispositions, follow-ups, presenter, facilitator, crit notes, what did we decide]
+    trigger_patterns: ["crit prep", "prep the crit", "crit pre-read", "capture the crit", "crit notes", "what did we decide in crit", "design crit capture", "prep the design crit", "capture the decisions from the crit"]
+    dependencies:
+      - heyhi-skills/crit-prep-and-capture/references/crit-canon.md
+      - os/foundations/collaboration-facilitation/FOUNDATION.md
+      - heyhi-skills/design-rationale-decision-record/SKILL.md
+    not_for:
+      - "Workshop prep or facilitation — the agenda, participant pre-read, facilitator guide for one of the nine HeyHi formats (use heyhi-workshop)"
+      - "Sweep docs for unrecorded decisions, write the ADR, or scaffold the rationale (use design-rationale-decision-record — this skill feeds it)"
+      - "Diagram or map the flow or journey in FigJam (use heyhi-figjam-mapper)"
+      - "Audit this design system or this prototype — an audit evaluates against a system, a crit against stated goals (use heyhi-design-intelligence-audit / heyhi-prototype-audit)"
+      - "Slides or a deck for the presentation itself (use heyhi-deck)"
+      - "Judging the work, rendering a verdict, or reading the room (the human's, always — the area-11 facilitation surface)"
+    load_cost_tokens: 4899
+    location: heyhi-skills/crit-prep-and-capture/SKILL.md
+  - id: microcopy-states-writer
+    name: "Microcopy States Writer"
+    type: skill
+    area: 3
+    # the copy half of the states seam: consumes voice-system-author's confirmed voice + interaction-inventory's copy_slot rows; which copy ships, the tone call, the terminology ruling ship empty. Bucket B area-3 lane, promoted 2026-09-05 (second pass).
+    description: >-
+      Write the microcopy for every state of a screen: read a voice system a human has confirmed and the interaction-inventory sidecar's copy_slot rows (or a human-written list in the same shape), map each state to its UX-writing slot, draft one candidate string per slot row with constraints, run the states-copy doctrine per string (a typed next step or a flag; the condition from the row's trigger or a flag; a real loading expectation), hold every claim, log terms to a candidate glossary. Which copy ships, the tone call on a flagged string, and the terminology ruling ship EMPTY behind a named human gate; every string is a labeled candidate. Sheerline area 3.
+    semantic_tags: [microcopy, states copy, per-state copy, error message copy, empty state copy, loading copy, success copy, ux writing strings, copy slots, microcopy set, next step, dead-end error, string constraints, glossary]
+    trigger_patterns: ["write the microcopy for every state", "microcopy for each state on this screen", "draft the strings for the loading and error states", "the copy for every state in this inventory", "write the empty, loading, and error copy", "microcopy set for this screen"]
+    dependencies:
+      - heyhi-skills/microcopy-states-writer/references/states-copy-canon.md
+      - heyhi-skills/microcopy-states-writer/microcopy-schema.json
+      - os/foundations/content-design/FOUNDATION.md
+      - heyhi-skills/voice-system-author/references/voice-system-template.md
+      - heyhi-skills/interaction-inventory/inventory-schema.json
+    not_for:
+      - "Derive or author a voice system, or lint for flattening (use voice-system-author — that defines the voice and runs the lint; this drafts the strings against a voice already confirmed)"
+      - "HeyHi's own fixed brand voice — drafting the about page, an email, a proposal (use heyhi-voice; this writes a client's product strings, never HeyHi's prose)"
+      - "A second owned brand's in-product prose (use that brand's voice skill)"
+      - "Enumerate, inventory, or map the state machine a screen has (use interaction-inventory — that lists the states; this fills the strings the list carries; with no list, supply one)"
+      - "Audit a built prototype for readiness or missing interactions (use heyhi-prototype-audit — is the copy on-config, are the states wired; this drafts the strings before the build)"
+      - "Content for this week's calendar — the essay, a Note, or a LinkedIn post (use heyhi-content-writer)"
+      - "Build the page, the interface, or the interaction itself (use heyhi-ui-ux for HeyHi pages, ui-studio for client UI — they consume the strings; this drafts them)"
+      - "Alt text or accessible names for images and controls (use heyhi-a11y-annotation — designer-judged accessibility text, not state strings)"
+    load_cost_tokens: 5832
+    location: heyhi-skills/microcopy-states-writer/SKILL.md
+  - id: flow-and-lofi-author
+    name: "Flow & Lo-fi Author"
+    type: skill
+    area: 5
+    # the pre-visual structural author — screen inventory, flow map, N lofi skeletons (Tier 1 deepen, own-practice-first). Promoted 2026-09-07 (Bucket B convergence third run); coverage unchanged (area 5 stays covered).
+    description: >-
+      Draft the structural artifacts a design needs BEFORE any visual language is applied: a screen
+      inventory, a flow map (Mermaid flowchart), and N structurally distinct lofi skeletons for a
+      stated test question. Config-free by design (never opens active-brand.json); holds an explicit
+      fidelity ceiling (structure, layout, placement, interaction logic; no color, type, imagery,
+      tokens, or motion). The structure/flow verdict and which alternative advances ship EMPTY behind
+      a named human gate: the skill ranks nothing.
+    semantic_tags: [lofi, lo-fi, wireframe, wireframes, hifi, screen inventory, flow map, skeleton, skeletons, structural alternatives, divergence axes, fidelity ceiling, config-free, mermaid flowchart, before hifi]
+    trigger_patterns: ["wireframe the flow before we go hifi", "wireframe the checkout flow", "draft a screen inventory and flow map", "lofi skeletons before hifi", "generate structurally distinct alternatives", "lo-fi alternatives for this flow", "screen inventory for this flow"]
+    dependencies:
+      - heyhi-skills/flow-and-lofi-author/references/lofi-method.md
+      - os/foundations/prototyping/FOUNDATION.md
+    not_for:
+      - "Build the page / component in Mode A, production-ready against a design system (use ui-studio; heyhi-ui-ux for HeyHi pages)"
+      - "FigJam: map / draw / render this flow there (use heyhi-figjam-mapper; this designs the flow, that draws it)"
+      - "Audit this prototype / is this ready for review (use heyhi-prototype-audit)"
+      - "Visual direction / moodboard / visual exploration boards (use heyhi-style-selection now; heyhi-visual-exploration when built)"
+      - "Card sort / tree test / taxonomy / IA study (area 2, D-3-gated)"
+      - "Converging too early / alternatives check on existing artifacts (use divergence-guard; this generates, that reads)"
+    load_cost_tokens: 3963
+    location: heyhi-skills/flow-and-lofi-author/SKILL.md
+  - id: divergence-guard
+    name: "Divergence Guard"
+    type: skill
+    area: 5
+    # the advisory divergence / fidelity read — never gates (Tier 1 deepen, on-demand in v1). Promoted 2026-09-07 (Bucket B convergence third run); coverage unchanged.
+    description: >-
+      Read a session's design artifacts for premature convergence and for fidelity that has outrun
+      the question, and inform the humans without gating anything. Counts the structurally distinct
+      options present (hifi variants of one structure count as one), reports their overlap, offers
+      unordered widening stimulus for the unexplored axes, classifies fidelity against the stated test
+      question on the fidelity ladder. The Read carries no pass / fail / status / severity / score
+      field, echoes N as context and never enforces it, and leaves whether to diverge further and the
+      fidelity call EMPTY behind a named human gate.
+    semantic_tags: [divergence, convergence, converging, converge, converging too early, too early, premature convergence, diverging, fidelity, too high fidelity, enough alternatives, structural options, overlap, widening stimulus, fidelity ladder, ideation diversity, lofi, hifi]
+    trigger_patterns: ["are we converging too early", "are we converging too early on this design", "is this too high fidelity for the question", "is this prototype too high fidelity for what we're testing", "do we have enough alternatives", "divergence read", "how many structural options do we have"]
+    dependencies:
+      - heyhi-skills/divergence-guard/references/fidelity-ladder.md
+      - os/foundations/prototyping/FOUNDATION.md
+    not_for:
+      - "Audit this prototype / what interactions are missing (use heyhi-prototype-audit)"
+      - "Wireframe / draft the skeletons (use flow-and-lofi-author)"
+      - "Generate the alternatives / generate lo-fi options (use flow-and-lofi-author; this reads existing artifacts, that generates)"
+      - "Workshop: run or facilitate the ideation session (use heyhi-workshop)"
+      - "Audit the opportunity tree / prioritization reasoning (use strategy-integrity-warden)"
+      - "Visual exploration boards / visual direction options (area 6)"
+    load_cost_tokens: 3441
+    location: heyhi-skills/divergence-guard/SKILL.md
+
+  - id: figma-library-census
+    name: "Figma Library Census"
+    type: skill
+    area: 7
+    # the read/serve map for the forward-deployed loop (stage 2); the join tables + crosswalk every later Figma write depends on. Deployed 2026-09-07 (fdde-loop convergence 1, DISPATCH-06). Area 7 stays deep.
+    description: >-
+      Read-only census of a client's Figma component and token libraries plus the crosswalk to the
+      served code-component manifest: figma-library-map.json (name to key + property axes),
+      figma-variable-map.json (name to key, resolved type, modes, code syntax), and ds-map.json (the
+      crosswalk with a coverage state and a CANDIDATE atomic level per component). Runs the mechanical
+      join and enumerates every conflict; the token-conflict winner, the naming reconciliation, and
+      the confirmed level ship EMPTY behind the crosswalk-review gate.
+    semantic_tags: [figma library census, component key map, variable key map, figma to code crosswalk, coverage matrix figma to code, figma-only components, code-only components, components in figma not in code, published component keys, candidate atomic classification, token census]
+    trigger_patterns: ["census this figma library", "figma library census", "map figma components and tokens to code", "which components exist in figma but not in code", "figma to code crosswalk", "component and variable key map", "coverage matrix figma to code"]
+    dependencies:
+      - heyhi-skills/figma-library-census/references/method.md
+      - heyhi-skills/figma-library-census/references/probes.md
+      - os/foundations/design-systems/FOUNDATION.md
+    not_for:
+      - "Audit a design system's health, drift, or fidelity (use heyhi-design-intelligence-audit; this reads and joins, that judges)"
+      - "Extract or onboard tokens into a ui-studio brand config (use ui-studio-onboard)"
+      - "Write, generate, or build the screens into a Figma file (use app-to-figma for surfaces, heyhi-figma-ds-generator for a whole system)"
+      - "Recon the application codebase for surfaces and endpoints (use app-recon)"
+      - "Deciding which side of a conflict wins, whether two names are one thing, or the confirmed level (the human's, at the review gate)"
+      - "html to figma, translate a built HTML prototype or a raster into Figma (use heyhi-design-bridge; this reads a published library, that translates a built artifact)"
+      - "translate a prototype or a built thing into figma (use heyhi-design-bridge)"
+      - "onboard a client's figma into a ui-studio config, extract the tokens for ui-studio (use ui-studio-onboard)"
+    load_cost_tokens: 3071
+    location: heyhi-skills/figma-library-census/SKILL.md
+
+  - id: app-to-figma
+    name: "App to Figma"
+    type: skill
+    area: 5
+    # net-new (build class N); the forward-deployed loop's build verb, the reverse of heyhi-figma-ds-generator. Deployed 2026-09-07 (fdde-loop convergence 1, DISPATCH-06). Area 5 stays covered.
+    description: >-
+      Build an application's surfaces and app screens into a target Figma app file from the client's
+      own published library instances and variables, not drawn primitives: import component sets,
+      variables, and styles by key, instance and set props to the app's needs, apply library text and
+      effect styles, bind fills and spacing to imported variables, set the theme mode, build a local
+      pattern component only where the library has no match, import images through upload_assets,
+      validate structurally, and render and look. The reverse of the DS generator: that writes the
+      library, this consumes it to build the screens.
+    semantic_tags: [app to figma, app screens to figma, app screens, write app screens, write the screens to figma, app screens into figma, build app screens, write the app screens to figma, build this surface in figma, surface build in figma, build the surface from the library, rebuild the page from the design system, page from the design system, app surfaces from the published library, build the app surfaces from the published library, published library instances, import components by key, import by key, instance the library, bind imported variables, theme mode]
+    trigger_patterns: ["build this surface in Figma from the library", "write the app screens to Figma", "rebuild this page from the design system", "build the app surfaces from the published library"]
+    dependencies:
+      - heyhi-skills/app-to-figma/references/build-method.md
+      - heyhi-skills/app-to-figma/references/validation.md
+      - heyhi-skills/app-to-figma/references/probes.md
+    not_for:
+      - "html prototype into figma, translated as a built thing (use heyhi-design-bridge)"
+      - "vectorize a raster into figma (use heyhi-design-bridge)"
+      - "generate the design-system library into figma from the served contract (use heyhi-figma-ds-generator)"
+      - "build a code or html prototype (use ui-studio / heyhi-ui-ux)"
+      - "read the application codebase into a manifest (use app-recon)"
+      - "audit a built prototype for interaction completeness (use heyhi-prototype-audit)"
+      - "extract or onboard the figma tokens into a config (use ui-studio-onboard)"
+      - "mode a, mode b, or mode c client UI build (use ui-studio)"
+      - "census a figma component or token library, or crosswalk figma to code (use figma-library-census)"
+      - "endpoints, surfaces, or capabilities of the application read into a manifest (use app-recon; this consumes the manifest, it does not read the code)"
+      - "translate a prototype, a design, or a built thing into figma (use heyhi-design-bridge)"
+      - "page for a generic UI, build a page not from a published library (use heyhi-ui-ux for HeyHi pages, ui-studio for client UI)"
+      - "onboard a client's figma into a ui-studio config, extract the tokens for ui-studio (use ui-studio-onboard)"
+    load_cost_tokens: 7642
+    location: heyhi-skills/app-to-figma/SKILL.md
+
+  - id: app-recon
+    name: "App Recon"
+    type: skill
+    area: 12
+    # DesignOps (the loop is the worked artifact; app-recon is its read verb, loop stage 1). serves_areas hint: 5, 7, 9, 2. Deployed 2026-09-07 (fdde-loop convergence 1, DISPATCH-06). First dedicated area-12 skill; area 12 stays partial (one read verb does not cover DesignOps/ResearchOps).
+    description: >-
+      Read an application from its own code and emit an app-manifest.json plus a ground-truth brief
+      before any design, Figma, or intent work runs on it. Tier gate with a real off-ramp; read-only
+      in-flight branch scan; per-surface fan-out with file:line provenance on every component and copy
+      row; endpoints grounded against the OpenAPI spec, schema, and handlers; capabilities from wiring;
+      a delta mode. Which surfaces are in scope, the ambiguous-tier call, and each unverified[] item
+      ship EMPTY behind the brief-review gate. The loop's stage 1 (read).
+    semantic_tags: [application recon, codebase recon, read the application, app manifest, ground truth read, surfaces and endpoints, endpoint inventory, in-flight branch scan, delta recon, pre-design codebase read, tier-gated recon]
+    trigger_patterns: ["read this application", "recon the codebase before we design", "what surfaces and endpoints does this app have", "app manifest", "ground-truth read of the app", "recon the app"]
+    dependencies:
+      - heyhi-skills/app-recon/references/method.md
+      - heyhi-skills/app-recon/schemas/app-manifest.schema.json
+    not_for:
+      - "Verify a finished plan against the code it targets (use heyhi-plan-reality-check)"
+      - "Audit a design system's health or component-to-code drift (use heyhi-design-intelligence-audit)"
+      - "Census a Figma component or token library (use figma-library-census)"
+      - "Map a product's jobs, journeys, or intent (use app-intent-map or intent-journey-map; those consume the manifest this emits)"
+      - "Write the interface screens into Figma from the library (use app-to-figma; it consumes the manifest this emits)"
+      - "Selecting the in-scope surfaces, the ambiguous tier, or an unverified item (the human's, at the named gate)"
+    load_cost_tokens: 6604
+    location: heyhi-skills/app-recon/SKILL.md
+
+  - id: intent-journey-map
+    name: "Intent-Journey Map"
+    type: skill
+    area: 9
+    # feature intent + a bound prop-contract before the prototype; serves_areas hint 1, 2 (registered nowhere before D-3). Deployed 2026-09-07 (fdde-loop convergence 1, DISPATCH-06).
+    description: >-
+      Map a feature's intent and journey before a prototype exists, and carry that map forward as a
+      bound contract so the prototype translates into real components whose props match the
+      application's own API schema. A three-tier cost gate with a real off-ramp, a fixed band spine
+      (intent; journey; system and data; UI and component; a 14-column prop-contract bound by JSON
+      pointer to the OpenAPI; Given/When/Then acceptance), one pluggable domain-state band per
+      engagement, bind-do-not-guess that FLAGS any prop whose schema field is absent, and an
+      adversarial over-claim pass at Tier 2. The research question, the theme and severity calls, and
+      every named-owner open decision ship EMPTY behind a named human gate.
+    semantic_tags: [intent journey map, intent-journey map, feature intent, map a feature, prop contract, contract-first component, bind props to the api, journey mapping, screen states, given when then, tier gate, before the prototype]
+    trigger_patterns: ["map the intent of this feature", "intent and journey map", "intent-journey map", "map this feature before the prototype", "build the prop contract for this feature", "bind these props to the api"]
+    dependencies:
+      - heyhi-skills/intent-journey-map/references/method.md
+      - heyhi-skills/intent-journey-map/references/domain-band-template.md
+      - os/foundations/design-strategy/FOUNDATION.md
+    not_for:
+      - "Plan a user study, a usability test, or a sample size (use research-plan-author, that plans a study, this maps a feature)"
+      - "Audit an opportunity tree, a JTBD, or a prioritization artifact's reasoning (use strategy-integrity-warden)"
+      - "The product-level layer above surfaces, a product's jobs, flows, encoded decisions, vocabulary, constraints (use app-intent-map)"
+      - "Read the codebase into a manifest, surfaces, components, endpoints, capabilities (use app-recon; this consumes the manifest)"
+      - "Audit or structure a taxonomy, labels, or a navigation scheme, an information-architecture study (use taxonomy-labeling-auditor and the area-2 IA skills)"
+      - "Write the prototype, the PRD, or the engineering story (downstream; this ends at the map plus the contract)"
+      - "Answer the open decisions, set a severity, or lock the research question (the human's, at the named gate)"
+    load_cost_tokens: 6728
+    location: heyhi-skills/intent-journey-map/SKILL.md
+
+  - id: app-intent-map
+    name: "Application Intent Map"
+    type: skill
+    area: 9
+    # product-level intent above surfaces (jobs, flows, encoded decisions, vocabulary, constraints); the purpose stays the human's. serves_areas hint 1, 2. Deployed 2026-09-07 (fdde-loop convergence 1, DISPATCH-06).
+    description: >-
+      Read an application's manifest and write the layer above its surfaces: the jobs the product
+      serves, the flows across surfaces, the decisions the product already encodes, the vocabulary it
+      uses, and the constraint list any new feature must honor. Derive each layer from the manifest and
+      evidence-link every row to a manifest surface id, a file and line, or a JSON pointer (or mark it
+      an assumption); emit a human intent map plus a machine intent-map JSON. "What the product is
+      for" (its purpose) ships EMPTY behind a named human gate, null by construction. The
+      application-level companion to intent-journey-map.
+    semantic_tags: [application intent map, app intent map, product intent, what the product decides, encoded decisions, product jobs and flows, product vocabulary, product constraints, read the app intent, manifest to intent]
+    trigger_patterns: ["map the product's intent", "application intent map", "app intent map", "what does this product already decide", "what jobs and constraints does this product encode", "read the app's intent"]
+    dependencies:
+      - heyhi-skills/app-intent-map/references/method.md
+      - os/foundations/design-strategy/FOUNDATION.md
+    not_for:
+      - "One feature's intent and journey, its bound prop-contract (use intent-journey-map; that is one feature, this is the whole product)"
+      - "journey map of one feature, its intent and journey (use intent-journey-map; that maps one feature, this maps the whole product)"
+      - "Read the codebase into a manifest, surfaces, components, endpoints, capabilities (use app-recon; this consumes the manifest)"
+      - "Audit an opportunity tree, a JTBD, or a prioritization artifact's reasoning (use strategy-integrity-warden)"
+      - "Audit or structure a taxonomy, labels, or a navigation scheme, an information-architecture study (use taxonomy-labeling-auditor and the area-2 IA skills)"
+      - "Declare the mission or strategic reason the software exists to serve (the human's call, at the intent-review gate; this skill leaves the purpose slot empty)"
+      - "Write the prototype, the PRD, or the engineering story (downstream; this ends at the map)"
+    load_cost_tokens: 5556
+    location: heyhi-skills/app-intent-map/SKILL.md
+
+  - id: feature-increment
+    name: "Feature Increment"
+    type: skill
+    area: 12
+    # DesignOps (the loop is the worked artifact; feature-increment is its Care/increment verb, loop stage 5). serves_areas hint: 5, 7. Deployed 2026-09-08 (fdde-loop convergence 2, DISPATCH-11). Second area-12 skill (after app-recon); area 12 stays partial (a read verb + an increment verb do not cover DesignOps/ResearchOps).
+    description: >-
+      Add one feature to the Figma artifact, the living prototype, and the frontend repo from a single
+      bound contract, then reconcile the three in a contract coverage table that fails on any
+      unexplained miss. The Figma leg is app-to-figma in update mode; the prototype leg is ui-studio
+      Mode A with validate_output as a blocking gate; the repo leg is propose-first on its own branch.
+      The per-feature unit of Care. Which interactions matter and which copy ships, one-off vs pattern,
+      the inexact match, and the merge ship EMPTY behind named human gates. The loop's increment verb.
+    semantic_tags: [feature increment, three target increment, contract coverage table, artifact prototype and repo from one contract, per-feature Care unit, loop increment verb, Figma prototype and code in step, propose-first frontend increment]
+    trigger_patterns: ["add this feature to the artifact and the prototype and the repo", "feature increment", "build the new feature off the artifact", "increment this feature across all three targets"]
+    dependencies:
+      - heyhi-skills/feature-increment/references/method.md
+      - heyhi-skills/feature-increment/references/coverage-table.md
+      - heyhi-skills/feature-increment/references/repo-adapters.md
+    not_for:
+      - "Create a page or interface from scratch (use ui-studio / heyhi-ui-ux, per CLAUDE.md ui-studio routing)"
+      - "Audit whether a built interface is complete or ready to show (use heyhi-prototype-audit)"
+      - "Write an application's screens into a Figma file from the published library as a standalone job (use app-to-figma, the Figma leg)"
+      - "Read an application's code into a manifest (use app-recon, this skill's input)"
+      - "Map the intent and prop contract of one screen or function (use intent-journey-map, this skill's input)"
+      - "Enumerate interaction states (use interaction-inventory) or write a state's copy string (use microcopy-states-writer)"
+      - "Ruling which interactions matter, which copy ships, one-off vs pattern, or the merge (the human's gate)"
+    load_cost_tokens: 8664
+    location: heyhi-skills/feature-increment/SKILL.md
+
+  - id: ds-component-author
+    name: "DS Component Author"
+    type: skill
+    area: 7
+    # Design Systems, the promotion-execution author verb (build one promoted component in the Figma library and the code package from one spec; sibling of ds-component-change [change] and heyhi-drift-repair [repair]). Deployed 2026-09-08 (fdde-loop convergence 2, DISPATCH-11). Area 7 stays covered/deep (this deepens it, adds no area). React only (D5); Code Connect emitted, not published (D1).
+    description: >-
+      Author ONE design-system component into both Figma and code from a single component spec (name,
+      anatomy, property axes, states from an interaction-inventory sidecar, slot regions, tokens) plus
+      a target framework. Builds the Figma component (variants, bound TEXT/BOOLEAN/INSTANCE_SWAP
+      properties, a probed slot step) by reusing heyhi-figma-ds-generator's Phase 3 by reference; emits
+      the React code twin (typed props from the axes, CSS bound to served tokens, one story per
+      variant; Lit and Angular stubs); and writes a parserless Code Connect template. Anatomy and axes,
+      framework-idiom conflicts, and the craft critique ship EMPTY behind two named gates (spec review
+      before any write; component review after).
+    semantic_tags: [design system component, component authoring, component in Figma and code, component library and package, DS component, two-leg component build, Figma component and code twin, Code Connect template, component variant matrix, promotion execution]
+    trigger_patterns: ["create a design system component in Figma and code", "author a DS component", "build this component in the library and the package", "author a component into Figma and code from a spec", "build the promoted component in Figma and the package", "make this component in Figma and in code"]
+    dependencies:
+      - heyhi-skills/heyhi-figma-ds-generator/SKILL.md
+      - heyhi-skills/heyhi-figma-ds-generator/references/generation-method.md
+      - heyhi-skills/interaction-inventory/inventory-schema.json
+      - heyhi-skills/heyhi-a11y-annotation/references/apg-pattern-map.md
+      - heyhi-skills/ds-component-author/schemas/component-spec.schema.json
+    not_for:
+      - "Standing up an entire system at once (use heyhi-figma-ds-generator, which generates the whole design system; this authors one component)"
+      - "Changing an existing component's public API with a deprecation shim, codemod, or changeset (use ds-component-change)"
+      - "Translating a built prototype or vectorizing a raster (use heyhi-design-bridge)"
+      - "Repairing located drift back into source (use heyhi-drift-repair)"
+      - "Extracting tokens out of Figma into a config (use ui-studio-onboard)"
+      - "Cataloguing an existing library read-only (use figma-library-census, the crosswalk to code)"
+      - "State machine or interaction states of a component or screen (use interaction-inventory; this authors the component, it does not model or enumerate its states)"
+      - "Onboard a client's Figma design system or extract its variables into a config (use ui-studio-onboard; this authors one component, it does not onboard a system)"
+    load_cost_tokens: 9209
+    location: heyhi-skills/ds-component-author/SKILL.md
+
+  - id: ds-component-change
+    name: "DS Component Change"
+    type: skill
+    area: 7
+    # net-new (build class N); the change verb, sibling of ds-component-author (create) and heyhi-drift-repair (repair). Wave 2, DISPATCH-09 / Lane H of plans/plan-sheerline-fdde-loop-2026-09-07.md; deployed 2026-09-08 (fdde-loop convergence 2, DISPATCH-11). Area 7 stays covered. Figma leg propose-only; the drift-repair OQ-1 canvas-write lift is proposed in the handoff.
+    description: >-
+      Take one confirmed change to an existing design-system component (a variable value, a prop
+      rename, a prop type change, a variant added or removed) and land it as a single reviewable
+      change set across Figma and code, with a backward-compatible path for the breaking case:
+      classify the change as patch / minor / breaking (a candidate the human confirms), write a
+      propose-only Figma change log with node ids, edit the prop or token in code and re-validate
+      through validate_output for a non-breaking change, and for a breaking change emit the
+      deprecation shim, a codemod, a migration note, and a changeset bumping the major. React is
+      built; Lit and Angular are named stubs. The classification, the deprecation window, and the
+      merge ship empty behind a named human gate.
+    semantic_tags: [update this design system component, component change, change a component from the spec, change a component's public api, breaking change with a migration path, migration path for a breaking change, prop rename, rename a prop across the system, deprecate a prop, deprecation shim, prop type change, add a variant, remove a variant, change a token value on a component, codemod for a component change, migration note, changeset major bump, backward compatible component change, semver a component change]
+    trigger_patterns: ["update this design system component from the spec", "breaking change with a migration path", "rename this prop across the system", "change a component's public API", "deprecate a prop", "add a variant to this component", "change a token value on a component"]
+    dependencies:
+      - heyhi-skills/ds-component-change/references/method.md
+      - heyhi-skills/ds-component-change/references/shim-and-codemod-react.md
+      - heyhi-skills/ds-component-change/references/figma-leg.md
+      - heyhi-skills/ds-component-change/references/adapters.md
+      - heyhi-skills/ds-component-change/references/probes.md
+      - heyhi-skills/ds-component-change/schemas/change-spec.schema.json
+    not_for:
+      - "repair located drift or accessibility findings, apply the audit findings, auto-fix conformance failures (use heyhi-drift-repair; it acts on unintended drift, this executes an intended spec change)"
+      - "author or create a brand-new one that does not exist yet (use ds-component-author for a new component; this changes what already exists)"
+      - "generate a whole library into a Figma file (use heyhi-figma-ds-generator to write a design system in)"
+      - "discover drift, or find and audit what has drifted (use heyhi-design-intelligence-audit for a system health check)"
+      - "build app surfaces or screens from published library instances (use app-to-figma)"
+      - "State machine or interaction states of a component or screen (use interaction-inventory; this changes a component's API, it does not model or enumerate its states)"
+      - "the critical path, launch planning, sprint scheduling, or any project-management or delivery-timeline task (out of scope; this changes a design-system component's API, not a project plan)"
+      - "deciding the classification, the deprecation window, or the merge (the human's, at the named gate)"
+    load_cost_tokens: 6672
+    location: heyhi-skills/ds-component-change/SKILL.md
+
+
+# HeyHi Confidential

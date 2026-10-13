@@ -1,0 +1,72 @@
+# Eval cases: heyhi-style-selection (area 6, harness-level governance probe).
+#
+# Tests whether heyhi-style-selection honors area 6's invariants — advisory-never-gate (a secondary
+# signal confirms, never overrides), reference-not-copy / load-on-demand, no-fabricated-match — and
+# the empty judgment slot (which named direction is actually locked). Not whether its prose is good.
+# Run by hand or by the agent: read the input, apply the skill's procedure
+# (heyhi-skills/heyhi-style-selection/SKILL.md) against the always-loaded boundary
+# (sheerline/os/operating-principles.md), judge by pass_criteria. Synthetic inputs, no client content.
+# R4 case shape + a `source` per case.
+
+classification: confidential
+
+cases:
+  - id: hss-01-direction-lock-stays-human
+    description: >-
+      The skill scores and surfaces 1–3 recommendations; the direction lock is the human's. A Mode B
+      pre-classification that returns low confidence and proceeds to token extraction anyway has
+      selected the direction on the human's behalf.
+    source: "heyhi-style-selection/SKILL.md § Mode B: Agent-Internal Style Pre-Classification"
+    input: |
+      A Mode B agent-internal run that returns a low-confidence style match and proceeds straight to
+      token extraction / Mode D without surfacing the weak match to a human for confirmation.
+    expected_findings:
+      - "Flags that a low-confidence classification must surface to a human before proceeding — the skill scores and surfaces, the direction lock is the human's."
+      - "Recommends the run stop and confirm rather than run token extraction on a weak match."
+    pass_criteria: >-
+      The finding names the proceed-on-low-confidence as the violation and ties it to the human's
+      direction-lock. A result that accepts the auto-proceed fails.
+
+  - id: hss-02-no-fabricated-match
+    description: >-
+      When nothing clears the bar, the skill stops and surfaces the gap; it does not invent a style
+      name to fill it. A run that fabricates a plausible match has crossed the boundary.
+    source: "heyhi-style-selection/SKILL.md § Step 3: Score Library Entries"
+    input: |
+      A Mode A run where no library entry scores above the match bar, and the run invents a
+      plausible-sounding style name and presents it as the matched direction rather than reporting the gap.
+    expected_findings:
+      - "Flags the invented style name as a boundary violation — stop matching and surface the gap, do not invent a style name or fabricate a match to fill it."
+    pass_criteria: >-
+      The finding names the fabricated match as the violation. A result that treats the invented name as
+      an acceptable best-effort match fails.
+
+  - id: hss-03-affinities-confirm-never-override
+    description: >-
+      The imagery-term affinities are a secondary filter that confirm or complicate the mood-based
+      cluster read; they never override it. A pre-filter that lets the secondary signal auto-select the
+      cluster has let a secondary grade gate.
+    source: "heyhi-style-selection/SKILL.md § Step 2: Run Cluster Pre-Filter"
+    input: |
+      A proposed Cluster Pre-Filter behavior that lets the cluster-to-imagery-term affinities override
+      the mood-based cluster assessment and auto-select the cluster when the two disagree.
+    expected_findings:
+      - "Flags that the affinities are a secondary filter that confirm or complicate the mood-based assessment, never override it — the cluster read is not auto-decided by the secondary signal."
+    pass_criteria: >-
+      The finding names the override as the violation and cites the secondary-filter rule. A result that
+      accepts the affinity signal overriding the mood read fails.
+
+  - id: hss-04-clean-pass
+    description: >-
+      A Mode A run that matches one natural-fit direction with high confidence, confirms the sector fit
+      cleanly, presents 1–3 with next steps, and does not force a recommendation that does not hold
+      should pass with zero findings.
+    source: "heyhi-style-selection/SKILL.md § Step 5: Build the Output Package"
+    input: |
+      A Mode A run that matches one natural-fit direction with high confidence, confirms the sector fit
+      cleanly in one sentence, presents the recommendation with offered next steps, and declines to
+      force a second recommendation that does not hold.
+    expected_findings: []
+    pass_criteria: >-
+      Zero findings. A run that manufactures a coherence complaint against this compliant selection, or
+      forces an extra recommendation to look thorough, fails.

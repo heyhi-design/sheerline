@@ -1,0 +1,173 @@
+{
+  "schema_version": "1.0",
+  "provenance": {
+    "generated_at": "2026-09-07",
+    "system_id": "worked-example-ds",
+    "figma_plan_tier": "Pro",
+    "note": "Worked example: the instance's own 2026-09-04 generated library. file_key is REDACTED here; the verbatim key lives only in the gitignored proof record in the instance's engagement folder. Component, style, and variable KEYS are also redacted to name-derived placeholders: they are high-entropy opaque identifiers (the secret scanner flags them) and are engagement-specific. The real keys are recorded in the gitignored proof. The name-to-key JOIN is what the census produces; the placeholder preserves the shape."
+  },
+  "library": [
+    {
+      "library_key": null,
+      "file_key": "REDACTED-see-gitignored-proof-record",
+      "name": "Worked-example library (2026-09-04 generated library)",
+      "added_to_file": false
+    }
+  ],
+  "components": [
+    {
+      "name": "Button",
+      "key": "redacted-comp-button",
+      "library_key": null,
+      "type": "COMPONENT_SET",
+      "properties": [
+        {
+          "name": "Label",
+          "type": "TEXT",
+          "values": []
+        },
+        {
+          "name": "Show Icon",
+          "type": "BOOLEAN",
+          "values": [
+            "true",
+            "false"
+          ]
+        },
+        {
+          "name": "Icon",
+          "type": "INSTANCE_SWAP",
+          "values": []
+        },
+        {
+          "name": "Style",
+          "type": "VARIANT",
+          "values": [
+            "primary",
+            "secondary",
+            "ghost"
+          ]
+        },
+        {
+          "name": "Size",
+          "type": "VARIANT",
+          "values": [
+            "md",
+            "sm",
+            "lg"
+          ]
+        },
+        {
+          "name": "State",
+          "type": "VARIANT",
+          "values": [
+            "default",
+            "hover",
+            "disabled"
+          ]
+        }
+      ],
+      "default_variant": "Style=primary, Size=sm, State=default"
+    },
+    {
+      "name": "Icon/ChevronRight",
+      "key": "redacted-comp-icon-chevronright",
+      "library_key": null,
+      "type": "COMPONENT",
+      "properties": [],
+      "default_variant": null
+    }
+  ],
+  "styles": [
+    {
+      "name": "heading/1",
+      "key": "redacted-style-heading-1",
+      "kind": "text"
+    },
+    {
+      "name": "heading/2",
+      "key": "redacted-style-heading-2",
+      "kind": "text"
+    },
+    {
+      "name": "heading/3",
+      "key": "redacted-style-heading-3",
+      "kind": "text"
+    },
+    {
+      "name": "heading/4",
+      "key": "redacted-style-heading-4",
+      "kind": "text"
+    },
+    {
+      "name": "heading/5",
+      "key": "redacted-style-heading-5",
+      "kind": "text"
+    },
+    {
+      "name": "body",
+      "key": "redacted-style-body",
+      "kind": "text"
+    },
+    {
+      "name": "body-strong",
+      "key": "redacted-style-body-strong",
+      "kind": "text"
+    },
+    {
+      "name": "body-small",
+      "key": "redacted-style-body-small",
+      "kind": "text"
+    },
+    {
+      "name": "caption",
+      "key": "redacted-style-caption",
+      "kind": "text"
+    },
+    {
+      "name": "label",
+      "key": "redacted-style-label",
+      "kind": "text"
+    },
+    {
+      "name": "label-sm",
+      "key": "redacted-style-label-sm",
+      "kind": "text"
+    },
+    {
+      "name": "code",
+      "key": "redacted-style-code",
+      "kind": "text"
+    },
+    {
+      "name": "shadow/xs",
+      "key": "redacted-style-shadow-xs",
+      "kind": "effect"
+    },
+    {
+      "name": "shadow/sm",
+      "key": "redacted-style-shadow-sm",
+      "kind": "effect"
+    },
+    {
+      "name": "shadow/md",
+      "key": "redacted-style-shadow-md",
+      "kind": "effect"
+    },
+    {
+      "name": "shadow/lg",
+      "key": "redacted-style-shadow-lg",
+      "kind": "effect"
+    },
+    {
+      "name": "shadow/xl",
+      "key": "redacted-style-shadow-xl",
+      "kind": "effect"
+    },
+    {
+      "name": "shadow/inner",
+      "key": "redacted-style-shadow-inner",
+      "kind": "effect"
+    }
+  ]
+}

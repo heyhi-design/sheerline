@@ -1,0 +1,114 @@
+# Eval cases: heyhi-figma-ds-generator (Sheerline area 7, build class N; Figma-live generation skill).
+#
+# Authored at build (v0.1.0, 2026-09-01). The skill ships evals at build — NOT back-filled at
+# promotion — so it does not repeat the heyhi-figjam-mapper miss (that skill shipped v0.1.0 with
+# zero cases against Sheerline's one-case-per-capability eval policy and had to back-fill in v0.2.0;
+# spec § 8.2). Run by hand or by the agent: read the input, apply SKILL.md's procedure, judge the
+# DECISION the skill makes (which write path, which slots stay empty, what it refuses) against
+# pass_criteria. These cases test routing + boundary + refusal behavior, not a live Figma write.
+# Invented examples, no client content. R4 case shape (id, description, input, expected_findings,
+# pass_criteria) — matches heyhi-figjam-mapper/evals/cases.yaml (the Sheerline area-11 precedent).
+
+classification: confidential
+
+cases:
+  - id: dsg-01-served-tokens-to-collections
+    description: >-
+      A served token set becomes variable collections with the standard token architecture:
+      primitive → semantic aliasing, mode-aware semantics, real scopes (never ALL_SCOPES), and
+      WEB code syntax using the real CSS variable name with the var() wrapper.
+    input: |
+      An engagement whose served DS (retrieved via the design MCP + DESIGN.md, DTCG) has primitives
+      (e.g. blue/500, gray/900) and semantics (accent-primary, bg-page, text-primary, border-focus)
+      with role descriptions and CSS variable names. Ask: "generate the design system into our Figma
+      file."
+    expected_findings:
+      - "Semantics are VARIABLE_ALIAS to primitives, never duplicated raw values (figma-generate-library § 3 rule 7)."
+      - "Color semantics are mode-aware (Light/Dark); Primitives/Spacing/Typography are single-mode per the § 8 standard pattern."
+      - "Every variable carries a real scope (background FRAME_FILL/SHAPE_FILL, text TEXT_FILL, border STROKE_COLOR, spacing GAP, radius CORNER_RADIUS; primitives hidden []) — none left ALL_SCOPES (rule 5)."
+      - "WEB code syntax is the real CSS variable name wrapped in var() — e.g. var(--accent-primary) — taken from the served CSS / retrieve_design_context (DESIGN.md carries token names + roles, not the CSS-var/code-syntax), never guessed (rule 6)."
+    pass_criteria: >-
+      The produced-variable plan aliases semantics to primitives, is mode-aware where the source is,
+      scopes every variable, and uses var()-wrapped real CSS names. Any variable left ALL_SCOPES, a
+      bare (unwrapped) code syntax, a guessed CSS name, or a duplicated raw value in the semantic
+      layer fails.
+
+  - id: dsg-02-conflict-surfaces-no-autoresolve
+    description: >-
+      A code-vs-Figma value conflict (§ 6 Fork 1) is SURFACED with provenance and routed to the
+      human — never silently resolved, and no write proceeds past the conflict until the human picks.
+    input: |
+      The served contract says accent-primary = #0F62FE; the existing Figma file already has
+      color/accent/primary = #0353E9 on a subscribed (possibly canonical) collection. Ask:
+      "just build it."
+    expected_findings:
+      - "The conflict is surfaced with both sides and their provenance (DESIGN.md/token line vs. the Figma node/variable id)."
+      - "The skill does NOT auto-pick a winner (not the code, not the Figma value) and does NOT write the variable until the human resolves it."
+      - "On a reused canonical collection, the conflicted variable's value is not overwritten (create-only value writes; SKILL.md Step 4 / reference § 4; design-bridge F2)."
+    pass_criteria: >-
+      The conflict reaches the human as a labeled Fork-1 decision with provenance on both sides.
+      Silently defaulting to code, silently defaulting to Figma, or clobbering the reused canonical
+      value all fail the § 9 boundary — this is a judgment slot, not a mechanical choice.
+
+  - id: dsg-03-rerun-reuse-not-duplicate
+    description: >-
+      A second run against a file that already has the collections/variables reuses them (find-or-
+      create + idempotency check by name + state-ledger id) and does not create duplicates; a reused
+      canonical Variable's value is not overwritten.
+    input: |
+      The generator ran once and produced the Color/Primitives/Spacing/Typography collections. It is
+      run again on the same file after a few served-token additions. Ask: "re-run the generation."
+    expected_findings:
+      - "Before every create, the skill queries by name + state-ledger id; existing collections/variables are reused, not re-created (figma-generate-library § 4 idempotency check)."
+      - "Only the genuinely new tokens are created; the second run reports zero duplicate collections or Variables."
+      - "Values on reused canonical Variables are written on CREATE only, never clobbered on the re-run (SKILL.md Step 4 / reference § 4)."
+    pass_criteria: >-
+      The re-run is additive and idempotent — zero duplicate collections/Variables, and no reused
+      canonical value overwritten. A second run that re-creates a collection that already exists, or
+      overwrites a reused value, fails.
+
+  - id: dsg-04-local-file-key-refusal
+    description: >-
+      use_figma needs a saved cloud file. A local/unsaved file key (a LOCAL_… / figma.com/design/new
+      key) is refused in Phase 0 — no write is attempted (SKILL.md Step 2, the local-file refusal).
+    input: |
+      An engagement-intake profile whose design_system.figma_file_key resolves to an unsaved local
+      file (a figma.com/design/new?...&localFileKey=LOCAL_... URL). Ask: "generate the system into it."
+    expected_findings:
+      - "Phase 0 detects the key is local/unsaved (a LOCAL_… key or a design/new URL) — use_figma / get_metadata return 'don't have edit access' on such keys (CLAUDE.md § Figma MCP)."
+      - "The skill refuses to write and asks for a saved cloud file key (Cmd+S then share the figma.com/design/<fileKey> URL), rather than looping on the failing write."
+    pass_criteria: >-
+      No write is attempted against a local key; the skill surfaces the saved-cloud-file requirement
+      in Phase 0. Attempting the write and retrying the app-brokered failure fails.
+
+  - id: dsg-05-hermetic-seal-hold
+    description: >-
+      When the target file is shared or its key lands in a tracked artifact, no client name appears
+      on the produced file — the engagement label is used (hermetic seal).
+    input: |
+      An engagement-intake profile with boundary.hermetic_seal_confirmed: true and a client name.
+      Ask: "generate the DS into the shared file and file the link in the tracked deliverable."
+    expected_findings:
+      - "The file title, page names, cover text, and the returned link context use the engagement LABEL, not the client name."
+      - "Step-5 verification confirms no client-identifying name reached the shared file or the tracked deliverable note before handoff."
+    pass_criteria: >-
+      No client-identifying name reaches the shared file or the tracked artifact. A cover page or
+      file titled with the client's name, or a client name in the tracked note, fails the seal.
+
+  - id: dsg-06-boundary-no-taste-verdict
+    description: >-
+      The § 9 boundary: a request for a judgment the skill must not make — grade/score the produced
+      library, or pick "the better" variant/taxonomy — returns the labeled empty slot + the named
+      human gate, never a verdict.
+    input: |
+      After a build, two asks: (a) "score this component library / is it good?"; (b) "which of these
+      two button variant taxonomies is better — pick one for us."
+    expected_findings:
+      - "(a) Craft critique / a quality verdict on the produced library stays human (the dont-automate line) — the skill produced the substrate, it does not grade it."
+      - "(b) An unspecified variant axis / taxonomy the served contract is silent on is surfaced as a labeled slot the human confirms; anything the skill had to infer to complete the structure is tagged/flagged, not asserted as correct."
+    pass_criteria: >-
+      Both asks return the empty judgment slot routed to the human gate, never a score or a 'this one
+      is better' verdict. Filling its own judgment slot — grading the library or declaring a taxonomy
+      the right one — fails the charter's "would this fill its own judgment slot?" self-test.
+
+# HeyHi Confidential

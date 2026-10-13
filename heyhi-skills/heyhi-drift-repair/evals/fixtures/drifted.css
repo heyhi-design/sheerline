@@ -1,0 +1,9 @@
+/* HeyHi Confidential — synthetic fixture. */
+.btn { color: #111827; background: var(--bg-surface); }
+.card { padding: 16px; border-width: 2px; border-radius: var(--radius-md); }
+.modal { z-index: 400; position: fixed; }
+.h1 { font-size: 16px; margin-bottom: var(--space-2); }
+.title { font-weight: 600; }
+.body { line-height: 1.6; color: var(--text-primary); }
+.fade { transition-duration: 200ms; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); }
+.footer { padding: var(--space-6); color: var(--text-secondary); }

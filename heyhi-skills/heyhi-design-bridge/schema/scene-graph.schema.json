@@ -1,0 +1,226 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://heyhi.design/schemas/scene-graph/v0.4.json",
+  "title": "HeyHi Design Bridge Scene-Graph IR",
+  "description": "Intermediate representation produced by the Translate extractor and consumed by the use_figma Builder. One IR per breakpoint. The IR is the reviewed contract between reading the source and writing the artifact: it is validated and diffed without opening Figma, and it is the artifact the human reviewer approves before any canvas write. v0.2 (ADR-010) is additive over v0.1: it adds cornerRadius, strokes, effects, and opacity node fields so corner-radius, box-shadow, borders, and opacity have a node slot instead of being flagged as schema gaps. All four are optional; v0.1 IRs remain structurally valid under v0.2. v0.3 (ADR-013) is additive over v0.2: it makes IMAGE a first-class fill type (imageRef/scaleMode/imagePosition on the fill, retiring P2's kind:\"IMAGE\" stopgap) and adds the optional node fields position{x,y} (a child's offset inside a NONE-layout frame) and runs[] (inline styled text ranges). All new fields are optional; a v0.2 IR is valid under v0.3 once its $schema const is bumped. v0.4 (ADR-014) is additive over v0.3: it adds optional layoutWrap, counterAxisSpacing, and counterAxisAlignContent to the layout object so a wrapping flex line and a multi-row CSS grid map to a Figma layoutWrap:WRAP auto-layout instead of a flagged single-line approximation. All new fields are optional; a v0.3 IR is valid under v0.4 once its $schema const is bumped.",
+  "type": "object",
+  "required": ["$schema", "meta", "root"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "const": "heyhi-scene-graph/v0.4" },
+    "meta": {
+      "type": "object",
+      "required": ["source", "generated_by"],
+      "additionalProperties": true,
+      "properties": {
+        "source": { "type": "string", "description": "Path to the source HTML prototype." },
+        "breakpoint": { "enum": ["sm", "md", "lg"], "description": "Which breakpoint this IR was extracted at." },
+        "brand_config": { "type": "string", "description": "Active brand-config name (e.g. heyhi)." },
+        "generated_by": { "type": "string", "description": "Tool + version that emitted this IR." }
+      }
+    },
+    "tokens_used": {
+      "type": "array",
+      "description": "Every CSS-custom-property to design-token resolution made during extraction, with its provenance.",
+      "items": { "$ref": "#/$defs/tokenUse" }
+    },
+    "root": { "$ref": "#/$defs/node" }
+  },
+  "$defs": {
+    "tokenUse": {
+      "type": "object",
+      "required": ["token_path", "source"],
+      "additionalProperties": false,
+      "properties": {
+        "css_var": { "type": "string" },
+        "token_path": { "type": "string", "description": "brand-config dotted path, e.g. tokens.color.accent.primary." },
+        "figma_variable": { "type": "string", "description": "Figma Variable name, e.g. color/accent/primary." },
+        "resolved": { "type": "string", "description": "Computed literal carried for the preview and as a hardcoded fallback." },
+        "source": { "enum": ["declared", "computed", "matched"], "description": "declared = bare var() in the stylesheet (a lookup); computed = read from getComputedStyle; matched = nearest-token confidence match." },
+        "match_confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "padding": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "t": { "type": "number" }, "r": { "type": "number" },
+        "b": { "type": "number" }, "l": { "type": "number" }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "required": ["mode"],
+      "additionalProperties": false,
+      "properties": {
+        "mode": { "enum": ["HORIZONTAL", "VERTICAL", "NONE"], "description": "NONE means absolute positioning; flag it for human review." },
+        "primaryAxisAlignItems": { "enum": ["MIN", "CENTER", "MAX", "SPACE_BETWEEN"] },
+        "counterAxisAlignItems": { "enum": ["MIN", "CENTER", "MAX", "BASELINE"] },
+        "itemSpacing": { "type": "number" },
+        "padding": { "$ref": "#/$defs/padding" },
+        "layoutWrap": { "enum": ["NO_WRAP", "WRAP"], "description": "Figma layoutWrap. Valid only when mode==='HORIZONTAL'. WRAP lets a horizontal auto-layout flow onto multiple rows: the Figma model for a wrapping flex line and a multi-row CSS grid. (ADR-014)" },
+        "counterAxisSpacing": { "type": "number", "description": "WRAP only: vertical gap between wrapped rows (CSS row-gap). Maps to Figma counterAxisSpacing; the extractor emits an explicit number (Figma treats null as sync-to-itemSpacing). (ADR-014)" },
+        "counterAxisAlignContent": { "enum": ["AUTO", "SPACE_BETWEEN"], "description": "WRAP only: distribution of wrapped rows along the counter axis (CSS align-content space-* -> SPACE_BETWEEN, else AUTO). (ADR-014)" }
+      }
+    },
+    "size": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "w": { "type": ["number", "null"] },
+        "h": { "type": ["number", "null"] },
+        "sizing": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "h": { "enum": ["FILL", "HUG", "FIXED"] },
+            "v": { "enum": ["FILL", "HUG", "FIXED"] }
+          }
+        }
+      }
+    },
+    "fill": {
+      "type": "object",
+      "additionalProperties": true,
+      "description": "A bind (token path) is what gets written as a Figma Variable binding; resolved is the literal fallback. Color binds; typography never does (see node.type_style). A GRADIENT_* fill additionally carries stops[] and (linear) angle on additionalProperties. An IMAGE fill (ADR-013) carries imageRef + scaleMode (+ optional imagePosition focal point); the figma.createImage embed is the gated live step.",
+      "properties": {
+        "type": { "enum": ["SOLID", "GRADIENT_LINEAR", "GRADIENT_RADIAL", "IMAGE"] },
+        "bind": { "type": "string" },
+        "resolved": { "type": "string" },
+        "imageRef": { "type": "string", "description": "IMAGE fill only: path to the raster to embed via figma.createImage." },
+        "scaleMode": { "enum": ["FILL", "FIT", "CROP", "TILE"], "description": "IMAGE fill only: Figma ImagePaint scaleMode (background-size cover->FILL, contain->FIT)." },
+        "imagePosition": {
+          "type": "object",
+          "additionalProperties": false,
+          "description": "IMAGE fill only: normalized 0..1 focal point (background-position intent).",
+          "properties": { "x": { "type": "number" }, "y": { "type": "number" } }
+        }
+      }
+    },
+    "typeStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Typography fields are SET DIRECTLY on the text node; Figma does not bind them to Variables. token_ref records the source token for traceability only.",
+      "properties": {
+        "family": { "type": "string" },
+        "weight": { "type": "number" },
+        "size": { "type": "number" },
+        "lineHeight": { "type": ["number", "string"] },
+        "letterSpacing": { "type": "number" },
+        "token_ref": { "type": "string" }
+      }
+    },
+    "flag": {
+      "type": "object",
+      "required": ["feature", "action"],
+      "additionalProperties": false,
+      "description": "A does-not-map-cleanly feature, surfaced and never silently dropped.",
+      "properties": {
+        "feature": { "type": "string" },
+        "node": { "type": "string" },
+        "action": { "type": "string" },
+        "needs_human": { "type": "boolean" }
+      }
+    },
+    "cornerRadius": {
+      "description": "Corner radius, set directly on the node (a float; not Variable-bound in v0.2, consistent with itemSpacing/padding). A single number is a uniform radius; the object form carries mixed corners. (ADR-010)",
+      "oneOf": [
+        { "type": "number" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "tl": { "type": "number" }, "tr": { "type": "number" },
+            "br": { "type": "number" }, "bl": { "type": "number" }
+          }
+        }
+      ]
+    },
+    "stroke": {
+      "type": "object",
+      "required": ["weight", "color"],
+      "additionalProperties": false,
+      "description": "A border mapped to a Figma stroke. weight is a float set directly; color binds like a fill (a declared var() becomes a Variable binding). (ADR-010)",
+      "properties": {
+        "weight": { "type": "number" },
+        "align": { "enum": ["INSIDE", "OUTSIDE", "CENTER"] },
+        "color": { "$ref": "#/$defs/fill" }
+      }
+    },
+    "effect": {
+      "type": "object",
+      "required": ["type"],
+      "additionalProperties": false,
+      "description": "A box-shadow mapped to a Figma effect. Figma nodes carry multiple effects, so stacked CSS shadows map to multiple effect entries rather than being flagged. Shadow color is carried as a resolved literal (it usually carries alpha and rarely maps to a brand token). (ADR-010)",
+      "properties": {
+        "type": { "enum": ["DROP_SHADOW", "INNER_SHADOW"] },
+        "x": { "type": "number" },
+        "y": { "type": "number" },
+        "blur": { "type": "number" },
+        "spread": { "type": "number" },
+        "color": { "$ref": "#/$defs/fill" }
+      }
+    },
+    "position": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["x", "y"],
+      "description": "A node's offset from its parent frame's top-left, used when the parent is a NONE-layout (absolute) container; the Builder sets node.x/node.y. (ADR-013)",
+      "properties": { "x": { "type": "number" }, "y": { "type": "number" } }
+    },
+    "runStyle": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Per-range typography for an inline run (ADR-013): a partial type style plus italic. Applied via setRangeFontName / setRange* in the Builder.",
+      "properties": {
+        "family": { "type": "string" },
+        "weight": { "type": "number" },
+        "size": { "type": "number" },
+        "italic": { "type": "boolean" },
+        "letterSpacing": { "type": "number" },
+        "token_ref": { "type": "string" }
+      }
+    },
+    "run": {
+      "type": "object",
+      "required": ["start", "end"],
+      "additionalProperties": false,
+      "description": "An inline styled text range over a TEXT node's characters (ADR-013): a <span class=accent> colour run or an <em>/<strong> style run. start/end are character offsets (end exclusive) over the post-newline characters. fill is applied via setRangeFills; style via setRangeFontName / setRange*.",
+      "properties": {
+        "start": { "type": "integer", "minimum": 0 },
+        "end": { "type": "integer", "minimum": 0 },
+        "fill": { "$ref": "#/$defs/fill" },
+        "style": { "$ref": "#/$defs/runStyle" }
+      }
+    },
+    "node": {
+      "type": "object",
+      "required": ["type", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "enum": ["FRAME", "TEXT", "VECTOR", "IMAGE", "GROUP"] },
+        "name": { "type": "string" },
+        "layout": { "$ref": "#/$defs/layout" },
+        "size": { "$ref": "#/$defs/size" },
+        "fills": { "type": "array", "items": { "$ref": "#/$defs/fill" } },
+        "children": { "type": "array", "items": { "$ref": "#/$defs/node" } },
+        "characters": { "type": "string", "description": "TEXT only." },
+        "type_style": { "$ref": "#/$defs/typeStyle" },
+        "svgRef": { "type": "string", "description": "VECTOR only: path to the SVG to import via createNodeFromSvg." },
+        "imageRef": { "type": "string", "description": "IMAGE only: path to the raster to place." },
+        "cornerRadius": { "$ref": "#/$defs/cornerRadius" },
+        "strokes": { "type": "array", "items": { "$ref": "#/$defs/stroke" }, "description": "Borders, set directly. (ADR-010)" },
+        "effects": { "type": "array", "items": { "$ref": "#/$defs/effect" }, "description": "Box-shadows, set directly. (ADR-010)" },
+        "opacity": { "type": "number", "minimum": 0, "maximum": 1, "description": "Node opacity when below 1, set directly. (ADR-010)" },
+        "position": { "$ref": "#/$defs/position" },
+        "runs": { "type": "array", "items": { "$ref": "#/$defs/run" }, "description": "TEXT only: inline styled ranges over characters, applied via setRange* in the Builder. (ADR-013)" },
+        "flags": { "type": "array", "items": { "$ref": "#/$defs/flag" } }
+      },
+      "allOf": [
+        { "if": { "properties": { "type": { "const": "TEXT" } } }, "then": { "required": ["characters"] } },
+        { "if": { "properties": { "type": { "const": "VECTOR" } } }, "then": { "required": ["svgRef"] } },
+        { "if": { "properties": { "type": { "const": "IMAGE" } } }, "then": { "required": ["imageRef"] } }
+      ]
+    }
+  }
+}

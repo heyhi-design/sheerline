@@ -1,0 +1,130 @@
+# Eval cases: divergence-guard (Sheerline area 5, P3 deepen, buildable-now, self-application-first).
+#
+# Probes the net-new skill before it is trusted (promotion gate). Run by hand or by the agent:
+# read the input, apply SKILL.md's procedure, judge against pass_criteria. Invented examples,
+# no client content. Mirrors the research-plan-author case shape (Findings, R4 pattern).
+#
+# Acceptance (spec § 9): dg-01 … dg-08 by id. dg-03 is the structural never-gates check: grep the
+# Read's schema for the forbidden keys, assert the exit-code distinction, and confirm nothing in
+# the repo lists the guard as a dependency gate.
+
+classification: confidential
+
+cases:
+  - id: dg-01-single-option
+    description: >-
+      One hi-fi comp with a stated flow question yields '1 structural option present', widening
+      stimulus on the unexplored axes, and a fidelity reading above the rung, with no fail / score /
+      severity field anywhere.
+    input: |
+      A session folder with one hi-fi comp of a wizard-style checkout (color, type, imagery applied).
+      Test question, as stated: "are the checkout steps right?"
+    expected_findings:
+      - "Count: 1 (N not requested). Overlap: n/a with one option."
+      - "Stimulus lines for unexplored axes (e.g. an alternative that starts from the cart detail; one that decomposes by object rather than by step), each labeled [stimulus — not a recommendation], unordered."
+      - "Fidelity vs the question, in prose: the artifact reads as hi-fi visual; the question class ('are the steps right') is sufficient at lo-fi; the comp sits above the rung and the sentence names the cost."
+      - "No pass / fail / status / severity / score key anywhere in the Read."
+    pass_criteria: >-
+      A count, stimulus, and a prose fidelity reading, and nothing that reads as a verdict. A Read
+      that says 'FAIL: only 1 option' or scores the session fails (§ 3.5 items 1–2).
+
+  - id: dg-02-fidelity-over-question
+    description: >-
+      A coded hi-fi prototype whose question is 'are the steps right?' reads as above the rung and
+      names the cost; the ⛔ fidelity call stays empty.
+    input: |
+      A running coded prototype bound to the design system's tokens. Test question: "are the steps
+      right?" Two alternatives exist as two branches of the same code.
+    expected_findings:
+      - "Artifact fidelity as read: hi-fi coded [inferred]. Sufficient for the stated question class: lo-fi. A prose sentence names the gap and its cost (time on polish the question does not need; reviewers reacting to the rendered thing)."
+      - "The ⛔ fidelity call slot is empty; the Read does not say 'go back to lo-fi'."
+    pass_criteria: >-
+      The comparison is stated and the call is left to the human. A Read that instructs the team
+      to downgrade fidelity, or fills the fidelity slot, fails.
+
+  - id: dg-03-never-gates
+    description: >-
+      Structural: the Divergence Read's schema contains none of pass / fail / status / severity /
+      score; any wrapper exits 0 on every completed read and non-zero only on 'did not run'; nothing
+      in the repo lists the guard as a dependency gate.
+    input: |
+      Any input. Then: grep the Read template in SKILL.md Step 3 for the forbidden keys; grep the
+      repo for the guard's id in any hook, CI job, Exit-Gate required-header list, or dependency
+      gate; if a wrapper script exists, run it on a completed read and on a bad input.
+    expected_findings:
+      - "The template carries no pass / fail / status / severity / score key (the fidelity reading and the phase note are prose)."
+      - "No hook, CI job, Exit-Gate header list, or dependency gate keys on the guard."
+      - "If a wrapper exists: exit 0 on a completed read regardless of count; non-zero only on a usage / input failure, reported as 'did not run', never as a reading."
+    pass_criteria: >-
+      All three hold. A forbidden key in the template, a hook that reads Count against N, or a
+      wrapper that exits non-zero on a finding fails (the exit-code-masks-a-crash trap and the
+      gate-by-another-door trap, both).
+
+  - id: dg-04-visual-variants-are-one-structure
+    description: >-
+      Three color treatments of one flow count as one structural option, with the visual-vs-
+      structural distinction named; no routing to area 6 is claimed.
+    input: |
+      Three comps: the same six-screen flow in a warm palette, a cool palette, and a monochrome
+      treatment. Test question: "is the decomposition right?"
+    expected_findings:
+      - "Count: 1. The Read states that the three comps are visual variants of one structure and counts them as one."
+      - "The Read names that visual divergence is area 6's concern and does not attempt to read it; it does not route the session there."
+    pass_criteria: >-
+      Count is 1 with the distinction stated. A Read that counts 3, or that evaluates the palettes,
+      fails (§ 3.6).
+
+  - id: dg-05-no-question
+    description: >-
+      Artifacts with no stated test question: the first finding is 'no test question stated'; the
+      fidelity reading says it cannot be right-sized; the guard still counts options.
+    input: |
+      A Lo-fi Pack with two alternatives and no purpose line filled in.
+    expected_findings:
+      - "Test question: NOT STATED; the first finding says so and asks for it."
+      - "Count: 2, overlap stated on the axes."
+      - "Fidelity vs the question: 'cannot be right-sized to an unstated question', in prose; no rung is asserted."
+    pass_criteria: >-
+      The absence is the first finding and the count still runs. A Read that invents a question to
+      classify against fails.
+
+  - id: dg-06-boundary-should-we-diverge
+    description: >-
+      'Should we explore more options?' returns the ⛔ whether-to-diverge slot with the count and the
+      stimulus; no yes / no.
+    input: |
+      "We have two directions for the dashboard. Should we explore more options, or is two enough?"
+    expected_findings:
+      - "Count: 2 with their overlap; stimulus for the unexplored axes; the ⛔ Whether to diverge further slot returned empty with the named gate."
+      - "No 'yes', 'no', 'two is enough', or 'you should'."
+    pass_criteria: >-
+      The count and the stimulus are given and the decision is left. Any answer to the yes/no
+      question, even hedged, fails.
+
+  - id: dg-07-stimulus-unordered
+    description: >-
+      Any multi-axis gap yields a stimulus list with no ranking, preference words, or 'best'.
+    input: |
+      One structural option with four unexplored axes.
+    expected_findings:
+      - "Four stimulus lines, each labeled [stimulus — not a recommendation]."
+      - "No 'first', 'most promising', 'best', 'I'd start with', or numbered priority."
+    pass_criteria: >-
+      The list is unordered by construction. Any ordering or preference word fails (the order of
+      the stimulus must not become a covert ranking).
+
+  - id: dg-08-routing
+    description: >-
+      The skill stays in its lane: a convergence ask routes here; an audit ask routes to
+      heyhi-prototype-audit.
+    input: |
+      (a) "are we converging too early on this design"
+      (b) "audit this prototype"
+    expected_findings:
+      - "(a) is this skill's work: a Divergence Read on the artifacts."
+      - "(b) routes to heyhi-prototype-audit; this skill's Audit-led not_for names it and the skill does not absorb it."
+    pass_criteria: >-
+      (a) here, (b) away. A response that audits the prototype here, or refuses (a), fails.
+      (Registry-level scores are the promotion pass's to verify with the battery.)
+
+# HeyHi Confidential

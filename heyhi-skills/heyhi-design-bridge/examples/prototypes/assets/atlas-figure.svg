@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 240" role="img" aria-label="Schematic: work flowing through a system rather than around it">
+  <rect width="480" height="240" fill="#EEEEEE"/>
+  <g fill="none" stroke="#1C1C1C" stroke-width="2">
+    <rect x="40" y="60" width="120" height="120" rx="6"/>
+    <rect x="320" y="60" width="120" height="120" rx="6"/>
+    <path d="M160 120 H320" stroke="#E4572E" stroke-width="3"/>
+    <circle cx="240" cy="120" r="26" stroke="#2B59C3"/>
+  </g>
+  <text x="100" y="206" font-family="DM Mono, monospace" font-size="13" fill="#6B6B6B" text-anchor="middle">team</text>
+  <text x="380" y="206" font-family="DM Mono, monospace" font-size="13" fill="#6B6B6B" text-anchor="middle">system</text>
+</svg>

@@ -1,0 +1,110 @@
+{
+  "_comment": "Fixture brand-config for the Translate golden prototype (examples/prototypes/atlas-reader.html): a neutral example palette in the ui-studio brand-config token structure, and the extractor's default --config. Fonts match the golden prototype's type ramp so its captured geometry stays valid; they are fixture values, not a recommended stack.",
+  "_classification": "HeyHi Confidential",
+  "tokens": {
+    "color": {
+      "backgrounds": {
+        "page": "#F8F8F8",
+        "surface": "#EEEEEE",
+        "dark": "#1C1C1C",
+        "dark-surface": "#2C2C2C"
+      },
+      "text": {
+        "primary": "#1C1C1C",
+        "muted": "#6B6B6B",
+        "light": "#737373",
+        "inverse": "#F8F8F8"
+      },
+      "structural": {
+        "divider": "#E2E2E2",
+        "border": "#C4C4C4"
+      },
+      "accent": {
+        "primary": "#E4572E",
+        "secondary": "#2B59C3",
+        "tertiary": "#5E6B4B"
+      },
+      "neutral_anchors": {
+        "dark": "#222222",
+        "light": "#DEDEDE"
+      },
+      "semantic": {
+        "error": "#B91C1C",
+        "error-bg": "#F9EDEC",
+        "error-border": "#D4A5A0",
+        "warning": "#925A06",
+        "warning-bg": "#F5F0E3",
+        "warning-border": "#D4C49A",
+        "success": "#157A3A",
+        "success-bg": "#ECF2EC",
+        "success-border": "#A3C4A3",
+        "info": "#1E40AF",
+        "info-bg": "#EDF0F8",
+        "info-border": "#A8B5D4"
+      },
+      "prohibited": [
+        {
+          "value": "#000000"
+        }
+      ],
+      "content": {
+        "note": "#EEEEEE",
+        "note-border": "#C4C4C4",
+        "lean": "#EEF2EA",
+        "lean-border": "#A8B89E",
+        "avoid": "#F5EDEC",
+        "avoid-border": "#C4A9A5"
+      }
+    },
+    "spacing": {
+      "base": "8px",
+      "tiers": {
+        "xs": "4px",
+        "sm": "8px",
+        "md": "16px",
+        "lg": "32px",
+        "xl": "64px",
+        "2xl": "96px",
+        "3xl": "128px"
+      },
+      "content_max_width": "780px",
+      "page_padding": "clamp(1.5rem, 5vw, 2.5rem)",
+      "grid_gap": "clamp(1.5rem, 3vw, 2rem)",
+      "touch-target": {
+        "min": "44px"
+      }
+    },
+    "typography": {
+      "families": {
+        "display": {
+          "family": "Sora",
+          "fallback": "system-ui, Arial, sans-serif"
+        },
+        "body": {
+          "family": "Lora",
+          "fallback": "Georgia, serif"
+        },
+        "utility": {
+          "family": "DM Mono",
+          "fallback": "Courier New, monospace"
+        }
+      },
+      "scale": {
+        "display": "clamp(3rem, 8vw, 5rem)",
+        "h1": "clamp(2.2rem, 5vw, 3.2rem)",
+        "h2": "clamp(1.6rem, 3vw, 2.4rem)",
+        "h3": "clamp(1.2rem, 2vw, 1.45rem)",
+        "h4": "clamp(1rem, 1.5vw, 1.15rem)",
+        "body": "clamp(1rem, 1.3vw, 1.125rem)",
+        "small": "0.9rem",
+        "label": "0.65rem",
+        "mono-label": "0.6rem"
+      }
+    },
+    "radius": {
+      "sm": "2px",
+      "md": "4px",
+      "lg": "6px"
+    }
+  }
+}

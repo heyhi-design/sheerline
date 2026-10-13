@@ -1,0 +1,102 @@
+# Sheerline: machine-readable ground truth (scaffold copy).
+#
+# Generated from the instance's project-state.yaml by the export: same structure, the
+# instance's narrative removed. An instance keeps its own copy of this file and records its
+# build history here (notes, programs, actions); this copy shows the shape.
+
+classification: confidential
+meta:
+  version: 0.1.11
+  note: 'Scaffold copy. Comparison baseline for the integrity pass: any deviation between this file and
+    the sheerline/ tree is context rot.'
+phases:
+- id: P1
+  name: Skeleton + govern the deep areas
+  status: complete
+- id: P1.5
+  name: The cheap operating-area net-new
+  status: complete
+- id: P2
+  name: Advance the two built clusters + the a11y anchor
+  status: complete
+- id: P3
+  name: Net-new craft foundations + horizontal craft
+  status: active
+- id: D-3
+  name: Conditional / productization-gated
+  status: not-started
+practice_areas:
+  count: 13
+  craft: 8
+  operating: 4
+  conditional: 1
+  registry: os/foundations/registry.yaml
+  coverage:
+    deep: 2
+    covered: 7
+    partial: 4
+    gap: 0
+foundations:
+  p1_deep_manifests:
+  - visual-design
+  - design-systems
+  p1_governance:
+  - prototyping
+  governance_filled:
+  - accessibility
+  - design-strategy
+  - collaboration-facilitation
+  - user-research
+  - information-architecture
+  - business-acumen
+  - interaction-design
+  - content-design
+  p1_stubs: []
+studio:
+  name: Wheelhouse
+  path: sheerline/studio/
+  status: closed-as-reference
+  kind: static HTML prototype; no runtime, no build step; simulates over a real data snapshot
+  screens: 12
+  data: sheerline/studio/data/snapshot.js, generated read-only by scripts/export-snapshot.py from os/
+    + the registries
+early_warning_signals:
+- id: reference-not-copy
+  description: A foundation byte-copies corpus into sheerline/ instead of referencing it in place.
+  threshold: Any deep-area foundation contains duplicated corpus prose rather than a pointer + loading
+    rules.
+  current_status: ok
+  last_checked: '2026-08-15'
+- id: moat-leak
+  description: Retained-moat content appears inside sheerline/.
+  threshold: An evaluator, a populated corrections corpus, or calibration values are authored under sheerline/.
+  current_status: ok
+  last_checked: '2026-08-15'
+- id: coverage-honesty
+  description: A coverage tag no longer matches reality (a filled area still tagged gap, or a stub tagged
+    covered).
+  threshold: A registry coverage state disagrees with the foundation folder's actual kind/status.
+  current_status: resolved
+  last_checked: '2026-08-23'
+- id: eval-coverage
+  description: Governed capabilities lack referenced eval-case sets, so Invariant 3 (Evaluation Before
+    Deployment) cannot be demonstrated on the harness itself.
+  threshold: More than a quarter of governed capabilities have no eval-case set — an in-skill heyhi-skills/<id>/evals/
+    OR a harness-level sheerline/skills/evals/<id>/cases.yaml.
+  current_status: resolved
+  last_checked: '2026-09-07'
+- id: pointer-drift
+  description: The human-readable templates roster falls behind the routable registry (a governed skill
+    is unlisted, or a listed one is not governed).
+  threshold: skills/templates/README.md roster row count differs from the governed-skill count in skills/registry/skill-registry.yaml.
+  current_status: resolved
+  last_checked: '2026-09-07'
+- id: stub-routing
+  description: The registry routes an in-scope query CONFIDENTLY into an area whose coverage is gap or
+    whose foundation is a stub — a confident answer that lands in an empty room.
+  threshold: A --confidence run returns a confident winner whose registry area carries coverage:gap or
+    foundation:stub.
+  current_status: resolved
+  last_checked: '2026-09-10'
+
+# HeyHi Confidential

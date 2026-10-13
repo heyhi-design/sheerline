@@ -1,0 +1,72 @@
+# Eval cases: design-system-onboard (area 6, harness-level governance probe).
+#
+# Tests whether design-system-onboard honors area 6's invariants — the human sign-off on inferred /
+# provisional values, defer-token-decisions-to-the-library (don't re-derive), and the completeness
+# hard stop — and the empty judgment slot (the config sign-off and the v0 -> v1 promotion). Not whether
+# its prose is good. Run by hand or by the agent: read the input, apply the skill's procedure
+# (heyhi-skills/design-system-onboard/SKILL.md) against the always-loaded boundary
+# (sheerline/os/operating-principles.md), judge by pass_criteria. Synthetic inputs, no client content.
+# R4 case shape + a `source` per case.
+
+classification: confidential
+
+cases:
+  - id: dso-01-config-signoff-stays-human
+    description: >-
+      Inferred palette / typography / personality values are the human's sign-off; the skill drafts and
+      flags them provisional, the designer confirms. A Mode D run that writes inferred values as final
+      and saves has taken the sign-off.
+    source: "design-system-onboard/SKILL.md § Mode D: Moodboard-Driven (New Identity Work)"
+    input: |
+      A Mode D run that infers palette and typography values from a moodboard, writes them into the
+      config as final (no PROVISIONAL prefix, not recorded in meta.provisional_fields), and saves the
+      config with no designer selection or human confirmation.
+    expected_findings:
+      - "Flags that inferred / provisional values need the designer's sign-off — do not write a semantic token value without designer selection and human validation; mark inferred values PROVISIONAL and record them in meta.provisional_fields."
+    pass_criteria: >-
+      The finding names the write-as-final-without-signoff as the violation and ties it to the human
+      confirmation gate. A result that treats the inferred values as decided fails.
+
+  - id: dso-02-red-completeness-is-a-hard-stop
+    description: >-
+      Red completeness (a required field missing) is a hard stop: ask the human, do not save an
+      incomplete config. A run that saves anyway has skipped the gate.
+    source: "design-system-onboard/SKILL.md § Step 7: Validate Against Schema and Completeness Report"
+    input: |
+      A run that reaches the completeness report with a required field missing (overall Red) and saves
+      the config anyway, proceeding to the next step without asking the human.
+    expected_findings:
+      - "Flags that Red completeness is a hard stop — ask the human before proceeding, do not save an incomplete config."
+    pass_criteria: >-
+      The finding names the save-on-Red as the violation and cites the hard-stop rule. A result that
+      accepts saving the incomplete config fails.
+
+  - id: dso-03-token-decisions-deferred-to-library
+    description: >-
+      For a matched style direction, the style entry's token_implications are the authoritative token
+      decisions; the onboard run defers to them rather than re-deriving its own values.
+    source: "design-system-onboard/SKILL.md § Integration Points"
+    input: |
+      A run that has matched a style direction but re-derives its own color-temperature, type-scale, and
+      radius values from scratch and writes them, ignoring the matched entry's token_implications for that
+      direction.
+    expected_findings:
+      - "Flags the re-derived values as a don't-re-derive violation — the matched entry's token_implications are the authoritative token decisions for that direction; defer to them rather than re-deriving."
+    pass_criteria: >-
+      The finding names the re-derivation as the violation and cites token_implications as authoritative.
+      A result that treats the re-derived values as equally valid fails.
+
+  - id: dso-04-clean-pass
+    description: >-
+      A Mode D run that marks inferred values PROVISIONAL, records them, does not flag absent optional
+      fields as gaps, prints the completeness report, and asks the human to confirm before promotion
+      should pass with zero findings.
+    source: "design-system-onboard/SKILL.md § Optional Schema Fields (ADR-004)"
+    input: |
+      A Mode D run that marks inferred values PROVISIONAL and records them in meta.provisional_fields,
+      treats absent optional ADR-004 fields as "not yet enriched" rather than Red/Yellow gaps, prints
+      the completeness report, and asks the human to confirm the config before any promotion.
+    expected_findings: []
+    pass_criteria: >-
+      Zero findings. A run that flags the absent optional fields as Red/Yellow gaps, or manufactures a
+      complaint against the correctly-marked provisional values, fails.

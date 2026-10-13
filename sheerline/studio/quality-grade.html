@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<!-- Wheelhouse · Quality: Grade (S-8) · lane DISPATCH-05 · HeyHi Confidential · classification: confidential -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Wheelhouse: the evaluator as a series, never a verdict. Per-dimension trends over simulated runs. Prototype.">
+  <title>Wheelhouse · Grade</title>
+  <link rel="stylesheet" href="shared/studio.css">
+  <style>
+    /* ========================================================================
+       Page-scoped (S-8 Quality / Grade). shared/ is frozen; these live here.
+       candidate for shared: .provchip, .spark (also authored in session.html by
+       D-04), .dims/.dim  (.qnav* was folded to studio.css at D-08)
+       ==================================================================== */
+
+    /* Quality sub-nav (.qnav*) folded to shared/studio.css at D-08 convergence. */
+
+    .provchip { display: inline-flex; align-items: center; gap: 5px;
+      padding: 1px var(--sp-2); border-radius: var(--r-1);
+      font-family: var(--font-mono); font-size: .7rem; color: var(--soft);
+      background: transparent; border: 1px dashed var(--border-strong); }
+
+    .page-head { margin-bottom: var(--sp-5); }
+    .page-head h1 { margin-bottom: var(--sp-2); }
+    .head-meta { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center;
+      margin-bottom: var(--sp-3); }
+    .lede { font-size: 1.02rem; color: var(--soft); max-width: 64ch; }
+
+    /* sparkline (same grammar as session.html's Grade card, D-04) */
+    .spark { display: block; }
+
+    /* dimension table */
+    .dims { margin-top: var(--sp-3); }
+    .dim { display: grid;
+      grid-template-columns: minmax(190px, 1.2fr) 128px 104px minmax(0, 1.5fr);
+      gap: var(--sp-4); align-items: center;
+      padding: var(--sp-4) 0; border-top: 1px solid var(--border); }
+    .dim--head { padding: 0 0 var(--sp-2); border-top: none; }
+    .dim-hd { font-family: var(--font-mono); font-size: .68rem; text-transform: uppercase;
+      letter-spacing: .06em; color: var(--faint); }
+    .dim__label { font-family: var(--font-display); font-weight: 600; font-size: .96rem; }
+    .dim__kind { font-family: var(--font-mono); font-size: .68rem; text-transform: uppercase;
+      letter-spacing: .04em; color: var(--faint); margin-top: 2px; }
+    .dim__dir { font-family: var(--font-mono); font-size: .78rem; color: var(--soft);
+      display: inline-flex; align-items: center; gap: 5px; }
+    .dim__read { color: var(--soft); font-size: .88rem; }
+    .grade__meta { font-family: var(--font-mono); font-size: .72rem; color: var(--faint);
+      margin-top: var(--sp-4); }
+
+    /* the moat seam (L8 crimson use: ownership / retained evaluation moat) */
+    .moat-note { border-left: 3px solid var(--crimson-bright);
+      background: var(--crimson-fill); border-radius: var(--r-2);
+      padding: var(--sp-4); color: var(--ink); margin-top: var(--sp-5); }
+    .moat-note .tag { display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: .7rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--crimson); font-weight: 500;
+      margin-bottom: var(--sp-2); }
+
+    .loop-foot { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center;
+      justify-content: space-between; margin-top: var(--sp-6);
+      padding-top: var(--sp-4); border-top: 1px solid var(--border); }
+    .loop-foot a { font-family: var(--font-display); font-weight: 500; }
+
+    @media (max-width: 720px) {
+      .dim, .dim--head { grid-template-columns: 1fr 1fr; row-gap: var(--sp-2); }
+      .dim__read { grid-column: 1 / -1; }
+    }
+  </style>
+</head>
+<body>
+<!-- ============================================================================
+     WHEELHOUSE - shared shell snippet   (FROZEN after DISPATCH-03 merges)
+     HeyHi Confidential
+     Pasted verbatim from shared/shell-snippet.html. See shared/README.md.
+     ============================================================================ -->
+<script src="data/snapshot.js"></script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="studio-shell">
+
+  <header class="topbar">
+    <a class="wordmark" href="index.html">WHEELHOUSE</a>
+    <a class="topbar__search" href="index.html#router">
+      <span aria-hidden="true">⌕</span>&nbsp;Route a task…
+    </a>
+    <span class="topbar__spacer"></span>
+    <a class="session-indicator" href="session.html">
+      <span class="dot" aria-hidden="true"></span>
+      Own practice
+      <span class="sr-only">(simulated exemplar session)</span>
+    </a>
+  </header>
+
+  <nav class="rail" aria-label="Primary">
+    <p class="rail__label">Wheelhouse</p>
+    <a class="rail__link" href="index.html">           <span class="rail__num">1</span> Home</a>
+    <a class="rail__link" href="areas.html">           <span class="rail__num">2</span> Areas</a>
+    <a class="rail__link" href="skills.html">          <span class="rail__num">3</span> Skills</a>
+    <a class="rail__link" href="session.html">         <span class="rail__num">4</span> Session</a>
+    <a class="rail__link" href="quality-validate.html"><span class="rail__num">5</span> Quality</a>
+    <a class="rail__link" href="artifacts.html">       <span class="rail__num">6</span> Artifacts</a>
+    <a class="rail__link" href="dispatch.html">        <span class="rail__num">7</span> Dispatch</a>
+    <a class="rail__link" href="seminar.html">         <span class="rail__num">8</span> Seminar</a>
+    <a class="rail__link" href="intake.html">          <span class="rail__num">9</span> Intake</a>
+  </nav>
+
+  <main id="main-content" class="studio-main">
+    <div class="wrap">
+      <!-- ===================== PAGE CONTENT START ===================== -->
+
+      <!-- Quality sub-nav + loop caption -->
+      <nav class="qnav" aria-label="Quality loop">
+        <span class="qnav__tabs">
+          <a class="qnav__tab" href="quality-validate.html">Validate</a>
+          <a class="qnav__tab" href="quality-grade.html" aria-current="page">Grade</a>
+          <a class="qnav__tab" href="quality-learn.html">Learn</a>
+        </span>
+        <p class="qnav__loop">The quality loop:
+          <a href="session.html">Retrieve</a><span class="sep">&rarr;</span><a href="quality-validate.html">Validate</a><span class="sep">&rarr;</span><span class="cur">Grade</span><span class="sep">&rarr;</span><a href="quality-learn.html">Learn</a>
+        </p>
+      </nav>
+
+      <header class="page-head">
+        <p class="eyebrow">Quality · the evaluator</p>
+        <h1>Grade</h1>
+        <p class="lede">The evaluator reports a series, never a verdict. Each dimension is a trend across
+          runs, not a score to pass. There is no aggregate, no pass line, no calibration constant on
+          screen. A grade points; the read is a human's.</p>
+        <div class="head-meta">
+          <span class="badge badge--sim"><span aria-hidden="true">◐</span> simulated series</span>
+          <span class="chip chip--provenance mono">artifact: sample button set · 8 runs</span>
+          <a class="chip mono" href="quality-validate.html">&larr; the deterministic floor</a>
+        </div>
+      </header>
+
+      <!-- The standing line + the taste-boundary verbatim quote (L3 / L8) -->
+      <section class="section" aria-label="What a grade is for">
+        <div class="card">
+          <p class="rule-line" style="margin:0 0 var(--sp-3);font-size:1.05rem">A grade routes a decision. It never makes one.</p>
+          <p style="margin:0" class="muted">Verbatim from the operating principles:
+            &ldquo;<span style="color:var(--ink)">a grade informs a human decision; it never auto-approves taste or auto-blocks a merge</span>.&rdquo;
+            &nbsp;<span class="provchip">os/operating-principles.md · the taste and critique boundary</span></p>
+        </div>
+      </section>
+
+      <!-- Per-dimension series -->
+      <section class="section" aria-labelledby="series-h">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Series · 8 simulated runs</p>
+            <h2 id="series-h" style="margin:0">Five dimensions, each a trend</h2>
+          </div>
+          <span class="mono faint">no aggregate · no ranking</span>
+        </div>
+
+        <div class="card">
+          <div class="dims">
+            <div class="dim dim--head" aria-hidden="true">
+              <span class="dim-hd">Dimension</span>
+              <span class="dim-hd">Series (8 runs)</span>
+              <span class="dim-hd">Direction</span>
+              <span class="dim-hd">Read</span>
+            </div>
+
+            <!-- 1 -->
+            <div class="dim">
+              <div>
+                <div class="dim__label">Intent fidelity</div>
+                <div class="dim__kind">judge panel</div>
+              </div>
+              <svg class="spark" width="120" height="26" viewBox="0 0 120 26" role="img" aria-label="Intent fidelity, eight simulated runs, trending gently up.">
+                <polyline fill="none" stroke="var(--teal)" stroke-width="1.5"
+                  points="2,18 18,16 34,17 50,13 66,12 82,11 98,9 116,8"></polyline>
+              </svg>
+              <span class="dim__dir"><span aria-hidden="true">↗</span> steady</span>
+              <span class="dim__read">Does the artifact do what the brief asked? Rising as the states filled in.</span>
+            </div>
+
+            <!-- 2 -->
+            <div class="dim">
+              <div>
+                <div class="dim__label">Compositional coherence</div>
+                <div class="dim__kind">judge panel</div>
+              </div>
+              <svg class="spark" width="120" height="26" viewBox="0 0 120 26" role="img" aria-label="Compositional coherence, eight simulated runs, holding flat.">
+                <polyline fill="none" stroke="var(--teal)" stroke-width="1.5"
+                  points="2,12 18,13 34,11 50,12 66,12 82,11 98,12 116,11"></polyline>
+              </svg>
+              <span class="dim__dir"><span aria-hidden="true">→</span> holding</span>
+              <span class="dim__read">Does the set read as one system? Flat is fine. A read, not a target.</span>
+            </div>
+
+            <!-- 3 -->
+            <div class="dim">
+              <div>
+                <div class="dim__label">Token conformance</div>
+                <div class="dim__kind">deterministic</div>
+              </div>
+              <svg class="spark" width="120" height="26" viewBox="0 0 120 26" role="img" aria-label="Token conformance, eight simulated runs, improving.">
+                <polyline fill="none" stroke="var(--teal)" stroke-width="1.5"
+                  points="2,20 18,19 34,17 50,15 66,14 82,12 98,11 116,9"></polyline>
+              </svg>
+              <span class="dim__dir"><span aria-hidden="true">↗</span> improving</span>
+              <span class="dim__read">The floor is deterministic. Rising as raw values were snapped to tokens.</span>
+            </div>
+
+            <!-- 4 -->
+            <div class="dim">
+              <div>
+                <div class="dim__label">State coverage</div>
+                <div class="dim__kind">deterministic</div>
+              </div>
+              <svg class="spark" width="120" height="26" viewBox="0 0 120 26" role="img" aria-label="State coverage, eight simulated runs, holding high.">
+                <polyline fill="none" stroke="var(--teal)" stroke-width="1.5"
+                  points="2,7 18,8 34,7 50,7 66,8 82,7 98,7 116,6"></polyline>
+              </svg>
+              <span class="dim__dir"><span aria-hidden="true">→</span> holding</span>
+              <span class="dim__read">Default / hover / focus / disabled present. Held across runs.</span>
+            </div>
+
+            <!-- 5 -->
+            <div class="dim">
+              <div>
+                <div class="dim__label">Accessibility floor</div>
+                <div class="dim__kind">deterministic</div>
+              </div>
+              <svg class="spark" width="120" height="26" viewBox="0 0 120 26" role="img" aria-label="Accessibility floor, eight simulated runs, holding high.">
+                <polyline fill="none" stroke="var(--teal)" stroke-width="1.5"
+                  points="2,9 18,10 34,9 50,9 66,9 82,10 98,9 116,9"></polyline>
+              </svg>
+              <span class="dim__dir"><span aria-hidden="true">→</span> holding</span>
+              <span class="dim__read">Automated conformance held. The judged half stays a human read.</span>
+            </div>
+          </div>
+
+          <p class="grade__meta">series · 8 simulated runs · no aggregate score, no ranking, no calibration constant surfaced. The values are illustrative.</p>
+        </div>
+      </section>
+
+      <!-- The empty human slot (L4) -->
+      <section class="section" aria-labelledby="next-h">
+        <p class="eyebrow" id="next-h">The read is yours</p>
+        <div class="human-slot">
+          <div class="human-slot__tag"><span aria-hidden="true">&#9670;</span> Yours to fill</div>
+          What would you check next, given these trends? The series points at intent fidelity climbing and
+          coherence holding flat. Whether that is the artifact getting better or a signature worth keeping is a
+          taste read. This slot ships empty on purpose. The evaluator will not fill it.
+        </div>
+      </section>
+
+      <!-- The moat seam (L8) -->
+      <div class="moat-note">
+        <div class="tag"><span aria-hidden="true">◆</span> what never renders here</div>
+        No threshold is drawn on any chart, and no pass mark sits under any series. Calibrated thresholds,
+        the evaluator's internals, and the populated corpus are the retained evaluation moat; they never
+        render in this prototype. What you see are simulated shapes, not calibrated scores.
+      </div>
+
+      <div class="loop-foot">
+        <a href="quality-validate.html">&larr; Back: Validate</a>
+        <a href="quality-learn.html">Next in the loop: Learn &rarr;</a>
+      </div>
+
+      <!-- ===================== PAGE CONTENT END ======================= -->
+    </div>
+  </main>
+
+  <footer class="studio-footer">
+    <span class="sim">Prototype</span> · simulated interactions over a real data snapshot
+    (<span class="mono" data-commit>…</span>) · HeyHi Confidential
+  </footer>
+
+</div>
+
+<script>
+/* fill footer commit + self-activate the rail item from the page filename */
+(function () {
+  var data = window.SHEERLINE_DATA || {};
+  var meta = data.meta || {};
+  var el = document.querySelector('[data-commit]');
+  if (el) { el.textContent = meta.source_commit || 'unknown'; }
+
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') { path = 'index.html'; }
+  var alias = {
+    'quality-grade.html': 'quality-validate.html',
+    'quality-learn.html': 'quality-validate.html',
+    'exit-gate.html': 'session.html'
+  };
+  var target = alias[path] || path;
+  var links = document.querySelectorAll('.rail__link');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].getAttribute('href') === target) {
+      links[i].setAttribute('aria-current', 'page');
+    } else {
+      links[i].removeAttribute('aria-current');
+    }
+  }
+})();
+</script>
+</body>
+</html>

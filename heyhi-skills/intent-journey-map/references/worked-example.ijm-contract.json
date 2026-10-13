@@ -1,0 +1,83 @@
+{
+  "schema_version": "1.0",
+  "feature": "log-browse-and-read",
+  "generated_at": "2026-09-07",
+  "tier": 2,
+  "architecture_target": "TanStack Start (React, TypeScript), static prerender on Vercel",
+  "domain_band": "document-state (visibility gate + revision)",
+  "research_question": null,
+  "open_decisions": [
+    { "decision": "Tier for a single direct-link entry open (Tier 1 or Tier 2 by the multi-surface reading)", "owner": "the mapping lead" },
+    { "decision": "Whether the empty-category state is in scope for this feature or a follow-on", "owner": "the product owner" }
+  ],
+  "rows": [
+    {
+      "step": "Land on the Log index",
+      "screen_state": "filled",
+      "component": "LogIndex",
+      "layer": "container",
+      "prop": "entries",
+      "prop_role": "data",
+      "type": "LogMeta[]",
+      "source": { "hook": "logs module (static import of src/data/logs.ts)", "endpoint": null },
+      "json_pointer": null,
+      "binding_status": "no-spec",
+      "required": true,
+      "enum": null,
+      "default_or_token": "[]",
+      "empty_or_error_state": "an explicit 'no entries yet' state, never a blank page",
+      "proof_ref": null
+    },
+    {
+      "step": "Filter by category",
+      "screen_state": "filled",
+      "component": "CategoryFilter",
+      "layer": "presentational",
+      "prop": "categories",
+      "prop_role": "data",
+      "type": "string[]",
+      "source": { "hook": "derived from LogMeta.category (src/data/logs.ts)", "endpoint": null },
+      "json_pointer": null,
+      "binding_status": "no-spec",
+      "required": false,
+      "enum": null,
+      "default_or_token": "[]",
+      "empty_or_error_state": "no chips render when no published entry carries a category",
+      "proof_ref": null
+    },
+    {
+      "step": "Open an entry",
+      "screen_state": "filled",
+      "component": "LogArticle",
+      "layer": "container",
+      "prop": "entry",
+      "prop_role": "data",
+      "type": "LogEntryData",
+      "source": { "hook": "slug lookup in the logs module (src/data/logs.ts)", "endpoint": null },
+      "json_pointer": null,
+      "binding_status": "no-spec",
+      "required": true,
+      "enum": null,
+      "default_or_token": null,
+      "empty_or_error_state": "a 404 renders for a missing or non-published slug; no draft is shown",
+      "proof_ref": null
+    },
+    {
+      "step": "Open an entry",
+      "screen_state": "error",
+      "component": "LogArticle",
+      "layer": "container",
+      "prop": "published",
+      "prop_role": "data",
+      "type": "boolean",
+      "source": { "hook": "LogMeta.published (src/data/logs.ts)", "endpoint": null },
+      "json_pointer": null,
+      "binding_status": "no-spec",
+      "required": true,
+      "enum": null,
+      "default_or_token": "false",
+      "empty_or_error_state": "any value other than the literal true keeps the entry hidden (the visibility gate)",
+      "proof_ref": null
+    }
+  ]
+}

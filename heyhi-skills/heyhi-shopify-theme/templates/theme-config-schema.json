@@ -1,0 +1,367 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HeyHi Theme Config",
+  "description": "Shopify-specific configuration layer for heyhi-shopify-theme. Sits alongside active-brand.json and provides theme identity, preset definitions, section library preferences, and compliance flags. Created once per theme (not per brand config refresh). Version: 1.0.0",
+  "type": "object",
+  "required": ["theme", "presets", "section_library", "compliance"],
+  "properties": {
+    "theme": {
+      "type": "object",
+      "description": "Theme identity and marketplace metadata",
+      "required": ["name", "version"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Theme name. Must meet Shopify naming rules: 1-2 words, under 30 characters, not an industry name, not an existing theme name on the Theme Store.",
+          "maxLength": 30,
+          "examples": ["Ember", "Folio", "Strand", "Grove"]
+        },
+        "version": {
+          "type": "string",
+          "description": "Semantic version string. Start at 1.0.0 for first submission.",
+          "pattern": "^\\d+\\.\\d+\\.\\d+$",
+          "default": "1.0.0"
+        },
+        "shopify_partner_id": {
+          "type": "string",
+          "description": "Shopify Partner account ID. Required for submission. Set during Phase 0 (Session 0.1).",
+          "default": ""
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description of the theme. 1-2 sentences. No pricing. No claims not substantiated in the demo store.",
+          "maxLength": 250
+        },
+        "support_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL for theme support. Must be live before submission. Link to heyhi.design/theme-support or a dedicated page.",
+          "default": "https://heyhi.design/theme-support"
+        },
+        "documentation_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL for theme documentation. Must be live before submission. Required to have minimum FAQ section (5 questions).",
+          "examples": ["https://heyhi.design/docs/ember"]
+        },
+        "industry_tags": {
+          "type": "array",
+          "description": "Shopify Theme Store industry categories. Select from Shopify's current category list. First item is the primary category.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "clothing-and-accessories",
+              "food-and-drink",
+              "health-and-beauty",
+              "home-and-garden",
+              "sports-and-recreation",
+              "arts-and-entertainment",
+              "electronics",
+              "books-and-media",
+              "industrial-and-commercial",
+              "services",
+              "toys-and-games",
+              "general"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 3
+        },
+        "catalog_size_tags": {
+          "type": "array",
+          "description": "Shopify catalog size tags. Select all that apply.",
+          "items": {
+            "type": "string",
+            "enum": ["small-catalog", "large-catalog"]
+          },
+          "minItems": 1
+        },
+        "style_entry": {
+          "type": "string",
+          "description": "Named style entry from the HeyHi style reference library. Must match the style_entry in the paired active-brand.json. Used for preset naming and generation metadata.",
+          "examples": ["Quiet Craft", "Civic Modern", "Neo-Industrial", "Sustainable Systems", "Asymmetric Bold"]
+        }
+      }
+    },
+    "presets": {
+      "type": "array",
+      "description": "Theme presets. Each preset is a distinct visual configuration of the same theme. Minimum 1 preset. Multi-preset themes require listings/ directory structure.",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["name", "industry", "catalog_size", "color_scheme"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Preset name shown in the Theme Store. Short, evocative. Not the same as the theme name.",
+            "examples": ["Ember", "Hearth", "Dusk", "Slate"]
+          },
+          "industry": {
+            "type": "string",
+            "description": "Primary industry this preset targets. Should correspond to a demo store in this industry.",
+            "examples": ["food-and-drink", "health-and-beauty", "clothing-and-accessories"]
+          },
+          "catalog_size": {
+            "type": "string",
+            "description": "Catalog size this preset is optimized for.",
+            "enum": ["small", "large"]
+          },
+          "demo_store_handle": {
+            "type": "string",
+            "description": "Shopify development store handle for this preset's demo store. Set during Session F-3. Must be populated before submission.",
+            "default": ""
+          },
+          "color_scheme": {
+            "type": "string",
+            "description": "Primary color scheme for this preset. 'light' or 'dark'. Dark-native configs from active-brand.json should set 'dark' for the primary preset.",
+            "enum": ["light", "dark"]
+          },
+          "hero_pattern": {
+            "type": "string",
+            "description": "Named layout pattern for the hero section in this preset. References patterns in references/section-patterns.md.",
+            "examples": [
+              "editorial-split",
+              "full-bleed-overlay",
+              "centered-text",
+              "asymmetric-feature",
+              "data-forward"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional short description of this preset's aesthetic intent. Not shown publicly — used for generation context.",
+            "maxLength": 200
+          }
+        }
+      }
+    },
+    "section_library": {
+      "type": "object",
+      "description": "Section generation preferences. These values supplement the active-brand.json cluster architecture — they select within the cluster's structural range.",
+      "required": ["cluster"],
+      "properties": {
+        "cluster": {
+          "type": "string",
+          "description": "Design cluster for section architecture selection. Must match brand.cluster in active-brand.json. Drives structural section generation rules in references/section-patterns.md.",
+          "enum": ["A", "B", "C", "D", "E"]
+        },
+        "spacing_density": {
+          "type": "string",
+          "description": "Section padding density. Drives default padding tier applied to all sections. Must match layout.spacing_density in active-brand.json if that field is present.",
+          "enum": ["spacious", "balanced", "dense"],
+          "default": "balanced"
+        },
+        "hero_style": {
+          "type": "string",
+          "description": "Structural layout style for the hero-banner section. Must be architecturally valid for the active cluster.",
+          "enum": [
+            "editorial-split",
+            "full-bleed-overlay",
+            "centered-text",
+            "asymmetric-feature",
+            "data-forward",
+            "stacked-organic"
+          ]
+        },
+        "collection_layout": {
+          "type": "string",
+          "description": "Default layout for the collection/product grid. Must be architecturally valid for the active cluster.",
+          "enum": [
+            "clean-grid",
+            "asymmetric-grid",
+            "masonry",
+            "dense-grid",
+            "list-default"
+          ]
+        },
+        "typography_anchor": {
+          "type": "string",
+          "description": "How typography anchors section hierarchy. Informs heading treatment across all sections.",
+          "enum": [
+            "oversized-display",
+            "editorial-serif",
+            "mono-precision",
+            "organic-script",
+            "balanced-sans"
+          ]
+        },
+        "card_style": {
+          "type": "string",
+          "description": "Product card visual style applied to product-thumbnail and featured-collection sections.",
+          "enum": ["minimal", "standard", "editorial", "outlined"],
+          "default": "standard"
+        }
+      }
+    },
+    "compliance": {
+      "type": "object",
+      "description": "Shopify Theme Store compliance flags. All must be true before Mode A submission. These are assertions — the operator confirms them after manual verification.",
+      "required": ["skeleton_theme_base", "exclusive_to_shopify", "no_app_dependencies"],
+      "properties": {
+        "skeleton_theme_base": {
+          "type": "boolean",
+          "description": "Theme is built on (or structurally equivalent to) the Shopify Skeleton Theme. Required for Theme Store review — Shopify expects OS 2.0 section structure throughout.",
+          "default": true
+        },
+        "exclusive_to_shopify": {
+          "type": "boolean",
+          "description": "Theme is exclusive to the Shopify Theme Store — not sold through any other channel. Required by Shopify Theme Partner agreement.",
+          "default": true
+        },
+        "no_app_dependencies": {
+          "type": "boolean",
+          "description": "No core functionality depends on a third-party app. App blocks (type: @app) are allowed as extension points. This asserts that the theme works completely without any app installed.",
+          "default": true
+        },
+        "wcag_aa_verified": {
+          "type": "boolean",
+          "description": "WCAG 2.1 AA compliance verified for all color token pairs in the default color scheme. Required for submission. Set true after heyhi-theme-validator Profile 3 PASS.",
+          "default": false
+        },
+        "lighthouse_performance": {
+          "type": ["integer", "null"],
+          "description": "Lighthouse Performance score on the demo store home page (desktop). Shopify requires >= 60. Record actual score from Session F-3.",
+          "minimum": 0,
+          "maximum": 100,
+          "default": null
+        },
+        "lighthouse_accessibility": {
+          "type": ["integer", "null"],
+          "description": "Lighthouse Accessibility score on the demo store home page (desktop). Shopify requires >= 90. Record actual score from Session F-3.",
+          "minimum": 0,
+          "maximum": 100,
+          "default": null
+        },
+        "validator_pass_date": {
+          "type": ["string", "null"],
+          "description": "ISO date when heyhi-theme-validator last returned a PASS result (all 3 profiles). Required before submission. Format: YYYY-MM-DD.",
+          "format": "date",
+          "default": null
+        },
+        "demo_store_review_complete": {
+          "type": "boolean",
+          "description": "A human reviewer has manually reviewed the demo store on mobile and desktop. All sections render correctly. No placeholder content. No Lorem Ipsum.",
+          "default": false
+        },
+        "documentation_live": {
+          "type": "boolean",
+          "description": "Theme documentation page is live at documentation_url. Includes setup instructions, section guide, and minimum 5 FAQ questions.",
+          "default": false
+        },
+        "support_contact_live": {
+          "type": "boolean",
+          "description": "Support contact form at support_url is live and operational. Email response process confirmed within 2 business days.",
+          "default": false
+        }
+      }
+    },
+    "meta": {
+      "type": "object",
+      "description": "Generation metadata. Populated by heyhi-shopify-theme during build.",
+      "properties": {
+        "generated_at": {
+          "type": ["string", "null"],
+          "format": "date-time",
+          "description": "ISO datetime when this config was created."
+        },
+        "active_brand_config": {
+          "type": "string",
+          "description": "Filename of the active-brand.json this theme was generated from (e.g., 'quiet-craft.json'). Enables tracing theme back to its token source."
+        },
+        "active_brand_version": {
+          "type": "string",
+          "description": "Version of the active-brand.json at theme generation time (e.g., '1.0.0'). Enables detecting config drift."
+        },
+        "last_build_date": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "ISO date of the most recent full theme build. Update after each generation run."
+        },
+        "submission_status": {
+          "type": "string",
+          "description": "Current submission status. Progress through Phase 4 lifecycle.",
+          "enum": [
+            "not-started",
+            "in-build",
+            "validator-pass",
+            "demo-ready",
+            "submitted",
+            "in-review",
+            "revision-requested",
+            "approved",
+            "listed"
+          ],
+          "default": "not-started"
+        },
+        "notes": {
+          "type": "string",
+          "description": "Free-form notes about this theme config. Revision history, reviewer feedback, known issues."
+        }
+      }
+    }
+  },
+  "examples": [
+    {
+      "theme": {
+        "name": "Ember",
+        "version": "1.0.0",
+        "shopify_partner_id": "",
+        "description": "A focused theme for artisan food and drink brands. Clean typography and spacious layouts let product photography carry the story.",
+        "support_url": "https://heyhi.design/theme-support",
+        "documentation_url": "https://heyhi.design/docs/ember",
+        "industry_tags": ["food-and-drink", "health-and-beauty"],
+        "catalog_size_tags": ["small-catalog"],
+        "style_entry": "Quiet Craft"
+      },
+      "presets": [
+        {
+          "name": "Ember",
+          "industry": "food-and-drink",
+          "catalog_size": "small",
+          "demo_store_handle": "",
+          "color_scheme": "light",
+          "hero_pattern": "editorial-split",
+          "description": "Light, spacious. Small-batch olive oil producer."
+        },
+        {
+          "name": "Hearth",
+          "industry": "health-and-beauty",
+          "catalog_size": "small",
+          "demo_store_handle": "",
+          "color_scheme": "light",
+          "hero_pattern": "full-bleed-overlay",
+          "description": "Warm neutral. Artisan skincare brand."
+        }
+      ],
+      "section_library": {
+        "cluster": "A",
+        "spacing_density": "spacious",
+        "hero_style": "editorial-split",
+        "collection_layout": "clean-grid",
+        "typography_anchor": "oversized-display",
+        "card_style": "minimal"
+      },
+      "compliance": {
+        "skeleton_theme_base": true,
+        "exclusive_to_shopify": true,
+        "no_app_dependencies": true,
+        "wcag_aa_verified": false,
+        "lighthouse_performance": null,
+        "lighthouse_accessibility": null,
+        "validator_pass_date": null,
+        "demo_store_review_complete": false,
+        "documentation_live": false,
+        "support_contact_live": false
+      },
+      "meta": {
+        "generated_at": null,
+        "active_brand_config": "quiet-craft.json",
+        "active_brand_version": "1.0.0",
+        "last_build_date": null,
+        "submission_status": "not-started",
+        "notes": ""
+      }
+    }
+  ]
+}

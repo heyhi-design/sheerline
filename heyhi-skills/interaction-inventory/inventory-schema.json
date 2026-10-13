@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "heyhi:interaction-inventory:sidecar:1.0",
+  "title": "Interaction Inventory sidecar",
+  "description": "The machine-readable half of an Interaction Inventory (Sheerline area 4). Consumed by microcopy-states-writer (copy_slot rows), heyhi-figjam-mapper (transitions as a stateDiagram), and later heyhi-prototype-audit / heyhi-figma-ds-generator. The judgment and gate blocks ship null by construction; a sidecar with a filled verdict fails pre-flight. copy_slot.string is null when this skill writes it and typed 'string | null' (v0.1.2), so a sidecar with area 3's microcopy-states-writer strings merged back still validates. HeyHi Confidential.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "source", "elements", "judgment", "gate"],
+  "properties": {
+    "schema_version": { "enum": ["1.0", "1.1"], "description": "1.1 (2026-09-12) adds the optional surface-level missing_by_fidelity object. Backward-compatible: 1.0 sidecars (which lack that optional field) still validate, so both versions are accepted; new runs stamp 1.1." },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "ref"],
+      "properties": {
+        "kind": { "enum": ["figma", "prototype", "list"] },
+        "ref": { "type": "string", "minLength": 1 },
+        "contract": { "type": "string", "default": "design-system://fundamentals A.3" }
+      }
+    },
+    "missing_by_fidelity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["state_classes", "cell_count", "reason"],
+      "description": "Optional, surface-level (v1.1). When an entire state class is unshowable for EVERY element of the surface because the artifact has no mechanism to render it (no async path anywhere; no :active rule at all in the source), those cells are MISSING-by-fidelity: reported once here with a count, not as N per-element MISSING rows. Per-element MISSING (by omission) stays in elements[].states. Additive and optional, so a schema_version 1.0 sidecar without this field still validates.",
+      "properties": {
+        "state_classes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "enum": ["default", "hover", "focus-visible", "active", "disabled", "loading", "error", "success", "selected", "empty", "populated"] }
+        },
+        "cell_count": { "type": "integer", "minimum": 0 },
+        "reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "elements": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "class", "provenance", "states", "transitions", "flags"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+          "name": { "type": "string", "minLength": 1 },
+          "class": { "enum": ["action", "link", "text-input", "selection-control", "composite", "data-view", "static"] },
+          "provenance": { "enum": ["from-source", "from-list", "inferred"] },
+          "apg_pattern": { "type": ["string", "null"] },
+          "focusable": { "type": "boolean" },
+          "keyboard": { "type": ["string", "null"], "description": "The APG pattern the keyboard interaction was taken from, e.g. 'per APG \"Tabs\"' — the pattern name only, or 'native <element>' for a native control; the interaction itself is read from the map at build, never copied into the sidecar." },
+          "touch_triggers": { "type": "array", "items": { "enum": ["tap", "long-press", "swipe", "drag", "pinch"] } },
+          "states": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["name", "status", "source", "copy_slot"],
+              "properties": {
+                "name": { "enum": ["default", "hover", "focus-visible", "active", "disabled", "loading", "error", "success", "selected", "empty", "populated"] },
+                "status": { "enum": ["shown", "missing", "n/a"] },
+                "source": { "enum": ["from-source", "inferred", "n/a"], "description": "Where the status came from: shown => from-source (read from the design/build); missing => inferred (applicability inferred from the element class; nothing read); n/a => n/a. A state with source inferred is never status shown." },
+                "a11y_hook": { "type": ["string", "null"] },
+                "copy_slot": {
+                  "oneOf": [
+                    { "type": "null" },
+                    {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": ["taxonomy_slot", "string"],
+                      "properties": {
+                        "taxonomy_slot": { "enum": ["Empty", "Error", "Tooltip", "CTA", "Form label", "Notification", "Loading", "Onboarding", "Success", "Permission"], "description": "The 8+2 UX-writing taxonomy in heyhi-skills/voice-system-author/references/voice-system-template.md Part 3, enumerated here ONLY as a validation guard (a deliberate coupling — a rename in the template must be mirrored here; canon § 8)." },
+                        "string": { "type": ["string", "null"], "description": "Null when written by interaction-inventory (this skill still always writes null). Area 3's microcopy-states-writer fills it with a non-null candidate string; the widened type ('string | null', v0.1.2) lets a sidecar with those strings merged back validate against this schema. Seam agreement item 4, decision-log 2026-09-05. That copy_slot widening was backward-compatible and did not itself bump schema_version; schema_version later reached 1.1 (v0.1.3, 2026-09-12) for the optional surface-level missing_by_fidelity field, and 1.0 remains accepted (every null-string sidecar still validates)." }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "transitions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["from", "to", "trigger", "provenance"],
+              "properties": {
+                "from": { "type": "string" },
+                "to": { "type": "string" },
+                "trigger": { "type": "string", "minLength": 1 },
+                "provenance": { "const": "candidate" }
+              }
+            }
+          },
+          "flags": {
+            "type": "array",
+            "items": { "enum": ["unreachable", "dead-end", "loading-no-error-exit", "error-no-recovery", "below-44px", "hover-only", "disabled-not-programmatic", "disabled-reason-unshown", "selected-invisible", "source-unknown", "readonly"] }
+          }
+        }
+      }
+    },
+    "judgment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["which_matter", "absence_rulings", "verdict"],
+      "properties": {
+        "which_matter": { "type": "null" },
+        "absence_rulings": { "type": "array", "maxItems": 0 },
+        "verdict": { "type": "null" }
+      },
+      "description": "Ships empty by construction. The human fills these in the markdown inventory at the named gate; a sidecar written by the skill carries null / [] here."
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owner", "date"],
+      "properties": { "owner": { "type": "null" }, "date": { "type": "null" } }
+    }
+  }
+}

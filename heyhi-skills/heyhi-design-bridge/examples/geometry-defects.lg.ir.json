@@ -1,0 +1,894 @@
+{
+  "$schema": "heyhi-scene-graph/v0.4",
+  "meta": {
+    "source": "geometry-defects.html",
+    "breakpoint": "lg",
+    "brand_config": "example",
+    "generated_by": "heyhi-design-bridge/extract_scene_graph@0.1.0"
+  },
+  "tokens_used": [
+    {
+      "token_path": "tokens.color.backgrounds.dark",
+      "figma_variable": "color/backgrounds/dark",
+      "resolved": "#0E1A24",
+      "source": "matched",
+      "match_confidence": 0.968
+    },
+    {
+      "token_path": "tokens.color.backgrounds.dark",
+      "figma_variable": "color/backgrounds/dark",
+      "resolved": "#12222E",
+      "source": "matched",
+      "match_confidence": 0.948
+    },
+    {
+      "token_path": "tokens.color.semantic.info-bg",
+      "figma_variable": "color/semantic/info-bg",
+      "resolved": "#E8F0F4",
+      "source": "matched",
+      "match_confidence": 0.987
+    },
+    {
+      "token_path": "tokens.color.semantic.success-border",
+      "figma_variable": "color/semantic/success-border",
+      "resolved": "#3FD0C9",
+      "source": "matched",
+      "match_confidence": 0.779
+    },
+    {
+      "token_path": "tokens.color.backgrounds.dark-surface",
+      "figma_variable": "color/backgrounds/dark-surface",
+      "resolved": "#22323D",
+      "source": "matched",
+      "match_confidence": 0.939
+    },
+    {
+      "token_path": "tokens.color.backgrounds.dark",
+      "figma_variable": "color/backgrounds/dark",
+      "resolved": "#0B141C",
+      "source": "matched",
+      "match_confidence": 0.967
+    },
+    {
+      "token_path": "tokens.color.semantic.info-border",
+      "figma_variable": "color/semantic/info-border",
+      "resolved": "#9FB2BD",
+      "source": "matched",
+      "match_confidence": 0.949
+    },
+    {
+      "token_path": "tokens.color.backgrounds.dark-surface",
+      "figma_variable": "color/backgrounds/dark-surface",
+      "resolved": "#33474F",
+      "source": "matched",
+      "match_confidence": 0.876
+    }
+  ],
+  "root": {
+    "type": "FRAME",
+    "name": "Page",
+    "layout": {
+      "mode": "VERTICAL"
+    },
+    "size": {
+      "w": 1440,
+      "h": null,
+      "sizing": {
+        "h": "FILL",
+        "v": "HUG"
+      }
+    },
+    "fills": [
+      {
+        "type": "SOLID",
+        "bind": "tokens.color.backgrounds.dark",
+        "resolved": "#0E1A24"
+      }
+    ],
+    "children": [
+      {
+        "type": "FRAME",
+        "name": "Studio Shell",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "counterAxisAlignItems": "MIN",
+          "layoutWrap": "WRAP",
+          "counterAxisSpacing": 0
+        },
+        "size": {
+          "w": 1440,
+          "h": null,
+          "sizing": {
+            "h": "FIXED",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "FRAME",
+            "name": "Topbar",
+            "layout": {
+              "mode": "HORIZONTAL",
+              "counterAxisAlignItems": "CENTER",
+              "itemSpacing": 16,
+              "padding": {
+                "t": 0,
+                "r": 24,
+                "b": 0,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 1440,
+              "h": 60,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "bind": "tokens.color.backgrounds.dark",
+                "resolved": "#12222E"
+              }
+            ],
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Topbar  Brand",
+                "characters": "Sheerline",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 600,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.semantic.info-bg",
+                    "resolved": "#E8F0F4"
+                  }
+                ],
+                "size": {
+                  "w": 78.05,
+                  "h": 21,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "FRAME",
+                "name": "Topbar  Spacer",
+                "layout": {
+                  "mode": "VERTICAL"
+                },
+                "size": {
+                  "w": 1155.7,
+                  "h": 0,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "FRAME",
+                "name": "Session Indicator",
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "counterAxisAlignItems": "CENTER",
+                  "itemSpacing": 8,
+                  "padding": {
+                    "t": 4,
+                    "r": 12,
+                    "b": 4,
+                    "l": 12
+                  }
+                },
+                "size": {
+                  "w": 126.25,
+                  "h": 26,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "fills": [
+                  {
+                    "type": "SOLID",
+                    "bind": "tokens.color.semantic.success-border",
+                    "resolved": "#3FD0C9"
+                  }
+                ],
+                "cornerRadius": 999,
+                "strokes": [
+                  {
+                    "weight": 1,
+                    "color": {
+                      "type": "SOLID",
+                      "bind": "tokens.color.semantic.success-border",
+                      "resolved": "#3FD0C9"
+                    }
+                  }
+                ],
+                "children": [
+                  {
+                    "type": "FRAME",
+                    "name": "Dot",
+                    "layout": {
+                      "mode": "VERTICAL"
+                    },
+                    "size": {
+                      "w": 7,
+                      "h": 7,
+                      "sizing": {
+                        "h": "FILL",
+                        "v": "HUG"
+                      }
+                    },
+                    "fills": [
+                      {
+                        "type": "SOLID",
+                        "bind": "tokens.color.semantic.success-border",
+                        "resolved": "#3FD0C9"
+                      }
+                    ],
+                    "cornerRadius": 3.5
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "session live",
+                    "characters": "session live",
+                    "type_style": {
+                      "family": "DM Mono",
+                      "weight": 400,
+                      "size": 11.84,
+                      "token_ref": "tokens.typography.scale.button"
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.semantic.info-bg",
+                        "resolved": "#E8F0F4"
+                      }
+                    ],
+                    "size": {
+                      "w": 85.25,
+                      "h": 16,
+                      "sizing": {
+                        "h": "HUG",
+                        "v": "HUG"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Rail",
+            "layout": {
+              "mode": "VERTICAL",
+              "padding": {
+                "t": 24,
+                "r": 12,
+                "b": 24,
+                "l": 12
+              }
+            },
+            "size": {
+              "w": 220,
+              "h": 340.67,
+              "sizing": {
+                "h": "FILL",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Overview",
+                "characters": "Overview",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.semantic.info-bg",
+                    "resolved": "#E8F0F4"
+                  }
+                ],
+                "size": {
+                  "w": 195,
+                  "h": 21,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Areas",
+                "characters": "Areas",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 16
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.semantic.info-bg",
+                    "resolved": "#E8F0F4"
+                  }
+                ],
+                "size": {
+                  "w": 195,
+                  "h": 21,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Studio Main",
+            "layout": {
+              "mode": "VERTICAL",
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 1220,
+              "h": 340.67,
+              "sizing": {
+                "h": "FILL",
+                "v": "HUG"
+              }
+            },
+            "children": [
+              {
+                "type": "TEXT",
+                "name": "Coverage",
+                "characters": "Coverage",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 600,
+                  "size": 20.8
+                },
+                "fills": [
+                  {
+                    "bind": "tokens.color.semantic.info-bg",
+                    "resolved": "#E8F0F4"
+                  }
+                ],
+                "size": {
+                  "w": 1172,
+                  "h": 26,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "FRAME",
+                "name": "Cov",
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "counterAxisAlignItems": "CENTER",
+                  "itemSpacing": 8
+                },
+                "size": {
+                  "w": 87.66,
+                  "h": 15,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "FRAME",
+                    "name": "Cov  Bar",
+                    "layout": {
+                      "mode": "NONE"
+                    },
+                    "size": {
+                      "w": 52,
+                      "h": 8,
+                      "sizing": {
+                        "h": "FILL",
+                        "v": "HUG"
+                      }
+                    },
+                    "fills": [
+                      {
+                        "type": "SOLID",
+                        "bind": "tokens.color.backgrounds.dark",
+                        "resolved": "#0B141C"
+                      }
+                    ],
+                    "cornerRadius": 999,
+                    "strokes": [
+                      {
+                        "weight": 1,
+                        "color": {
+                          "type": "SOLID",
+                          "bind": "tokens.color.backgrounds.dark-surface",
+                          "resolved": "#22323D"
+                        }
+                      }
+                    ],
+                    "children": [
+                      {
+                        "type": "FRAME",
+                        "name": "⚠ ::before (needs human)",
+                        "size": {
+                          "w": 50,
+                          "h": 6,
+                          "sizing": {
+                            "h": "FIXED",
+                            "v": "FIXED"
+                          }
+                        },
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "fills": [
+                          {
+                            "type": "SOLID",
+                            "resolved": "#EDEAE3"
+                          }
+                        ],
+                        "strokes": [
+                          {
+                            "weight": 1,
+                            "align": "INSIDE",
+                            "color": {
+                              "type": "SOLID",
+                              "resolved": "#B0A99A"
+                            }
+                          }
+                        ],
+                        "opacity": 0.9
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "Cov  Label",
+                    "characters": "deep",
+                    "type_style": {
+                      "family": "DM Mono",
+                      "weight": 400,
+                      "size": 11.52
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.semantic.info-border",
+                        "resolved": "#9FB2BD"
+                      }
+                    ],
+                    "size": {
+                      "w": 27.66,
+                      "h": 15,
+                      "sizing": {
+                        "h": "HUG",
+                        "v": "HUG"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Cov",
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "counterAxisAlignItems": "CENTER",
+                  "itemSpacing": 8
+                },
+                "size": {
+                  "w": 108.39,
+                  "h": 15,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "FRAME",
+                    "name": "Cov  Bar",
+                    "layout": {
+                      "mode": "NONE"
+                    },
+                    "size": {
+                      "w": 52,
+                      "h": 8,
+                      "sizing": {
+                        "h": "FILL",
+                        "v": "HUG"
+                      }
+                    },
+                    "fills": [
+                      {
+                        "type": "SOLID",
+                        "bind": "tokens.color.backgrounds.dark",
+                        "resolved": "#0B141C"
+                      }
+                    ],
+                    "cornerRadius": 999,
+                    "strokes": [
+                      {
+                        "weight": 1,
+                        "color": {
+                          "type": "SOLID",
+                          "bind": "tokens.color.backgrounds.dark-surface",
+                          "resolved": "#22323D"
+                        }
+                      }
+                    ],
+                    "children": [
+                      {
+                        "type": "FRAME",
+                        "name": "⚠ ::before (needs human)",
+                        "size": {
+                          "w": 33,
+                          "h": 4,
+                          "sizing": {
+                            "h": "FIXED",
+                            "v": "FIXED"
+                          }
+                        },
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "fills": [
+                          {
+                            "type": "SOLID",
+                            "resolved": "#EDEAE3"
+                          }
+                        ],
+                        "strokes": [
+                          {
+                            "weight": 1,
+                            "align": "INSIDE",
+                            "color": {
+                              "type": "SOLID",
+                              "resolved": "#B0A99A"
+                            }
+                          }
+                        ],
+                        "opacity": 0.9
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "Cov  Label",
+                    "characters": "covered",
+                    "type_style": {
+                      "family": "DM Mono",
+                      "weight": 400,
+                      "size": 11.52
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.semantic.info-border",
+                        "resolved": "#9FB2BD"
+                      }
+                    ],
+                    "size": {
+                      "w": 48.39,
+                      "h": 15,
+                      "sizing": {
+                        "h": "HUG",
+                        "v": "HUG"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Cov",
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "counterAxisAlignItems": "CENTER",
+                  "itemSpacing": 8
+                },
+                "size": {
+                  "w": 108.39,
+                  "h": 15,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "FRAME",
+                    "name": "Cov  Bar",
+                    "layout": {
+                      "mode": "NONE"
+                    },
+                    "size": {
+                      "w": 52,
+                      "h": 8,
+                      "sizing": {
+                        "h": "FILL",
+                        "v": "HUG"
+                      }
+                    },
+                    "fills": [
+                      {
+                        "type": "SOLID",
+                        "bind": "tokens.color.backgrounds.dark",
+                        "resolved": "#0B141C"
+                      }
+                    ],
+                    "cornerRadius": 999,
+                    "strokes": [
+                      {
+                        "weight": 1,
+                        "color": {
+                          "type": "SOLID",
+                          "bind": "tokens.color.backgrounds.dark-surface",
+                          "resolved": "#22323D"
+                        }
+                      }
+                    ],
+                    "children": [
+                      {
+                        "type": "FRAME",
+                        "name": "⚠ ::before (needs human)",
+                        "size": {
+                          "w": 20,
+                          "h": 6,
+                          "sizing": {
+                            "h": "FIXED",
+                            "v": "FIXED"
+                          }
+                        },
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "fills": [
+                          {
+                            "type": "SOLID",
+                            "resolved": "#EDEAE3"
+                          }
+                        ],
+                        "strokes": [
+                          {
+                            "weight": 1,
+                            "align": "INSIDE",
+                            "color": {
+                              "type": "SOLID",
+                              "resolved": "#B0A99A"
+                            }
+                          }
+                        ],
+                        "opacity": 0.9
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "Cov  Label",
+                    "characters": "partial",
+                    "type_style": {
+                      "family": "DM Mono",
+                      "weight": 400,
+                      "size": 11.52
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.semantic.info-border",
+                        "resolved": "#9FB2BD"
+                      }
+                    ],
+                    "size": {
+                      "w": 48.39,
+                      "h": 15,
+                      "sizing": {
+                        "h": "HUG",
+                        "v": "HUG"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "FRAME",
+                "name": "Cov",
+                "layout": {
+                  "mode": "HORIZONTAL",
+                  "counterAxisAlignItems": "CENTER",
+                  "itemSpacing": 8
+                },
+                "size": {
+                  "w": 80.75,
+                  "h": 15,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                },
+                "children": [
+                  {
+                    "type": "FRAME",
+                    "name": "Cov  Bar",
+                    "layout": {
+                      "mode": "NONE"
+                    },
+                    "size": {
+                      "w": 52,
+                      "h": 8,
+                      "sizing": {
+                        "h": "FILL",
+                        "v": "HUG"
+                      }
+                    },
+                    "cornerRadius": 999,
+                    "strokes": [
+                      {
+                        "weight": 1,
+                        "color": {
+                          "type": "SOLID",
+                          "bind": "tokens.color.backgrounds.dark-surface",
+                          "resolved": "#33474F"
+                        }
+                      }
+                    ],
+                    "children": [
+                      {
+                        "type": "FRAME",
+                        "name": "⚠ ::before (needs human)",
+                        "size": {
+                          "w": 0,
+                          "h": 6,
+                          "sizing": {
+                            "h": "FIXED",
+                            "v": "FIXED"
+                          }
+                        },
+                        "position": {
+                          "x": 0,
+                          "y": 0
+                        },
+                        "fills": [
+                          {
+                            "type": "SOLID",
+                            "resolved": "#EDEAE3"
+                          }
+                        ],
+                        "strokes": [
+                          {
+                            "weight": 1,
+                            "align": "INSIDE",
+                            "color": {
+                              "type": "SOLID",
+                              "resolved": "#B0A99A"
+                            }
+                          }
+                        ],
+                        "opacity": 0.9
+                      }
+                    ]
+                  },
+                  {
+                    "type": "TEXT",
+                    "name": "Cov  Label",
+                    "characters": "gap",
+                    "type_style": {
+                      "family": "DM Mono",
+                      "weight": 400,
+                      "size": 11.52
+                    },
+                    "fills": [
+                      {
+                        "bind": "tokens.color.semantic.info-border",
+                        "resolved": "#9FB2BD"
+                      }
+                    ],
+                    "size": {
+                      "w": 20.75,
+                      "h": 15,
+                      "sizing": {
+                        "h": "HUG",
+                        "v": "HUG"
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "TEXT",
+            "name": "Studio Footer",
+            "characters": "Simulated exemplar footer",
+            "type_style": {
+              "family": "Sora",
+              "weight": 400,
+              "size": 16
+            },
+            "fills": [
+              {
+                "bind": "tokens.color.semantic.info-border",
+                "resolved": "#9FB2BD"
+              }
+            ],
+            "size": {
+              "w": 1440,
+              "h": 272.67,
+              "sizing": {
+                "h": "FILL",
+                "v": "HUG"
+              }
+            },
+            "strokes": [
+              {
+                "weight": 1,
+                "color": {
+                  "type": "SOLID",
+                  "bind": "tokens.color.backgrounds.dark-surface",
+                  "resolved": "#22323D"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "feature": "css-grid",
+        "node": "Page > .studio-shell",
+        "action": "non-uniform grid tracks approximated as equal wrap columns; review column widths",
+        "needs_human": true
+      },
+      {
+        "feature": "screen-reader-only",
+        "node": "Session Indicator > .sr-only",
+        "action": "screen-reader-only content (clipped to ~1px, overflow hidden) omitted; assistive-only text must not render as a visible layer",
+        "needs_human": false
+      },
+      {
+        "feature": "screen-reader-only",
+        "node": "Rail > .sr-only",
+        "action": "screen-reader-only content (clipped to ~1px, overflow hidden) omitted; assistive-only text must not render as a visible layer",
+        "needs_human": false
+      },
+      {
+        "feature": "screen-reader-only",
+        "node": "Studio Main > .sr-only",
+        "action": "screen-reader-only content (clipped to ~1px, overflow hidden) omitted; assistive-only text must not render as a visible layer",
+        "needs_human": false
+      },
+      {
+        "feature": "pseudo-placeholder",
+        "node": "Cov > .cov__bar",
+        "action": "::before emitted as a needs-human placeholder at its captured box; confirm/apply the real paint",
+        "needs_human": true
+      }
+    ]
+  }
+}

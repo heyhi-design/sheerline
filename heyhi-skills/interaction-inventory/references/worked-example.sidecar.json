@@ -1,0 +1,423 @@
+{
+  "schema_version": "1.0",
+  "source": {
+    "kind": "figma",
+    "ref": "SYNTH-0001 node 12:340 (synthetic, NoteNest Notification settings)",
+    "contract": "design-system://fundamentals A.3"
+  },
+  "elements": [
+    {
+      "id": "channel-tabs",
+      "name": "Channel tabs (Email / Push / Digest)",
+      "class": "composite",
+      "provenance": "from-source",
+      "apg_pattern": "Tabs",
+      "focusable": true,
+      "keyboard": "per APG \"Tabs\"",
+      "touch_triggers": [
+        "tap"
+      ],
+      "states": [
+        {
+          "name": "default",
+          "status": "shown",
+          "source": "from-source",
+          "a11y_hook": null,
+          "copy_slot": null
+        },
+        {
+          "name": "hover",
+          "status": "shown",
+          "source": "from-source",
+          "a11y_hook": null,
+          "copy_slot": null
+        },
+        {
+          "name": "focus-visible",
+          "status": "shown",
+          "source": "from-source",
+          "a11y_hook": "visible ring on the active tab (roving tabindex)",
+          "copy_slot": null
+        },
+        {
+          "name": "active",
+          "status": "missing",
+          "source": "inferred",
+          "a11y_hook": null,
+          "copy_slot": null
+        },
+        {
+          "name": "selected",
+          "status": "shown",
+          "source": "from-source",
+          "a11y_hook": "aria-selected; aria-controls -> panel",
+          "copy_slot": null
+        }
+      ],
+      "transitions": [
+        {
+          "from": "selected(Email)",
+          "to": "selected(Push)",
+          "trigger": "click / Arrow keys",
+          "provenance": "candidate"
+        }
+      ],
+      "flags": [
+        "below-44px"
+      ]
+    },
+    {
+      "id": "digest-switch",
+      "name": "Send a daily digest switch",
+      "class": "selection-control",
+      "provenance": "from-source",
+      "apg_pattern": "Switch",
+      "focusable": true,
+      "keyboard": "per APG \"Switch\"",
+      "touch_triggers": [
+        "tap"
+      ],
+      "states": [
+        {
+          "name": "default",
+          "status": "shown",
+          "source": "from-source",
+          "a11y_hook": null,
+          "copy_slot": null
+        },
+        {
+          "name": "hover",
+          "status": "shown",
+          "source": "from-source",
+          "a11y_hook": null,
+          "copy_slot": null
+        },
+        {
+          "name": "focus-visible",
+          "status": "missing",
+          "source": "inferred",
+          "a11y_hook": "visible ring",
+          "copy_slot": null
+        },
+        {
+          "name": "active",
+          "status": "missing",
+          "source": "inferred",
+          "a11y_hook": null,
+          "copy_slot": null
+        },
+        {
+          "name": "selected",
+          "status": "shown",
+          "source": "from-source",
+          "a11y_hook": "aria-checked",
+          "copy_slot": null
+        }
+      ],
+      "transitions": [
+        {
+          "from": "off",
+          "to": "on",
+          "trigger": "click / Space",
+          "provenance": "candidate"
+        },
+        {
+          "from": "on",
+          "to": "off",
+          "trigger": "click / Space",
+          "provenance": "candidate"
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "digest-hour-input",
+      "name": "Digest hour input",
+      "class": "text-input",
+      "provenance": "from-source",
+      "apg_pattern": null,
+      "focusable": true,
+      "keyboard": "native text input",
+      "touch_triggers": [
+        "tap"
+      ],
+      "states": [
+        {
+          "name": "default",
+          "status": "shown",
+          "source": "from-source",
+          "a11y_hook": null,
+          "copy_slot": null
+        },
+        {
+          "name": "focus-visible",
+          "status": "shown",
+          "source": "from-source",
+          "a11y_hook": "2px ring at 2px offset",
+          "copy_slot": null
+        },
+        {
+          "name": "error",
+          "status": "missing",
+          "source": "inferred",
+          "a11y_hook": "aria-invalid + aria-describedby -> inline message",
+          "copy_slot": {
+            "taxonomy_slot": "Error",
+            "string": null
+          }
+        }
+      ],
+      "transitions": [
+        {
+          "from": "default",
+          "to": "error",
+          "trigger": "blur with a value outside 0-23",
+          "provenance": "candidate"
+        },
+        {
+          "from": "error",
+          "to": "default",
+          "trigger": "valid edit",
+          "provenance": "candidate"
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "save-button",
+      "name": "Save button",
+      "class": "action",
+      "provenance": "from-source",
+      "apg_pattern": "Button",
+      "focusable": true,
+      "keyboard": "per APG \"Button\"",
+      "touch_triggers": [
+        "tap"
+      ],
+      "states": [
+        {
+          "name": "default",
+          "status": "shown",
+          "source": "from-source",
+          "a11y_hook": null,
+          "copy_slot": null
+        },
+        {
+          "name": "hover",
+          "status": "shown",
+          "source": "from-source",
+          "a11y_hook": null,
+          "copy_slot": null
+        },
+        {
+          "name": "focus-visible",
+          "status": "shown",
+          "source": "from-source",
+          "a11y_hook": "visible ring",
+          "copy_slot": null
+        },
+        {
+          "name": "active",
+          "status": "missing",
+          "source": "inferred",
+          "a11y_hook": null,
+          "copy_slot": null
+        },
+        {
+          "name": "disabled",
+          "status": "missing",
+          "source": "inferred",
+          "a11y_hook": "disabled attribute",
+          "copy_slot": null
+        },
+        {
+          "name": "loading",
+          "status": "missing",
+          "source": "inferred",
+          "a11y_hook": "aria-busy=true; non-interactive",
+          "copy_slot": {
+            "taxonomy_slot": "Loading",
+            "string": null
+          }
+        },
+        {
+          "name": "error",
+          "status": "missing",
+          "source": "inferred",
+          "a11y_hook": "aria-invalid on the form + aria-describedby",
+          "copy_slot": {
+            "taxonomy_slot": "Error",
+            "string": null
+          }
+        },
+        {
+          "name": "success",
+          "status": "missing",
+          "source": "inferred",
+          "a11y_hook": "polite live region",
+          "copy_slot": {
+            "taxonomy_slot": "Success",
+            "string": null
+          }
+        }
+      ],
+      "transitions": [
+        {
+          "from": "default",
+          "to": "loading",
+          "trigger": "click / Enter / Space (async POST)",
+          "provenance": "candidate"
+        },
+        {
+          "from": "loading",
+          "to": "success",
+          "trigger": "response 2xx",
+          "provenance": "candidate"
+        },
+        {
+          "from": "loading",
+          "to": "error",
+          "trigger": "response non-2xx / network",
+          "provenance": "candidate"
+        },
+        {
+          "from": "default",
+          "to": "disabled",
+          "trigger": "form unchanged since last save",
+          "provenance": "candidate"
+        },
+        {
+          "from": "success",
+          "to": "default",
+          "trigger": "after the confirmation",
+          "provenance": "candidate"
+        },
+        {
+          "from": "error",
+          "to": "default",
+          "trigger": "retry (no inline retry drawn)",
+          "provenance": "candidate"
+        },
+        {
+          "from": "disabled",
+          "to": "default",
+          "trigger": "any edit",
+          "provenance": "candidate"
+        }
+      ],
+      "flags": [
+        "loading-no-error-exit",
+        "error-no-recovery",
+        "disabled-reason-unshown"
+      ]
+    },
+    {
+      "id": "recent-digests-list",
+      "name": "Recent digests list",
+      "class": "data-view",
+      "provenance": "from-source",
+      "apg_pattern": null,
+      "focusable": false,
+      "keyboard": null,
+      "touch_triggers": [],
+      "states": [
+        {
+          "name": "populated",
+          "status": "shown",
+          "source": "from-source",
+          "a11y_hook": null,
+          "copy_slot": null
+        },
+        {
+          "name": "empty",
+          "status": "missing",
+          "source": "inferred",
+          "a11y_hook": "status region",
+          "copy_slot": {
+            "taxonomy_slot": "Empty",
+            "string": null
+          }
+        },
+        {
+          "name": "loading",
+          "status": "missing",
+          "source": "inferred",
+          "a11y_hook": "aria-busy on the region",
+          "copy_slot": {
+            "taxonomy_slot": "Loading",
+            "string": null
+          }
+        },
+        {
+          "name": "error",
+          "status": "missing",
+          "source": "inferred",
+          "a11y_hook": "status region",
+          "copy_slot": {
+            "taxonomy_slot": "Error",
+            "string": null
+          }
+        }
+      ],
+      "transitions": [
+        {
+          "from": "loading",
+          "to": "populated",
+          "trigger": "fetch resolves with rows",
+          "provenance": "candidate"
+        },
+        {
+          "from": "loading",
+          "to": "empty",
+          "trigger": "fetch resolves with no rows",
+          "provenance": "candidate"
+        },
+        {
+          "from": "loading",
+          "to": "error",
+          "trigger": "fetch fails",
+          "provenance": "candidate"
+        },
+        {
+          "from": "error",
+          "to": "loading",
+          "trigger": "retry (no retry affordance drawn)",
+          "provenance": "candidate"
+        }
+      ],
+      "flags": []
+    },
+    {
+      "id": "section-heading",
+      "name": "Section heading (Notifications)",
+      "class": "static",
+      "provenance": "from-source",
+      "apg_pattern": null,
+      "focusable": false,
+      "keyboard": null,
+      "touch_triggers": [],
+      "states": [
+        {
+          "name": "default",
+          "status": "n/a",
+          "source": "n/a",
+          "a11y_hook": null,
+          "copy_slot": null
+        }
+      ],
+      "transitions": [],
+      "flags": [
+        "readonly"
+      ]
+    }
+  ],
+  "judgment": {
+    "which_matter": null,
+    "absence_rulings": [],
+    "verdict": null
+  },
+  "gate": {
+    "owner": null,
+    "date": null
+  }
+}

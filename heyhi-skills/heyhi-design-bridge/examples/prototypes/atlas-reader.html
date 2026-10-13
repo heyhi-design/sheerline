@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atlas Reader — HeyHi Design Bridge golden prototype</title>
+  <!--
+    Golden prototype for heyhi-design-bridge Phase T1 (Single Column Reader pattern).
+    Tokens are the :root block generated forward from the fixture config
+    ../brand-config/example.json (a neutral example palette in the ui-studio
+    brand-config token structure).
+    This page is deliberately ADVERSARIAL: every does-not-map feature from
+    reference.md §3 is embedded so the extractor's flag path is fully exercised,
+    along with the v0.2 decoration fields (cornerRadius/strokes/effects/opacity,
+    ADR-010). Each element carries data-audit="<feature>" naming the flag it raises,
+    or the v0.2 field it exercises. See ../atlas-reader.handaudit.md for the ledger.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Lora:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+:root {
+  /* color */
+  --color-backgrounds-page: #F8F8F8;
+  --color-backgrounds-surface: #EEEEEE;
+  --color-backgrounds-dark: #1C1C1C;
+  --color-backgrounds-dark-surface: #2C2C2C;
+  --color-text-primary: #1C1C1C;
+  --color-text-muted: #6B6B6B;
+  --color-text-light: #737373;
+  --color-text-inverse: #F8F8F8;
+  --color-structural-divider: #E2E2E2;
+  --color-structural-border: #C4C4C4;
+  --color-accent-primary: #E4572E;
+  --color-accent-secondary: #2B59C3;
+  --color-accent-tertiary: #5E6B4B;
+  --color-neutral_anchors-dark: #222222;
+  --color-neutral_anchors-light: #DEDEDE;
+  --color-semantic-error: #B91C1C;
+  --color-semantic-success: #157A3A;
+  --color-semantic-info: #1E40AF;
+  /* type scale */
+  --type-display: clamp(3rem, 8vw, 5rem);
+  --type-h1: clamp(2.2rem, 5vw, 3.2rem);
+  --type-h2: clamp(1.6rem, 3vw, 2.4rem);
+  --type-h3: clamp(1.2rem, 2vw, 1.45rem);
+  --type-h4: clamp(1rem, 1.5vw, 1.15rem);
+  --type-body: clamp(1rem, 1.3vw, 1.125rem);
+  --type-small: 0.9rem;
+  --type-label: 0.65rem;
+  --type-mono-label: 0.6rem;
+  /* spacing */
+  --spacing-base: 8px;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+  --spacing-xl: 64px;
+  --spacing-2xl: 96px;
+  --spacing-3xl: 128px;
+  --content-max-width: 780px;
+  --page-padding: clamp(1.5rem, 5vw, 2.5rem);
+  --grid-gap: clamp(1.5rem, 3vw, 2rem);
+  /* radius */
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--color-backgrounds-page);
+  color: var(--color-text-primary);
+  font-family: "Lora", Georgia, serif;
+  font-size: var(--type-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- sticky site header — does-not-map: position-sticky ---- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--page-padding);
+  background: var(--color-backgrounds-page);
+  border-bottom: 1px solid var(--color-structural-divider);
+}
+.site-header .wordmark { display: flex; align-items: center; }
+.nav-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-lg);
+  font-family: "DM Mono", monospace;
+  font-size: var(--type-label);
+  color: var(--color-text-muted);
+}
+
+/* ---- reader column — clean: vertical auto-layout, HUG, centered ---- */
+.reader {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--spacing-lg);
+  /* calc-derived padding — does-not-map: clamp-calc-derived (direct calc, not via a token var) */
+  padding: calc(var(--spacing-2xl) + 1vw) var(--page-padding);
+}
+
+.article-head { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+
+/* eyebrow with a ::before marker — does-not-map: pseudo-element */
+.eyebrow {
+  font-family: "DM Mono", monospace;
+  font-size: var(--type-mono-label);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-accent-primary);
+}
+.eyebrow::before { content: "▸ "; color: var(--color-accent-primary); }
+
+/* h1 — does-not-map: clamp-calc-derived (font-size declared DIRECTLY as clamp, not via --type-h1) */
+.title {
+  font-family: "Sora", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.byline {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-family: "DM Mono", monospace;
+  font-size: var(--type-small);
+  color: var(--color-text-muted);
+}
+
+.lede {
+  font-size: var(--type-h3);
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+
+p.body { font-size: var(--type-body); color: var(--color-text-primary); }
+
+/* figure with a raster <img> — node type IMAGE; border is a clean-map prop with no v0.1 slot */
+.figure { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+.figure img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-structural-border);
+  border-radius: var(--radius-lg);
+}
+.figcaption {
+  font-family: "DM Mono", monospace;
+  font-size: var(--type-small);
+  color: var(--color-text-muted);
+  opacity: 0.85; /* exercises the v0.2 opacity node field */
+}
+
+/* pull-quote with a 3D transform — does-not-map: transform */
+.pull-quote {
+  font-family: "Sora", system-ui, sans-serif;
+  font-weight: 600;
+  font-size: var(--type-h2);
+  line-height: 1.2;
+  color: var(--color-accent-secondary);
+  padding: var(--spacing-lg) 0;
+  transform: perspective(600px) rotateX(4deg) translateZ(0);
+}
+
+/* stat row using CSS GRID — does-not-map: css-grid */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--grid-gap);
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+  background: var(--color-backgrounds-surface);
+  border-radius: var(--radius-md);
+}
+.stat .num {
+  font-family: "Sora", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: var(--type-h2);
+  color: var(--color-accent-primary);
+}
+.stat .cap {
+  font-family: "DM Mono", monospace;
+  font-size: var(--type-small);
+  color: var(--color-text-muted);
+}
+
+/* tag list with flex-wrap — does-not-map: flex-wrap */
+.tag-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  list-style: none;
+}
+.tag {
+  font-family: "DM Mono", monospace;
+  font-size: var(--type-small);
+  color: var(--color-text-muted);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--color-backgrounds-surface);
+  border-radius: var(--radius-sm);
+}
+
+/* code block with overflow scroll — does-not-map: overflow-scroll */
+.code {
+  font-family: "DM Mono", monospace;
+  font-size: var(--type-small);
+  color: var(--color-text-inverse);
+  background: var(--color-backgrounds-dark);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  overflow-x: scroll;
+  white-space: pre;
+}
+
+/* callout card with STACKED multi box-shadow — does-not-map: multi-shadow */
+.callout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg);
+  background: var(--color-backgrounds-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 8px 0 rgb(28 28 28 / 0.06), 0 12px 32px -8px rgb(28 28 28 / 0.12);
+}
+.callout .label {
+  font-family: "DM Mono", monospace;
+  font-size: var(--type-label);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-accent-tertiary);
+}
+
+/* animated dot — does-not-map: animation */
+.pulse-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--color-accent-primary);
+  animation: pulse 2s ease-in-out infinite;
+  transition: transform 0.2s ease;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.4); opacity: 0.6; }
+}
+
+/* overlay card: relative box with an absolutely-positioned child —
+   the child forces the parent to GROUP / layout NONE (schema: "NONE means absolute positioning; flag it") */
+.overlay-card {
+  position: relative;
+  padding: var(--spacing-lg);
+  background: var(--color-backgrounds-surface);
+  border-radius: var(--radius-md);
+}
+.overlay-badge {
+  position: absolute;
+  top: -10px;
+  right: var(--spacing-md);
+  font-family: "DM Mono", monospace;
+  font-size: var(--type-small);
+  color: var(--color-text-inverse);
+  background: var(--color-accent-primary);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-sm);
+}
+
+/* phantom-font paragraph — does-not-map: missing-font (family will not resolve) */
+.phantom {
+  font-family: "Phantom Sans Display", "Sora", sans-serif;
+  font-size: var(--type-body);
+  color: var(--color-text-primary);
+}
+
+/* near-accent literal — token recovery: matched nearest-token (literal, not a var) */
+.near-accent {
+  font-family: "DM Mono", monospace;
+  font-size: var(--type-small);
+  color: #E4572F; /* one tick off --color-accent-primary (#E4572E) → matched, conf < 1 */
+}
+
+/* CTA — clean map: accent fill via var, radius + single shadow (clean-map props, no v0.1 IR slot) */
+.cta {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  background: var(--color-accent-primary);
+  color: var(--color-text-inverse);
+  font-family: "DM Mono", monospace;
+  font-size: var(--type-small);
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  box-shadow: 0 2px 8px 0 rgb(28 28 28 / 0.06);
+}
+
+/* fixed back-to-top — does-not-map: position-fixed */
+.back-to-top {
+  position: fixed;
+  bottom: var(--spacing-lg);
+  right: var(--spacing-lg);
+  font-family: "DM Mono", monospace;
+  font-size: var(--type-small);
+  color: var(--color-text-inverse);
+  background: var(--color-backgrounds-dark);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+  </style>
+</head>
+<body>
+  <header class="site-header" data-audit="position-sticky">
+    <span class="wordmark" aria-label="Atlas Co">
+      <svg width="92" height="24" viewBox="0 0 92 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Atlas Co wordmark">
+        <text x="0" y="19" font-family="Sora, sans-serif" font-weight="700" font-size="20" fill="#1C1C1C">Atlas</text>
+        <text x="62" y="19" font-family="Sora, sans-serif" font-weight="700" font-size="20" fill="#E4572E">Co</text>
+      </svg>
+    </span>
+    <nav class="nav-links">
+      <span>Work</span>
+      <span>Approach</span>
+      <span>Contact</span>
+    </nav>
+  </header>
+
+  <main class="reader" data-scene-root>
+    <div class="article-head">
+      <p class="eyebrow" data-audit="pseudo-element">Field note</p>
+      <h1 class="title" data-audit="clamp-calc-derived">Build it in.</h1>
+      <p class="byline">
+        <span class="pulse-dot" data-audit="animation" aria-hidden="true"></span>
+        <span>Sam Rivera · 6 min read</span>
+      </p>
+    </div>
+
+    <p class="lede">Most teams reach for intelligent systems the way they reach for a new hire: bolt it on the side, hope it learns the room. The ones that hold up build it into how the work already moves.</p>
+
+    <figure class="figure">
+      <img src="assets/atlas-figure.svg" alt="Work flowing through a system rather than around it" width="480" height="240">
+      <figcaption class="figcaption">Through the system, not around it.</figcaption>
+    </figure>
+
+    <p class="body">Infrastructure earns trust the same way a good colleague does: by being there at the right moment, with context, and by staying quiet otherwise. That is a design problem before it is an engineering one.</p>
+
+    <blockquote class="pull-quote" data-audit="transform">Earn the room. Nothing gets access, context, or authority by default.</blockquote>
+
+    <div class="stat-row" data-audit="css-grid">
+      <div class="stat"><span class="num">90</span><span class="cap">days to recurring</span></div>
+      <div class="stat"><span class="num">3</span><span class="cap">capability clusters</span></div>
+      <div class="stat"><span class="num">41</span><span class="cap">skills deployed</span></div>
+    </div>
+
+    <ul class="tag-list" data-audit="flex-wrap">
+      <li class="tag">design-intelligence</li>
+      <li class="tag">agentic-infrastructure</li>
+      <li class="tag">org-transformation</li>
+      <li class="tag">earn-the-room</li>
+    </ul>
+
+    <pre class="code" data-audit="overflow-scroll">$ heyhi extract --breakpoint lg --emit ir   # one intermediate representation per breakpoint, schema-checked</pre>
+
+    <aside class="callout" data-audit="effects-stacked">
+      <span class="label">Principle</span>
+      <p>Evaluation before deployment. A system proves itself on the bench before it touches the floor.</p>
+    </aside>
+
+    <div class="overlay-card" data-audit="absolute-positioning">
+      <span class="overlay-badge">New</span>
+      <p class="body">A small overlay: the badge is positioned absolutely, so the box stops being an auto-layout frame.</p>
+    </div>
+
+    <p class="phantom" data-audit="missing-font">This line is set in a display face that the workspace will not have.</p>
+
+    <p class="near-accent" data-audit="matched-color">A near-crimson note, set one tick off the accent token.</p>
+
+    <a class="cta" href="#contact">
+      <span>Start a conversation</span>
+    </a>
+  </main>
+
+  <button class="back-to-top" data-audit="position-fixed">Top</button>
+</body>
+</html>

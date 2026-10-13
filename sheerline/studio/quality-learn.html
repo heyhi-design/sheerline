@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<!-- Wheelhouse · Quality: Learn (S-9) · lane DISPATCH-05 · HeyHi Confidential · classification: confidential -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Wheelhouse: the corrections registry as compounding memory. Factual and behavioral, rendered from the real seed set. Prototype.">
+  <title>Wheelhouse · Learn</title>
+  <link rel="stylesheet" href="shared/studio.css">
+  <style>
+    /* ========================================================================
+       Page-scoped (S-9 Quality / Learn). shared/ is frozen; these live here.
+       candidate for shared: .provchip, .split/.col, .corr, .lifecycle, .capture
+       (.qnav* was folded to studio.css at D-08)
+       ==================================================================== */
+
+    /* Quality sub-nav (.qnav*) folded to shared/studio.css at D-08 convergence. */
+
+    .provchip { display: inline-flex; align-items: center; gap: 5px;
+      padding: 1px var(--sp-2); border-radius: var(--r-1);
+      font-family: var(--font-mono); font-size: .7rem; color: var(--soft);
+      background: transparent; border: 1px dashed var(--border-strong); }
+
+    /* summary/select/textarea :focus-visible folded into the base list in
+       shared/studio.css at D-08 (the branded ring now covers them globally). */
+
+    .page-head { margin-bottom: var(--sp-5); }
+    .page-head h1 { margin-bottom: var(--sp-2); }
+    .lede { font-size: 1.02rem; color: var(--soft); max-width: 66ch; }
+    .head-meta { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center;
+      margin-top: var(--sp-3); }
+
+    /* lifecycle strip */
+    .lifecycle { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-3); }
+    .lc-item { background: var(--field); border: 1px solid var(--border);
+      border-radius: var(--r-2); padding: var(--sp-3) var(--sp-4); }
+    .lc-item__top { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-2); }
+    .lc-item__name { font-family: var(--font-mono); font-size: .8rem; color: var(--ink); }
+    .lc-item__count { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; }
+    .lc-item__meaning { color: var(--soft); font-size: .84rem; margin-top: 2px; }
+    .lc-item--active { border-left: 3px solid var(--teal); }
+
+    /* two-column factual / behavioral split */
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-5); align-items: start; }
+    .col__head { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-2); }
+    .col__title { font-family: var(--font-display); font-weight: 600; font-size: 1.05rem; }
+    .col__badge { display: inline-flex; align-items: center; gap: 5px;
+      font-family: var(--font-mono); font-size: .7rem; padding: 2px var(--sp-2);
+      border-radius: var(--r-pill); }
+    .col__badge--factual { background: var(--teal-fill); border: 1px solid var(--teal-border); color: var(--ink); }
+    .col__badge--behavioral { background: var(--chip-bg); border: 1px solid var(--border-strong); color: var(--soft); }
+    .col__sub { font-family: var(--font-mono); font-size: .72rem; color: var(--faint);
+      margin: 0 0 var(--sp-3); }
+
+    .corr { background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r-2); margin-bottom: var(--sp-3); overflow: hidden; }
+    .corr > summary { list-style: none; cursor: pointer; padding: var(--sp-3) var(--sp-4);
+      display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
+    .corr > summary::-webkit-details-marker { display: none; }
+    .corr__id { font-family: var(--font-mono); font-size: .82rem; color: var(--ink); }
+    .corr__status { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .04em;
+      text-transform: uppercase; color: var(--teal); margin-left: auto; }
+    .corr__caret { color: var(--faint); font-family: var(--font-mono); transition: transform .12s; }
+    .corr[open] .corr__caret { transform: rotate(90deg); }
+    .corr__body { padding: 0 var(--sp-4) var(--sp-4); border-top: 1px solid var(--border); }
+    .corr__body .lbl { display: block; font-family: var(--font-mono); font-size: .68rem;
+      letter-spacing: .04em; text-transform: uppercase; color: var(--faint);
+      margin: var(--sp-3) 0 2px; }
+    .corr__meta { font-family: var(--font-mono); font-size: .72rem; color: var(--faint);
+      margin-top: var(--sp-3); }
+
+    /* capture form (inert mock) */
+    .capture { display: grid; gap: var(--sp-4); grid-template-columns: 1fr 1fr; }
+    .capture .full { grid-column: 1 / -1; }
+    .field label { display: block; font-family: var(--font-mono); font-size: .72rem;
+      color: var(--soft); margin-bottom: 4px; }
+    .field input, .field select, .field textarea {
+      width: 100%; font-family: var(--font-body); font-size: .92rem; color: var(--ink);
+      background: var(--field); border: 1px solid var(--border-strong);
+      border-radius: var(--r-1); padding: var(--sp-2) var(--sp-3); }
+    .field textarea { resize: vertical; min-height: 60px; }
+    .field .hint { font-family: var(--font-mono); font-size: .68rem; color: var(--faint); margin-top: 3px; }
+    .sev-radios { display: flex; gap: var(--sp-4); align-items: center; padding-top: var(--sp-1); }
+    .sev-radios label { display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-body); font-size: .92rem; color: var(--ink); }
+    .capture__foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: var(--sp-3);
+      align-items: center; }
+
+    /* the curation gate (L4 human boundary) */
+    .curation { border-left: 3px solid var(--crimson-bright); background: var(--crimson-fill);
+      border-radius: var(--r-2); padding: var(--sp-4); color: var(--ink); }
+    .curation .tag { display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: .7rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--crimson); font-weight: 500; margin-bottom: var(--sp-2); }
+
+    /* the moat seam (L8 ownership) */
+    .moat-note { border-left: 3px solid var(--crimson-bright); background: var(--crimson-fill);
+      border-radius: var(--r-2); padding: var(--sp-4); color: var(--ink); margin-top: var(--sp-5); }
+    .moat-note .tag { display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: .7rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--crimson); font-weight: 500; margin-bottom: var(--sp-2); }
+
+    .harden { display: flex; flex-wrap: wrap; gap: var(--sp-5); }
+    .harden__rule { flex: 1 1 260px; }
+    .harden__rule .mono { color: var(--teal); }
+
+    .loop-foot { display: flex; flex-wrap: wrap; gap: var(--sp-4); align-items: center;
+      justify-content: space-between; margin-top: var(--sp-6);
+      padding-top: var(--sp-4); border-top: 1px solid var(--border); }
+    .loop-foot a { font-family: var(--font-display); font-weight: 500; }
+
+    @media (max-width: 760px) {
+      .split, .capture, .lifecycle { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<!-- ============================================================================
+     WHEELHOUSE - shared shell snippet   (FROZEN after DISPATCH-03 merges)
+     HeyHi Confidential
+     Pasted verbatim from shared/shell-snippet.html. See shared/README.md.
+     ============================================================================ -->
+<script src="data/snapshot.js"></script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="studio-shell">
+
+  <header class="topbar">
+    <a class="wordmark" href="index.html">WHEELHOUSE</a>
+    <a class="topbar__search" href="index.html#router">
+      <span aria-hidden="true">⌕</span>&nbsp;Route a task…
+    </a>
+    <span class="topbar__spacer"></span>
+    <a class="session-indicator" href="session.html">
+      <span class="dot" aria-hidden="true"></span>
+      Own practice
+      <span class="sr-only">(simulated exemplar session)</span>
+    </a>
+  </header>
+
+  <nav class="rail" aria-label="Primary">
+    <p class="rail__label">Wheelhouse</p>
+    <a class="rail__link" href="index.html">           <span class="rail__num">1</span> Home</a>
+    <a class="rail__link" href="areas.html">           <span class="rail__num">2</span> Areas</a>
+    <a class="rail__link" href="skills.html">          <span class="rail__num">3</span> Skills</a>
+    <a class="rail__link" href="session.html">         <span class="rail__num">4</span> Session</a>
+    <a class="rail__link" href="quality-validate.html"><span class="rail__num">5</span> Quality</a>
+    <a class="rail__link" href="artifacts.html">       <span class="rail__num">6</span> Artifacts</a>
+    <a class="rail__link" href="dispatch.html">        <span class="rail__num">7</span> Dispatch</a>
+    <a class="rail__link" href="seminar.html">         <span class="rail__num">8</span> Seminar</a>
+    <a class="rail__link" href="intake.html">          <span class="rail__num">9</span> Intake</a>
+  </nav>
+
+  <main id="main-content" class="studio-main">
+    <div class="wrap">
+      <!-- ===================== PAGE CONTENT START ===================== -->
+
+      <!-- Quality sub-nav + loop caption -->
+      <nav class="qnav" aria-label="Quality loop">
+        <span class="qnav__tabs">
+          <a class="qnav__tab" href="quality-validate.html">Validate</a>
+          <a class="qnav__tab" href="quality-grade.html">Grade</a>
+          <a class="qnav__tab" href="quality-learn.html" aria-current="page">Learn</a>
+        </span>
+        <p class="qnav__loop">The quality loop:
+          <a href="session.html">Retrieve</a><span class="sep">&rarr;</span><a href="quality-validate.html">Validate</a><span class="sep">&rarr;</span><a href="quality-grade.html">Grade</a><span class="sep">&rarr;</span><span class="cur">Learn</span>
+        </p>
+      </nav>
+
+      <header class="page-head">
+        <p class="eyebrow">Quality · compounding memory</p>
+        <h1>Learn</h1>
+        <p class="lede">A correction is how the practice remembers. A mistake caught once is a note. The same
+          mistake caught a third time is a pattern worth encoding so no future session pays for it again.
+          Learning here is governed, not accumulated.</p>
+        <div class="head-meta">
+          <span class="chip chip--provenance mono">source: os/corrections/seed-corrections.yaml</span>
+          <span class="chip chip--provenance mono" id="rendered-note">rendering from the snapshot</span>
+        </div>
+      </header>
+
+      <!-- Lifecycle strip -->
+      <section class="section" aria-labelledby="lc-h">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Lifecycle</p>
+            <h2 id="lc-h" style="margin:0">Every correction is in exactly one state</h2>
+          </div>
+          <span class="mono faint">counts from the snapshot</span>
+        </div>
+        <div class="lifecycle" id="lifecycle">
+          <!-- rendered from data -->
+        </div>
+      </section>
+
+      <!-- Factual / behavioral split -->
+      <section class="section" aria-labelledby="split-h">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">The boundary that keeps a taste read from hardening into a rule</p>
+            <h2 id="split-h" style="margin:0">Factual and behavioral</h2>
+          </div>
+        </div>
+        <div class="split">
+
+          <div class="col" aria-labelledby="col-factual">
+            <div class="col__head">
+              <span class="col__title" id="col-factual">Factual</span>
+              <span class="col__badge col__badge--factual"><span aria-hidden="true">▸</span> injected at generation time</span>
+            </div>
+            <p class="col__sub">Deterministic, structural facts. The conformance lane catches them, and they are injected into generation.</p>
+            <div id="col-factual-list"><!-- rendered from data --></div>
+          </div>
+
+          <div class="col" aria-labelledby="col-behavioral">
+            <div class="col__head">
+              <span class="col__title" id="col-behavioral">Behavioral</span>
+              <span class="col__badge col__badge--behavioral"><span aria-hidden="true">◆</span> reminds a human</span>
+            </div>
+            <p class="col__sub">Taste reads. Surfaced to a human as a reminder, never auto-injected and never promotable to an enforced rule.</p>
+            <div id="col-behavioral-list"><!-- rendered from data --></div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- How a correction hardens -->
+      <section class="section" aria-labelledby="harden-h">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Promotion</p>
+            <h2 id="harden-h" style="margin:0">How a note becomes a rule</h2>
+          </div>
+        </div>
+        <div class="card">
+          <div class="harden">
+            <div class="harden__rule">
+              <p style="margin:0 0 var(--sp-1)"><strong style="font-family:var(--font-display)">The threshold to promote</strong></p>
+              <p class="muted" style="margin:0"><span class="mono">5 or more total fires</span>, or the same pattern across <span class="mono">3 or more separate sessions</span>. When either fires, the soft note is no longer doing its job; it becomes a hard rule and the entry is superseded.</p>
+            </div>
+            <div class="harden__rule">
+              <p style="margin:0 0 var(--sp-1)"><strong style="font-family:var(--font-display)">What can never promote</strong></p>
+              <p class="muted" style="margin:0">A behavioral correction is never promotable. A taste read hardening into an enforced check is the boundary collapsing. Promotion applies to factual patterns only.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Capture form mock (inert) + the curation gate -->
+      <section class="section" aria-labelledby="file-h">
+        <div class="section__head">
+          <div>
+            <p class="eyebrow">Propose</p>
+            <h2 id="file-h" style="margin:0">File a correction</h2>
+          </div>
+          <span class="badge badge--sim"><span aria-hidden="true">◐</span> simulated · files nothing</span>
+        </div>
+
+        <div class="card">
+          <form class="capture" aria-describedby="capture-note" onsubmit="return false">
+            <div class="field">
+              <label for="f-id">id</label>
+              <input id="f-id" type="text" placeholder="kebab-case-id" autocomplete="off">
+              <span class="hint">stable, unique</span>
+            </div>
+            <div class="field">
+              <label for="f-category">category</label>
+              <select id="f-category">
+                <option>token-fidelity</option>
+                <option>spacing-scale</option>
+                <option>component-integrity</option>
+                <option>semantic-role</option>
+                <option>accessibility</option>
+                <option>escape-hatch</option>
+                <option>elevation</option>
+                <option>typography</option>
+              </select>
+              <span class="hint">the design taxonomy</span>
+            </div>
+            <div class="field">
+              <span class="label" id="f-sev-label" style="display:block;font-family:var(--font-mono);font-size:.72rem;color:var(--soft);margin-bottom:4px">severity</span>
+              <div class="sev-radios" role="radiogroup" aria-labelledby="f-sev-label">
+                <label><input type="radio" name="severity" checked> factual</label>
+                <label><input type="radio" name="severity"> behavioral</label>
+              </div>
+              <span class="hint">exactly two values; only factual is enforced</span>
+            </div>
+            <div class="field">
+              <label for="f-status">status</label>
+              <select id="f-status">
+                <option>active</option>
+                <option>superseded</option>
+                <option>retired</option>
+              </select>
+              <span class="hint">a proposal enters as active, after curation</span>
+            </div>
+            <div class="field full">
+              <label for="f-trigger">trigger_context</label>
+              <textarea id="f-trigger" placeholder="When does this pattern show up?"></textarea>
+            </div>
+            <div class="field full">
+              <label for="f-correction">correction</label>
+              <textarea id="f-correction" placeholder="What to do instead, and why."></textarea>
+            </div>
+            <div class="capture__foot">
+              <button class="btn" type="button" disabled aria-describedby="capture-note">File to intake</button>
+              <span class="mono faint" id="capture-note">Disabled in the prototype. times_fired, last_fired and origin_date are stamped by the runtime, not authored here.</span>
+            </div>
+          </form>
+        </div>
+
+        <div class="curation" style="margin-top:var(--sp-4)">
+          <div class="tag"><span aria-hidden="true">&#9670;</span> the human curates</div>
+          The registry is curated, not auto-generated. An agent may observe a recurring pattern and propose a
+          correction; a human decides what enters and what promotes. The intake and the live registry stay
+          separate. Unreviewed proposals never reach agent context.
+        </div>
+      </section>
+
+      <!-- The moat seam (L8) -->
+      <div class="moat-note">
+        <div class="tag"><span aria-hidden="true">◆</span> what never renders here</div>
+        These are the generic seed patterns: brand-free, framework-level, fire counts at zero. The populated
+        per-design-system corrections corpus and its promotion judgment are the retained moat. They never
+        appear in this prototype.
+      </div>
+
+      <div class="loop-foot">
+        <a href="quality-grade.html">&larr; Back: Grade</a>
+        <a href="session.html">See a correction in the room: the Session &rarr;</a>
+      </div>
+
+      <!-- ===================== PAGE CONTENT END ======================= -->
+    </div>
+  </main>
+
+  <footer class="studio-footer">
+    <span class="sim">Prototype</span> · simulated interactions over a real data snapshot
+    (<span class="mono" data-commit>…</span>) · HeyHi Confidential
+  </footer>
+
+</div>
+
+<script>
+/* fill footer commit + self-activate the rail item from the page filename */
+(function () {
+  var data = window.SHEERLINE_DATA || {};
+  var meta = data.meta || {};
+  var el = document.querySelector('[data-commit]');
+  if (el) { el.textContent = meta.source_commit || 'unknown'; }
+
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') { path = 'index.html'; }
+  var alias = {
+    'quality-grade.html': 'quality-validate.html',
+    'quality-learn.html': 'quality-validate.html',
+    'exit-gate.html': 'session.html'
+  };
+  var target = alias[path] || path;
+  var links = document.querySelectorAll('.rail__link');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].getAttribute('href') === target) {
+      links[i].setAttribute('aria-current', 'page');
+    } else {
+      links[i].removeAttribute('aria-current');
+    }
+  }
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------------------
+   S-9 Learn: render the real seed corrections from the snapshot into the
+   factual / behavioral split and the lifecycle strip. Counts derive from the
+   data; nothing is hardcoded. The populated corpus is moat and is not in the
+   snapshot by design, so it cannot appear here.
+   --------------------------------------------------------------------------- */
+(function () {
+  "use strict";
+  var D = window.SHEERLINE_DATA || {};
+  var corrections = D.corrections || [];
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function el(id){ return document.getElementById(id); }
+
+  /* ---- lifecycle strip: the three statuses, counts from data ---- */
+  (function(){
+    var host = el('lifecycle'); if(!host) return;
+    var meaning = {
+      active:     'In force. Loaded at session start and honored.',
+      superseded: 'A promoted hard rule now covers the pattern. Kept for provenance.',
+      retired:    'The pattern no longer applies. Kept for the record, not loaded.'
+    };
+    var order = ['active', 'superseded', 'retired'];
+    host.innerHTML = order.map(function(st){
+      var count = corrections.filter(function(c){ return c.status === st; }).length;
+      return '<div class="lc-item'+(st==='active'?' lc-item--active':'')+'">'
+           +   '<div class="lc-item__top">'
+           +     '<span class="lc-item__name">'+esc(st)+'</span>'
+           +     '<span class="lc-item__count">'+count+'</span>'
+           +   '</div>'
+           +   '<div class="lc-item__meaning">'+esc(meaning[st])+'</div>'
+           + '</div>';
+    }).join('');
+  })();
+
+  /* ---- one correction card ---- */
+  function card(c){
+    var fired = Number(c.times_fired) || 0;
+    var origin = c.origin_date ? esc(c.origin_date) : 'not yet fired';
+    return '<details class="corr">'
+      +   '<summary>'
+      +     '<span class="corr__caret" aria-hidden="true">&rsaquo;</span>'
+      +     '<span class="corr__id">'+esc(c.id)+'</span>'
+      +     '<span class="badge badge--nature">'+esc(c.category)+'</span>'
+      +     '<span class="corr__status">'+esc(c.status)+'</span>'
+      +   '</summary>'
+      +   '<div class="corr__body">'
+      +     '<span class="lbl">Triggers when</span>'
+      +     '<span>'+esc(c.trigger_context)+'</span>'
+      +     '<span class="lbl">Correction</span>'
+      +     '<span>'+esc(c.correction)+'</span>'
+      +     '<p class="corr__meta">severity: '+esc(c.severity)+' · fired '+fired+' · origin: '+origin+'</p>'
+      +   '</div>'
+      + '</details>';
+  }
+
+  /* ---- split by severity ---- */
+  (function(){
+    var factual = corrections.filter(function(c){ return c.severity === 'factual'; });
+    var behavioral = corrections.filter(function(c){ return c.severity === 'behavioral'; });
+
+    var fHost = el('col-factual-list');
+    if (fHost) {
+      fHost.innerHTML = factual.length
+        ? factual.map(card).join('')
+        : '<p class="faint">No factual seeds in this snapshot.</p>';
+    }
+    var bHost = el('col-behavioral-list');
+    if (bHost) {
+      bHost.innerHTML = behavioral.length
+        ? behavioral.map(card).join('')
+        : '<p class="faint">No behavioral seeds in this snapshot.</p>';
+    }
+
+    var note = el('rendered-note');
+    if (note) { note.textContent = corrections.length + ' seed entries · ' + factual.length + ' factual, ' + behavioral.length + ' behavioral'; }
+  })();
+})();
+</script>
+</body>
+</html>

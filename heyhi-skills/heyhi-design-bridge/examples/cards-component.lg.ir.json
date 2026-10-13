@@ -1,0 +1,849 @@
+{
+  "$schema": "heyhi-scene-graph/v0.4",
+  "meta": {
+    "source": "prototypes/cards-component.html",
+    "breakpoint": "lg",
+    "brand_config": "example",
+    "generated_by": "heyhi-design-bridge/extract_scene_graph@0.1.0"
+  },
+  "tokens_used": [
+    {
+      "token_path": "tokens.typography.scale.h3",
+      "resolved": "24px",
+      "source": "matched",
+      "match_confidence": 0.5
+    }
+  ],
+  "root": {
+    "type": "FRAME",
+    "name": "Services",
+    "layout": {
+      "mode": "VERTICAL",
+      "padding": {
+        "t": 96,
+        "r": 120,
+        "b": 96,
+        "l": 120
+      }
+    },
+    "size": {
+      "w": 1312,
+      "h": 952,
+      "sizing": {
+        "h": "FILL",
+        "v": "HUG"
+      }
+    },
+    "children": [
+      {
+        "type": "FRAME",
+        "name": "Grid",
+        "layout": {
+          "mode": "HORIZONTAL",
+          "primaryAxisAlignItems": "MIN",
+          "counterAxisAlignItems": "MIN",
+          "itemSpacing": 24,
+          "layoutWrap": "WRAP",
+          "counterAxisSpacing": 32
+        },
+        "size": {
+          "w": 1072,
+          "h": null,
+          "sizing": {
+            "h": "FIXED",
+            "v": "HUG"
+          }
+        },
+        "children": [
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 12,
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 232,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "cornerRadius": 12,
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "Icon",
+                "svgRef": "prototypes/assets/vec-c649b4ea.svg"
+              },
+              {
+                "type": "TEXT",
+                "name": "Kicker",
+                "characters": "01",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 13
+                },
+                "fills": [
+                  {
+                    "resolved": "#787878"
+                  }
+                ],
+                "size": {
+                  "w": 48,
+                  "h": 16,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Title",
+                "characters": "Strategy Sprint",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 600,
+                  "size": 24,
+                  "token_ref": "tokens.typography.scale.h3"
+                },
+                "fills": [
+                  {
+                    "resolved": "#232826"
+                  }
+                ],
+                "size": {
+                  "w": 288,
+                  "h": 30,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Summary",
+                "characters": "Map the system before a line of code is written.",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 15
+                },
+                "fills": [
+                  {
+                    "resolved": "#464646"
+                  }
+                ],
+                "size": {
+                  "w": 288,
+                  "h": 60,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 12,
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 232,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "cornerRadius": 12,
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "Icon",
+                "svgRef": "prototypes/assets/vec-c649b4ea.svg"
+              },
+              {
+                "type": "TEXT",
+                "name": "Kicker",
+                "characters": "02",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 13
+                },
+                "fills": [
+                  {
+                    "resolved": "#787878"
+                  }
+                ],
+                "size": {
+                  "w": 48,
+                  "h": 16,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Title",
+                "characters": "Systems Audit",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 600,
+                  "size": 24,
+                  "token_ref": "tokens.typography.scale.h3"
+                },
+                "fills": [
+                  {
+                    "resolved": "#232826"
+                  }
+                ],
+                "size": {
+                  "w": 288,
+                  "h": 30,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Summary",
+                "characters": "A structured read of design-code drift and token health.",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 15
+                },
+                "fills": [
+                  {
+                    "resolved": "#464646"
+                  }
+                ],
+                "size": {
+                  "w": 288,
+                  "h": 60,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 12,
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 232,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "cornerRadius": 12,
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "Icon",
+                "svgRef": "prototypes/assets/vec-c649b4ea.svg"
+              },
+              {
+                "type": "TEXT",
+                "name": "Kicker",
+                "characters": "03",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 13
+                },
+                "fills": [
+                  {
+                    "resolved": "#787878"
+                  }
+                ],
+                "size": {
+                  "w": 48,
+                  "h": 16,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Title",
+                "characters": "Build Partnership",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 600,
+                  "size": 24,
+                  "token_ref": "tokens.typography.scale.h3"
+                },
+                "fills": [
+                  {
+                    "resolved": "#232826"
+                  }
+                ],
+                "size": {
+                  "w": 288,
+                  "h": 30,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Summary",
+                "characters": "Build the infrastructure your team owns and extends.",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 15
+                },
+                "fills": [
+                  {
+                    "resolved": "#464646"
+                  }
+                ],
+                "size": {
+                  "w": 288,
+                  "h": 60,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 12,
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 232,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "cornerRadius": 12,
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "Icon",
+                "svgRef": "prototypes/assets/vec-c649b4ea.svg"
+              },
+              {
+                "type": "TEXT",
+                "name": "Kicker",
+                "characters": "04",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 13
+                },
+                "fills": [
+                  {
+                    "resolved": "#787878"
+                  }
+                ],
+                "size": {
+                  "w": 48,
+                  "h": 16,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Title",
+                "characters": "Care Retainer",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 600,
+                  "size": 24,
+                  "token_ref": "tokens.typography.scale.h3"
+                },
+                "fills": [
+                  {
+                    "resolved": "#232826"
+                  }
+                ],
+                "size": {
+                  "w": 288,
+                  "h": 30,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Summary",
+                "characters": "Ongoing iteration, monitoring, and monthly care.",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 15
+                },
+                "fills": [
+                  {
+                    "resolved": "#464646"
+                  }
+                ],
+                "size": {
+                  "w": 288,
+                  "h": 60,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 12,
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 232,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "cornerRadius": 12,
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "Icon",
+                "svgRef": "prototypes/assets/vec-c649b4ea.svg"
+              },
+              {
+                "type": "TEXT",
+                "name": "Kicker",
+                "characters": "05",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 13
+                },
+                "fills": [
+                  {
+                    "resolved": "#787878"
+                  }
+                ],
+                "size": {
+                  "w": 48,
+                  "h": 16,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Title",
+                "characters": "Workshop Series",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 600,
+                  "size": 24,
+                  "token_ref": "tokens.typography.scale.h3"
+                },
+                "fills": [
+                  {
+                    "resolved": "#232826"
+                  }
+                ],
+                "size": {
+                  "w": 288,
+                  "h": 30,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Summary",
+                "characters": "Hands-on sessions that leave the craft with the team.",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 15
+                },
+                "fills": [
+                  {
+                    "resolved": "#464646"
+                  }
+                ],
+                "size": {
+                  "w": 288,
+                  "h": 60,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 12,
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 232,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "cornerRadius": 12,
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "Icon",
+                "svgRef": "prototypes/assets/vec-c649b4ea.svg"
+              },
+              {
+                "type": "TEXT",
+                "name": "Kicker",
+                "characters": "06",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 13
+                },
+                "fills": [
+                  {
+                    "resolved": "#787878"
+                  }
+                ],
+                "size": {
+                  "w": 48,
+                  "h": 16,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Title",
+                "characters": "Theme Studio",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 600,
+                  "size": 24,
+                  "token_ref": "tokens.typography.scale.h3"
+                },
+                "fills": [
+                  {
+                    "resolved": "#232826"
+                  }
+                ],
+                "size": {
+                  "w": 288,
+                  "h": 30,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Summary",
+                "characters": "Marketplace-ready themes from the design pipeline.",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 15
+                },
+                "fills": [
+                  {
+                    "resolved": "#464646"
+                  }
+                ],
+                "size": {
+                  "w": 288,
+                  "h": 60,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "FRAME",
+            "name": "Card",
+            "layout": {
+              "mode": "VERTICAL",
+              "primaryAxisAlignItems": "MIN",
+              "counterAxisAlignItems": "MIN",
+              "itemSpacing": 12,
+              "padding": {
+                "t": 24,
+                "r": 24,
+                "b": 24,
+                "l": 24
+              }
+            },
+            "size": {
+              "w": 336,
+              "h": 232,
+              "sizing": {
+                "h": "HUG",
+                "v": "HUG"
+              }
+            },
+            "fills": [
+              {
+                "type": "SOLID",
+                "resolved": "#FFFFFF"
+              }
+            ],
+            "cornerRadius": 12,
+            "children": [
+              {
+                "type": "VECTOR",
+                "name": "Icon",
+                "svgRef": "prototypes/assets/vec-c649b4ea.svg"
+              },
+              {
+                "type": "TEXT",
+                "name": "Kicker",
+                "characters": "07",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 13
+                },
+                "fills": [
+                  {
+                    "resolved": "#787878"
+                  }
+                ],
+                "size": {
+                  "w": 48,
+                  "h": 16,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Title",
+                "characters": "Discovery Call",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 600,
+                  "size": 24,
+                  "token_ref": "tokens.typography.scale.h3"
+                },
+                "fills": [
+                  {
+                    "resolved": "#232826"
+                  }
+                ],
+                "size": {
+                  "w": 288,
+                  "h": 30,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Summary",
+                "characters": "A short call to see whether the fit is real.",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 15
+                },
+                "fills": [
+                  {
+                    "resolved": "#464646"
+                  }
+                ],
+                "size": {
+                  "w": 288,
+                  "h": 60,
+                  "sizing": {
+                    "h": "FILL",
+                    "v": "HUG"
+                  }
+                }
+              },
+              {
+                "type": "TEXT",
+                "name": "Badge",
+                "characters": "New",
+                "type_style": {
+                  "family": "Sora",
+                  "weight": 400,
+                  "size": 12
+                },
+                "fills": [
+                  {
+                    "resolved": "#2B5F2A"
+                  }
+                ],
+                "size": {
+                  "w": 40,
+                  "h": 18,
+                  "sizing": {
+                    "h": "HUG",
+                    "v": "HUG"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "flags": [
+      {
+        "feature": "clamp-calc-derived",
+        "node": "Card > .title",
+        "action": "font-size clamp(1.25rem, 2vw, 1.5rem) — token_ref tokens.typography.scale.h3 inferred from tag",
+        "needs_human": true
+      }
+    ]
+  }
+}

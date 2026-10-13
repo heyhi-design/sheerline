@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<!-- Wheelhouse · Session workspace (S-5) · lane DISPATCH-04 · HeyHi Confidential · classification: confidential -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Wheelhouse: the session workspace. One exemplar governed session, simulated over a real data snapshot. Prototype.">
+  <title>Wheelhouse · Session</title>
+  <link rel="stylesheet" href="shared/studio.css">
+  <style>
+    /* ========================================================================
+       Page-scoped (S-5 session workspace). shared/ is frozen; these live here.
+       candidate for shared: .stepper, .panes/.pane, .manifest, .corr, .meter,
+       .addroom, .canvas/.tabs, .btnset, .annot, .runrail/.verb/.worked/.actions/
+       .gate-card, .promo-divider, .diff, .checks, .spark, .dock/.composer/.ctx-chip
+       ==================================================================== */
+
+    /* give the session more room than the 1120 default; caps at available width */
+    .studio-main .wrap { max-width: 1320px; }
+
+    /* summary:focus-visible folded into the base list in shared/studio.css at D-08. */
+
+    .session-head { margin-bottom: var(--sp-5); }
+    .session-head h1 { margin-bottom: var(--sp-2); }
+    .session-meta { display: flex; flex-wrap: wrap; gap: var(--sp-2); align-items: center; }
+    .scope-chip {
+      display: inline-flex; align-items: center; gap: var(--sp-2);
+      padding: var(--sp-1) var(--sp-3); border-radius: var(--r-pill);
+      background: var(--teal-fill); border: 1px solid var(--teal-border);
+      font-family: var(--font-mono); font-size: .74rem; color: var(--ink);
+    }
+
+    /* lifecycle stepper: scope → route → load → run → gate */
+    .stepper { display: flex; flex-wrap: wrap; gap: var(--sp-1); align-items: center;
+      padding: var(--sp-3) var(--sp-4); background: var(--surface-inset);
+      border: 1px solid var(--border); border-radius: var(--r-2); margin-bottom: var(--sp-5); }
+    .stepper__step { display: inline-flex; align-items: center; gap: var(--sp-2);
+      font-family: var(--font-mono); font-size: .76rem; color: var(--faint); }
+    .stepper__dot { width: 9px; height: 9px; border-radius: 50%;
+      background: var(--surface); border: 1.5px solid var(--border-strong); }
+    .stepper__step--done { color: var(--soft); }
+    .stepper__step--done .stepper__dot { background: var(--teal); border-color: var(--teal); }
+    .stepper__step--current { color: var(--ink); }
+    .stepper__step--current .stepper__dot {
+      background: var(--teal); border-color: var(--teal);
+      box-shadow: 0 0 0 4px var(--teal-fill); }
+    .stepper__step--pending .stepper__dot { border-style: dashed; }
+    .stepper__sep { color: var(--border-strong); margin: 0 2px; }
+
+    /* three panes + dock */
+    .panes { display: grid; gap: var(--sp-4); align-items: start;
+      grid-template-columns: minmax(250px, 310px) minmax(0, 1fr) minmax(340px, 420px); }
+    .pane { background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--r-2); padding: var(--sp-4); box-shadow: var(--shadow-card); }
+    .pane__head { display: flex; align-items: baseline; justify-content: space-between;
+      gap: var(--sp-3); margin-bottom: var(--sp-3); }
+    .pane__title { font-family: var(--font-display); font-weight: 600; font-size: 1rem; margin: 0; }
+    .pane__note { font-family: var(--font-mono); font-size: .7rem; color: var(--faint); }
+    .subhead { font-family: var(--font-mono); font-size: .7rem; letter-spacing: .06em;
+      text-transform: uppercase; color: var(--faint); margin: var(--sp-4) 0 var(--sp-2); }
+    .subhead:first-of-type { margin-top: 0; }
+
+    /* In the room: foundation manifest (L7) */
+    .manifest { background: var(--field); border: 1px solid var(--teal-border);
+      border-radius: var(--r-2); padding: var(--sp-3); }
+    .manifest__name { font-family: var(--font-display); font-weight: 600; font-size: .92rem; }
+    .manifest__kind { font-family: var(--font-mono); font-size: .7rem; color: var(--teal); }
+    .manifest__note { font-size: .82rem; color: var(--soft); margin: var(--sp-2) 0; }
+    .prov { margin-top: var(--sp-1); }
+
+    /* corrections in force */
+    .corr { border: 1px solid var(--border); border-radius: var(--r-1);
+      padding: var(--sp-2) var(--sp-3); margin-bottom: var(--sp-2); background: var(--field); }
+    .corr > summary { list-style: none; cursor: pointer; display: flex; align-items: center;
+      gap: var(--sp-2); flex-wrap: wrap; }
+    .corr > summary::-webkit-details-marker { display: none; }
+    .corr__id { font-family: var(--font-mono); font-size: .74rem; color: var(--ink); }
+    .corr__cat { font-family: var(--font-mono); font-size: .68rem; color: var(--faint); margin-left: auto; }
+    .corr__body { font-size: .82rem; color: var(--soft); margin-top: var(--sp-2); line-height: 1.5; }
+    .corr__body .mono { color: var(--faint); }
+    .badge--injected { background: var(--teal-fill); border: 1px solid var(--teal-border); color: var(--teal); }
+    .badge--reminder { background: var(--indigo-fill); border: 1px solid var(--indigo-border); color: var(--indigo); }
+
+    /* token-cost meter (L6) */
+    .meter__row { display: grid; grid-template-columns: 1fr auto; gap: var(--sp-2);
+      align-items: center; padding: 3px 0; font-size: .82rem; }
+    .meter__label { color: var(--soft); }
+    .meter__cost { font-family: var(--font-mono); font-size: .76rem; color: var(--ink); }
+    .meter__total { border-top: 1px solid var(--border); margin-top: var(--sp-2);
+      padding-top: var(--sp-2); }
+    .meter__total .meter__label { color: var(--ink); font-weight: 500; }
+    .meter__bar { position: relative; height: 8px; border-radius: var(--r-pill);
+      background: var(--surface-inset); border: 1px solid var(--border);
+      overflow: hidden; margin-top: var(--sp-2); }
+    .meter__bar::before { content: ""; position: absolute; inset: 0; width: 5.4%;
+      background: var(--teal); }
+    .meter__cap { font-family: var(--font-mono); font-size: .7rem; color: var(--faint); margin-top: var(--sp-1); }
+
+    /* add to the room: cost-before-load */
+    .addroom { margin-top: var(--sp-3); }
+    .addroom__panel[hidden] { display: none; }
+    .addroom__panel { margin-top: var(--sp-2); padding: var(--sp-3);
+      background: var(--field); border: 1px dashed var(--border-strong); border-radius: var(--r-1); }
+    .addroom__row { display: flex; justify-content: space-between; align-items: center;
+      gap: var(--sp-2); padding: 3px 0; font-size: .82rem; }
+    .addroom__row .mono { color: var(--soft); }
+
+    /* artifact canvas (L5) */
+    .canvas__note { font-family: var(--font-mono); font-size: .7rem; color: var(--faint);
+      margin-bottom: var(--sp-3); }
+    .tabs { display: flex; gap: var(--sp-1); border-bottom: 1px solid var(--border);
+      margin-bottom: var(--sp-4); }
+    .tab { font-family: var(--font-display); font-weight: 500; font-size: .86rem;
+      padding: var(--sp-2) var(--sp-3); border: 0; background: transparent; color: var(--soft);
+      cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+    .tab:hover { color: var(--ink); }
+    .tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--teal); }
+    .tabpanel[hidden] { display: none; }
+
+    /* the button-set sample: real states + persistent demo states for the at-a-glance proof */
+    .btnset { display: grid; grid-template-columns: auto repeat(4, 1fr); gap: var(--sp-3) var(--sp-2);
+      align-items: center; }
+    .btnset__col { font-family: var(--font-mono); font-size: .68rem; letter-spacing: .04em;
+      text-transform: uppercase; color: var(--faint); text-align: center; }
+    .btnset__rowlabel { font-family: var(--font-mono); font-size: .74rem; color: var(--soft); }
+    .btnset__cell { display: flex; justify-content: center; min-width: 0; }
+    .btnset .btn { padding: var(--sp-1) var(--sp-3); font-size: .82rem; white-space: nowrap; }
+    /* candidate for shared: the shared .btn sets explicit bg/color/cursor and has no
+       :disabled rule, so a disabled button reads identical to default. The a11y proof
+       needs the disabled state to convey. (disabled controls are exempt from contrast.) */
+    .btnset .btn:disabled { opacity: .5; cursor: not-allowed; }
+    /* replicate the frozen shared :hover / :focus-visible so a screenshot shows the states */
+    .demo-hover.btn { border-color: var(--border-strong); }
+    .demo-hover.btn--primary { filter: brightness(1.06); }
+    .demo-focus { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: var(--r-1); }
+    .btnset__caption { margin-top: var(--sp-4); font-size: .82rem; color: var(--soft); }
+    .src { font-family: var(--font-mono); font-size: .78rem; line-height: 1.6;
+      background: var(--field); border: 1px solid var(--border); border-radius: var(--r-1);
+      padding: var(--sp-4); overflow-x: auto; color: var(--ink); }
+    .src .tok { color: var(--teal); }
+    .src .cm { color: var(--faint); }
+
+    /* annotations (render, do not edit) */
+    .annot { display: flex; gap: var(--sp-3); padding: var(--sp-3) 0;
+      border-bottom: 1px solid var(--border); }
+    .annot:last-child { border-bottom: 0; }
+    .annot__pin { flex: none; width: 22px; height: 22px; border-radius: 50%;
+      background: var(--teal-fill); border: 1px solid var(--teal-border); color: var(--teal);
+      font-family: var(--font-mono); font-size: .74rem; display: flex; align-items: center; justify-content: center; }
+    .annot__body { font-size: .86rem; color: var(--soft); }
+    .annot__body strong { color: var(--ink); font-weight: 500; }
+
+    /* run rail (the timeline) */
+    .runrail__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-3); }
+    .promo-divider { position: relative; text-align: center; margin: var(--sp-4) 0; }
+    .promo-divider::before { content: ""; position: absolute; top: 50%; left: 0; right: 0;
+      height: 1px; background: var(--border); }
+    .promo-divider__tag { position: relative; display: inline-block; background: var(--surface);
+      padding: 0 var(--sp-3); font-family: var(--font-mono); font-size: .68rem;
+      letter-spacing: .06em; text-transform: uppercase; color: var(--teal); }
+    .promo-divider__line { font-family: var(--font-mono); font-size: .74rem; color: var(--soft);
+      margin-top: var(--sp-2); }
+    .verb { border: 1px solid var(--border); border-radius: var(--r-2);
+      background: var(--field); padding: var(--sp-3); margin-bottom: var(--sp-3); }
+    .verb__head { display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
+    .verb__name { font-family: var(--font-display); font-weight: 600; font-size: .92rem; }
+    .verb__num { font-family: var(--font-mono); font-size: .72rem; color: var(--faint); }
+    .worked { font-family: var(--font-mono); font-size: .68rem; color: var(--soft);
+      background: var(--chip-bg); border: 1px solid var(--border); border-radius: var(--r-pill);
+      padding: 1px var(--sp-2); margin-left: auto; }
+    .verb__body { font-size: .84rem; color: var(--soft); margin: var(--sp-2) 0; line-height: 1.5; }
+    .actions { margin-top: var(--sp-2); }
+    .actions > summary { list-style: none; cursor: pointer; font-family: var(--font-mono);
+      font-size: .72rem; color: var(--teal); }
+    .actions > summary::-webkit-details-marker { display: none; }
+    .actions > summary::before { content: "▸ "; }
+    .actions[open] > summary::before { content: "▾ "; }
+    .actions__log { margin: var(--sp-2) 0 0; padding-left: var(--sp-4); }
+    .actions__log li { font-family: var(--font-mono); font-size: .74rem; color: var(--soft);
+      margin-bottom: var(--sp-1); }
+    .gate-card { display: flex; align-items: center; gap: var(--sp-2); margin-top: var(--sp-2);
+      padding: var(--sp-2) var(--sp-3); background: var(--surface-inset);
+      border: 1px solid var(--border); border-radius: var(--r-1);
+      font-family: var(--font-mono); font-size: .72rem; color: var(--soft); }
+    .gate-card__mark { color: var(--teal); }
+    .gate-card--human { border-color: var(--crimson-border); background: var(--crimson-fill); }
+    .gate-card--human .gate-card__mark { color: var(--crimson); }
+
+    /* generate diff (teal add / neutral remove; not a verdict) */
+    .diff { font-family: var(--font-mono); font-size: .76rem; line-height: 1.6;
+      border: 1px solid var(--border); border-radius: var(--r-1); overflow: hidden; }
+    .diff__line { padding: 1px var(--sp-3); display: block; white-space: pre-wrap; }
+    .diff__del { background: var(--surface-inset); color: var(--faint); text-decoration: line-through; }
+    .diff__add { background: var(--teal-fill); color: var(--ink); }
+    .diff__ctx { color: var(--soft); }
+
+    /* validate checks (booleans OK on the floor; no pass/fail banner) */
+    .checks { list-style: none; margin: var(--sp-2) 0 0; padding: 0; }
+    .checks li { display: flex; gap: var(--sp-2); align-items: baseline; font-size: .82rem;
+      color: var(--soft); padding: 2px 0; }
+    .checks .ok { color: var(--teal); font-family: var(--font-mono); }
+    .checks .hit { color: var(--soft); font-family: var(--font-mono); }
+
+    /* grade series (no threshold, no aggregate) */
+    .spark-row { display: flex; align-items: center; gap: var(--sp-3); margin-bottom: var(--sp-2); }
+    .spark-row__label { font-family: var(--font-mono); font-size: .74rem; color: var(--soft);
+      min-width: 130px; }
+    .spark { display: block; }
+    .spark__dir { font-family: var(--font-mono); font-size: .72rem; color: var(--faint); }
+    .grade__meta { font-family: var(--font-mono); font-size: .7rem; color: var(--faint);
+      margin-top: var(--sp-2); }
+
+    /* bottom dock */
+    .dock { margin-top: var(--sp-5); background: var(--surface);
+      border: 1px solid var(--border-strong); border-radius: var(--r-2);
+      box-shadow: var(--shadow-card); padding: var(--sp-4); }
+    .dock__row { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+    .dock__row + .dock__row { margin-top: var(--sp-3); padding-top: var(--sp-3);
+      border-top: 1px dashed var(--border); }
+    .gatechips { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+    .gatechip { font-family: var(--font-mono); font-size: .7rem; padding: 2px var(--sp-2);
+      border-radius: var(--r-pill); background: var(--surface-inset);
+      border: 1px solid var(--border); color: var(--soft); }
+    .gatechip--human { background: var(--crimson-fill); border-color: var(--crimson-border);
+      color: var(--crimson); }
+    .composer { flex: 1 1 240px; min-width: 0; display: flex; align-items: center; gap: var(--sp-2);
+      background: var(--field); border: 1px solid var(--border); border-radius: var(--r-1);
+      padding: var(--sp-2); }
+    .ctx-chip { display: inline-flex; align-items: center; gap: 6px; flex: none;
+      font-family: var(--font-mono); font-size: .72rem; padding: 2px var(--sp-2);
+      background: var(--teal-fill); border: 1px solid var(--teal-border);
+      border-radius: var(--r-pill); color: var(--ink); }
+    .ctx-chip[hidden] { display: none; }
+    .ctx-chip__x { border: 0; background: transparent; color: var(--soft); cursor: pointer;
+      font-family: var(--font-mono); font-size: .8rem; line-height: 1; padding: 0 2px; }
+    .composer__input { flex: 1; min-width: 0; border: 0; background: transparent; color: var(--soft);
+      font-family: var(--font-body); font-size: .88rem; padding: var(--sp-1); }
+    .composer__tag { font-family: var(--font-mono); font-size: .66rem; letter-spacing: .04em;
+      text-transform: uppercase; color: var(--faint); flex: none; }
+
+    @media (max-width: 1080px) {
+      .panes { grid-template-columns: 1fr; }
+      .btnset { grid-template-columns: 1fr; }
+      .btnset__col { display: none; }
+      .btnset__cell { justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+<!-- ============================================================================
+     WHEELHOUSE - shared shell snippet   (FROZEN after DISPATCH-03 merges)
+     HeyHi Confidential
+     Pasted verbatim from shared/shell-snippet.html. See shared/README.md.
+     ============================================================================ -->
+<script src="data/snapshot.js"></script>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="studio-shell">
+
+  <header class="topbar">
+    <a class="wordmark" href="index.html">WHEELHOUSE</a>
+    <a class="topbar__search" href="index.html#router">
+      <span aria-hidden="true">⌕</span>&nbsp;Route a task…
+    </a>
+    <span class="topbar__spacer"></span>
+    <a class="session-indicator" href="session.html">
+      <span class="dot" aria-hidden="true"></span>
+      Own practice
+      <span class="sr-only">(simulated exemplar session)</span>
+    </a>
+  </header>
+
+  <nav class="rail" aria-label="Primary">
+    <p class="rail__label">Wheelhouse</p>
+    <a class="rail__link" href="index.html">           <span class="rail__num">1</span> Home</a>
+    <a class="rail__link" href="areas.html">           <span class="rail__num">2</span> Areas</a>
+    <a class="rail__link" href="skills.html">          <span class="rail__num">3</span> Skills</a>
+    <a class="rail__link" href="session.html">         <span class="rail__num">4</span> Session</a>
+    <a class="rail__link" href="quality-validate.html"><span class="rail__num">5</span> Quality</a>
+    <a class="rail__link" href="artifacts.html">       <span class="rail__num">6</span> Artifacts</a>
+    <a class="rail__link" href="dispatch.html">        <span class="rail__num">7</span> Dispatch</a>
+    <a class="rail__link" href="seminar.html">         <span class="rail__num">8</span> Seminar</a>
+    <a class="rail__link" href="intake.html">          <span class="rail__num">9</span> Intake</a>
+  </nav>
+
+  <main id="main-content" class="studio-main">
+    <div class="wrap">
+      <!-- ===================== PAGE CONTENT START ===================== -->
+
+      <!-- SESSION HEADER -->
+      <div class="session-head">
+        <p class="eyebrow">Session workspace <span class="badge badge--sim">simulated replay</span></p>
+        <h1>Audit the focus states of the sample button set</h1>
+        <div class="session-meta">
+          <span class="scope-chip"><span class="dot" aria-hidden="true" style="width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block"></span> Own practice</span>
+          <a class="chip" href="areas.html#area-design-systems">Area 7 · Design Systems</a>
+          <span class="mono faint">a governed session, replayed. Nothing here executes a skill or writes state.</span>
+        </div>
+      </div>
+
+      <!-- LIFECYCLE STEPPER: scope → route → load → run → gate -->
+      <div class="stepper" role="img" aria-label="Session lifecycle: scope done, route done, load done, run current, gate awaiting the human.">
+        <span class="stepper__step stepper__step--done"><span class="stepper__dot"></span>scope</span>
+        <span class="stepper__sep" aria-hidden="true">›</span>
+        <span class="stepper__step stepper__step--done"><span class="stepper__dot"></span>route</span>
+        <span class="stepper__sep" aria-hidden="true">›</span>
+        <span class="stepper__step stepper__step--done"><span class="stepper__dot"></span>load</span>
+        <span class="stepper__sep" aria-hidden="true">›</span>
+        <span class="stepper__step stepper__step--current"><span class="stepper__dot"></span>run</span>
+        <span class="stepper__sep" aria-hidden="true">›</span>
+        <span class="stepper__step stepper__step--pending"><span class="stepper__dot"></span>gate · awaiting human</span>
+      </div>
+
+      <!-- THREE PANES -->
+      <div class="panes">
+
+        <!-- LEFT PANE: IN THE ROOM (L6) -->
+        <section class="pane" aria-labelledby="room-h">
+          <div class="pane__head">
+            <h2 class="pane__title" id="room-h">In the room</h2>
+            <span class="pane__note">Earn the Room</span>
+          </div>
+          <p class="faint" style="font-size:.82rem;margin-top:0">Exactly what loaded, and its cost. Nothing else.</p>
+
+          <p class="subhead">Foundation</p>
+          <div id="foundation"><!-- rendered from areas[design-systems] --></div>
+
+          <p class="subhead">Corrections in force</p>
+          <div id="corrections"><!-- rendered from corrections --></div>
+          <p class="faint" style="font-size:.76rem"><span class="badge badge--injected">injected</span> enters generation. <span class="badge badge--reminder">reminder</span> surfaces to a human, never auto-enforced.</p>
+
+          <p class="subhead">Token cost</p>
+          <div class="meter">
+            <div class="meter__row"><span class="meter__label">heyhi-design-intelligence-audit</span><span class="meter__cost">1,600</span></div>
+            <div class="meter__row"><span class="meter__label">Design Systems foundation manifest</span><span class="meter__cost">700</span></div>
+            <div class="meter__row"><span class="meter__label">Corrections in force (<span id="corr-count">4</span> seeds)</span><span class="meter__cost">240</span></div>
+            <div class="meter__row meter__total"><span class="meter__label">In the room now</span><span class="meter__cost">2,540</span></div>
+            <div class="meter__bar" role="img" aria-label="The room holds about 5 percent of everything the practice could load."></div>
+            <div class="meter__cap">~5% of the ~47,400 everything would cost. The room holds only what the task earned.</div>
+          </div>
+
+          <div class="addroom">
+            <button class="btn btn--ghost" id="addroom-btn" type="button" aria-expanded="false" aria-controls="addroom-panel" style="width:100%">＋ Add a capability to the room</button>
+            <div class="addroom__panel" id="addroom-panel" hidden>
+              <p class="faint" style="font-size:.78rem;margin-top:0">Loading is an explicit act. The cost shows before it enters.</p>
+              <div class="addroom__row"><span>heyhi-prototype-audit</span><span class="mono">+1,400 tok</span></div>
+              <div class="addroom__row"><span>Accessibility area reference</span><span class="mono">+600 tok</span></div>
+              <p class="faint" style="font-size:.74rem;margin:var(--sp-2) 0 0">Preview only. Nothing loads by default.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- CENTER PANE: ARTIFACT CANVAS (L5) -->
+        <section class="pane" aria-labelledby="canvas-h">
+          <div class="pane__head">
+            <h2 class="pane__title" id="canvas-h">Artifact canvas</h2>
+            <span class="pane__note">Render first, read source second</span>
+          </div>
+          <p class="canvas__note">The design smoke test lives here: look at the rendered control before the source.</p>
+
+          <div class="tabs" role="tablist" aria-label="Artifact views">
+            <button class="tab" role="tab" id="tab-rendered" aria-selected="true" aria-controls="panel-rendered">Rendered</button>
+            <button class="tab" role="tab" id="tab-source" aria-selected="false" aria-controls="panel-source" tabindex="-1">Source</button>
+            <button class="tab" role="tab" id="tab-annot" aria-selected="false" aria-controls="panel-annot" tabindex="-1">Annotations</button>
+          </div>
+
+          <div class="tabpanel" id="panel-rendered" role="tabpanel" aria-labelledby="tab-rendered" tabindex="0">
+            <div class="btnset">
+              <span></span>
+              <span class="btnset__col">default</span>
+              <span class="btnset__col">hover</span>
+              <span class="btnset__col">focus</span>
+              <span class="btnset__col">disabled</span>
+
+              <span class="btnset__rowlabel">Primary</span>
+              <span class="btnset__cell"><button class="btn btn--primary" type="button">Save</button></span>
+              <span class="btnset__cell"><button class="btn btn--primary demo-hover" type="button">Save</button></span>
+              <span class="btnset__cell"><button class="btn btn--primary demo-focus" type="button">Save</button></span>
+              <span class="btnset__cell"><button class="btn btn--primary" type="button" disabled>Save</button></span>
+
+              <span class="btnset__rowlabel">Ghost</span>
+              <span class="btnset__cell"><button class="btn btn--ghost" type="button">Cancel</button></span>
+              <span class="btnset__cell"><button class="btn btn--ghost demo-hover" type="button">Cancel</button></span>
+              <span class="btnset__cell"><button class="btn btn--ghost demo-focus" type="button">Cancel</button></span>
+              <span class="btnset__cell"><button class="btn btn--ghost" type="button" disabled>Cancel</button></span>
+            </div>
+            <p class="btnset__caption">These are the real shared button components in all four states. The hover and focus columns are shown persistently; tab through the set and every control also draws its live focus ring. This is the accessibility proof, rendered.</p>
+          </div>
+
+          <div class="tabpanel" id="panel-source" role="tabpanel" aria-labelledby="tab-source" tabindex="0" hidden>
+            <pre class="src"><span class="cm">/* button component, generated against the retrieved tokens */</span>
+.btn { border: 1px solid <span class="tok">var(--border)</span>; border-radius: <span class="tok">var(--r-1)</span>; }
+.btn--primary { background: <span class="tok">var(--teal)</span>; color: <span class="tok">var(--on-teal)</span>; }
+
+<span class="cm">/* focus ring restored from the design system, not a raw value */</span>
+.btn:focus-visible {
+  outline: 2px solid <span class="tok">var(--focus)</span>;
+  outline-offset: 2px;
+}</pre>
+            <p class="faint" style="font-size:.78rem">Source is secondary on purpose. Every value resolves to a token, retrieved not pasted.</p>
+          </div>
+
+          <div class="tabpanel" id="panel-annot" role="tabpanel" aria-labelledby="tab-annot" tabindex="0" hidden>
+            <p class="faint" style="font-size:.78rem;margin-top:0">Annotations render here. This view reads the artifact; it does not edit it.</p>
+            <div class="annot">
+              <span class="annot__pin" aria-hidden="true">1</span>
+              <span class="annot__body"><strong>Focus ring present on every control</strong>, disabled included. Uses <span class="mono">--focus</span>, not a literal.</span>
+            </div>
+            <div class="annot">
+              <span class="annot__pin" aria-hidden="true">2</span>
+              <span class="annot__body"><strong>Ghost hover raises the border</strong> to <span class="mono">--border-strong</span>. Coherent with the primary.</span>
+            </div>
+            <div class="annot">
+              <span class="annot__pin" aria-hidden="true">3</span>
+              <span class="annot__body"><strong>Reminder, not a defect:</strong> the ghost outline is quieter than the reference. Restraint or incoherence is a taste read. Flagged for the human, never auto-scored.</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- RIGHT PANE: RUN RAIL -->
+        <section class="pane" aria-labelledby="run-h">
+          <div class="runrail__head">
+            <div class="pane__head" style="flex:1;margin-bottom:0">
+              <h2 class="pane__title" id="run-h">Run rail</h2>
+              <span class="pane__note">simulated replay</span>
+            </div>
+          </div>
+          <p class="faint" style="font-size:.82rem">The four verbs, replayed. Every step keeps its provenance.</p>
+
+          <!-- promotion divider (the "load" moment made visible, L6) -->
+          <div class="promo-divider">
+            <span class="promo-divider__tag">promoted to a session</span>
+          </div>
+          <p class="promo-divider__line">Scoped: own practice · routed to the Design Systems area · foundation loaded into the room.</p>
+
+          <!-- RETRIEVE (L7) -->
+          <div class="verb">
+            <div class="verb__head">
+              <span class="verb__num">1</span><span class="verb__name">Retrieve</span>
+              <span class="worked">worked for 3s</span>
+            </div>
+            <p class="verb__body"><span class="mono">retrieve_design_context → Design Systems</span>. Values arrive as references with provenance, never pasted into the room.</p>
+            <div class="prov">
+              <span class="chip chip--provenance mono">os/foundations/design-systems/FOUNDATION.md</span>
+              <span class="chip chip--provenance mono">heyhi-mcp · retrieve_design_context</span>
+              <span class="chip chip--provenance mono">button component spec</span>
+            </div>
+            <details class="actions">
+              <summary>3 actions</summary>
+              <ul class="actions__log">
+                <li>Resolved the Design Systems manifest to 6 references</li>
+                <li>Retrieved the button spec and focus-state tokens</li>
+                <li>Attached provenance chips to the canvas</li>
+              </ul>
+            </details>
+            <div class="gate-card"><span class="gate-card__mark" aria-hidden="true">◆</span> Checkpoint · retrieve complete</div>
+          </div>
+
+          <!-- GENERATE -->
+          <div class="verb">
+            <div class="verb__head">
+              <span class="verb__num">2</span><span class="verb__name">Generate</span>
+              <span class="worked">worked for 6s</span>
+            </div>
+            <p class="verb__body">Generated the button set against the retrieved tokens. No raw hex (correction <span class="mono">hardcoded-hex-bypasses-token</span>, injected).</p>
+            <div class="diff" aria-label="Generated diff for the focus ring">
+              <span class="diff__line diff__ctx">.btn:focus-visible {</span>
+              <span class="diff__line diff__del">  outline: none;</span>
+              <span class="diff__line diff__add">  outline: 2px solid var(--focus);</span>
+              <span class="diff__line diff__add">  outline-offset: 2px;</span>
+              <span class="diff__line diff__ctx">}</span>
+            </div>
+            <details class="actions">
+              <summary>4 actions</summary>
+              <ul class="actions__log">
+                <li>Mapped each state to a semantic token</li>
+                <li>Restored the focus ring from <span class="mono">--focus</span></li>
+                <li>Added the missing ghost hover state</li>
+                <li>Rendered the set to the canvas</li>
+              </ul>
+            </details>
+            <div class="gate-card"><span class="gate-card__mark" aria-hidden="true">◆</span> Checkpoint · generate complete</div>
+          </div>
+
+          <!-- VALIDATE (deterministic floor; booleans OK, no verdict banner) -->
+          <div class="verb">
+            <div class="verb__head">
+              <span class="verb__num">3</span><span class="verb__name">Validate</span>
+              <span class="worked">0s · zero-token</span>
+            </div>
+            <p class="verb__body">The deterministic floor. A conformance lane, zero-token, structural only.</p>
+            <ul class="checks">
+              <li><span class="ok" aria-hidden="true">✓</span> focus ring present on every control</li>
+              <li><span class="ok" aria-hidden="true">✓</span> every color resolves to a token</li>
+              <li><span class="hit" aria-hidden="true">→</span> one spacing value off-scale. Snap to <span class="mono">--sp-2</span> (<span class="mono">off-scale-spacing-value</span>).</li>
+            </ul>
+            <p class="faint" style="font-size:.78rem;margin-top:var(--sp-2)">The floor reports structure. Anything above it routes to a human. <a href="quality-validate.html">See the full validator report →</a></p>
+            <details class="actions">
+              <summary>6 rules checked</summary>
+              <ul class="actions__log">
+                <li>token conformance · 2 checks</li>
+                <li>spacing scale · 1 hit</li>
+                <li>focus-state presence · clear</li>
+                <li>semantic-role match · clear</li>
+              </ul>
+            </details>
+            <div class="gate-card"><span class="gate-card__mark" aria-hidden="true">◆</span> Checkpoint · validate complete</div>
+          </div>
+
+          <!-- GRADE (L3 informs never gates; L4 empty human slot) -->
+          <div class="verb">
+            <div class="verb__head">
+              <span class="verb__num">4</span><span class="verb__name">Grade</span>
+              <span class="worked">awaiting human</span>
+            </div>
+            <p class="verb__body">The evaluator as a series, never a verdict. A trend, no aggregate, no threshold.</p>
+
+            <div class="spark-row">
+              <span class="spark-row__label">intent fidelity</span>
+              <svg class="spark" width="120" height="26" viewBox="0 0 120 26" role="img" aria-label="Intent fidelity, eight simulated runs, trending gently up.">
+                <polyline fill="none" stroke="var(--teal)" stroke-width="1.5"
+                  points="2,18 18,16 34,17 50,13 66,12 82,11 98,9 116,8"></polyline>
+              </svg>
+              <span class="spark__dir" aria-hidden="true">↗ steady</span>
+            </div>
+            <div class="spark-row">
+              <span class="spark-row__label">compositional coherence</span>
+              <svg class="spark" width="120" height="26" viewBox="0 0 120 26" role="img" aria-label="Compositional coherence, eight simulated runs, holding flat.">
+                <polyline fill="none" stroke="var(--teal)" stroke-width="1.5"
+                  points="2,12 18,13 34,11 50,12 66,12 82,11 98,12 116,11"></polyline>
+              </svg>
+              <span class="spark__dir" aria-hidden="true">→ holding</span>
+            </div>
+            <p class="grade__meta">series · 8 simulated runs · no aggregate, no threshold shown (calibration is not surfaced).</p>
+
+            <p class="rule-line" style="margin:var(--sp-3) 0">A grade informs the call. It never gates it.</p>
+
+            <div class="human-slot">
+              <div class="human-slot__tag"><span aria-hidden="true">◆</span> Yours to fill</div>
+              What would you check next on these focus states? The series points; the read is the human's. This slot ships empty on purpose.
+            </div>
+
+            <details class="actions">
+              <summary>2 dimensions shown</summary>
+              <ul class="actions__log">
+                <li>intent fidelity · judge panel</li>
+                <li>compositional coherence · judge panel</li>
+                <li>deterministic dimensions live on the Grade screen</li>
+              </ul>
+            </details>
+            <div class="gate-card gate-card--human"><span class="gate-card__mark" aria-hidden="true">◆</span> Checkpoint · grade · awaiting the human</div>
+          </div>
+        </section>
+      </div>
+
+      <!-- BOTTOM DOCK -->
+      <div class="dock" aria-label="Session dock">
+        <div class="dock__row">
+          <span class="composer__tag">simulated replay</span>
+          <div class="composer">
+            <span class="ctx-chip" id="ctx-chip">
+              button set · focus states
+              <button class="ctx-chip__x" id="ctx-chip-x" type="button" aria-label="Remove the context chip">✕</button>
+            </span>
+            <input class="composer__input" id="composer-input" type="text" readonly
+              aria-label="Composer, simulated and inert"
+              value="" placeholder="This session is a recorded exemplar. The composer does not drive a model.">
+          </div>
+        </div>
+        <div class="dock__row">
+          <span class="mono faint" style="font-size:.72rem">Gate status</span>
+          <div class="gatechips">
+            <span class="gatechip">retrieve · checkpoint</span>
+            <span class="gatechip">generate · checkpoint</span>
+            <span class="gatechip">validate · checkpoint</span>
+            <span class="gatechip gatechip--human">grade · awaiting human</span>
+          </div>
+          <a class="btn btn--primary" href="exit-gate.html" style="margin-left:auto">Close session →</a>
+        </div>
+      </div>
+
+      <!-- ===================== PAGE CONTENT END ======================= -->
+    </div>
+  </main>
+
+  <footer class="studio-footer">
+    <span class="sim">Prototype</span> · simulated interactions over a real data snapshot
+    (<span class="mono" data-commit>…</span>) · HeyHi Confidential
+  </footer>
+
+</div>
+
+<script>
+/* fill footer commit + self-activate the rail item from the page filename */
+(function () {
+  var data = window.SHEERLINE_DATA || {};
+  var meta = data.meta || {};
+  var el = document.querySelector('[data-commit]');
+  if (el) { el.textContent = meta.source_commit || 'unknown'; }
+
+  var path = location.pathname.split('/').pop() || 'index.html';
+  if (path === '') { path = 'index.html'; }
+  var alias = {
+    'quality-grade.html': 'quality-validate.html',
+    'quality-learn.html': 'quality-validate.html',
+    'exit-gate.html': 'session.html'
+  };
+  var target = alias[path] || path;
+  var links = document.querySelectorAll('.rail__link');
+  for (var i = 0; i < links.length; i++) {
+    if (links[i].getAttribute('href') === target) {
+      links[i].setAttribute('aria-current', 'page');
+    } else {
+      links[i].removeAttribute('aria-current');
+    }
+  }
+})();
+</script>
+
+<script>
+/* ---------------------------------------------------------------------------
+   S-5 Session workspace. Renders the foundation chip and the corrections in
+   force from the real snapshot; the rest of the session is authored exemplar
+   content, clearly labeled simulated. Wires: canvas tabs (keyboard), the
+   add-to-room cost preview, and the removable context chip.
+   --------------------------------------------------------------------------- */
+(function () {
+  "use strict";
+  var D = window.SHEERLINE_DATA || {};
+  var areas = D.areas || [], corrections = D.corrections || [];
+
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  function el(id){ return document.getElementById(id); }
+
+  /* ---- foundation manifest (from areas[design-systems], L7) ---- */
+  (function(){
+    var host = el('foundation'); if(!host) return;
+    var ds = areas.filter(function(a){ return a.key === 'design-systems'; })[0];
+    if(!ds){ host.innerHTML = '<p class="faint">Foundation unavailable in this snapshot.</p>'; return; }
+    host.innerHTML =
+        '<div class="manifest">'
+      +   '<div class="manifest__name">'+esc(ds.name)+' <span class="manifest__kind">'+esc(ds.foundation)+'</span></div>'
+      +   '<div class="manifest__note">A manifest of references, loaded into the room. Not a copy of the system.</div>'
+      +   '<div class="prov"><span class="chip chip--provenance mono">'+esc(ds.foundation_path)+'</span></div>'
+      + '</div>';
+  })();
+
+  /* ---- corrections in force (from corrections; 3 factual injected + 1 behavioral reminder) ---- */
+  (function(){
+    var host = el('corrections'); if(!host) return;
+    var active = corrections.filter(function(c){ return c.status === 'active'; });
+    host.innerHTML = active.map(function(c){
+      var isFactual = c.severity === 'factual';
+      var badge = isFactual
+        ? '<span class="badge badge--injected">injected</span>'
+        : '<span class="badge badge--reminder">reminder</span>';
+      return '<details class="corr">'
+        +   '<summary>'
+        +     badge
+        +     '<span class="corr__id mono">'+esc(c.id)+'</span>'
+        +     '<span class="corr__cat">'+esc(c.category)+'</span>'
+        +   '</summary>'
+        +   '<div class="corr__body"><em>'+esc(c.trigger_context)+'</em><br>'+esc(c.correction)+'</div>'
+        + '</details>';
+    }).join('');
+    /* keep the token-meter count truthful to the rendered set (never hardcode a data count) */
+    var cc = el('corr-count'); if (cc) { cc.textContent = active.length; }
+  })();
+
+  /* ---- canvas tabs (keyboard operable: click, Enter/Space, arrow keys) ---- */
+  (function(){
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+    if(!tabs.length) return;
+    function select(tab){
+      tabs.forEach(function(t){
+        var on = t === tab;
+        t.setAttribute('aria-selected', on ? 'true' : 'false');
+        t.tabIndex = on ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute('aria-controls'));
+        if(panel){ panel.hidden = !on; }
+      });
+    }
+    tabs.forEach(function(tab, i){
+      tab.addEventListener('click', function(){ select(tab); });
+      tab.addEventListener('keydown', function(e){
+        var next = null;
+        if(e.key === 'ArrowRight' || e.key === 'ArrowDown') next = tabs[(i+1) % tabs.length];
+        else if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = tabs[(i-1+tabs.length) % tabs.length];
+        if(next){ e.preventDefault(); select(next); next.focus(); }
+      });
+    });
+  })();
+
+  /* ---- add to the room: reveal the cost-before-load preview ---- */
+  (function(){
+    var btn = el('addroom-btn'), panel = el('addroom-panel'); if(!btn || !panel) return;
+    btn.addEventListener('click', function(){
+      var open = panel.hidden;
+      panel.hidden = !open;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+
+  /* ---- removable context chip (selection-as-context echo) ---- */
+  (function(){
+    var chip = el('ctx-chip'), x = el('ctx-chip-x'); if(!chip || !x) return;
+    x.addEventListener('click', function(){ chip.hidden = true; });
+  })();
+})();
+</script>
+</body>
+</html>
