@@ -2,7 +2,6 @@
   "skill_name": "heyhi-design-bridge",
   "version": "1.0.0",
   "created": "2026-07-06",
-  "classification": "internal",
   "description": "6 eval scaffold cases for heyhi-design-bridge, grounded in documented SKILL.md behavior (setup-grade v2 H2). Subjective/taste dimensions are marked human-judged, not asserted as mechanically checkable.",
   "evals": [
     {

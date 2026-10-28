@@ -73,7 +73,7 @@
 <rect class="sheer-box" x="308" y="280" width="332" height="150" rx="14"/>
 <text class="d sheer-t" x="328" y="308" font-size="15" font-weight="600">Sheerline</text>
 <rect class="sheer-chip" x="558" y="292" width="66" height="19" rx="9.5"/>
-<text class="m faint" x="591" y="305" font-size="8" text-anchor="middle">CONFIDENTIAL</text>
+<text class="m faint" x="591" y="305" font-size="8" text-anchor="middle">PUBLIC</text>
 <text class="b soft" x="328" y="326" font-size="10.5">the whole design-practice OS (this tree)</text>
 <rect class="inner" x="322" y="336" width="304" height="46" rx="8"/>
 <text class="m sheer-t" x="334" y="354" font-size="9.5">Design-Systems quality loop · one module</text>

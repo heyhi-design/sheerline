@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline Skills"
 ---
 
@@ -29,4 +28,3 @@ Phase 1 authors none. From P1.5, a net-new skill earns its place only when it do
 
 *Registry: `skills/registry/README.md` · Area map: `os/foundations/registry.yaml`*
 
-*HeyHi Confidential*

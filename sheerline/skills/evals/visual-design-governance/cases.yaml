@@ -5,7 +5,6 @@
 # (os/foundations/visual-design/FOUNDATION.md), judge against pass_criteria. Invented examples,
 # no client content. The R4 case shape (id, description, input, expected_findings, pass_criteria).
 
-classification: confidential
 
 cases:
   - id: visual-01-reference-not-copy
@@ -63,4 +62,3 @@ cases:
       Zero findings. A result that invents a governance complaint against a compliant manifest
       fails this case.
 
-# HeyHi Confidential

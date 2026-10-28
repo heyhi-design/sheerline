@@ -658,7 +658,6 @@ The `design-system-patterns` companion skill can generate additional patterns ta
 
 *Base interaction patterns for ui-studio skill. Originally authored for design-system-ux, All code is vanilla HTML/CSS/JS with no external dependencies.*
 
-*HeyHi Confidential*
 
 ---
 

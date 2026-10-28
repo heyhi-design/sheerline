@@ -1,6 +1,6 @@
 # Repair taxonomy — the method spine
 
-*HeyHi Confidential. Loaded on demand by `heyhi-drift-repair/SKILL.md` Step 1. The `detection`-keyed taxonomy, the v1 seed repair library, the never-auto set, the write-target decision, the findings-in normalization, the provenance model, the deviation-record schema, and the learn write-back seam. Reference, don't restate: the always-loaded invariants are cited by path, never re-authored here. Full derivation: `plans/plan-drift-repair-loop-2026-08-29.md`.*
+*Loaded on demand by `heyhi-drift-repair/SKILL.md` Step 1. The `detection`-keyed taxonomy, the v1 seed repair library, the never-auto set, the write-target decision, the findings-in normalization, the provenance model, the deviation-record schema, and the learn write-back seam. Reference, don't restate: the always-loaded invariants are cited by path, never re-authored here. Full derivation: `plans/plan-drift-repair-loop-2026-08-29.md`.*
 
 ---
 

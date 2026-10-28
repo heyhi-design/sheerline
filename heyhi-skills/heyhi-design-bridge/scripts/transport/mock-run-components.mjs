@@ -9,7 +9,6 @@
 //
 // Usage: node mock-run-components.mjs <plugin-dir>/code.js
 //
-// HeyHi Confidential.
 import vm from "node:vm";
 import fs from "node:fs";
 

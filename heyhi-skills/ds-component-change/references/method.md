@@ -98,4 +98,4 @@ If any of these is filled by the skill on its own, the boundary is broken and th
 
 ---
 
-*HeyHi Confidential. Reference for `ds-component-change` (Sheerline area 7). Method spine; load on demand.*
+*Reference for `ds-component-change` (Sheerline area 7). Method spine; load on demand.*

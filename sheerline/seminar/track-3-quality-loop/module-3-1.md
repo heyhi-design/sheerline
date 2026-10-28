@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 3.1 — RETRIEVE: the Design System MCP"
 track: 3
 module: "3.1"
@@ -7,6 +6,8 @@ level: advanced
 prereqs: ["2.4"]
 est_minutes: 30
 teaches: sheerline
+lab_mode: heyhi-run
+pointer_labels: [moat-runtime]
 opens_files:
   - heyhi-mcp/heyhi_mcp/server.py
   - heyhi-mcp/heyhi_mcp/resources/summary.py
@@ -18,6 +19,8 @@ opens_files:
 ## You are here
 
 Track 2 placed Sheerline as a keel instance, walked its thirteen-area registry, and settled the two-axis conflict order. Track 3 opens the one module that is actually built end to end: the Design-Systems quality loop, area 7, the most-built area and not the whole practice. The loop runs four verbs, and this module is the first. The question it answers: how does an agent get a design system into a session without pasting it in? Previous: [module 2.4 in Track 2](../track-2-sheerline/module-2-4.md). Next: [`module-3-2.md`](module-3-2.md).
+
+**A HeyHi-run demonstration.** The walkthrough and lab open HeyHi's retained Design System MCP runtime, which is moat-runtime: retained by design and never shipped. In the HeyHi monorepo the files open directly. In an exported copy they are labeled pointers, and a HeyHi operator runs this walkthrough and lab with you in a HeyHi-operated session; the concept sections stand on their own either way.
 
 ## Learning objectives
 
@@ -72,7 +75,3 @@ Open `heyhi-mcp/heyhi_mcp/server.py` and read the five `@mcp.tool()` signatures 
 - `sheerline/os/foundations/design-systems/FOUNDATION.md`: the nested subsystem reached through the boundary, and its loading rules.
 - Architecture figure 4, [`../../docs/architecture.md`](../../docs/architecture.md), draws the four-verb loop this track walks.
 - Protocols at boundaries is the fourth invariant from module [0.3](../track-0-orientation/module-0-3.md); VALIDATE is 3.2, GRADE is 3.3, LEARN is 3.4.
-
----
-
-*HeyHi Confidential*

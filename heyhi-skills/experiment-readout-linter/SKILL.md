@@ -18,7 +18,6 @@ description: >-
 version: "0.2.1"
 updated: "2026-08-28"
 status: "deployed — heyhi-skills/; v0.2.0 promoted 2026-08-23 (Gate G-C, plans/plan-sheerline-skills-upgrade-2026-08-22.md) — adds SRM check 6, open-questions + near-misses report surfaces, a worked example, 2 eval cases (6→8). v0.1.0 promoted 2026-08-15 (DISPATCH-D). Sheerline area 10 (Business Acumen), P1.5. Registered in skill-registry.yaml v2.35.0. v0.2.1 (2026-08-28) adds check 6's SRM-not-applicable path for paired/deterministic designs (reference § 6 + SKILL.md check-6 + eval erl-09), from the Wave E / E-5 harvest; registry v2.37.1."
-classification: HeyHi Confidential
 ---
 
 # Experiment Readout Linter
@@ -160,4 +159,4 @@ If the ship/no-ship slot is filled, or any FLAG is generic rather than line-cite
 
 ---
 
-*HeyHi Confidential. Sheerline area 10 (Business Acumen), P1.5 net-new. v0.1.0 deployed 2026-08-15 (DISPATCH-D); registered in `skill-registry.yaml` v2.32.0. v0.2.0 staged 2026-08-23 (Wave D, `plans/plan-sheerline-skills-upgrade-2026-08-22.md`). v0.2.1 (2026-08-28) added the SRM-not-applicable path (paired/deterministic designs) to check 6, from the E-5 harvest. Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 6.2 / § 8; SRM + curiosity surfaces from the 2026-08-22 skills audit § 2.4 / § 5. Boundary: § 9.*
+*Sheerline area 10 (Business Acumen), P1.5 net-new. v0.1.0 deployed 2026-08-15 (DISPATCH-D); registered in `skill-registry.yaml` v2.32.0. v0.2.0 staged 2026-08-23 (Wave D, `plans/plan-sheerline-skills-upgrade-2026-08-22.md`). v0.2.1 (2026-08-28) added the SRM-not-applicable path (paired/deterministic designs) to check 6, from the E-5 harvest. Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 6.2 / § 8; SRM + curiosity surfaces from the 2026-08-22 skills audit § 2.4 / § 5. Boundary: § 9.*

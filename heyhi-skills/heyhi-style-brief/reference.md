@@ -2,7 +2,6 @@
 
 Companion to `heyhi-style-brief/SKILL.md`. Holds the brief template, the descriptor → plain-language translation guide, and the field-mapping table from the upstream selection output. Loaded on demand during a brief write.
 
-*Classification: internal*
 
 ---
 
@@ -97,4 +96,4 @@ When the input is a **Mode A package**, the five components already carry most o
 
 ---
 
-*HeyHi Internal Use Only. Bay Design LLC. June 2026.*
+*Bay Design LLC. June 2026.*

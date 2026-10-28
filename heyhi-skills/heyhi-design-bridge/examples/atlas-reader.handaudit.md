@@ -1,5 +1,4 @@
 ---
-classification: HeyHi Confidential
 ---
 
 # atlas-reader — hand audit (zero silent drops)
@@ -86,7 +85,3 @@ python3 ../../schema/validate_ir.py ../../examples/atlas-reader.sm.ir.json \
 
 Re-runs are byte-identical (animations frozen, no clock or network dependence in
 the measured values).
-
----
-
-*HeyHi Confidential*

@@ -61,4 +61,3 @@ const components = all.filter(isRow).map(n => {
 
 return { page: page.name, components, read_errors };
 
-// HeyHi Confidential

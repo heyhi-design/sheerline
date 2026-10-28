@@ -570,7 +570,6 @@ If any header is empty or contains advisory prose ("I checked for bugs") instead
 
 ---
 
-*HeyHi Confidential — Skill internal methodology. Not for client distribution.*
 
 *Layer 0 pipeline skill. Sits after design-system-onboard and validates the full pipeline before design-system-review.*
 

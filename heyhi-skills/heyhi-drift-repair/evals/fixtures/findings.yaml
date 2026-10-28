@@ -7,7 +7,6 @@
 # Synthetic edge cases (ambiguous, token-definition, broken re-validation, tenant
 # isolation) are built in run.py alongside their synthetic library entries.
 #
-# classification: confidential
 
 findings:
   - id: F1

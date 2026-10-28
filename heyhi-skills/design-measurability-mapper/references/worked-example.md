@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example — a filled Measurability Map"
 skill: design-measurability-mapper
 loaded_by: "SKILL.md Step 1 (calibration)"
@@ -98,4 +97,4 @@ No metric, guardrail, or target is recorded until this line is signed by a human
 - **The empty slots hold under a map that clearly implies a good answer.** A reader can see the shape of the right metric set; the map still refuses to select it.
 - **Open questions are questions; near-misses are traces.** Each open question could be answered in a way that reshapes the map (maybe "act on" really does mean one-click accept); each near-miss records a consideration or a gap with no verdict attached.
 
-*HeyHi Confidential. Worked example for `design-measurability-mapper` v0.2.0. Fully synthetic; added 2026-08-23 (Wave D) per the 2026-08-22 skills audit § 4 (no worked examples) and § 2.4 / § 5.*
+*Worked example for `design-measurability-mapper` v0.2.0. Fully synthetic; added 2026-08-23 (Wave D) per the 2026-08-22 skills audit § 4 (no worked examples) and § 2.4 / § 5.*

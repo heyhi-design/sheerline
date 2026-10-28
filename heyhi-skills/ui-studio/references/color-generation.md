@@ -1,5 +1,4 @@
 ---
-classification: internal
 status: deployed 2026-06-10 (palette_gen.py promoted to ui-studio/scripts/; brand.seed_color added to schema; SKILL.md references it). Some integration decisions remain (see Open / next).
 created: 2026-06-10
 source: ai-services/design-intelligence/taste-projection-and-output-eval-research-2026-06-10.md (Item 7)
@@ -7,7 +6,6 @@ source: ai-services/design-intelligence/taste-projection-and-output-eval-researc
 
 # ui-studio skill-update proposal: Color as seed-to-palette reasoning (Item 7)
 
-**HeyHi Internal Use Only**
 
 The first build off the ui-styles deep-research program. Promoted into the deployed ui-studio skill on 2026-06-10 (`scripts/palette_gen.py`); `brand.seed_color` was added to `brand-config/schema.json`, and the SKILL.md `Load brand system` step plus the Zone 2 On-Demand table reference this capability.
 
@@ -36,4 +34,3 @@ The first build off the ui-styles deep-research program. Promoted into the deplo
 - **Seed selection.** Where does the seed come from when a client gives a logo or moodboard rather than a hex? (Dominant-colour extraction is a separate, smaller build.)
 - **HCT swap.** Vendoring `material-color-utilities` (Python port) is the production upgrade; decide whether to vendor or keep OKLCH.
 
-*HeyHi Internal Use Only*

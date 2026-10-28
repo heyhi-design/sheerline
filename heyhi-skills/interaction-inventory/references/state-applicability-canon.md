@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "State-applicability canon — the inventory discipline around the control-state contract"
 skill: interaction-inventory
 loaded_by: "SKILL.md Step 1"
@@ -127,8 +126,8 @@ Every element carries one of `from-source` (read from the design or build), `fro
 
 **Markdown → sidecar mapping.** The markdown inventory and the sidecar say the same thing in two registers: matrix cells `shown` / `MISSING` / `n/a` → `status` `shown` / `missing` / `n/a`; class labels `text input` / `selection control` / `data view` → `text-input` / `selection-control` / `data-view`; a data view's four states (`empty` / `loading` / `error` / `populated`) sit in one spanning matrix row in the markdown and as four named states in the sidecar; `n/a` cells may be omitted from the sidecar (a state absent from `states[]` is `n/a` by class), while `shown` and `missing` states are always listed; the keyboard column cites the APG pattern plus the interaction it applies in the markdown, and the pattern name only (or `native <element>`) in the sidecar; **every exit path the markdown states is a sidecar transition whose `from` is that state** (the area-3 seam schema's `exit` field is that transition), and a `dead-end` flag is derived from a non-terminal state with no such transition; a `static` element carries a single `default` state with status `n/a` and the `readonly` flag, nothing else.
 
-**`focus-visible → focus`.** The sidecar uses the contract's state names. A consumer that feeds the `heyhi-mcp` validator (whose Rule 5 checks a manifest slot literally named `focus`) maps `focus-visible` to the `focus` slot, implemented as `:focus-visible` — the reconciliation A.3 itself records as a one-line validator change to schedule, not something this skill resolves.
+**`focus-visible` and the validator.** The sidecar uses the contract's state names. Since 2026-10-17 the `heyhi-mcp` validator's Rule 5 accepts a `focus-visible` slot directly (the legacy `focus` slot still passes), so a consumer that feeds the validator passes `focus-visible` through unchanged, implemented as `:focus-visible`; no slot mapping is needed. Before that date Rule 5 required a slot literally named `focus`, and consumers mapped `focus-visible` to it.
 
 ---
 
-*HeyHi Confidential. `skill-updates/interaction-inventory/references/`. Authored 2026-09-05 from `plans/plan-sheerline-p3-interaction-design-2026-09-04.md` § 2.2 F / § 3 / § 4 and `sheerline/os/foundations/interaction-design/FOUNDATION.md` § The knowledge canon. The contract it enumerates against is retrieved, never restated.*
+*`skill-updates/interaction-inventory/references/`. Authored 2026-09-05 from `plans/plan-sheerline-p3-interaction-design-2026-09-04.md` § 2.2 F / § 3 / § 4 and `sheerline/os/foundations/interaction-design/FOUNDATION.md` § The knowledge canon. The contract it enumerates against is retrieved, never restated.*

@@ -2,7 +2,6 @@
 
 *Loaded before the code write (Step 4). The React emitter: how the same spec that built the Figma component becomes a typed React component whose CSS binds to the served tokens. Includes the worked example's actual typecheck output.*
 
-*classification: HeyHi Confidential*
 
 ---
 
@@ -89,4 +88,4 @@ src/components/Table/Table.tsx(45,27): error TS2345: Argument of type 'Set<unkno
 
 ---
 
-*HeyHi Confidential. The React code leg of `ds-component-author`. Worked example: the proof record in the instance's engagement folder (gitignored) and proof PR #822. Adapters (Lit, Angular): `references/code-leg-adapters.md`.*
+*The React code leg of `ds-component-author`. Worked example: the proof record in the instance's engagement folder (gitignored) and proof PR #822. Adapters (Lit, Angular): `references/code-leg-adapters.md`.*

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Reference: Translate mapping (Figma Motion / Rive export → token-mapped spec)"
 skill: motion-system-author
 mode: Translate
@@ -7,7 +6,7 @@ mode: Translate
 
 # Translate mapping
 
-**HeyHi Confidential.** How Translate mode reads a Figma Motion or Rive export, lints it against the motion system, and emits the token-mapped handoff. Load this in Translate mode. The rule that governs the whole mode: **flag off-system values, never silently rewrite the designer's motion.** The skill maps and lints; the human decides snap-versus-keep.
+How Translate mode reads a Figma Motion or Rive export, lints it against the motion system, and emits the token-mapped handoff. Load this in Translate mode. The rule that governs the whole mode: **flag off-system values, never silently rewrite the designer's motion.** The skill maps and lints; the human decides snap-versus-keep.
 
 ---
 
@@ -79,4 +78,4 @@ If the ask is "recreate this prototype as editable Figma layers," that is design
 
 ---
 
-*HeyHi Confidential. Reference for `motion-system-author` (Translate mode). Spec: `sheerline-skill-buildout-research-2026-08-09.md` § 4.2.*
+*Reference for `motion-system-author` (Translate mode). Spec: `sheerline-skill-buildout-research-2026-08-09.md` § 4.2.*

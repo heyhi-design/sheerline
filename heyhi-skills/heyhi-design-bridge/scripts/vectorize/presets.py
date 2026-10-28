@@ -11,7 +11,6 @@ quantization), `CEILINGS` (same shape as the generic block here, `ratified: True
 optionally `GOLDENS` (the mark and palette make_goldens.py calibrates against). The
 instance file is instance-only: it never ships in a scaffold export.
 
-HeyHi Confidential.
 """
 from __future__ import annotations
 

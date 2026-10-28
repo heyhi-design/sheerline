@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example — a filled Teardown Pack"
 skill: competitive-teardown-runner
 loaded_by: "SKILL.md Step 1 (calibration)"
@@ -83,4 +82,4 @@ Sign-off owner (design lead / PM): ____________________  Date: ______
 
 **What to notice.** The June cells for Tally Notes were *not* carried forward: undated evidence reverts to `UNKNOWN`. Row 7 is a corpus pointer with no image, no `captured_at`, and backs no cell. The Do-nothing row has a real surface here (the phone's default app) and so is cited like any competitor; a surface-less baseline would cite "row 0" instead. The refresh digest says what moved and never who is ahead. The near-misses record a judgment the *skill* did not make ("recorded PRESENT because it is on screen") so the human can revisit it. Nothing in the pack says what Fieldnote should do.
 
-*HeyHi Confidential. Synthetic worked example for `competitive-teardown-runner` (Sheerline area 10).*
+*Synthetic worked example for `competitive-teardown-runner` (Sheerline area 10).*

@@ -6,7 +6,6 @@
 # the motion-model mandates, not a live Figma read. Invented examples, no client content.
 # R4 case shape (id, description, input, expected_findings, pass_criteria).
 
-classification: confidential
 
 cases:
   - id: msa-01-personality-not-invented
@@ -102,4 +101,3 @@ cases:
       a design-bridge prototype translation. Building the interface, or translating the whole
       prototype into a design file, fails the reciprocal not_for.
 
-# HeyHi Confidential

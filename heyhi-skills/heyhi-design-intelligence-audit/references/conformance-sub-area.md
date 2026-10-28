@@ -1,5 +1,4 @@
 ---
-classification: confidential
 promoted: 2026-08-17
 status: active — deployed reference of heyhi-design-intelligence-audit (Area 7 conformance sub-area)
 target_skill: heyhi-design-intelligence-audit
@@ -18,7 +17,7 @@ reuses:
 
 *Deployed reference for `heyhi-design-intelligence-audit` (Area 7 conformance sub-area). The SKILL.md Step 3 Area 7 block carries the operative summary; this is the full rubric it points to. Calibration evidence and the Gate G2 result live in the instance's calibration record, `conformance-calibration.md` (instance-only; not shipped with the scaffold).*
 
-**Retained IP — Confidential, not for publish.** The conformance-audit *method* is the moat three independent 2026 sources name (see the plan). The publish path is Phase 4 and gated on counsel; this capability is internal.
+**Published method, retained calibration.** The conformance-audit *method* ships with the public scaffold (MIT, 2026-10-27). What stays with the instance is the calibration that makes it accurate: the calibration record and the Gate G2 result named above.
 
 ---
 
@@ -228,7 +227,3 @@ A second-instance flexibility run (the instance's flexibility ledger) found the 
 **Scope of the code layer.** `validate_output` now *accepts* the injection; full per-client token ingestion from the instance's DESIGN.md is #643 P3-03 (unbuilt). Tests: `heyhi-mcp/tests/test_instance_aware.py`. With no `constraints`, the floor is byte-identical to the pre-injection HeyHi floor (the whole `test_stream_c.py` set still passes).
 
 **Flexibility roadmap — updated 2026-08-17.** Two of the three items open at this increment have since landed: the one intake-location rule (H6) in #658, and the instance-keyed taste store (H7) as the spec-layer keying in [`layer-0-evaluation-specs.md` § Instance-keyed taste store](../../../ai-services/design-intelligence/layer-0-evaluation-specs.md#instance-keyed-taste-store-flexibility-ledger-h7) (the taste-review gate reads the instance's `taste_profile`, with `style-reference-library.md` as HeyHi's own instance store). **Still open:** the per-client served DESIGN.md (ledger H5), gated on the #643 Phase-2 image-per-client serving.
-
----
-
-*HeyHi Confidential.*

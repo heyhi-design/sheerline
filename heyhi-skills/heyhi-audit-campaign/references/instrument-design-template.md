@@ -1,5 +1,4 @@
 ---
-classification: internal
 title: Audit Instrument Design Template
 purpose: Template and rules for designing the audit instrument that anchors a HeyHi audit campaign. Loaded by heyhi-audit-campaign at Step 2 (Design stage) and Step 6 (Restructure stage).
 created: 2026-05-21
@@ -301,4 +300,4 @@ The Session 2 incident — claiming `rung` when the canonical field is `maturity
 
 ---
 
-*HeyHi Internal Use Only. heyhi-skills/heyhi-audit-campaign/references/. Loaded by SKILL.md Step 2 (Design stage) and Step 6 (Restructure stage).*
+*heyhi-skills/heyhi-audit-campaign/references/. Loaded by SKILL.md Step 2 (Design stage) and Step 6 (Restructure stage).*

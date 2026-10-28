@@ -7,7 +7,6 @@ governed-loop.build.py`); do not hand-edit the generated HTML. Reads the six
 figures from ./diagrams/ (the same set docs/architecture.md renders), so it
 regenerates portably from wherever this file lives.
 Published (private) artifact: https://claude.ai/code/artifact/1c395448-a9fb-4063-9a23-051bfcee5ad5
-HeyHi Confidential.
 """
 import base64, pathlib
 
@@ -59,8 +58,8 @@ FIG = {
     "boundary-moat": (
         "5", "The boundary and the retained moat", "line", "diagrams/boundary-moat.svg",
         "The MCP, the evaluator, and the corrections registry are reached through the MCP as "
-        "a boundary tool, nested and referenced, never embedded. The scaffold is potentially "
-        "publishable; the populated instance (the calibrated evaluator, the corpus, the "
+        "a boundary tool, nested and referenced, never embedded. The scaffold ships "
+        "publicly; the populated instance (the calibrated evaluator, the corpus, the "
         "promotion judgment) stays in a separate unpublished tree.",
         "A crimson wall divides the scaffold that ships (os layer, registry engine, "
         "corrections schema, MCP contract, DS-MCP scaffold) from the retained moat that "
@@ -290,7 +289,7 @@ HTML = r"""<title>The Governed Loop</title>
 
 <div class="wrap">
   <header>
-    <div class="eyebrow">HeyHi Confidential &nbsp;&middot;&nbsp; Sheerline &nbsp;&middot;&nbsp; context management &amp; the governed loop</div>
+    <div class="eyebrow">Sheerline &nbsp;&middot;&nbsp; context management &amp; the governed loop</div>
     <h1>The Governed Loop</h1>
     <p class="lede">One place to see the current architecture: how context management, the Sheerline harness, the Design&#8209;System quality loop, and its application to a client engagement&rsquo;s prototype skill all connect &mdash; with the six architecture figures and the seminar that teaches them.</p>
     <div class="meta">
@@ -471,7 +470,7 @@ HTML = r"""<title>The Governed Loop</title>
   </section>
 
   <footer>
-    <span class="conf">HeyHi Confidential.</span> Orientation surface assembled 2026-08-19 from the Sheerline architecture set, the seminar, the _core context&#8209;architecture foundations, and the DS&#8209;MCP onboarding arc. The figures document the scaffold as architecture; the calibrated content behind the moat wall in figure 5 is never drawn here.
+    Orientation surface assembled 2026-08-19 from the Sheerline architecture set, the seminar, the _core context&#8209;architecture foundations, and the DS&#8209;MCP onboarding arc. The figures document the scaffold as architecture; the calibrated content behind the moat wall in figure 5 is never drawn here.
   </footer>
 </div>
 """

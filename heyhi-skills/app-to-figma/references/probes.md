@@ -2,7 +2,6 @@
 
 *Arc rule 9: a lane that depends on a Plugin-API call probes it in a scratch file before building on it, and records the result here. The Figma MCP has no changelog, so the surface is verified at runtime, never trusted from a tool list. This file carries the calls, the probe shape, the observed result, and the plan tier only. It carries no file key, library key, or engagement detail; those live in the gitignored proof record.*
 
-*classification: HeyHi Confidential*
 
 ---
 
@@ -56,4 +55,4 @@ A run on a **new plan** (a different team tier) re-runs the import-by-key probe 
 
 ---
 
-*HeyHi Confidential. Reference for `app-to-figma` (Sheerline area 5). The keys and file identifiers for the 2026-09-07 run live only in the gitignored proof record. Spec source: `plans/plan-sheerline-fdde-loop-2026-09-07.md` (DISPATCH-02, Lane B).*
+*Reference for `app-to-figma` (Sheerline area 5). The keys and file identifiers for the 2026-09-07 run live only in the gitignored proof record. Spec source: `plans/plan-sheerline-fdde-loop-2026-09-07.md` (DISPATCH-02, Lane B).*

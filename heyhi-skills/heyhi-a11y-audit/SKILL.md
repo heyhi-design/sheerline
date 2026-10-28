@@ -24,7 +24,6 @@ description: >-
 version: "0.1.0"
 updated: "2026-08-27"
 status: "Deployed — heyhi-skills/heyhi-a11y-audit/; registered in the main + Sheerline subset registries (Sheerline Wave G-2, 2026-08-28). Sheerline area 8 (Accessibility), P2, the area anchor. Spec: ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md § 5.1. Canon: sheerline/os/foundations/accessibility/FOUNDATION.md. Boundary: § 9."
-classification: HeyHi Confidential
 ---
 
 # HeyHi Accessibility Audit
@@ -235,4 +234,4 @@ If the conformance-verdict block is filled, or any row carries a VPAT verdict wh
 
 ---
 
-*HeyHi Confidential. Sheerline area 8 (Accessibility), P2 net-new — the area anchor. Deployed in `heyhi-skills/heyhi-a11y-audit/`; registered in the main + Sheerline subset registries (Wave G-2, 2026-08-28). Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 5.1. Canon by reference: `sheerline/os/foundations/accessibility/FOUNDATION.md`. Boundary: § 9.*
+*Sheerline area 8 (Accessibility), P2 net-new — the area anchor. Deployed in `heyhi-skills/heyhi-a11y-audit/`; registered in the main + Sheerline subset registries (Wave G-2, 2026-08-28). Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 5.1. Canon by reference: `sheerline/os/foundations/accessibility/FOUNDATION.md`. Boundary: § 9.*

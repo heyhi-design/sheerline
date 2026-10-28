@@ -24,7 +24,6 @@ description: >-
 version: "0.1.1"
 updated: "2026-09-05"
 status: "Deployed — heyhi-skills/voice-system-author/; registered in the main + Sheerline subset registries (Sheerline Wave G-4, 2026-08-28). v0.1.1 (2026-09-05, the second Bucket B pass): re-pointed at the area-3 foundation (sheerline/os/foundations/content-design/FOUNDATION.md) and given the microcopy-states-writer reciprocal at that skill's promotion. Sheerline area 3 (Content Design / UX Writing), P3. Built as the generalization of the owned-voice pattern (heyhi-voice plus one bespoke second-brand voice skill; no heyhi-client-voice candidate exists in the tree). Spec: sheerline-skill-buildout-research-2026-08-09.md § 4.1; boundary § 9."
-classification: confidential
 ---
 
 # Voice System Author
@@ -270,4 +269,4 @@ If the voice-definition slot is filled, or an Audit flag reads as an approval, t
 
 ---
 
-*HeyHi Confidential. Sheerline area 3 (Content Design / UX Writing), P3. Deployed — `heyhi-skills/voice-system-author/`; registered in the main + Sheerline subset registries (Sheerline Wave G-4, 2026-08-28). Built as the generalization of the owned-voice pattern (`heyhi-voice` plus one bespoke second-brand voice skill; no `heyhi-client-voice` candidate exists in the tree). Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 4.1. Boundary: § 9. Foundation: `sheerline/os/foundations/content-design/FOUNDATION.md` (filled 2026-09-05).*
+*Sheerline area 3 (Content Design / UX Writing), P3. Deployed — `heyhi-skills/voice-system-author/`; registered in the main + Sheerline subset registries (Sheerline Wave G-4, 2026-08-28). Built as the generalization of the owned-voice pattern (`heyhi-voice` plus one bespoke second-brand voice skill; no `heyhi-client-voice` candidate exists in the tree). Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 4.1. Boundary: § 9. Foundation: `sheerline/os/foundations/content-design/FOUNDATION.md` (filled 2026-09-05).*

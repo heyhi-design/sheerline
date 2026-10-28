@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Foundation: Information Architecture (area 2, COVERED / filled / governed practice)"
 area: 2
 nature: craft
@@ -68,4 +67,3 @@ Empty slots behind a named gate on every IA skill:
 
 *Area map: [`os/foundations/registry.yaml`](../registry.yaml) · Depends on: [`os/foundations/user-research/FOUNDATION.md`](../user-research/FOUNDATION.md) (the vocabulary source) · Always-loaded invariants: [`os/operating-principles.md`](../../operating-principles.md) · Spec source: [`plans/plan-sheerline-p3-ur-ia-foundations-2026-08-29.md`](../../../../plans/plan-sheerline-p3-ur-ia-foundations-2026-08-29.md) · Research of record: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 3.2 / § 7b*
 
-*HeyHi Confidential*

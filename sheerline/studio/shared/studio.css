@@ -1,6 +1,5 @@
 /* ============================================================================
    Wheelhouse - shared studio stylesheet (tokens + components)
-   HeyHi Confidential
 
    Frozen after DISPATCH-03 merges. Wave-3 lanes LINK this file; they do not
    edit it. Screen-specific styles belong in a page-scoped <style> block with a

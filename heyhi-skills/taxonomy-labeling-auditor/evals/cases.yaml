@@ -8,7 +8,6 @@
 # a provenance case. tla-01 + tla-06 are the vocabulary-provenance guards (the spine dependency);
 # tla-05 is the heyhi-aeo seam. The three ⛔ slots are empty by construction.
 
-classification: confidential
 
 cases:
   - id: tla-01-designer-coinage-flagged
@@ -232,4 +231,3 @@ cases:
       carry the literal value provenance-unconfirmed: a self-coined variant (for example ''unconfirmed''
       or ''UNCONFIRMED'') is off-schema and fails F5, even when the reasoning behind it is right.'
 
-# HeyHi Confidential

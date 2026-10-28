@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline maturity evidence classes: direct / indirect / affirmation (EVIDENCE-CLASSES.md)"
 created: "2026-09-13"
 source: plans/plan-sheerline-maturity-instrument-2026-09-12.md   # DF-01 W1, Phase B (B2)
@@ -7,7 +6,7 @@ source: plans/plan-sheerline-maturity-instrument-2026-09-12.md   # DF-01 W1, Pha
 
 # Evidence classes
 
-**HeyHi Confidential.** The three evidence classes that **substantiate** a practice-capability
+The three evidence classes that **substantiate** a practice-capability
 level rather than assert it. Modeled on SCAMPI's evidence taxonomy: a rating is never made on
 work products alone, so an affirmation is required before the top rungs. Read this alongside
 `LEVELS.md` (the 5-rung scale) and the per-area `maturity.evidence` blocks in
@@ -62,4 +61,3 @@ Three properties keep this honest:
 An agent can assemble `direct` and `indirect` evidence on its own. It cannot manufacture an
 `affirmation`. That asymmetry is the reason the instrument cannot inflate itself.
 
-*HeyHi Confidential*

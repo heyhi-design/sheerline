@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline: HeyHi's design-practice harness"
 ---
 
@@ -73,14 +72,10 @@ The full map with coverage states and phasing is `os/foundations/registry.yaml`.
 
 ## Distribution
 
-A private export of this tree plus every skill its registry governs lives at `heyhi-design/sheerline` (decided 2026-10-13; `os/decision-log.md`). It is one-way: this tree is canonical, and `releases/private/sheerline/export.py` regenerates the repo. Runbook: `releases/private/sheerline/PUBLISH.md`.
+A public export of this tree plus every skill its registry governs lives at [`heyhi-design/sheerline`](https://github.com/heyhi-design/sheerline), MIT-licensed (created private 2026-10-13, public since 2026-10-27; `os/decision-log.md`). It is one-way: this tree is canonical, and `releases/private/sheerline/export.py` regenerates the repo. Runbook: `releases/private/sheerline/PUBLISH.md`.
 
 ## Start here
 
 1. Read `os/agent-context.md` (always-loaded orientation).
 2. Read `os/operating-principles.md` (the constraints, including the conflict order and the IP boundary).
 3. Route a task through `skills/registry/skill-registry.py "<task>" --confidence`; load only what it returns.
-
----
-
-*HeyHi Confidential*

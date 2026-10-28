@@ -3,7 +3,6 @@ name: form-patterns
 zone: 2
 load_trigger: Build requires forms — validation, dynamic fields, multi-step flows, or headless component integration with React Hook Form
 token_estimate: ~750
-classification: HeyHi Internal Use Only
 created: 2026-04-18
 version: "1.0.0"
 dependencies:
@@ -265,4 +264,4 @@ This gives single-source-of-truth validation across the client/server boundary.
 
 ---
 
-*HeyHi Internal Use Only. Zone 2 — task-conditional. Load when build includes non-trivial forms with validation, dynamic fields, or headless component integration. v1.0.0 created 2026-04-18 from frontend-research-reference.md v1.2.0.*
+*Zone 2 — task-conditional. Load when build includes non-trivial forms with validation, dynamic fields, or headless component integration. v1.0.0 created 2026-04-18 from frontend-research-reference.md v1.2.0.*

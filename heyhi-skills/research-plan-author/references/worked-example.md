@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example — a filled Research Plan"
 skill: research-plan-author
 loaded_by: "SKILL.md Step 1 (calibration)"
@@ -87,4 +86,4 @@ No question, method, or go decision is recorded until this line is signed by a h
 
 *What this example demonstrates for calibration:* the question slot **restates and separates** the tangled goal (and names the solution-dressed-as-opportunity) without picking one; each method carries an honest sample-size basis — the Faulkner floor for problem discovery, a power calculation for the rate comparison; the "prove" claim is **flagged** for conflating the two (5 users cannot prove a rate difference, and the detection floor is the wrong instrument for it); the go decision is left to the human; and the financial-UX PII risk is caught in the consent checklist. Nothing is selected, declared, or signed.
 
-*HeyHi Confidential. Calibration reference for `research-plan-author` (Sheerline area 1). Synthetic content only.*
+*Calibration reference for `research-plan-author` (Sheerline area 1). Synthetic content only.*

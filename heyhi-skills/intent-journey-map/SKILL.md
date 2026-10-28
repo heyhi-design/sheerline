@@ -28,7 +28,6 @@ version: "0.1.0"
 updated: "2026-09-07"
 status: "deployed 2026-09-07 (Sheerline fdde-loop convergence pass 1, DISPATCH-06; promoted from skill-updates/intent-journey-map/). Sheerline area 9 (Design Strategy & Product Thinking); serves_areas hints to 1 (User Research) and 2 (Information Architecture), registered nowhere before D-3 (plan § 5 D11). Lane D of the Sheerline forward-deployed loop (plans/plan-sheerline-fdde-loop-2026-09-07.md, DISPATCH-04). Method ported from a proven-once next-door protocol (method only, no engagement data); the fixed spine plus one pluggable domain band is the generalization."
 review_by: "2026-09-21"
-classification: confidential
 ---
 
 # Intent-Journey Map
@@ -251,4 +250,4 @@ If any open decision was answered, any severity set, or any unverified field pro
 
 ---
 
-*HeyHi Confidential. Sheerline area 9 (Design Strategy & Product Thinking), serves areas 1 and 2. Staged 2026-09-07 (Lane D, `plans/plan-sheerline-fdde-loop-2026-09-07.md`, DISPATCH-04). Method ported from a proven-once next-door intent-and-journey-mapping protocol as portable methodology only (the fixed spine, the tier gate, bind-do-not-guess, the paired output, the named-owner decisions, the adversarial pass); the domain band, the job-story set, and every stack binding are engagement knowledge the engagement fills. Boundary: Sheerline § 9. Skeleton: `heyhi-skills/design-measurability-mapper/SKILL.md`.*
+*Sheerline area 9 (Design Strategy & Product Thinking), serves areas 1 and 2. Staged 2026-09-07 (Lane D, `plans/plan-sheerline-fdde-loop-2026-09-07.md`, DISPATCH-04). Method ported from a proven-once next-door intent-and-journey-mapping protocol as portable methodology only (the fixed spine, the tier gate, bind-do-not-guess, the paired output, the named-owner decisions, the adversarial pass); the domain band, the job-story set, and every stack binding are engagement knowledge the engagement fills. Boundary: Sheerline § 9. Skeleton: `heyhi-skills/design-measurability-mapper/SKILL.md`.*

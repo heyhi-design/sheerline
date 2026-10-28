@@ -14,7 +14,6 @@ not a razor-clean synthetic one. Seeded, so the set regenerates byte-stably. The
 are SYNTHETIC stand-ins; ratified ceilings must be re-checked against true Nano Banana
 output before a real engagement (flagged in the calibration report).
 
-HeyHi Confidential.
 """
 from __future__ import annotations
 

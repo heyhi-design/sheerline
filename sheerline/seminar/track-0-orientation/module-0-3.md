@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 0.3 — The four invariants, Earn the Room, and the don't-automate line"
 track: 0
 module: "0.3"
@@ -8,8 +7,8 @@ prereqs: ["0.2"]
 est_minutes: 25
 teaches: keel
 opens_files:
-  - releases/open-source/keel/os/operating-principles.template.md
-  - releases/open-source/keel/docs/diagrams/what-loads.svg
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/os/operating-principles.template.md
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/docs/diagrams/what-loads.svg
 ---
 
 # Module 0.3 — The four invariants, Earn the Room, and the don't-automate line
@@ -45,13 +44,13 @@ Finally, the line that keeps all of this pointed at people rather than away from
 
 ## Walkthrough
 
-Open `releases/open-source/keel/os/operating-principles.template.md`. Read the four invariants. Notice that each is written with an honest caveat rather than a boast: provider-agnostic "in design, not proven portable," for instance. That restraint is itself a house value, and you will see it again in every figure's footer.
+Open [keel's os/operating-principles.template.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/operating-principles.template.md). Read the four invariants. Notice that each is written with an honest caveat rather than a boast: provider-agnostic "in design, not proven portable," for instance. That restraint is itself a house value, and you will see it again in every figure's footer.
 
-Find the Earn the Room load-class table in the same file, then open `releases/open-source/keel/docs/diagrams/what-loads.svg` to see the classes applied to a real file tree: three files always, a few on demand, skills searchable, and the profile not loaded at all. The figure is the invariant made visible.
+Find the Earn the Room load-class table in the same file, then open [keel's docs/diagrams/what-loads.svg](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/diagrams/what-loads.svg) to see the classes applied to a real file tree: three files always, a few on demand, skills searchable, and the profile not loaded at all. The figure is the invariant made visible.
 
 ## Lab
 
-In `releases/open-source/keel/os/operating-principles.template.md`, find the four invariants and, for each, write the one thing it forbids. Then find the load-class table and assign one file type of your choosing (say, a rarely-needed reference document) to one of the four classes, with a one-line reason.
+In [keel's os/operating-principles.template.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/operating-principles.template.md), find the four invariants and, for each, write the one thing it forbids. Then find the load-class table and assign one file type of your choosing (say, a rarely-needed reference document) to one of the four classes, with a one-line reason.
 
 **Success looks like:** four "never" statements, one per invariant, plus one load-class assignment justified by the fewer-than-half rule.
 
@@ -70,10 +69,6 @@ In `releases/open-source/keel/os/operating-principles.template.md`, find the fou
 
 ## Go deeper
 
-- `releases/open-source/keel/os/operating-principles.template.md`: the four invariants and Earn the Room in full.
-- `releases/open-source/keel/docs/diagrams/what-loads.svg` — the load classes on a real tree.
+- [keel's os/operating-principles.template.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/operating-principles.template.md): the four invariants and Earn the Room in full.
+- [keel's docs/diagrams/what-loads.svg](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/diagrams/what-loads.svg): the load classes on a real tree.
 - Watch the invariants recur: Track 1.2 (load classes), 1.3 (the confidence gate as Earn the Room), 3.3 (evaluation, and grades-inform-never-gate as the don't-automate line), 4.1 (protocols at the boundary).
-
----
-
-*HeyHi Confidential*

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline Dispatch: Reference"
 adapted_from: releases/open-source/keel/os/dispatch/README.md
 ---
@@ -63,4 +62,3 @@ Every dispatch file carries a `status:` field (`pending | partial | done | archi
 
 *Session rules: `os/session-rules.md` · Operating principles: `os/operating-principles.md`*
 
-*HeyHi Confidential*

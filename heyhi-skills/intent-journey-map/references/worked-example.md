@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Intent-Journey Map, worked example (the instance's own site)"
 skill: intent-journey-map
 version: "0.1.0"
@@ -73,4 +72,4 @@ No open decision is resolved, no severity is set, and no unverified observation 
 
 ---
 
-*HeyHi Confidential. `intent-journey-map` worked example v0.1.0, the instance's own site (heyhi.design). Hand-written manifest in the § 3.3 shape; the paired contract validates against `schemas/ijm-contract.schema.json`.*
+*`intent-journey-map` worked example v0.1.0, the instance's own site (heyhi.design). Hand-written manifest in the § 3.3 shape; the paired contract validates against `schemas/ijm-contract.schema.json`.*

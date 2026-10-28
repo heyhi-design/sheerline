@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example: an app-recon of HeyHi's own site"
 skill: app-recon
 loaded_by: "SKILL.md Step 1 (calibration)"
@@ -86,4 +85,4 @@ The three other surfaces were not fanned out, so their components and copy are *
 - **`unverified[]` is non-empty and honest.** Five rows, each a real gap (three deferred surfaces, one un-searched capability, one under-confirmed breakpoint set). A first read that produced an empty `unverified[]` would be the suspicious one.
 - **No verdict anywhere.** There is no score, no pass/fail, no readiness call. The brief carries ground truth and the gaps in it, and hands the decisions to the reviewer at the gate.
 
-*HeyHi Confidential. Worked example for `app-recon` (the instance's own site). Machine output: `worked-example.manifest.json`. Spec source: `plans/plan-sheerline-fdde-loop-2026-09-07.md` § 3.3.*
+*Worked example for `app-recon` (the instance's own site). Machine output: `worked-example.manifest.json`. Spec source: `plans/plan-sheerline-fdde-loop-2026-09-07.md` § 3.3.*

@@ -59,8 +59,3 @@ The third row is the load-bearing visibility fix: because there is no gate, "nev
 ## Named honestly against today's data
 
 `pattern_application` queries return empty until the pattern ledger (fdde-loop § 3.3, filled by Care / `feature-increment`'s own `local`-row emission) actually holds rows. That is a real limit of today's DATA, not of the graph or this step, and it is not hidden: a pattern-leg row reports `NOT exercised: 0 pattern dependents (ledger empty)` rather than a false pass. The graph is real for tokens / components today; `page` nodes and populated patterns are the graph-completeness question (C1) routed forward in § 0.5, not resolved here.
-
----
-
-*HeyHi Internal Use Only*
-*classification: internal*

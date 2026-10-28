@@ -1,6 +1,5 @@
 ---
 title: "Token Mapping — active-brand.json → Shopify settings_schema.json"
-classification: confidential
 session: T-1
 version: "1.0.0"
 created: "2026-03-29"
@@ -344,4 +343,4 @@ Match the config's font family name to the Shopify font identifier. When the exa
 
 ---
 
-*HeyHi Confidential — Session T-1. The authoritative token-to-settings reference for the theme workstream.*
+*Session T-1. The authoritative token-to-settings reference for the theme workstream.*

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 2.1 — Sheerline as a keel instance"
 track: 2
 module: "2.1"
@@ -80,7 +79,3 @@ From `sheerline/README.md`, write the reuse ledger: list what Sheerline reuses f
 - `sheerline/os/operating-principles.md`: the four invariants, the five zero-cost operating invariants, and the IP boundary.
 - Architecture figure 2, [`../../docs/architecture.md`](../../docs/architecture.md), draws the three layers with the foundations slot added for design.
 - The net-new slot is module 2.3; the thirteen-area registry is 2.2; the conflict order is 2.4; the retained moat returns in Track 4.
-
----
-
-*HeyHi Confidential*

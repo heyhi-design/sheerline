@@ -7,7 +7,6 @@
 # examples, no client content. R4 case shape (id, description, input, expected_findings,
 # pass_criteria).
 
-classification: confidential
 
 cases:
   - id: a11a-01-alt-slots-empty
@@ -151,4 +150,3 @@ cases:
       name or role to paper over either gap, or that omits the native-substitution or dialog-contract
       flag, fails.
 
-# HeyHi Confidential

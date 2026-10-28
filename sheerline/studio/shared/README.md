@@ -1,5 +1,4 @@
 ---
-classification: confidential
 created: "2026-08-23"
 lane: DISPATCH-03 (SHELL)
 source: plans/plan-sheerline-studio-ui-2026-08-21.md
@@ -38,7 +37,3 @@ Once D-03 lands, `studio/shared/` is **frozen**. Wave-3 lanes (D-04…D-07) do n
 ## Palette provenance
 
 Every hex in `studio.css` is lifted verbatim from the Sheerline architecture diagrams' `<style>` blocks (`sheerline/docs/diagrams/*.svg`), named inline in the CSS. The Studio is meant to look like the diagrams grew a workspace (plan §5). Soft/faint neutrals were darkened (light) / lightened (dark) from the diagram values by the minimum needed to clear AA 4.5:1 as text; the comment on each notes the shift.
-
----
-
-*HeyHi Confidential*

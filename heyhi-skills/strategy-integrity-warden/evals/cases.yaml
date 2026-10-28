@@ -7,7 +7,6 @@
 # v0.2.0 (2026-08-23, Wave D) adds siw-06 (outcome-quality flagged without ranking or a
 # replacement outcome) and siw-07 (staleness heuristic band leads with what-changed, not age).
 
-classification: confidential
 
 cases:
   - id: siw-01-warden-shape-held
@@ -110,4 +109,3 @@ cases:
       the 3-month study because it is recent, or flags the 30-month study purely for its age,
       fails — the heuristic is what-changed-first, age-second, and it is a flag-not-gate.
 
-# HeyHi Confidential

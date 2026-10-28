@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline Eval-Home Index"
 generated_by: sheerline/skills/evals/measure_coverage.py
 ---
@@ -66,5 +65,3 @@ One row per governed capability (`type: skill` in the subset registry). A capabi
 | `heyhi-service-blueprint` | 13 | `heyhi-skills/heyhi-service-blueprint/evals/cases.yaml` | 8 | Findings |
 
 Shapes: **Prompt** / **Scenario** (`evals.json`, conversational or build; see `heyhi-skills/EVALS.md`), **Findings** (`cases.yaml`, audit/validate), **Findings (governance probe)** (harness-level cases under `sheerline/skills/evals/<id>/`, which test whether a skill honors its area's invariants rather than whether its prose is good — the shape of `visual-design-governance/cases.yaml`).
-
-*HeyHi Confidential*

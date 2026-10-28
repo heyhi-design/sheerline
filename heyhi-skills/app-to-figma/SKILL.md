@@ -25,7 +25,6 @@ version: "0.1.0"
 updated: "2026-09-07"
 status: "deployed 2026-09-07 (Sheerline fdde-loop convergence pass 1, DISPATCH-06; promoted from skill-updates/app-to-figma/). Built from plans/plan-sheerline-fdde-loop-2026-09-07.md (DISPATCH-02, Lane B, Wave 1). Sheerline area 5 (Wireframing & Prototyping), build class N (net-new), the loop's build verb. The §8 kill-condition probe ran green on 2026-09-07 (import-by-key and teamLibrary access work on a Figma Pro plan; log in the instance's engagement folder). Release tier: buildable-now-internal-first; any designer-facing external surface is D-3-gated (2026-10-09), and D10 keeps this arc inside that hold."
 review_by: "2026-09-21"
-classification: confidential
 ---
 
 # app-to-figma
@@ -254,4 +253,4 @@ This skill closes through the Exit Gate Flavor A (`CLAUDE-SESSION-RULES.md § Ex
 
 ---
 
-*HeyHi Confidential. Sheerline area 5 (Wireframing & Prototyping), build class N. v0.1.0 staged 2026-09-07 from `plans/plan-sheerline-fdde-loop-2026-09-07.md` (DISPATCH-02, Lane B). Engine: Figma's `figma-generate-design` + `figma-use`. Reverse verb: `heyhi-figma-ds-generator` (writes the library this consumes). Live-write lessons: `heyhi-skills/heyhi-design-bridge/` and the 2026-09-04 generator proof. Boundary: § 9.*
+*Sheerline area 5 (Wireframing & Prototyping), build class N. v0.1.0 staged 2026-09-07 from `plans/plan-sheerline-fdde-loop-2026-09-07.md` (DISPATCH-02, Lane B). Engine: Figma's `figma-generate-design` + `figma-use`. Reverse verb: `heyhi-figma-ds-generator` (writes the library this consumes). Live-write lessons: `heyhi-skills/heyhi-design-bridge/` and the 2026-09-04 generator proof. Boundary: § 9.*

@@ -1,5 +1,4 @@
 ---
-classification: "HeyHi Internal Use Only"
 created: "2026-04-27"
 version: "1.0"
 type: "reference-template"
@@ -144,7 +143,3 @@ Complete before Phase 1 begins. These items are a precondition for starting the 
 ## 7. How to Use This Template
 
 Copy this file, rename it `engagement-plan-[client-slug].md`, and populate all [BRACKET] fields before Phase 1 begins. The DoD (Section 3) must be completed before Section 4 scope items are written: this ordering is the point of the template, not a formatting preference. At each phase transition, instantiate a new gate table (Section 5) with the conditions relevant to that transition, and archive the prior table with the date it was run.
-
----
-
-*HeyHi Internal Use Only*

@@ -31,7 +31,6 @@ version: "0.2.0"
 updated: "2026-09-14"
 status: "deployed 2026-09-08: heyhi-skills/feature-increment/ (promoted at convergence pass 2, DISPATCH-11). Built from plans/plan-sheerline-fdde-loop-2026-09-07.md (DISPATCH-07, Lane F, Wave 2). Sheerline area 12 (DesignOps), serves_areas hints 5 and 7; the loop's Care/increment verb. Consumes the promoted app-to-figma (Figma leg), ui-studio Mode A (prototype leg), intent-journey-map and app-recon (inputs), and the served retrieve_application_context and validate_output. Proof run on the instance's own site: one feature added to the heyhi.design Log-index artifact, prototype, and a propose-first PR on the site repo. Release tier: buildable-now-internal-first; D10 keeps this arc inside the D-3 hold (2026-10-09). v0.2.0 (2026-09-14): added the dependency-ripple fold to Step 6 (W7/G12; CLOSE-03 disposition, owner-approved promotion of the staged skill-updates step) and its references/dependency-ripple.md, loaded in Step 1."
 review_by: "2026-09-21"
-classification: confidential
 ---
 
 # feature-increment
@@ -299,4 +298,4 @@ If the coverage table has an unexplained miss, or the prototype gate did not pas
 
 ---
 
-*HeyHi Confidential. Sheerline area 12 (DesignOps), Care/increment verb. v0.1.0 staged 2026-09-07 from `plans/plan-sheerline-fdde-loop-2026-09-07.md` (DISPATCH-07, Lane F). Engines consumed: `app-to-figma` (update mode), `ui-studio` (Mode A), `intent-journey-map` + `app-recon` (inputs), `validate_output` (the blocking prototype gate). Deviation-record shape reused from `heyhi-drift-repair`. Boundary: § 9.*
+*Sheerline area 12 (DesignOps), Care/increment verb. v0.1.0 staged 2026-09-07 from `plans/plan-sheerline-fdde-loop-2026-09-07.md` (DISPATCH-07, Lane F). Engines consumed: `app-to-figma` (update mode), `ui-studio` (Mode A), `intent-journey-map` + `app-recon` (inputs), `validate_output` (the blocking prototype gate). Deviation-record shape reused from `heyhi-drift-repair`. Boundary: § 9.*

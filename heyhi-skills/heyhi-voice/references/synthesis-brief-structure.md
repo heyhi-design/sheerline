@@ -1,5 +1,4 @@
 ---
-classification: internal
 title: Synthesis-Brief Structure
 purpose: Three-level structure for synthesis briefs that close campaigns, audits, or multi-session investigations. The shape that lets a reader open one document and see where things stand.
 created: 2026-05-21
@@ -178,4 +177,4 @@ The structure is the propagation surface; the voice is the carrier. Both must ho
 
 ---
 
-*HeyHi Internal Use Only. Loaded by `heyhi-voice/SKILL.md` when a synthesis brief is the task.*
+*Loaded by `heyhi-voice/SKILL.md` when a synthesis brief is the task.*

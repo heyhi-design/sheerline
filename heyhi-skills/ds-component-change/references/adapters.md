@@ -63,4 +63,4 @@ Plan D5 (the instance owner, 2026-09-07): build the React leg only; Lit and Angu
 
 ---
 
-*HeyHi Confidential. Reference for `ds-component-change` (Sheerline area 7). Adapter stubs; load on demand.*
+*Reference for `ds-component-change` (Sheerline area 7). Adapter stubs; load on demand.*

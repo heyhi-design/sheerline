@@ -20,7 +20,6 @@ description: >-
 version: "0.1.1"
 updated: "2026-09-05"
 status: "Deployed — heyhi-skills/motion-system-author/; registered in the main + Sheerline subset registries (Sheerline Wave G-4, 2026-08-28). Net-new, effectively (no heyhi-motion-system-author candidate exists in the tree). Sheerline area 4 (Interaction Design), P3. Spec: sheerline-skill-buildout-research-2026-08-09.md § 4.2. Boundary: § 9."
-classification: HeyHi Confidential
 ---
 
 # Motion System Author
@@ -256,4 +255,4 @@ If any motion set lacks its reduced-motion counterpart, if the DTCG note is miss
 
 ---
 
-*HeyHi Confidential. Sheerline area 4 (Interaction Design), P3. Effectively net-new (no `heyhi-motion-system-author` candidate exists in the tree; built from the § 4.2 spec). Deployed in `heyhi-skills/motion-system-author/`; registered in the main + Sheerline subset registries (Wave G-4, 2026-08-28). Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 4.2; DTCG gap § 4 (~line 160). Boundary: § 9. Foundation: `sheerline/os/foundations/interaction-design/FOUNDATION.md` (registered 2026-09-05). Substrate pointer: control-state contract A.3, `design-fundamentals-decision-research-2026-08-12.md`, served as `design-system://fundamentals`.*
+*Sheerline area 4 (Interaction Design), P3. Effectively net-new (no `heyhi-motion-system-author` candidate exists in the tree; built from the § 4.2 spec). Deployed in `heyhi-skills/motion-system-author/`; registered in the main + Sheerline subset registries (Wave G-4, 2026-08-28). Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 4.2; DTCG gap § 4 (~line 160). Boundary: § 9. Foundation: `sheerline/os/foundations/interaction-design/FOUNDATION.md` (registered 2026-09-05). Substrate pointer: control-state contract A.3, `design-fundamentals-decision-research-2026-08-12.md`, served as `design-system://fundamentals`.*

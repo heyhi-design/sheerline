@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline Eval Cases"
 adapted_from: releases/open-source/keel/skills/evals/README.md
 ---
@@ -34,4 +33,3 @@ A sibling meter, `python3 measure_maturity.py`, reports the practice-**capabilit
 
 *Skills overview: `skills/README.md` · The R4 pattern source: `releases/open-source/keel/skills/evals/`*
 
-*HeyHi Confidential*

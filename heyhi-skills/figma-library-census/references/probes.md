@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "figma-library-census: Plugin API probe log"
 created: "2026-09-07"
 ---
@@ -46,4 +45,3 @@ Script: `scripts/census-step1-pages.js` (page list) then a `loadAsync`-per-page 
 - The remote variable path end to end (`getAvailableLibraryVariableCollectionsAsync` → `getVariablesInLibraryCollectionAsync` returning a non-empty collection) needs a file with the library added. The worked example's read-only scope adds nothing, so this path is confirmed by the served Figma reference and by the empty/`count 0` observations, not by a populated run. The first real client census (from a consuming app file) exercises it; record the populated result then.
 - `SLOT`-typed component properties: the scratch Button has none. The property-type enum includes `SLOT` (Card-like components use it); the census reads it the same way (`componentPropertyDefinitions` on the owner), but a populated `SLOT` observation waits for a library that has one.
 
-*HeyHi Confidential.*

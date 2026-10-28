@@ -1,5 +1,4 @@
 ---
-classification: internal
 title: Audit Campaign Arc Template
 purpose: Template and rules for structuring the campaign plan that governs an audit's multi-session arc. Loaded by heyhi-audit-campaign at Step 3 (Design stage) and Step 6 (Restructure stage).
 created: 2026-05-21
@@ -237,4 +236,4 @@ A campaign plan that cites a non-existent predecessor or an inflated file count 
 
 ---
 
-*HeyHi Internal Use Only. heyhi-skills/heyhi-audit-campaign/references/. Loaded by SKILL.md Step 3 (Design stage) and Step 6 (Restructure stage).*
+*heyhi-skills/heyhi-audit-campaign/references/. Loaded by SKILL.md Step 3 (Design stage) and Step 6 (Restructure stage).*

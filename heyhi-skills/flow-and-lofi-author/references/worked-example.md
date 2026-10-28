@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example — a filled Lo-fi Pack"
 skill: flow-and-lofi-author
 loaded_by: "SKILL.md Step 1 (calibration)"
@@ -83,4 +82,4 @@ Nothing advances to hi-fi until this line is signed (OPERATING_PRINCIPLES § Des
 
 **What to notice.** The brand green went to `## Ceiling violations removed`, not onto the button. S5 is `[inferred]` because only one alternative needs it and the IA never named it; the promo-code question was not answered by inventing a screen. The three alternatives differ on decomposition and disclosure, not on where the boxes sit, and the overlap check says which axes each pair shares. Nothing says which alternative is better, and the pay label is `[provisional]` because copy is not this skill's.
 
-*HeyHi Confidential. Worked example for `flow-and-lofi-author` (synthetic). Spec source: `plans/plan-sheerline-p3-prototyping-lofi-2026-09-05.md` § 6.2.*
+*Worked example for `flow-and-lofi-author` (synthetic). Spec source: `plans/plan-sheerline-p3-prototyping-lofi-2026-09-05.md` § 6.2.*

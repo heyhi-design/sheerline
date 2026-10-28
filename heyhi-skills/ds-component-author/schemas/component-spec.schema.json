@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heyhi:ds-component-author:component-spec:1.0",
   "title": "DS Component Spec",
-  "description": "The single component spec that drives BOTH legs of ds-component-author (the Figma component and the code twin). The anatomy and property axes are a human design decision (required input, never invented by the skill); the craft critique and the framework-idiom calls ship empty behind the named gates. classification: HeyHi Confidential.",
+  "description": "The single component spec that drives BOTH legs of ds-component-author (the Figma component and the code twin). The anatomy and property axes are a human design decision (required input, never invented by the skill); the craft critique and the framework-idiom calls ship empty behind the named gates.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "name", "level", "anatomy", "property_axes", "states", "tokens", "framework", "gate"],

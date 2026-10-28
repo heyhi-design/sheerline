@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Foundation: User Research (area 1, COVERED / filled / governed practice)"
 area: 1
 nature: craft
@@ -80,4 +79,3 @@ The pipeline. `research-plan-author` is **deployed (v0.1.0)** — the first dedi
 
 *Area map: [`os/foundations/registry.yaml`](../registry.yaml) · Always-loaded invariants: [`os/operating-principles.md`](../../operating-principles.md) · The IP boundary (scaffold ships, populated corpus stays): `operating-principles.md` § The IP boundary · Spec source: [`plans/plan-sheerline-p3-ur-ia-foundations-2026-08-29.md`](../../../../plans/plan-sheerline-p3-ur-ia-foundations-2026-08-29.md) · Research of record: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 3.1 / § 7b*
 
-*HeyHi Confidential*

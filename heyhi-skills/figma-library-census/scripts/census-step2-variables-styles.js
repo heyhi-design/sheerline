@@ -67,4 +67,3 @@ const styles = [
 
 return { remote_collections, remote_variables, remote_note, collections, styles };
 
-// HeyHi Confidential

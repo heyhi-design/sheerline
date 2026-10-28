@@ -7,7 +7,6 @@
 # not a live scan or a live AT run. Invented examples, no client content. R4 case shape
 # (id, description, input, expected_findings, pass_criteria).
 
-classification: confidential
 
 cases:
   - id: a11y-01-judged-criterion-ships-empty
@@ -117,4 +116,3 @@ cases:
       version is surfaced as a question. Silently asserting '2.2 AA conformant, EAA-ready' without
       the jurisdiction question — or auditing only to the older version — fails.
 
-# HeyHi Confidential

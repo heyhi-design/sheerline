@@ -166,4 +166,4 @@ Store the mappings for reference during the build. When generating implementatio
 
 ---
 
-*HeyHi Internal Use Only. Created March 25, 2026.*
+*Created March 25, 2026.*

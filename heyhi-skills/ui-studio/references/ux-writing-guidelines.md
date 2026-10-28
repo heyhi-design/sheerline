@@ -150,4 +150,4 @@ When writing Mode C interface copy:
 
 ---
 
-*HeyHi Internal Use Only. Created March 25, 2026.*
+*Created March 25, 2026.*

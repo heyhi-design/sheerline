@@ -157,4 +157,3 @@ When preparing talks or articles that reference the research basis for the metho
 
 The research backing is there to be cited when it strengthens the argument. It's never the argument itself.
 
-*HeyHi Confidential*

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "States-copy canon — the per-state writing discipline"
 skill: microcopy-states-writer
 loaded_by: "SKILL.md Step 1 (the method spine)"
@@ -93,4 +92,4 @@ Every string is `[candidate — agent-drafted]` with lineage (`new`, or `revised
 
 ---
 
-*HeyHi Confidential. Reference for `microcopy-states-writer`. Spec source: `plans/plan-sheerline-p3-content-design-2026-09-05.md` § 2.2 F / § 3 / § 4. Canon of record for the voice model, the taxonomy, the doctrine, the guardrail, and the lint: `heyhi-skills/voice-system-author/references/`. The seam's structural contract: `plans/plan-sheerline-p3-interaction-design-2026-09-04.md` § 3.5 / § 4.*
+*Reference for `microcopy-states-writer`. Spec source: `plans/plan-sheerline-p3-content-design-2026-09-05.md` § 2.2 F / § 3 / § 4. Canon of record for the voice model, the taxonomy, the doctrine, the guardrail, and the lint: `heyhi-skills/voice-system-author/references/`. The seam's structural contract: `plans/plan-sheerline-p3-interaction-design-2026-09-04.md` § 3.5 / § 4.*

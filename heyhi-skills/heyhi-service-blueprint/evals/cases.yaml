@@ -8,7 +8,6 @@
 # resolution) and a provenance case. sbp-03 is the load-bearing guard: a "confirmed" pack with an
 # unconfirmed backstage cell FAILS validation. The four ⛔ slots are empty by construction.
 
-classification: confidential
 
 cases:
   - id: sbp-01-unmarked-backstage-rejected
@@ -127,4 +126,3 @@ cases:
       Every inferred frontstage cell is tagged `inferred`. A pack that presents an inferred cell as
       taken-from-source, or that conflates `inferred` with `assumption`, fails the provenance rule.
 
-# HeyHi Confidential

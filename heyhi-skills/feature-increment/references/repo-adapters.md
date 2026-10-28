@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "feature-increment: repo adapters (React built; Lit and Angular stubbed)"
 ---
 
@@ -85,4 +84,4 @@ The repo leg's conformance read (`validate_output` on the increment's CSS) write
 
 The shape is `heyhi-drift-repair`'s deviation record verbatim. `matched_correction` is `null` here by construction: a raw `validate_output` conformance finding has no corrections-registry match (that field is set only when a finding resolves against the corrections module, which is drift-repair's own machinery, not the repo leg's). The repo leg is propose-first: the record is the human-confirmation queue, `confirmed` flips only on a human's review, and the PR is never merged by the skill. This is the seam with `heyhi-drift-repair`: that skill owns applied and proposed repairs across a whole system, matching findings to corrections and setting `matched_correction`; this skill reuses the record shape for one feature's increment and hands genuine drift to it.
 
-*HeyHi Confidential. `skill-updates/feature-increment/references/`. React adapter built (plan D5); Lit and Angular stubbed. Deviation-record shape reused from `heyhi-drift-repair`.*
+*`skill-updates/feature-increment/references/`. React adapter built (plan D5); Lit and Angular stubbed. Deviation-record shape reused from `heyhi-drift-repair`.*

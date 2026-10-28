@@ -1,6 +1,5 @@
 ---
 title: "heyhi-logo-system — Mark Failure-Mode Catalog"
-classification: HeyHi Confidential
 module: E
 loads_in: [Critique]
 version: "0.1.0"
@@ -10,7 +9,6 @@ grounding: ["reference.md (six axes, severity rubric)", "research/visual-languag
 
 # Mark Failure-Mode Catalog
 
-**HeyHi Confidential**
 
 *On-demand reference module for `heyhi-logo-system`, loaded in **Critique**. It upgrades the external `ckm:logo-design` skill's two-item troubleshooting into a catalog keyed to the skill's **own six axes** and the seven typologies, so a critique asks "what usually breaks for *this* construction type on *this* axis" instead of relying on memory. It invents no new axis and no new severity tier — every entry maps to one of the six axes in `reference.md` and uses the existing Critical/High/Medium/Low rubric.*
 
@@ -97,4 +95,3 @@ If the engagement is an N-up comparison, use the **Select lane** (Mode 2, deploy
 
 *Companion module to `heyhi-logo-system`, loaded in Critique. Cross-references: [`logo-typology.md`](logo-typology.md), [`scale-degradation-matrix.md`](scale-degradation-matrix.md) (the fix-side for Scalability findings), [`render-brief-template.md`](render-brief-template.md). Grounding: `heyhi-skills/heyhi-logo-system/reference.md` (six axes + severity rubric), `ai-services/design-intelligence/research/visual-language-theory.md`.*
 
-*HeyHi Confidential*

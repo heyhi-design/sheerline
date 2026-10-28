@@ -1,8 +1,6 @@
 # Sheerline structural checks. Inert in the monorepo (this file sits under
-# releases/private/sheerline/overlay/); live only in the exported private repo.
-# Minute-light on purpose (the org shares a small monthly Actions budget): one ~30s
-# job, on pushes to main, on pull requests, and on demand.
-# classification: confidential (HeyHi Confidential)
+# releases/private/sheerline/overlay/); live only in the exported public repo.
+# One ~30s job, on pushes to main, on pull requests, and on demand.
 name: checks
 
 on:
@@ -37,3 +35,8 @@ jobs:
         run: python3 sheerline/skills/evals/routing-battery/run_battery.py
       - name: Studio link check
         run: python3 sheerline/studio/scripts/link-check.py
+      - name: Instance layer (a blank instance resolves only generic defaults)
+        timeout-minutes: 2
+        run: |
+          python3 sheerline/os/instance/resolve.py --check --blank
+          python3 -m unittest discover -s sheerline/os/instance/tests -p 'test_*.py'

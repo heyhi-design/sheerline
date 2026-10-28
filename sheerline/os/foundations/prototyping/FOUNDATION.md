@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Foundation: Wireframing & Prototyping (area 5, COVERED / governance)"
 area: 5
 nature: craft
@@ -59,4 +58,3 @@ Prototype fidelity is right-sized to the test question. Which interactions matte
 
 *Area map: `os/foundations/registry.yaml` · Session rules: `os/session-rules.md`*
 
-*HeyHi Confidential*

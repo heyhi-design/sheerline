@@ -112,7 +112,6 @@ File location: `ai-services/_core/architecture-decisions/`
 **Replaces:** None
 **Superseded by:** None
 
-*HeyHi Confidential*
 
 ---
 
@@ -168,7 +167,7 @@ values are appropriate? What gets added to meta.provisional_fields[]?]
 
 ---
 
-*HeyHi Confidential · `ai-services/_core/architecture-decisions/` · [Date]*
+*[Classification mark] · `ai-services/_core/architecture-decisions/` · [Date]*
 ```
 
 **Alternatives considered:** Every ADR must document at least two alternatives:
@@ -418,7 +417,7 @@ Before delivering any schema extension output, verify:
 - [ ] No standalone "AI" in any output
 - [ ] No banned words (leverage, seamless, holistic, etc.)
 - [ ] Em dashes: maximum 2 in any client-facing output produced by this skill
-- [ ] Document classification: ADR footer says "HeyHi Confidential"
+- [ ] Document classification: the ADR footer carries the instance's classification mark (from its operating principles)
 - [ ] skill-registry.yaml ADR reference entry updated after the human reviewer confirms
 
 ---
@@ -452,7 +451,6 @@ If any header is empty or contains advisory prose ("I checked for bugs") instead
 
 ---
 
-*HeyHi Confidential — Skill internal methodology. Not for client distribution.*
 
 *Layer 0 infrastructure skill. Governs schema evolution procedure for active-brand.json.*
 

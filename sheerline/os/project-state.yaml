@@ -4,7 +4,6 @@
 # instance's narrative removed. An instance keeps its own copy of this file and records its
 # build history here (notes, programs, actions); this copy shows the shape.
 
-classification: confidential
 meta:
   version: 0.1.11
   note: 'Scaffold copy. Comparison baseline for the integrity pass: any deviation between this file and
@@ -99,4 +98,3 @@ early_warning_signals:
   current_status: resolved
   last_checked: '2026-09-10'
 
-# HeyHi Confidential

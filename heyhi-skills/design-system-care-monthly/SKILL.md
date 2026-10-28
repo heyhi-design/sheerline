@@ -762,4 +762,3 @@ This skill closes through the Exit Gate Flavor A (`CLAUDE-SESSION-RULES.md § Ex
 
 If any header is empty or contains advisory prose ("I checked for bugs") instead of a concrete artifact, the gate has not been satisfied. Apply fixes until clean — then emit.
 
-*HeyHi Confidential*

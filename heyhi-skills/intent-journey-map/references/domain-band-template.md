@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Intent-Journey Map, the pluggable domain-state band"
 skill: intent-journey-map
 version: "0.1.0"
@@ -69,4 +68,4 @@ A feature that crosses two domains (a document shown on a map) picks the primary
 
 ---
 
-*HeyHi Confidential. `intent-journey-map` domain-band template v0.1.0. The two fills are generic illustrations; every real domain band is engagement knowledge the engagement supplies.*
+*`intent-journey-map` domain-band template v0.1.0. The two fills are generic illustrations; every real domain band is engagement knowledge the engagement supplies.*

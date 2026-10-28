@@ -6,7 +6,6 @@ flagged rather than mis-fit. The curve-fit stage flattens each subpath to a dens
 polyline and refits the fewest cubic Beziers within a pixel tolerance (fit_curve) —
 the optional anchor-reduction fallback the plan specifies.
 
-HeyHi Confidential.
 """
 from __future__ import annotations
 

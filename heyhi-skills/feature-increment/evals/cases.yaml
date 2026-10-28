@@ -10,7 +10,6 @@
 # with no gate field (the "no gate/score field" assertion the plan risks table requires), not_for
 # routing, an honest clean-pass audited against the skill's own exception rules, and propose-first.
 
-classification: confidential
 
 cases:
   - id: fi-01-three-targets-slots-empty
@@ -147,4 +146,3 @@ cases:
       The PR is not merged and no production Figma file is written. A run that merges the PR, pushes
       to main, or writes a production Figma file fails the propose-first constraint.
 
-# HeyHi Confidential

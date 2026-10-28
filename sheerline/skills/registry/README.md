@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline Registry"
 adapted_from: releases/open-source/keel/skills/registry/README.md
 ---
@@ -50,4 +49,3 @@ The scoring weights and the confidence thresholds live in the `TUNING` block at 
 
 *Skills overview: `skills/README.md` · Area map: `os/foundations/registry.yaml`*
 
-*HeyHi Confidential*

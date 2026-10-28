@@ -25,7 +25,6 @@
 //               figma.listAvailableFontsAsync().then(f => console.log(JSON.stringify(f)))
 //             Also read from the MOCK_FONT_DUMP env var when the flag is absent.
 //
-// HeyHi Confidential.
 import vm from 'node:vm';
 import fs from 'node:fs';
 

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 4.4 — Capstone: the compounding argument"
 track: 4
 module: "4.4"
@@ -9,7 +8,7 @@ est_minutes: 30
 teaches: sheerline
 opens_files:
   - sheerline/docs/architecture.md
-  - releases/open-source/keel/docs/diagrams/compounding-loops.svg
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/docs/diagrams/compounding-loops.svg
 ---
 
 # Module 4.4 — Capstone: the compounding argument
@@ -45,7 +44,7 @@ Assembled, the argument is the seminar in one breath: a harness exists because r
 
 ## Walkthrough
 
-Open `sheerline/docs/architecture.md` and read figures 4 and 6 together as two halves of one machine: figure 4 is the quality loop that runs inside a session, figure 6 is the session lifecycle that carries one session to the next. Then open `releases/open-source/keel/docs/diagrams/compounding-loops.svg` and read the three loops, corrections, parameterization, and orientation, and the closing line, the system's own output is its next input. The diagram is keel's, so its parameterization loop names the general keel artifact, the company profile, which Sheerline instances as the engagement intake from module 4.2. Notice the phase roadmap is visible in figure 3, the registry, where each area shows a coverage state and the phase that fills it.
+Open `sheerline/docs/architecture.md` and read figures 4 and 6 together as two halves of one machine: figure 4 is the quality loop that runs inside a session, figure 6 is the session lifecycle that carries one session to the next. Then open [keel's docs/diagrams/compounding-loops.svg](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/diagrams/compounding-loops.svg) and read the three loops, corrections, parameterization, and orientation, and the closing line, the system's own output is its next input. The diagram is keel's, so its parameterization loop names the general keel artifact, the company profile, which Sheerline instances as the engagement intake from module 4.2. Notice the phase roadmap is visible in figure 3, the registry, where each area shows a coverage state and the phase that fills it.
 
 ## Lab
 
@@ -70,9 +69,5 @@ Teach it back. Explain the whole system to a novice in five sentences, one per t
 ## Go deeper
 
 - Architecture figures 4 and 6, [`../../docs/architecture.md`](../../docs/architecture.md): the quality loop and the session lifecycle as two halves of one machine.
-- `releases/open-source/keel/docs/diagrams/compounding-loops.svg`: the three loops and the closing claim.
+- [keel's docs/diagrams/compounding-loops.svg](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/diagrams/compounding-loops.svg): the three loops and the closing claim.
 - The whole seminar, Tracks 0 through 4, is the un-simplified version of the five sentences above. With this module the seminar is complete at 21 modules.
-
----
-
-*HeyHi Confidential*

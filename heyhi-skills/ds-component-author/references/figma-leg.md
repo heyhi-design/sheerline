@@ -2,7 +2,6 @@
 
 *Loaded before the Figma write (Step 3). This leg REUSES `heyhi-figma-ds-generator`'s Phase 3 by reference; it does not restate or copy the Plugin-API mechanics. The only new material here is the slot step and the component-scoped narrowing. Read the generator's method spine first.*
 
-*classification: HeyHi Confidential*
 
 ---
 
@@ -52,4 +51,4 @@ A saved cloud library file only: the Wave 1 scratch library, or a new scratch fi
 
 ---
 
-*HeyHi Confidential. The Figma leg of `ds-component-author`. Engine: `heyhi-figma-ds-generator` Phase 3 (by reference) + Figma's `figma-use`. Probe records: `references/probes.md`.*
+*The Figma leg of `ds-component-author`. Engine: `heyhi-figma-ds-generator` Phase 3 (by reference) + Figma's `figma-use`. Probe records: `references/probes.md`.*

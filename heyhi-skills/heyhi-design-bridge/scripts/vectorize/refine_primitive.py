@@ -20,7 +20,7 @@ Generalises an earlier one-off ring fitter. Circle first; rounded-rect / capsule
 are future fitters behind the same (fit -> arc) contract.
 
 DRAFT in skill-updates/. Promotion is human-gated and happens with the Phase 5 docs.
-Reuses composite_keyline.py (same dir). HeyHi Confidential.
+Reuses composite_keyline.py (same dir).
 """
 from __future__ import annotations
 

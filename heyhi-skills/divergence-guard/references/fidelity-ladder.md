@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Fidelity ladder — what 'right-sized to the test question' means"
 skill: divergence-guard
 loaded_by: "SKILL.md Step 1"
@@ -40,4 +39,4 @@ The ladder maps a question to a *sufficient* rung. It does not say "stop at lo-f
 
 ---
 
-*HeyHi Confidential. Reference for `divergence-guard`. Spec source: `plans/plan-sheerline-p3-prototyping-lofi-2026-09-05.md` § 3.3–§ 3.5, § 6.2. Canon adopted 2026-09-05 (§ 10 D8): structure recommended, values from design practice.*
+*Reference for `divergence-guard`. Spec source: `plans/plan-sheerline-p3-prototyping-lofi-2026-09-05.md` § 3.3–§ 3.5, § 6.2. Canon adopted 2026-09-05 (§ 10 D8): structure recommended, values from design practice.*

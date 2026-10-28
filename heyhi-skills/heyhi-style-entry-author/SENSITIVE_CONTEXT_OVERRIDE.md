@@ -2,7 +2,6 @@
 
 **`heyhi-skills/heyhi-style-entry-author` · Reference · March 24, 2026**
 
-*HeyHi Internal Use Only*
 
 This pattern applies when a style entry will serve users under heightened cognitive load or in emotionally sensitive contexts. It is invoked per-entry, not globally — use it when the entry's `industry_fit.natural` includes any of the scope conditions below.
 
@@ -141,4 +140,4 @@ No style entry rewrites required — entries shift from prose checklist to token
 
 ---
 
-*HeyHi Internal Use Only · Classification: Internal Use Only · Last updated: March 24, 2026*
+*Last updated: March 24, 2026*

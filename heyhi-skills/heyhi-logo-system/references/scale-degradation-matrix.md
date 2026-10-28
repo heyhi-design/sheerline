@@ -1,6 +1,5 @@
 ---
 title: "heyhi-logo-system — Scale-Degradation Matrix"
-classification: HeyHi Confidential
 module: D
 loads_in: [Spec, Critique]
 version: "0.1.0"
@@ -10,7 +9,6 @@ grounding: ["schema.json:280 (logo.scale_degradation, frozen)", "gate0-facilitat
 
 # Scale-Degradation Matrix
 
-**HeyHi Confidential**
 
 *On-demand reference module for `heyhi-logo-system`. Loads in **Spec** (to fill `logo.scale_degradation`) and **Critique** (to score the Scalability axis against a defined path rather than a vibe). Its output keys match the frozen `logo.scale_degradation` schema (`schema.json:280`); it adds no new field.*
 
@@ -88,4 +86,3 @@ Keys used — `thresholds[]` with `below_px` (integer), `use_mark` (one of `icon
 
 *Companion module to `heyhi-logo-system`. Cross-references: [`logo-typology.md`](logo-typology.md), [`mark-failure-modes.md`](mark-failure-modes.md). Grounding: `heyhi-skills/ui-studio/brand-config/schema.json` (frozen `logo.scale_degradation`), `ai-services/design-intelligence/gate0-facilitation-guide.md` (16px test).*
 
-*HeyHi Confidential*

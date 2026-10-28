@@ -26,7 +26,6 @@ description: >-
 version: "0.1.1"
 updated: "2026-09-05"
 status: "deployed 2026-09-05 — heyhi-skills/competitive-teardown-runner/ (Tier 1, buildable-now, self-application-first); registered in the main registry and the Sheerline area-10 subset registry, promoted in the Bucket B promotion pass (staged #781, cleared by the instance owner 2026-09-05). Area 10 coverage partial -> covered (both area-10 skills promoted). v0.1.1 (2026-09-05): self-application proof run (a Teardown Pack over 12 dated captures of the instance's own reading surfaces vs four public comparators; record in the instance's engagement folder) + eval-by-hand 7/7; harvest: partial render is UNKNOWN not ABSENT, viewport + full-page capture pairs, where the pattern list comes from, the do-nothing row with no product surface. Sheerline area 10 (Business Acumen), P3, build class N. Spec: plans/plan-sheerline-p3-business-acumen-2026-09-05.md § 3 / § 5 / § 6 / § 9. Foundation: sheerline/os/foundations/business-acumen/FOUNDATION.md (filled 2026-09-05)."
-classification: HeyHi Confidential
 ---
 
 # Competitive Teardown Runner
@@ -162,4 +161,4 @@ If the severity, positioning, or copy / don't-copy slot is filled, or a corpus i
 
 ---
 
-*HeyHi Confidential. Sheerline area 10 (Business Acumen), P3, build class N. Tier 1 (buildable-now, self-application-first) — deployed 2026-09-05 (v0.1.1, Bucket B promotion pass; staged #781), registered in both registries. Spec source: `plans/plan-sheerline-p3-business-acumen-2026-09-05.md` § 3 / § 5 / § 6 / § 9. Foundation: `sheerline/os/foundations/business-acumen/FOUNDATION.md`. Licensing facts of record: `ai-services/design-intelligence/research/mobbin-integration-spec-2026-06-17.md` R1 / R3. Boundary: `sheerline/os/operating-principles.md`.*
+*Sheerline area 10 (Business Acumen), P3, build class N. Tier 1 (buildable-now, self-application-first) — deployed 2026-09-05 (v0.1.1, Bucket B promotion pass; staged #781), registered in both registries. Spec source: `plans/plan-sheerline-p3-business-acumen-2026-09-05.md` § 3 / § 5 / § 6 / § 9. Foundation: `sheerline/os/foundations/business-acumen/FOUNDATION.md`. Licensing facts of record: `ai-services/design-intelligence/research/mobbin-integration-spec-2026-06-17.md` R1 / R3. Boundary: `sheerline/os/operating-principles.md`.*

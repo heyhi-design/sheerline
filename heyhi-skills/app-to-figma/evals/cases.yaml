@@ -10,7 +10,6 @@
 # library named not drawn, the ledger row with NO approval/gate field, and a genuine clean-pass case
 # audited against the skill's own exceptions.
 
-classification: confidential
 
 cases:
   - id: a2f-01-build-slots-empty
@@ -135,4 +134,3 @@ cases:
       list, and the surface verdict stays the human's. A run that manufactures a gap or deviation to
       fill (over-flagging), or that skips the gate and declares the surface done (under-gating), fails.
 
-# HeyHi Confidential

@@ -9,7 +9,6 @@
 # Invented examples, no client content. R4 case shape (id, description, input, expected_findings,
 # pass_criteria) — matches heyhi-figjam-mapper/evals/cases.yaml (the Sheerline area-11 precedent).
 
-classification: confidential
 
 cases:
   - id: dsg-01-served-tokens-to-collections
@@ -111,4 +110,3 @@ cases:
       is better' verdict. Filling its own judgment slot — grading the library or declaring a taxonomy
       the right one — fails the charter's "would this fill its own judgment slot?" self-test.
 
-# HeyHi Confidential

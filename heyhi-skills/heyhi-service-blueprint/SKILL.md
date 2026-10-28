@@ -22,7 +22,6 @@ description: >-
 version: "0.1.0"
 updated: "2026-09-07"
 status: "DEPLOYED at heyhi-skills/heyhi-service-blueprint/ (v0.1.0, 2026-09-07 D-3 open). Net-new build (Sheerline area 13, Service Design). Spec of record: plans/plan-sheerline-p3-service-blueprint-2026-09-07.md. Client-engagement-first (a client product's field-to-office service). Registered in skill-registry.yaml v2.42.0 (subset v0.10.0); area 13 partial -> covered, the last gap in the 13-area map closed."
-classification: HeyHi Confidential
 ---
 
 # HeyHi Service Blueprint
@@ -156,4 +155,4 @@ If any backstage cell is asserted as fact without an ops confirmation, or the ro
 
 ---
 
-*HeyHi Confidential. Sheerline area 13 (Service Design), conditional, net-new (class N). v0.1.0 deployed 2026-09-07 (D-3 open build, `plans/next-session-sheerline-post-d3-open-2026-09-07.md`, parameterized by a client-engagement offering build plan); registry v2.42.0. Spec source: `plans/plan-sheerline-p3-service-blueprint-2026-09-07.md`. Method canon: `sheerline/os/foundations/service-design/FOUNDATION.md`. Renderer seam: `heyhi-skills/heyhi-figjam-mapper/SKILL.md`. Boundary: `sheerline/os/operating-principles.md`.*
+*Sheerline area 13 (Service Design), conditional, net-new (class N). v0.1.0 deployed 2026-09-07 (D-3 open build, `plans/next-session-sheerline-post-d3-open-2026-09-07.md`, parameterized by a client-engagement offering build plan); registry v2.42.0. Spec source: `plans/plan-sheerline-p3-service-blueprint-2026-09-07.md`. Method canon: `sheerline/os/foundations/service-design/FOUNDATION.md`. Renderer seam: `heyhi-skills/heyhi-figjam-mapper/SKILL.md`. Boundary: `sheerline/os/operating-principles.md`.*

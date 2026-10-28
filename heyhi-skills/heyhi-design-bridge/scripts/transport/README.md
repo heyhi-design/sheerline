@@ -1,6 +1,6 @@
 # Design Bridge — Plugin Transport (Mode 1 live write)
 
-**HeyHi Confidential.** Staged in `skill-updates/` for review; promote to the deployed
+Staged in `skill-updates/` for review; promote to the deployed
 skill (`heyhi-skills/heyhi-design-bridge/scripts/`) on a clean live acceptance.
 
 ## Why this exists

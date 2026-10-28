@@ -1,6 +1,5 @@
 ---
 title: "Required Features — Shopify Theme Implementation Guide"
-classification: confidential
 session: T-1
 version: "1.0.0"
 created: "2026-03-29"
@@ -962,4 +961,4 @@ Expected on product and article pages. Use `rel="nofollow"` on all external shar
 
 ---
 
-*HeyHi Confidential — Session T-1. Implementation reference for heyhi-shopify-theme generation workflow.*
+*Session T-1. Implementation reference for heyhi-shopify-theme generation workflow.*

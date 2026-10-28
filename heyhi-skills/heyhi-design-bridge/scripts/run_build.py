@@ -39,7 +39,6 @@ Commands:
                                      simulate the executor and assert every chunk's
                                      `needs` are satisfied in order (no Figma).
 
-HeyHi Confidential.
 """
 import argparse
 import json

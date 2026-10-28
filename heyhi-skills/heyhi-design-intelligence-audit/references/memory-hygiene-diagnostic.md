@@ -1,5 +1,4 @@
 ---
-classification: confidential
 created: 2026-04-20
 source: Phase 7 — MemPalace Service Articulation
 status: in-use
@@ -173,4 +172,4 @@ This diagnostic was developed with synthetic HeyHi reference data and one produc
 
 ---
 
-*HeyHi Confidential. `heyhi-skills/heyhi-design-intelligence-audit/references/memory-hygiene-diagnostic.md`. Created 2026-04-20. Source: Phase 7 — MemPalace Execution Plan.*
+*`heyhi-skills/heyhi-design-intelligence-audit/references/memory-hygiene-diagnostic.md`. Created 2026-04-20. Source: Phase 7 — MemPalace Execution Plan.*

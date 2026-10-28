@@ -345,4 +345,3 @@ Technical findings need to be translated for non-technical readers without losin
 *Companion to heyhi-design-intelligence-audit/SKILL.md*
 *Cross-reference: ai-services/design-intelligence/README.md · ai-services/_core/ai-service-offerings.md*
 
-*HeyHi Confidential*

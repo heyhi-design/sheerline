@@ -3,7 +3,6 @@ name: financial-ui-patterns
 zone: 2
 load_trigger: Build requires financial data display — currency formatting, KPI cards, accessible charts, dashboard composition, or positive/negative value encoding
 token_estimate: ~950
-classification: HeyHi Internal Use Only
 created: 2026-04-18
 version: "1.1.0"
 scope:
@@ -353,4 +352,4 @@ Skeleton shapes must match the loaded layout — mismatched skeletons cause layo
 
 ---
 
-*HeyHi Internal Use Only. Zone 2 — task-conditional. Scope: client-engagement + heyhi-wide. Load when build requires financial data display, accessible charts, or dashboard composition. v1.0.0 created 2026-04-18 from frontend-research-reference.md v1.2.0.*
+*Zone 2 — task-conditional. Scope: client-engagement + heyhi-wide. Load when build requires financial data display, accessible charts, or dashboard composition. v1.0.0 created 2026-04-18 from frontend-research-reference.md v1.2.0.*

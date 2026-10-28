@@ -22,7 +22,6 @@ frame), so the craft is checked by geometry, not by eyeballing a render.
 Status: DRAFT in skill-updates/. Promotion to the deployed skill is human-gated and
 happens with the Phase 5 doc edits. Not wired into vectorize.py yet.
 
-HeyHi Confidential.
 """
 from __future__ import annotations
 

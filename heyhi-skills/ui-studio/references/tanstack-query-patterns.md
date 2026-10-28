@@ -3,7 +3,6 @@ name: tanstack-query-patterns
 zone: 2
 load_trigger: Build requires server-side pagination on a TanStack Table, debounced filter input wired to a server fetch, or optimistic mutations on row-level edits or deletions
 token_estimate: ~800
-classification: HeyHi Internal Use Only
 created: 2026-04-20
 version: "1.0.0"
 scope:
@@ -304,5 +303,5 @@ This gap is lower priority than the three patterns above: forms can be handled n
 
 ---
 
-*HeyHi Internal Use Only. Created 2026-04-20 from Frontend × TanStack synthesis.*
+*Created 2026-04-20 from Frontend × TanStack synthesis.*
 *Phase B frontend backfill — promoted to P1 for a client engagement (server-side pagination + row mutations both in scope).*

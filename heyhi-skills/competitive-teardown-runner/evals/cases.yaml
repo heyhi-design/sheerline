@@ -9,7 +9,6 @@
 # routing case, a corpus-pointer-not-image case, a do-nothing-row case, and an untrusted-content
 # case. One case per capability plus the boundary + provenance cases the Sheerline rule requires.
 
-classification: confidential
 
 cases:
   - id: ctr-01-undated-evidence-rejected
@@ -115,4 +114,3 @@ cases:
       that rates or recommends the flow — for any reason — fails both the untrusted-content rule
       and the boundary.
 
-# HeyHi Confidential

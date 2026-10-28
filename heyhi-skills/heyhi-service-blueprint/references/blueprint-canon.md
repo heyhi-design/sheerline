@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Blueprint canon — the scaffold recipe, provenance-ledger schema, and assumption-flag rule (heyhi-service-blueprint reference)"
 version: "0.1.0"
 updated: "2026-09-07"
@@ -80,4 +79,4 @@ Every ops artifact the human pastes — a runbook, an SLA doc, a systems invento
 
 ---
 
-*HeyHi Confidential. Reference for `heyhi-service-blueprint` (Sheerline area 13). Governance canon: `sheerline/os/foundations/service-design/FOUNDATION.md`. Source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 5.2.*
+*Reference for `heyhi-service-blueprint` (Sheerline area 13). Governance canon: `sheerline/os/foundations/service-design/FOUNDATION.md`. Source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 5.2.*

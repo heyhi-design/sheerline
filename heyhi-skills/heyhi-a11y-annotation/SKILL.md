@@ -21,7 +21,6 @@ description: >-
 version: "0.1.1"
 updated: "2026-09-12"
 status: "Deployed — heyhi-skills/heyhi-a11y-annotation/; registered in the main + Sheerline subset registries (Sheerline Wave G-2, 2026-08-28). Sheerline area 8 (Accessibility), P2. Class X (extends heyhi-design-bridge): the accessibility-annotation sibling of design-bridge's Translate."
-classification: HeyHi Confidential
 ---
 
 # HeyHi Accessibility Annotation
@@ -163,4 +162,4 @@ If any alt slot, the reading-order intent slot, the role-calls slot, or the sign
 
 ---
 
-*HeyHi Confidential. Sheerline area 8 (Accessibility), P2, class X (extends `heyhi-design-bridge`). v0.1.0 deployed 2026-08-28 (Sheerline Wave G-2), registered in both registries. v0.1.1 (2026-09-12): Step 2.7 gains the full dialog build contract, and Step 2.8's native-substitution flag is generalized from a `<div>`-as-button to the `role=checkbox|radio|switch|button` set, plus a modal-without-dialog-semantics flag; one eval added (a11a-08). From a client-engagement `heyhi-a11y-annotation` finding (a skill-layer fix locked by an eval, erl-SRM; not a registry entry). Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 5.1 (the `heyhi-a11y-annotation` row) + § 9 (boundary + IP posture). Foundation: `sheerline/os/foundations/accessibility/FOUNDATION.md`. Boundary: § 9.*
+*Sheerline area 8 (Accessibility), P2, class X (extends `heyhi-design-bridge`). v0.1.0 deployed 2026-08-28 (Sheerline Wave G-2), registered in both registries. v0.1.1 (2026-09-12): Step 2.7 gains the full dialog build contract, and Step 2.8's native-substitution flag is generalized from a `<div>`-as-button to the `role=checkbox|radio|switch|button` set, plus a modal-without-dialog-semantics flag; one eval added (a11a-08). From a client-engagement `heyhi-a11y-annotation` finding (a skill-layer fix locked by an eval, erl-SRM; not a registry entry). Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 5.1 (the `heyhi-a11y-annotation` row) + § 9 (boundary + IP posture). Foundation: `sheerline/os/foundations/accessibility/FOUNDATION.md`. Boundary: § 9.*

@@ -2,7 +2,6 @@
 
 *Loaded before the template write (Step 5). The parserless Code Connect template joins the Figma component to the code component. It is always emitted; it is published only on an Organization or Enterprise plan. Follow Figma's own `figma-code-connect` served skill for the API; this file is the component-author overlay.*
 
-*classification: HeyHi Confidential*
 
 ---
 
@@ -76,4 +75,4 @@ Read the file back: it is `.figma.ts` (not `.figma.tsx`); the default export is 
 
 ---
 
-*HeyHi Confidential. The Code Connect leg of `ds-component-author`. API: Figma's `figma-code-connect` served skill. Worked example: `code-connect/Chip.figma.ts` on proof PR #822 (redacted url) + the real url in the gitignored proof record.*
+*The Code Connect leg of `ds-component-author`. API: Figma's `figma-code-connect` served skill. Worked example: `code-connect/Chip.figma.ts` on proof PR #822 (redacted url) + the real url in the gitignored proof record.*

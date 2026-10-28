@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "ACR/VPAT report template — the artifact spine"
 skill: heyhi-a11y-audit
 loaded_by: "SKILL.md Step 1"
@@ -115,4 +114,4 @@ Any row still at provenance `automated` must be resolved or explicitly scoped ou
 
 A conformance claim is a representation a product makes to its buyers, its users, and — where a standard is cited in law — to a regulator. Whether an interface *works for a disabled person* is not settled by a clean scan; it is settled by review and by exercising the thing with assistive technology. The skill can lay out every criterion, read the deterministic floor onto the rows it settles, and run the AT protocol; the *claim* is the human's, at the gate. An ACR that writes "Supports Level AA" off automated results has made — quietly, on the product's behalf — the one representation the boundary reserves for a person.
 
-*HeyHi Confidential. Reference for `heyhi-a11y-audit`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 5.1. Canon: `sheerline/os/foundations/accessibility/FOUNDATION.md`.*
+*Reference for `heyhi-a11y-audit`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 5.1. Canon: `sheerline/os/foundations/accessibility/FOUNDATION.md`.*

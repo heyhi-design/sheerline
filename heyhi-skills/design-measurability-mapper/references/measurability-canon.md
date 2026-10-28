@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Measurability canon — the method spine"
 skill: design-measurability-mapper
 loaded_by: "SKILL.md Step 1"
@@ -99,4 +98,4 @@ Which candidate signal a team elevates to *the* metric encodes what the team cho
 
 Every signal, metric, and guardrail the mapper writes is agent-drafted and labeled `[candidate — agent-drafted]`. It is a proposal, never a measured value or an endorsed choice. Any number pulled from an existing dashboard carries its source; anything modeled or projected is tagged `synthetic` so a candidate map can never be mistaken for a live measurement.
 
-*HeyHi Confidential. Reference for `design-measurability-mapper`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 6.1; attitudinal signal classes + guardrail candidates added v0.2.0 per the 2026-08-22 skills audit § 2.4.*
+*Reference for `design-measurability-mapper`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 6.1; attitudinal signal classes + guardrail candidates added v0.2.0 per the 2026-08-22 skills audit § 2.4.*

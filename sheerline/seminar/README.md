@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline + keel: the seminar"
 status: done
 ---
@@ -45,11 +44,11 @@ The figures the modules reference are Sheerline's architecture set at [`../docs/
 | **3 · The quality loop** | advanced | You can trace retrieve → validate → grade → learn through the real subsystems | 3.1 RETRIEVE: the Design System MCP · 3.2 VALIDATE: the validator · 3.3 GRADE: the evaluator · 3.4 LEARN: the corrections registry |
 | **4 · SME synthesis** | expert | You can run a full loop, extend the system, and defend where judgment stays human | 4.1 The boundary and the retained moat · 4.2 Running a loop end to end · 4.3 Extending the system · 4.4 Capstone: the compounding argument |
 
-**All five tracks are built and pass the smoke test** (21 modules): the spine (this file, the module template, the smoke test), **Track 0** (orientation, three modules), **Track 1** (keel end to end, six modules), **Track 2** (Sheerline, the design instance, four modules), **Track 3** (the quality loop, four modules), and **Track 4** (SME synthesis, four modules). Tracks 1 through 4 landed as the sequential dispatch batch under [`../../dispatch/`](../../dispatch/); `smoke_test.py` passes over all 21 modules (structure, paths, links, prereq DAG, voice, separability clean).
+**All five tracks are built and pass the smoke test** (21 modules): the spine (this file, the module template, the smoke test), **Track 0** (orientation, three modules), **Track 1** (keel end to end, six modules), **Track 2** (Sheerline, the design instance, four modules), **Track 3** (the quality loop, four modules), and **Track 4** (SME synthesis, four modules). Tracks 1 through 4 landed as one sequential build batch; `smoke_test.py` passes over all 21 modules (structure, paths, links, prereq DAG, voice, separability clean).
 
 ## The separability line (why the tracks split where they do)
 
-Separability is per module, carried by the `teaches:` tag, not strictly per track. The `teaches: keel` modules (0.1, 0.3, and all of Track 1) teach the general harness and are written to lift cleanly into keel's own public documentation later without a rewrite. The `teaches: sheerline` modules (0.2, and Tracks 2 through 4) teach Sheerline, which is Confidential and gated (C-1 for any publish, D-3 for any offering), and stay internal until those gates open. Track 0 is deliberately mixed: its orientation includes the keel/Sheerline lineage (module 0.2), which is Sheerline-specific. When you author a `teaches: keel` module, keep it self-contained. It may never depend on a Confidential Sheerline internal to make sense, and the smoke test enforces that.
+Separability is per module, carried by the `teaches:` tag, not strictly per track. The `teaches: keel` modules (0.1, 0.3, and all of Track 1) teach the general harness and are written to lift cleanly into keel's own public documentation later without a rewrite. The `teaches: sheerline` modules (0.2, and Tracks 2 through 4) teach Sheerline itself. Sheerline is public (MIT, since 2026-10-27); D-3 still gates any paid offering built on it. Track 0 is deliberately mixed: its orientation includes the keel/Sheerline lineage (module 0.2), which is Sheerline-specific. When you author a `teaches: keel` module, keep it self-contained. It may never depend on a Sheerline internal to make sense, and the smoke test enforces that.
 
 This is Sheerline's own Build → Abstract → Content model applied to the seminar itself: build it internal-first on the real system, abstract the public half after the gate.
 
@@ -61,4 +60,3 @@ It teaches the moat *as architecture* (the shape of the evaluator, the correctio
 
 *Start at [`track-0-orientation/module-0-1.md`](track-0-orientation/module-0-1.md). Architecture map: [`../docs/architecture.md`](../docs/architecture.md). Frame and naming: [`../README.md`](../README.md).*
 
-*HeyHi Confidential*

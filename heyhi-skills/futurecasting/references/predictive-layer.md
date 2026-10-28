@@ -196,4 +196,3 @@ The practitioner validates, corrects, and applies judgment. The predictive layer
 - When assessing cascade risk before finalizing a Decision Register
 - When building temporal anchors into a Working Canvas for quarterly review
 
-*HeyHi Confidential*

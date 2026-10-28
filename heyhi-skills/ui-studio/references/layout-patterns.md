@@ -305,4 +305,4 @@
 
 ---
 
-*HeyHi Internal Use Only. Source: ai-services/design-intelligence/grid-layout-examples.md (Session C, March 2026). Distilled March 25, 2026.*
+*Source: ai-services/design-intelligence/grid-layout-examples.md (Session C, March 2026). Distilled March 25, 2026.*

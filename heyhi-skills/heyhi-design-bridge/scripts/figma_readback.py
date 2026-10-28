@@ -44,7 +44,6 @@ build_figma.py), so that check can be exercised — and witnessed failing — in
     figma_readback.py geometry-check <ir> [--pre-d1]
     figma_readback.py geometry-selftest
 
-HeyHi Confidential.
 """
 import argparse
 import json

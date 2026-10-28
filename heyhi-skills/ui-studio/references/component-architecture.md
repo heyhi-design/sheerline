@@ -3,7 +3,6 @@ name: component-architecture
 zone: 2
 load_trigger: Build requires headless UI components, compound component patterns, Server Components architecture, or Suspense/ErrorBoundary composition
 token_estimate: ~1100
-classification: HeyHi Internal Use Only
 created: 2026-04-18
 version: "1.0.0"
 ---
@@ -329,4 +328,4 @@ No exceptions. Components that fail this gate are not shippable regardless of vi
 
 ---
 
-*HeyHi Internal Use Only. Zone 2 — task-conditional. Load when build requires headless UI primitives, compound component patterns, or Suspense/ErrorBoundary composition. v1.0.0 created 2026-04-18 from frontend-research-reference.md v1.2.0.*
+*Zone 2 — task-conditional. Load when build requires headless UI primitives, compound component patterns, or Suspense/ErrorBoundary composition. v1.0.0 created 2026-04-18 from frontend-research-reference.md v1.2.0.*

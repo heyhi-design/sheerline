@@ -35,7 +35,6 @@ derived_exports:
     staged_at: "releases/private/figma-ds-generator/"
     rule: "one-way: this file is canonical; changes in the export come back through skill-updates/"
 status: "deployed 2026-09-04 — heyhi-skills/heyhi-figma-ds-generator/; registered in the main registry and the Sheerline area-7 subset registry. Built 2026-09-01 from plans/plan-ds-into-figma-generator-2026-08-29.md (DISPATCH-01), staged PR #749, promoted in the 2026-09-04 promotion pass after the spec § 8.1 live proof on the instance's own design system ran green (4 collections / 157 variables / 18 styles / a 27-variant Button, re-run reuse proven; record in the instance's engagement folder). Sheerline area 7 (Design Systems), build class N (net-new). Release tier: buildable-now-internal-first — any designer-facing external surface is D-3-gated (2026-10-09)."
-classification: HeyHi Confidential
 ---
 
 # HeyHi Figma DS Generator
@@ -166,4 +165,4 @@ This skill closes through the Exit Gate Flavor A (`CLAUDE-SESSION-RULES.md § Ex
 
 ---
 
-*HeyHi Confidential. Sheerline area 7 (Design Systems), build class N. v0.1.0 built 2026-09-01, deployed 2026-09-04 after the live proof on the instance's own design system. Spec source: `plans/plan-ds-into-figma-generator-2026-08-29.md` (DISPATCH-01). Precedent: `heyhi-figjam-mapper` (area 11, the first live-Figma generation skill — into FigJam; design-bridge already *writes* to Figma via Translate). Engine: Figma's `figma-generate-library` + `figma-use`. Boundary: § 9.*
+*Sheerline area 7 (Design Systems), build class N. v0.1.0 built 2026-09-01, deployed 2026-09-04 after the live proof on the instance's own design system. Spec source: `plans/plan-ds-into-figma-generator-2026-08-29.md` (DISPATCH-01). Precedent: `heyhi-figjam-mapper` (area 11, the first live-Figma generation skill — into FigJam; design-bridge already *writes* to Figma via Translate). Engine: Figma's `figma-generate-library` + `figma-use`. Boundary: § 9.*

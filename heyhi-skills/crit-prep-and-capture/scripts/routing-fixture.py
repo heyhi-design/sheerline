@@ -10,7 +10,6 @@ with and without the clauses. Read-only: nothing is written to any registry.
 Run from the repo root:
     python3 skill-updates/crit-prep-and-capture/scripts/routing-fixture.py
 
-HeyHi Confidential.
 """
 from __future__ import annotations
 

@@ -425,4 +425,3 @@ Previous months' files are never overwritten. The accumulation is the value.
 *Companion to design-system-care-monthly/SKILL.md*
 *Cross-reference: ai-services/design-intelligence/design-system-maturity-model.md, recurring-revenue/productized-services.md, heyhi-design-intelligence-audit/reference.md*
 
-*HeyHi Confidential*

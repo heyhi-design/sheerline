@@ -685,5 +685,5 @@ If any header is empty or contains advisory prose ("I checked for bugs") instead
 
 ---
 
-*HeyHi Internal Use Only. Style Reference Library procedural skill. Bay Design LLC. March 2026. Phase 2 (Taste Profile) and Mode C (Infra Reference Set Curator) deployed; Mode C promoted 2026-06-17 from the Infra Reference Set thread Phase 2 (corpus at infra-reference-set.md).*
+*Style Reference Library procedural skill. Bay Design LLC. March 2026. Phase 2 (Taste Profile) and Mode C (Infra Reference Set Curator) deployed; Mode C promoted 2026-06-17 from the Infra Reference Set thread Phase 2 (corpus at infra-reference-set.md).*
 *Source material: style-descriptor-vocabulary.md · style-reference-library.md · anti-descriptor-method.md · layer-0-execution-plan.md § Session B · infra-reference-set.md · plan-infra-reference-set-2026-06-17.md*

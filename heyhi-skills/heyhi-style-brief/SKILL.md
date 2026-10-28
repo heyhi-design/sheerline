@@ -206,6 +206,5 @@ If any header is empty or contains advisory prose ("I checked the voice") instea
 
 ---
 
-*HeyHi Internal Use Only. Bay Design LLC. July 2026 · v1.2.0 (updated 2026-07-10).*
+*Bay Design LLC. July 2026 · v1.2.0 (updated 2026-07-10).*
 *Source material: style-reference-library.md · style-descriptor-vocabulary.md · designer-questioning-methodology.md · heyhi-voice/SKILL.md*
-*Classification: internal*

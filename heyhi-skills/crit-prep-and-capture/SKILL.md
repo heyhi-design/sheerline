@@ -29,7 +29,6 @@ version: "0.1.0"
 updated: "2026-09-05"
 status: "deployed 2026-09-05 — heyhi-skills/crit-prep-and-capture/; registered in the main registry and the Sheerline area-11 subset registry, promoted in the Bucket B promotion pass (staged #783, cleared by the instance owner 2026-09-05). Area 11 stays partial by construction. Sheerline area 11 (Collaboration, Communication & Facilitation), P3, build class N (thin), one release tier: buildable-now, self-application-first. Spec: plans/plan-sheerline-p3-crit-prep-2026-09-05.md § 3 / § 4 / § 5 / § 6. Foundation: sheerline/os/foundations/collaboration-facilitation/FOUNDATION.md. Consumer pinned: design-rationale-decision-record v0.2.0 (the Mode A scaffold shape)."
 review_by: "2026-09-19"
-classification: HeyHi Confidential
 ---
 
 # Crit Prep & Capture
@@ -188,4 +187,4 @@ If any artifact carries a verdict, a suggested point to raise, a read of the roo
 
 ---
 
-*HeyHi Confidential. Sheerline area 11 (Collaboration, Communication & Facilitation), P3, build class N (thin). Deployed 2026-09-05 (v0.1.0, Bucket B promotion pass; staged #783), registered in both registries. Spec source: `plans/plan-sheerline-p3-crit-prep-2026-09-05.md` § 3 / § 4 / § 5 / § 6. Foundation: `sheerline/os/foundations/collaboration-facilitation/FOUNDATION.md`. Boundary: `sheerline/os/operating-principles.md`. Consumer pinned: `design-rationale-decision-record` v0.2.0.*
+*Sheerline area 11 (Collaboration, Communication & Facilitation), P3, build class N (thin). Deployed 2026-09-05 (v0.1.0, Bucket B promotion pass; staged #783), registered in both registries. Spec source: `plans/plan-sheerline-p3-crit-prep-2026-09-05.md` § 3 / § 4 / § 5 / § 6. Foundation: `sheerline/os/foundations/collaboration-facilitation/FOUNDATION.md`. Boundary: `sheerline/os/operating-principles.md`. Consumer pinned: `design-rationale-decision-record` v0.2.0.*

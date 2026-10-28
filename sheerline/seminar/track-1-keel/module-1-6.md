@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 1.6 — Session lifecycle, Exit Gate, dispatch"
 track: 1
 module: "1.6"
@@ -8,8 +7,8 @@ prereqs: ["1.5"]
 est_minutes: 30
 teaches: keel
 opens_files:
-  - releases/open-source/keel/os/session-rules.template.md
-  - releases/open-source/keel/os/dispatch/README.md
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/os/session-rules.template.md
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/os/dispatch/README.md
 ---
 
 # Module 1.6 — Session lifecycle, Exit Gate, dispatch
@@ -41,13 +40,13 @@ Dispatch is the same discipline aimed outward: a self-contained work order an ag
 
 ## Walkthrough
 
-Open `releases/open-source/keel/os/session-rules.template.md`. Read "Task Execution" and the one-edit-undo test, then "Verify-Before-Claim" and "Propagation Tier Discipline". Then read "The Exit Gate" closely: the three Flavor A headers, the two Flavor B additions, and the paragraph on why it is structural rather than advisory. That paragraph is the argument for the whole gate.
+Open [keel's os/session-rules.template.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/session-rules.template.md). Read "Task Execution" and the one-edit-undo test, then "Verify-Before-Claim" and "Propagation Tier Discipline". Then read "The Exit Gate" closely: the three Flavor A headers, the two Flavor B additions, and the paragraph on why it is structural rather than advisory. That paragraph is the argument for the whole gate.
 
-Now open `releases/open-source/keel/os/dispatch/README.md`. Read "What dispatch is for" and its exclusions, the ENV CHECK block that goes at the very top, and "Prompt anatomy" with its six sections in order. Notice the standing directive to glob a path before declaring it missing, and the reason: a fresh sub-agent should not falsely report a file gone on a partial inference.
+Now open [keel's os/dispatch/README.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/dispatch/README.md). Read "What dispatch is for" and its exclusions, the ENV CHECK block that goes at the very top, and "Prompt anatomy" with its six sections in order. Notice the standing directive to glob a path before declaring it missing, and the reason: a fresh sub-agent should not falsely report a file gone on a partial inference.
 
 ## Lab
 
-Read a real dispatch prompt's anatomy and name its parts. Open `releases/open-source/keel/os/dispatch/README.md` and work through "Prompt anatomy". Write down the six required sections in order, and for each, one line on what it contributes: MISSION, CONTEXT LOAD, OUTPUT SPEC, CRITICAL CONSTRAINTS, SMOKE TESTS, and QUALITY GATE. Then answer why the ENV CHECK sits above all six rather than inside MISSION.
+Read a real dispatch prompt's anatomy and name its parts. Open [keel's os/dispatch/README.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/dispatch/README.md) and work through "Prompt anatomy". Write down the six required sections in order, and for each, one line on what it contributes: MISSION, CONTEXT LOAD, OUTPUT SPEC, CRITICAL CONSTRAINTS, SMOKE TESTS, and QUALITY GATE. Then answer why the ENV CHECK sits above all six rather than inside MISSION.
 
 **Success looks like:** the six sections named in order with a one-line purpose each, and a one-sentence reason the ENV CHECK runs first: a fresh session must confirm the workspace is reachable before it does any work, or every later step fails for the same avoidable cause.
 
@@ -67,11 +66,7 @@ Read a real dispatch prompt's anatomy and name its parts. Open `releases/open-so
 
 ## Go deeper
 
-- `releases/open-source/keel/os/session-rules.template.md`: task execution, verify-before-claim, propagation tiers, and the Exit Gate in full.
-- `releases/open-source/keel/os/dispatch/README.md`: the six-section anatomy, the ENV CHECK, and the glob directive.
-- `releases/open-source/keel/docs/architecture.md`, figure 3, draws the session as start, route, work, close, and capture, the loop this module runs end to end.
+- [keel's os/session-rules.template.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/session-rules.template.md): task execution, verify-before-claim, propagation tiers, and the Exit Gate in full.
+- [keel's os/dispatch/README.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/dispatch/README.md): the six-section anatomy, the ENV CHECK, and the glob directive.
+- [keel's docs/architecture.md](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/architecture.md), figure 3, draws the session as start, route, work, close, and capture, the loop this module runs end to end.
 - Track 1 ends here. Track 2 shows how keel becomes a design harness, and what the one net-new slot buys.
-
----
-
-*HeyHi Confidential*

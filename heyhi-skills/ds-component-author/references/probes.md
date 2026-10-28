@@ -2,7 +2,6 @@
 
 *Loaded before relying on any probed API (Arc rule 9: probe the Figma surface, never trust it). Every Plugin API call this skill depends on is probed in a scratch file first and the observed result recorded here. The Figma MCP has no changelog, so the surface must be probed, not read from docs.*
 
-*classification: HeyHi Confidential*
 
 ---
 
@@ -70,4 +69,4 @@ Before any write, a read-only `use_figma` (list pages, read collections) confirm
 
 ---
 
-*HeyHi Confidential. Probe records for `ds-component-author`. Re-probe on any Figma MCP change; the surface has no changelog.*
+*Probe records for `ds-component-author`. Re-probe on any Figma MCP change; the surface has no changelog.*

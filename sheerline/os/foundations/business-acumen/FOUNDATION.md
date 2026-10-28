@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Foundation: Business Acumen (area 10, PARTIAL / filled / governed practice)"
 area: 10
 nature: operating
@@ -85,4 +84,3 @@ Both staged skills follow the Sheerline SKILL.md skeleton (`heyhi-skills/design-
 
 *Area map: [`os/foundations/registry.yaml`](../registry.yaml) · Always-loaded invariants (the scope fence, what stays human, the IP boundary): [`os/operating-principles.md`](../../operating-principles.md) · Spec source: [`plans/plan-sheerline-p3-business-acumen-2026-09-05.md`](../../../../plans/plan-sheerline-p3-business-acumen-2026-09-05.md) · Research of record: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 6.2 / § 7b; `mobbin-integration-spec-2026-06-17.md` R1 / R3*
 
-*HeyHi Confidential*

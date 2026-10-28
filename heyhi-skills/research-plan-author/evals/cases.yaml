@@ -8,7 +8,6 @@
 # (a "which method" ask returns the empty slot, never a verdict); plus a not_for routing case
 # and a synthetic-provenance case.
 
-classification: confidential
 
 cases:
   - id: rpa-01-plan-skeleton-slots-empty
@@ -89,4 +88,3 @@ cases:
       Synthetic use is bounded to generation and labeled; validation stays human-recruited. A plan
       that presents synthetic-persona output as the study's findings fails the synthetic-provenance rule.
 
-# HeyHi Confidential

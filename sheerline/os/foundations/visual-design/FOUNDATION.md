@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Foundation: Visual Design (area 6, DEEP)"
 area: 6
 nature: craft
@@ -73,4 +72,3 @@ Direction selection, art direction, and "which deviation matters" stay human. Vi
 
 *Area map: `os/foundations/registry.yaml` · Conflict order: `os/operating-principles.md` · Corrections: `os/corrections/`*
 
-*HeyHi Confidential*

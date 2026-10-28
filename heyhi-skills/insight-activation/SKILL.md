@@ -22,7 +22,6 @@ description: >-
 version: "0.2.0"
 updated: "2026-09-13"
 status: "deployed — heyhi-skills/; promoted 2026-08-23 (Sheerline Wave G-1, plans/plan-sheerline-skills-upgrade-2026-08-22.md). Findings→corrections bridge built on the R1 corrections runtime. v0.2.0 (2026-09-13, insight-registry build): dual-routed — Step 2b/5b now also route an insight-shaped finding to the insight registry (plans/plan-sheerline-insight-registry-2026-09-12.md; plans/decision-register-sheerline-insight-registry-2026-09-13.md). Registered in skill-registry.yaml + sheerline/skills/registry/skill-registry.yaml (entry descriptions to sync with the routing battery next pass). Spec: sheerline-skill-buildout-research-2026-08-09.md § 7c use case #11; closes the 2026-08-22 skills audit § 2.5."
-classification: HeyHi Confidential
 ---
 
 # Insight Activation
@@ -199,4 +198,4 @@ If any candidate landed in the live registry, if the decide-to-adopt slot is fil
 
 ---
 
-*HeyHi Confidential. Sheerline Wave G-1 (findings→corrections bridge), the highest-value in-Sheerline research capability per `sheerline-skill-buildout-research-2026-08-09.md` § 7c / § 8. Built on the R1 corrections runtime (`heyhi-mcp/heyhi_mcp/corrections/`), not as a research tool. Closes the 2026-08-22 skills audit § 2.5 (the corrections loop cannot turn). Boundary: § 9.*
+*Sheerline Wave G-1 (findings→corrections bridge), the highest-value in-Sheerline research capability per `sheerline-skill-buildout-research-2026-08-09.md` § 7c / § 8. Built on the R1 corrections runtime (`heyhi-mcp/heyhi_mcp/corrections/`), not as a research tool. Closes the 2026-08-22 skills audit § 2.5 (the corrections loop cannot turn). Boundary: § 9.*

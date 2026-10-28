@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 4.2 — Running a loop end to end"
 track: 4
 module: "4.2"
@@ -68,7 +67,3 @@ Dry-run the intake on your own practice's system. Work the intake questions with
 - `sheerline/os/session-rules.md`: the design smoke test and the Exit Gate in full.
 - Architecture figure 6, [`../../docs/architecture.md`](../../docs/architecture.md), draws the six-stage session lifecycle from intake to Exit Gate.
 - The render-and-look rule is grades-inform-the-human-reads from 3.3; the captured correction that loads next session is 3.4. Extending the system is 4.3.
-
----
-
-*HeyHi Confidential*

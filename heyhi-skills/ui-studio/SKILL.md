@@ -585,4 +585,4 @@ If any header is empty or contains advisory prose ("I checked for bugs") instead
 
 ---
 
-*HeyHi Internal Use Only. Created 2026-03-25.*
+*Created 2026-03-25.*

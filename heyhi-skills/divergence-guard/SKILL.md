@@ -26,7 +26,6 @@ version: "0.1.0"
 updated: "2026-09-05"
 status: "deployed 2026-09-07 — heyhi-skills/divergence-guard/ (buildable-now, internal-first, self-application-first); registered in the main registry and the Sheerline area-5 subset registry, promoted in the Bucket B convergence third run (staged #788, cleared by the instance owner 2026-09-07). On demand in v1 (spec § 10 D2: no Exit-Gate hook; never a required header). Sheerline area 5 (Wireframing & Prototyping), P3 deepen, build class N; coverage unchanged (area 5 stays covered). Spec: plans/plan-sheerline-p3-prototyping-lofi-2026-09-05.md § 3 / § 5 / § 6 / § 9. Foundation: sheerline/os/foundations/prototyping/FOUNDATION.md."
 review_by: "2026-09-19"
-classification: HeyHi Confidential
 ---
 
 # Divergence Guard
@@ -149,4 +148,4 @@ If either ⛔ slot is filled, a verdict or score field exists, N is enforced, or
 
 ---
 
-*HeyHi Confidential. Sheerline area 5 (Wireframing & Prototyping), P3 deepen, build class N. Staged 2026-09-05 (v0.1.0) in `skill-updates/`, registry-inert until the Bucket B convergence pass promotes it. Spec source: `plans/plan-sheerline-p3-prototyping-lofi-2026-09-05.md` § 3 / § 5 / § 6 / § 9. Foundation: `sheerline/os/foundations/prototyping/FOUNDATION.md`. Boundary: `sheerline/os/operating-principles.md` (the ideation-diversity guard, pointed at). The advisory-never-gate construction follows `heyhi-drift-repair`'s `detection`-not-`severity` precedent.*
+*Sheerline area 5 (Wireframing & Prototyping), P3 deepen, build class N. Staged 2026-09-05 (v0.1.0) in `skill-updates/`, registry-inert until the Bucket B convergence pass promotes it. Spec source: `plans/plan-sheerline-p3-prototyping-lofi-2026-09-05.md` § 3 / § 5 / § 6 / § 9. Foundation: `sheerline/os/foundations/prototyping/FOUNDATION.md`. Boundary: `sheerline/os/operating-principles.md` (the ideation-diversity guard, pointed at). The advisory-never-gate construction follows `heyhi-drift-repair`'s `detection`-not-`severity` precedent.*

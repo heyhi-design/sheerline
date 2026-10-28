@@ -38,7 +38,6 @@
 #   maturity.re_grade_due : bool, derived by measure_maturity.py from the cadence anchor;
 #                           never hand-set.
 
-classification: confidential
 
 meta:
   version: "0.1.11"
@@ -397,4 +396,3 @@ areas:
       last_graded: "2026-09-15"
       re_grade_due: false
 
-# HeyHi Confidential

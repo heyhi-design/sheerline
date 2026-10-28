@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Lo-fi method — the ceiling, the divergence axes, the inventory schema, the Mermaid hand-off"
 skill: flow-and-lofi-author
 loaded_by: "SKILL.md Step 1 (also pointed at by divergence-guard/references/fidelity-ladder.md for the axes)"
@@ -72,4 +71,4 @@ For each alternative, each screen gets a wire description in this order: the reg
 
 ---
 
-*HeyHi Confidential. Reference for `flow-and-lofi-author`; the divergence axes are authored here and pointed at from `divergence-guard/references/fidelity-ladder.md`. Spec source: `plans/plan-sheerline-p3-prototyping-lofi-2026-09-05.md` § 2.3–§ 2.5, § 6.2. Canon adopted 2026-09-05 (§ 10 D8): structure recommended, values from design practice.*
+*Reference for `flow-and-lofi-author`; the divergence axes are authored here and pointed at from `divergence-guard/references/fidelity-ladder.md`. Spec source: `plans/plan-sheerline-p3-prototyping-lofi-2026-09-05.md` § 2.3–§ 2.5, § 6.2. Canon adopted 2026-09-05 (§ 10 D8): structure recommended, values from design practice.*

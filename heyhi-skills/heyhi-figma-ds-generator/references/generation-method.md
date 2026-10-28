@@ -2,7 +2,6 @@
 
 *The method spine. Loaded on demand, not at session start (Earn the Room). SKILL.md is the procedure; this file carries the mechanism decision, the input/output contracts, the engine phase mapping, the transport constraints, and the re-run rules.*
 
-*classification: HeyHi Confidential*
 
 ---
 
@@ -139,4 +138,4 @@ The instance's own served DS in the first live proof (~124 canonical tokens per 
 
 ---
 
-*HeyHi Confidential. Reference for `heyhi-figma-ds-generator` (Sheerline area 7). Engine: Figma's `figma-generate-library` (§ references above) + `figma-use`. Live-write lessons: `heyhi-skills/heyhi-design-bridge/` (versions cited inline). Spec source: `plans/plan-ds-into-figma-generator-2026-08-29.md`.*
+*Reference for `heyhi-figma-ds-generator` (Sheerline area 7). Engine: Figma's `figma-generate-library` (§ references above) + `figma-use`. Live-write lessons: `heyhi-skills/heyhi-design-bridge/` (versions cited inline). Spec source: `plans/plan-ds-into-figma-generator-2026-08-29.md`.*

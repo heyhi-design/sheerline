@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline Operating Principles"
 adapted_from: releases/open-source/keel/os/operating-principles.template.md
 ---
@@ -81,18 +80,20 @@ The universal fundamentals themselves (the binding UX laws, the control-state co
 
 ## Document Classification
 
+The Sheerline tree and every skill its registry governs are public: MIT-licensed, published at [`heyhi-design/sheerline`](https://github.com/heyhi-design/sheerline) (2026-10-27). A new file here needs no classification mark, and the export strips any legacy mark a source file still carries.
+
+Classification still applies to an instance's own files (its calibrations, engagement records, client work), on the instance's own scheme, declared in its operating principles. Two tiers is the usual shape:
+
 | Tier | Mark | Applies to |
 |---|---|---|
-| **Confidential** | `HeyHi Confidential` | trade secrets, methodology, the retained moat, core research |
-| **Internal** | `HeyHi Internal Use Only` | operational docs, tracking, handoffs |
-
-Every file in `sheerline/` is Confidential at creation: `classification: confidential` frontmatter where the format supports it, plus a `HeyHi Confidential` footer.
+| **Confidential** | `<Org> Confidential` | trade secrets, calibrated values, the retained moat, core research |
+| **Internal** | `<Org> Internal Use Only` | operational docs, tracking, handoffs |
 
 ---
 
 ## The IP boundary (scaffold ships, populated instance stays)
 
-Sheerline's posture is the scaffold-ships / populated-instance-stays split, confirmed against `legal/ip-strategy.md` (gitignored; resolved against the main workspace). The scaffold (this `os/` layer, the registry engine, the corrections schema and generic seeds, the MCP contract, the DS-MCP scaffold) is potentially publishable and stays on C-1 hold for the public tree. The **retained moat stays** in a separate unpublished tree and is not built here: the boundary and evaluation layer, the graded evaluator, the conformance parser, the populated corrections corpus and its promotion judgment, the calibrated thresholds, the DS-MCP populated instance. This skeleton is the scaffold half only.
+Sheerline's posture is the scaffold-ships / populated-instance-stays split, confirmed against `legal/ip-strategy.md` (gitignored; resolved against the main workspace). The scaffold (this `os/` layer, the registry engine, the corrections schema and generic seeds, the MCP contract, the DS-MCP scaffold) ships publicly under MIT (since 2026-10-27; the C-1 attorney hold no longer gates the scaffold). The **retained moat stays** in a separate unpublished tree and is not built here: the boundary and evaluation layer, the graded evaluator, the conformance parser, the populated corrections corpus and its promotion judgment, the calibrated thresholds, the DS-MCP populated instance. This skeleton is the scaffold half only.
 
 ---
 
@@ -103,5 +104,3 @@ When a document is something other files, agents, or scanners read to discover w
 ---
 
 *Voice: `heyhi-skills/heyhi-voice/SKILL.md` · Session workflow: `os/session-rules.md` · Area map: `os/foundations/registry.yaml`*
-
-*HeyHi Confidential*

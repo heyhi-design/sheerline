@@ -229,7 +229,3 @@ Net effect: a real client mockup was finished in place (type system + hero photo
 ## 8. v1 success definition
 
 v1 succeeds when (a) a real HeyHi identity proposal (a `ui-studio` prototype) is translated end to end through the four touchpoints into a Figma file with responsive mockups plus the documentation frame, color fills Variable-bound, and every unmapped feature surfaced as a flag, with no manual JSON authoring; and (b) a Nano Banana mark is vectorized to within the Phase-V.0 anchor ceiling and landed in the `logo.marks` slot, with the human polish step the only hand-work. Both run from a single chat invocation.
-
----
-
-*HeyHi Confidential*

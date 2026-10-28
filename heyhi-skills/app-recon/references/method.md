@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "app-recon method: the tier gate, the six moves, the fan-out shape, and the verification rules"
 skill: app-recon
 loaded_by: "SKILL.md Step 1 (the method spine)"
@@ -94,4 +93,4 @@ Given `--since <baseline>`: run `git diff --stat <baseline>..HEAD`, take the cha
 
 ---
 
-*HeyHi Confidential. Method reference for `app-recon` (Sheerline Lane C). Spec source: `plans/plan-sheerline-fdde-loop-2026-09-07.md` § 3.1 stage 1 / § 3.3. Method attribution: the codebase-recon protocol (a sibling engagement, method only; no engagement content crosses).*
+*Method reference for `app-recon` (Sheerline Lane C). Spec source: `plans/plan-sheerline-fdde-loop-2026-09-07.md` § 3.1 stage 1 / § 3.3. Method attribution: the codebase-recon protocol (a sibling engagement, method only; no engagement content crosses).*

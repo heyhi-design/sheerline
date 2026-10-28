@@ -24,7 +24,6 @@ description: >-
 version: "0.1.0"
 updated: "2026-09-04"
 status: "deployed 2026-09-04 — heyhi-skills/research-plan-author/ (Tier 1, buildable-now, self-application-first); registered in the main registry and the Sheerline area-1 subset registry, promoted in the 2026-09-04 promotion pass (staged PR #753). Area 1 coverage partial -> covered. Sheerline area 1 (User Research), P3, build class N. Spec: plans/plan-sheerline-p3-ur-ia-foundations-2026-08-29.md § 1.2 (Tier 1) / § 4.1 / § 4.4. Foundation: sheerline/os/foundations/user-research/FOUNDATION.md."
-classification: HeyHi Confidential
 ---
 
 # Research Plan Author
@@ -168,4 +167,4 @@ If the question-lock, method-selection, or go slot is filled, the gate has **not
 
 ---
 
-*HeyHi Confidential. Sheerline area 1 (User Research), P3, build class N. Tier 1 (buildable-now, self-application-first) — deployed 2026-09-04 (v0.1.0), registered in both registries. Spec source: `plans/plan-sheerline-p3-ur-ia-foundations-2026-08-29.md` § 1.2 / § 4.1 / § 4.4. Foundation: `sheerline/os/foundations/user-research/FOUNDATION.md`. Boundary: `sheerline/os/operating-principles.md`.*
+*Sheerline area 1 (User Research), P3, build class N. Tier 1 (buildable-now, self-application-first) — deployed 2026-09-04 (v0.1.0), registered in both registries. Spec source: `plans/plan-sheerline-p3-ur-ia-foundations-2026-08-29.md` § 1.2 / § 4.1 / § 4.4. Foundation: `sheerline/os/foundations/user-research/FOUNDATION.md`. Boundary: `sheerline/os/operating-principles.md`.*

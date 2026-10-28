@@ -319,6 +319,5 @@ If any header is empty or contains advisory prose ("I checked for bugs") instead
 
 ---
 
-*HeyHi Internal Use Only. Bay Design LLC. March 2026.*
+*Bay Design LLC. March 2026.*
 *Source material: style-reference-library.md · style-descriptor-vocabulary.md · compositional-layout-patterns.md · grid-layout-examples.md · moodboard-template.md · anti-descriptor-method.md · gate0-facilitation-guide.md*
-*Classification: internal*

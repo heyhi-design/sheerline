@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "feature-increment: method spine"
 ---
 
@@ -80,4 +79,4 @@ One row per contract element, three target columns, one verdict column. Presence
 
 The Figma leg re-reads the `app-to-figma` state ledger and updates by node ID. The repo leg is idempotent by branch (one proof branch, one PR). The coverage table is regenerated each run from the current three targets. A human-ruled deviation is never silently reverted on a re-run.
 
-*HeyHi Confidential. `skill-updates/feature-increment/references/`. The method spine for the three-target increment. Engines: `app-to-figma` (update mode), `ui-studio` Mode A, `intent-journey-map`, `app-recon`, `validate_output`.*
+*`skill-updates/feature-increment/references/`. The method spine for the three-target increment. Engines: `app-to-figma` (update mode), `ui-studio` Mode A, `intent-journey-map`, `app-recon`, `validate_output`.*

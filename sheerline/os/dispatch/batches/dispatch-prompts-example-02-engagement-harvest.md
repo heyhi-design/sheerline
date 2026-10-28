@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example: harvest a finished engagement into candidate corrections"
 status: pending
 example: true
@@ -39,4 +38,3 @@ example: true
 
 **QUALITY GATE.** A list a human can accept or reject item by item.
 
-*HeyHi Confidential*

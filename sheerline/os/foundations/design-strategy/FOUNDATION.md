@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Foundation: Design Strategy & Product Thinking (area 9, PARTIAL / governance-manifest)"
 area: 9
 nature: operating
@@ -48,4 +47,3 @@ The rules that keep this area's skills warden-shaped are the standing boundary i
 
 *Area map: `os/foundations/registry.yaml` · Human-judgment boundary + the grades-never-gates line: `os/operating-principles.md` · Skill routing: `sheerline/skills/registry/skill-registry.py`*
 
-*HeyHi Confidential*

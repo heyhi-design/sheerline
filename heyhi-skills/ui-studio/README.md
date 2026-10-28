@@ -215,4 +215,3 @@ The `tokens.*` namespace in the config is a delivery surface. Never add `_note`,
 
 All scripts are in the standard library only. No pip install required.
 
-*HeyHi Confidential*

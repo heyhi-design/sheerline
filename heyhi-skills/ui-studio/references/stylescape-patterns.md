@@ -1,6 +1,5 @@
 ---
 title: "Stylescape / Identity Proposal Reference"
-classification: internal
 status: active
 scope: ui-studio reference — the fixed template for the Identity Proposal artifact-type
 loaded_by:
@@ -214,4 +213,4 @@ One self-contained `index.html` that opens in any browser and prints clean to PD
 
 ---
 
-*HeyHi Internal Use Only. Bay Design `heyhi-skills/ui-studio/references/`. Created 2026-06-10. Updated 2026-06-11: § One Direction Led gained the operational guard scoring (dimension→field table, selection-match precondition, color-temperature coarseness tie-breaker, and the two-direction layout), promoted from the distinctness-guard validation (skill-updates/ui-studio/).*
+*Bay Design `heyhi-skills/ui-studio/references/`. Created 2026-06-10. Updated 2026-06-11: § One Direction Led gained the operational guard scoring (dimension→field table, selection-match precondition, color-temperature coarseness tie-breaker, and the two-direction layout), promoted from the distinctness-guard validation (skill-updates/ui-studio/).*

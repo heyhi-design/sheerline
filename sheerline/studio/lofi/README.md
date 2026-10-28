@@ -1,5 +1,4 @@
 ---
-classification: confidential
 created: "2026-08-22"
 status: ready-for-review
 lane: DISPATCH-02 (LOFI-FIGMA)
@@ -98,7 +97,6 @@ This page is the Opus 5 side of a model comparison. After it was committed, the 
 
 ---
 
-*HeyHi Confidential*
 
 ---
 
@@ -132,7 +130,6 @@ Twelve values were read back out of Figma and compared against `shared/studio.cs
 1. Review the Figma page above, and open `sheerline/studio/index.html` and `session.html` locally for the interactive read.
 2. Record the next-step decision as a dated line appended to [`plans/plan-sheerline-studio-ui-2026-08-21.md`](../../../plans/plan-sheerline-studio-ui-2026-08-21.md) § 11, and flip that plan's frontmatter `status:` (`done` if the exercise closes here; `in-progress` or `blocked` if a follow-on is chosen). Commit both.
 
-*HeyHi Confidential.*
 
 ### Adversarial pass (2026-08-24, post-capture)
 

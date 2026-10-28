@@ -1,13 +1,11 @@
 ---
 title: "heyhi-logo-system — Reference"
-classification: HeyHi Confidential
 version: "0.3.0"
 updated: "2026-06-10"
 ---
 
 # heyhi-logo-system: Reference
 
-**HeyHi Confidential**
 
 *Companion to `SKILL.md`. Pull this when running any of the three modes. SKILL.md orchestrates; this file holds the rubrics, templates, and the JSON shape the work produces. Detail lives here so the procedure stays readable.*
 
@@ -279,4 +277,3 @@ When modes chain, each passes a defined artifact forward so a chained run is not
 
 *Companion to `heyhi-logo-system/SKILL.md`. Cross-reference: `ai-services/design-intelligence/`, `ai-services/_core/decision-log.md` (logo namespace ADR).*
 
-*HeyHi Confidential*

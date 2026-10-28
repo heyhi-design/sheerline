@@ -23,7 +23,6 @@ description: >-
 version: "0.1.0"
 updated: "2026-09-04"
 status: "deployed 2026-09-04 — heyhi-skills/heyhi-drift-repair/; registered in the main registry and the Sheerline area-7 subset registry. Built from plans/plan-drift-repair-loop-2026-08-29.md (DISPATCH-02 decision-ready spec, PR #747), staged PR #750/#751, promoted in the 2026-09-04 promotion pass. Sheerline area 7 (Design Systems), cross-cutting area 8 (Accessibility). Adopts the spec's §10 D-1…D-5 recommendations and the OQ defaults (proposal-first, code + token-source targets; OQ-1 Figma canvas write = planned v2; OQ-3 promotion path documented in corrections-intake/README.md, PR #761)."
-classification: HeyHi Confidential
 ---
 
 # HeyHi Drift-Repair Loop
@@ -190,4 +189,4 @@ If any `detection: judged` finding was auto-repaired, if any deviation record is
 
 ---
 
-*HeyHi Confidential. Sheerline area 7 (Design Systems), cross-cutting area 8 (Accessibility). Deployed 2026-09-04 (v0.1.0) — registered in both registries. Spec source: `plans/plan-drift-repair-loop-2026-08-29.md` (DISPATCH-02, PR #747). Sibling of the DS-into-Figma generator (`plans/plan-ds-into-figma-generator-2026-08-29.md`, disjoint output — that writes a system in, this writes a fix back). Portfolio use is a separate redaction pass per the spec's §11 (strip the seed transforms, instance internals, intake field names, paths, IP/charter cross-references; keep the problem framing, the detection-vs-severity decision, the write-target trade-off, the never-auto boundary, the provenance model, and the acceptance shape).*
+*Sheerline area 7 (Design Systems), cross-cutting area 8 (Accessibility). Deployed 2026-09-04 (v0.1.0) — registered in both registries. Spec source: `plans/plan-drift-repair-loop-2026-08-29.md` (DISPATCH-02, PR #747). Sibling of the DS-into-Figma generator (`plans/plan-ds-into-figma-generator-2026-08-29.md`, disjoint output — that writes a system in, this writes a fix back). Portfolio use is a separate redaction pass per the spec's §11 (strip the seed transforms, instance internals, intake field names, paths, IP/charter cross-references; keep the problem framing, the detection-vs-severity decision, the write-target trade-off, the never-auto boundary, the provenance model, and the acceptance shape).*

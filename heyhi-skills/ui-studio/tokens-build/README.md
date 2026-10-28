@@ -1,6 +1,6 @@
 # tokens-build — DTCG-native → CSS transform (Style Dictionary)
 
-**HeyHi Internal Use Only.** Sheerline W5 / audit G7 (Phase B2).
+Sheerline W5 / audit G7 (Phase B2).
 
 Proves the interop half of audit G7 the design harness was missing: a ui-studio brand config
 authored **DTCG-native** (via `../scripts/dtcg-codemod.py`) is a valid **Style Dictionary**

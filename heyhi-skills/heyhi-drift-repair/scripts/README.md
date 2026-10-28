@@ -1,6 +1,6 @@
 # `scripts/` — the repair engine
 
-*HeyHi Confidential. The engine behind `heyhi-drift-repair/SKILL.md` Step 3.*
+*The engine behind `heyhi-drift-repair/SKILL.md` Step 3.*
 
 ## What is here
 

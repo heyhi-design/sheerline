@@ -265,4 +265,3 @@ The Signal Map without a Keeper is a document. With a Keeper, it's a practice.
 
 An organization that runs all three has: early warning literacy, strategic direction, and accountable decision-making. That's not a workshop outcome. That's an organizational capability.
 
-*HeyHi Confidential*

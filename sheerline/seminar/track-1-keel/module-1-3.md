@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 1.3 — The registry engine and the confidence gate"
 track: 1
 module: "1.3"
@@ -8,9 +7,9 @@ prereqs: ["1.2"]
 est_minutes: 30
 teaches: keel
 opens_files:
-  - releases/open-source/keel/skills/registry/README.md
-  - releases/open-source/keel/skills/registry/skill-registry.py
-  - releases/open-source/keel/skills/registry/skill-registry.template.yaml
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/skills/registry/README.md
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/skills/registry/skill-registry.py
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/skills/registry/skill-registry.template.yaml
 ---
 
 # Module 1.3 — The registry engine and the confidence gate
@@ -30,7 +29,7 @@ After this you can:
 
 ## Concept
 
-The registry is two files. One is the index, `releases/open-source/keel/skills/registry/skill-registry.template.yaml`: one entry per capability, describing what each skill is for. The other is the search over that index, `releases/open-source/keel/skills/registry/skill-registry.py`: it takes a plain-language query and returns the few capabilities most likely to serve it. You describe the task, the search returns a short list, and only those load. This matters more the more skills you own. Five fit in a session's context without anyone noticing; forty do not, and the failure is the quiet one from module 1.2, the context filling with procedures the task never touches.
+The registry is two files. One is the index, [keel's skills/registry/skill-registry.template.yaml](https://github.com/heyhi-design/keel/blob/v0.1.0/skills/registry/skill-registry.template.yaml): one entry per capability, describing what each skill is for. The other is the search over that index, [keel's skills/registry/skill-registry.py](https://github.com/heyhi-design/keel/blob/v0.1.0/skills/registry/skill-registry.py): it takes a plain-language query and returns the few capabilities most likely to serve it. You describe the task, the search returns a short list, and only those load. This matters more the more skills you own. Five fit in a session's context without anyone noticing; forty do not, and the failure is the quiet one from module 1.2, the context filling with procedures the task never touches.
 
 Each entry carries a small schema. The fields worth knowing now are `description` and `semantic_tags` (matched against the query), `trigger_patterns` (exact phrases that fire at the highest weight), `dependencies` (files co-loaded when the skill is chosen), `load_cost_tokens` (roughly character count over four), and `not_for`.
 
@@ -42,13 +41,13 @@ The payoff is the confidence gate, and the third of its three answers is the poi
 
 ## Walkthrough
 
-Open `releases/open-source/keel/skills/registry/README.md`. Read "The two files" and "The per-entry schema" so you know what each entry declares. Then read the section on `not_for` and the paragraph under it about a clause that reads as correct and does nothing: that is the most important passage in the file, and its three-step verification (run the host skill's own triggers back through the search, run the queries the clause should redirect, and never lead the clause with the skill's most common word) is a procedure worth keeping.
+Open [keel's skills/registry/README.md](https://github.com/heyhi-design/keel/blob/v0.1.0/skills/registry/README.md). Read "The two files" and "The per-entry schema" so you know what each entry declares. Then read the section on `not_for` and the paragraph under it about a clause that reads as correct and does nothing: that is the most important passage in the file, and its three-step verification (run the host skill's own triggers back through the search, run the queries the clause should redirect, and never lead the clause with the skill's most common word) is a procedure worth keeping.
 
-Now open `releases/open-source/keel/skills/registry/skill-registry.py` and find the `TUNING` block at the top. Notice that every weight, the penalty, and the three thresholds are named constants in that one place. That single-location discipline is what lets you re-tune routing without hunting through the file. Then open `releases/open-source/keel/skills/registry/skill-registry.template.yaml` and read one entry end to end, so the schema stops being abstract.
+Now open [keel's skills/registry/skill-registry.py](https://github.com/heyhi-design/keel/blob/v0.1.0/skills/registry/skill-registry.py) and find the `TUNING` block at the top. Notice that every weight, the penalty, and the three thresholds are named constants in that one place. That single-location discipline is what lets you re-tune routing without hunting through the file. Then open [keel's skills/registry/skill-registry.template.yaml](https://github.com/heyhi-design/keel/blob/v0.1.0/skills/registry/skill-registry.template.yaml) and read one entry end to end, so the schema stops being abstract.
 
 ## Lab
 
-Run the search against the five starter skills the template ships with. From `releases/open-source/keel/skills/registry/`, after the one-time install the README lists, run a routing query:
+Run the search against the five starter skills the template ships with. From the skills/registry folder of your keel checkout ([source at v0.1.0](https://github.com/heyhi-design/keel/tree/v0.1.0/skills/registry)), after the one-time install the README lists, run a routing query:
 
 ```
 python3 skill-registry.py --registry skill-registry.template.yaml "draft a proposal"
@@ -80,11 +79,7 @@ Read both verdicts. The first returns a skill; the second returns a confidence l
 
 ## Go deeper
 
-- `releases/open-source/keel/skills/registry/README.md`: the schema, the `not_for` trap, tuning, and the confidence gate in full.
-- `releases/open-source/keel/skills/registry/skill-registry.py`: the `TUNING` block and the search itself.
-- `releases/open-source/keel/docs/architecture.md`, figure 3, draws the confidence gate as the routing step of a session.
+- [keel's skills/registry/README.md](https://github.com/heyhi-design/keel/blob/v0.1.0/skills/registry/README.md): the schema, the `not_for` trap, tuning, and the confidence gate in full.
+- [keel's skills/registry/skill-registry.py](https://github.com/heyhi-design/keel/blob/v0.1.0/skills/registry/skill-registry.py): the `TUNING` block and the search itself.
+- [keel's docs/architecture.md](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/architecture.md), figure 3, draws the confidence gate as the routing step of a session.
 - The gate is Earn the Room from module 0.3 in mechanism form; corrections in module 1.4 are the other always-loaded, active-only mechanism.
-
----
-
-*HeyHi Confidential*

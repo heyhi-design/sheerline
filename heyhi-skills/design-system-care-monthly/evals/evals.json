@@ -2,7 +2,6 @@
   "skill_name": "design-system-care-monthly",
   "version": "1.2.0",
   "created": "2026-07-06",
-  "classification": "internal",
   "description": "13 eval scaffold cases for design-system-care-monthly, grounded in documented SKILL.md behavior (setup-grade v2 H2; case 7 added 2026-09-01 for Step 5h Agent Conformance Audit; cases 8-13 added 2026-09-07 for the forward-deployed-loop steps 1b/3b/5e/7, Lane I / DISPATCH-10, including a clean-pass case (application_loop disabled) and a no-flip / no-gate assertion). Subjective/taste dimensions are marked human-judged, not asserted as mechanically checkable.",
   "evals": [
     {

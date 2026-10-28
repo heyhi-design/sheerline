@@ -7,7 +7,6 @@
 # the input, apply SKILL.md's procedure, judge against pass_criteria. Invented examples (ia-01
 # grounds on a real 2026-08-23 self-application finding, E-5). R4 case shape.
 
-classification: confidential
 
 cases:
   - id: ia-01-factual-finding-activated-to-intake
@@ -118,4 +117,3 @@ cases:
       The skill declines / routes rather than running an audit or editing the live registry.
       Absorbing an audit task, or editing the live registry, fails the reciprocal not_for.
 
-# HeyHi Confidential

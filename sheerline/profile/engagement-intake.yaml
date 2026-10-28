@@ -13,7 +13,6 @@
 # engagement, or a self variant. The engagement folder is gitignored (main workspace only). A run is POINTED at that path at run time: the filled intake
 # is passed in explicitly, never auto-discovered by scanning the tree. The tracked template stays blank.
 
-classification: confidential
 
 engagement:
   label: ""              # A non-identifying session label (e.g. "Engagement N"), never a client name.
@@ -47,7 +46,7 @@ app:
 
 deliverable:
   root: ""               # where finished artifacts land: <engagement folder>/deliverables (gitignored, main workspace)
-  classification: ""     # default footer for produced internal files (e.g. "HeyHi Confidential", or the client's own scheme)
+  classification: ""     # default footer for produced internal files (e.g. "Acme Confidential", or the client's own scheme)
 
 practice_areas_in_scope: []
   # The area ids (os/foundations/registry.yaml) this engagement touches. Governs which
@@ -68,4 +67,3 @@ boundary:
   retained_moat_touched: "" # true | false  (does this engagement touch the evaluator / populated corpus / calibration?)
   hermetic_seal_confirmed: "" # true | false  (no client name in any tracked artifact)
 
-# HeyHi Confidential

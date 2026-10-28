@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
-# HeyHi Confidential — Wheelhouse (sheerline/studio) internal link checker.
-# classification: confidential
+# Wheelhouse (sheerline/studio) internal link checker.
 #
 # Static check that every INTERNAL href/src in the studio HTML resolves to a
 # real file on disk (the plan §10 AC-3 mechanism, and D-08 smoke test 2). It is

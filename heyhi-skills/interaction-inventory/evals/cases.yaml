@@ -9,7 +9,6 @@
 # slots empty, a missing state flagged not ruled, the which-matter boundary, not_for routing,
 # provenance, the copy slot never written, and the sidecar validating with judgment/gate null.
 
-classification: confidential
 
 cases:
   - id: ii-01-inventory-slots-empty
@@ -146,4 +145,3 @@ cases:
       a MISSING (by omission) to n/a or "not needed", or that leaves the missing_by_fidelity object
       unpopulated, fails.
 
-# HeyHi Confidential

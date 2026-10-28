@@ -1,6 +1,5 @@
 ---
 title: "heyhi-logo-system — Logo Construction Typology"
-classification: HeyHi Confidential
 module: A
 loads_in: [Concept, Spec]
 version: "0.1.0"
@@ -10,7 +9,6 @@ grounding: ["design-intent-document-template.md:54", "research/visual-language-t
 
 # Logo Construction Typology
 
-**HeyHi Confidential**
 
 *On-demand reference module for `heyhi-logo-system`. Loads in **Concept** (to choose a construction direction and name it) and **Spec** (to write the design-intent typology field). Not always-loaded. The seven typologies it names are the canonical set from `ai-services/design-intelligence/design-intent-document-template.md:54`; this module reasons each one. It adds no schema field — typology is non-tokenizable by the skill's own law (see "Token implications").*
 
@@ -93,4 +91,3 @@ This split is the correction ckm's flat list needs, and the reason Concept state
 
 *Companion module to `heyhi-logo-system`. Cross-references: [`scale-degradation-matrix.md`](scale-degradation-matrix.md), [`mark-failure-modes.md`](mark-failure-modes.md), [`render-brief-template.md`](render-brief-template.md). Grounding: `ai-services/design-intelligence/design-intent-document-template.md`, `ai-services/design-intelligence/research/visual-language-theory.md`, `ai-services/design-intelligence/style-reference-library.md`.*
 
-*HeyHi Confidential*

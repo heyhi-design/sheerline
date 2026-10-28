@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Business-case canon — the method spine"
 skill: design-business-case-drafter
 loaded_by: "SKILL.md Step 1"
@@ -68,4 +67,4 @@ The business claim is this area's extension of the canonical "what stays human" 
 
 ---
 
-*HeyHi Confidential. Method reference for `design-business-case-drafter` (Sheerline area 10). Foundation: `sheerline/os/foundations/business-acumen/FOUNDATION.md` § The knowledge canon (first row). Research of record: `sheerline-skill-buildout-research-2026-08-09.md` § 6.2.*
+*Method reference for `design-business-case-drafter` (Sheerline area 10). Foundation: `sheerline/os/foundations/business-acumen/FOUNDATION.md` § The knowledge canon (first row). Research of record: `sheerline-skill-buildout-research-2026-08-09.md` § 6.2.*

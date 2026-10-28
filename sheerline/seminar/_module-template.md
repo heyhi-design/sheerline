@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Seminar module template"
 status: done
 ---
@@ -14,7 +13,6 @@ Every seminar module is one markdown file built from the eight sections below, i
 
 ```yaml
 ---
-classification: confidential          # every seminar file is Confidential
 title: "Module N.M — <title>"
 track: N                              # 0–4
 module: "N.M"
@@ -23,11 +21,15 @@ prereqs: ["N.M", ...]                 # module ids that must come first ([] for 
 est_minutes: 25                       # honest reading + lab time
 teaches: keel | sheerline            # keel-track modules stay publishable; sheerline-track modules are gated
 opens_files:                          # the real files the learner will open
-  - path/relative/to/repo/root
+  - path/relative/to/repo/root        # or a published repo's URL at a release tag
+lab_mode: heyhi-run                   # optional: the lab opens retained code (a HeyHi-run demonstration)
+pointer_labels: [moat-runtime]        # optional: the provenance classes this file's pointers carry
 ---
 ```
 
-`teaches:` is the separability tag. A `teaches: keel` module must be self-contained — it may not depend on a Confidential Sheerline internal to make sense, so it can later be lifted into keel's public docs. A `teaches: sheerline` module may use anything.
+**Pointers out of the tree.** A file from a published repo (keel, agent-corrections) is cited by its public URL pinned to a release tag, never by its monorepo path. A module whose lab opens retained code says so in its first section and sets `lab_mode: heyhi-run`; `pointer_labels` names the class of the retained paths it cites (`moat-runtime`, `oss-staged`, or `reference`), which the export's provenance lint reads. Build history is never cited by path.
+
+`teaches:` is the separability tag. A `teaches: keel` module must be self-contained — it may not depend on a Sheerline internal to make sense, so it can later be lifted into keel's public docs. A `teaches: sheerline` module may use anything.
 
 ## The eight sections
 
@@ -59,7 +61,7 @@ Pointers only: the canonical files this module simplifies, and the architecture-
 
 - **Voice.** No standalone "AI" (say "agentic systems", "models", "intelligent systems", or name the function). No banned words. At most two em dashes in the module.
 - **Real paths.** Every file named in `opens_files`, the Walkthrough, and the Lab must exist at authoring. The smoke test globs them; a dangling path is a failure.
-- **Separability.** A `teaches: keel` module cites only keel (`releases/open-source/keel/**`) and general concepts, never a Confidential Sheerline internal.
+- **Separability.** A `teaches: keel` module cites only keel, through its public repository at a pinned release tag (for example [keel v0.1.0](https://github.com/heyhi-design/keel/tree/v0.1.0)), and general concepts, never a Sheerline internal.
 - **Honesty.** The moat is taught as architecture, never reproduced. No calibrated thresholds, no populated-corpus content, no golden-set answers.
 - **Prereq DAG.** `prereqs` point only to lower-or-equal modules already authored. No cycles.
 
@@ -67,4 +69,3 @@ Pointers only: the canonical files this module simplifies, and the architecture-
 
 *Curriculum map: [`README.md`](README.md) · Structural check: [`smoke-test.md`](smoke-test.md)*
 
-*HeyHi Confidential*

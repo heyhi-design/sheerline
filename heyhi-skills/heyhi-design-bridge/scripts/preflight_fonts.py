@@ -39,7 +39,6 @@ Save that output to a file and pass it as --available. The dump is an array of
 { fontName: { family, style } }; this tool also accepts a plain [{family, style}]
 list or a { fonts: [...] } wrapper.
 
-HeyHi Internal Use Only.
 """
 
 import argparse

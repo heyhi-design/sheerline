@@ -24,7 +24,6 @@ version: "0.1.0"
 updated: "2026-09-07"
 status: "deployed 2026-09-07 (Sheerline fdde-loop convergence pass 1, DISPATCH-06; promoted from skill-updates/app-intent-map/). Sheerline area 9 (Design Strategy & Product Thinking); serves_areas hints to 1 (User Research) and 2 (Information Architecture), registered nowhere before D-3 (plan § 5 D11). Lane D of the Sheerline forward-deployed loop (plans/plan-sheerline-fdde-loop-2026-09-07.md, DISPATCH-04). The application-level companion to intent-journey-map; the one prior 'intent-map how the product works' exercise (decision-log § 2026-07-16) is the shape it generalizes."
 review_by: "2026-09-21"
-classification: confidential
 ---
 
 # Application Intent Map
@@ -249,4 +248,4 @@ If `purpose` was filled, or any constraint ranked, the gate has **not** been sat
 
 ---
 
-*HeyHi Confidential. Sheerline area 9 (Design Strategy & Product Thinking), serves areas 1 and 2. Staged 2026-09-07 (Lane D, `plans/plan-sheerline-fdde-loop-2026-09-07.md`, DISPATCH-04). The application-level companion to `intent-journey-map`; it generalizes the one prior "intent-map how the product works" exercise (decision-log § 2026-07-16; `plans/plan-firm-of-one-os-architecture-diagrams-2026-07-15.md` § 2). Boundary: Sheerline § 9. Skeleton: `heyhi-skills/design-measurability-mapper/SKILL.md`.*
+*Sheerline area 9 (Design Strategy & Product Thinking), serves areas 1 and 2. Staged 2026-09-07 (Lane D, `plans/plan-sheerline-fdde-loop-2026-09-07.md`, DISPATCH-04). The application-level companion to `intent-journey-map`; it generalizes the one prior "intent-map how the product works" exercise (decision-log § 2026-07-16; `plans/plan-firm-of-one-os-architecture-diagrams-2026-07-15.md` § 2). Boundary: Sheerline § 9. Skeleton: `heyhi-skills/design-measurability-mapper/SKILL.md`.*

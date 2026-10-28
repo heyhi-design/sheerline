@@ -265,4 +265,3 @@ If any header is empty or contains advisory prose ("I checked for bugs") instead
 *HeyHi internal + client delivery skill. Bay Design LLC. March 2026.*
 *Source pattern: Stream B — 101 `$description` fields, 6 token files. See `heyhi-design-intelligence-tests/tokens/`.*
 
-*HeyHi Confidential*

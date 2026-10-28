@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example — a Mode B sweep and a Mode A supersede scaffold"
 skill: design-rationale-decision-record
 loaded_by: "SKILL.md Step 1 (calibration)"
@@ -125,4 +124,4 @@ No decision is recorded as accepted until the Approver signs.
 - **The heuristics show their work.** Each unrecorded row cites the settlement tell that surfaced it; the near-misses show a hypothetical ("if we killed the tour…") correctly *not* surfaced, and a three-thread decision deduped to one.
 - **The supersede scaffold links, it does not rewrite.** ADR-012 is named and left intact; the new decision, rationale, and "what changed" are empty for the humans, and the note makes explicit that the old rationale is not carried forward.
 
-*HeyHi Confidential. Worked examples for `design-rationale-decision-record` v0.2.0. Fully synthetic; added 2026-08-23 (Wave D) per the 2026-08-22 skills audit § 4 (no worked examples) and § 2.4 / § 5.*
+*Worked examples for `design-rationale-decision-record` v0.2.0. Fully synthetic; added 2026-08-23 (Wave D) per the 2026-08-22 skills audit § 4 (no worked examples) and § 2.4 / § 5.*

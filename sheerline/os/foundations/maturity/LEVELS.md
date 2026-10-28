@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline practice-capability levels: the 5-rung scale (LEVELS.md)"
 created: "2026-09-13"
 source: plans/plan-sheerline-maturity-instrument-2026-09-12.md   # DF-01 W1, Phase B (B2)
@@ -7,7 +6,7 @@ source: plans/plan-sheerline-maturity-instrument-2026-09-12.md   # DF-01 W1, Pha
 
 # The Sheerline practice-capability scale
 
-**HeyHi Confidential.** The generic 5-rung scale for the Sheerline maturity instrument. This
+The generic 5-rung scale for the Sheerline maturity instrument. This
 file ships the **scale** (rung names, generic meanings, one synthetic worked example). It
 carries **no real per-area rung text and no real level/target/evidence value** for any of the
 13 areas. Those live in the private `sheerline/` tree (each area's `maturity` block in
@@ -103,4 +102,3 @@ the field shape. Every real per-area rung descriptor, and every real `level` / `
 today. They are the practice-capability equivalent of a trade secret and never travel to keel.
 See `EVIDENCE-CLASSES.md` for the three evidence classes and how `indirect` evidence is derived.
 
-*HeyHi Confidential*

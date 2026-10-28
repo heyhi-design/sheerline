@@ -21,7 +21,6 @@ Usage:
       [--curve-fit] [--curve-fit-threshold N] [--curve-fit-error PX]
       [--fidelity] [--json REPORT.json] [--quiet]
 
-HeyHi Confidential.
 """
 from __future__ import annotations
 

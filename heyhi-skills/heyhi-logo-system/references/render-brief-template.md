@@ -1,6 +1,5 @@
 ---
 title: "heyhi-logo-system — Render-Brief Template"
-classification: HeyHi Confidential
 module: C
 loads_in: [Concept]
 trigger: "operator-invoked render step only — never the default"
@@ -11,7 +10,6 @@ grounding: ["SKILL.md:79 (generation boundary)", "reference.md v0.2.0 (Rendering
 
 # Render-Brief Template
 
-**HeyHi Confidential**
 
 *On-demand reference module for `heyhi-logo-system`. Loads only when the operator has explicitly invoked the opt-in render step in Concept. It is the structured brief that turns a Concept Direction Record into a tool-agnostic generation instruction. It does not change the default behavior of any mode.*
 
@@ -99,4 +97,3 @@ This module produces the brief. The moment a mark is actually rendered, the **re
 
 *Companion module to `heyhi-logo-system`, loaded only on the opt-in render step in Concept. Cross-references: [`logo-typology.md`](logo-typology.md). Grounding: `heyhi-skills/heyhi-logo-system/SKILL.md` (generation boundary), `reference.md` § "Rendering and Verification."*
 
-*HeyHi Confidential*

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Foundation: Interaction Design (area 4, PARTIAL / filled / governed practice)"
 area: 4
 nature: craft
@@ -81,4 +80,3 @@ The craft this foundation genuinely authors, the analogue of the accessibility W
 
 *Area map: [`os/foundations/registry.yaml`](../registry.yaml) · Always-loaded invariants: [`os/operating-principles.md`](../../operating-principles.md) · The control-state contract (A.3): `ai-services/design-intelligence/design-fundamentals.md` + `research/design-fundamentals-decision-research-2026-08-12.md` · Spec source: [`plans/plan-sheerline-p3-interaction-design-2026-09-04.md`](../../../../plans/plan-sheerline-p3-interaction-design-2026-09-04.md) · Research of record: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 4.2 / § 7b*
 
-*HeyHi Confidential*

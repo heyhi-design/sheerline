@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 3.2 — VALIDATE: the validator and the conformance lane"
 track: 3
 module: "3.2"
@@ -7,6 +6,8 @@ level: advanced
 prereqs: ["3.1"]
 est_minutes: 30
 teaches: sheerline
+lab_mode: heyhi-run
+pointer_labels: [moat-runtime]
 opens_files:
   - heyhi-mcp/heyhi_mcp/core/validator.py
   - heyhi-mcp/heyhi_mcp/conformance/css_check.py
@@ -18,6 +19,8 @@ opens_files:
 ## You are here
 
 RETRIEVE handed the agent the design system. VALIDATE asks the reverse question: does this emitted output honor it? This module opens the checking layer, the part of the loop that runs outside the model and so costs no tokens and returns the same answer every time. The question underneath: what is the difference between checking the claim an agent makes and checking the code it emits? Previous: [`module-3-1.md`](module-3-1.md). Next: [`module-3-3.md`](module-3-3.md).
+
+**A HeyHi-run demonstration.** The walkthrough and lab open HeyHi's retained validator and its rendered-CSS conformance check, which is moat-runtime: retained by design and never shipped. In the HeyHi monorepo the files open directly. In an exported copy they are labeled pointers, and a HeyHi operator runs this walkthrough and lab with you in a HeyHi-operated session; the concept sections stand on their own either way.
 
 ## Learning objectives
 
@@ -73,7 +76,3 @@ Read the four finding-kind definitions at the top of `heyhi-mcp/heyhi_mcp/confor
 - `heyhi-mcp/heyhi_mcp/tools/validate.py`: the tool that delegates into the validator.
 - Architecture figure 4, [`../../docs/architecture.md`](../../docs/architecture.md), draws VALIDATE as the second verb.
 - The conformance lane is where 3.4's factual predicates run, and every finding here feeds the grade in 3.3.
-
----
-
-*HeyHi Confidential*

@@ -8,7 +8,6 @@
 # v0.2.0 (2026-08-23, Wave D) adds erl-07 (SRM) and erl-08 (curiosity surfaces verdict-free).
 # v0.2.1 (2026-08-28, E-5 harvest) adds erl-09 (SRM N/A on a paired/deterministic design).
 
-classification: confidential
 
 cases:
   - id: erl-01-peeking-flagged
@@ -156,4 +155,3 @@ cases:
       per-arm or output counts. A report that runs the χ² on 108/105 and reports a spurious SRM
       statistic fails this case.
 
-# HeyHi Confidential

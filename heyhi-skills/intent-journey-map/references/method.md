@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Intent-Journey Map, method reference"
 skill: intent-journey-map
 version: "0.1.0"
@@ -98,4 +97,4 @@ An over-claim found here is corrected in place. The pass produces a short note (
 
 ---
 
-*HeyHi Confidential. `intent-journey-map` method reference v0.1.0. Portable methodology; every stack binding, job-story library, and domain-band fill is engagement knowledge supplied at run time.*
+*`intent-journey-map` method reference v0.1.0. Portable methodology; every stack binding, job-story library, and domain-band fill is engagement knowledge supplied at run time.*

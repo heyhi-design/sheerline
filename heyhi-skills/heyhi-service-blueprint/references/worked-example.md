@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example — Service Blueprint Pack (synthetic: white-glove furniture delivery)"
 version: "0.1.0"
 updated: "2026-09-07"
@@ -76,4 +75,4 @@ No backstage cell is recorded as fact, and no root-cause or verdict is rendered,
 
 ---
 
-*HeyHi Confidential. Synthetic worked example for `heyhi-service-blueprint`. No client content. Method canon: `sheerline/os/foundations/service-design/FOUNDATION.md`; recipe: `references/blueprint-canon.md`.*
+*Synthetic worked example for `heyhi-service-blueprint`. No client content. Method canon: `sheerline/os/foundations/service-design/FOUNDATION.md`; recipe: `references/blueprint-canon.md`.*

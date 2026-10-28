@@ -1,6 +1,6 @@
 <svg width="100%" viewBox="0 0 680 524" role="img" xmlns="http://www.w3.org/2000/svg">
 <title>Sheerline: the boundary and the retained moat</title>
-<desc>Invariant 4: the Design System MCP, the evaluator, and the corrections registry are reached through the MCP as a boundary tool. A crimson wall divides two sets. Left, the scaffold that ships (on C-1 hold): the os/ configuration layer, the registry engine, the corrections schema and generic seeds, the MCP contract, and the DS-MCP scaffold. Right, the retained moat that stays in a separate unpublished tree: the boundary and evaluation layer, the graded evaluator, the conformance parser, the populated corrections corpus and its promotion judgment, the calibrated thresholds, and the DS-MCP populated instance. Below, two rules: the two-axis conflict order (author on the brand axis, grade on the severity axis) and what stays human (grades inform never gate; factual corrections enforce, behavioral ones only remind).</desc>
+<desc>Invariant 4: the Design System MCP, the evaluator, and the corrections registry are reached through the MCP as a boundary tool. A crimson wall divides two sets. Left, the scaffold that ships (public, MIT): the os/ configuration layer, the registry engine, the corrections schema and generic seeds, the MCP contract, and the DS-MCP scaffold. Right, the retained moat that stays in a separate unpublished tree: the boundary and evaluation layer, the graded evaluator, the conformance parser, the populated corrections corpus and its promotion judgment, the calibrated thresholds, and the DS-MCP populated instance. Below, two rules: the two-axis conflict order (author on the brand axis, grade on the severity axis) and what stays human (grades inform never gate; factual corrections enforce, behavioral ones only remind).</desc>
 <!-- Sheerline · Figure 5 of 6: The boundary and the retained moat. See docs/architecture.md. -->
 
 <style>
@@ -35,7 +35,7 @@
 <rect class="cfg-box" x="40" y="98" width="284" height="214" rx="12"/>
 <text class="d cfg-t" x="58" y="124" font-size="13" font-weight="600">SCAFFOLD</text>
 <rect class="cfg-chip" x="196" y="110" width="112" height="19" rx="9.5"/>
-<text class="m cfg-t" x="252" y="123" font-size="8" text-anchor="middle">ships · C-1 hold</text>
+<text class="m cfg-t" x="252" y="123" font-size="8" text-anchor="middle">ships · public</text>
 <g class="m cfg-t" font-size="9">
 <rect class="cfg-chip" x="58" y="140" width="250" height="21" rx="6"/><text x="70" y="154">os/ configuration layer</text>
 <rect class="cfg-chip" x="58" y="166" width="250" height="21" rx="6"/><text x="70" y="180">registry engine</text>
@@ -43,7 +43,7 @@
 <rect class="cfg-chip" x="58" y="218" width="250" height="21" rx="6"/><text x="70" y="232">MCP contract</text>
 <rect class="cfg-chip" x="58" y="244" width="250" height="21" rx="6"/><text x="70" y="258">DS-MCP scaffold</text>
 </g>
-<text class="b soft" x="58" y="288" font-size="10.5" font-style="italic">Potentially publishable.</text>
+<text class="b soft" x="58" y="288" font-size="10.5" font-style="italic">Published (MIT).</text>
 <text class="b soft" x="58" y="304" font-size="10.5" font-style="italic">The scaffold half only.</text>
 
 <!-- the wall -->

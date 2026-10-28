@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Seminar smoke test"
 status: done
 ---
@@ -25,7 +24,9 @@ Exit 0 is clean. Exit 1 prints one line per issue.
 | **Real paths** | every `opens_files` entry, every backticked repo path, and every inter-module link resolves. Repo-root paths (with a slash, no leading dot) resolve at the repo root; `.`-relative paths and bare `*.md` sibling links resolve against the module's own directory |
 | **Prereq DAG** | every `prereqs` id is an authored module, and the depends-on graph is acyclic (full cycle detection, not just self-loops) |
 | **Voice** | no standalone "AI", no whole-word banned terms, no banned phrases, at most two em dashes |
-| **Separability** | a `teaches: keel` module never names a Sheerline internal (`sheerline/os/`, `sheerline/skills/`, `sheerline/profile/`, `heyhi-mcp/`, `ai-services/`) in its body or its `opens_files`, so the keel half stays liftable to keel's public docs |
+| **Separability** | a `teaches: keel` module never names a Sheerline internal (`sheerline/os/`, `sheerline/skills/`, `sheerline/profile/`, `heyhi-mcp/` [moat-runtime], `ai-services/` [reference]) in its body or its `opens_files`, so the keel half stays liftable to keel's public docs |
+| **Published links** | a link or `opens_files` URL into a published repo (keel, agent-corrections) is pinned to a release tag, never a branch; a link into the private monorepo fails. In the monorepo the pinned path must also exist in the staged tree |
+| **Pointers (exported copy)** | with `EXPORT.json` and `PROVENANCE.json` at the root, every pointer back to the monorepo must carry a provenance class: an unclassified pointer fails, and an `instance` pointer fails. The summary prints the pointer count by class. Without `PROVENANCE.json`, pointers are counted and reported only |
 
 ## What it does not check
 
@@ -37,4 +38,3 @@ A module that passes the smoke test is *ready to review*, not *done*.
 
 *The contract it enforces: [`_module-template.md`](_module-template.md) · Curriculum map: [`README.md`](README.md)*
 
-*HeyHi Confidential*

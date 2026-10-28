@@ -9,7 +9,6 @@
 # live copy deliverable. Invented examples, no client content, generic "the client" throughout.
 # R4 case shape (id, description, input, expected_findings, pass_criteria).
 
-classification: confidential
 
 cases:
   - id: vsa-01-voice-definition-slot-empty
@@ -119,4 +118,3 @@ cases:
       about page, the owned brand's modal, or a visual-direction brief fails. This skill derives a client's
       VERBAL voice, and never overrides an owned voice or a visual brief.
 
-# HeyHi Confidential

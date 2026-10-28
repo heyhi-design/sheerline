@@ -24,7 +24,6 @@ version: "0.1.0"
 updated: "2026-09-07"
 status: "deployed 2026-09-07 (Sheerline fdde-loop convergence pass 1, DISPATCH-06; promoted from skill-updates/app-recon/). Sheerline forward-deployed loop, read verb (loop stage 1); the codebase-recon method generalized to a HeyHi skill that emits app-manifest.json. Spec: plans/plan-sheerline-fdde-loop-2026-09-07.md 3.1 stage 1 / 3.3 / OWNS Lane C. Buildable-now, proved first on the instance's own application. Registry-entry.yaml drafted, not applied."
 review_by: "2026-09-21"
-classification: confidential
 ---
 
 # App Recon
@@ -247,4 +246,4 @@ If any ⛔ slot is filled, an endpoint is named without a spec pointer, a verdic
 
 ---
 
-*HeyHi Confidential. Sheerline forward-deployed loop, stage 1 (read). Staged 2026-09-07 (v0.1.0) in `skill-updates/`, registry-inert until convergence pass 1 promotes it. Spec source: `plans/plan-sheerline-fdde-loop-2026-09-07.md` § 3.1 stage 1 / § 3.3 / OWNS Lane C. Method attribution: the codebase-recon protocol (a sibling engagement, method only). Contract: `app-manifest.json` (schema version 1.0). The advisory-never-gate construction follows `divergence-guard`'s read-informs-not-gates precedent.*
+*Sheerline forward-deployed loop, stage 1 (read). Staged 2026-09-07 (v0.1.0) in `skill-updates/`, registry-inert until convergence pass 1 promotes it. Spec source: `plans/plan-sheerline-fdde-loop-2026-09-07.md` § 3.1 stage 1 / § 3.3 / OWNS Lane C. Method attribution: the codebase-recon protocol (a sibling engagement, method only). Contract: `app-manifest.json` (schema version 1.0). The advisory-never-gate construction follows `divergence-guard`'s read-informs-not-gates precedent.*

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "feature-increment: the three-way contract coverage table"
 ---
 
@@ -71,4 +70,4 @@ Note the `onSelect` row: a callback is a code and prototype concern with no Figm
 
 A clean table (all `pass`, `Unexplained misses: 0`) is the proof that the join held: the same contract landed in all three targets. Suppressing the table on a clean run would remove the evidence the increment is complete. The table is the artifact that says the loop closed for this feature, so it is emitted every run.
 
-*HeyHi Confidential. `skill-updates/feature-increment/references/`. The coverage-table columns and miss rules. The reconciliation the loop's Care/increment verb owns.*
+*`skill-updates/feature-increment/references/`. The coverage-table columns and miss rules. The reconciliation the loop's Care/increment verb owns.*

@@ -7,7 +7,6 @@
 # routing + boundary behavior, not a live Figma write. Invented examples, no client content.
 # R4 case shape (id, description, input, expected_findings, pass_criteria).
 
-classification: confidential
 
 cases:
   - id: fjm-01-reserved-node-id-catch
@@ -101,4 +100,3 @@ cases:
       prototype-translation request. Absorbing a heyhi-design-bridge or figma-use task fails the
       reciprocal not_for.
 
-# HeyHi Confidential

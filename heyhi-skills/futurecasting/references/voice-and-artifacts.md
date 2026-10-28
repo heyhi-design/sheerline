@@ -287,4 +287,3 @@ Avoid em dash overuse. Em dashes are a recognized pattern of AI-generated writin
 **Escalation threshold:** [What would trigger an early review before the scheduled date?]
 ```
 
-*HeyHi Confidential*

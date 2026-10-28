@@ -35,4 +35,4 @@ Arc rule 9 requires a probe before *building on* a Plugin API call. This lane bu
 
 ---
 
-*HeyHi Confidential. Reference for `ds-component-change` (Sheerline area 7). Probe log; load on demand.*
+*Reference for `ds-component-change` (Sheerline area 7). Probe log; load on demand.*

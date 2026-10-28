@@ -26,7 +26,6 @@ description: >-
 version: "0.1.1"
 updated: "2026-09-05"
 status: "deployed 2026-09-05 — heyhi-skills/design-business-case-drafter/ (Tier 1, buildable-now, self-application-first); registered in the main registry and the Sheerline area-10 subset registry, promoted in the Bucket B promotion pass (staged #781, cleared by the instance owner 2026-09-05). Area 10 coverage partial -> covered (both area-10 skills promoted). v0.1.1 (2026-09-05): self-application proof run (a Design Business Case Draft for a real instance-internal investment, one token contract shared across two of the instance's own surfaces; record in the instance's engagement folder) + eval-by-hand 6/6; harvest: correct a misquoted verified figure against the traced source, the not-reachable-this-session status, scope vs price in the pricing refusal. Sheerline area 10 (Business Acumen), P3, build class N. Spec: plans/plan-sheerline-p3-business-acumen-2026-09-05.md § 4 / § 5 / § 6 / § 9. Foundation: sheerline/os/foundations/business-acumen/FOUNDATION.md (filled 2026-09-05)."
-classification: HeyHi Confidential
 ---
 
 # Design Business Case Drafter
@@ -162,4 +161,4 @@ If the business-claim or positioning slot is filled, a currency figure remains, 
 
 ---
 
-*HeyHi Confidential. Sheerline area 10 (Business Acumen), P3, build class N. Tier 1 (buildable-now, self-application-first) — deployed 2026-09-05 (v0.1.1, Bucket B promotion pass; staged #781), registered in both registries. Spec source: `plans/plan-sheerline-p3-business-acumen-2026-09-05.md` § 4 / § 5 / § 6 / § 9. Foundation: `sheerline/os/foundations/business-acumen/FOUNDATION.md`. Boundary: `sheerline/os/operating-principles.md`.*
+*Sheerline area 10 (Business Acumen), P3, build class N. Tier 1 (buildable-now, self-application-first) — deployed 2026-09-05 (v0.1.1, Bucket B promotion pass; staged #781), registered in both registries. Spec source: `plans/plan-sheerline-p3-business-acumen-2026-09-05.md` § 4 / § 5 / § 6 / § 9. Foundation: `sheerline/os/foundations/business-acumen/FOUNDATION.md`. Boundary: `sheerline/os/operating-principles.md`.*

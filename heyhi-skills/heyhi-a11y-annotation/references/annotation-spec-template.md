@@ -1,13 +1,12 @@
 ---
 title: "Reference: the accessibility annotation-spec template"
-classification: confidential
 skill: heyhi-a11y-annotation
 status: staged
 ---
 
 # Annotation-spec template
 
-**HeyHi Confidential.** This is the exact output structure `heyhi-a11y-annotation` produces. Copy the structure into a real spec; **never copy the example rows** below into a client deliverable, they exist only to show the shape and the provenance labels. Every judged slot is pre-marked empty by construction (§ 9). The example content is invented, no client material.
+This is the exact output structure `heyhi-a11y-annotation` produces. Copy the structure into a real spec; **never copy the example rows** below into a client deliverable, they exist only to show the shape and the provenance labels. Every judged slot is pre-marked empty by construction (§ 9). The example content is invented, no client material.
 
 **Provenance labels** (Step 3) sit in a `prov` column on every scaffolded row:
 
@@ -129,4 +128,4 @@ The mechanical floor (sections 1, 2, 6, the role/state and APG specs, the flags)
 
 ---
 
-*HeyHi Confidential. Reference for `heyhi-a11y-annotation` (staged, `skill-updates/`). Example rows are invented; no client content. WCAG criteria per `sheerline/os/foundations/accessibility/FOUNDATION.md`.*
+*Reference for `heyhi-a11y-annotation` (staged, `skill-updates/`). Example rows are invented; no client content. WCAG criteria per `sheerline/os/foundations/accessibility/FOUNDATION.md`.*

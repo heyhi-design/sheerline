@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline Studio"
 status: partial
 ---
@@ -38,8 +37,4 @@ The exporter is read-only over every source; the only file it writes is `data/sn
 
 ## Simulation honesty
 
-The prototype simulates; it never pretends to run (plan § 6.1). Every page carries the footer `Prototype — simulated interactions over a real data snapshot (<source_commit>) · HeyHi Confidential`, and anything that appears to execute (the Home-screen router, the session replay) is labeled simulated at the point of interaction. The snapshot is real data read from the `sheerline/` tree; the interactions staged over it are not.
-
----
-
-*HeyHi Confidential*
+The prototype simulates; it never pretends to run (plan § 6.1). Every page carries the footer `Prototype — simulated interactions over a real data snapshot (<source_commit>)`, and anything that appears to execute (the Home-screen router, the session replay) is labeled simulated at the point of interaction. The snapshot is real data read from the `sheerline/` tree; the interactions staged over it are not.

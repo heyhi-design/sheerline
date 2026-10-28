@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example — Taxonomy Audit (synthetic: an online learning platform)"
 version: "0.1.1"
 updated: "2026-10-07"
@@ -70,4 +69,4 @@ No label is chosen, no granularity set, and no restructure ordered until this li
 
 ---
 
-*HeyHi Confidential. Synthetic worked example for `taxonomy-labeling-auditor`. No client content. Method canon: `sheerline/os/foundations/information-architecture/FOUNDATION.md`; recipe: `references/taxonomy-canon.md`.*
+*Synthetic worked example for `taxonomy-labeling-auditor`. No client content. Method canon: `sheerline/os/foundations/information-architecture/FOUNDATION.md`; recipe: `references/taxonomy-canon.md`.*

@@ -13,7 +13,6 @@ description: >-
 version: "1.1.1"
 updated: "2026-10-13"
 changes: "v1.1.1 (2026-10-13): Generalized for the Sheerline scaffold: instance data (brand defaults, client/engagement history, owner names, ratified values) moved to instance-only files or neutral wording; method unchanged. v1.1.0 (2026-06-02): Added sixth Layer 2 check — Visual-tell scan (references ai-services/design-intelligence/visual-anti-tells.md AT-1..AT-10); inherits existing PARTIAL_A/FULL gating, additive, never blocks. Source: plans/plan-taste-design-graft.md Graft C. v1.0.0: Initial canonical extraction from a client-engagement prototype-audit skill v1.0 (April 28, 2026) and heyhi-design-intelligence-audit v1.7.0 Prototype Mode (May 1, 2026). Three-layer architecture: Layer 1 stack-agnostic core (six steps), Layer 2 brand-config-aware additive checks (token-fidelity, voice-rule, prohibited-word, layout-pattern, dark-native), Layer 3 Care retainer monthly delta cadence with paired markdown narrative + JSON sidecar baseline. Source plan: plans/track-b-prototype-audit-buildable-2026-05-06.md."
-classification: HeyHi Confidential
 ---
 
 # HeyHi Prototype Audit
@@ -340,6 +339,5 @@ If any header is empty or contains advisory prose ("I checked for bugs") instead
 
 ---
 
-*HeyHi Confidential.*
 *Canonical prototype audit skill. Source plan: `plans/track-b-prototype-audit-buildable-2026-05-06.md`. Generalized from a client-engagement prototype-audit skill v1.0 (April 28, 2026) and `heyhi-design-intelligence-audit` v1.7.0 Prototype Mode (May 1, 2026).*
 *v1.1.0 (2026-06-02): Visual-tell scan added to Layer 2 per `plans/plan-taste-design-graft.md`.*

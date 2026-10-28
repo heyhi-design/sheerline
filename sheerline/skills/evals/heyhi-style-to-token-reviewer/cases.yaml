@@ -8,7 +8,6 @@
 # always-loaded boundary (sheerline/os/operating-principles.md), judge by pass_criteria. Synthetic inputs,
 # no client content. R4 case shape + a `source` per case.
 
-classification: confidential
 
 cases:
   - id: hsttr-01-coherence-ruling-stays-human

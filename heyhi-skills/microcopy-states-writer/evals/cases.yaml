@@ -9,7 +9,6 @@
 # "just pick the best string" boundary, provenance, not_for routing, no-list-no-enumeration,
 # the claim hold, and the sidecar write-back.
 
-classification: confidential
 
 cases:
   - id: msw-01-slot-coverage
@@ -152,4 +151,3 @@ cases:
       The sidecar validates, the pair set is a subset, and the merge touches only the string. A
       sidecar with a filled judgment.ships, an extra pair, or a renamed slot fails.
 
-# HeyHi Confidential

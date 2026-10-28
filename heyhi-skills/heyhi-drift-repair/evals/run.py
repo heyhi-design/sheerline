@@ -12,7 +12,6 @@ Exit 0 iff every check passes; prints a PASS/FAIL table. This is the mechanical
 half of the acceptance set; evals/cases.yaml carries the same criteria in the
 Sheerline agent-judged format.
 
-classification: HeyHi Confidential
 """
 from __future__ import annotations
 

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Research-plan canon — the method spine"
 skill: research-plan-author
 loaded_by: "SKILL.md Step 1"
@@ -83,4 +82,4 @@ The question, the method, the go decision, severity-as-truth, and theme verdicts
 
 ---
 
-*HeyHi Confidential. Method reference for `research-plan-author` (Sheerline area 1). Foundation: `sheerline/os/foundations/user-research/FOUNDATION.md` § The knowledge canon. Research of record: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 3.1.*
+*Method reference for `research-plan-author` (Sheerline area 1). Foundation: `sheerline/os/foundations/user-research/FOUNDATION.md` § The knowledge canon. Research of record: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 3.1.*

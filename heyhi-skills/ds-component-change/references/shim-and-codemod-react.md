@@ -199,4 +199,4 @@ The changeset frontmatter is parsed as package-to-bump by Changesets, so no `cla
 
 ---
 
-*HeyHi Confidential. Reference for `ds-component-change` (Sheerline area 7). React code leg; load on demand.*
+*Reference for `ds-component-change` (Sheerline area 7). React code leg; load on demand.*

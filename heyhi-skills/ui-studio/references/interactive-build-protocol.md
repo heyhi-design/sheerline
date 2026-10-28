@@ -3,7 +3,6 @@ name: interactive-build-protocol
 zone: 2
 load_trigger: Build is rated "interactive" or "immersive" in Spec Intake, or Complexity Tier Detection activates the phased structure
 token_estimate: ~900
-classification: HeyHi Internal Use Only
 created: 2026-04-07
 ---
 
@@ -236,7 +235,7 @@ Derivation: mobile-rethink: horizontal snap-scroll at sm — 5 items cannot wrap
 
 ---
 
-*HeyHi Internal Use Only. Zone 2 — task-conditional. Load when interaction level is "interactive" or "immersive," or when Complexity Tier Detection activates the phased structure.*
+*Zone 2 — task-conditional. Load when interaction level is "interactive" or "immersive," or when Complexity Tier Detection activates the phased structure.*
 
 ---
 

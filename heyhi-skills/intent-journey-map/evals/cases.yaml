@@ -12,7 +12,6 @@
 # (empty slots, and no gate/score/verdict field in the machine contract); not_for routing;
 # the adversarial over-claim pass; the pluggable domain band.
 
-classification: confidential
 
 cases:
   - id: ijm-01-tier-gate
@@ -137,4 +136,3 @@ cases:
       (a)'s domain band blank 'for the human' (confusing it with the judgment slots), forces a domain
       band onto (b), or fills (a)'s band from a generic guess rather than the real model, fails.
 
-# HeyHi Confidential

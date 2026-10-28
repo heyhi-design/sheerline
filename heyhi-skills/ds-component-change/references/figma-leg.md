@@ -57,4 +57,4 @@ Lifting OQ-1 is `heyhi-drift-repair`'s call and a separate build. This skill onl
 
 ---
 
-*HeyHi Confidential. Reference for `ds-component-change` (Sheerline area 7). Figma leg and OQ-1 proposal; load on demand.*
+*Reference for `ds-component-change` (Sheerline area 7). Figma leg and OQ-1 proposal; load on demand.*

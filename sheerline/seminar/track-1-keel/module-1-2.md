@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 1.2 — What loads (four-class loading)"
 track: 1
 module: "1.2"
@@ -8,9 +7,9 @@ prereqs: ["1.1"]
 est_minutes: 25
 teaches: keel
 opens_files:
-  - releases/open-source/keel/os/operating-principles.template.md
-  - releases/open-source/keel/docs/diagrams/what-loads.svg
-  - releases/open-source/keel/docs/architecture.md
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/os/operating-principles.template.md
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/docs/diagrams/what-loads.svg
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/docs/architecture.md
 ---
 
 # Module 1.2 — What loads (four-class loading)
@@ -50,13 +49,13 @@ You will see this sort applied for the rest of the seminar. The registry in 1.3 
 
 ## Walkthrough
 
-Open `releases/open-source/keel/os/operating-principles.template.md` and find invariant 2, Earn the Room. Read the four-row load-class table: always, conditional, on-demand, searchable, each with its "load when" condition. Directly under it is the fewer-than-half rule and the instruction to measure the token cost. Notice the closing line: this four-way split is the mechanism, not a suggestion.
+Open [keel's os/operating-principles.template.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/operating-principles.template.md) and find invariant 2, Earn the Room. Read the four-row load-class table: always, conditional, on-demand, searchable, each with its "load when" condition. Directly under it is the fewer-than-half rule and the instruction to measure the token cost. Notice the closing line: this four-way split is the mechanism, not a suggestion.
 
-Now open `releases/open-source/keel/docs/diagrams/what-loads.svg` and read the load class stamped on every entry of a real file tree. Three files load always; a handful load on demand; the skills are searchable; and the company profile is marked not loaded at all. The figure is the rule applied to an actual scaffold, and the profile's tag is the part to stare at. keel's architecture doc frames the same picture in one line: most of the scaffold never enters a session.
+Now open [keel's docs/diagrams/what-loads.svg](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/diagrams/what-loads.svg) and read the load class stamped on every entry of a real file tree. Three files load always; a handful load on demand; the skills are searchable; and the company profile is marked not loaded at all. The figure is the rule applied to an actual scaffold, and the profile's tag is the part to stare at. keel's architecture doc frames the same picture in one line: most of the scaffold never enters a session.
 
 ## Lab
 
-Classify a real keel file. Take these four and assign each to one load class, with a one-line reason grounded in the fewer-than-half rule: `releases/open-source/keel/os/agent-context.template.md`, `releases/open-source/keel/os/project-state.template.yaml`, `releases/open-source/keel/os/session-rules.template.md`, and `releases/open-source/keel/skills/registry/skill-registry.template.yaml`. Then answer the trap question about a fifth file, `releases/open-source/keel/profile/company-profile.template.yaml`: which load class does it belong to, and why is "none of them" the correct answer rather than a bug?
+Classify a real keel file. Take these four and assign each to one load class, with a one-line reason grounded in the fewer-than-half rule: [keel's os/agent-context.template.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/agent-context.template.md), [keel's os/project-state.template.yaml](https://github.com/heyhi-design/keel/blob/v0.1.0/os/project-state.template.yaml), [keel's os/session-rules.template.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/session-rules.template.md), and [keel's skills/registry/skill-registry.template.yaml](https://github.com/heyhi-design/keel/blob/v0.1.0/skills/registry/skill-registry.template.yaml). Then answer the trap question about a fifth file, [keel's profile/company-profile.template.yaml](https://github.com/heyhi-design/keel/blob/v0.1.0/profile/company-profile.template.yaml): which load class does it belong to, and why is "none of them" the correct answer rather than a bug?
 
 **Success looks like:** four defensible class assignments, each with a reason, and the company profile correctly identified as not-loaded because its job is to fill the other files rather than to sit in context.
 
@@ -76,11 +75,7 @@ Classify a real keel file. Take these four and assign each to one load class, wi
 
 ## Go deeper
 
-- `releases/open-source/keel/os/operating-principles.template.md`: invariant 2 and the load-class table in full.
-- `releases/open-source/keel/docs/diagrams/what-loads.svg`: the classes stamped on a real tree.
-- `releases/open-source/keel/docs/architecture.md`, figure 2, is that tree in one frame; it draws what this module sorts.
+- [keel's os/operating-principles.template.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/operating-principles.template.md): invariant 2 and the load-class table in full.
+- [keel's docs/diagrams/what-loads.svg](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/diagrams/what-loads.svg): the classes stamped on a real tree.
+- [keel's docs/architecture.md](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/architecture.md), figure 2, is that tree in one frame; it draws what this module sorts.
 - The searchable class becomes mechanical in module 1.3; the always class, in its active-only form, is the corrections registry in module 1.4.
-
----
-
-*HeyHi Confidential*

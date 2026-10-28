@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://heyhi.design/schemas/intent-map-1.0.json",
   "title": "Application Intent Map",
-  "description": "The layer above an application's surfaces: jobs, flows, the decisions the product already encodes, its vocabulary, and the constraints any new feature must honor. Version 1.0, additive thereafter. purpose is null by construction (a non-null value fails validation); every job/flow/encoded_decision/vocabulary/constraint row carries an evidence reference whose kind may be 'assumption', machine-enforcing evidence-linked-or-marked-assumption. additionalProperties:false keeps any ranking, score, or verdict field out. HeyHi Confidential.",
+  "description": "The layer above an application's surfaces: jobs, flows, the decisions the product already encodes, its vocabulary, and the constraints any new feature must honor. Version 1.0, additive thereafter. purpose is null by construction (a non-null value fails validation); every job/flow/encoded_decision/vocabulary/constraint row carries an evidence reference whose kind may be 'assumption', machine-enforcing evidence-linked-or-marked-assumption. additionalProperties:false keeps any ranking, score, or verdict field out.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "system_id", "purpose", "jobs", "flows", "encoded_decisions", "vocabulary", "constraints"],

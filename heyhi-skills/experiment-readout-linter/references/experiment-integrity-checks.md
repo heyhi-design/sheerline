@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Experiment integrity checks — the method spine"
 skill: experiment-readout-linter
 loaded_by: "SKILL.md Step 1"
@@ -108,4 +107,4 @@ Added in v0.2.0. Both exist to make the report a thinking instrument instead of 
 - Winner's-curse / low-power effect inflation is a standard result in the experimentation literature; stated directionally, no single vendor figure relied on.
 - The SRM **p < 0.001** flag threshold is the widely-adopted industry convention (Microsoft ExP and the broader online-experimentation literature); it is a convention, not a law of nature, and is used here as a flag threshold with a borderline band explicitly called out rather than a hard gate.
 
-*HeyHi Confidential. Reference for `experiment-readout-linter`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 6.2; SRM check added v0.2.0 per the 2026-08-22 skills audit § 2.4.*
+*Reference for `experiment-readout-linter`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 6.2; SRM check added v0.2.0 per the 2026-08-22 skills audit § 2.4.*

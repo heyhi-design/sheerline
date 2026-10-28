@@ -243,4 +243,3 @@ A full engagement can run this arc end-to-end: open with Signal Readers (what ar
 | Signal Readers | Signal Map | — |
 | Full-day Strategic Foresight | Working Canvas | Decision Register + Signal Map |
 
-*HeyHi Confidential*

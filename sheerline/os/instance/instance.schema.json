@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sheerline-instance/1",
+  "title": "Sheerline instance manifest (instance.yaml)",
+  "description": "One practice's instance of the Sheerline scaffold: who it is, where its design-system contract and MCP build record live, and the value it fills each scaffold slot with. Read by sheerline/os/instance/resolve.py (stdlib only), which enforces the same rules this schema states.",
+  "type": "object",
+  "required": ["schema", "instance", "slots"],
+  "additionalProperties": false,
+  "properties": {
+    "classification": {"type": "string", "enum": ["confidential", "internal"]},
+    "schema": {"const": "sheerline-instance/1"},
+    "instance": {
+      "type": "object",
+      "required": ["id", "kind", "mode"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {"type": "string", "description": "A non-identifying instance id. Blank in the template."},
+        "kind": {"type": "string", "enum": ["", "self", "client"], "description": "self: the practice's own instance. client: an instance the practice runs for a client."},
+        "mode": {"type": "string", "enum": ["", "pointer", "rooted"], "description": "pointer: slot fills are repo-relative paths to where the values already sit (instance 0 only, as the expand step). rooted: every fill lives under the instance root."},
+        "owner": {"type": "string", "description": "Who ratifies this instance's values. Blank in the template."},
+        "client_roots": {"type": "array", "items": {"type": "string"}, "description": "Repo-relative folders where this practice keeps client data (read from the practice's registered self instances only). A pointer-mode fill may never sit under one; pointer fills are refused when no registered self instance declares any."},
+        "note": {"type": "string"}
+      }
+    },
+    "intake": {"type": "string", "description": "Path to the filled engagement-intake.yaml (rooted: intake/engagement-intake.yaml)."},
+    "contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "data_dir": {"type": "string", "description": "The DS-MCP data contract this instance serves (rooted: contract/)."},
+        "alias_registry": {"type": "string", "description": "Optional: a flat JSON registry whose top-level keys are the component-facing token names the contract serves. The export's token-name scan reads it alongside data_dir/tokens.dtcg.json."},
+        "app_dir": {"type": "string", "description": "Application context (rooted: contract/app/)."},
+        "served_as": {"type": "string", "description": "The served contract's name or brand override."},
+        "note": {"type": "string"}
+      }
+    },
+    "mcp": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "build_record": {"type": "string", "description": "The MCP build record directory (rooted: mcp/)."},
+        "server": {"type": "string"},
+        "image_ref": {"type": "string"},
+        "transport": {"type": "string"},
+        "note": {"type": "string"}
+      }
+    },
+    "history": {
+      "type": "string",
+      "description": "The instance's history directory (rooted: history/). History slots are filled under slots."
+    },
+    "slots": {
+      "type": "object",
+      "description": "Keyed by slot id from sheerline/os/instance/slots.yaml. An absent slot resolves to its generic default.",
+      "propertyNames": {"pattern": "^[a-z0-9-]+\\.[a-z0-9-]+$"},
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "value": {"type": "string", "description": "The file holding this instance's value."},
+          "paths": {"type": "array", "items": {"type": "string"}, "description": "For format: paths slots (history records)."},
+          "evidence": {"type": "array", "items": {"type": "string"}, "description": "Files that back the value (calibration runs, goldens). Instance data: never ships."},
+          "note": {"type": "string"}
+        }
+      }
+    }
+  }
+}

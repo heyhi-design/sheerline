@@ -10,7 +10,6 @@ excess anchors (anchor reduction is primarily a trace-parameter job).
 
 Operates on Nx2 arrays; returns a list of [P0, C1, C2, P3] cubic control quads.
 
-HeyHi Confidential.
 """
 from __future__ import annotations
 

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Foundation: Collaboration, Communication & Facilitation (area 11, PARTIAL / governance-manifest)"
 area: 11
 nature: operating
@@ -53,4 +52,3 @@ Design critique is a don't-automate boundary: it is a facilitation and behaviora
 
 *Area map: `os/foundations/registry.yaml` · The three behavioral guardrails: `os/operating-principles.md` · Skill routing: `sheerline/skills/registry/skill-registry.py`*
 
-*HeyHi Confidential*

@@ -1,5 +1,4 @@
 ---
-classification: internal
 title: Close-Out Artifacts
 purpose: Wrapper for the close-stage artifacts of an audit campaign — the synthesis brief and the fix specification. Points at the synthesis-brief structure (canonical in heyhi-voice) and adds the fix-specification template. Loaded by heyhi-audit-campaign at Step 5 (Close stage).
 created: 2026-05-21
@@ -224,4 +223,4 @@ Propagation:
 
 ---
 
-*HeyHi Internal Use Only. heyhi-skills/heyhi-audit-campaign/references/. Loaded by SKILL.md Step 5 (Close stage).*
+*heyhi-skills/heyhi-audit-campaign/references/. Loaded by SKILL.md Step 5 (Close stage).*

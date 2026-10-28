@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Voice-system template: the Author-mode spine"
 skill: voice-system-author
 loaded_by: "SKILL.md Step 1 (Author mode)"
@@ -149,4 +148,4 @@ Every attribute, axis, anti-descriptor, and slot string the skill writes is agen
 
 ---
 
-*HeyHi Confidential. Reference for `voice-system-author`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 4.1 (content-design foundation: voice-and-tone model with the calibration axis as an elicited variable; the 8-slot taxonomy; the states-copy doctrine; claim guardrails). Built as the generalization of the owned-voice pattern (`heyhi-voice` plus one second-brand voice skill).*
+*Reference for `voice-system-author`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 4.1 (content-design foundation: voice-and-tone model with the calibration axis as an elicited variable; the 8-slot taxonomy; the states-copy doctrine; claim guardrails). Built as the generalization of the owned-voice pattern (`heyhi-voice` plus one second-brand voice skill).*

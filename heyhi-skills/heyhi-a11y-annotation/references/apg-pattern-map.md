@@ -1,13 +1,12 @@
 ---
 title: "Reference: the widget → ARIA APG pattern map"
-classification: confidential
 skill: heyhi-a11y-annotation
 status: staged
 ---
 
 # Widget → ARIA APG pattern map
 
-**HeyHi Confidential.** The mapping Step 2.7 uses to attach an accessibility contract to each composite widget it detects. For each pattern: the **detection heuristic** (what design pattern maps to it), whether a **native element** carries the role, the **name/role/value** the build must expose, and the **keyboard interaction** the build must implement. Source: the W3C ARIA Authoring Practices Guide (APG) patterns and WCAG 2.2. This is a reference for the human-confirmed role call, not an assertion: the role always ships `[candidate: needs confirmation]`.
+The mapping Step 2.7 uses to attach an accessibility contract to each composite widget it detects. For each pattern: the **detection heuristic** (what design pattern maps to it), whether a **native element** carries the role, the **name/role/value** the build must expose, and the **keyboard interaction** the build must implement. Source: the W3C ARIA Authoring Practices Guide (APG) patterns and WCAG 2.2. This is a reference for the human-confirmed role call, not an assertion: the role always ships `[candidate: needs confirmation]`.
 
 ## The first rule of ARIA (the gate on this whole reference)
 
@@ -56,4 +55,4 @@ Independent of the specific pattern, the annotation specs these because the Shee
 
 ---
 
-*HeyHi Confidential. Reference for `heyhi-a11y-annotation` (staged, `skill-updates/`). Patterns per the W3C ARIA APG; criteria per `sheerline/os/foundations/accessibility/FOUNDATION.md` and the A.1 gate in `sheerline/os/operating-principles.md`. No client content.*
+*Reference for `heyhi-a11y-annotation` (staged, `skill-updates/`). Patterns per the W3C ARIA APG; criteria per `sheerline/os/foundations/accessibility/FOUNDATION.md` and the A.1 gate in `sheerline/os/operating-principles.md`. No client content.*

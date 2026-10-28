@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heyhi:microcopy-states-writer:sidecar:1.0",
   "title": "Microcopy Set sidecar",
-  "description": "The machine-readable half of a Microcopy Set (Sheerline area 3). Shaped to write back into an interaction-inventory sidecar: each string is keyed by (element_id, state), which map to the inventory's elements[].id and states[].name; a consumer sets only copy_slot.string on matching rows and copies taxonomy_slot in the inventory's spelling. The judgment and gate blocks ship null by construction; a sidecar with a filled ships value fails pre-flight. HeyHi Confidential.",
+  "description": "The machine-readable half of a Microcopy Set (Sheerline area 3). Shaped to write back into an interaction-inventory sidecar: each string is keyed by (element_id, state), which map to the inventory's elements[].id and states[].name; a consumer sets only copy_slot.string on matching rows and copies taxonomy_slot in the inventory's spelling. The judgment and gate blocks ship null by construction; a sidecar with a filled ships value fails pre-flight.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "voice", "states_source", "strings", "missing_states", "claims_held", "glossary", "judgment", "gate"],

@@ -1,6 +1,5 @@
 ---
 title: "Section Patterns — Cluster-to-Section Architecture"
-classification: confidential
 session: T-1
 version: "1.0.0"
 created: "2026-03-29"
@@ -529,4 +528,4 @@ Every section schema includes:
 
 ---
 
-*HeyHi Confidential — Session T-1. Cluster architecture reference for section generation.*
+*Session T-1. Cluster architecture reference for section generation.*

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline Corrections Lifecycle"
 adapted_from: releases/open-source/keel/os/corrections/LIFECYCLE.md
 ---
@@ -67,4 +66,3 @@ The registry is curated, not auto-generated. An agent may *observe* a recurring 
 
 *Seed template: `os/corrections/seed-corrections.yaml` · Runtime: the internal `heyhi-mcp` (Phase 2 / DISPATCH-02) · Convention overview: `os/corrections/README.md`*
 
-*HeyHi Confidential*

@@ -11,7 +11,6 @@
 # correct, not incomplete); no rank/score field on constraints; not_for routing; refusal to infer
 # the purpose.
 
-classification: confidential
 
 cases:
   - id: aim-01-purpose-empty-and-no-rank-field
@@ -108,4 +107,3 @@ cases:
       purpose stays empty and the human is handed the gate. A response that answers 'this product is
       for X' from the surfaces fails the boundary.
 
-# HeyHi Confidential

@@ -626,7 +626,6 @@ If any header is empty or contains advisory prose ("I checked for bugs") instead
 
 ---
 
-*HeyHi Confidential — Skill internal methodology. Not for client distribution.*
 
 *Theme workstream — core generation skill. Session T-1: skill design + settings architecture.*
 

@@ -330,4 +330,4 @@ If any header is empty or contains advisory prose ("I checked for bugs") instead
 
 ---
 
-*HeyHi Internal Use Only. heyhi-skills/heyhi-audit-campaign/. Built 2026-05-21 in Workflow Integrations Campaign Session 3 (skill-updates/), promoted 2026-05-21 in Session 4. The Workflow Integrations Campaign closed as a unit with this skill's promotion.*
+*heyhi-skills/heyhi-audit-campaign/. Built 2026-05-21 in Workflow Integrations Campaign Session 3 (skill-updates/), promoted 2026-05-21 in Session 4. The Workflow Integrations Campaign closed as a unit with this skill's promotion.*

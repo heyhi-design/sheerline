@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Reasoning integrity checks — the method spine"
 skill: strategy-integrity-warden
 loaded_by: "SKILL.md Step 1"
@@ -81,4 +80,4 @@ Both exist to make the report a thinking instrument, and both stay inside § 9 b
 
 Any node the warden infers, reshapes, or restates carries `[agent-restructured — verify]`. The canonical restatement is a proposal about what the team's artifact means, not a replacement for it. No synthetic opportunity, outcome, or score is ever presented as the team's own.
 
-*HeyHi Confidential. Reference for `strategy-integrity-warden`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 6.1; outcome-quality check + staleness heuristic band added v0.2.0 per the 2026-08-22 skills audit § 2.4. Extends the `futurecasting` Decision-Register discipline while staying warden-shaped (audit, not generate).*
+*Reference for `strategy-integrity-warden`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 6.1; outcome-quality check + staleness heuristic band added v0.2.0 per the 2026-08-22 skills audit § 2.4. Extends the `futurecasting` Decision-Register discipline while staying warden-shaped (audit, not generate).*

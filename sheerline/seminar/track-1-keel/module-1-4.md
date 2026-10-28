@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 1.4 — Corrections: compounding memory"
 track: 1
 module: "1.4"
@@ -8,9 +7,9 @@ prereqs: ["1.3"]
 est_minutes: 30
 teaches: keel
 opens_files:
-  - releases/open-source/keel/os/corrections/LIFECYCLE.md
-  - releases/open-source/keel/os/corrections/seed-corrections.yaml
-  - releases/open-source/keel/examples/baseline-year/os/corrections/corrections-registry.yaml
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/os/corrections/LIFECYCLE.md
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/os/corrections/seed-corrections.yaml
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/examples/baseline-year/os/corrections/corrections-registry.yaml
 ---
 
 # Module 1.4 — Corrections: compounding memory
@@ -42,13 +41,13 @@ The last property is the one that keeps the whole thing trustworthy: the registr
 
 ## Walkthrough
 
-Open `releases/open-source/keel/os/corrections/LIFECYCLE.md`. Read "The three statuses", "Promotion thresholds", and "The close-out protocol". Notice the note that promoted is an action, not a status, and that the close-out is three steps in one pass. Then read "The human standard" at the end: the registry is curated, and unreviewed entries must never reach agent context.
+Open [keel's os/corrections/LIFECYCLE.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/corrections/LIFECYCLE.md). Read "The three statuses", "Promotion thresholds", and "The close-out protocol". Notice the note that promoted is an action, not a status, and that the close-out is three steps in one pass. Then read "The human standard" at the end: the registry is curated, and unreviewed entries must never reach agent context.
 
-Now open `releases/open-source/keel/os/corrections/seed-corrections.yaml`, the five framework-level patterns a new instance starts with. Read one active entry and one superseded entry, and notice the shape. The superseded ones point at a Verify-Before-Claim rule, meaning they load as history once you adopt that rule and as active guidance until you do. The `meta` block at the top counts three active and two superseded, which is the counting discipline the close-out protocol keeps honest.
+Now open [keel's os/corrections/seed-corrections.yaml](https://github.com/heyhi-design/keel/blob/v0.1.0/os/corrections/seed-corrections.yaml), the five framework-level patterns a new instance starts with. Read one active entry and one superseded entry, and notice the shape. The superseded ones point at a Verify-Before-Claim rule, meaning they load as history once you adopt that rule and as active guidance until you do. The `meta` block at the top counts three active and two superseded, which is the counting discipline the close-out protocol keeps honest.
 
 ## Lab
 
-Trace one correction through its whole life. Open `releases/open-source/keel/examples/baseline-year/os/corrections/corrections-registry.yaml`, the filled registry of the worked instance: four entries, one superseded. Find the superseded entry, `report-drafted-over-untraced-inventory`. Read its `times_fired` count, its `superseded_by` pointer, and the date on it. Then reconstruct the chain the pointer describes: the pattern fired three times, its third fire met the promotion threshold's second trigger (the same pattern across three separate sessions), and on that date its rule was written into the always-loaded constraints and the entry was marked superseded. The other three entries are all still active and below the threshold, which the file's own header calls the normal state.
+Trace one correction through its whole life. Open [keel's examples/baseline-year/os/corrections/corrections-registry.yaml](https://github.com/heyhi-design/keel/blob/v0.1.0/examples/baseline-year/os/corrections/corrections-registry.yaml), the filled registry of the worked instance: four entries, one superseded. Find the superseded entry, `report-drafted-over-untraced-inventory`. Read its `times_fired` count, its `superseded_by` pointer, and the date on it. Then reconstruct the chain the pointer describes: the pattern fired three times, its third fire met the promotion threshold's second trigger (the same pattern across three separate sessions), and on that date its rule was written into the always-loaded constraints and the entry was marked superseded. The other three entries are all still active and below the threshold, which the file's own header calls the normal state.
 
 **Success looks like:** you can name the superseded entry, state its fire count, name the trigger it met, and say where its rule now lives, all read from the entry itself rather than guessed.
 
@@ -68,11 +67,7 @@ Trace one correction through its whole life. Open `releases/open-source/keel/exa
 
 ## Go deeper
 
-- `releases/open-source/keel/os/corrections/LIFECYCLE.md`: statuses, thresholds, the close-out, and the human standard in full.
-- `releases/open-source/keel/os/corrections/seed-corrections.yaml`: the five framework seeds a new instance starts from.
-- `releases/open-source/keel/docs/architecture.md`, figure 4, draws corrections as one of the three loops that make session ten more reliable than session one.
+- [keel's os/corrections/LIFECYCLE.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/corrections/LIFECYCLE.md): statuses, thresholds, the close-out, and the human standard in full.
+- [keel's os/corrections/seed-corrections.yaml](https://github.com/heyhi-design/keel/blob/v0.1.0/os/corrections/seed-corrections.yaml): the five framework seeds a new instance starts from.
+- [keel's docs/architecture.md](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/architecture.md), figure 4, draws corrections as one of the three loops that make session ten more reliable than session one.
 - The factual-versus-behavioral distinction becomes load-bearing in Track 3, where the two severities are handled differently.
-
----
-
-*HeyHi Confidential*

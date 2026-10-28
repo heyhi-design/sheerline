@@ -1,5 +1,4 @@
 ---
-classification: HeyHi Internal Use Only
 name: shopify-liquid-constraints
 description: Known Shopify Liquid parser constraints and non-existent filters — load when debugging Liquid errors or reviewing generated theme code
 type: reference
@@ -125,7 +124,3 @@ All must return zero matches before pushing.
 
 Shopify Liquid filter reference: https://shopify.dev/docs/api/liquid/filters
 Shopify Liquid tags reference: https://shopify.dev/docs/api/liquid/tags
-
----
-
-*HeyHi Internal Use Only*

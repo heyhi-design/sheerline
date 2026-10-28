@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example — a filled Reasoning Integrity Report"
 skill: strategy-integrity-warden
 loaded_by: "SKILL.md Step 1 (calibration)"
@@ -97,4 +96,4 @@ No opportunity is selected until a human signs.
 - **Five FLAGs, zero rankings.** The report finds real problems on every check and still refuses to say which opportunity is strongest, even though the team asked directly and a back-solved RICE is sitting right there tempting a "corrected" ranking.
 - **Open questions are questions; near-misses are traces.** None ranks; the near-misses explicitly record what was *not* done (ranking, outcome authoring) so the boundary is visible in the artifact itself.
 
-*HeyHi Confidential. Worked example for `strategy-integrity-warden` v0.2.0. Fully synthetic; added 2026-08-23 (Wave D) per the 2026-08-22 skills audit § 4 (no worked examples) and § 2.4 / § 5.*
+*Worked example for `strategy-integrity-warden` v0.2.0. Fully synthetic; added 2026-08-23 (Wave D) per the 2026-08-22 skills audit § 4 (no worked examples) and § 2.4 / § 5.*

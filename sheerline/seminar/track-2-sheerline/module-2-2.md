@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 2.2 — The 13-area practice registry"
 track: 2
 module: "2.2"
@@ -80,7 +79,3 @@ Classify one area and defend it. In `sheerline/os/foundations/registry.yaml`, pi
 - `sheerline/os/agent-context.md`: the Craft / Operating / Conditional reading table.
 - Architecture figure 3, [`../../docs/architecture.md`](../../docs/architecture.md), draws the registry with a coverage bar on every area.
 - The foundations the deep areas carry are module 2.3; the conflict order that resolves disagreements between areas is module 2.4.
-
----
-
-*HeyHi Confidential*

@@ -917,4 +917,3 @@ If any header is empty or contains advisory prose ("I checked for bugs") instead
 
 *Design System Onboarding. HeyHi. Bay Design LLC. March 2026.*
 
-*HeyHi Confidential*

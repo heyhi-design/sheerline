@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "figma-library-census: crosswalk and classification method"
 created: "2026-09-07"
 ---
@@ -66,4 +65,3 @@ The census fills no judgment. It hands the reviewer:
 
 **Named gate: the crosswalk review.** A human confirms the coverage reconciliations, adjudicates every `divergent` row and `dtcg_token` mismatch, and sets `level_confirmed: true` per row. No level, no token-conflict resolution, and no naming merge is recorded until that review is signed.
 
-*HeyHi Confidential.*

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 3.3 — GRADE: the evaluator"
 track: 3
 module: "3.3"
@@ -7,6 +6,8 @@ level: advanced
 prereqs: ["3.2"]
 est_minutes: 35
 teaches: sheerline
+lab_mode: heyhi-run
+pointer_labels: [moat-runtime]
 opens_files:
   - ai-services/agentic-infrastructure/benchmark/eval_harness_i1.py
   - ai-services/agentic-infrastructure/benchmark/eval_harness_i2.py
@@ -19,6 +20,8 @@ opens_files:
 ## You are here
 
 VALIDATE returns a deterministic finding on one artifact at one moment. GRADE asks the two questions a single validation cannot: is the system getting better or worse across releases, and how good is the output on the axes no deterministic check can see? This is the verb where the moat lives, so it is taught as architecture and never reproduced. Previous: [`module-3-2.md`](module-3-2.md). Next: [`module-3-4.md`](module-3-4.md).
+
+**A HeyHi-run demonstration.** The walkthrough and lab open HeyHi's retained evaluator harnesses, which is moat-runtime: retained by design and never shipped. In the HeyHi monorepo the files open directly. In an exported copy they are labeled pointers, and a HeyHi operator runs this walkthrough and lab with you in a HeyHi-operated session; the concept sections stand on their own either way.
 
 ## Learning objectives
 
@@ -76,7 +79,3 @@ Open `ai-services/agentic-infrastructure/benchmark/eval-harness-i1-preregistrati
 - `ai-services/agentic-infrastructure/benchmark/eval-harness-i1-preregistration.md`: the separation statistic, the kill criterion, and no default threshold.
 - Architecture figure 4, [`../../docs/architecture.md`](../../docs/architecture.md), draws GRADE as the third verb, with the grades-inform-never-gate rule on its face.
 - Evaluation is the one invariant a firm does not give away (module [0.3](../track-0-orientation/module-0-3.md)); the retained moat returns in Track 4.1.
-
----
-
-*HeyHi Confidential*

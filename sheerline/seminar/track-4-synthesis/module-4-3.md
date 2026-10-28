@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 4.3 — Extending the system"
 track: 4
 module: "4.3"
@@ -10,7 +9,7 @@ teaches: sheerline
 opens_files:
   - sheerline/os/foundations/registry.yaml
   - sheerline/os/corrections/LIFECYCLE.md
-  - heyhi-mcp/heyhi_mcp/corrections/schema.yaml
+  - https://github.com/heyhi-design/agent-corrections/blob/v0.1.1/schema/corrections-schema.yaml
 ---
 
 # Module 4.3 — Extending the system
@@ -42,7 +41,7 @@ The through-line is one idea: every extension has a person at the gate. The don'
 
 ## Walkthrough
 
-Open `sheerline/os/foundations/registry.yaml` and read how an area carries a nature, a coverage state, and a phase, so deepening one is a tracked, scheduled act. Open `sheerline/os/corrections/LIFECYCLE.md` and read "The factual / behavioral boundary", "Promotion thresholds", and "The human standard": only factual corrections are injected or promoted, a behavioral one is never promotable, and the registry is curated. Then open `heyhi-mcp/heyhi_mcp/corrections/schema.yaml` and read the design-extension section for the fields a new correction carries, the severity, the category taxonomy, the predicate, and the known-bad and expected pair.
+Open `sheerline/os/foundations/registry.yaml` and read how an area carries a nature, a coverage state, and a phase, so deepening one is a tracked, scheduled act. Open `sheerline/os/corrections/LIFECYCLE.md` and read "The factual / behavioral boundary", "Promotion thresholds", and "The human standard": only factual corrections are injected or promoted, a behavioral one is never promotable, and the registry is curated. Then open the published agent-corrections base schema, [corrections-schema.yaml at v0.1.1](https://github.com/heyhi-design/agent-corrections/blob/v0.1.1/schema/corrections-schema.yaml), and read the fields every correction carries: an id named for the pattern, a free-text category, a severity that is exactly `factual` or `behavioral`, the trigger context, the correction stated as a positive instruction, and a status, plus the optional firing counts, `superseded_by`, origin date, and `pattern`. Notice that the severity carries the write authority and the category carries the taxonomy, which is why a design taxonomy never changes what a correction may do. The design extension that adds a deterministic predicate and a known-bad and expected pair is HeyHi-run: it lives in HeyHi's retained runtime, never ships, and Track 3.4 demonstrates it.
 
 ## Lab
 
@@ -68,9 +67,5 @@ Sketch a new correction entry. Pick a real design drift, decide its severity, fa
 
 - `sheerline/os/foundations/registry.yaml`: the 13-area map, with coverage and phase per area.
 - `sheerline/os/corrections/LIFECYCLE.md`: statuses, the factual/behavioral boundary, promotion, and the human standard.
-- `heyhi-mcp/heyhi_mcp/corrections/schema.yaml`: the design-extension fields a correction carries.
+- [agent-corrections' corrections-schema.yaml at v0.1.1](https://github.com/heyhi-design/agent-corrections/blob/v0.1.1/schema/corrections-schema.yaml): the base fields every correction carries. The design extension (predicate, known-bad and expected pair) is a HeyHi-run demonstration in Track 3.4.
 - The factual/behavioral line is Track 3.4; grades-inform-never-gate is 3.3; the don't-automate line is module [0.3](../track-0-orientation/module-0-3.md). The capstone is 4.4.
-
----
-
-*HeyHi Confidential*

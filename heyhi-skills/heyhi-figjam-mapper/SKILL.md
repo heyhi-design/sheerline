@@ -19,7 +19,6 @@ description: >-
 version: "0.2.0"
 updated: "2026-08-23"
 status: "deployed — heyhi-skills/; v0.2.0 promoted 2026-08-23 (Gate G-C, plans/plan-sheerline-skills-upgrade-2026-08-22.md) — authors evals/cases.yaml (the skill shipped with zero cases against Sheerline's own eval policy) and corrects the stale 'Draft' footer in references/artifact-recipes.md; no method change (0→6 cases). v0.1.0 promoted + lifted 2026-08-17 (DISPATCH-01). Registered in skill-registry.yaml v2.35.0 + sheerline/skills/registry/skill-registry.yaml v0.3.0. Sheerline area 11 (Collaboration & Facilitation), P1; serves gated areas 2 (Information Architecture, P3) and 13 (Service Design, D-3 2026-10-09) when those open."
-classification: HeyHi Confidential
 ---
 
 # HeyHi FigJam Mapper
@@ -109,4 +108,4 @@ This skill closes through the Exit Gate Flavor A (`CLAUDE-SESSION-RULES.md § Ex
 
 ---
 
-*HeyHi Confidential. Sheerline area 11 (Collaboration & Facilitation), P1. v0.1.0 deployed 2026-08-17 (#666/#673). v0.2.0 staged 2026-08-23 (Wave D, `plans/plan-sheerline-skills-upgrade-2026-08-22.md`) — evals authored, footer corrected, no method change. Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md`; eval gap identified in the 2026-08-22 skills audit § 2.3. Boundary: § 9.*
+*Sheerline area 11 (Collaboration & Facilitation), P1. v0.1.0 deployed 2026-08-17 (#666/#673). v0.2.0 staged 2026-08-23 (Wave D, `plans/plan-sheerline-skills-upgrade-2026-08-22.md`) — evals authored, footer corrected, no method change. Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md`; eval gap identified in the 2026-08-22 skills audit § 2.3. Boundary: § 9.*

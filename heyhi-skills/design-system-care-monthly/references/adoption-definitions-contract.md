@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Production-Code Adoption — metric-definitions contract"
 status: unratified
 ratified_by: null
@@ -10,9 +9,9 @@ source: plans/plan-sheerline-adoption-and-reach-2026-09-12.md
 
 # Production-Code Adoption — metric-definitions contract
 
-**HeyHi Confidential.** The single page every adoption number ships with. A coverage percentage without its definition is the field's oldest failure: a number nobody can reproduce, argue with, or trust. This contract is the ratification artifact for **G-W4** — no "% on system" figure goes into a client report until this is signed off, and every figure that does carries a link back to it.
+The single page every adoption number ships with. A coverage percentage without its definition is the field's oldest failure: a number nobody can reproduce, argue with, or trust. This contract is the ratification artifact for **G-W4** — no "% on system" figure goes into a client report until this is signed off, and every figure that does carries a link back to it.
 
-> **Ratification slot: unratified in the scaffold (G-W4).** The methodology below is the shipped default. An instance ratifies it once, recording who signed off and the effective date in this file's frontmatter, before any "% on system" figure reaches a client report. Two framing decisions are proposed with it for the instance to ratify: (1) the **denominator** is reported both ways, leading with the on-system rate (host elements in the denominator, the industry default) and carrying named-components-only as context; (2) the **system boundary** is set per engagement (for example, a client's Storybook-documented primitives). A per-engagement instance still records its own boundary, threshold, and the client's confirmation. The reference instance's ratified record is `adoption-definitions-contract.instance.md` (instance-only; not shipped with the scaffold).
+> **Ratification slot: unratified in the scaffold (G-W4).** The methodology below is the shipped default. An instance ratifies it once, recording who signed off and the effective date in this file's frontmatter, before any "% on system" figure reaches a client report. Two framing decisions are proposed with it for the instance to ratify: (1) the **denominator** is reported both ways, leading with the on-system rate (host elements in the denominator, the industry default) and carrying named-components-only as context; (2) the **system boundary** is set per engagement (for example, a client's Storybook-documented primitives). A per-engagement instance still records its own boundary, threshold, and the client's confirmation. The reference instance keeps its ratified record at this same path in its own tree; that copy is instance data and does not ship with the scaffold.
 
 Every metric below is stated in the same ten fields, so a client's engineering lead can read one and know exactly what it measures, how it can be gamed, and what is tracked alongside it to keep it honest.
 
@@ -106,4 +105,4 @@ Each engagement fills these in `care-config.yaml` in the instance's engagement f
 
 ---
 
-*HeyHi Confidential. Shipped unratified (the G-W4 slot); an instance ratifies its own copy. Source: `plans/plan-sheerline-adoption-and-reach-2026-09-12.md` § 1a.*
+*Shipped unratified (the G-W4 slot); an instance ratifies its own copy. Source: `plans/plan-sheerline-adoption-and-reach-2026-09-12.md` § 1a.*

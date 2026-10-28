@@ -213,4 +213,4 @@ Source: [where this comes from]
 
 ---
 
-*HeyHi Internal Use Only. Created March 25, 2026.*
+*Created March 25, 2026.*

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example — a filled Design Business Case Draft"
 skill: design-business-case-drafter
 loaded_by: "SKILL.md Step 1 (calibration)"
@@ -84,4 +83,4 @@ Sign-off owner (design lead): ____________________  Date: ______
 
 **What to notice.** The strongest evidence is the organization's own audit, and the draft says so in a note without turning it into a claim. The "2x" statistic is flagged and restated, not silently corrected to the McKinsey number. The Forrester figure is not upgraded because the lead attributed it. The currency figure is gone, with the reason; the staffing scope stays. The candidate signals hand off; no target appears. Nothing in the draft says what the design system will deliver.
 
-*HeyHi Confidential. Synthetic worked example for `design-business-case-drafter` (Sheerline area 10).*
+*Synthetic worked example for `design-business-case-drafter` (Sheerline area 10).*

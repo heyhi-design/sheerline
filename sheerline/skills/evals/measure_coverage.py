@@ -191,7 +191,6 @@ def emit_index(rows: list[dict]) -> str:
     ordered = sorted(rows, key=lambda r: (_area_sort_key(r["area"]), r["id"]))
     lines: list[str] = []
     lines.append("---")
-    lines.append("classification: confidential")
     lines.append('title: "Sheerline Eval-Home Index"')
     lines.append("generated_by: sheerline/skills/evals/measure_coverage.py")
     lines.append("---")
@@ -230,8 +229,6 @@ def emit_index(rows: list[dict]) -> str:
         "which test whether a skill honors its area's invariants rather than whether its prose is good — "
         "the shape of `visual-design-governance/cases.yaml`)."
     )
-    lines.append("")
-    lines.append("*HeyHi Confidential*")
     lines.append("")
     return "\n".join(lines)
 

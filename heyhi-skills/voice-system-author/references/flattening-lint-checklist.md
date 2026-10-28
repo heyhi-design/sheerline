@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Flattening-lint checklist: the Audit-mode spine"
 skill: voice-system-author
 loaded_by: "SKILL.md Step 1 (Audit mode)"
@@ -107,4 +106,4 @@ A lint report that ranks copy "on-brand / off-brand," or that hands back finishe
 
 ---
 
-*HeyHi Confidential. Reference for `voice-system-author`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 4.1 (the voice-flattening defense: the "sea of sameness" evidence, the anti-tell / read-aloud discipline, provenance and claim guardrails). Anti-tell catalog: `heyhi-voice/SKILL.md`, `brand/writing-rules.md`.*
+*Reference for `voice-system-author`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 4.1 (the voice-flattening defense: the "sea of sameness" evidence, the anti-tell / read-aloud discipline, provenance and claim guardrails). Anti-tell catalog: `heyhi-voice/SKILL.md`, `brand/writing-rules.md`.*

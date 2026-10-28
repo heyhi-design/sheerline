@@ -571,4 +571,3 @@ Before confirming Step 8 (Write and confirm), verify:
 
 *Design System Onboarding Reference. HeyHi. March 2026.*
 
-*HeyHi Confidential*

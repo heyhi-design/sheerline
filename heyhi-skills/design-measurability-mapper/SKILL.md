@@ -19,7 +19,6 @@ description: >-
 version: "0.2.0"
 updated: "2026-08-23"
 status: "deployed — heyhi-skills/; v0.2.0 promoted 2026-08-23 (Gate G-C, plans/plan-sheerline-skills-upgrade-2026-08-22.md) — adds attitudinal/qualitative signal-class guidance, candidate guardrail drafting, open-questions + near-misses surfaces, a worked example, 2 eval cases (5→7). v0.1.0 promoted 2026-08-15 (DISPATCH-D). Sheerline area 9 (Design Strategy), P1.5. Registered in skill-registry.yaml v2.35.0."
-classification: HeyHi Confidential
 ---
 
 # Design Measurability Mapper
@@ -155,4 +154,4 @@ If the metric-selection, guardrail-adoption, or target slot is filled, the gate 
 
 ---
 
-*HeyHi Confidential. Sheerline area 9 (Design Strategy & Product Thinking), P1.5 net-new. v0.1.0 deployed 2026-08-15 (DISPATCH-D); registered in `skill-registry.yaml` v2.32.0. v0.2.0 staged 2026-08-23 (Wave D, `plans/plan-sheerline-skills-upgrade-2026-08-22.md`). Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 6.1 / § 8; attitudinal signals, guardrail candidates, and curiosity surfaces from the 2026-08-22 skills audit § 2.4 / § 5. Boundary: § 9.*
+*Sheerline area 9 (Design Strategy & Product Thinking), P1.5 net-new. v0.1.0 deployed 2026-08-15 (DISPATCH-D); registered in `skill-registry.yaml` v2.32.0. v0.2.0 staged 2026-08-23 (Wave D, `plans/plan-sheerline-skills-upgrade-2026-08-22.md`). Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 6.1 / § 8; attitudinal signals, guardrail candidates, and curiosity surfaces from the 2026-08-22 skills audit § 2.4 / § 5. Boundary: § 9.*

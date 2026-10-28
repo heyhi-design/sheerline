@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline Skill Templates: pointers, not copies"
 ---
 
@@ -68,4 +67,3 @@ The canonical full deployed-skill roster (including the keel-layer sales and ses
 
 *Registry: `skills/registry/skill-registry.yaml` · Area map: `os/foundations/registry.yaml`*
 
-*HeyHi Confidential*

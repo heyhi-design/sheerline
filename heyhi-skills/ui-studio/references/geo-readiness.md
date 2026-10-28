@@ -170,4 +170,4 @@ GEO Readiness Gate: <date>
 
 ---
 
-*HeyHi Internal Use Only. ui-studio Zone 2 reference. On-demand load — content-site builds only.*
+*ui-studio Zone 2 reference. On-demand load — content-site builds only.*

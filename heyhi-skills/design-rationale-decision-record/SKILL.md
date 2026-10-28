@@ -19,7 +19,6 @@ description: >-
 version: "0.2.0"
 updated: "2026-08-23"
 status: "deployed — heyhi-skills/; v0.2.0 promoted 2026-08-23 (Gate G-C, plans/plan-sheerline-skills-upgrade-2026-08-22.md) — adds Mode B sweep method (decision-verb/settlement-phrase heuristics + corpus-scoping + a coverage note), a Mode A supersede-record scaffold variant, open-questions + near-misses surfaces, a worked example, 2 eval cases (5→7). v0.1.0 promoted 2026-08-15 (DISPATCH-D). Sheerline area 11 (Collaboration & Facilitation), P1.5. Registered in skill-registry.yaml v2.35.0."
-classification: HeyHi Confidential
 ---
 
 # Design Rationale & Decision-Record Keeper
@@ -192,4 +191,4 @@ If the decision or rationale slot is filled, a swept candidate is asserted as fa
 
 ---
 
-*HeyHi Confidential. Sheerline area 11 (Collaboration, Communication & Facilitation), P1.5 net-new. v0.1.0 deployed 2026-08-15 (DISPATCH-D); registered in `skill-registry.yaml` v2.32.0. v0.2.0 staged 2026-08-23 (Wave D, `plans/plan-sheerline-skills-upgrade-2026-08-22.md`). Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 6.3 / § 8; sweep method, supersede scaffold, and curiosity surfaces from the 2026-08-22 skills audit § 2.4 / § 5. Boundary: § 9.*
+*Sheerline area 11 (Collaboration, Communication & Facilitation), P1.5 net-new. v0.1.0 deployed 2026-08-15 (DISPATCH-D); registered in `skill-registry.yaml` v2.32.0. v0.2.0 staged 2026-08-23 (Wave D, `plans/plan-sheerline-skills-upgrade-2026-08-22.md`). Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 6.3 / § 8; sweep method, supersede scaffold, and curiosity surfaces from the 2026-08-22 skills audit § 2.4 / § 5. Boundary: § 9.*

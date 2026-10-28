@@ -345,4 +345,3 @@ These rules apply to form-heavy interfaces (the MEDIUM-priority "Forms & Feedbac
 
 *Reference for ui-studio skill. Originally authored for design-system-ux, March 2026.*
 
-*HeyHi Confidential*

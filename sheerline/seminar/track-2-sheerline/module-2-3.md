@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 2.3 — The foundations slot: reference, never copy"
 track: 2
 module: "2.3"
@@ -7,6 +6,7 @@ level: intermediate
 prereqs: ["2.2"]
 est_minutes: 30
 teaches: sheerline
+pointer_labels: [reference]
 opens_files:
   - sheerline/os/foundations/visual-design/FOUNDATION.md
   - sheerline/os/foundations/design-systems/FOUNDATION.md
@@ -74,7 +74,3 @@ Trace one pointer to its source. In `sheerline/os/foundations/visual-design/FOUN
 - `sheerline/os/foundations/design-systems/FOUNDATION.md`: the nested subsystem reached through the MCP boundary.
 - Architecture figure 2, [`../../docs/architecture.md`](../../docs/architecture.md), draws the foundations slot sitting between the Configuration layer and the owned line.
 - The fundamentals reasoning layer these foundations point at is module 2.4; the design-systems subsystem itself is Track 3.
-
----
-
-*HeyHi Confidential*

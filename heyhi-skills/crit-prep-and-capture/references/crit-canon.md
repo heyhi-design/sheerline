@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Crit canon — the method spine (held as reference for humans to run)"
 skill: crit-prep-and-capture
 loaded_by: "SKILL.md Step 1"
@@ -65,4 +64,4 @@ Greever (*Articulating Design Decisions*), Minto's SCQA (Situation, Complication
 
 ---
 
-*HeyHi Confidential. Reference for `crit-prep-and-capture`. Spec source: `plans/plan-sheerline-p3-crit-prep-2026-09-05.md` § 4.3; canon of record: `sheerline-skill-buildout-research-2026-08-09.md` § 6.3. Boundary: `sheerline/os/operating-principles.md`.*
+*Reference for `crit-prep-and-capture`. Spec source: `plans/plan-sheerline-p3-crit-prep-2026-09-05.md` § 4.3; canon of record: `sheerline-skill-buildout-research-2026-08-09.md` § 6.3. Boundary: `sheerline/os/operating-principles.md`.*

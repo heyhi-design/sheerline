@@ -1,0 +1,52 @@
+# Sheerline: instance manifest template (instance.yaml).
+#
+# One instance root per practice or client, read through one resolver
+# (sheerline/os/instance/resolve.py). Copy this file to <instance-root>/instance.yaml and fill
+# it there. The schema is sheerline/os/instance/instance.schema.json; the slots an instance can
+# fill are listed in sheerline/os/instance/slots.yaml.
+#
+#   <instance-root>/
+#   ├── instance.yaml   this manifest
+#   ├── intake/         the filled engagement-intake.yaml
+#   ├── contract/       the DS-MCP data contract onboarding writes (app/ holds application context)
+#   ├── mcp/            build record: image ref, SBOM, tool-surface pin, component schedule
+#   ├── slots/          values for scaffold slots (calibration, brand configs, ratified contracts)
+#   └── history/        the instance's decision log, project state, plans, dispatch batches
+#
+# Hermetic seal: every identifying field stays blank in this tracked template. A client
+# instance root lives in the practice's gitignored engagement folder (main workspace only),
+# never inside a .claude/worktrees/ checkout (the resolver refuses one there), and is passed
+# to the resolver by path (--instance or $SHEERLINE_INSTANCE), never discovered by scanning.
+#
+# A slot left out of `slots` resolves to its generic default. A slot with no default fails
+# loudly, naming the key below that fills it.
+
+
+schema: sheerline-instance/1
+
+instance:
+  id: ""          # a non-identifying instance id (never a client name)
+  kind: ""        # self | client
+  mode: ""        # rooted (every fill under this root); pointer is reserved for the practice's own instance
+  owner: ""       # who ratifies this instance's values
+
+intake: ""        # e.g. intake/engagement-intake.yaml
+
+contract:
+  data_dir: ""    # e.g. contract/
+  app_dir: ""     # e.g. contract/app/
+  served_as: ""
+
+mcp:
+  build_record: ""  # e.g. mcp/
+  image_ref: ""
+  transport: ""
+
+history: ""       # e.g. history/
+
+# Fill a slot with a path relative to this instance root, for example:
+#   vectorize.calibration:
+#     value: slots/vectorize-calibration.py
+#     evidence: [slots/vectorize-calibration-report.md]
+slots: {}
+

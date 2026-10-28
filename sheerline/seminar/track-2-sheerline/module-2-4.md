@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 2.4 — The two-axis conflict order and the fundamentals layer"
 track: 2
 module: "2.4"
@@ -75,7 +74,3 @@ From `sheerline/os/operating-principles.md`, answer the axis question directly. 
 - `sheerline/os/foundations/visual-design/FOUNDATION.md`: how a foundation references the fundamentals layer instead of re-authoring it.
 - Architecture figure 5, [`../../docs/architecture.md`](../../docs/architecture.md), draws the boundary, the moat, and the two-axis conflict order.
 - Grading on the severity axis is the evaluator's work, which Track 3 opens; the retained moat is Track 4.
-
----
-
-*HeyHi Confidential*

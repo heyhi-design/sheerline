@@ -173,4 +173,3 @@ When the team is ready to move from diagnosis to design — the next step is one
 - Team that ran Anti-Slop → Before You Build
 - Any team that has named what's wrong → Signal Readers (to build ongoing early warning capacity)
 
-*HeyHi Confidential*

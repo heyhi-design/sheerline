@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline Session Workflow Rules"
 adapted_from: releases/open-source/keel/os/session-rules.template.md
 ---
@@ -130,4 +129,3 @@ Before finalizing any technical output (a schema, an architecture decision, a sc
 
 *Operating principles: `os/operating-principles.md` · Decision log: `os/decision-log.md` · Integrity: the `heyhi-session-integrity` skill, design-scoped.*
 
-*HeyHi Confidential*

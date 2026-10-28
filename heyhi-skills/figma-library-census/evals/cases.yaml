@@ -12,7 +12,6 @@
 # remote-vs-defining variable path (flc-04), read-only + hermetic (flc-05), the structural
 # no-gate-field assertion (flc-06), and not_for routing (flc-07).
 
-classification: confidential
 
 cases:
   - id: flc-01-census-slots-empty
@@ -140,4 +139,3 @@ cases:
       run where the census steals a sibling's bullseye, or a not_for clause that matches the census's
       own triggers (the self-penalty audit), fails.
 
-# HeyHi Confidential

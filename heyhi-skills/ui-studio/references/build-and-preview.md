@@ -43,7 +43,3 @@ Now styles, assets, and every cross-page link resolve; the reviewer clicks strai
 **Cross-reference:** the SKILL.md delivery-handoff note "Serving a prototype for browser review" is the short form of this technique; this reference is canonical for the full pattern. Document the serve command in the engagement README so the user can restart the server without the agent.
 
 **Open improvement hook:** port-collision / cleanup story — does the backgrounded server linger across sessions, and who stops it?
-
----
-
-*HeyHi Internal Use Only*

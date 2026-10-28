@@ -22,7 +22,6 @@ instance_calibration.py.
 
 Writes examples/vectorize/calibration-report.{md,json} (the instance's calibration evidence).
 
-HeyHi Confidential.
 """
 from __future__ import annotations
 
@@ -230,8 +229,7 @@ def write_report(results):
           f"Mark polish works back toward ~{m['reference_anchors']} anchors (the hand-authored "
           "mark). Human-polish time is reported, not gated. The bar is a pre-polish proxy; the "
           "human accepts or rejects at icon + hero scale.",
-          "",
-          "*HeyHi Confidential*"]
+          ""]
     text = "\n".join(L)
     with open(os.path.join(GOLD, "calibration-report.md"), "w") as f:
         f.write(text)

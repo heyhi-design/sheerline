@@ -9,7 +9,6 @@
 # slots empty (clean pass), no verdict/score field, the spec-schema reject, the probed slot step,
 # the plan-gated Code Connect publish, not_for routing, and a served-surface conflict surfaced.
 
-classification: confidential
 
 cases:
   - id: dca-01-both-legs-clean-pass
@@ -128,4 +127,3 @@ cases:
       var to the non-existent suggested token (breaking the render), or that silently 'fixes' the
       idiom mismatch, fails.
 
-# HeyHi Confidential

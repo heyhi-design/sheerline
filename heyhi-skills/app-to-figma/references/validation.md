@@ -2,7 +2,6 @@
 
 *The structural checks and the render-and-look. Loaded on demand. A build is not done until every check here passes on evidence, not assertion. The load-bearing lesson from the 2026-09-04 live proof: a per-node binding audit can report clean while the render is wrong, so the screenshot is not optional.*
 
-*classification: HeyHi Confidential*
 
 ---
 
@@ -119,4 +118,4 @@ The proof record carries a table the smoke tests read:
 
 ---
 
-*HeyHi Confidential. Reference for `app-to-figma` (Sheerline area 5). Live-write lessons: the 2026-09-04 generator proof and `heyhi-skills/heyhi-design-bridge/`. Spec source: `plans/plan-sheerline-fdde-loop-2026-09-07.md` (DISPATCH-02, Lane B).*
+*Reference for `app-to-figma` (Sheerline area 5). Live-write lessons: the 2026-09-04 generator proof and `heyhi-skills/heyhi-design-bridge/`. Spec source: `plans/plan-sheerline-fdde-loop-2026-09-07.md` (DISPATCH-02, Lane B).*

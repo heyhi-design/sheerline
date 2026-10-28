@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 0.2 — The ship lineage and the naming discipline"
 track: 0
 module: "0.2"
@@ -10,7 +9,7 @@ teaches: sheerline
 opens_files:
   - sheerline/README.md
   - sheerline/docs/architecture.md
-  - releases/open-source/keel/README.md
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/README.md
 ---
 
 # Module 0.2 — The ship lineage and the naming discipline
@@ -74,7 +73,3 @@ In `sheerline/README.md`, find the three-way naming caution. For each of the thr
 - `sheerline/README.md` — the frame and the naming caution in full.
 - Architecture figure 1, [`../../docs/architecture.md`](../../docs/architecture.md).
 - Track 2.1 shows how the instance is wired; Track 3 opens the quality-loop module.
-
----
-
-*HeyHi Confidential*

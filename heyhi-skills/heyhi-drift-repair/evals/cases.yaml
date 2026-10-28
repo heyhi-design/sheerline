@@ -11,7 +11,6 @@
 # retained monorepo runtime, not part of the Sheerline scaffold export: run.py needs
 # the HeyHi monorepo (or a checkout carrying heyhi-mcp/ at the same path) to run.
 #
-# classification: confidential
 
 cases:
   - id: dr-01-round-trip-discrimination
@@ -194,4 +193,3 @@ cases:
       The run completes and the malformed finding is proposed. A KeyError / crash, or a silent
       drop, fails.
 
-# HeyHi Confidential

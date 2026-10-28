@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://heyhi.design/schemas/ijm-contract-1.0.json",
   "title": "Intent-Journey Map prop-contract",
-  "description": "The machine half of an Intent-Journey Map: the prop-contract (the machine companion to the system-and-data and UI-and-component bands, at Tier 2), one object per data prop, the 14 columns as fields. Version 1.0, additive thereafter. The boundary is machine-enforced: research_question is null by construction, open decisions carry an owner but no resolution, and additionalProperties:false keeps any verdict, score, or gate field out. HeyHi Confidential.",
+  "description": "The machine half of an Intent-Journey Map: the prop-contract (the machine companion to the system-and-data and UI-and-component bands, at Tier 2), one object per data prop, the 14 columns as fields. Version 1.0, additive thereafter. The boundary is machine-enforced: research_question is null by construction, open decisions carry an owner but no resolution, and additionalProperties:false keeps any verdict, score, or gate field out.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "feature", "tier", "rows", "research_question"],

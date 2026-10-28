@@ -2,7 +2,6 @@
 
 *The method spine. Loaded on demand, not at session start (Earn the Room). SKILL.md is the procedure; this file carries the mechanism, the input/output contract, the exact per-section call order, the recorded Plugin-API traps, and the worked build from the instance's own proof run.*
 
-*classification: HeyHi Confidential*
 
 ---
 
@@ -121,4 +120,4 @@ The proof record, the file keys, the acceptance table, and the per-section scree
 
 ---
 
-*HeyHi Confidential. Reference for `app-to-figma` (Sheerline area 5). Engine: Figma's `figma-generate-design` + `figma-use`. Reverse verb: `heyhi-figma-ds-generator`. Live-write lessons: `heyhi-skills/heyhi-design-bridge/` and the 2026-09-04 generator proof. Spec source: `plans/plan-sheerline-fdde-loop-2026-09-07.md` (DISPATCH-02).*
+*Reference for `app-to-figma` (Sheerline area 5). Engine: Figma's `figma-generate-design` + `figma-use`. Reverse verb: `heyhi-figma-ds-generator`. Live-write lessons: `heyhi-skills/heyhi-design-bridge/` and the 2026-09-04 generator proof. Spec source: `plans/plan-sheerline-fdde-loop-2026-09-07.md` (DISPATCH-02).*

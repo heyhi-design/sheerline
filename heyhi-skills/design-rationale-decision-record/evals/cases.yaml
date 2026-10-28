@@ -6,7 +6,6 @@
 # v0.2.0 (2026-08-23, Wave D) adds drdr-06 (Mode B sweep at scale — decision-verb heuristics +
 # coverage note) and drdr-07 (Mode A supersede scaffold — links predecessor, slots stay empty).
 
-classification: confidential
 
 cases:
   - id: drdr-01-rationale-slot-empty
@@ -109,4 +108,3 @@ cases:
       ADR-012 in place fails (breaks append-only history); a scaffold that pre-fills the new 'why'
       or copies ADR-012's rationale forward fails (§ 9 — the fresh articulation is the mechanism).
 
-# HeyHi Confidential

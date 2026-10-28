@@ -7,7 +7,6 @@
 # (sheerline/os/operating-principles.md), judge by pass_criteria. Synthetic inputs, no client content.
 # R4 case shape + a `source` per case citing the SKILL.md section the behavior is documented in.
 
-classification: confidential
 
 cases:
   - id: hls-01-mark-verdict-stays-human

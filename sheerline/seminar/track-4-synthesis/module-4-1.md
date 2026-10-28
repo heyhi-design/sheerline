@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 4.1 — The boundary and the retained moat"
 track: 4
 module: "4.1"
@@ -22,16 +21,16 @@ Track 3 walked the four verbs of the quality loop. Track 4 turns a reader into a
 
 After this you can:
 
-- Name the three tiers of the boundary: public keel, Confidential Sheerline, and the retained moat.
+- Name the three tiers of the boundary: public keel, public Sheerline, and the retained moat.
 - State the scaffold-ships / populated-instance-stays split and the one rule behind it.
 - Sort an artifact across the moat wall and defend it in a line.
 - Say why evaluation is the one invariant HeyHi does not commoditize.
 
 ## Concept
 
-The whole loop you learned is valuable, so the boundary that decides what leaves the building is load-bearing. It has three tiers. **Public keel** is the general harness scaffold, publishable openly. **Confidential Sheerline** is the design instance built on it, on a hold for the public tree until its gate opens. The **retained moat** is the calibrated instance behind both, and it never ships. The seminar itself has been drawing this line the whole way: keel-tagged modules are written to lift into public documentation, Sheerline-tagged modules stay internal, and the calibrated content is taught as architecture only, never reproduced.
+The whole loop you learned is valuable, so the boundary that decides what leaves the building is load-bearing. It has three tiers. **Public keel** is the general harness scaffold, publishable openly. **Public Sheerline** is the design instance built on it, published under MIT since 2026-10-27. The **retained moat** is the calibrated instance behind both, and it never ships. The seminar itself has been drawing this line the whole way: keel-tagged modules are written to lift into public documentation, Sheerline-tagged modules stay internal, and the calibrated content is taught as architecture only, never reproduced.
 
-The operative rule across the tiers is the **scaffold-ships / populated-instance-stays** split. The scaffold, the `os/` layer, the registry engine, the corrections schema and its generic seeds, the MCP contract, and the Design System MCP scaffold, is potentially publishable. The retained moat stays in a separate unpublished tree and is not built into the shipped scaffold: the boundary and evaluation layer, the graded evaluator, the conformance parser, the populated corrections corpus and its promotion judgment, the calibrated thresholds, and the populated MCP instance. The one line that makes this operational is worth holding onto: what ships is the empty structure with its generic seeds, and what stays is the populated, calibrated instance that fills it. A competitor can rebuild the scaffold; it cannot rebuild what fills it.
+The operative rule across the tiers is the **scaffold-ships / populated-instance-stays** split. The scaffold, the `os/` layer, the registry engine, the corrections schema and its generic seeds, the MCP contract, and the Design System MCP scaffold, ships publicly (MIT). The retained moat stays in a separate unpublished tree and is not built into the shipped scaffold: the boundary and evaluation layer, the graded evaluator, the conformance parser, the populated corrections corpus and its promotion judgment, the calibrated thresholds, and the populated MCP instance. The one line that makes this operational is worth holding onto: what ships is the empty structure with its generic seeds, and what stays is the populated, calibrated instance that fills it. A competitor can rebuild the scaffold; it cannot rebuild what fills it.
 
 This is why the third invariant, evaluation before deployment, is the one HeyHi does not commoditize. A checking layer that has been calibrated on real work is the hard-to-copy asset, so the evaluation layer sits on the retained side of the wall, not the shippable scaffold. It is also the reason the whole seminar refused to print a tuned number: teaching the evaluator and corrections as architecture, and withholding their calibrated content, is this boundary observed in the curriculum. The legal grounding sits underneath and is a separate track: copyright attaches automatically to all the written work, trade secret protects the populated combination that is the moat, and one architectural combination may be patentable, pursued with counsel. HeyHi's IP strategy, a gitignored legal document read outside the tracked tree, is the authoritative record; this module teaches the boundary, not the filing.
 
@@ -39,7 +38,7 @@ One client-facing consequence follows and is worth stating plainly, because it c
 
 ## Walkthrough
 
-Open `sheerline/os/operating-principles.md` and find "The IP boundary (scaffold ships, populated instance stays)". Read the two lists: the scaffold that is potentially publishable, and the retained moat that stays in a separate unpublished tree. Notice the section says the split is confirmed against a gitignored legal document resolved outside the tracked tree, so the authoritative source lives off the tracked tree and is referenced, never quoted in. Then open `sheerline/docs/architecture.md` and read figure 5: the crimson wall divides the scaffold that ships from the retained moat that stays, with the two-axis conflict order and what stays human beneath it.
+Open `sheerline/os/operating-principles.md` and find "The IP boundary (scaffold ships, populated instance stays)". Read the two lists: the scaffold that ships publicly, and the retained moat that stays in a separate unpublished tree. Notice the section says the split is confirmed against a gitignored legal document resolved outside the tracked tree, so the authoritative source lives off the tracked tree and is referenced, never quoted in. Then open `sheerline/docs/architecture.md` and read figure 5: the crimson wall divides the scaffold that ships from the retained moat that stays, with the two-axis conflict order and what stays human beneath it.
 
 ## Lab
 
@@ -67,7 +66,3 @@ From figure 5 in `sheerline/docs/architecture.md` and the IP-boundary section of
 - Architecture figure 5, [`../../docs/architecture.md`](../../docs/architecture.md), draws the boundary wall, the moat, and what stays human.
 - The seminar's own moat line (README, "what this seminar does not do") is this boundary applied to the curriculum.
 - The calibrated content the corpus and evaluator hold is taught as architecture in Track 3.3 and 3.4; running a loop inside this boundary is 4.2.
-
----
-
-*HeyHi Confidential*

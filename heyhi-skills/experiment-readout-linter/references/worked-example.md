@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example — a filled Readout Integrity Report"
 skill: experiment-readout-linter
 loaded_by: "SKILL.md Step 1 (calibration)"
@@ -103,4 +102,4 @@ No ship decision is recorded until this line is signed by a human.
 - **The open questions are questions.** Each ends in a question mark and could be answered in a way that leaves the team where they are (maybe the redirect is benign) — none is a recommendation in disguise.
 - **The near-misses are traces.** They record what was considered, almost-flagged, and could-not-be-checked, with no verdict attached — so the next reader sees exactly where the audit's confidence is thin.
 
-*HeyHi Confidential. Worked example for `experiment-readout-linter` v0.2.0. Fully synthetic; added 2026-08-23 (Wave D) per the 2026-08-22 skills audit § 4 (no worked examples) and § 5 (curiosity surfaces).*
+*Worked example for `experiment-readout-linter` v0.2.0. Fully synthetic; added 2026-08-23 (Wave D) per the 2026-08-22 skills audit § 4 (no worked examples) and § 5 (curiosity surfaces).*

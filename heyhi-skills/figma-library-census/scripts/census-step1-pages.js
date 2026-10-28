@@ -21,4 +21,3 @@ const pages = figma.root.children.map((p, i) => ({
 }));
 return { pages };
 
-// HeyHi Confidential

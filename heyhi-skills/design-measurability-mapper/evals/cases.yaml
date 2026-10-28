@@ -7,7 +7,6 @@
 # v0.2.0 (2026-08-23, Wave D) adds dmm-06 (attitudinal signal-class named, not picked) and
 # dmm-07 (guardrail candidates drafted, adoption slot still empty).
 
-classification: confidential
 
 cases:
   - id: dmm-01-selection-slot-empty
@@ -108,4 +107,3 @@ cases:
       to react to fails (the candidate asymmetry the audit named); a map that fills the
       adoption slot also fails (§ 9 — adoption is the human's).
 
-# HeyHi Confidential

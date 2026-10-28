@@ -8,7 +8,6 @@
 # (sheerline/os/operating-principles.md), judge by pass_criteria. Synthetic inputs, no client content.
 # R4 case shape + a `source` per case.
 
-classification: confidential
 
 cases:
   - id: hac-01-records-not-repairs

@@ -1,7 +1,6 @@
 {
   "_what_this_is": "A machine-readable map of the Sheerline tree and how its documents depend on each other. Change one document, and this graph names which others may now be stale. Adapted from releases/open-source/keel/os/dependency-graph.template.json.",
   "_path_convention": "Node keys and depends_on edges are sheerline-root-relative. External references (the corpus, the ratified fundamentals docs, keel) are named in each node's description, not as edges, since they are not nodes in this graph.",
-  "classification": "confidential",
   "meta": {
     "version": "0.2.2",
     "last_updated": "2026-08-28",

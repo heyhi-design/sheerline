@@ -2,7 +2,6 @@
 
 *Reference for ui-studio-onboard. Translates ui-ux-pro-max's `Style_Priority` taxonomy (in `data/ui-reasoning.csv`) into HeyHi's A–E style cluster system. The two are different systems; this table is the translation layer.*
 
-*HeyHi Internal Use Only*
 
 ## Why this exists
 
@@ -51,4 +50,4 @@ Do not automate cluster assignment from this crosswalk without confirmation.
 
 ---
 
-*HeyHi Internal Use Only. Authored 2026-06-18 from ui-ux-pro-max-improvement-plan.md Item 5.*
+*Authored 2026-06-18 from ui-ux-pro-max-improvement-plan.md Item 5.*

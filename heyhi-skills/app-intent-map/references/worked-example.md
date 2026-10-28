@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Application Intent Map, worked example (the instance's own site)"
 skill: app-intent-map
 version: "0.1.0"
@@ -70,4 +69,4 @@ The purpose stays empty and no constraint is ranked until this line is signed.
 
 ---
 
-*HeyHi Confidential. `app-intent-map` worked example v0.1.0, the instance's own site (heyhi.design). Every row is evidence-linked to a real file:line; the paired machine map validates against `schemas/intent-map.schema.json` with `purpose` null.*
+*`app-intent-map` worked example v0.1.0, the instance's own site (heyhi.design). Every row is evidence-linked to a real file:line; the paired machine map validates against `schemas/intent-map.schema.json` with `purpose` null.*

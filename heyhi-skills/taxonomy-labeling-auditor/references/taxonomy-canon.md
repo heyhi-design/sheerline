@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Taxonomy canon — the consistency audit, the scent test, polyhierarchy/metadata, and the machine-readability schema draft (taxonomy-labeling-auditor reference)"
 version: "0.1.2"
 updated: "2026-10-07"
@@ -76,4 +75,4 @@ Search logs, analytics exports, support-ticket dumps, and card-sort results are 
 
 ---
 
-*HeyHi Confidential. Reference for `taxonomy-labeling-auditor` (Sheerline area 2). Governance canon: `sheerline/os/foundations/information-architecture/FOUNDATION.md`. Source: `plans/plan-sheerline-p3-ur-ia-foundations-2026-08-29.md` § 3.2 / § 4.2; `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 3.2.*
+*Reference for `taxonomy-labeling-auditor` (Sheerline area 2). Governance canon: `sheerline/os/foundations/information-architecture/FOUNDATION.md`. Source: `plans/plan-sheerline-p3-ur-ia-foundations-2026-08-29.md` § 3.2 / § 4.2; `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 3.2.*

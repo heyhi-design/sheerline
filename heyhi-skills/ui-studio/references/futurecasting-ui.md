@@ -150,7 +150,6 @@ config_used: [active-brand.json brand.name + version]
 date: [ISO date]
 output_type: prototype | blueprint
 status: done
-classification: HeyHi Confidential
 ---
 ```
 
@@ -195,4 +194,4 @@ Before delivering any Mode C output (prototype or blueprint):
 
 ---
 
-*HeyHi Internal Use Only. Created March 25, 2026.*
+*Created March 25, 2026.*

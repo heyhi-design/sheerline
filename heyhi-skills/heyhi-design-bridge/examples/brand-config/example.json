@@ -1,6 +1,5 @@
 {
   "_comment": "Fixture brand-config for the Translate golden prototype (examples/prototypes/atlas-reader.html): a neutral example palette in the ui-studio brand-config token structure, and the extractor's default --config. Fonts match the golden prototype's type ramp so its captured geometry stays valid; they are fixture values, not a recommended stack.",
-  "_classification": "HeyHi Confidential",
   "tokens": {
     "color": {
       "backgrounds": {

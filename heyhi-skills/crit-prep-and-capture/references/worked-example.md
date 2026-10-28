@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example — a filled Crit Pre-Read and Crit Capture"
 skill: crit-prep-and-capture
 loaded_by: "SKILL.md Step 1 (calibration)"
@@ -137,4 +136,4 @@ No decision is recorded as accepted until the Approver signs.
 **What to notice.** Item 1 moved to `decided-in-room` only because a settlement phrase exists and is quoted; item 2 stayed `undecided` because "will check the wrap" is a follow-up, not a settlement. Only item 2 traces to a goal, because Tam is the only person who named one; items 1 and 4 read as if they were *about* goals 1 and 2, and the capture still leaves them `[untraced]`, because matching a phrase to a goal is the skill's inference, not the room's link. Follow-ups are the room's own words; Sam's unanswered question is an `undecided` item and an open question on the record, not a task the room never proposed. The emitted record carries the consumer's every header and sentence; its DACI lines are blank because crit roles are not DACI roles, and the completeness line FLAGs the missing Approver rather than guessing one. Its Decision and Rationale are empty even though the room said what it was going with, because recording the room's words in Context is capture, and filling the Decision slot is the Approver's signature. Nothing anywhere says whether dropping the count was right.
 ---
 
-*HeyHi Confidential. Worked example for `crit-prep-and-capture` (synthetic). Spec source: `plans/plan-sheerline-p3-crit-prep-2026-09-05.md` § 4.4.*
+*Worked example for `crit-prep-and-capture` (synthetic). Spec source: `plans/plan-sheerline-p3-crit-prep-2026-09-05.md` § 4.4.*

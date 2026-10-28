@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline: architecture"
 adapted_from: releases/open-source/keel/docs/architecture.md
 ---
@@ -54,7 +53,7 @@ Detail: the module's own five-figure walkthrough, [`design-system-mcp/docs/archi
 
 ## 5. The boundary and the retained moat
 
-![A crimson wall divides two sets. Left, the scaffold that ships (on C-1 hold): the os/ layer, the registry engine, the corrections schema and generic seeds, the MCP contract, the DS-MCP scaffold. Right, the retained moat that stays: the evaluation layer, the graded evaluator, the conformance parser, the populated corrections corpus and its promotion judgment, the calibrated thresholds. Below, the two-axis conflict order and what stays human.](diagrams/boundary-moat.svg)
+![A crimson wall divides two sets. Left, the scaffold that ships (public, MIT): the os/ layer, the registry engine, the corrections schema and generic seeds, the MCP contract, the DS-MCP scaffold. Right, the retained moat that stays: the evaluation layer, the graded evaluator, the conformance parser, the populated corrections corpus and its promotion judgment, the calibrated thresholds. Below, the two-axis conflict order and what stays human.](diagrams/boundary-moat.svg)
 
 The fourth invariant is load-bearing here: the MCP, the evaluator, and the corrections registry are reached *through the MCP as a boundary tool*, nested and referenced, never embedded. That boundary is also where the value is protected. The scaffold is potentially publishable; the populated instance (the calibrated evaluator, the corpus, the promotion judgment) stays in a separate unpublished tree.
 
@@ -78,7 +77,7 @@ Each file is a self-contained SVG with no external dependencies. Colors live in 
 
 The palette is Sheerline's, shared across the set: **indigo** for what keel gives you (the owned configuration), **teal** for what Sheerline adds (the foundations, the design surface), **crimson** for the load-bearing line (the ownership seam, the moat wall, the "grades inform, never gate" rule), and neutral for what is rented or commodity.
 
-These figures, and the tree they describe, are **HeyHi Confidential**. They document the scaffold as architecture; the calibrated content behind the moat wall in figure 5 is never drawn here.
+These figures document the scaffold as architecture; the calibrated content behind the moat wall in figure 5 is never drawn here.
 
 **Rendered orientation.** A self-contained page, [`governed-loop.html`](governed-loop.html) (regenerate with [`governed-loop.build.py`](governed-loop.build.py)), embeds these six figures and carries the governed loop through to its application in a client engagement's prototype skill. Open it in a browser for the narrated walk-through.
 
@@ -86,4 +85,3 @@ These figures, and the tree they describe, are **HeyHi Confidential**. They docu
 
 *Frame and naming: [`../README.md`](../README.md) · Constraints: [`../os/operating-principles.md`](../os/operating-principles.md) · Session workflow: [`../os/session-rules.md`](../os/session-rules.md)*
 
-*HeyHi Confidential*

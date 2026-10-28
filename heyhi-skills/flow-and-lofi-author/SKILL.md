@@ -30,7 +30,6 @@ version: "0.1.0"
 updated: "2026-09-05"
 status: "deployed 2026-09-07 — heyhi-skills/flow-and-lofi-author/ (buildable-now, internal-first, self-application-first); registered in the main registry and the Sheerline area-5 subset registry, promoted in the Bucket B convergence third run (staged #788, cleared by the instance owner 2026-09-07); the ui-studio routing override applied in the same pass. Sheerline area 5 (Wireframing & Prototyping), P3 deepen, build class N; coverage unchanged (area 5 stays covered). Spec: plans/plan-sheerline-p3-prototyping-lofi-2026-09-05.md § 2 / § 5 / § 6 / § 9. Foundation: sheerline/os/foundations/prototyping/FOUNDATION.md."
 review_by: "2026-09-19"
-classification: HeyHi Confidential
 ---
 
 # Flow & Lo-fi Author
@@ -163,4 +162,4 @@ If either ⛔ slot is filled, an alternative is ranked, a fake N shipped, or any
 
 ---
 
-*HeyHi Confidential. Sheerline area 5 (Wireframing & Prototyping), P3 deepen, build class N. Staged 2026-09-05 (v0.1.0) in `skill-updates/`, registry-inert until the Bucket B convergence pass promotes it and applies the routing override. Spec source: `plans/plan-sheerline-p3-prototyping-lofi-2026-09-05.md` § 2 / § 5 / § 6 / § 9. Foundation: `sheerline/os/foundations/prototyping/FOUNDATION.md`. Boundary: `sheerline/os/operating-principles.md`. The lo-fi definition is inherited from `OPERATING_PRINCIPLES.md` § Design and visual work protocol.*
+*Sheerline area 5 (Wireframing & Prototyping), P3 deepen, build class N. Staged 2026-09-05 (v0.1.0) in `skill-updates/`, registry-inert until the Bucket B convergence pass promotes it and applies the routing override. Spec source: `plans/plan-sheerline-p3-prototyping-lofi-2026-09-05.md` § 2 / § 5 / § 6 / § 9. Foundation: `sheerline/os/foundations/prototyping/FOUNDATION.md`. Boundary: `sheerline/os/operating-principles.md`. The lo-fi definition is inherited from `OPERATING_PRINCIPLES.md` § Design and visual work protocol.*

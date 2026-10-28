@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline: Agent Context"
 adapted_from: releases/open-source/keel/os/agent-context.template.md
 ---
@@ -58,4 +57,3 @@ Design critique, brand positioning, direction selection, taste, hiring, performa
 
 *Operating principles: `os/operating-principles.md` · Session rules: `os/session-rules.md` · Skill routing: `skills/registry/skill-registry.py` (run `python3 skill-registry.py "<task>" --confidence`, load only the top skill, ask when it reports two close matches).*
 
-*HeyHi Confidential*

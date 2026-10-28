@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example — a filled Interaction Inventory"
 skill: interaction-inventory
 loaded_by: "SKILL.md Step 1 (calibration)"
@@ -119,4 +118,4 @@ No state is declared complete or deliberately absent until this line is signed b
 - The **below-44px** flag on the tabs is the served floor, not a conformance claim: WCAG's minimum is 24 px, and the accessibility audit is the place that claim is made.
 - The **disabled-reason-unshown** flag on Save sits on a state that is itself MISSING: it flags a *candidate rule* ("disabled until a change is made"), so if the human rules the disabled state deliberately absent the flag falls with it. A flag on an inference is still a flag, never a verdict.
 
-*HeyHi Confidential. Synthetic throughout.*
+*Synthetic throughout.*

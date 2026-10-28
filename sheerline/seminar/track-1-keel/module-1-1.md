@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 1.1 — The three-layer model"
 track: 1
 module: "1.1"
@@ -8,9 +7,9 @@ prereqs: ["0.3"]
 est_minutes: 25
 teaches: keel
 opens_files:
-  - releases/open-source/keel/docs/three-layer-model.md
-  - releases/open-source/keel/README.md
-  - releases/open-source/keel/examples/README.md
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/docs/three-layer-model.md
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/README.md
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/examples/README.md
 ---
 
 # Module 1.1 — The three-layer model
@@ -40,19 +39,19 @@ You met the harness and model boundary in Track 0 as a thesis. keel turns it int
 
 The load-bearing feature of the whole picture is the line between Layer 1 and the two above it. keel's architecture doc draws it in crimson and names it the owned-versus-rented seam. Everything above the line is the harness you own and carry with you; the runtime below it is swappable. That line is the first invariant from module 0.3, provider-agnostic design, made concrete: change the model or the tool and only Layer 1 changes, because nothing in Layers 2 and 3 names a specific vendor. The honest caveat rides along unchanged. The templates are agnostic in design, and porting them to a different provider in practice is real adaptation work, not a configuration flip.
 
-One mechanic makes the ownership line legible on disk: the `.template` rename rule. Every file keel ships as a fillable template carries a `.template` segment in its name. The operating principles arrive as `releases/open-source/keel/os/operating-principles.template.md`; the skill index arrives as `releases/open-source/keel/skills/registry/skill-registry.template.yaml`. Filling one in does two things at once: you write your firm's content into the bracketed slots, and you drop the `.template` segment so the live file sits beside the blank. The renamed file is what your runtime and scripts load; the template stays as the baseline you can diff against later. A keel repository you have set up therefore reads as pairs, a template you were handed and a filled file you own. When the registry search in module 1.3 looks for a file without the `.template` segment, this rule is why.
+One mechanic makes the ownership line legible on disk: the `.template` rename rule. Every file keel ships as a fillable template carries a `.template` segment in its name. The operating principles arrive as [keel's os/operating-principles.template.md](https://github.com/heyhi-design/keel/blob/v0.1.0/os/operating-principles.template.md); the skill index arrives as [keel's skills/registry/skill-registry.template.yaml](https://github.com/heyhi-design/keel/blob/v0.1.0/skills/registry/skill-registry.template.yaml). Filling one in does two things at once: you write your firm's content into the bracketed slots, and you drop the `.template` segment so the live file sits beside the blank. The renamed file is what your runtime and scripts load; the template stays as the baseline you can diff against later. A keel repository you have set up therefore reads as pairs, a template you were handed and a filled file you own. When the registry search in module 1.3 looks for a file without the `.template` segment, this rule is why.
 
 Hold the three layers as the frame for the rest of Track 1. Everything ahead lives in Layer 2 or Layer 3: what loads (1.2) is a Layer 2 discipline; the registry (1.3) and corrections (1.4) are Layer 2 and Layer 3 mechanisms; memory (1.5) is this same three-layer model applied one level down; and the session lifecycle (1.6) is how all of it runs.
 
 ## Walkthrough
 
-Open `releases/open-source/keel/docs/three-layer-model.md`. Read the three layer headings and, under each, the single bolded ownership sentence: you rent Layer 1, you own Layer 2 once you fill it in, you own and extend Layer 3. Then read the short section "How the layers compose". The runtime loads your configuration at the start of every session, and nothing about the runtime knows it is "your firm" until that configuration arrives. That one sentence is the harness thesis restated as a data flow.
+Open [keel's docs/three-layer-model.md](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/three-layer-model.md). Read the three layer headings and, under each, the single bolded ownership sentence: you rent Layer 1, you own Layer 2 once you fill it in, you own and extend Layer 3. Then read the short section "How the layers compose". The runtime loads your configuration at the start of every session, and nothing about the runtime knows it is "your firm" until that configuration arrives. That one sentence is the harness thesis restated as a data flow.
 
-Now open `releases/open-source/keel/README.md` and find "What's inside". Map each folder to a layer: `os/` is Layer 2, the configuration; `profile/` and `skills/` are Layer 3, the deployment. Notice the note that nothing here installs as a package, that you clone the repository and run the scripts in place, so the interpreter version is the only requirement. That is the runtime boundary in miniature: keel is files you own, not a service you log into. The `.template` segment on the files under `os/` is the rename rule waiting for you.
+Now open [keel's README.md](https://github.com/heyhi-design/keel/blob/v0.1.0/README.md) and find "What's inside". Map each folder to a layer: `os/` is Layer 2, the configuration; `profile/` and `skills/` are Layer 3, the deployment. Notice the note that nothing here installs as a package, that you clone the repository and run the scripts in place, so the interpreter version is the only requirement. That is the runtime boundary in miniature: keel is files you own, not a service you log into. The `.template` segment on the files under `os/` is the rename rule waiting for you.
 
 ## Lab
 
-Open `releases/open-source/keel/examples/README.md` and read what it says about the worked instance at `releases/open-source/keel/examples/baseline-year/`: a one-person practice, invented, filled end to end. Then open two of its filled files and place each in a layer. Open `releases/open-source/keel/examples/baseline-year/os/agent-context.md` and notice how short it stays, because it loads every session and cutting matters more than covering (Layer 2). Open `releases/open-source/keel/examples/baseline-year/os/decision-log.md` and notice it holds two entries in ten months, because a log that fills up fast is recording activity, not decisions (Layer 2). Then note what the example deliberately does not ship: a filled session-rules file, which the examples README lists among the referenced-but-not-shipped files, because a worked example shows what a filled file says, not a second full copy of the scaffold.
+Open [keel's examples/README.md](https://github.com/heyhi-design/keel/blob/v0.1.0/examples/README.md) and read what it says about the worked instance at [keel's examples/baseline-year](https://github.com/heyhi-design/keel/tree/v0.1.0/examples/baseline-year): a one-person practice, invented, filled end to end. Then open two of its filled files and place each in a layer. Open [keel's examples/baseline-year/os/agent-context.md](https://github.com/heyhi-design/keel/blob/v0.1.0/examples/baseline-year/os/agent-context.md) and notice how short it stays, because it loads every session and cutting matters more than covering (Layer 2). Open [keel's examples/baseline-year/os/decision-log.md](https://github.com/heyhi-design/keel/blob/v0.1.0/examples/baseline-year/os/decision-log.md) and notice it holds two entries in ten months, because a log that fills up fast is recording activity, not decisions (Layer 2). Then note what the example deliberately does not ship: a filled session-rules file, which the examples README lists among the referenced-but-not-shipped files, because a worked example shows what a filled file says, not a second full copy of the scaffold.
 
 **Success looks like:** you can state which layer `os/`, `profile/`, and `skills/` each belong to, name the owned-versus-rented line, and point to one filled baseline-year file whose shape (short, or sparse) teaches something a blank template could not.
 
@@ -72,11 +71,7 @@ Open `releases/open-source/keel/examples/README.md` and read what it says about 
 
 ## Go deeper
 
-- `releases/open-source/keel/docs/three-layer-model.md`: the three layers and the ownership line in full.
-- `releases/open-source/keel/docs/architecture.md`, figure 1, draws the layers and the crimson owned-versus-rented seam. The seminar's own map redraws the same model for design as figure 2 of [`../../docs/architecture.md`](../../docs/architecture.md).
-- `releases/open-source/keel/examples/README.md`: the worked instance, and why the fiction is deliberate.
+- [keel's docs/three-layer-model.md](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/three-layer-model.md): the three layers and the ownership line in full.
+- [keel's docs/architecture.md](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/architecture.md), figure 1, draws the layers and the crimson owned-versus-rented seam. The seminar's own map redraws the same model for design as figure 2 of [`../../docs/architecture.md`](../../docs/architecture.md).
+- [keel's examples/README.md](https://github.com/heyhi-design/keel/blob/v0.1.0/examples/README.md): the worked instance, and why the fiction is deliberate.
 - The rename rule returns in module 1.3 (the registry loads the renamed file); the ownership line returns one level down in module 1.5 (memory behind a swappable backend).
-
----
-
-*HeyHi Confidential*

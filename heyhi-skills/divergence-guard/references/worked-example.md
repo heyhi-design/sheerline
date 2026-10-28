@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example — a filled Divergence Read"
 skill: divergence-guard
 loaded_by: "SKILL.md Step 1 (calibration)"
@@ -52,4 +51,4 @@ This read informs those two calls; it records neither until this line is signed 
 
 **What to notice.** Three comps became `Count: 1` with the reason stated, and the palette question was named as area 6's and left there. N = 3 sits beside the count as context; nothing says the session failed to meet it. The stimulus is four unordered lines, each an unexplored axis, none of them drafted. The fidelity reading is two sentences of prose, not a value, and it names a cost rather than issuing an instruction. The phase note allows that the lo-fi may exist out of view.
 
-*HeyHi Confidential. Worked example for `divergence-guard` (synthetic). Spec source: `plans/plan-sheerline-p3-prototyping-lofi-2026-09-05.md` § 6.2.*
+*Worked example for `divergence-guard` (synthetic). Spec source: `plans/plan-sheerline-p3-prototyping-lofi-2026-09-05.md` § 6.2.*

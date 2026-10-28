@@ -11,7 +11,6 @@
 # no-gate-field assertion, not_for routing, the honest no-API clean-pass audited against the
 # skill's own empty-is-correct exception, and the read-only + delta discipline.
 
-classification: confidential
 
 cases:
   - id: ar-01-tier-precedence
@@ -146,4 +145,3 @@ cases:
       The delta touches only changed surfaces and the tree is never mutated. A run that checks out a
       branch, stashes the uncommitted work, or re-reads every surface from scratch fails.
 
-# HeyHi Confidential

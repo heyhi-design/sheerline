@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Foundation: Content Design / UX Writing (area 3, COVERED / filled / governed practice)"
 area: 3
 nature: craft
@@ -87,4 +86,3 @@ The craft this foundation genuinely authors, the analogue of the accessibility W
 
 *Area map: [`os/foundations/registry.yaml`](../registry.yaml) · Always-loaded invariants: [`os/operating-principles.md`](../../operating-principles.md) · Canon of record for the voice model, the taxonomy, the doctrine, the lint, and the guardrail: `heyhi-skills/voice-system-author/references/` · The seam's structural contract: `plans/plan-sheerline-p3-interaction-design-2026-09-04.md` § 3.5 / § 4 and [`interaction-design/FOUNDATION.md`](../interaction-design/FOUNDATION.md) · Spec source: [`plans/plan-sheerline-p3-content-design-2026-09-05.md`](../../../../plans/plan-sheerline-p3-content-design-2026-09-05.md) · Research of record: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 4 / § 4.1 / § 7b*
 
-*HeyHi Confidential*

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline insights: the convention slot"
 ---
 
@@ -21,4 +20,3 @@ This directory is the **convention** for how research INSIGHTS (nuggets) work in
 
 *Runtime: the internal `heyhi-mcp` (`heyhi_mcp/corrections/insight_store.py`, `heyhi_mcp/tools/insights.py`, `heyhi_mcp/corrections/insight-schema.yaml`). Sibling convention: `os/corrections/`. Schema decision: `plans/decision-register-sheerline-insight-registry-2026-09-13.md`. Build spec: `plans/plan-sheerline-insight-registry-2026-09-12.md`.*
 
-*HeyHi Confidential*

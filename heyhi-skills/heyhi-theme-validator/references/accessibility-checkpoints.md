@@ -392,4 +392,3 @@ Grep in sections/, snippets/, layout/:
 
 **Remediation:** Remove the redundant `role`; drop the `aria-label` where visible text already provides the accessible name. Reserve `aria-label` for genuinely nameless controls (icon-only buttons — see A-11).
 
-*HeyHi Confidential*

@@ -1,5 +1,4 @@
 ---
-classification: "HeyHi Internal Use Only"
 title: "Astro Delivery Addendum — Template"
 created: 2026-04-10
 version: "1.0"
@@ -161,6 +160,5 @@ before Phase F.
 
 ---
 
-*HeyHi Internal Use Only*
 *Template file — fill in per engagement, do not deliver the template itself.*
 *Version 1.0 — 2026-04-10.*

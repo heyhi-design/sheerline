@@ -189,4 +189,4 @@ exact FigJam node types and the size-to-text rule.
 
 ---
 
-*HeyHi Confidential. Reference for `heyhi-figjam-mapper` (deployed 2026-08-17, #666/#673; live-verified FigJam API recipes). Eval set added and this footer corrected v0.2.0 (2026-08-23, Wave D, `plans/plan-sheerline-skills-upgrade-2026-08-22.md`).*
+*Reference for `heyhi-figjam-mapper` (deployed 2026-08-17, #666/#673; live-verified FigJam API recipes). Eval set added and this footer corrected v0.2.0 (2026-08-23, Wave D, `plans/plan-sheerline-skills-upgrade-2026-08-22.md`).*

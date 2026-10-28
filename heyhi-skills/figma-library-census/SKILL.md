@@ -21,7 +21,6 @@ version: "0.1.0"
 updated: "2026-09-07"
 status: "deployed 2026-09-07 (Sheerline fdde-loop convergence pass 1, DISPATCH-06; promoted from skill-updates/figma-library-census/). Sheerline area 7 (Design Systems), forward-deployed loop stage 2 (read/serve). Spec: plans/plan-sheerline-fdde-loop-2026-09-07.md sections 3.2, 3.3, DISPATCH-01. Emits the three contracts Lanes B, F, G, I read."
 review_by: "2026-09-21"
-classification: confidential
 ---
 
 # Figma Library Census
@@ -125,4 +124,4 @@ Close every run with:
 - `## Smoke Test`, schemas validate; scripts read-only; no file key in tracked output; slots empty.
 - `## Next Session Prompt`, the open judgment slots for the crosswalk review, and any Plugin API path not yet observed on a populated run.
 
-*HeyHi Confidential. Sheerline area 7 (Design Systems). Boundary: § 7. The census reads and joins; the human adjudicates.*
+*Sheerline area 7 (Design Systems). Boundary: § 7. The census reads and joins; the human adjudicates.*

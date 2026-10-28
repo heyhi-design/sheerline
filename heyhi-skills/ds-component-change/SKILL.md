@@ -29,7 +29,6 @@ version: "0.2.0"
 updated: "2026-09-14"
 status: "deployed 2026-09-08: heyhi-skills/ds-component-change/ (promoted at convergence pass 2 / DISPATCH-11). Built from plans/plan-sheerline-fdde-loop-2026-09-07.md (DISPATCH-09, Lane H); Wave 2, depends on convergence 1 (DISPATCH-06, landed). Sheerline area 7 (Design Systems), the 'change' verb. Worked example proved on the instance's own design system (heyhi-design-intelligence-tests @heyhi/components Button, a breaking fullWidth to block rename): proof branch ds-component-change-proof-2026-09-07, propose-first PR (see NEXT-SESSION.md). Figma leg is propose-only (writes nothing); the drift-repair OQ-1 canvas-write lift is proposed in the handoff, not applied. v0.2.0 (2026-09-14): added Step 5c dependency-ripple (W7/G12; CLOSE-03 disposition, owner-approved promotion of the staged skill-updates step) and its references/dependency-ripple.md, loaded in Step 1."
 review_by: "2026-09-21"
-classification: HeyHi Confidential
 ---
 
 # DS Component Change
@@ -245,4 +244,4 @@ If a final `classification` was recorded without a human signature, if any Figma
 
 ---
 
-*HeyHi Confidential. Sheerline area 7 (Design Systems), the change verb. Staged 2026-09-07 (v0.1.0), DISPATCH-09 / Lane H of `plans/plan-sheerline-fdde-loop-2026-09-07.md`. Sibling of `ds-component-author` (create) and `heyhi-drift-repair` (repair). Worked example: a breaking `fullWidth` to `block` rename on `@heyhi/components` Button, proof branch `ds-component-change-proof-2026-09-07` (propose-first). Figma leg propose-only; the drift-repair OQ-1 canvas-write lift is proposed in the handoff.*
+*Sheerline area 7 (Design Systems), the change verb. Staged 2026-09-07 (v0.1.0), DISPATCH-09 / Lane H of `plans/plan-sheerline-fdde-loop-2026-09-07.md`. Sibling of `ds-component-author` (create) and `heyhi-drift-repair` (repair). Worked example: a breaking `fullWidth` to `block` rename on `@heyhi/components` Button, proof branch `ds-component-change-proof-2026-09-07` (propose-first). Figma leg propose-only; the drift-repair OQ-1 canvas-write lift is proposed in the handoff.*

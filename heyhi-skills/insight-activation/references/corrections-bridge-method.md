@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Corrections-bridge method — the method spine"
 skill: insight-activation
 loaded_by: "SKILL.md Step 1"
@@ -57,4 +56,4 @@ The candidate goes to `corrections-intake/` — the human-only route (`OPERATING
 
 The four audit skills each open with a Step-0 "retrieve any recurring corrections" hook. Today that hook is a no-op in areas 9/10/11 — there are no corrections to retrieve (2026-08-22 audit § 2.5), so the skills cannot get better from use. This skill is the write-candidate side that eventually fills those hooks: finding → candidate → (curator) → adopted correction → retrievable at the next Step-0. The loop is: *find (audit skill) → activate (this skill) → curate (human) → retrieve (audit skill's Step-0) → find better.* Without this skill the loop is open and the audit skills are shelf-stable and shelf-bound. With it — and only once the human curates — they compound. The compounding is real; the human gate is what keeps it honest.
 
-*HeyHi Confidential. Reference for `insight-activation`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 7c use case #11; corrections model per `sheerline/os/corrections/LIFECYCLE.md` + `seed-corrections.yaml`.*
+*Reference for `insight-activation`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 7c use case #11; corrections model per `sheerline/os/corrections/LIFECYCLE.md` + `seed-corrections.yaml`.*

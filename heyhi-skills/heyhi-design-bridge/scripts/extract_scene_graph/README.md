@@ -93,7 +93,3 @@ browser, and `build-ir` decides what maps to a node slot and what is flagged.
 - Mixed inline-and-block content inside one element is not split into separate runs;
   text-bearing elements flatten to `textContent`. `ui-studio` output is structured
   cleanly enough that this has not bitten, but it is the next hardening target.
-
----
-
-*HeyHi Confidential*

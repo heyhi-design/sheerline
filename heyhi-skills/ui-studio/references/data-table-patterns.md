@@ -3,7 +3,6 @@ name: data-table-patterns
 zone: 2
 load_trigger: Build requires sortable/filterable data tables, virtual scrolling for large datasets, or TanStack Table/Virtual integration
 token_estimate: ~900
-classification: HeyHi Internal Use Only
 created: 2026-04-18
 version: "1.1.0"
 # Agent context layering — added 2026-04-20 (synthesis session)
@@ -308,4 +307,4 @@ function VirtualizedDataTable({ data, columns }) {
 
 ---
 
-*HeyHi Internal Use Only. Zone 2 — task-conditional. Load when build requires sortable/filterable data tables or virtual scrolling for large datasets. v1.0.0 created 2026-04-18 from frontend-research-reference.md v1.2.0.*
+*Zone 2 — task-conditional. Load when build requires sortable/filterable data tables or virtual scrolling for large datasets. v1.0.0 created 2026-04-18 from frontend-research-reference.md v1.2.0.*

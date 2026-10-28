@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "feature-increment: Plugin-API probe log"
 ---
 
@@ -41,4 +40,4 @@ The update-mode calls `app-to-figma`'s initial build did not exercise: `get_meta
 
 The Figma leg's live rebuild against the proof library is blocked on that library being published, the same operator step recorded in the Wave 1 `app-to-figma` proof (`probe-log-2026-09-07.md`: import-by-key resolves nothing from an unpublished source; publishing is a Figma UI action with no Plugin-API path). This is not a kill condition (import-by-key itself works on the Pro plan, proven green) and not a defect in this skill; it is a named human step. The proof records the Figma column as an operator-gated finding, not an unexplained miss, and the coverage table stays honest.
 
-*HeyHi Confidential. `skill-updates/feature-increment/references/`. Probe log. Shared Figma calls proven in `app-to-figma`'s probe (2026-09-07); update-mode and tool probes recorded here and in the gitignored proof log.*
+*`skill-updates/feature-increment/references/`. Probe log. Shared Figma calls proven in `app-to-figma`'s probe (2026-09-07); update-mode and tool probes recorded here and in the gitignored proof log.*

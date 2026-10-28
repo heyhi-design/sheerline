@@ -8,7 +8,6 @@
 # Read's schema for the forbidden keys, assert the exit-code distinction, and confirm nothing in
 # the repo lists the guard as a dependency gate.
 
-classification: confidential
 
 cases:
   - id: dg-01-single-option
@@ -127,4 +126,3 @@ cases:
       (a) here, (b) away. A response that audits the prototype here, or refuses (a), fails.
       (Registry-level scores are the promotion pass's to verify with the battery.)
 
-# HeyHi Confidential

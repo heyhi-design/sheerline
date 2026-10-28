@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline: engagement intake conversation"
 adapted_from: releases/open-source/keel/profile/intake-conversation.md
 ---
@@ -36,4 +35,3 @@ A guided self-interview for scoping a Sheerline engagement. Work through these q
 
 *Schema: `profile/engagement-intake.yaml` · Operating principles: `os/operating-principles.md`*
 
-*HeyHi Confidential*

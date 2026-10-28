@@ -318,7 +318,6 @@ Always document what was derived vs. what came from the brand config. This makes
 
 *Reference for ui-studio skill. Originally authored for design-system-ux, March 2026.*
 
-*HeyHi Confidential*
 
 ---
 

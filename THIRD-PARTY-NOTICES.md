@@ -1,0 +1,36 @@
+# Third-party notices
+
+Sheerline is MIT-licensed (see [LICENSE](LICENSE)). The material below comes from other projects and stays under its own license.
+
+## ui-ux-pro-max-skill
+
+Parts of the `ui-studio` and `ui-studio-onboard` skills are adapted, with changes, from [ui-ux-pro-max-skill](https://github.com/nextlevelbuilder/ui-ux-pro-max-skill) by Next Level Builder:
+
+- the design-reference data in `heyhi-skills/ui-studio/data/` and `heyhi-skills/ui-studio-onboard/data/` (the style, color, typography, landing, product, UX-guideline, chart, app-interface, reasoning, and Google Fonts tables)
+- the search engine in `heyhi-skills/ui-studio/scripts/core.py` and `heyhi-skills/ui-studio/scripts/search.py`
+
+Used under the MIT License:
+
+```
+MIT License
+
+Copyright (c) 2024 Next Level Builder
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```

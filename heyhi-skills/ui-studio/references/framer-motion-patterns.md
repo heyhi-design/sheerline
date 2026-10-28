@@ -3,7 +3,6 @@ name: framer-motion-patterns
 zone: 2
 load_trigger: Build requires React animation — exit animations, layout transitions, gesture-driven motion, or coordinated component sequences
 token_estimate: ~900
-classification: HeyHi Internal Use Only
 created: 2026-04-18
 version: "1.0.0"
 ---
@@ -276,4 +275,4 @@ function AnimatedCard() {
 
 ---
 
-*HeyHi Internal Use Only. Zone 2 — task-conditional. Load when build requires React component lifecycle animation or gesture-driven motion. v1.0.0 created 2026-04-18 from frontend-research-reference.md v1.2.0.*
+*Zone 2 — task-conditional. Load when build requires React component lifecycle animation or gesture-driven motion. v1.0.0 created 2026-04-18 from frontend-research-reference.md v1.2.0.*

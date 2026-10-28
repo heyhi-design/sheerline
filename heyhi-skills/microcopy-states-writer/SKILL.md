@@ -41,7 +41,6 @@ description: >-
 version: "0.1.0"
 updated: "2026-09-05"
 status: "deployed 2026-09-05 — heyhi-skills/microcopy-states-writer/ (Tier 1, buildable-now, self-application-first); registered in the main registry and the Sheerline area-3 subset registry, promoted in the second Bucket B convergence + promotion pass (staged #787, cleared by the instance owner 2026-09-05). Area 3 coverage partial -> covered. Sheerline area 3 (Content Design / UX Writing), P3, build class N. Spec: plans/plan-sheerline-p3-content-design-2026-09-05.md § 3 / § 4 / § 5. Foundation: sheerline/os/foundations/content-design/FOUNDATION.md."
-classification: HeyHi Confidential
 ---
 
 # Microcopy States Writer
@@ -195,4 +194,4 @@ If a string was marked final, a flagged string was certified on-voice, a state w
 
 ---
 
-*HeyHi Confidential. Sheerline area 3 (Content Design / UX Writing), P3, build class N. Tier 1 (buildable-now, self-application-first) — deployed 2026-09-05 (v0.1.0, the second Bucket B convergence + promotion pass; staged #787), registered in both registries. Spec source: `plans/plan-sheerline-p3-content-design-2026-09-05.md` § 3 / § 4 / § 5. Foundation: `sheerline/os/foundations/content-design/FOUNDATION.md`. The seam's structural contract: `plans/plan-sheerline-p3-interaction-design-2026-09-04.md` § 3.5 / § 4. Boundary: `sheerline/os/operating-principles.md`.*
+*Sheerline area 3 (Content Design / UX Writing), P3, build class N. Tier 1 (buildable-now, self-application-first) — deployed 2026-09-05 (v0.1.0, the second Bucket B convergence + promotion pass; staged #787), registered in both registries. Spec source: `plans/plan-sheerline-p3-content-design-2026-09-05.md` § 3 / § 4 / § 5. Foundation: `sheerline/os/foundations/content-design/FOUNDATION.md`. The seam's structural contract: `plans/plan-sheerline-p3-interaction-design-2026-09-04.md` § 3.5 / § 4. Boundary: `sheerline/os/operating-principles.md`.*

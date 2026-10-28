@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Teardown canon — the method spine"
 skill: competitive-teardown-runner
 loaded_by: "SKILL.md Step 1"
@@ -91,4 +90,4 @@ Severity-as-truth, the positioning stance, and direction selection stay human: `
 
 ---
 
-*HeyHi Confidential. Method reference for `competitive-teardown-runner` (Sheerline area 10). Foundation: `sheerline/os/foundations/business-acumen/FOUNDATION.md` § The knowledge canon. Research of record: `sheerline-skill-buildout-research-2026-08-09.md` § 6.2; `designer-workflows-methodology-research-2026-07-16.md` § 3.3.*
+*Method reference for `competitive-teardown-runner` (Sheerline area 10). Foundation: `sheerline/os/foundations/business-acumen/FOUNDATION.md` § The knowledge canon. Research of record: `sheerline-skill-buildout-research-2026-08-09.md` § 6.2; `designer-workflows-methodology-research-2026-07-16.md` § 3.3.*

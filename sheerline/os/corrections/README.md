@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline corrections: the convention slot"
 ---
 
@@ -17,4 +16,3 @@ This directory is the **convention** for how corrections work in Sheerline: the 
 
 *Lifecycle: `os/corrections/LIFECYCLE.md` · Seed template: `os/corrections/seed-corrections.yaml` · Runtime: the internal `heyhi-mcp` (Phase 2 / DISPATCH-02).*
 
-*HeyHi Confidential*

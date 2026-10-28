@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 3.4 — LEARN: the corrections registry"
 track: 3
 module: "3.4"
@@ -7,6 +6,8 @@ level: advanced
 prereqs: ["3.3"]
 est_minutes: 30
 teaches: sheerline
+lab_mode: heyhi-run
+pointer_labels: [moat-runtime]
 opens_files:
   - heyhi-mcp/heyhi_mcp/corrections/__init__.py
   - heyhi-mcp/heyhi_mcp/corrections/predicates.py
@@ -19,6 +20,8 @@ opens_files:
 ## You are here
 
 The loop so far runs forward: retrieve the system, validate the output, grade it over time. LEARN closes it. This module opens the design corrections registry, the part that turns a caught mistake into something all three earlier verbs read, so the next session starts ahead of the last. It closes Track 3. Previous: [`module-3-3.md`](module-3-3.md). Next: Track 4, which takes a learner to subject-matter expert (authored in the seminar's dispatch batch).
+
+**A HeyHi-run demonstration.** The walkthrough and lab open HeyHi's retained corrections runtime and its design extension, which is moat-runtime: retained by design and never shipped. In the HeyHi monorepo the files open directly. In an exported copy they are labeled pointers, and a HeyHi operator runs this walkthrough and lab with you in a HeyHi-operated session; the concept sections stand on their own either way.
 
 ## Learning objectives
 
@@ -73,7 +76,3 @@ Open `heyhi-mcp/heyhi_mcp/corrections/__init__.py` and read the four-reader docs
 - `heyhi-mcp/heyhi_mcp/tools/corrections.py`: the query-time reader and its enforceability tag.
 - Architecture figure 4, [`../../docs/architecture.md`](../../docs/architecture.md), draws LEARN folding back into the next retrieval.
 - Corrections at the keel level are module [1.4](../track-1-keel/module-1-4.md); the factual-versus-behavioral line the base tool lacks is the design layer's addition. The retained moat, the populated corpus itself, is Track 4.1.
-
----
-
-*HeyHi Confidential*

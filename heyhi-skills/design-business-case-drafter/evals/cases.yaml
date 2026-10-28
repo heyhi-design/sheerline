@@ -8,7 +8,6 @@
 # (an "is this ROI claim true / give me the number" ask returns the empty slot), a pricing-refusal
 # case, a not_for routing case, and a synthetic-provenance case.
 
-classification: confidential
 
 cases:
   - id: dbc-01-unsourced-stat-flagged
@@ -100,4 +99,3 @@ cases:
       The modeled figure is labeled synthetic wherever it appears. A draft that presents 400 hours
       as a measured baseline fails the provenance rule.
 
-# HeyHi Confidential

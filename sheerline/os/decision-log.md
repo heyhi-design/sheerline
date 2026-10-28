@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Sheerline Decision Log"
 adapted_from: keel os/decision-log.template.md
 ---
@@ -56,4 +55,3 @@ Replace this entry with the instance's founding decision.
 
 *Session rules: `os/session-rules.md`*
 
-*HeyHi Confidential*

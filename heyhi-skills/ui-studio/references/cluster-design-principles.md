@@ -126,4 +126,4 @@ Document the derived principles at the top of the build output before the Layout
 
 ---
 
-*HeyHi Internal Use Only. Zone 2 reference for ui-studio. Created 2026-03-25.*
+*Zone 2 reference for ui-studio. Created 2026-03-25.*

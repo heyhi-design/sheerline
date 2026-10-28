@@ -2,7 +2,6 @@
 
 *Named stubs, not built. Decision D5 (plan § 5): React only for this arc; Lit and Angular are deferred until an engagement pulls them. This file is the contract each stub will implement, so the next author has a mapping and not a blank page. The through-line table in the SKILL.md is framework-neutral; only the emitter differs.*
 
-*classification: HeyHi Confidential*
 
 ---
 
@@ -51,4 +50,4 @@ Notes the stub must resolve: `ChangeDetectionStrategy.OnPush` for a presentation
 
 ---
 
-*HeyHi Confidential. Adapter stubs for `ds-component-author`. Build order fixed by D5. React leg: `references/code-leg-react.md`.*
+*Adapter stubs for `ds-component-author`. Build order fixed by D5. React leg: `references/code-leg-react.md`.*

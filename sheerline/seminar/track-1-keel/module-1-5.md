@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Module 1.5 — The memory contract"
 track: 1
 module: "1.5"
@@ -8,9 +7,9 @@ prereqs: ["1.4"]
 est_minutes: 30
 teaches: keel
 opens_files:
-  - releases/open-source/keel/docs/memory.md
-  - releases/open-source/keel/memory/base.py
-  - releases/open-source/keel/memory/README.md
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/docs/memory.md
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/memory/base.py
+  - https://github.com/heyhi-design/keel/blob/v0.1.0/memory/README.md
 ---
 
 # Module 1.5 — The memory contract
@@ -42,13 +41,13 @@ Two disciplines ride along. First, two write-time guards run before anything is 
 
 ## Walkthrough
 
-Open `releases/open-source/keel/docs/memory.md`. Read the three tier sections and "The contract that stays the same across all three", with its four-category table of twelve tools. Notice the relations tip about attaching a fact to the finest-grained named thing, and the closing line that this is Layer 1 of the three-layer model applied one level down.
+Open [keel's docs/memory.md](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/memory.md). Read the three tier sections and "The contract that stays the same across all three", with its four-category table of twelve tools. Notice the relations tip about attaching a fact to the finest-grained named thing, and the closing line that this is Layer 1 of the three-layer model applied one level down.
 
-Now open `releases/open-source/keel/memory/base.py`, the interface itself. It is short on purpose. Read the class `MemoryAdapter` and count the abstract methods: six for entries, two for diary, two for relations, and `link` and `status`, the same twelve the contract names. Notice the argument names are clean and function-named with no backend detail, and the docstring's one claim: swapping backends is writing one new adapter and pointing `MEMORY_BACKEND` at it, and the callers never change. Then open `releases/open-source/keel/memory/README.md` and find the embedder-injection seam and the two write-time guards, so you see how the optional semantic leg attaches without the contract moving.
+Now open [keel's memory/base.py](https://github.com/heyhi-design/keel/blob/v0.1.0/memory/base.py), the interface itself. It is short on purpose. Read the class `MemoryAdapter` and count the abstract methods: six for entries, two for diary, two for relations, and `link` and `status`, the same twelve the contract names. Notice the argument names are clean and function-named with no backend detail, and the docstring's one claim: swapping backends is writing one new adapter and pointing `MEMORY_BACKEND` at it, and the callers never change. Then open [keel's memory/README.md](https://github.com/heyhi-design/keel/blob/v0.1.0/memory/README.md) and find the embedder-injection seam and the two write-time guards, so you see how the optional semantic leg attaches without the contract moving.
 
 ## Lab
 
-Read the adapter interface and reconstruct the contract from it. Open `releases/open-source/keel/memory/base.py` and list the twelve methods by category (entries, diary, relations, and the two others). For one of them, `write`, read its parameters and note that `wing`, `room`, and `content` are required while the rest are optional. Then answer the design question the file is built to make obvious: why must the twelve tool names stay backend-free, and what specifically breaks if a skill calls a tool named for its backend instead?
+Read the adapter interface and reconstruct the contract from it. Open [keel's memory/base.py](https://github.com/heyhi-design/keel/blob/v0.1.0/memory/base.py) and list the twelve methods by category (entries, diary, relations, and the two others). For one of them, `write`, read its parameters and note that `wing`, `room`, and `content` are required while the rest are optional. Then answer the design question the file is built to make obvious: why must the twelve tool names stay backend-free, and what specifically breaks if a skill calls a tool named for its backend instead?
 
 **Success looks like:** the twelve methods listed by category, the required arguments of `write` named, and a one-sentence reason that a backend-named tool would force every skill to change when the backend does, which is exactly what the seam exists to prevent.
 
@@ -68,11 +67,7 @@ Read the adapter interface and reconstruct the contract from it. Open `releases/
 
 ## Go deeper
 
-- `releases/open-source/keel/docs/memory.md`: the three tiers and the twelve-tool contract in full.
-- `releases/open-source/keel/memory/base.py`: the `MemoryAdapter` interface, the whole contract in one short file.
-- `releases/open-source/keel/memory/README.md`: the embedder-injection seam and the two write-time guards.
+- [keel's docs/memory.md](https://github.com/heyhi-design/keel/blob/v0.1.0/docs/memory.md): the three tiers and the twelve-tool contract in full.
+- [keel's memory/base.py](https://github.com/heyhi-design/keel/blob/v0.1.0/memory/base.py): the `MemoryAdapter` interface, the whole contract in one short file.
+- [keel's memory/README.md](https://github.com/heyhi-design/keel/blob/v0.1.0/memory/README.md): the embedder-injection seam and the two write-time guards.
 - This is the three-layer model from module 1.1 applied one level down; the backend-free seam is the same owned-versus-rented discipline.
-
----
-
-*HeyHi Confidential*

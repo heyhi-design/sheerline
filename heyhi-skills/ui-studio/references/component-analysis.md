@@ -301,4 +301,3 @@ Store the repository URL in `repository.component_repo` and `repository.token_re
 
 *Reference for ui-studio skill. Originally authored for design-system-ux, March 2026.*
 
-*HeyHi Confidential*

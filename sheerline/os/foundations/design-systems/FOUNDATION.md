@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Foundation: Design Systems (area 7, DEEP)"
 area: 7
 nature: craft
@@ -63,4 +62,3 @@ Grades inform the evaluator score; they never auto-block a merge (whether a scor
 
 *Area map: `os/foundations/registry.yaml` · Conflict order: `os/operating-principles.md` · Corrections convention: `os/corrections/`*
 
-*HeyHi Confidential*

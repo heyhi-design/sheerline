@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Application Intent Map, method reference"
 skill: app-intent-map
 version: "0.1.0"
@@ -74,4 +73,4 @@ The honesty guards from the prior exercise apply to every caption: staged is not
 
 ---
 
-*HeyHi Confidential. `app-intent-map` method reference v0.1.0. Reads the manifest, derives five evidence-linked layers, leaves `purpose` for the human.*
+*`app-intent-map` method reference v0.1.0. Reads the manifest, derives five evidence-linked layers, leaves `purpose` for the human.*

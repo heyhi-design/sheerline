@@ -34,7 +34,6 @@ never commit it. The static manifest.json / ui.html carry no build data.
 Usage:
     python3 emit_plugin.py --out-dir <build-dir> --plugin-out <runnable-plugin-dir>
 
-HeyHi Confidential.
 """
 import argparse
 import base64

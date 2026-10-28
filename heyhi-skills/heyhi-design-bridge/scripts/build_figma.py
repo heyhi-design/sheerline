@@ -35,7 +35,6 @@ Output:
     { type_mode, rerun, page_name, chunk_count, out_dir,
       chunks: [ {index, description, needs:[keys], node_count, code_file} ] }
 
-HeyHi Confidential.
 """
 import argparse
 import hashlib

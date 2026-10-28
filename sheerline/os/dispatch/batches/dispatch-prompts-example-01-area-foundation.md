@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example: fill one practice-area foundation and build its first skill"
 status: done
 example: true
@@ -67,4 +66,3 @@ report "ENV ERROR: cannot read the agent guide." Do not proceed.
 
 **QUALITY GATE.** Anchors agree with the tree; status flipped; one decision-log entry.
 
-*HeyHi Confidential*

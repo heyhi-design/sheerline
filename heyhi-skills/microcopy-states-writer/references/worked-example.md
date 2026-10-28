@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Worked example — a filled Microcopy Set"
 skill: microcopy-states-writer
 loaded_by: "SKILL.md Step 1 (calibration)"
@@ -72,4 +71,4 @@ Voice-definition sign-off is inherited from the voice system's own gate; if that
 
 ---
 
-*HeyHi Confidential. Reference for `microcopy-states-writer`. Synthetic throughout: Ledgerling, its voice, and its screen are invented for calibration.*
+*Reference for `microcopy-states-writer`. Synthetic throughout: Ledgerling, its voice, and its screen are invented for calibration.*

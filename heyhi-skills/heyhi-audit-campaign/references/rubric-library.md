@@ -1,5 +1,4 @@
 ---
-classification: internal
 title: Rubric Library
 purpose: Reusable rubrics for audit campaigns — maturity ladders, status taxonomy, finding-type codes, follow-on artifact taxonomy. Loaded by heyhi-audit-campaign at Step 2 (Design stage) and Step 4 (Run stage).
 created: 2026-05-21
@@ -181,4 +180,4 @@ For session-running cheat-sheet use:
 
 ---
 
-*HeyHi Internal Use Only. heyhi-skills/heyhi-audit-campaign/references/. Loaded by SKILL.md Step 2 (Design stage) and Step 4 (Run stage).*
+*heyhi-skills/heyhi-audit-campaign/references/. Loaded by SKILL.md Step 2 (Design stage) and Step 4 (Run stage).*

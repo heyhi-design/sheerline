@@ -29,7 +29,6 @@ description: >-
 version: "0.1.0"
 status: "deployed 2026-09-08: heyhi-skills/ds-component-author/ (promoted at the DISPATCH-11 convergence pass). Built for DISPATCH-08, Lane G of plans/plan-sheerline-fdde-loop-2026-09-07.md. A live proof on the instance's own design system ran green (Chip: a 10-variant Figma component set in the scratch library + a typechecking React twin in @heyhi/components + a parserless Code Connect template, all from one spec; proof PR #822 propose-first; record in the instance's engagement folder). Sheerline area 7 (Design Systems), build class N. React only for this arc (D5); Lit and Angular are named stubs. Code Connect emitted, not published (D1; every current Figma plan is Pro)."
 review_by: "2026-09-21"
-classification: HeyHi Confidential
 ---
 
 # DS Component Author
@@ -297,4 +296,4 @@ If a judgment slot is filled by the skill rather than a human, the gate has **no
 
 ---
 
-*HeyHi Confidential. Sheerline area 7 (Design Systems), build class N. v0.1.0 staged 2026-09-07 for DISPATCH-08, Lane G of `plans/plan-sheerline-fdde-loop-2026-09-07.md`. Engine: `heyhi-figma-ds-generator` Phase 3 (by reference) plus Figma's `figma-use` and `figma-code-connect`. Live proof on the instance's own design system: recorded in the instance's engagement folder (Chip; proof PR #822). Boundary: the Sheerline judgment charter.*
+*Sheerline area 7 (Design Systems), build class N. v0.1.0 staged 2026-09-07 for DISPATCH-08, Lane G of `plans/plan-sheerline-fdde-loop-2026-09-07.md`. Engine: `heyhi-figma-ds-generator` Phase 3 (by reference) plus Figma's `figma-use` and `figma-code-connect`. Live proof on the instance's own design system: recorded in the instance's engagement folder (Chip; proof PR #822). Boundary: the Sheerline judgment charter.*

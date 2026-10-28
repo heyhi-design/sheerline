@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Decision-record canon — the method spine"
 skill: design-rationale-decision-record
 loaded_by: "SKILL.md Step 1"
@@ -97,4 +96,4 @@ Anything the sweep surfaces is agent-inferred from the source material and label
 
 HeyHi runs exactly this discipline on itself: an append-only `decision-log.md`, never edited, superseded-not-overwritten, read-the-last-5 before appending. This skill generalizes that discipline into a tool a *client* design team can run on its own decisions. It is precedent — the proof the discipline works — not a tool for maintaining HeyHi's log (that stays a direct edit of `ai-services/_core/decision-log.md`).
 
-*HeyHi Confidential. Reference for `design-rationale-decision-record`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 6.3; supersede variant + sweep method + coverage note added v0.2.0 per the 2026-08-22 skills audit § 2.4.*
+*Reference for `design-rationale-decision-record`. Spec source: `sheerline-skill-buildout-research-2026-08-09.md` § 6.3; supersede variant + sweep method + coverage note added v0.2.0 per the 2026-08-22 skills audit § 2.4.*

@@ -10,7 +10,6 @@
 # skill's own exception rule (a variant_add can collide, so the clean-pass input is audited to have
 # no collision). dcc-04 asserts the Figma leg wrote nothing and the swap discipline holds.
 
-classification: confidential
 
 cases:
   - id: dcc-01-classify-and-kit

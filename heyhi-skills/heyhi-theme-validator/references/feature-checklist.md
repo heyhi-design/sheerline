@@ -504,4 +504,3 @@ Check for required top-level array structure
 
 **Remediation:** Ensure `config/settings_schema.json` is a valid JSON array of setting group objects.
 
-*HeyHi Confidential*

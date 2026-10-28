@@ -129,4 +129,3 @@ The four categories compound. They don't resolve independently.
 
 The Signal Map assesses all four categories together, quarterly. The goal isn't to score organizations — it's to identify which signals are present, how severe they are, which are accelerating, and which decisions could change the trajectory.
 
-*HeyHi Confidential*

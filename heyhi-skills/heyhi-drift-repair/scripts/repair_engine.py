@@ -29,7 +29,6 @@ pyyaml). Nothing here writes the live corrections registry; the learn step only
 AUTHORS a corrections-intake candidate (write_learn_candidate is a deployment
 helper, never called by the eval).
 
-classification: HeyHi Confidential
 """
 
 from __future__ import annotations

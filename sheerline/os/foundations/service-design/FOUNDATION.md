@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Foundation: Service Design (area 13, COVERED / filled / governed practice)"
 area: 13
 nature: conditional
@@ -78,4 +77,3 @@ The deployed skill follows the Sheerline SKILL.md skeleton (`heyhi-skills/design
 
 *Area map: [`os/foundations/registry.yaml`](../registry.yaml) · Always-loaded invariants (what stays human, the taste-and-critique boundary, the empathy boundary, the IP boundary): [`os/operating-principles.md`](../../operating-principles.md) · Renderer seam: `heyhi-skills/heyhi-figjam-mapper/SKILL.md` · Spec source: [`plans/plan-sheerline-p3-service-blueprint-2026-09-07.md`](../../../../plans/plan-sheerline-p3-service-blueprint-2026-09-07.md) · Research of record: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 5.2 / § 7b / § 9*
 
-*HeyHi Confidential*

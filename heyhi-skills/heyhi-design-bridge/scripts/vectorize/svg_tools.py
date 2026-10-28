@@ -10,7 +10,6 @@ on-curve node (the point a designer drags in Figma), not a Bezier control handle
 Tracers emit only M/L/H/V/C/S/Q/T/Z; A is counted (1 per arc) but never emitted by
 vtracer/potrace, so flattening (fit_curve) does not need arc support.
 
-HeyHi Confidential.
 """
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-/* HeyHi Confidential — synthetic fixture. */
+/* synthetic fixture. */
 .btn { color: var(--text-primary); background: var(--bg-surface); }
 .card { padding: var(--space-4); border-width: var(--border-width-thick); border-radius: var(--radius-md); }
 .modal { z-index: var(--z-modal); position: fixed; }

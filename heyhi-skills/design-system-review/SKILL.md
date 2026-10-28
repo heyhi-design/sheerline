@@ -305,4 +305,3 @@ If any header is empty or contains advisory prose ("I checked for bugs") instead
 *Mode A wraps `ai-services/design-intelligence/designer-review-protocol.md`.*
 *Mode B is a standalone milestone health check.*
 
-*HeyHi Confidential*

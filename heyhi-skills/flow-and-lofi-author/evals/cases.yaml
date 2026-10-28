@@ -8,7 +8,6 @@
 # rearrangement refusal, the ceiling held, the which-is-better boundary, config-free operation,
 # provenance + gaps, the no-purpose stop, and routing.
 
-classification: confidential
 
 cases:
   - id: fla-01-n-alternatives
@@ -124,4 +123,3 @@ cases:
       (a) here, (b) away. A response that starts a Mode A build here, or that refuses (a) as a
       hi-fi task, fails. (Registry-level scores are the promotion pass's to verify with the battery.)
 
-# HeyHi Confidential

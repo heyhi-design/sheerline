@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "heyhi:interaction-inventory:sidecar:1.0",
   "title": "Interaction Inventory sidecar",
-  "description": "The machine-readable half of an Interaction Inventory (Sheerline area 4). Consumed by microcopy-states-writer (copy_slot rows), heyhi-figjam-mapper (transitions as a stateDiagram), and later heyhi-prototype-audit / heyhi-figma-ds-generator. The judgment and gate blocks ship null by construction; a sidecar with a filled verdict fails pre-flight. copy_slot.string is null when this skill writes it and typed 'string | null' (v0.1.2), so a sidecar with area 3's microcopy-states-writer strings merged back still validates. HeyHi Confidential.",
+  "description": "The machine-readable half of an Interaction Inventory (Sheerline area 4). Consumed by microcopy-states-writer (copy_slot rows), heyhi-figjam-mapper (transitions as a stateDiagram), and later heyhi-prototype-audit / heyhi-figma-ds-generator. The judgment and gate blocks ship null by construction; a sidecar with a filled verdict fails pre-flight. copy_slot.string is null when this skill writes it and typed 'string | null' (v0.1.2), so a sidecar with area 3's microcopy-states-writer strings merged back still validates.",
   "type": "object",
   "additionalProperties": false,
   "required": ["schema_version", "source", "elements", "judgment", "gate"],

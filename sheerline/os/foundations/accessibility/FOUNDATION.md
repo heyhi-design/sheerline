@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Foundation: Accessibility (area 8, PARTIAL / elevated / governed practice)"
 area: 8
 nature: craft
@@ -63,4 +62,3 @@ Both register here. The AT-testing protocol is a *mode* of the audit, not a sepa
 
 *Area map: `os/foundations/registry.yaml` · The accessibility gate (A.1): `os/operating-principles.md` · Legal-timeline + coverage-ceiling facts: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 5.1*
 
-*HeyHi Confidential*

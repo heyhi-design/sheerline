@@ -50,4 +50,3 @@ with the golden mark and palette it calibrated against (`GOLDENS`), and
 instance bar it needs `--ssim-floor`. The human makes the final call. Re-validate against real
 generated output before a paid engagement.
 
-*HeyHi Confidential*

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Assistive-technology testing checklist — the Mode B protocol"
 skill: heyhi-a11y-audit
 loaded_by: "SKILL.md Step 1 / Step 4 (Mode B)"
@@ -69,4 +68,4 @@ Feeds: 1.4.4, 1.4.10, 1.4.12.
 
 For each line, write the result onto the matching ACR row (`references/acr-vpat-template.md`) with its provenance (`AT-confirmed` / `human-reviewed`) and a one-line observation. Rows you did not exercise stay `NEEDS AT`. Then re-check SKILL.md Step 5 pre-flight: a VPAT verdict may still appear only where provenance is human-reviewed or AT-confirmed, and the overall conformance claim + sign-off line stay blank until the human gate.
 
-*HeyHi Confidential. Reference for `heyhi-a11y-audit` (Mode B). Canon: `sheerline/os/foundations/accessibility/FOUNDATION.md` § "The AT-testing protocol". Spec: `sheerline-skill-buildout-research-2026-08-09.md` § 5.1.*
+*Reference for `heyhi-a11y-audit` (Mode B). Canon: `sheerline/os/foundations/accessibility/FOUNDATION.md` § "The AT-testing protocol". Spec: `sheerline-skill-buildout-research-2026-08-09.md` § 5.1.*

@@ -1,5 +1,4 @@
 ---
-classification: confidential
 title: "Reference: the motion-token schema (springs + fallback + stagger + reduced-motion)"
 skill: motion-system-author
 mode: Author
@@ -7,7 +6,7 @@ mode: Author
 
 # Motion-token schema
 
-**HeyHi Confidential.** The house schema Author mode assembles. Load this when building or reviewing the token model. Every value the skill drafts is a candidate the human tunes; this reference gives the shape and sane starting ranges, not the final feel.
+The house schema Author mode assembles. Load this when building or reviewing the token model. Every value the skill drafts is a candidate the human tunes; this reference gives the shape and sane starting ranges, not the final feel.
 
 ---
 
@@ -131,4 +130,4 @@ Component motion keys off the control-state contract (default / hover / focus-vi
 
 ---
 
-*HeyHi Confidential. Reference for `motion-system-author` (Author mode). Spec: `sheerline-skill-buildout-research-2026-08-09.md` § 4.2; DTCG gap § 4.*
+*Reference for `motion-system-author` (Author mode). Spec: `sheerline-skill-buildout-research-2026-08-09.md` § 4.2; DTCG gap § 4.*

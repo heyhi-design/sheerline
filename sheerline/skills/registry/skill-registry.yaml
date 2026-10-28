@@ -10,7 +10,6 @@
 # Sheerline governs. Per-entry schema matches keel's (id, name, type, description,
 # semantic_tags, trigger_patterns, dependencies, not_for, load_cost_tokens, location).
 
-classification: confidential
 
 meta:
   version: "0.12.1"
@@ -1318,4 +1317,3 @@ capabilities:
     location: heyhi-skills/ds-component-change/SKILL.md
 
 
-# HeyHi Confidential
