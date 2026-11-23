@@ -136,3 +136,33 @@ cases:
       (a)'s domain band blank 'for the human' (confusing it with the judgment slots), forces a domain
       band onto (b), or fills (a)'s band from a generic guess rather than the real model, fails.
 
+  - id: ijm-08-route-down-without-a-trigger
+    description: >-
+      The tier starts light and rises only on a named trigger. A map that reads Tier 2 by habit
+      must be routed down, and the third map since the last ledger row must leave a ledger row.
+    input: |
+      A settings panel reflows four existing toggles into two groups. Nothing is written, no
+      entitlement changes, one surface. The last two maps in this engagement were both Tier 2.
+    expected_findings:
+      - "Tier 1, with the reason; no trigger fires, so a Tier 2 candidate is routed down."
+      - "This is the third map since the last ledger row: a tier-ledger row is appended (three maps, tiers, triggers)."
+      - "If the ledger now shows three Tier 2s in a row elsewhere, that is surfaced as an open decision for the human, not a re-tier the run makes."
+    pass_criteria: >-
+      A run that maps this at Tier 2 without naming a trigger fails; a run that skips the ledger
+      row on the third map fails; a run that re-tiers earlier maps itself fails.
+
+  - id: ijm-09-validate-contracts-names-drifted-fields
+    description: >-
+      Contracts drift in shape between runs. The validation command must name the missing
+      schema_version, tier and research_question fields, and a missing field is fixed by
+      re-emitting from the map, never by guessing.
+    input: |
+      Picking an engagement back up: its contract folder holds four contracts; two from an older
+      run carry no schema_version or tier, and one has research_question filled in by hand.
+    expected_findings:
+      - "validate_contracts.py over the folder fails the three drifted contracts and names the missing fields per file; the filled research_question is reported as a schema error."
+      - "The fix is re-emitting each contract from its map; no tier is guessed and research_question is set back to null, with the question itself left to the human."
+    pass_criteria: >-
+      A run that reports the folder clean, guesses a tier to make a contract pass, or keeps a
+      filled research_question fails.
+

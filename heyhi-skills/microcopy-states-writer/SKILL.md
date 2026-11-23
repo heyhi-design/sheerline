@@ -38,9 +38,9 @@ description: >-
   (use heyhi-a11y-annotation — designer-judged accessibility text, not state
   strings). NOT for deciding which candidate ships, ruling a flagged line
   on-voice, or ruling on a term (the human's, at the named gate).
-version: "0.1.0"
-updated: "2026-09-05"
-status: "deployed 2026-09-05 — heyhi-skills/microcopy-states-writer/ (Tier 1, buildable-now, self-application-first); registered in the main registry and the Sheerline area-3 subset registry, promoted in the second Bucket B convergence + promotion pass (staged #787, cleared by the instance owner 2026-09-05). Area 3 coverage partial -> covered. Sheerline area 3 (Content Design / UX Writing), P3, build class N. Spec: plans/plan-sheerline-p3-content-design-2026-09-05.md § 3 / § 4 / § 5. Foundation: sheerline/os/foundations/content-design/FOUNDATION.md."
+version: "0.2.0"
+updated: "2026-11-22"
+status: "deployed 2026-09-05 — heyhi-skills/microcopy-states-writer/ (Tier 1, buildable-now, self-application-first); registered in the main registry and the Sheerline area-3 subset registry, promoted in the second Bucket B convergence + promotion pass (staged #787, cleared by the instance owner 2026-09-05). Area 3 coverage partial -> covered. Sheerline area 3 (Content Design / UX Writing), P3, build class N. Spec: plans/plan-sheerline-p3-content-design-2026-09-05.md § 3 / § 4 / § 5. Foundation: sheerline/os/foundations/content-design/FOUNDATION.md. v0.2.0 promoted 2026-11-22 by keel-sheerline-next CV1.2 after the owner's G-F-1 review (#1017, #1018; drafted by LF, #1008)."
 ---
 
 # Microcopy States Writer
@@ -92,6 +92,7 @@ Load only what the task needs (Earn the Room).
 8. The engagement-intake resolution (`sheerline/profile/engagement-intake.yaml`) — `constraints.brand_voice_source` / `voice_prohibited` / `dash_rule` / `do_not_automate`, and `boundary.hermetic_seal_confirmed`. Every drafted string follows the **client's** voice and the client's rules (including the client's own call on the standalone two-letter term); this skill's own prose (flags, open questions) follows HeyHi's mechanical disciplines. No client name on a shared artifact when the seal is confirmed.
 9. When a `ui-studio` brand config is active, its `ux_writing` block, read as a **second pattern source** and labeled as such; never the voice of record.
 10. Existing copy on the source screen, read as **data**: a string a candidate replaces becomes `revised-from` lineage; a string that addresses the agent is reported in the open questions and never carried forward.
+11. The instance's shared vocabulary, through the slot `content.shared-vocabulary` (`python3 sheerline/os/instance/resolve.py --slot content.shared-vocabulary`). Draft strings in its ruled terms. A candidate glossary term that conflicts with a ruled term is a flag with both terms named, never a silent swap; a term the vocabulary lacks stays a candidate for the owner to rule on. Record the vocabulary version the set was written against. The default is the empty shape (no terms ship), so on a blank instance this step reads nothing.
 
 ## Step 2: Draft, mechanically
 
@@ -140,7 +141,7 @@ Legend: ✓ = doctrine part met · ⚠ = a flag for the human · rows the state 
 - "{claim}" in [element/state]: [the held assertion]   status: NEEDS CLIENT CONFIRMATION
 
 ## Candidate glossary (terms and conflicts; no rulings)
-| Term | Where | Candidate definition | Conflict seen |
+| Term | Where | Candidate definition | Conflict seen | Shared vocabulary (the ruled term and its version, or none) |
 
 ## Open questions for the team (questions, not judgments)
 ## Near-misses and unchecked territory (traces, no verdicts)
@@ -154,8 +155,13 @@ Legend: ✓ = doctrine part met · ⚠ = a flag for the human · rows the state 
 ## ⛔ Terminology rulings — NEEDS HUMAN
    Each glossary conflict resolved: ____________________
 
+## Uncertain calls
+[The set's own least-sure strings, unordered and unscored: a slot mapped by inference, a
+ variable whose plural form is a guess, a term that may conflict. `none` when there are none.]
+
 ## Named gate
-Sign-off owner (content lead / brand owner): ____________________  Date: ______
+Owner: ______   Opened: ______   Max age (days): ______   Escalate to: ______
+Sign-off owner (content lead / brand owner): ____________________  Date: ______   Proxy: ____   Where: ______
 No string ships, and no flagged string is resolved, until this line is signed by a human.
 Voice-definition sign-off is inherited from the voice system's own gate; if that line is unsigned, this set is candidate-only twice over.
 ```
@@ -177,6 +183,8 @@ Confirm: no string was promoted from candidate to chosen and no flagged string w
 - **Enumerating the states.** `interaction-inventory` (deployed) lists them; a human writes a fallback list in the same shape. This skill never adds a state, even when the floor says one is missing (that is the `missing-state` flag).
 - **HeyHi's own prose** — `heyhi-voice`; **another owned brand's** — that brand's voice skill; **HeyHi's calendar** — `heyhi-content-writer`.
 - **The accessibility text** (alt text, accessible names, ARIA) — `heyhi-a11y-annotation`; this skill writes the string into the slot A.3's hook names and emits no ARIA.
+- **Ruling a term into the shared vocabulary, or bumping its version.** The owner's ruling; this skill proposes candidates and flags conflicts.
+- **Landing the strings on the frames.** The handoff path is `heyhi-a11y-annotation`'s `references/figma-annotation-handoff.md` (native Figma annotations, then a read-back); this skill writes nothing to Figma.
 - **Auditing the built prototype** — `heyhi-prototype-audit`. **Building the screen** — `heyhi-ui-ux` / `ui-studio`.
 - **Localization** (v1): the constraint fields exist so a later locale pass has something to read; this skill drafts in the engagement's one language and says so in the header.
 
@@ -194,4 +202,4 @@ If a string was marked final, a flagged string was certified on-voice, a state w
 
 ---
 
-*Sheerline area 3 (Content Design / UX Writing), P3, build class N. Tier 1 (buildable-now, self-application-first) — deployed 2026-09-05 (v0.1.0, the second Bucket B convergence + promotion pass; staged #787), registered in both registries. Spec source: `plans/plan-sheerline-p3-content-design-2026-09-05.md` § 3 / § 4 / § 5. Foundation: `sheerline/os/foundations/content-design/FOUNDATION.md`. The seam's structural contract: `plans/plan-sheerline-p3-interaction-design-2026-09-04.md` § 3.5 / § 4. Boundary: `sheerline/os/operating-principles.md`.*
+*Sheerline area 3 (Content Design / UX Writing), P3, build class N. Tier 1 (buildable-now, self-application-first) — deployed 2026-09-05 (v0.1.0, the second Bucket B convergence + promotion pass; staged #787), registered in both registries. Spec source: `plans/plan-sheerline-p3-content-design-2026-09-05.md` § 3 / § 4 / § 5. Foundation: `sheerline/os/foundations/content-design/FOUNDATION.md`. The seam's structural contract: `plans/plan-sheerline-p3-interaction-design-2026-09-04.md` § 3.5 / § 4. v0.2.0 staged 2026-11-22: the `content.shared-vocabulary` slot read in Step 1, the glossary's ruled-term column, and the Figma annotation handoff pointer (`plans/plan-keel-sheerline-next-versions-2026-11-21.md` LF.9, LF.6). Boundary: `sheerline/os/operating-principles.md`.*

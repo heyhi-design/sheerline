@@ -9,16 +9,17 @@ description: >-
   reads the engagement-intake profile for voice, deliverable location, and the
   hermetic boundary. Triggers: "map this journey in FigJam", "build a service
   blueprint", "diagram this flow", "make an IA sitemap", "put this architecture in
-  FigJam", "turn the research into a journey map". Produces the structure and leaves
+  FigJam", "turn the research into a journey map", "add it to this page of the
+  FigJam board", "put the flow inside this FigJam section". Produces the structure and leaves
   the design judgment (pain points, opportunities, the correctness of the taxonomy)
   as labeled empty slots behind a named human gate; any inferred node or edge is
   tagged. NOT for translating a built prototype into a Figma design file (use
   heyhi-design-bridge); NOT for building slides (use heyhi-deck); NOT for running the
   workshop itself (use heyhi-workshop); NOT for a diagram inside a Figma DESIGN file
   (call figma-use directly).
-version: "0.2.0"
-updated: "2026-08-23"
-status: "deployed — heyhi-skills/; v0.2.0 promoted 2026-08-23 (Gate G-C, plans/plan-sheerline-skills-upgrade-2026-08-22.md) — authors evals/cases.yaml (the skill shipped with zero cases against Sheerline's own eval policy) and corrects the stale 'Draft' footer in references/artifact-recipes.md; no method change (0→6 cases). v0.1.0 promoted + lifted 2026-08-17 (DISPATCH-01). Registered in skill-registry.yaml v2.35.0 + sheerline/skills/registry/skill-registry.yaml v0.3.0. Sheerline area 11 (Collaboration & Facilitation), P1; serves gated areas 2 (Information Architecture, P3) and 13 (Service Design, D-3 2026-10-09) when those open."
+version: "0.3.0"
+updated: "2026-11-22"
+status: "deployed — heyhi-skills/; v0.2.0 promoted 2026-08-23 (Gate G-C, plans/plan-sheerline-skills-upgrade-2026-08-22.md) — authors evals/cases.yaml (the skill shipped with zero cases against Sheerline's own eval policy) and corrects the stale 'Draft' footer in references/artifact-recipes.md; no method change (0→6 cases). v0.1.0 promoted + lifted 2026-08-17 (DISPATCH-01). Registered in skill-registry.yaml v2.35.0 + sheerline/skills/registry/skill-registry.yaml v0.3.0. Sheerline area 11 (Collaboration & Facilitation), P1; serves gated areas 2 (Information Architecture, P3) and 13 (Service Design, D-3 2026-10-09) when those open. v0.3.0 promoted 2026-11-22 by keel-sheerline-next CV1.2 after the owner's G-F-1 review (#1017, #1018; drafted by LF, #1008)."
 ---
 
 # HeyHi FigJam Mapper
@@ -60,7 +61,7 @@ Before running, retrieve any recurring corrections for diagramming / FigJam / IA
 
 ## Step 2: Pick the artifact type, then route to the right Figma mechanism
 
-The single technical fact that governs this skill: **`generate_diagram` supports `flowchart`, `sequenceDiagram`, `stateDiagram`, `erDiagram`, `gantt` — and does NOT support journey maps, timelines, or C4.** So journey maps and service blueprints are built with `use_figma`, not `generate_diagram`. Route accordingly:
+The single technical fact that governs this skill: **`generate_diagram` supports `flowchart`, `sequenceDiagram`, `stateDiagram`, `erDiagram`, `gantt` — and does NOT support journey maps, timelines, or C4.** So journey maps and service blueprints are built with `use_figma`, not `generate_diagram`. The second fact: **`generate_diagram` cannot target a page or a node.** It places a new diagram where it chooses, so when the human names where the artifact must land (a page of an existing board, inside or beside a section or frame), build it with `use_figma` on FigJam even for a Mermaid-supported type (Step 2a). Route accordingly:
 
 | Artifact | Mechanism |
 |----------|-----------|
@@ -71,6 +72,15 @@ The single technical fact that governs this skill: **`generate_diagram` supports
 | **IA sitemap** (hierarchy of pages/sections) | `generate_diagram` — flowchart, top-down; OR the FigJam tree recipe if it needs annotation |
 | **Journey map** (stages × dimensions grid) | `use_figma` + FigJam — the journey-grid recipe (a table + labeled empty rows) |
 | **Service blueprint** (customer action / frontstage / backstage / support, across time) | `use_figma` + FigJam — the swimlane recipe (sections + stickies + connectors) |
+
+### Step 2a: Target a page or a node (when the board already exists)
+
+Follow `references/board-conventions.md`. In short:
+- **The target is explicit.** An exact page name, or a node id from a link the human shares or from `get_figjam`. A page name that matches no page or more than one is a question for the human; never pick the closest.
+- **Read it first** with `get_figjam` on the target, so the build knows what is already there.
+- **One stamped section per artifact** (`<title> [sheerline:<type>:<slug>]`). A re-run finds the section by its stamp and updates it in place; it never adds a second copy.
+- **Beside, never on top.** Inside the target only when the human named that section for it; otherwise in empty space beside the target. Never move, restyle or delete a node the build did not create.
+- **Return** the section's node id, every created node id, and a link that opens on the section.
 
 ## Step 3: Gather ground truth before drawing — no invented edges
 
@@ -85,7 +95,7 @@ The quality of the artifact is bounded by the quality of the inputs. Pull real n
 
 ## Step 5: Verify and hand off
 
-Inspect with `get_figjam` (not `get_metadata`, which is design-only) and `get_screenshot` on a node id. Confirm: the structure matches the source, no invented edges crept in, the judgment slots are empty and labeled, inferred content is tagged, and — if the file is shared — no client name appears on the board (hermetic seal). Return the FigJam link as a markdown link. Note where the deliverable is filed per `deliverable.root`.
+Inspect with `get_figjam` (not `get_metadata`, which is design-only) and `get_screenshot` on a node id. Confirm: the structure matches the source, no invented edges crept in, the judgment slots are empty and labeled, inferred content is tagged, and — if the file is shared — no client name appears on the board (hermetic seal). Return the FigJam link as a markdown link. On a targeted build (Step 2a), also confirm the artifact sits on the named page, inside or beside the named node, under a stamp no other section carries, and that no node the build did not create was moved or changed. The hand-off carries the gate for the room's sign-off on the board (owner, opened, max age, escalate to, and a signature line with a blank Proxy; `sheerline/os/session-rules.md` § Gate fields) and an `## Uncertain calls` list: inferred nodes and edges, a target that needed a question, anything the source left thin, or `none`. Note where the deliverable is filed per `deliverable.root`.
 
 ---
 
@@ -108,4 +118,4 @@ This skill closes through the Exit Gate Flavor A (`CLAUDE-SESSION-RULES.md § Ex
 
 ---
 
-*Sheerline area 11 (Collaboration & Facilitation), P1. v0.1.0 deployed 2026-08-17 (#666/#673). v0.2.0 staged 2026-08-23 (Wave D, `plans/plan-sheerline-skills-upgrade-2026-08-22.md`) — evals authored, footer corrected, no method change. Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md`; eval gap identified in the 2026-08-22 skills audit § 2.3. Boundary: § 9.*
+*Sheerline area 11 (Collaboration & Facilitation), P1. v0.1.0 deployed 2026-08-17 (#666/#673). v0.2.0 staged 2026-08-23 (Wave D, `plans/plan-sheerline-skills-upgrade-2026-08-22.md`) — evals authored, footer corrected, no method change. Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md`; eval gap identified in the 2026-08-22 skills audit § 2.3. Boundary: § 9. v0.3.0 staged 2026-11-22: page and node targeting through `use_figma` (Step 2a) and `references/board-conventions.md` (`plans/plan-keel-sheerline-next-versions-2026-11-21.md` LF.7).*

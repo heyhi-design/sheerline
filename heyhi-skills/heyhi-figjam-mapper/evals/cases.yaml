@@ -100,3 +100,19 @@ cases:
       prototype-translation request. Absorbing a heyhi-design-bridge or figma-use task fails the
       reciprocal not_for.
 
+  - id: fjm-07-targeted-build-uses-use-figma-and-a-stamp
+    description: >-
+      When the human names where the artifact must land, generate_diagram cannot do it. The
+      build must go through use_figma, aim at the exact target, and update its own stamped
+      section on a re-run instead of adding a copy.
+    input: |
+      "Put the checkout flow on the 'Sprint 12' page of our board, to the right of the
+      'Current state' section." The flow is a plain flowchart. A first build ran yesterday.
+    expected_findings:
+      - "Routed to use_figma on FigJam despite flowchart being a generate_diagram type, because the build is targeted."
+      - "The page is matched by exact name and the 'Current state' section is read first; the flow lands in empty space beside it, nothing of the room's is moved."
+      - "Yesterday's section is found by its stamp and updated in place; no second section appears."
+    pass_criteria: >-
+      A run that calls generate_diagram for a targeted build, picks a near-match page, places
+      the flow over existing content, or adds a duplicate section on the re-run fails.
+

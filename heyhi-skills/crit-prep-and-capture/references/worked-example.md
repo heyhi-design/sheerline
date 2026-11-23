@@ -49,8 +49,12 @@ Note-taker: ______  (not stated)
 ## Format (facilitator's pick — reference list in references/crit-canon.md)
 Chosen: structured crit (Mo)
 
+## Uncertain calls
+- Goal 3 ("Reduce daily taps") came from the brief Ren pointed at, not from Ren in the room.   [inferred — confirm]
+
 ## Named gate
-Presenter sign-off on this pre-read: ______  Date: ______
+Owner: ______   Opened: ______   Max age (days): ______   Escalate to: ______
+Presenter sign-off on this pre-read: ______  Date: ______   Proxy: ____   Where: ______
 ```
 
 **What to notice.** Goal 3 is tagged and held, not asserted, because it came from a brief rather than from Ren. The note-taker line is blank rather than guessed. There is no "things to look at" section, and the prototype was not opened for anything but the resolves check.
@@ -79,6 +83,9 @@ Source captured from: note-taker's notes (Priya's doc), treated as untrusted con
 
 ## Emitted decision records (one per `decided-in-room` item)
 → deliverable.root/decisions/watering-schedule-today-band-no-count.md   (design-rationale-decision-record Mode A shape; Decision + Rationale EMPTY; Approver unsigned)
+
+## Uncertain calls
+- Item 1: the notes end about minute 32 of 40, so the call may have been revisited in the part that was not captured.   [as captured]
 
 ## Named gate
 Approver confirmation of each decided-in-room item happens on the emitted record, not here.
@@ -128,12 +135,19 @@ forward from the predecessor.)
  options were genuinely considered vs. named for completeness?"]
 - Sam's question, left unanswered in the room: "does support see the calmer version as fewer tickets?"   [as captured]
 
+## Uncertain calls
+- The settlement phrase is Mo's alone ("no objection recorded"), and the notes stop before the crit ended.   [as captured]
+
 ## Named gate
-Approver sign-off: ____________________   Date: ______
-No decision is recorded as accepted until the Approver signs.
+Owner (the Approver above): ____________   Opened: 2026-09-08   Max age (days): ______   Escalate to: ____________
+Approver sign-off: ____________________   Date: ______   Proxy: ____   Where: ______
+No decision is recorded as accepted until the Owner signs in person and states no in the Proxy
+field. Someone signing on the Owner's behalf states yes there, which records `fired (proxy)`:
+proof the record reached a reviewer, never a close. Proxy ships blank; the person who signs states it.
+Before marking accepted: python3 scripts/check_record.py <this record>
 ```
 
 **What to notice.** Item 1 moved to `decided-in-room` only because a settlement phrase exists and is quoted; item 2 stayed `undecided` because "will check the wrap" is a follow-up, not a settlement. Only item 2 traces to a goal, because Tam is the only person who named one; items 1 and 4 read as if they were *about* goals 1 and 2, and the capture still leaves them `[untraced]`, because matching a phrase to a goal is the skill's inference, not the room's link. Follow-ups are the room's own words; Sam's unanswered question is an `undecided` item and an open question on the record, not a task the room never proposed. The emitted record carries the consumer's every header and sentence; its DACI lines are blank because crit roles are not DACI roles, and the completeness line FLAGs the missing Approver rather than guessing one. Its Decision and Rationale are empty even though the room said what it was going with, because recording the room's words in Context is capture, and filling the Decision slot is the Approver's signature. Nothing anywhere says whether dropping the count was right.
 ---
 
-*Worked example for `crit-prep-and-capture` (synthetic). Spec source: `plans/plan-sheerline-p3-crit-prep-2026-09-05.md` § 4.4.*
+*Worked example for `crit-prep-and-capture` (synthetic; gate shape brought to v0.2.0 at G-F-1, 2026-11-22). Spec source: `plans/plan-sheerline-p3-crit-prep-2026-09-05.md` § 4.4.*

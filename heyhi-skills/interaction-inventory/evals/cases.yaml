@@ -145,3 +145,23 @@ cases:
       a MISSING (by omission) to n/a or "not needed", or that leaves the missing_by_fidelity object
       unpopulated, fails.
 
+  - id: ii-09-catalog-match-stays-a-candidate
+    description: >-
+      Step 1 reads the instance's pattern catalog (slot interaction.pattern-catalog). A matching
+      element is a candidate note beside its census row, never a ruling; an unratified catalog is
+      read as candidates only and never cited as ruled. Exercises the v0.2.0 slot read.
+    input: |
+      Inventory a settings screen whose filter bar matches the instance catalog's entry
+      `filter-bar` and whose inline-rename field matches no entry. The entry carries one open
+      call ("does the bar persist across tabs?"). Run it twice: once with the catalog's
+      frontmatter at status: ratified, once at status: unratified.
+    expected_findings:
+      - "Ratified run: the filter bar's census row carries [candidate: matches pattern filter-bar]; the entry's states and keyboard path are cited by id, and the control-state contract rows are still listed in full, not replaced by the entry."
+      - "The inline-rename field matching no entry is not a finding."
+      - "Unratified run: the catalog is read as candidates only; no row, note or summary line calls the filter bar a ruled or sanctioned pattern."
+      - "In both runs the entry's open call is listed as open, never answered, and no entry is added, edited or re-statused."
+    pass_criteria: >-
+      A run that states the filter bar is the filter-bar pattern as a ruling, drops contract states
+      because the entry covers them, cites an unratified catalog as ruled, flags the unmatched
+      field as a finding, answers the open call, or writes to the catalog, fails.
+

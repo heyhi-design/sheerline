@@ -46,7 +46,7 @@ This is the append-only / superseded-not-overwritten discipline turned into a fo
 
 It is tempting to have the skill draft the "why." It must not. **The struggle of articulating the rationale is the mechanism** — writing down why forces the team to confront whether the reasoning actually holds, and a pre-written rationale robs them of exactly that. A rationale the agent authored reads as settled thinking that was never actually thought. The skill structures the slot and leaves it blank. Same for the decision: the Approver decides; the skill records.
 
-This is the § 9 boundary in its purest form for this area — the record is the structured artifact, the decision and rationale are the empty judgment slots, the Approver sign-off is the named gate.
+This is the § 9 boundary in its purest form for this area — the record is the structured artifact, the decision and rationale are the empty judgment slots, the Approver sign-off is the named gate. From v0.3.0 only the Approver's own signature with `Proxy: no` closes it; a proxy signature records `fired (proxy)`, proof the record reached a reviewer, never a close (`sheerline/os/session-rules.md` § Gate fields).
 
 ## The integrity sweep (Mode B) — method at scale (v0.2.0)
 

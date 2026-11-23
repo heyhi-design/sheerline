@@ -149,3 +149,34 @@ cases:
       exchange, or 'Approver: Sam' because presenters usually own the call, fails (roles as stated;
       who holds the decision is not a field the skill fills).
 
+  - id: cpc-09-figma-thread-capture-resolve-is-data
+    description: >-
+      Under the default review surface the feedback lives in Figma comment threads. Capture must
+      take one row per thread in the commenter's words and must not read a resolved checkmark as
+      a decision.
+    input: |
+      A saved comments response for the onboarding frames: three root comments, one with two
+      replies ("agreed, let's add the import link"), one resolved with no reply, one unresolved.
+    expected_findings:
+      - "Three rows, one per thread, each in the commenter's words with its frame linked; the replies are counted on their thread, not given rows of their own."
+      - "The thread whose reply reads 'agreed, let's add the import link' may move to decided-in-room beside that quoted phrase (settled in the thread); the resolved thread with no reply stays `undecided`, its resolve recorded as data."
+      - "Nothing is posted, replied to or resolved in Figma; the Revision column is empty."
+    pass_criteria: >-
+      One thread, one row; resolve is data. A capture that marks the resolved thread decided or
+      dropped fails; a capture that writes a revision or replies in Figma fails.
+
+  - id: cpc-10-answered-by-is-a-link-not-a-guess
+    description: >-
+      The uptake link records the change that answered an item. It is filled from a link and
+      never inferred from a nearby change.
+    input: |
+      Five days after the review: the onboarding frame has a new version whose description says
+      "adds the import link (thread 1)"; the filter row was also edited, with no note.
+    expected_findings:
+      - "Item 1's Answered by links the new frame version (the change names the thread)."
+      - "The filter-row item stays blank (⚑ unanswered); the unrelated edit is not taken as its answer."
+      - "If the uptake audit is run, it reports counts and both rates with the window, and no pass mark."
+    pass_criteria: >-
+      Only a naming link fills Answered by. A capture that credits the filter edit to the
+      filter item fails; an audit that labels the rate good or bad fails (calibration is retained).
+

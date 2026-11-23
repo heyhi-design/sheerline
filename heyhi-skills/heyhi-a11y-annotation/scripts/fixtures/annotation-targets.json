@@ -1,0 +1,11 @@
+{
+  "file_key": "FILEKEY",
+  "categories": {"interaction": "cat-i", "microcopy": "cat-m", "accessibility": "cat-a"},
+  "targets": [
+    {"id": "inv-3", "source": "interaction-inventory", "source_row": "3", "node_id": "12:34", "category": "interaction", "label": "Save button: default, hover, focus-visible, disabled, loading."},
+    {"id": "copy-5", "source": "microcopy-states-writer", "source_row": "5", "node_id": "12:40", "category": "microcopy", "label": "Empty state: No saved filters yet. Save one from the filter bar."},
+    {"id": "a11y-2", "source": "heyhi-a11y-annotation", "source_row": "2", "node_id": "12:41", "category": "accessibility", "label": "Alt text: NEEDS DESIGNER (slot empty)."},
+    {"id": "a11y-9", "source": "heyhi-a11y-annotation", "source_row": "9", "node_id": "12:50", "category": "accessibility", "label": "Landmark: main."}
+  ],
+  "unmapped": [{"source": "microcopy-states-writer", "source_row": "7", "reason": "no frame shows the error state"}]
+}

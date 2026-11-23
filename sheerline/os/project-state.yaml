@@ -5,7 +5,7 @@
 # build history here (notes, programs, actions); this copy shows the shape.
 
 meta:
-  version: 0.1.11
+  version: 0.1.12
   note: 'Scaffold copy. Comparison baseline for the integrity pass: any deviation between this file and
     the sheerline/ tree is context rot.'
 phases:

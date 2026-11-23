@@ -151,3 +151,22 @@ cases:
       The sidecar validates, the pair set is a subset, and the merge touches only the string. A
       sidecar with a filled judgment.ships, an extra pair, or a renamed slot fails.
 
+  - id: msw-09-vocabulary-conflict-is-flagged-not-swapped
+    description: >-
+      Step 1 reads the instance's shared vocabulary (slot content.shared-vocabulary). Strings are
+      drafted in its ruled terms; a candidate term that conflicts with a ruled one is a flag naming
+      both, never a silent swap; a term the vocabulary lacks stays a candidate; the set records the
+      version it wrote against. Exercises the v0.2.0 slot read.
+    input: |
+      Write the states copy for a sync screen. The instance's shared vocabulary, version 1.3.0,
+      rules "workspace" (not "project"). The inventory's labels and the brief both say "project".
+      The brief also uses "snapshot", which the vocabulary does not list.
+    expected_findings:
+      - "Candidate strings use \"workspace\"; the candidate glossary row for \"project\" fills Conflict seen and names the ruled term and its version (\"workspace\", 1.3.0)."
+      - "\"snapshot\" stays a candidate glossary term for the owner to rule on; nothing is added to the vocabulary."
+      - "The set records that it was written against shared vocabulary 1.3.0."
+    pass_criteria: >-
+      A run that swaps "project" for "workspace" with no flag, keeps "project" in a candidate
+      string without a flag, adds "snapshot" to the vocabulary, bumps its version, or omits the
+      version it wrote against, fails.
+

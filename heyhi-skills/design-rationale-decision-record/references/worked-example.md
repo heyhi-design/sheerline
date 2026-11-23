@@ -59,8 +59,12 @@ All rows are agent-surfaced CANDIDATES — see provenance. None asserts what the
 - Not swept: Figma comments and DMs — a decision settled only there would be invisible to
   this pass.
 
+## Uncertain calls
+none
+
 ## Named gate
-Reviewer confirmation (which candidates are real): ____________________  Date: ______
+Owner: ____________   Opened: ______   Max age (days): ______   Escalate to: ____________
+Reviewer confirmation (which candidates are real): ____________________  Date: ______   Proxy: ____   Where: ______
 ```
 
 ---
@@ -110,9 +114,16 @@ rationale is NOT copied forward (if it still held unchanged, there would be noth
 - Which options were genuinely on the table (keep filled + fix contrast, switch to outline,
   theme-specific variants) versus named for completeness?
 
+## Uncertain calls
+none
+
 ## Named gate
-Approver sign-off: ____________________   Date: ______
-No decision is recorded as accepted until the Approver signs.
+Owner (the Approver above): ____________   Opened: ______   Max age (days): ______   Escalate to: ____________
+Approver sign-off: ____________________   Date: ______   Proxy: ____   Where: ______
+No decision is recorded as accepted until the Owner signs in person and states no in the Proxy
+field. Someone signing on the Owner's behalf states yes there, which records `fired (proxy)`:
+proof the record reached a reviewer, never a close. Proxy ships blank; the person who signs states it.
+Before marking accepted: python3 scripts/check_record.py <this record>
 ```
 
 ---
@@ -124,4 +135,4 @@ No decision is recorded as accepted until the Approver signs.
 - **The heuristics show their work.** Each unrecorded row cites the settlement tell that surfaced it; the near-misses show a hypothetical ("if we killed the tour…") correctly *not* surfaced, and a three-thread decision deduped to one.
 - **The supersede scaffold links, it does not rewrite.** ADR-012 is named and left intact; the new decision, rationale, and "what changed" are empty for the humans, and the note makes explicit that the old rationale is not carried forward.
 
-*Worked examples for `design-rationale-decision-record` v0.2.0. Fully synthetic; added 2026-08-23 (Wave D) per the 2026-08-22 skills audit § 4 (no worked examples) and § 2.4 / § 5.*
+*Worked examples for `design-rationale-decision-record` v0.3.0 (gate shape brought to v0.3.0 at G-F-1, 2026-11-22). Fully synthetic; added 2026-08-23 (Wave D) per the 2026-08-22 skills audit § 4 (no worked examples) and § 2.4 / § 5.*

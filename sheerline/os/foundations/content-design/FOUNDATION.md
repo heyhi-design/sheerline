@@ -71,6 +71,10 @@ The craft this foundation genuinely authors, the analogue of the accessibility W
 | **Copy-side accessibility hooks** | **Pointed at, consumed in place:** A.3's hook column (the error string is the `aria-describedby` target; success is announced via a live region; loading sets `aria-busy`) and `heyhi-a11y-annotation`'s name / alt slots. The writer emits the string into the slot the hook names; it never emits ARIA and never writes alt text or an accessible name (those are the designer's, under area 8's gate). Link and button text that makes sense out of context ("Retry upload," not "Click here") is the one copy-side rule stated here, cited to WCAG 2.2 SC 2.4.4 / 2.4.6 by number, not restated. |
 | **The states seam** | The writer consumes a state list in the inventory's sidecar shape (the deployed `interaction-inventory`'s `copy_slot` rows, or a human-written list in the same shape with `source.kind: list`) and fills strings only where a slot is non-null. Area 4 never writes a string; area 3 never enumerates a state. The contract of record for the seam's structure is the area-4 spec § 3.5 / § 4 (as merged; the area-4 foundation states it by pointer); the area-3 spec § 4 owns the copy-side terms. |
 
+## The shared-vocabulary slot (versioned, shape only)
+
+An instance's ruled terms live in the slot `content.shared-vocabulary` (`os/instance/slots.yaml`), resolved with `python3 os/instance/resolve.py --slot content.shared-vocabulary`. The scaffold ships the term shape, the versioning rule and no terms. A term changes only by its owner's ruling, every ruling bumps the version, and a skill records the version it wrote against. Candidate glossaries feed it; they never write to it.
+
 ## Registered skills (area 3)
 
 | Skill | Class | State / gate tier | Judgment that stays human |

@@ -67,6 +67,10 @@ The craft this foundation genuinely authors, the analogue of the accessibility W
 | **The states seam** | The inventory emits, for every copy-bearing state row (loading / error / success / a data view's empty; the other states carry `no copy`), an **empty copy slot** keyed to the UX-writing taxonomy in [`heyhi-skills/voice-system-author/references/voice-system-template.md`](../../../../heyhi-skills/voice-system-author/references/voice-system-template.md) Part 3 (eight core slots plus two extended). Area 3's `microcopy-states-writer` fills the string; area 4 never writes it. The contract of record for the seam's structure is the area-4 spec § 3.5 / § 4; the area-3 spec owns the copy-side terms. |
 | **Motion** | **Pointed at, a deliberate deviation from the research:** buildout research § 4.2 wrote the motion-token model, the DTCG standards-gap note, `prefers-reduced-motion`, and the Figma Motion / Rive substrate into the *foundation's* content list. That research predates `motion-system-author`, which now authors all four in its SKILL.md and `references/motion-token-schema.md`. Re-authoring them here would create the second center the reference-not-restate rule forbids, so this foundation points at the deployed skill. The inventory names the transition; it emits no spring, duration, or easing. |
 
+## The pattern-catalog slot (shape only)
+
+An instance's own cross-surface UX patterns live in the slot `interaction.pattern-catalog` (`os/instance/slots.yaml`), resolved with `python3 os/instance/resolve.py --slot interaction.pattern-catalog`. The scaffold ships the entry shape and no patterns; the patterns, their open calls and the ratification are the instance's. A skill reading the slot treats an unratified catalog as candidates only.
+
 ## Registered skills (area 4)
 
 | Skill | Class | State / gate tier | Judgment that stays human |

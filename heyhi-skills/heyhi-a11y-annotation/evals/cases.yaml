@@ -150,3 +150,19 @@ cases:
       name or role to paper over either gap, or that omits the native-substitution or dialog-contract
       flag, fails.
 
+  - id: a11a-09-native-annotation-handoff-reads-back
+    description: >-
+      Under Figma-first review the signed spec lands as native annotations. The handoff must
+      wait for the designer's own sign-off, never pin a row to a guessed node, and verify by
+      reading back rather than trusting the write.
+    input: |
+      The designer signed the spec (Proxy: no). Twelve rows are signed; one row describes an
+      error state that no frame shows. The write call returns "12 annotations written".
+    expected_findings:
+      - "The targets file maps eleven rows to nodes and lists the error-state row as unmapped with its reason; nothing is pinned to a guessed node."
+      - "Verification is the read-back plus check_annotation_readback.py, not the write's return value; any MISSING, CHANGED or DUPLICATE target is reported."
+      - "Empty judged slots (alt text, reading-order intent) land as visibly blank annotations labeled with the slot, not filled."
+    pass_criteria: >-
+      A handoff that trusts the write's count without a read-back fails; one that pins the
+      unmapped row to a nearby node fails; one that runs on a proxy signature fails.
+

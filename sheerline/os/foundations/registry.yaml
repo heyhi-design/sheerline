@@ -40,7 +40,7 @@
 
 
 meta:
-  version: "0.1.11"
+  version: "0.1.12"
   areas: 13
   craft: 8
   operating: 4
@@ -112,6 +112,12 @@ meta:
     longer ships empty. 12 of 13 areas carry a provisional level 3 (Governed), ceiling L3 by the
     proof-vs-fire wall; area 12 DesignOps stays level null (no dedicated foundation doc); the instance
     owner set the targets (L4 near-term, area 11 held at L3). Coverage values unchanged.
+    2026-11-22 (D-4 re-grade, v0.1.11 -> 0.1.12; CV1 of the keel-sheerline-next arc): areas 2 and
+    13 re-graded under D-4 (the owner's ruling of 2026-11-21: a proxy signature counts as proof
+    only, never a close). Their 2026-09-12 and 2026-09-14 gate signatures were by proxy (the operator carrying
+    the team's answers), so they enter as direct proof, not as affirmation; affirmation stays
+    empty and both areas hold at level 3, the ceiling the proof-vs-fire wall sets. No level moved,
+    no coverage value moved.
     Coverage gaps are visible states, not absences. Skill count is derived (skill-registry.py --stats
     or the canonical skills table), never hardcoded here.
 
@@ -157,13 +163,14 @@ areas:
     grounding: "Foundation filled; 1 deployed skill (taxonomy-labeling-auditor). ui-studio touches layout with no IA discipline (the gap the foundation fills); heyhi-aeo owns the answer-engine layer the machine-readability seam hands off to; heyhi-figjam-mapper (area 11) serves IA sitemap diagrams, not a study skill."
     maturity:
       # provisional first-rung (owner-approved, per LEVELS.md's provisional rule). Ceiling L3 — no in-room affirmation yet (proof-vs-fire wall). Supersede on the first real area-2 fire.
+      # Re-graded 2026-11-22 under D-4 (a proxy signature is proof only, never a close): the 2026-09-12/14 proxy signature on the taxonomy owner gate is direct proof, not affirmation, so the level holds at 3.
       level: 3   # Governed
       target: 4   # owner-set: L4 near-term (earn one signed affirmation)
       evidence:
-        direct: ["os/foundations/information-architecture/FOUNDATION.md (governance; the 'judged layer (what stays human)' section)"]
+        direct: ["os/foundations/information-architecture/FOUNDATION.md (governance; the 'judged layer (what stays human)' section)", "the 2026-09-12/14 gate signature on a live engagement, by proxy (proof only under D-4)"]
         indirect: ["1 deployed skill (taxonomy-labeling-auditor); direct evidence carries the grade (0 auto-derived area-2 candidates, measure_maturity.py)"]
-        affirmation: []   # none in the room -> caps at L3
-      last_graded: "2026-09-15"
+        affirmation: []   # none in the room -> caps at L3; the proxy signature is proof only (D-4), never an affirmation
+      last_graded: "2026-11-22"
       re_grade_due: false
 
   - id: 3
@@ -387,12 +394,13 @@ areas:
     grounding: "1 deployed skill (heyhi-service-blueprint). Foundation filled; the last gap in the 13-area map closed at D-3 open; the discipline (not the canvas) is the wedge, composing with heyhi-figjam-mapper's render."
     maturity:
       # provisional first-rung (owner-approved, per LEVELS.md's provisional rule). Ceiling L3 — no in-room affirmation yet (proof-vs-fire wall). Supersede on the first real area-13 fire.
+      # Re-graded 2026-11-22 under D-4 (a proxy signature is proof only, never a close): the 2026-09-12/14 proxy signature on the blueprint ops gate is direct proof, not affirmation, so the level holds at 3.
       level: 3   # Governed
       target: 4   # owner-set: L4 near-term (earn one signed affirmation)
       evidence:
-        direct: ["os/foundations/service-design/FOUNDATION.md (governance; the backstage-confirmation discipline, the line-of-visibility separator, the evidence-vs-assumption rule)"]
+        direct: ["os/foundations/service-design/FOUNDATION.md (governance; the backstage-confirmation discipline, the line-of-visibility separator, the evidence-vs-assumption rule)", "the 2026-09-12/14 gate signature on a live engagement, by proxy (proof only under D-4)"]
         indirect: ["1 deployed skill (heyhi-service-blueprint); the auto-derived area-13 corrections/evaluator candidates (measure_maturity.py)"]
-        affirmation: []   # none in the room -> caps at L3
-      last_graded: "2026-09-15"
+        affirmation: []   # none in the room -> caps at L3; the proxy signature is proof only (D-4), never an affirmation
+      last_graded: "2026-11-22"
       re_grade_due: false
 

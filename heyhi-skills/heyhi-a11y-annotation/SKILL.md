@@ -18,9 +18,9 @@ description: >-
   NOT translating a prototype into a Figma design file or vectorizing a raster (use
   heyhi-design-bridge). NOT a prototype interaction-completeness / readiness check
   (use heyhi-prototype-audit).
-version: "0.1.1"
-updated: "2026-09-12"
-status: "Deployed — heyhi-skills/heyhi-a11y-annotation/; registered in the main + Sheerline subset registries (Sheerline Wave G-2, 2026-08-28). Sheerline area 8 (Accessibility), P2. Class X (extends heyhi-design-bridge): the accessibility-annotation sibling of design-bridge's Translate."
+version: "0.2.0"
+updated: "2026-11-22"
+status: "Deployed — heyhi-skills/heyhi-a11y-annotation/; registered in the main + Sheerline subset registries (Sheerline Wave G-2, 2026-08-28). Sheerline area 8 (Accessibility), P2. Class X (extends heyhi-design-bridge): the accessibility-annotation sibling of design-bridge's Translate. v0.2.0 promoted 2026-11-22 by keel-sheerline-next CV1.2 after the owner's G-F-1 review (#1017, #1018; drafted by LF, #1008)."
 ---
 
 # HeyHi Accessibility Annotation
@@ -111,8 +111,13 @@ is a design decision. This slot is intentionally empty.
 Each widget carries a candidate role + its APG spec. Whether the role is correct
 (and whether native HTML should replace the ARIA) is confirmed here. Intentionally empty.
 
+## Uncertain calls
+[The scaffold's own least-sure rows, unordered: a heading level read from type scale, a landmark
+ read from layer naming, a target measured on a scaled frame. `none` when there are none.]
+
 ## Named gate (annotation sign-off)
-Sign-off owner (the designer): ____________________   Date: ______
+Owner: ______   Opened: ______   Max age (days): ______   Escalate to: ______
+Sign-off owner (the designer): ____________________   Date: ______   Proxy: ____   Where: ______
 No accessibility annotation is handed to engineering until this line is signed by a human.
 The sign-off attests: alt-text decisions made, reading-order intent set, role calls confirmed,
 every missing-by-construction flag resolved.
@@ -131,6 +136,7 @@ Confirm, before handing the spec back:
 - At least the mechanical floor is complete: heading outline (with skipped-level flags), landmark map, target-size flags, name/role/value rows, APG specs, and missing-by-construction flags.
 - Every missing-by-construction gap is a *flag*, not a fabricated name/role/label.
 - The named sign-off line is present and unsigned.
+- New in v0.2.0: the gate fields (`sheerline/os/session-rules.md` § Gate fields) and an Uncertain calls section (or `none`) are present; a proxy signature, if one was recorded, reads `fired (proxy)` and nothing is handed off on it; a native-annotation handoff ran only after the designer's own sign-off, and its read-back reported every target MATCH.
 - If any client asset or name is in play, the hermetic-seal / classification rules of the engagement profile hold (no client name on a shared Figma annotation layer).
 
 ---
@@ -138,6 +144,8 @@ Confirm, before handing the spec back:
 ## Optional: land the annotations as a Figma layer (extends design-bridge)
 
 When the deliverable is a Figma annotation layer rather than a markdown spec, reuse `heyhi-design-bridge`'s `use_figma` write path and its Earn-the-Room gate: the human opens/points at the file, approves the spec (Step 3) as the approval surface, and the write is a faithful render of the approved spec, not a free generation. Land the annotations as callouts/redline stickies anchored to the corresponding layers (heading levels, landmark boundaries, the candidate focus-order path, name/role/value badges, target-size flags), with the empty judged slots rendered as visibly-blank labeled callouts. Do not re-implement the write transport; call design-bridge's. This is the class-X extension in practice.
+
+**Native annotations under Figma-first review (v0.2.0).** When the engagement's review surface is Figma (`review.review_surface: figma`, the default), land the handoff as native Figma annotations through `references/figma-annotation-handoff.md`: a targets file (one entry per signed row, mapped to its node or listed as unmapped, never pinned to a guessed node), one annotation category per source kind, the write through `use_figma`, then a read-back checked with `python3 scripts/check_annotation_readback.py <targets> <readback>`. The same path carries the interaction inventory and the microcopy set, so one handoff lands all three outputs on the frames. It runs only after this spec's gate is closed by the designer, never on a proxy signature. Once the frames are final, the reconciliation ledger in the same reference records where frame and spec disagree (MATCH / DELTA-FIGMA-WINS / GAP), counting a delta only against a signed frame.
 
 ---
 
@@ -158,8 +166,8 @@ This skill closes through the Exit Gate Flavor A (`CLAUDE-SESSION-RULES.md § Ex
 - `## Smoke Test`: the Step 4 pre-flight checks, pasted: judged slots empty, provenance labels present, mechanical floor complete, sign-off line unsigned.
 - `## Next Session Prompt`: the judged slots the designer still owns (alt text, reading-order intent, role calls) and every missing-by-construction flag still to resolve.
 
-If any alt slot, the reading-order intent slot, the role-calls slot, or the sign-off line is filled by the skill, the gate has **not** been satisfied.
+If any alt slot, the reading-order intent slot, the role-calls slot, or the sign-off line is filled by the skill, or annotations were landed on a proxy signature or without a read-back, the gate has **not** been satisfied.
 
 ---
 
-*Sheerline area 8 (Accessibility), P2, class X (extends `heyhi-design-bridge`). v0.1.0 deployed 2026-08-28 (Sheerline Wave G-2), registered in both registries. v0.1.1 (2026-09-12): Step 2.7 gains the full dialog build contract, and Step 2.8's native-substitution flag is generalized from a `<div>`-as-button to the `role=checkbox|radio|switch|button` set, plus a modal-without-dialog-semantics flag; one eval added (a11a-08). From a client-engagement `heyhi-a11y-annotation` finding (a skill-layer fix locked by an eval, erl-SRM; not a registry entry). Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 5.1 (the `heyhi-a11y-annotation` row) + § 9 (boundary + IP posture). Foundation: `sheerline/os/foundations/accessibility/FOUNDATION.md`. Boundary: § 9.*
+*Sheerline area 8 (Accessibility), P2, class X (extends `heyhi-design-bridge`). v0.1.0 deployed 2026-08-28 (Sheerline Wave G-2), registered in both registries. v0.1.1 (2026-09-12): Step 2.7 gains the full dialog build contract, and Step 2.8's native-substitution flag is generalized from a `<div>`-as-button to the `role=checkbox|radio|switch|button` set, plus a modal-without-dialog-semantics flag; one eval added (a11a-08). v0.2.0 staged 2026-11-22: the native Figma annotation handoff (targets file, categories, write then read back) and the reconciliation ledger, plus the gate fields and the Uncertain calls section; one eval added (a11a-09) (`plans/plan-keel-sheerline-next-versions-2026-11-21.md` LF.5, LF.6). From a client-engagement `heyhi-a11y-annotation` finding (a skill-layer fix locked by an eval, erl-SRM; not a registry entry). Spec source: `ai-services/design-intelligence/research/sheerline-skill-buildout-research-2026-08-09.md` § 5.1 (the `heyhi-a11y-annotation` row) + § 9 (boundary + IP posture). Foundation: `sheerline/os/foundations/accessibility/FOUNDATION.md`. Boundary: § 9.*

@@ -41,7 +41,7 @@ Run the tier check first (SKILL.md Step 1). The gate exists to keep most changes
 
 **Precedence (binding).** A change that writes data, changes auth or entitlement, or crosses an architecture boundary is Tier 2 no matter how few controls it touches. Control count never demotes such a change. When the precedence rule does not settle a borderline case, the tier is an open decision for the human, not a silent pick.
 
-**Calibration hook.** After three uses, check the gate: did Tier 0 and Tier 1 changes stay light, or did everything land at Tier 2? If everything is Tier 2, the tiers are miscalibrated. If a band is empty on most features, it may belong in a higher tier rather than the default run.
+**Calibration hook.** After three uses, check the gate: did Tier 0 and Tier 1 changes stay light, or did everything land at Tier 2? If everything is Tier 2, the tiers are miscalibrated. If a band is empty on most features, it may belong in a higher tier rather than the default run. Record the check: one row per three maps in the engagement's tier ledger (SKILL.md Step 1, "The calibration check, recorded"), so it leaves evidence a later session can read instead of living as an intention.
 
 ---
 

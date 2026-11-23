@@ -67,3 +67,11 @@ boundary:
   retained_moat_touched: "" # true | false  (does this engagement touch the evaluator / populated corpus / calibration?)
   hermetic_seal_confirmed: "" # true | false  (no client name in any tracked artifact)
 
+# --- Review surface and gate defaults (added 2026-11-22). New keys only; every key above is
+#     unchanged. Read with os/session-rules.md § Gate fields.
+review:
+  review_surface: figma     # figma | html | room. Where the owner reviews and signs: Figma frames and comment threads (the default), an HTML prototype, or a synchronous room
+  drawn_by_default: false   # opt-in, off by default. true lets a gated skill draw its recommended answer into a register row (session-rules.md § The drawn-by-default register); the gate stays open until every row is walked. The human sets it, never a skill
+  gate_max_age_days: ""     # the default max_age_days a skill copies into each new gate (an integer the human sets); the per-gate value wins
+  gate_escalate_to: ""      # the named person an aged gate escalates to by default (never the gate's owner)
+

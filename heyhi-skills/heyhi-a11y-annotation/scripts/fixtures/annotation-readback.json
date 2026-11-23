@@ -1,0 +1,8 @@
+{
+  "12:34": [{"label": "Save button: default, hover, focus-visible, disabled, loading. [inv-3]", "categoryId": "cat-i"},
+            {"label": "A note a designer wrote by hand", "categoryId": "cat-i"}],
+  "12:40": [{"labelMarkdown": "Empty state: Nothing here yet. [copy-5]", "categoryId": "cat-m"}],
+  "12:41": [{"label": "Alt text: NEEDS DESIGNER (slot empty). [a11y-2]", "categoryId": "cat-a"},
+            {"label": "Alt text: NEEDS DESIGNER (slot empty). [a11y-2]", "categoryId": "cat-a"}],
+  "12:50": []
+}

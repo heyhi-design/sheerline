@@ -24,9 +24,9 @@ description: >-
   NOT a taxonomy or information-architecture study (taxonomy and labeling audits are `taxonomy-labeling-auditor`, a deployed area-2 skill; the structure-design IA skills stay D-3-gated). NOT
   for reading the codebase into a manifest (use app-recon), and it writes no
   prototype, PRD, or story.
-version: "0.1.0"
-updated: "2026-09-07"
-status: "deployed 2026-09-07 (Sheerline fdde-loop convergence pass 1, DISPATCH-06; promoted from skill-updates/intent-journey-map/). Sheerline area 9 (Design Strategy & Product Thinking); serves_areas hints to 1 (User Research) and 2 (Information Architecture), registered nowhere before D-3 (plan § 5 D11). Lane D of the Sheerline forward-deployed loop (plans/plan-sheerline-fdde-loop-2026-09-07.md, DISPATCH-04). Method ported from a proven-once next-door protocol (method only, no engagement data); the fixed spine plus one pluggable domain band is the generalization."
+version: "0.2.0"
+updated: "2026-11-22"
+status: "deployed 2026-09-07 (Sheerline fdde-loop convergence pass 1, DISPATCH-06; promoted from skill-updates/intent-journey-map/). Sheerline area 9 (Design Strategy & Product Thinking); serves_areas hints to 1 (User Research) and 2 (Information Architecture), registered nowhere before D-3 (plan § 5 D11). Lane D of the Sheerline forward-deployed loop (plans/plan-sheerline-fdde-loop-2026-09-07.md, DISPATCH-04). Method ported from a proven-once next-door protocol (method only, no engagement data); the fixed spine plus one pluggable domain band is the generalization. v0.2.0 promoted 2026-11-22 by keel-sheerline-next CV1.2 after the owner's G-F-1 review (#1017, #1018; drafted by LF, #1008)."
 review_by: "2026-09-21"
 ---
 
@@ -84,6 +84,10 @@ Most changes do not need this protocol. Choose the tier deliberately: deeper map
 
 **The tier is a candidate the human confirms.** State the tier and the one-line reason. When the precedence rule does not settle it (a borderline single-write, an ambiguous boundary), name it as an open decision and leave the choice to the human rather than picking silently. `⛔ Tier when the precedence rule does not decide it (NEEDS HUMAN).`
 
+**Route down (the default direction).** Start at the lightest tier the precedence rule allows and rise only on a named trigger, the ones the Tier 2 row and the precedence rule already name: more than one step, a data write, a persona or surface boundary crossing, a new reusable component, an auth or entitlement change, or an architecture-boundary crossing. Write the trigger beside the tier (`Tier 2: writes data`). A Tier 2 with no named trigger is routed down to Tier 1, and a single control or a copy change on one state to Tier 0. Size never demotes a data-writing change; the absence of a trigger always does.
+
+**The calibration check, recorded.** After every third map in an engagement, append one row to the engagement's tier ledger (`<engagement folder>/ijm/tier-ledger.md`, gitignored): the three maps, the tier each landed at, the trigger named for each, and whether any change that started as Tier 0 or Tier 1 ended at Tier 2. Three maps in a row at Tier 2, or a ledger with no route-down at all, is the miscalibration signal in `references/method.md`. Surface it to the human as an open decision (re-tier, or confirm the work really is all Tier 2); the run never re-tiers past maps itself.
+
 Worked tier calls: renaming a button label is Tier 0 (skip). A settings panel that reflows existing controls and writes nothing is Tier 1. A one-field form that saves a note is Tier 2 (it writes data; control count does not demote it). A multi-step wizard that only reads is Tier 2 by its step count. A single toggle that flips an entitlement is Tier 2 by the precedence rule, not its one control.
 
 ## Step 2: Load context
@@ -114,6 +118,8 @@ Choosing the band is a small judgment, and it is the engagement's, not this skil
 ## Step 4: Build the prop-contract (Tier 2): bind, do not guess
 
 The prop-contract is the machine half of the map: one row per data prop, the 14 columns of `references/method.md` (§ The prop-contract), emitted as the paired `*-ijm-contract.json` validated against `schemas/ijm-contract.schema.json`. The enforceable core is the binding: each data prop's schema-field column is a JSON pointer into the application's OpenAPI, resolved and checked.
+
+**Validate every contract, old ones too.** `python3 scripts/validate_contracts.py <contract.json | folder>` runs each contract against the schema. It names the three fields drift loses first (`schema_version`, `tier`, `research_question`) when any is missing, then lists every other schema error, and exits 1 on any failure. Run it on the new contract before handing the map over, and on an engagement's whole contract folder when picking work back up: contracts written by hand or by an older run drift in shape between runs, and the report says which ones. A missing field is fixed by re-emitting the contract from its map, never by guessing a value (`research_question` stays null by construction).
 
 - **Bind each data prop to the real contract.** Resolve the `json_pointer` against the supplied OpenAPI. A pointer that resolves sets `binding_status: bound` and carries the schema's `required`, `enum`, and type across.
 - **Flag, never invent.** A pointer that does not resolve (a field the spec does not carry) sets `binding_status: flagged-absent` and is surfaced as a finding, never silently kept and never filled with a guessed shape. A field the human asserts but the sources do not support is `assumption`, labeled as such.
@@ -175,8 +181,13 @@ question is the human's to lock.
  The tier when the precedence rule did not decide it belongs here.]
    - [decision], owner: ____________________
 
+## Uncertain calls
+[The map's own least-sure cells, unordered and unscored: a binding that resolved but reads
+ wrong, an inferred journey step, a tier trigger that is arguable. `none` when there are none.]
+
 ## Named gate
-Contract review by the engineering owner: ____________________  Date: ______
+Owner: ______   Opened: ______   Max age (days): ______   Escalate to: ______
+Contract review by the engineering owner: ____________________  Date: ______   Proxy: ____   Where: ______
 The prop-contract is a proposal until this line is signed. No open decision is resolved,
 no severity is set, and no unverified field is promoted to real, by this skill.
 ```
@@ -208,9 +219,9 @@ The `binding_status: bound` says the pointer resolved; a `body` the schema did n
 
 Confirm, before declaring done:
 
-- The tier is stated with its reason; a borderline tier is an open decision, not a silent pick.
+- The tier is stated with its reason and its named trigger; a Tier 2 with no trigger was routed down; a borderline tier is an open decision, not a silent pick; if this map is the third since the last ledger row, the tier ledger row was appended.
 - Every system-and-data name traces to the manifest or is marked `unverified`; nothing is asserted from memory.
-- Every data prop in the contract is `bound`, `flagged-absent`, `no-spec`, or `assumption`, never a silent guess; the machine contract validates against `schemas/ijm-contract.schema.json`.
+- Every data prop in the contract is `bound`, `flagged-absent`, `no-spec`, or `assumption`, never a silent guess; the machine contract validates against `schemas/ijm-contract.schema.json` (`python3 scripts/validate_contracts.py <contract>` exits 0).
 - At Tier 2, the adversarial pass ran and every over-claim was corrected or re-labeled.
 - The research-question, theme-and-severity, and open-decisions slots are empty; the named gate is unsigned; each open decision carries an owner.
 - Prose rules hold: no standalone two-letter model abbreviation, zero em dashes, no banned words, no pricing; the `classification` frontmatter and the footer are present.
@@ -250,4 +261,4 @@ If any open decision was answered, any severity set, or any unverified field pro
 
 ---
 
-*Sheerline area 9 (Design Strategy & Product Thinking), serves areas 1 and 2. Staged 2026-09-07 (Lane D, `plans/plan-sheerline-fdde-loop-2026-09-07.md`, DISPATCH-04). Method ported from a proven-once next-door intent-and-journey-mapping protocol as portable methodology only (the fixed spine, the tier gate, bind-do-not-guess, the paired output, the named-owner decisions, the adversarial pass); the domain band, the job-story set, and every stack binding are engagement knowledge the engagement fills. Boundary: Sheerline § 9. Skeleton: `heyhi-skills/design-measurability-mapper/SKILL.md`.*
+*Sheerline area 9 (Design Strategy & Product Thinking), serves areas 1 and 2. Staged 2026-09-07 (Lane D, `plans/plan-sheerline-fdde-loop-2026-09-07.md`, DISPATCH-04). Method ported from a proven-once next-door intent-and-journey-mapping protocol as portable methodology only (the fixed spine, the tier gate, bind-do-not-guess, the paired output, the named-owner decisions, the adversarial pass); the domain band, the job-story set, and every stack binding are engagement knowledge the engagement fills. Boundary: Sheerline § 9. Skeleton: `heyhi-skills/design-measurability-mapper/SKILL.md`. v0.2.0 staged 2026-11-22: the route-down rule, the recorded calibration check, and `scripts/validate_contracts.py` (`plans/plan-keel-sheerline-next-versions-2026-11-21.md` LF.8).*

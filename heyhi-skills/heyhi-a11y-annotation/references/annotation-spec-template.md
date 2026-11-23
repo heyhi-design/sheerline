@@ -102,8 +102,12 @@ Each widget (sections 4, 7) carries a candidate role + its APG spec. Whether the
 is correct (and whether native HTML should replace the ARIA) is confirmed here.
 Intentionally empty.
 
+## Uncertain calls
+[The scaffold's own least-sure rows, unordered and unscored. `none` when there are none.]
+
 ## Named gate (annotation sign-off)
-Sign-off owner (the designer): ____________________     Date: ______
+Owner: ______   Opened: ______   Max age (days): ______   Escalate to: ______
+Sign-off owner (the designer): ____________________     Date: ______   Proxy: ____   Where: ______
 No accessibility annotation is handed to engineering until this line is signed by a human.
 The sign-off attests: alt-text decisions made, reading-order intent set, role calls confirmed,
 every missing-by-construction flag resolved.

@@ -16,9 +16,9 @@ One row per governed capability (`type: skill` in the subset registry). A capabi
 | `insight-activation` | 1 | `heyhi-skills/insight-activation/evals/cases.yaml` | 7 | Findings |
 | `research-plan-author` | 1 | `heyhi-skills/research-plan-author/evals/cases.yaml` | 5 | Findings |
 | `taxonomy-labeling-auditor` | 2 | `heyhi-skills/taxonomy-labeling-auditor/evals/cases.yaml` | 11 | Findings |
-| `microcopy-states-writer` | 3 | `heyhi-skills/microcopy-states-writer/evals/cases.yaml` | 8 | Findings |
+| `microcopy-states-writer` | 3 | `heyhi-skills/microcopy-states-writer/evals/cases.yaml` | 9 | Findings |
 | `voice-system-author` | 3 | `heyhi-skills/voice-system-author/evals/cases.yaml` | 7 | Findings |
-| `interaction-inventory` | 4 | `heyhi-skills/interaction-inventory/evals/cases.yaml` | 8 | Findings |
+| `interaction-inventory` | 4 | `heyhi-skills/interaction-inventory/evals/cases.yaml` | 9 | Findings |
 | `motion-system-author` | 4 | `heyhi-skills/motion-system-author/evals/cases.yaml` | 6 | Findings |
 | `app-to-figma` | 5 | `heyhi-skills/app-to-figma/evals/cases.yaml` | 7 | Findings |
 | `divergence-guard` | 5 | `heyhi-skills/divergence-guard/evals/cases.yaml` | 8 | Findings |
@@ -47,19 +47,19 @@ One row per governed capability (`type: skill` in the subset registry). A capabi
 | `heyhi-token-description-author` | 7 | `sheerline/skills/evals/heyhi-token-description-author/cases.yaml` | 4 | Findings (governance probe) |
 | `ui-studio-onboard` | 7 | `sheerline/skills/evals/ui-studio-onboard/cases.yaml` | 4 | Findings (governance probe) |
 | `heyhi-audit-campaign` | 7/8 | `sheerline/skills/evals/heyhi-audit-campaign/cases.yaml` | 4 | Findings (governance probe) |
-| `heyhi-a11y-annotation` | 8 | `heyhi-skills/heyhi-a11y-annotation/evals/cases.yaml` | 8 | Findings |
+| `heyhi-a11y-annotation` | 8 | `heyhi-skills/heyhi-a11y-annotation/evals/cases.yaml` | 9 | Findings |
 | `heyhi-a11y-audit` | 8 | `heyhi-skills/heyhi-a11y-audit/evals/cases.yaml` | 7 | Findings |
 | `app-intent-map` | 9 | `heyhi-skills/app-intent-map/evals/cases.yaml` | 6 | Findings |
 | `design-measurability-mapper` | 9 | `heyhi-skills/design-measurability-mapper/evals/cases.yaml` | 7 | Findings |
 | `futurecasting` | 9 | `sheerline/skills/evals/futurecasting/cases.yaml` | 4 | Findings (governance probe) |
-| `intent-journey-map` | 9 | `heyhi-skills/intent-journey-map/evals/cases.yaml` | 7 | Findings |
+| `intent-journey-map` | 9 | `heyhi-skills/intent-journey-map/evals/cases.yaml` | 9 | Findings |
 | `strategy-integrity-warden` | 9 | `heyhi-skills/strategy-integrity-warden/evals/cases.yaml` | 7 | Findings |
 | `competitive-teardown-runner` | 10 | `heyhi-skills/competitive-teardown-runner/evals/cases.yaml` | 7 | Findings |
 | `design-business-case-drafter` | 10 | `heyhi-skills/design-business-case-drafter/evals/cases.yaml` | 6 | Findings |
 | `experiment-readout-linter` | 10 | `heyhi-skills/experiment-readout-linter/evals/cases.yaml` | 9 | Findings |
-| `crit-prep-and-capture` | 11 | `heyhi-skills/crit-prep-and-capture/evals/cases.yaml` | 8 | Findings |
-| `design-rationale-decision-record` | 11 | `heyhi-skills/design-rationale-decision-record/evals/cases.yaml` | 7 | Findings |
-| `heyhi-figjam-mapper` | 11 | `heyhi-skills/heyhi-figjam-mapper/evals/cases.yaml` | 6 | Findings |
+| `crit-prep-and-capture` | 11 | `heyhi-skills/crit-prep-and-capture/evals/cases.yaml` | 10 | Findings |
+| `design-rationale-decision-record` | 11 | `heyhi-skills/design-rationale-decision-record/evals/cases.yaml` | 9 | Findings |
+| `heyhi-figjam-mapper` | 11 | `heyhi-skills/heyhi-figjam-mapper/evals/cases.yaml` | 7 | Findings |
 | `app-recon` | 12 | `heyhi-skills/app-recon/evals/cases.yaml` | 8 | Findings |
 | `feature-increment` | 12 | `heyhi-skills/feature-increment/evals/cases.yaml` | 7 | Findings |
 | `heyhi-service-blueprint` | 13 | `heyhi-skills/heyhi-service-blueprint/evals/cases.yaml` | 8 | Findings |

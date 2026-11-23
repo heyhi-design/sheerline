@@ -114,6 +114,21 @@ slots:
       The Gate G2 conformance calibration: one instance's known-good and known-bad run
       against its own DESIGN.md. The default is a blank record a new instance fills.
 
+  - id: content.shared-vocabulary
+    owner: microcopy-states-writer
+    kind: ratified
+    format: markdown
+    requires_ratification: true
+    consumers: [markdown]
+    default: sheerline/os/instance/defaults/content.shared-vocabulary.md
+    optional: false
+    in_tree: []
+    values: [status, ratified_by, version, effective_date]
+    note: >-
+      The instance's versioned shared vocabulary (the area-3 slot). The default ships the term
+      shape and no terms; an instance fills it with its ruled terms. A term changes only by its
+      owner's ruling, and every ruling bumps the version.
+
   - id: history.decision-log
     owner: sheerline
     kind: history
@@ -169,4 +184,19 @@ slots:
     note: >-
       Records of how the instance built or audited its own copy of a skill (implementation
       audits, gap plans, calibration run reports). Instance history, never method.
+
+  - id: interaction.pattern-catalog
+    owner: interaction-inventory
+    kind: ratified
+    format: markdown
+    requires_ratification: true
+    consumers: [markdown]
+    default: sheerline/os/instance/defaults/interaction.pattern-catalog.md
+    optional: false
+    in_tree: []
+    values: [status, ratified_by, version, effective_date]
+    note: >-
+      The instance's cross-surface UX pattern catalog (the area-4 slot). The default ships the
+      entry shape and no entries; an instance fills it with patterns harvested from its own
+      surfaces and ratifies it. Open calls stay the owner's.
 

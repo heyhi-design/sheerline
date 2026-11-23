@@ -108,3 +108,32 @@ cases:
       ADR-012 in place fails (breaks append-only history); a scaffold that pre-fills the new 'why'
       or copies ADR-012's rationale forward fails (§ 9 — the fresh articulation is the mechanism).
 
+  - id: drdr-08-accepted-with-blank-decision-fails
+    description: >-
+      A record whose Status reads `accepted` while its Decision or Rationale slot is blank is the
+      record-integrity failure this skill exists to prevent. The skill must flag it, not fill it.
+    input: |
+      A record arrives for a final look: Status accepted, Approver signed in person (Proxy: no),
+      the Rationale filled, the Decision line still "Decision: ______".
+    expected_findings:
+      - "The record is flagged as accepted with a blank Decision (check_record.py DR-01); it is not treated as decided."
+      - "The skill does not write a Decision to make the record pass; the Decision stays the Approver's to write."
+    pass_criteria: >-
+      The blank Decision is surfaced and the record is held from `accepted`. A run that drafts the
+      Decision to clear the check fails (§ 9); a run that reports the record as clean fails.
+
+  - id: drdr-09-proxy-signature-is-proof-not-close
+    description: >-
+      A signature recorded on the Approver's behalf is proof the record reached a reviewer, never
+      a close. The record must not read accepted on it.
+    input: |
+      The operator writes: "The design lead approved this in the meeting, I signed it for them."
+      The Named gate reads "Approver sign-off: the operator ... Proxy: yes".
+    expected_findings:
+      - "The gate stays `open` (or `aged` past its window) with a `fired (proxy)` note on it, never `closed`; the record stays `proposed` (or is flagged DR-04 if it already reads accepted)."
+      - "The Uncertain calls section or the open questions carry the follow-up: the Approver still signs in person."
+    pass_criteria: >-
+      A proxy signature is recorded as proof and never as the Approver's close. A run that moves
+      the record to `accepted` on the proxy fails; a run that drops the proxy record entirely
+      (losing the proof) also fails.
+

@@ -7,7 +7,7 @@ adapted_from: releases/open-source/keel/os/session-rules.template.md
 
 Operational patterns that complement `os/operating-principles.md`. Those govern *what* to produce; these govern *how*. Adapted from keel's `os/session-rules.template.md` (the mechanisms port unchanged; the design smoke test is the design-scoped addition).
 
-The Framing and Entry gates below, plus the go/kill/hold verdict in the Planning Artifact Convention, are the outer lifecycle around the four verbs: Framing and Entry open a scoped piece of work, the Exit Gate closes it, and the verdict says whether it keeps going. The inner loop (retrieve → validate → grade → learn) and the Exit Gate are untouched.
+The Framing and Entry gates below, plus the go/kill/hold verdict in the Planning Artifact Convention, are the outer lifecycle around the four verbs: Framing and Entry open a scoped piece of work, the Exit Gate closes it, and the verdict says whether it keeps going. The inner loop (retrieve → validate → grade → learn) and the Exit Gate are untouched. These gates, and every sign-off an output waits on, carry the gate fields below: an owner, an age, an escalation path and a proxy-aware signature.
 
 ---
 
@@ -39,6 +39,68 @@ entry_gate:
 ```
 
 **Pass condition:** all three sub-fields present and non-empty (the literal `none` counts). This stays a guideline fired once per scoped chunk, never a per-item checklist. The Definition of Ready never entered the Scrum Guide, and every primary source carries the same caution: a readiness check that blocks a work item until every box is ticked becomes a waterfall gate in agile's clothing. So `shaping incomplete` is itself a valid, recorded value for `blocking_unknowns`, not a hard stop — the failure mode is the missing field, not the unknown.
+
+---
+
+## Gate fields: owner, age, escalation, signature
+
+A named gate is any point where a Sheerline artifact waits on a person: the Framing and Entry gates and the go/kill/hold verdict above, an Approver's sign-off on a decision record, a presenter's sign-off on a pre-read, a designer's sign-off on an annotation, a cross-owner confirmation on a blueprint. A gate that names nobody, never ages and escalates to no one is limbo with a heading. So every gate records the same fields. In a planning artifact's frontmatter they sit under one `gates:` key, one entry per gate, so the three-line `framing:` and `entry_gate:` blocks stay three lines; a markdown output carries the same fields as labeled lines in its named-gate section (`Owner: … Opened: … Max age (days): … Escalate to: …`, then the signature line with `Proxy:` and `Where:`), which is the form the Sheerline skills' scaffolds use.
+
+```yaml
+gates:
+  <gate name>:                  # framing | entry | verdict | the output's own sign-off (e.g. approver)
+    owner: "<the one named person who must act; never a role, a team, or 'the room'>"
+    opened: "YYYY-MM-DD"        # the day the gate was handed to the owner
+    max_age_days: <days>        # an integer the engagement sets; how long the gate may stay open
+    escalate_to: "<a named person, not the owner, who hears when the gate ages out>"
+    signature:
+      by: ""                    # who signed; blank until someone signs
+      proxy: ""                 # "no" when the owner signs; "yes" when someone signs on the owner's behalf (false and true read the same)
+      date: ""                  # YYYY-MM-DD
+      where: ""                 # a link to the signing surface: the Figma comment, the PR review, the record line
+```
+
+For the outer lifecycle: the `framing` and `entry` gates are owned by whoever must fill the block before retrieve or execution starts. They pass on their own machine-checkable condition (the three fields non-empty), not on a signature; the signature there records who filled the block; the `verdict` gate is owned by whoever sets go/kill/hold, so an unset verdict past its window reads `aged` and escalates, which is the circuit-break default in the Planning Artifact Convention given an owner and a person to hear about it.
+
+**Pass condition:** `owner`, `opened`, `max_age_days` and `escalate_to` present and non-empty, and `signature` present (its sub-fields stay blank until someone signs). A missing field is the defect, as in the Entry Gate. A gate with no `max_age_days` reads as aged from the day it opened, never as unbounded. The engagement intake may carry defaults (`review.gate_max_age_days`, `review.gate_escalate_to`) that a skill copies into each new gate; the per-gate value wins. A scaffold ships `proxy` blank, never pre-filled: the person who signs states it.
+
+**The state is derived, never stated.** A gate's state is read from its fields, not written as a separate flag, so one artifact cannot read signed and unsigned at once. Closed is decided first; every other state is a way of not being closed:
+
+| State | Reads when |
+|---|---|
+| `closed` | `signature.by` is the owner, `signature.proxy` is `no`, and every drawn-by-default register row (below) is walked. Nothing else closes a gate |
+| `open` | not closed, and today is on or before `opened + max_age_days` |
+| `aged` | not closed, and today is past `opened + max_age_days`. Surfaced to `escalate_to`, and left out of every "done" count, the way an unset verdict is left out of ranking |
+
+A gate that is not closed may also read `fired (proxy)`: `signature.by` is filled and `signature.proxy` is `yes`. That is a note on `open` or `aged`, never a third way to close. A signature by anyone other than the owner, or with `proxy` left blank, closes nothing either: the gate stays `open` or `aged` until the owner signs and says so.
+
+**A proxy signature is proof, never a close.** When someone signs for the owner (the operator recording an approval heard in a meeting, a lead signing for an absent reviewer), record it with `proxy: yes`. That records `fired (proxy)`: evidence the artifact reached a reviewer, which a grade may count as proof of use. It never closes the gate, never moves a record to `accepted`, and never counts as the owner's affirmation.
+
+**Escalation is a notice, not a decision.** An aged gate goes to `escalate_to` as a question: this has waited past its window; does it still need the owner, or should it be re-scoped or dropped? The escalation owner decides. The run that surfaced the age decides nothing, and never signs, re-scopes or drops a gate itself.
+
+**Where the signature lives.** With the engagement's review surface on Figma (`review.review_surface: figma`, the default), the owner usually signs in a comment thread on the frame, and `signature.where` links that comment. With `html` or `room`, `where` links the record line or the meeting capture. Whatever the surface, the fields above are the record.
+
+### Uncertain calls
+
+Every gated output carries an `## Uncertain calls` section beside its named gate: the drafts in the output that the run itself is least sure of (an inferred node, a borderline tier, a settlement phrase that may be a hypothetical, a binding that resolved but reads wrong). It is a list, unordered and unscored. It never ranks the calls or names the one that matters most. An output with none writes the literal `none`, as the Entry Gate does for `blocking_unknowns`, so a missing section is a visible defect rather than an implied "all sure". The section points the owner's attention; it does not replace reading the rest of the output.
+
+### The drawn-by-default register (opt-in, off by default)
+
+The standing rule is that a judgment slot ships empty. Under deadline a team may choose to have the run draw its recommended answer into each slot and walk the drawn calls with the owner afterward. That inverts the empty-slot rule, so it is a disposition the human opts into per engagement (`review.drawn_by_default: true` in the engagement intake). It is never the default and never a skill's own choice: a design call drawn by default sits on the don't-automate line, so the opt-in is the human's.
+
+With the opt-in on, a gated skill may draw a recommended answer only into a register row, never silently into the slot:
+
+```yaml
+drawn_by_default_register:
+  - slot: "<the judgment slot the answer was drawn into>"
+    drawn: "<the recommended answer, as drawn>"
+    alternative: "<the other answer considered>"
+    redraw_cost: "<what changing course costs if the owner picks the alternative>"
+    walked_by: ""               # the owner, once the row is walked with them; blank until then
+    walk_by: "YYYY-MM-DD"       # the date the row must be walked by
+```
+
+The gate stays open until every row is walked: a row with a blank `walked_by`, or one walked by proxy, keeps the gate from closing (it reads `open` or `aged` by the table above, and a row past its `walk_by` date is flagged as overdue), whatever the signature says. A drawn answer the owner never walked was never decided. With the opt-in off, the register is absent and the slots ship empty as always.
 
 ---
 
